@@ -1,7 +1,7 @@
 {
- "ok": 89,
- "diff": 7,
- "missing": 6,
+ "ok": 91,
+ "diff": 8,
+ "missing": 3,
  "rows": [
   {
    "ticker": "AAPL",
@@ -691,10 +691,10 @@
    "ticker": "HOOD",
    "fy": 2025,
    "metric": "fcf",
-   "ours": null,
+   "ours": 1599000000,
    "ref": 1623000000,
-   "diff": null,
-   "status": "MISSING"
+   "diff": 0.0148,
+   "status": "OK"
   },
   {
    "ticker": "HOOD",
@@ -736,10 +736,10 @@
    "ticker": "HOOD",
    "fy": 2024,
    "metric": "fcf",
-   "ours": null,
+   "ours": -194000000,
    "ref": -170000000,
-   "diff": null,
-   "status": "MISSING"
+   "diff": 0.1237,
+   "status": "DIFF"
   },
   {
    "ticker": "HOOD",
@@ -781,10 +781,10 @@
    "ticker": "HOOD",
    "fy": 2023,
    "metric": "fcf",
-   "ours": null,
+   "ours": 1162000000,
    "ref": 1179000000,
-   "diff": null,
-   "status": "MISSING"
+   "diff": 0.0144,
+   "status": "OK"
   },
   {
    "ticker": "HIMS",

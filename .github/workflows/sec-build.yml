@@ -1,0 +1,41 @@
+name: SEC data build (every 4 days)
+
+on:
+  schedule:
+    - cron: "40 9 */4 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: secbuild
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Prepare scripts
+        run: |
+          mkdir -p scripts
+          [ -f build.py ] && cp build.py scripts/build.py || true
+          [ -f verify.py ] && cp verify.py scripts/verify.py || true
+      - name: Build data
+        env:
+          SEC_USER_AGENT: "Reza Hajilou mreza.hajilou@gmail.com"
+        run: python scripts/build.py
+      - name: Verify against reference values
+        run: python scripts/verify.py || true
+      - name: Commit data
+        run: |
+          git config user.name "sec-data-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A data
+          git commit -m "data: build $(date -u +%F)" || echo "no changes"
+          git push

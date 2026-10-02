@@ -1,0 +1,925 @@
+{
+ "ok": 49,
+ "diff": 38,
+ "missing": 15,
+ "rows": [
+  {
+   "ticker": "AAPL",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 416161000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 112010000000,
+   "ref": 112010000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 7.46,
+   "ref": 7.46,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": 98767000000,
+   "ref": 98767000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 391035000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": 93736000000,
+   "ref": 93736000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": 6.08,
+   "ref": 6.08,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": 108807000000,
+   "ref": 108807000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2023,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 383285000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2023,
+   "metric": "net_income",
+   "ours": 96995000000,
+   "ref": 96995000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2023,
+   "metric": "eps_diluted",
+   "ours": 6.13,
+   "ref": 6.13,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "AAPL",
+   "fy": 2023,
+   "metric": "fcf",
+   "ours": 99584000000,
+   "ref": 99584000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2026,
+   "metric": "revenue",
+   "ours": 215938000000,
+   "ref": 215938000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2026,
+   "metric": "op_income",
+   "ours": 130387000000,
+   "ref": 130387000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2026,
+   "metric": "net_income",
+   "ours": 120067000000,
+   "ref": 120067000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2026,
+   "metric": "eps_diluted",
+   "ours": 4.9,
+   "ref": 4.9,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2026,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 96676000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": 26974000000,
+   "ref": 130497000000,
+   "diff": 0.7933,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": 4224000000,
+   "ref": 81453000000,
+   "diff": 0.9481,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 4368000000,
+   "ref": 72880000000,
+   "diff": 0.9401,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 0.17,
+   "ref": 2.94,
+   "diff": 0.9422,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 60853000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": 26914000000,
+   "ref": 60922000000,
+   "diff": 0.5582,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": 10041000000,
+   "ref": 32972000000,
+   "diff": 0.6955,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": 9752000000,
+   "ref": 29760000000,
+   "diff": 0.6723,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": 3.85,
+   "ref": 1.19,
+   "diff": 0.6909,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "NVDA",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 27021000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2026,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 331839000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2026,
+   "metric": "op_income",
+   "ours": 155237000000,
+   "ref": 155237000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2026,
+   "metric": "net_income",
+   "ours": 133749000000,
+   "ref": 133749000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2026,
+   "metric": "eps_diluted",
+   "ours": 17.95,
+   "ref": 17.95,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2026,
+   "metric": "fcf",
+   "ours": 66987000000,
+   "ref": 66987000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 281724000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": 128528000000,
+   "ref": 128528000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 101832000000,
+   "ref": 101832000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 13.64,
+   "ref": 13.64,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": 71611000000,
+   "ref": 71611000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": null,
+   "ref": 245122000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": 109433000000,
+   "ref": 109433000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": 88136000000,
+   "ref": 88136000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": 11.8,
+   "ref": 11.8,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MSFT",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": 74071000000,
+   "ref": 74071000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": 22938469000,
+   "ref": 22938000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": 1985306000,
+   "ref": 1985000000,
+   "diff": 0.0002,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 1578149000,
+   "ref": 1578000000,
+   "diff": 0.0001,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 2.52,
+   "ref": 2.52,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": 4510714000,
+   "ref": 4511000000,
+   "diff": 0.0001,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": 16819866000,
+   "ref": 16820000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": 662152000,
+   "ref": 662150000.0,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": 444321000,
+   "ref": 444320000.0,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": 0.74,
+   "ref": 0.74,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": 2959267000,
+   "ref": 2959000000,
+   "diff": 0.0001,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2023,
+   "metric": "revenue",
+   "ours": 13063560000,
+   "ref": 13064000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2023,
+   "metric": "op_income",
+   "ours": 224778000,
+   "ref": 342650000.0,
+   "diff": 0.344,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2023,
+   "metric": "net_income",
+   "ours": 150726000,
+   "ref": 150730000.0,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2023,
+   "metric": "eps_diluted",
+   "ours": 0.25,
+   "ref": 0.25,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "SE",
+   "fy": 2023,
+   "metric": "fcf",
+   "ours": 1838083000,
+   "ref": 1838000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": 28893000000,
+   "ref": 28893000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": 3201000000,
+   "ref": 3201000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 1997000000,
+   "ref": 1997000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 39.4,
+   "ref": 39.39,
+   "diff": 0.0003,
+   "status": "OK"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 10773000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": 10780000000,
+   "ref": 20777000000,
+   "diff": 0.4812,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": 1069000000,
+   "ref": 2631000000,
+   "diff": 0.5937,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": 482000000,
+   "ref": 1911000000,
+   "diff": 0.7478,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": 9.53,
+   "ref": 37.69,
+   "diff": 0.7471,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": 2486000000,
+   "ref": 7058000000,
+   "diff": 0.6478,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2023,
+   "metric": "revenue",
+   "ours": 7069000000,
+   "ref": 15107000000,
+   "diff": 0.5321,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2023,
+   "metric": "op_income",
+   "ours": 441000000,
+   "ref": 2207000000,
+   "diff": 0.8002,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2023,
+   "metric": "net_income",
+   "ours": 83000000,
+   "ref": 987000000,
+   "diff": 0.9159,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2023,
+   "metric": "eps_diluted",
+   "ours": 1.67,
+   "ref": 19.46,
+   "diff": 0.9142,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "MELI",
+   "fy": 2023,
+   "metric": "fcf",
+   "ours": 392000000,
+   "ref": 4631000000,
+   "diff": 0.9154,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": 4473000000,
+   "ref": 4473000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": null,
+   "ref": 2094000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 1883000000,
+   "ref": 1883000000,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 2.05,
+   "ref": 2.05,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 1623000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": 1358000000,
+   "ref": 2951000000,
+   "diff": 0.5398,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": null,
+   "ref": 1054000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": -1028000000,
+   "ref": 1411000000,
+   "diff": 1.7286,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": -1.17,
+   "ref": 1.56,
+   "diff": 1.75,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": -880000000,
+   "ref": -170000000,
+   "diff": 0.8068,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2023,
+   "metric": "revenue",
+   "ours": 1815000000,
+   "ref": 1865000000,
+   "diff": 0.0268,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2023,
+   "metric": "op_income",
+   "ours": null,
+   "ref": -536000000,
+   "diff": null,
+   "status": "MISSING"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2023,
+   "metric": "net_income",
+   "ours": -3687000000,
+   "ref": -541000000,
+   "diff": 0.8533,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2023,
+   "metric": "eps_diluted",
+   "ours": -7.49,
+   "ref": -0.61,
+   "diff": 0.9186,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HOOD",
+   "fy": 2023,
+   "metric": "fcf",
+   "ours": -948000000,
+   "ref": 1179000000,
+   "diff": 1.8041,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2025,
+   "metric": "revenue",
+   "ours": 2347637000,
+   "ref": 2348000000,
+   "diff": 0.0002,
+   "status": "OK"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2025,
+   "metric": "op_income",
+   "ours": 105613000,
+   "ref": 121160000.0,
+   "diff": 0.1283,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2025,
+   "metric": "net_income",
+   "ours": 128365000,
+   "ref": 128370000.0,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2025,
+   "metric": "eps_diluted",
+   "ours": 0.51,
+   "ref": 0.51,
+   "diff": 0.0,
+   "status": "OK"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2025,
+   "metric": "fcf",
+   "ours": 57406000,
+   "ref": 73960000.0,
+   "diff": 0.2238,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2024,
+   "metric": "revenue",
+   "ours": 526916000,
+   "ref": 1477000000,
+   "diff": 0.6433,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2024,
+   "metric": "op_income",
+   "ours": -68697000,
+   "ref": 65879999.99999999,
+   "diff": 1.959,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2024,
+   "metric": "net_income",
+   "ours": -65678000,
+   "ref": 126040000.0,
+   "diff": 1.5211,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2024,
+   "metric": "eps_diluted",
+   "ours": -0.32,
+   "ref": 0.53,
+   "diff": 1.6038,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2024,
+   "metric": "fcf",
+   "ours": -33731000,
+   "ref": 209430000.0,
+   "diff": 1.1611,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2023,
+   "metric": "revenue",
+   "ours": 271878000,
+   "ref": 872000000,
+   "diff": 0.6882,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2023,
+   "metric": "op_income",
+   "ours": -115042000,
+   "ref": -26440000.0,
+   "diff": 0.7702,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2023,
+   "metric": "net_income",
+   "ours": -107659000,
+   "ref": -23550000.0,
+   "diff": 0.7813,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2023,
+   "metric": "eps_diluted",
+   "ours": -0.58,
+   "ref": -0.11,
+   "diff": 0.8103,
+   "status": "DIFF"
+  },
+  {
+   "ticker": "HIMS",
+   "fy": 2023,
+   "metric": "fcf",
+   "ours": null,
+   "ref": 56260000.0,
+   "diff": null,
+   "status": "MISSING"
+  }
+ ]
+}

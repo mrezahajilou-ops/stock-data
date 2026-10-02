@@ -485,6 +485,22 @@ def finish(recs, market):
     sector_pe = {k: sorted(v)[len(v) // 2] for k, v in by_sector.items() if len(v) >= 10}
     log("sector medians:", {k: round(v, 1) for k, v in sector_pe.items()})
 
+    # one company can have several tickers (share classes, notes, preferred). Keep only the
+    # tickers whose market cap is close to the company's main listing; drop odd instruments.
+    best = defaultdict(float)
+    for r in recs:
+        m = (market.get(r["ticker"]) or {}).get("mcap") or 0
+        best[r["cik"]] = max(best[r["cik"]], m)
+    multi = defaultdict(int)
+    for r in recs: multi[r["cik"]] += 1
+    def keep(r):
+        if multi[r["cik"]] == 1: return True
+        m = (market.get(r["ticker"]) or {}).get("mcap") or 0
+        return best[r["cik"]] == 0 or m >= 0.5 * best[r["cik"]]
+    dropped = [r["ticker"] for r in recs if not keep(r)]
+    recs = [r for r in recs if keep(r)]
+    log("dropped secondary instruments:", len(dropped), dropped[:20])
+
     index, screener = [], []
     for r in recs:
         mk = market.get(r["ticker"]) or {}

@@ -64,6 +64,8 @@ CONCEPTS = {
                        "us-gaap:PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
                        "us-gaap:PaymentsToAcquireProductiveAssets",
                        "us-gaap:PaymentsForCapitalImprovements",
+                       "us-gaap:PaymentsToDevelopSoftware",
+                       "us-gaap:PaymentsForSoftware",
                        "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"]),
     "sbc": ("dur", ["us-gaap:ShareBasedCompensation", "us-gaap:AllocatedShareBasedCompensationExpense"]),
     "dividends": ("dur", ["us-gaap:PaymentsOfDividendsCommonStock", "us-gaap:PaymentsOfDividends",
@@ -209,7 +211,8 @@ def build_company(cik, entry, facts):
     for key, (kind, tags) in CONCEPTS.items():
         series[key], filed[key], hist[key] = annual_series(facts, tags, kind)
     # split-adjust per-share series: values taken from filings made before a split get scaled
-    splits = split_factors(hist["shares_diluted"]) or split_factors(hist["shares_basic"])
+    splits = split_factors(hist["shares_diluted"]) or split_factors(hist["shares_basic"]) \
+        or [(fd, 1 / r) for fd, r in split_factors(hist["eps_diluted"])]
     if splits:
         for key, mult in (("shares_diluted", 1), ("shares_basic", 1), ("shares_out", 1), ("eps_diluted", -1)):
             for end in list(series[key]):
@@ -235,11 +238,13 @@ def build_company(cik, entry, facts):
         debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
         cash = (g("cash") or 0) + (g("st_investments") or 0)
         equity = g("equity")
-        invested = (equity + debt - cash) if equity is not None else None
+        invested = (equity + debt) if equity is not None else None
         if invested is not None and invested <= 0: invested = None
         gp = g("gross_profit")
         if gp is None and rev is not None and g("cogs") is not None: gp = rev - g("cogs")
         sh_d = g("shares_diluted") or g("shares_basic")
+        if not sh_d and ni and g("eps_diluted"):
+            sh_d = abs(ni / g("eps_diluted"))
         rows.append({
             "fy_end": end,
             "fy": int(end[:4]),
@@ -264,6 +269,12 @@ def build_company(cik, entry, facts):
             "revenue_per_share": r4(safe_div(rev, sh_d)),
             "book_value_per_share": r4(safe_div(equity, sh_d)),
         })
+    rows = [r for r in rows if r["revenue"] is not None or r["net_income"] is not None]
+    dedup = {}
+    for r in rows: dedup[r["fy"]] = r          # later fiscal-year end wins
+    rows = [dedup[k] for k in sorted(dedup)]
+    if len(rows) < 2:
+        return None
     # growth rates
     for i, r in enumerate(rows):
         for k in ("revenue", "net_income", "fcf", "eps_diluted", "shares_diluted"):

@@ -130,9 +130,8 @@ def annual_series(facts, tags, kind):
         node = facts.get(ns, {}).get(name)
         if not node: continue
         units = node.get("units", {})
+        # US-dollar reporters only: companies filing in other currencies are skipped entirely
         unit_key = next((u for u in ("USD", "shares", "USD/shares") if u in units), None)
-        if unit_key is None:
-            unit_key = next(iter(units), None)
         if unit_key is None: continue
         series, h = {}, defaultdict(list)
         for f in units[unit_key]:

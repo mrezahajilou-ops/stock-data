@@ -61,6 +61,7 @@ CONCEPTS = {
                      "us-gaap:NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
                      "ifrs-full:CashFlowsFromUsedInOperatingActivities"]),
     "capex": ("dur", ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+                       "us-gaap:PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
                        "us-gaap:PaymentsToAcquireProductiveAssets",
                        "us-gaap:PaymentsForCapitalImprovements",
                        "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"]),
@@ -119,35 +120,58 @@ def days(a, b):
     return (dt.date.fromisoformat(b) - dt.date.fromisoformat(a)).days
 
 def annual_series(facts, tags, kind):
-    """Return {fy_end_date: value} using the first tag that yields >=1 year of annual data."""
-    best = {}
+    """Merge annual values across fallback tags (priority order) per fiscal-period end.
+    Returns (values{end: val}, filed{end: filed_date}, history{end: [(filed, val), ...]})."""
+    vals, filed, hist = {}, {}, {}
     for tag in tags:
         ns, name = tag.split(":")
         node = facts.get(ns, {}).get(name)
         if not node: continue
         units = node.get("units", {})
-        # prefer USD / shares / USD-per-share
         unit_key = next((u for u in ("USD", "shares", "USD/shares") if u in units), None)
         if unit_key is None:
             unit_key = next(iter(units), None)
         if unit_key is None: continue
-        series = {}
+        series, h = {}, defaultdict(list)
         for f in units[unit_key]:
             if f.get("form") not in ANNUAL_FORMS: continue
-            if f.get("fp") not in (None, "FY"): continue
             end = f.get("end")
             if not end: continue
             if kind == "dur":
-                start = f.get("start")
-                if not start or not (340 <= days(start, end) <= 380): continue
-            # keep the most recently filed value for each period end (restatements win)
+                st = f.get("start")
+                if not st or not (340 <= days(st, end) <= 380): continue
+            fd = f.get("filed", "")
+            h[end].append((fd, f["val"]))
             prev = series.get(end)
-            if prev is None or f.get("filed", "") >= prev[1]:
-                series[end] = (f["val"], f.get("filed", ""), f.get("fy"))
-        if len(series) > len(best):
-            best = series
-        if len(best) >= 3: break
-    return {k: v[0] for k, v in best.items()}, {k: v[2] for k, v in best.items()}
+            if prev is None or fd >= prev[1]:   # most recently filed (restated) value wins
+                series[end] = (f["val"], fd)
+        for end, (v, fd) in series.items():
+            if any(abs(days(e, end)) <= 20 for e in vals):   # higher-priority tag already covers it
+                continue
+            vals[end], filed[end], hist[end] = v, fd, h[end]
+    return vals, filed, hist
+
+def split_factors(hist):
+    """Detect stock splits from restated share counts: same period reported with an integer ratio
+    in a later filing. Returns list of (first_restated_filing_date, ratio)."""
+    events = []
+    for end, obs in hist.items():
+        obs = sorted(obs)
+        for i in range(1, len(obs)):
+            a, b = obs[i - 1][1], obs[i][1]
+            if not a or not b: continue
+            r = b / a
+            ratio = r if r >= 1 else 1 / r
+            if ratio >= 1.9 and abs(ratio - round(ratio)) / ratio < 0.03:
+                events.append((obs[i][0], r))
+    # merge events for the same split (within ~13 months of each other, same ratio)
+    events.sort()
+    merged = []
+    for fd, r in events:
+        if merged and abs(merged[-1][1] - r) / r < 0.05 and days(merged[-1][0], fd) < 400:
+            continue
+        merged.append((fd, r))
+    return merged
 
 def pick_fy_ends(all_series):
     """Fiscal-year end dates = union of ends seen on revenue/net income/assets (most reliable tags)."""
@@ -181,9 +205,19 @@ def r4(x):
     return None if x is None else (round(x, 4) if abs(x) < 1000 else round(x))
 
 def build_company(cik, entry, facts):
-    series, fys = {}, {}
+    series, filed, hist = {}, {}, {}
     for key, (kind, tags) in CONCEPTS.items():
-        series[key], fys[key] = annual_series(facts, tags, kind)
+        series[key], filed[key], hist[key] = annual_series(facts, tags, kind)
+    # split-adjust per-share series: values taken from filings made before a split get scaled
+    splits = split_factors(hist["shares_diluted"]) or split_factors(hist["shares_basic"])
+    if splits:
+        for key, mult in (("shares_diluted", 1), ("shares_basic", 1), ("shares_out", 1), ("eps_diluted", -1)):
+            for end in list(series[key]):
+                f = 1.0
+                for fd, r in splits:
+                    if filed[key].get(end, "") < fd: f *= r
+                if f != 1.0 and series[key][end] is not None:
+                    series[key][end] = series[key][end] * f if mult == 1 else series[key][end] / f
     ends = pick_fy_ends(series)
     if len(ends) < 2 or not series["revenue"]:
         return None
@@ -208,7 +242,7 @@ def build_company(cik, entry, facts):
         sh_d = g("shares_diluted") or g("shares_basic")
         rows.append({
             "fy_end": end,
-            "fy": fys["revenue"].get(end) or int(end[:4]),
+            "fy": int(end[:4]),
             "revenue": rev, "gross_profit": gp, "op_income": op, "net_income": ni,
             "eps_diluted": g("eps_diluted"), "shares_diluted": sh_d, "shares_out": g("shares_out"),
             "cfo": cfo, "capex": None if capex is None else abs(capex), "fcf": fcf,
@@ -260,7 +294,7 @@ def build_company(cik, entry, facts):
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
         "currency": "USD", "source": "SEC EDGAR XBRL (companyfacts)",
-        "updated": dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"),
+        "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "latest": {k: last[k] for k in ("fy", "fy_end", "revenue", "net_income", "fcf", "eps_diluted",
                                          "shares_diluted", "shares_out", "cash", "debt", "equity",
                                          "net_margin", "fcf_margin", "roic")},
@@ -317,7 +351,7 @@ def main():
     with open(os.path.join(OUT, "index.json"), "w") as f:
         json.dump(index, f, separators=(",", ":"))
     with open(os.path.join(OUT, "meta.json"), "w") as f:
-        json.dump({"built": dt.datetime.utcnow().isoformat() + "Z", "stocks": done, "skipped": skipped,
+        json.dump({"built": dt.datetime.now(dt.timezone.utc).isoformat(), "stocks": done, "skipped": skipped,
                    "source": "SEC EDGAR"}, f)
     log("done. stocks:", done, "skipped (no usable annual data):", skipped)
 

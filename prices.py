@@ -2,8 +2,7 @@
 """Weekly price history (10y) for every ticker in data/index.json.
 
 Output: prices/<TICKER>.json -> {"t":"AAPL","as_of":"2026-10-03","src":"stooq","w":[["2016-10-07",26.12],...]}
-Source 1 (bulk, one download): Stooq daily US archive  https://static.stooq.com/db/h/d_us_txt.zip
-Source 2 (fallback, per ticker): Nasdaq chart API      https://api.nasdaq.com/api/quote/<T>/chart
+Source: Nasdaq chart API https://api.nasdaq.com/api/quote/<T>/chart (daily closes, downsampled to weekly)
 Published on the orphan branch `prices` so the main repo never grows.
 """
 import json, os, sys, time, io, zipfile, urllib.request, urllib.error, datetime as dt, concurrent.futures as cf
@@ -91,7 +90,7 @@ def nasdaq(t):
             continue
         try:
             mm, dd, yy = d.split('/')
-            rows.append(['%s-%s-%s' % (yy, mm, dd), round(float(str(c).replace(',', '')), 4)])
+            rows.append(['%04d-%02d-%02d' % (int(yy), int(mm), int(dd)), round(float(str(c).replace(',', '')), 4)])
         except Exception:
             pass
     rows.sort()
@@ -125,15 +124,11 @@ def main():
         tickers = tickers[:int(sys.argv[1])]
     os.makedirs(OUT, exist_ok=True)
     ok = {'stooq': 0, 'nasdaq': 0}
-    try:
-        bulk = stooq_bulk(tickers)
-    except Exception as e:
-        print('stooq bulk failed:', e, flush=True)
-        bulk = {}
+    bulk = {}  # stooq bulk archive needs a login (HTTP 401); nasdaq is the primary source for now
     for t, rows in bulk.items():
         write(t, rows, 'stooq'); ok['stooq'] += 1
     missing = [t for t in tickers if t not in bulk]
-    print('fallback via nasdaq for', len(missing), flush=True)
+    print('fetching via nasdaq for', len(missing), flush=True)
     fail = 0
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=3) as ex:

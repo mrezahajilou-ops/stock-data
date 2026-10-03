@@ -1,0 +1,391 @@
+<div id="rzs" dir="rtl">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
+#rzs{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1040px;margin:0 auto;padding:18px 16px 40px;border-radius:22px;line-height:1.7;box-sizing:border-box}
+#rzs *{box-sizing:border-box;font-family:inherit}
+#rzs .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#rzs .nav a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--mut)!important;text-decoration:none!important;font-weight:800;font-size:14px}
+#rzs .nav a.on{background:var(--lime);color:#0b1726!important;border-color:var(--lime)}
+#rzs h1{font-size:26px;font-weight:900;margin:0 0 2px;color:#fff}
+#rzs .sub{color:var(--mut);margin:0 0 14px;font-size:14.5px}
+#rzs .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+#rzs .search{position:relative}
+#rzs .search input{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;color:#fff;font-size:17px;padding:11px 14px;outline:none;direction:ltr;text-align:right}
+#rzs .search input:focus{border-color:var(--ac)}
+#rzs .sugg{position:absolute;top:100%;right:0;left:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-top:6px;z-index:20;max-height:300px;overflow:auto;display:none}
+#rzs .sugg div{padding:9px 14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line)}
+#rzs .sugg div:hover{background:#21395a}
+#rzs .sugg b{direction:ltr;color:var(--ac)}
+#rzs .quota{font-size:12.5px;color:var(--mut);margin-top:8px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#rzs .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#rzs .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
+#rzs .chip:hover{color:#fff;border-color:var(--ac)}
+#rzs .head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
+#rzs .co{font-size:24px;font-weight:900;color:#fff;line-height:1.4}
+#rzs .co small{font-size:14px;color:var(--ac);margin-right:8px;direction:ltr;display:inline-block}
+#rzs .meta{color:var(--mut);font-size:13px}
+#rzs .px{text-align:left}
+#rzs .px .p{font-size:28px;font-weight:900;direction:ltr}
+#rzs .px .d{font-size:12px;color:var(--mut)}
+#rzs .grid2{display:grid;grid-template-columns:300px 1fr;gap:14px}
+#rzs .score .big{font-size:44px;font-weight:900;text-align:center;line-height:1.1}
+#rzs .score .stars{text-align:center;color:var(--gold);font-size:20px;letter-spacing:2px}
+#rzs .score .lbl{text-align:center;color:var(--mut);font-size:13px;margin-bottom:6px}
+#rzs .axes{display:grid;grid-template-columns:1fr;gap:8px}
+#rzs .ax{display:grid;grid-template-columns:120px 1fr 34px;gap:8px;align-items:center;font-size:14px}
+#rzs .ax .t{font-weight:800}
+#rzs .ax .t span{display:block;font-size:11.5px;color:var(--mut);font-weight:600;line-height:1.4}
+#rzs .bar{height:10px;background:#0e1d30;border-radius:6px;overflow:hidden;direction:rtl}
+#rzs .bar i{display:block;height:100%;border-radius:6px}
+#rzs .ax b{text-align:center;direction:ltr}
+#rzs .why{display:none;margin:4px 0 6px;padding:0 0 6px;border-bottom:1px dashed var(--line)}
+#rzs .why.on{display:block}
+#rzs .why div{font-size:12.5px;color:var(--mut);display:flex;gap:6px;align-items:flex-start;line-height:1.6}
+#rzs .why div b{flex:0 0 auto;font-weight:900}
+#rzs .why .ok b{color:var(--ac)}#rzs .why .no b{color:var(--red)}
+#rzs .axhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+#rzs .lnk{background:none;border:0;color:var(--ac);font-weight:800;cursor:pointer;font-size:13px;padding:0}
+#rzs .verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#rzs .verdict ul{margin:0;padding:0;list-style:none}
+#rzs .verdict li{font-size:13.5px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+#rzs .verdict h4{margin:0 0 6px;font-size:14px}
+#rzs .verdict .pl h4{color:var(--ac)}#rzs .verdict .mi h4{color:var(--red)}
+#rzs .vtag{display:inline-block;padding:2px 12px;border-radius:999px;font-size:13px;font-weight:900;margin-right:8px}
+#rzs .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+#rzs .st{background:var(--card2);border-radius:12px;padding:10px 12px;position:relative}
+#rzs .st .k{font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:4px}
+#rzs .st .k i{font-style:normal;color:#6f86a3;cursor:help;font-size:11px;border:1px solid #2f4a6b;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+#rzs .st .v{font-size:18px;font-weight:900;direction:ltr;text-align:right}
+#rzs .st .s{font-size:11px;color:var(--mut);direction:rtl}
+#rzs .st .s b{direction:ltr;display:inline-block}
+#rzs h3{font-size:17px;margin:0 0 10px;color:#fff}
+#rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#rzs svg{width:100%;height:auto;display:block}
+#rzs .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+#rzs table{width:100%;border-collapse:collapse;font-size:13.5px;direction:rtl}
+#rzs th{background:var(--card2);color:var(--lime);padding:8px 8px;white-space:nowrap;font-weight:800}
+#rzs td{padding:7px 8px;border-top:1px solid var(--line);white-space:nowrap;direction:ltr;text-align:center}
+#rzs td.n{direction:rtl;text-align:right;font-weight:800;color:#fff;position:sticky;right:0;background:var(--card)}
+#rzs tr.sec td{background:var(--card2);color:var(--lime);font-weight:900;text-align:right;direction:rtl}
+#rzs .neg{color:#ff8a8e}
+#rzs .btn{display:inline-block;background:var(--ac);color:#06201d!important;text-decoration:none!important;font-weight:900;padding:10px 20px;border-radius:999px;border:0;cursor:pointer;white-space:nowrap}
+#rzs .btn.ghost{background:transparent;border:1.5px solid var(--line);color:#fff!important}
+#rzs .empty{color:var(--mut);text-align:center;padding:30px 10px}
+#rzs .note{font-size:12px;color:var(--mut);text-align:center;margin-top:12px}
+#rzs .badge{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:rgba(245,183,0,.15);color:#f3d27a;margin-right:6px}
+#rzs .book{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(135deg,#1b2f4d,#13233a);border:1px solid var(--line);border-radius:16px;padding:18px}
+#rzs .book h3{margin:0 0 2px}
+#rzs .book p{margin:0;color:var(--mut);font-size:14px}
+#rzs .legend{display:flex;gap:12px;font-size:12px;color:var(--mut);margin-top:6px;flex-wrap:wrap}
+#rzs .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:5px;vertical-align:middle}
+@media (max-width:760px){#rzs .grid2,#rzs .charts,#rzs .verdict{grid-template-columns:1fr}#rzs .stats{grid-template-columns:repeat(2,1fr)}#rzs .px{text-align:right}#rzs h1{font-size:22px}}
+#rzs .pr{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+#rzs .rng{display:flex;gap:4px;flex-wrap:wrap}
+#rzs .rng button{background:var(--bg);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+#rzs .rng button.on{background:var(--lime);color:#0b1726;border-color:var(--lime)}
+#rzs .perf{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:10px}
+#rzs .perf div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 4px;text-align:center}
+#rzs .perf .k{font-size:11.5px;color:var(--mut);font-weight:700}
+#rzs .perf .v{font-size:14.5px;font-weight:900;direction:ltr}
+#rzs .up{color:#2ec4b6}#rzs .dn{color:#ff5a5f}
+#rzs .pxl{font-size:12.5px;color:var(--mut);direction:ltr;text-align:left}
+#rzs .pxl b{color:#fff;font-size:15px}
+#rzs .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+#rzs .tabs button{background:var(--bg);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
+#rzs .tabs button.on{background:var(--ac);color:#06201d;border-color:var(--ac)}
+@media (max-width:720px){#rzs .perf{grid-template-columns:repeat(3,1fr)}}
+</style>
+
+<div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a></div>
+<h1>تحلیل سهام آمریکا به فارسی</h1>
+<p class="sub">امتیاز ۰ تا ۵ در پنج بخش با توضیح دلیل هر امتیاز، صورت‌های مالی ۱۰ ساله، نسبت‌های ارزش‌گذاری و مقایسه با میانگین صنعت؛ مستقیم از گزارش‌های رسمی شرکت‌ها به SEC.</p>
+
+<div class="card">
+  <div class="search"><input id="rzs-q" placeholder="نماد یا اسم شرکت… مثلاً NVDA" autocomplete="off" spellcheck="false"><div class="sugg" id="rzs-sugg"></div></div>
+  <div class="chips" id="rzs-pop"></div>
+  <div class="quota"><span id="rzs-quota"></span><span id="rzs-recent"></span></div>
+</div>
+<div id="rzs-main"><div class="card empty">یه نماد جستجو کن.</div></div>
+
+<div class="book">
+  <div><h3>این امتیازها رو چطور بخونم؟</h3><p>معنی P/E، ROIC، جریان نقد آزاد و سلامت ترازنامه رو با مثال واقعی تو کتاب آموزش بورس به فارسی توضیح دادیم.</p></div>
+  <a class="btn" href="/products/از-اولین-سهم-تا-انتخاب-حرفه‌ای‌ها-مرجع-کامل-فارسی-برای-یادگرفتن-سرمایه‌گذاری-در-بورس">مشاهده‌ی کتاب ←</a>
+</div>
+<p class="note">داده‌ها: SEC EDGAR (هر ۴ روز به‌روز میشه) · قیمت: آخرین قیمت بسته‌شدن روز به‌روزرسانی · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
+
+<script>
+(function(){
+var API = window.RZS_API || 'https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-data@main/data';
+var ACCESS = !!window.RZS_ACCESS, LOGGED = !!window.RZS_LOGGED, SUB_URL = window.RZS_SUB_URL || '/products/stock-data-pro';
+var FREE_PER_WEEK = 10;
+var $=function(i){return document.getElementById(i)};
+var INDEX=null, cur=null, SECT=null;
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
+function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
+function x(v,d){return v==null||!isFinite(v)?'—':v.toFixed(d==null?1:d)}
+function faN(n){return Number(n).toLocaleString('fa-IR',{useGrouping:false})}
+function nz(v){return v==null||!isFinite(v)}
+
+/* ---- weekly free quota (per browser) ---- */
+function weekId(){var d=new Date(),j=new Date(d.getFullYear(),0,1);return d.getFullYear()+'-'+Math.ceil(((d-j)/864e5+j.getDay()+1)/7)}
+function quota(){try{var q=JSON.parse(localStorage.getItem('rzs_q')||'{}');if(q.w!==weekId())q={w:weekId(),t:[]};return q}catch(e){return {w:weekId(),t:[]}}}
+function saveQ(q){try{localStorage.setItem('rzs_q',JSON.stringify(q))}catch(e){}}
+function canView(t){if(ACCESS)return true;var q=quota();if(q.t.indexOf(t)>=0)return true;if(q.t.length>=FREE_PER_WEEK)return false;q.t.push(t);saveQ(q);return true}
+function showQuota(){if(ACCESS){$('rzs-quota').textContent='عضو ویژه: جستجوی نامحدود ✓';return}var q=quota();$('rzs-quota').textContent='جستجوی رایگان این هفته: '+faN(Math.max(0,FREE_PER_WEEK-q.t.length))+' از '+faN(FREE_PER_WEEK)+' باقی‌مونده'}
+function recent(add){var r=[];try{r=JSON.parse(localStorage.getItem('rzs_recent')||'[]')}catch(e){}if(add){r=[add].concat(r.filter(function(t){return t!==add})).slice(0,6);try{localStorage.setItem('rzs_recent',JSON.stringify(r))}catch(e){}}
+  $('rzs-recent').innerHTML=r.length?'اخیراً: '+r.map(function(t){return '<a href="#'+esc(t)+'" data-t="'+esc(t)+'" style="color:var(--ac);direction:ltr;display:inline-block;margin-right:6px;text-decoration:none">'+esc(t)+'</a>'}).join(''):''}
+
+/* ---- load ---- */
+function loadIndex(){if(INDEX)return;INDEX=[];fetch(API+'/index.json').then(function(r){return r.json()}).then(function(j){INDEX=j;if(q.value)q.dispatchEvent(new Event('input'))}).catch(function(){INDEX=null})}
+function loadSectors(){if(SECT)return;SECT={};fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).then(function(j){SECT=j||{};if(cur)fillSector()}).catch(function(){})}
+var ALIAS=null;
+function open(t,via){
+  t=t.toUpperCase(); sg.style.display='none'; q.value=t;
+  if(!via){ALIAS=null; if(!canView(t)){paywall(t);showQuota();return}}
+  try{localStorage.setItem('rz_last_ticker',t)}catch(e){}
+  showQuota(); $('rzs-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';
+  try{history.replaceState(null,'','#'+t)}catch(e){}
+  fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(d){
+    if(d){render(d);recent(d.ticker);return}
+    if(via){notFound(t);return}
+    fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(p){ALIAS={from:t,to:p};open(p,true)}else notFound(t)}).catch(function(){notFound(t)});
+  }).catch(function(){notFound(t)});
+}
+function notFound(t){$('rzs-main').innerHTML='<div class="card empty">برای '+esc(t)+' داده‌ای پیدا نشد. فقط سهم‌های بورس آمریکا که گزارش سالانه به SEC میدن پوشش داده میشن.</div>'}
+function paywall(t){
+  var login=LOGGED?'':'<a class="btn ghost" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً خریدی؟ وارد شو</a>';
+  $('rzs-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div><div class="co" style="margin:6px 0">۱۰ جستجوی رایگان این هفته‌ات تموم شد</div>'+
+  '<p class="sub" style="max-width:540px;margin:0 auto 16px">با اشتراک ماهانه، تحلیل و امتیاز بیش از ۶٬۸۰۰ سهم آمریکایی، غربالگر کامل با خروجی اکسل و صورت‌های مالی ۱۰ ساله رو بی‌محدودیت داری.</p>'+
+  '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">اشتراک ماهانه ۷٫۹۹ یورو</a>'+login+'</div></div>';
+}
+
+/* ---- score explanations (same checks as the data engine) ---- */
+var AX=[['value','ارزش','قیمت نسبت به سود و ارزش ذاتی'],['future','آینده','شتاب رشد درآمد و سود'],['past','گذشته','کارنامه‌ی ۵ سال اخیر'],['health','سلامت مالی','بدهی، نقدینگی و ترازنامه'],['capital','بازگشت سرمایه','سود نقدی و بازخرید سهام']];
+var WHY={
+  value:['P/E کمتر از ۲۵','P/E کمتر از میانه‌ی صنعت','P/FCF کمتر از ۲۰','قیمت پایین‌تر از ارزش ذاتی (DCF با فرض متوسط)','PEG کمتر از ۱٫۵'],
+  future:['رشد درآمد سال آخر بالای ۱۰٪','رشد سالانه‌ی درآمد ۳ ساله بالای ۱۰٪','حاشیه سود در حال بهبود','رشد سالانه‌ی جریان نقد آزاد ۳ ساله بالای ۱۰٪','سرمایه‌گذاری قوی در R&D (بالای ۵٪ درآمد) یا رشد بالای ۲۰٪'],
+  past:['رشد سالانه‌ی EPS ۵ ساله بالای ۱۰٪','رشد سالانه‌ی درآمد ۵ ساله بالای ۸٪','میانگین ROIC ۵ ساله بالای ۱۲٪','۵ سال پیاپی سودده','ROE بالای ۱۵٪'],
+  health:['نقد بیشتر از بدهی یا بدهی/حقوق صاحبان سهام کمتر از ۰٫۵','جریان نقد آزاد مثبت','پوشش بهره بالای ۵ برابر','بدهی کمتر از ۳ سال جریان نقد آزاد','بدهی‌ها کمتر از ۶۰٪ دارایی‌ها'],
+  capital:['سود نقدی پرداخت می‌کنه','تعداد سهام در ۳ سال کم شده (بازخرید)','۲۰ تا ۱۰۰٪ جریان نقد آزاد به سهامدار برگشته','۳ سال پیاپی سود نقدی','پاداش سهامی کارکنان کمتر از ۵٪ درآمد']};
+function col(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function verdict(d){
+  var s=d.scores||{}, c=d.checks||null, t=s.total;
+  var tag=t==null?['بدون امتیاز','#93a7bf']:t>=4?['شرکت قوی','#2ec4b6']:t>=3?['خوب با چند نقطه ضعف','#b5e36b']:t>=2?['متوسط؛ با احتیاط','#f5b700']:['ضعیف؛ ریسک بالا','#ff5a5f'];
+  var plus=[],minus=[];
+  if(c){AX.forEach(function(A){var k=A[0];if(!c[k])return;c[k].forEach(function(ok,i){(ok?plus:minus).push(WHY[k][i])})})}
+  var h='<div class="card"><div class="axhead"><h3 style="margin:0">خلاصه در یک نگاه</h3><span class="vtag" style="background:'+tag[1]+'22;color:'+tag[1]+'">'+tag[0]+(t==null?'':' · '+t.toFixed(1)+'/۵')+'</span></div>';
+  if(!c){h+='<div class="meta">توضیح دلیل امتیازها بعد از به‌روزرسانی بعدی داده‌ها نمایش داده میشه.</div></div>';return h}
+  h+='<div class="verdict"><div class="pl"><h4>✅ نقاط قوت ('+faN(plus.length)+')</h4><ul>'+(plus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div>'+
+     '<div class="mi"><h4>⚠️ نقاط ضعف ('+faN(minus.length)+')</h4><ul>'+(minus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div></div></div>';
+  return h;
+}
+function whyRows(k,c){if(!c||!c[k])return '';return '<div class="why" data-k="'+k+'">'+c[k].map(function(ok,i){return '<div class="'+(ok?'ok':'no')+'"><b>'+(ok?'✓':'✗')+'</b><span>'+WHY[k][i]+'</span></div>'}).join('')+'</div>'}
+
+/* ---- ratio definitions (label, value, tooltip, sector key, lower-is-better) ---- */
+function statCards(d){
+  var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, sm=d.summary||{};
+  var mcap=m.mcap, debt=L.debt||0, cash=L.cash||0;
+  var ev=r.ev!=null?r.ev:(mcap?mcap+debt-cash:null);
+  var evEbitda=r.ev_ebitda!=null?r.ev_ebitda:(ev&&L.ebitda>0?ev/L.ebitda:null);
+  var fcfy=r.fcf_yield!=null?r.fcf_yield:(mcap&&L.fcf!=null?L.fcf/mcap:null);
+  var pb=r.pb!=null?r.pb:(mcap&&L.equity>0?mcap/L.equity:null);
+  var bby=r.buyback_yield!=null?r.buyback_yield:(mcap?(L.buybacks||0)/mcap:null);
+  var ndE=L.nd_ebitda!=null?L.nd_ebitda:(L.ebitda>0?(debt-cash)/L.ebitda:null);
+  var icov=L.interest_cov!=null?L.interest_cov:(L.interest_exp>0&&L.op_income!=null?L.op_income/L.interest_exp:null);
+  var sbc=L.sbc_pct!=null?L.sbc_pct:(L.sbc!=null&&L.revenue?L.sbc/L.revenue:null);
+  var sh3=sm.sh_cagr_3y;
+  if(sh3==null&&a.length>=4&&a[a.length-4].shares_diluted>0&&L.shares_diluted>0)sh3=Math.pow(L.shares_diluted/a[a.length-4].shares_diluted,1/3)-1;
+  var groups=[
+   ['ارزش‌گذاری',[
+    ['P/E',x(r.pe),'قیمت تقسیم بر سود هر سهم. هر چی کمتر، سهم نسبت به سودش ارزون‌تره.','pe',1],
+    ['P/FCF',x(r.pfcf),'ارزش بازار تقسیم بر جریان نقد آزاد. برای شرکت‌هایی که سود حسابداری‌شون گمراه‌کننده‌ست مفیده.','pfcf',1],
+    ['P/S',x(r.ps),'ارزش بازار تقسیم بر درآمد. برای شرکت‌های زیان‌ده یا در حال رشد.','ps',1],
+    ['P/B',x(pb),'ارزش بازار تقسیم بر ارزش دفتری (حقوق صاحبان سهام).',null,1],
+    ['EV/EBITDA',x(evEbitda),'ارزش کل شرکت (با بدهی) تقسیم بر سود قبل از بهره، مالیات و استهلاک. برای مقایسه شرکت‌ها با ساختار بدهی متفاوت.','ev_ebitda',1],
+    ['بازده جریان نقد آزاد',pct(fcfy),'جریان نقد آزاد تقسیم بر ارزش بازار. مثل «نرخ سودی» که شرکت واقعاً تولید می‌کنه.','fcf_yield',0],
+    ['PEG',x(r.peg,2),'P/E تقسیم بر رشد سود. زیر ۱ معمولاً یعنی رشد ارزون خریده شده.',null,1],
+    ['ارزش ذاتی (DCF) نسبت به قیمت',r.fair_mcap&&mcap?(r.fair_mcap/mcap-1>=0?'+':'')+pct(r.fair_mcap/mcap-1,0):'—','با فرض‌های متوسط (رشد ۸۰٪ میانگین ۵ ساله، P/E ۲۲، بازده ۱۰٪). مثبت یعنی ارزش ذاتی بالاتر از قیمت فعلیه.',null,0]]],
+   ['رشد و سودآوری',[
+    ['رشد درآمد (۱ سال)',pct(L.revenue_growth),'درآمد سال آخر نسبت به سال قبل.','revg1',0],
+    ['رشد سالانه درآمد (۳ سال)',pct(sm.rev_cagr_3y),'میانگین مرکب رشد درآمد در ۳ سال.',null,0],
+    ['رشد سالانه درآمد (۵ سال)',pct(sm.rev_cagr_5y),'میانگین مرکب رشد درآمد در ۵ سال.',null,0],
+    ['رشد سالانه EPS (۵ سال)',pct(sm.eps_cagr_5y),'رشد مرکب سود هر سهم در ۵ سال.',null,0],
+    ['حاشیه سود ناخالص',pct(L.gross_margin),'(درآمد − بهای تمام‌شده) ÷ درآمد. قدرت قیمت‌گذاری شرکت.','gm',0],
+    ['حاشیه سود عملیاتی',pct(L.op_margin),'سود عملیاتی ÷ درآمد.',null,0],
+    ['حاشیه سود خالص',pct(L.net_margin),'سود خالص ÷ درآمد.','nm',0],
+    ['حاشیه جریان نقد آزاد',pct(L.fcf_margin),'جریان نقد آزاد ÷ درآمد.',null,0],
+    ['ROIC',pct(L.roic),'بازده سرمایه‌ی به‌کاررفته. بالای ۱۵٪ یعنی شرکت پول رو خوب به کار می‌گیره.','roic',0],
+    ['ROE',pct(L.roe),'بازده حقوق صاحبان سهام.',null,0],
+    ['روند حاشیه سود',sm.nm_trend==null?'—':(sm.nm_trend>=0?'+':'')+pct(sm.nm_trend),'حاشیه سود خالص سال آخر منهای میانگین ۳ سال قبل. مثبت یعنی بهبود.',null,0],
+    ['تبدیل سود به نقد',x(L.fcf_conv,2),'جریان نقد آزاد ÷ سود خالص. نزدیک ۱ یا بالاتر یعنی سود واقعاً به نقد تبدیل میشه.',null,0]]],
+   ['ترازنامه و سلامت',[
+    ['نقد',big(cash),'نقد و سرمایه‌گذاری کوتاه‌مدت در پایان سال مالی.',null,0],
+    ['بدهی',big(debt),'بدهی کوتاه‌مدت + بلندمدت.',null,1],
+    ['بدهی خالص / EBITDA',x(ndE),'چند سال EBITDA لازمه تا بدهی خالص صاف بشه. منفی یعنی نقد بیشتر از بدهیه. زیر ۲ راحت، بالای ۴ خطرناک.',null,1],
+    ['بدهی به حقوق صاحبان سهام',x(L.debt_to_equity,2),'بدهی ÷ حقوق صاحبان سهام.','de',1],
+    ['پوشش بهره',x(icov),'سود عملیاتی ÷ هزینه بهره. بالای ۵ یعنی بهره‌ی بدهی فشار نمیاره.',null,0],
+    ['نسبت جاری',x(L.current_ratio,2),'دارایی جاری ÷ بدهی جاری. بالای ۱ یعنی تعهدات کوتاه‌مدت پوشش داده میشه.',null,0],
+    ['سرقفلی / دارایی‌ها',L.goodwill!=null&&L.assets?pct(L.goodwill/L.assets):'—','چه بخشی از دارایی‌ها سرقفلی (حاصل خرید شرکت‌های دیگه) است.',null,1],
+    ['سال‌های سودده (۱۰ سال)',sm.profit_years==null?'—':faN(sm.profit_years)+' از '+faN(Math.min(10,sm.years||a.length)),'چند سال از ۱۰ سال اخیر سود خالص مثبت بوده.',null,0]]],
+   ['بازگشت سرمایه به سهامدار',[
+    ['بازده سود نقدی',pct(r.div_yield,2),'سود نقدی سالانه ÷ ارزش بازار.','divy',0],
+    ['بازده بازخرید سهام',pct(bby,2),'مبلغ بازخرید سهام ÷ ارزش بازار.',null,0],
+    ['بازده کل سهامدار',pct(r.shareholder_yield!=null?r.shareholder_yield:((r.div_yield||0)+(bby||0)),2),'سود نقدی + بازخرید، تقسیم بر ارزش بازار.',null,0],
+    ['تغییر تعداد سهام (۳ سال)',sh3==null?'—':(sh3>=0?'+':'')+pct(sh3),'سالانه. منفی یعنی بازخرید (سهم تو بزرگ‌تر میشه)، مثبت یعنی رقیق‌شدن.',null,1],
+    ['پاداش سهامی کارکنان',pct(sbc),'SBC ÷ درآمد. بالای ۱۰٪ یعنی رقیق‌شدن جدی برای سهامداران.',null,1],
+    ['سود نقدی هر سهم',L.div_per_share==null?'—':'$'+L.div_per_share.toFixed(2),'کل سود نقدی پرداختی ÷ تعداد سهام.',null,0],
+    ['نسبت پرداخت (از FCF)',pct(L.payout,0),'(سود نقدی + بازخرید) ÷ جریان نقد آزاد. بالای ۱۰۰٪ پایدار نیست.',null,1],
+    ['سال‌های سود نقدی (۱۰ سال)',sm.div_years==null?'—':faN(sm.div_years),'چند سال از ۱۰ سال اخیر سود نقدی پرداخت شده.',null,0]]]];
+  var h='';
+  groups.forEach(function(G){
+    h+='<div class="card"><h3>'+G[0]+'</h3><div class="stats">'+G[1].map(function(z){
+      return '<div class="st"><div class="k"><span>'+z[0]+'</span><i title="'+esc(z[2])+'">?</i></div><div class="v">'+z[1]+'</div><div class="s" data-sk="'+(z[3]||'')+'" data-lo="'+z[4]+'"></div></div>'}).join('')+'</div></div>';
+  });
+  return h;
+}
+function fillSector(){
+  if(!cur||!SECT)return; var m=cur.market||{}, S=SECT[m.sector]; if(!S)return;
+  var a=cur.annual, L=a[a.length-1], r=cur.ratios||{};
+  var val={pe:r.pe,pfcf:r.pfcf,ps:r.ps,ev_ebitda:r.ev_ebitda,nm:L.net_margin,gm:L.gross_margin,roic:L.roic,revg1:L.revenue_growth,divy:r.div_yield,fcf_yield:r.fcf_yield,de:L.debt_to_equity};
+  var isPct={nm:1,gm:1,roic:1,revg1:1,divy:1,fcf_yield:1};
+  [].forEach.call(document.querySelectorAll('#rzs .st .s[data-sk]'),function(el){
+    var k=el.dataset.sk; if(!k||S[k]==null||val[k]==null)return;
+    var lo=el.dataset.lo==='1', better=lo?val[k]<S[k]:val[k]>S[k];
+    el.innerHTML='میانه‌ی صنعت: <b>'+(isPct[k]?pct(S[k]):x(S[k]))+'</b> <span style="color:'+(better?'#2ec4b6':'#ff8a8e')+'">'+(better?'بهتر':'ضعیف‌تر')+'</span>';
+  });
+}
+
+/* ---- render ---- */
+function render(d){
+  cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
+  var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
+  var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small></div>'+
+    '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا '+esc(L.fy_end||'')+')'+
+    (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
+    (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
+    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+'</div><div class="d">ارزش بازار '+big(m.mcap)+(m.as_of?' · '+esc(m.as_of):'')+'</div>'+
+    '<div class="d">EV '+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</div></div></div></div>';
+  h+=verdict(d);
+  h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
+  h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / ۵</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
+  h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
+     '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/pages/dcf#'+esc(d.ticker)+'">محاسبه‌ی ارزش ذاتی (DCF) ←</a><a class="btn ghost" href="/pages/screener">سهم‌های مشابه در غربالگر</a></div></div></div>';
+  h+=statCards(d);
+  h+='<div class="charts"><div class="card"><h3>درآمد و سود خالص (میلیارد دلار)</h3>'+bars(a,['revenue','net_income'],['#2ec4b6','#b5e36b'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>درآمد</span><span><i style="background:#b5e36b"></i>سود خالص</span></div></div>'+
+     '<div class="card"><h3>جریان نقد آزاد (میلیارد دلار)</h3>'+bars(a,['fcf'],['#f5b700'])+'</div>'+
+     '<div class="card"><h3>حاشیه‌های سود (٪)</h3>'+lines(a,['gross_margin','op_margin','net_margin'],['#2ec4b6','#b5e36b','#f5b700'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>ناخالص</span><span><i style="background:#b5e36b"></i>عملیاتی</span><span><i style="background:#f5b700"></i>خالص</span></div></div>'+
+     '<div class="card"><h3>تعداد سهام (میلیون) — کم‌شدن = بازخرید</h3>'+bars(a,['shares_diluted'],['#8fb3ff'],1e6)+'</div></div>';
+  var money=function(v){return big(v)}, ps=function(v){return v==null?'—':'$'+v.toFixed(2)}, pc=function(v){return pct(v)}, xx=function(v){return x(v,2)};
+  var sections=[
+    ['صورت سود و زیان',[['درآمد','revenue',money],['رشد درآمد','revenue_growth',pc],['سود ناخالص','gross_profit',money],['هزینه R&D','rnd',money],['سود عملیاتی','op_income',money],['EBITDA','ebitda',money],['سود خالص','net_income',money],['رشد سود خالص','net_income_growth',pc],['سود هر سهم (EPS)','eps_diluted',ps],['رشد EPS','eps_diluted_growth',pc]]],
+    ['جریان نقد',[['جریان نقد عملیاتی','cfo',money],['هزینه‌ی سرمایه‌ای','capex',money],['جریان نقد آزاد','fcf',money],['رشد جریان نقد آزاد','fcf_growth',pc],['پاداش سهامی (SBC)','sbc',money],['سود نقدی پرداختی','dividends',money],['بازخرید سهام','buybacks',money]]],
+    ['ترازنامه',[['نقد و سرمایه‌گذاری کوتاه‌مدت','cash',money],['بدهی','debt',money],['بدهی خالص','net_debt',money],['کل دارایی‌ها','assets',money],['کل بدهی‌ها','liabilities',money],['حقوق صاحبان سهام','equity',money],['سرقفلی','goodwill',money],['تعداد سهام (میلیون)','shares_diluted',function(v){return v==null?'—':(v/1e6).toFixed(0)}]]],
+    ['نسبت‌ها',[['حاشیه سود ناخالص','gross_margin',pc],['حاشیه سود عملیاتی','op_margin',pc],['حاشیه سود خالص','net_margin',pc],['حاشیه جریان نقد آزاد','fcf_margin',pc],['ROIC','roic',pc],['ROE','roe',pc],['بدهی به حقوق صاحبان سهام','debt_to_equity',xx],['پوشش بهره','interest_cov',function(v){return x(v,1)}],['سود نقدی هر سهم','div_per_share',ps],['ارزش دفتری هر سهم','book_value_per_share',ps]]]];
+  var yrs=a.slice(-10);
+  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrs.map(function(y){return '<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
+    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrs.map(function(y){var v=y[R[1]];return '<td'+(v<0?' class="neg"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
+  $('rzs-main').innerHTML=h;
+  var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
+  var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
+    var csv='\ufeff'+rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'); var b=new Blob([csv],{type:'text/csv'}); var u=URL.createObjectURL(b); var l=document.createElement('a'); l.href=u; l.download=d.ticker+'_financials.csv'; document.body.appendChild(l); l.click(); l.remove(); URL.revokeObjectURL(u)})}
+  loadSectors(); fillSector();
+  loadPrice(d.ticker);
+}
+
+/* ---- price performance (weekly) ---- */
+var PRICES = window.RZS_PRICES || 'https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-data@prices';
+var RANGES=[['1m','۱ ماه',31],['6m','۶ ماه',183],['1y','۱ سال',366],['3y','۳ سال',1096],['5y','۵ سال',1827],['10y','۱۰ سال',3660]];
+var PX=null, PXR='1y';
+function loadPrice(t){
+  PX=null;
+  fetch(PRICES+'/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(j){
+    var box=$('rzs-price'); if(!box) return;
+    if(!j||!j.w||j.w.length<2){box.innerHTML='<h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">تاریخچه‌ی قیمت برای این سهم در دسترس نیست.</div>';return}
+    PX=j; drawPrice();
+  }).catch(function(){var box=$('rzs-price');if(box)box.innerHTML='<h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">تاریخچه‌ی قیمت در دسترس نیست.</div>'});
+}
+function sliceRange(w,days){var cut=new Date(Date.now()-days*864e5).toISOString().slice(0,10);var r=w.filter(function(p){return p[0]>=cut});if(r.length<2)r=w.slice(-2);return r}
+function drawPrice(){
+  var box=$('rzs-price'); if(!box||!PX) return; var w=PX.w, last=w[w.length-1];
+  var perf=RANGES.map(function(R){var r=sliceRange(w,R[2]);var ch=r[0][1]>0?last[1]/r[0][1]-1:null;return [R[1],ch]});
+  var hi=Math.max.apply(null,w.map(function(p){return p[1]})), dd=hi>0?last[1]/hi-1:null;
+  var cur=RANGES.filter(function(R){return R[0]===PXR})[0], seg=sliceRange(w,cur[2]);
+  var ch=seg[0][1]>0?last[1]/seg[0][1]-1:0, up=ch>=0, colr=up?'#2ec4b6':'#ff5a5f';
+  var W=640,H=230,PL=6,PR=56,PT=14,PB=26;
+  var vals=seg.map(function(p){return p[1]}), mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals); if(mx<=mn){mx=mn*1.01+0.01}
+  var X=function(i){return PL+(W-PL-PR)*i/(seg.length-1)}, Y=function(v){return PT+(H-PT-PB)*(mx-v)/(mx-mn)};
+  var path='', area='';
+  seg.forEach(function(p,i){var x=X(i).toFixed(1),y=Y(p[1]).toFixed(1);path+=(i?'L':'M')+x+' '+y+' ';});
+  area=path+'L'+X(seg.length-1).toFixed(1)+' '+(H-PB)+' L'+X(0).toFixed(1)+' '+(H-PB)+' Z';
+  var grid=''; for(var k=0;k<=3;k++){var v=mn+(mx-mn)*k/3, y=Y(v).toFixed(1); grid+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y+'" y2="'+y+'" stroke="#25405f" stroke-dasharray="3 4"/><text x="'+(W-PR+6)+'" y="'+(+y+4)+'" fill="#93a7bf" font-size="11" font-family="Vazirmatn,Tahoma">$'+(v>=100?v.toFixed(0):v.toFixed(2))+'</text>'}
+  var step=Math.max(1,Math.floor(seg.length/5)), xl='';
+  for(var i=0;i<seg.length;i+=step){var d=seg[i][0]; xl+='<text x="'+X(i).toFixed(1)+'" y="'+(H-6)+'" text-anchor="'+(i===0?'start':'middle')+'" fill="#93a7bf" font-size="11" font-family="Vazirmatn,Tahoma">'+(cur[2]<=366?d.slice(5,10).replace('-','/'):d.slice(0,7).replace('-','/'))+'</text>'}
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" id="rzs-pxsvg" style="width:100%;height:auto;display:block;direction:ltr"><defs><linearGradient id="rzs-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="'+colr+'" stop-opacity=".35"/><stop offset="1" stop-color="'+colr+'" stop-opacity="0"/></linearGradient></defs>'+grid+
+    '<path d="'+area+'" fill="url(#rzs-g)"/><path d="'+path+'" fill="none" stroke="'+colr+'" stroke-width="2.2" stroke-linejoin="round"/>'+xl+
+    '<g id="rzs-hov" style="display:none"><line id="rzs-hl" y1="'+PT+'" y2="'+(H-PB)+'" stroke="#fff" stroke-opacity=".5"/><circle id="rzs-hc" r="4" fill="#fff"/><rect id="rzs-hb" height="22" rx="6" fill="#0b1726" stroke="#25405f"/><text id="rzs-ht" fill="#fff" font-size="12" font-weight="700" font-family="Vazirmatn,Tahoma" text-anchor="middle"></text></g></svg>';
+  box.innerHTML='<div class="pr"><div><h3 style="margin:0">عملکرد قیمت سهم</h3><div class="pxl">قیمت بسته‌شدن هفتگی · تا '+esc(last[0])+(dd!=null?' · فاصله از سقف ۱۰ ساله <b style="color:'+(dd<-0.3?'#ff8a8e':'#fff')+'">'+(dd>=0?'0%':pct(dd,0))+'</b>':'')+'</div></div>'+
+    '<div class="pxl"><b>$'+last[1].toFixed(2)+'</b> <span class="'+(up?'up':'dn')+'" style="font-weight:900">'+(up?'+':'')+pct(ch,1)+'</span> <span style="color:var(--mut)">در '+cur[1]+'</span></div></div>'+
+    '<div class="rng">'+RANGES.map(function(R){return '<button data-r="'+R[0]+'"'+(R[0]===PXR?' class="on"':'')+'>'+R[1]+'</button>'}).join('')+'</div>'+svg+
+    '<div class="perf">'+perf.map(function(p){return '<div><div class="k">'+p[0]+'</div><div class="v '+(p[1]>=0?'up':'dn')+'">'+(p[1]==null?'—':(p[1]>=0?'+':'')+pct(p[1],0))+'</div></div>'}).join('')+'</div>';
+  [].forEach.call(box.querySelectorAll('.rng button'),function(b){b.addEventListener('click',function(){PXR=b.dataset.r;drawPrice()})});
+  var sv=$('rzs-pxsvg');
+  function hov(e){var rect=sv.getBoundingClientRect(), px=(e.touches?e.touches[0].clientX:e.clientX)-rect.left, xu=px/rect.width*W; var i=Math.round((xu-PL)/(W-PL-PR)*(seg.length-1)); i=Math.max(0,Math.min(seg.length-1,i));
+    var x=X(i), y=Y(seg[i][1]), g=$('rzs-hov'); g.style.display='block'; $('rzs-hl').setAttribute('x1',x); $('rzs-hl').setAttribute('x2',x); $('rzs-hc').setAttribute('cx',x); $('rzs-hc').setAttribute('cy',y);
+    var txt=seg[i][0]+'  $'+seg[i][1].toFixed(2), tw=txt.length*6.6+16, bx=Math.max(PL,Math.min(W-PR-tw,x-tw/2)); var ty=y-30<PT?y+14:y-30;
+    var hb=$('rzs-hb'); hb.setAttribute('x',bx); hb.setAttribute('y',ty); hb.setAttribute('width',tw); var ht=$('rzs-ht'); ht.setAttribute('x',bx+tw/2); ht.setAttribute('y',ty+15); ht.textContent=txt;}
+  sv.addEventListener('mousemove',hov); sv.addEventListener('touchmove',hov,{passive:true});
+  sv.addEventListener('mouseleave',function(){$('rzs-hov').style.display='none'});
+}
+function radar(s){
+  var cx=150,cy=135,R=95,n=5,pts=[],grid='',labels='';
+  for(var k=1;k<=5;k++){var p=[];for(var i=0;i<n;i++){var an=-Math.PI/2+i*2*Math.PI/n;p.push((cx+R*k/5*Math.cos(an)).toFixed(1)+','+(cy+R*k/5*Math.sin(an)).toFixed(1))}grid+='<polygon points="'+p.join(' ')+'" fill="none" stroke="#25405f" stroke-width="1"/>'}
+  AX.forEach(function(A,i){var v=s[A[0]]||0,an=-Math.PI/2+i*2*Math.PI/n;pts.push((cx+R*v/5*Math.cos(an)).toFixed(1)+','+(cy+R*v/5*Math.sin(an)).toFixed(1));
+    var lx=cx+(R+24)*Math.cos(an),ly=cy+(R+24)*Math.sin(an);labels+='<text x="'+lx.toFixed(1)+'" y="'+(ly+4).toFixed(1)+'" text-anchor="middle" fill="#c9d6e5" font-size="13" font-weight="700" font-family="Vazirmatn,Tahoma">'+A[1]+'</text>'});
+  var t=s.total||0;
+  return '<svg viewBox="-40 0 380 270">'+grid+'<polygon points="'+pts.join(' ')+'" fill="'+col(t)+'" fill-opacity=".35" stroke="'+col(t)+'" stroke-width="2"/>'+labels+'</svg>';
+}
+function bars(a,keys,cols,div){
+  div=div||1e9;
+  var ys=a.slice(-10),W=480,H=220,PL=8,PB=26,PT=10,max=0,min=0;
+  ys.forEach(function(y){keys.forEach(function(k){var v=(y[k]||0)/div;max=Math.max(max,v);min=Math.min(min,v)})}); if(max<=0)max=1;
+  var span=max-min, bw=(W-PL*2)/ys.length, sub=(bw*0.75)/keys.length, s='';
+  var Y=function(v){return PT+(H-PT-PB)*(max-v)/span}, z=Y(0);
+  s+='<line x1="0" x2="'+W+'" y1="'+z+'" y2="'+z+'" stroke="#25405f"/>';
+  ys.forEach(function(y,i){var x0=PL+i*bw+bw*0.125;
+    keys.forEach(function(k,j){var v=(y[k]||0)/div,yy=Y(Math.max(v,0)),hh=Math.abs(Y(v)-z);s+='<rect x="'+(x0+j*sub).toFixed(1)+'" y="'+yy.toFixed(1)+'" width="'+(sub-2).toFixed(1)+'" height="'+Math.max(hh,0.5).toFixed(1)+'" rx="2" fill="'+(v<0?'#ff5a5f':cols[j])+'"><title>'+y.fy+': '+(div===1e9?'$'+v.toFixed(2)+'B':v.toFixed(0)+'M')+'</title></rect>'});
+    s+='<text x="'+(x0+bw*0.375).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
+}
+function lines(a,keys,cols){
+  var ys=a.slice(-10),W=480,H=220,PL=8,PR=40,PB=26,PT=10,max=-1e9,min=1e9,any=false;
+  ys.forEach(function(y){keys.forEach(function(k){var v=y[k];if(v==null)return;any=true;v*=100;max=Math.max(max,v);min=Math.min(min,v)})});
+  if(!any)return '<div class="empty">داده‌ای نیست</div>';
+  min=Math.min(min,0); if(max<=min)max=min+1; var pad=(max-min)*0.08; max+=pad; min-=pad;
+  var X=function(i){return PL+(W-PL-PR)*(ys.length===1?0.5:i/(ys.length-1))}, Y=function(v){return PT+(H-PT-PB)*(max-v)/(max-min)}, s='';
+  for(var k=0;k<=3;k++){var v=min+(max-min)*k/3,y=Y(v).toFixed(1);s+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y+'" y2="'+y+'" stroke="#25405f" stroke-dasharray="3 4"/><text x="'+(W-PR+6)+'" y="'+(+y+4)+'" fill="#93a7bf" font-size="11">'+v.toFixed(0)+'%</text>'}
+  keys.forEach(function(k,j){var p='';ys.forEach(function(y,i){var v=y[k];if(v==null)return;p+=(p?'L':'M')+X(i).toFixed(1)+' '+Y(v*100).toFixed(1)+' '});s+='<path d="'+p+'" fill="none" stroke="'+cols[j]+'" stroke-width="2.4" stroke-linejoin="round"/>';
+    ys.forEach(function(y,i){var v=y[k];if(v==null)return;s+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(v*100).toFixed(1)+'" r="3" fill="'+cols[j]+'"><title>'+y.fy+': '+(v*100).toFixed(1)+'%</title></circle>'})});
+  ys.forEach(function(y,i){s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
+}
+
+/* ---- search ---- */
+var q=$('rzs-q'), sg=$('rzs-sugg');
+q.addEventListener('focus',loadIndex);
+q.addEventListener('input',function(){loadIndex();var v=q.value.trim().toUpperCase();if(!v||!INDEX||!INDEX.length){sg.style.display='none';return}
+  var L=INDEX.filter(function(x){return x.t.indexOf(v)===0}).slice(0,6).concat(INDEX.filter(function(x){return x.t.indexOf(v)!==0&&x.n.toUpperCase().indexOf(v)>=0}).slice(0,4));
+  sg.innerHTML=L.map(function(x){return '<div data-t="'+esc(x.t)+'"><span>'+esc(x.n)+'</span><b>'+esc(x.t)+(x.a?' → '+esc(x.a):'')+'</b></div>'}).join('')||'<div>پیدا نشد</div>';sg.style.display='block'});
+q.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=sg.querySelector('[data-t]');open(f?f.dataset.t:q.value.trim())}});
+sg.addEventListener('click',function(e){var d=e.target.closest('[data-t]');if(d)open(d.dataset.t)});
+document.addEventListener('click',function(e){if(!e.target.closest('#rzs .search'))sg.style.display='none'});
+$('rzs-pop').innerHTML=['AAPL','NVDA','MSFT','GOOGL','AMZN','META','TSLA','NKE','SE','MELI','PLTR','AMD'].map(function(t){return '<span class="chip" data-t="'+t+'">'+t+'</span>'}).join('');
+$('rzs-pop').addEventListener('click',function(e){var c=e.target.closest('[data-t]');if(c)open(c.dataset.t)});
+$('rzs-recent').addEventListener('click',function(e){var c=e.target.closest('[data-t]');if(c){e.preventDefault();open(c.dataset.t)}});
+window.addEventListener('hashchange',function(){var t=(location.hash||'').slice(1).toUpperCase();if(t&&/^[A-Z.-]{1,7}$/.test(t)&&(!cur||cur.ticker!==t))open(t)});
+showQuota(); recent(); loadSectors();
+var h0=(location.hash||'').slice(1).toUpperCase(); if(h0&&/^[A-Z.-]{1,7}$/.test(h0)) open(h0);
+})();
+</script>
+</div>

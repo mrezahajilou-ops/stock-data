@@ -119,7 +119,7 @@ def write(t, rows, src):
 
 
 def main():
-    tickers = [x['t'] for x in json.load(open(IDX))]
+    tickers = [x['t'] for x in json.load(open(IDX)) if not x.get('a')]  # skip alias entries (secondary share classes)
     if len(sys.argv) > 1 and sys.argv[1]:
         tickers = tickers[:int(sys.argv[1])]
     os.makedirs(OUT, exist_ok=True)

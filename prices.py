@@ -1,95 +1,152 @@
 #!/usr/bin/env python3
-"""Weekly price history (10y, dividend/split adjusted) for every ticker in data/index.json.
+"""Weekly price history (10y) for every ticker in data/index.json.
 
-Output: prices/<TICKER>.json  ->  {"t": "AAPL", "as_of": "2026-10-03", "w": [[ "2016-10-03", 26.12 ], ...]}
-Source: Yahoo Finance chart endpoint (adjclose), fallback Stooq weekly CSV (close).
+Output: prices/<TICKER>.json -> {"t":"AAPL","as_of":"2026-10-03","src":"stooq","w":[["2016-10-07",26.12],...]}
+Source 1 (bulk, one download): Stooq daily US archive  https://static.stooq.com/db/h/d_us_txt.zip
+Source 2 (fallback, per ticker): Nasdaq chart API      https://api.nasdaq.com/api/quote/<T>/chart
 Published on the orphan branch `prices` so the main repo never grows.
 """
-import json, os, sys, time, urllib.request, urllib.error, datetime as dt, csv, io, concurrent.futures as cf
+import json, os, sys, time, io, zipfile, urllib.request, urllib.error, datetime as dt, concurrent.futures as cf
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 IDX = os.path.join(ROOT, 'data', 'index.json')
 OUT = os.path.join(ROOT, 'prices')
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'
-TODAY = dt.date.today().isoformat()
+TODAY = dt.date.today()
+CUTOFF = (TODAY - dt.timedelta(days=3660)).isoformat()
 
 
-def get(url, timeout=20):
-    req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': '*/*'})
+def get(url, timeout=60, headers=None):
+    h = {'User-Agent': UA, 'Accept': '*/*'}
+    if headers:
+        h.update(headers)
+    req = urllib.request.Request(url, headers=h)
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
 
 
-def yahoo(t):
-    sym = t.replace('.', '-')          # BRK.B -> BRK-B
-    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{sym}?range=10y&interval=1wk&events=div%2Csplit'
-    j = json.loads(get(url))
-    res = j['chart']['result'][0]
-    ts = res['timestamp']
-    ind = res['indicators']
-    closes = (ind.get('adjclose') or [{}])[0].get('adjclose') or ind['quote'][0]['close']
-    rows = []
-    for s, c in zip(ts, closes):
-        if c is None:
+def weekly(rows):
+    """rows: sorted [[date_iso, close]] daily -> last close of each ISO week."""
+    out, wk = [], None
+    for d, c in rows:
+        y, w, _ = dt.date.fromisoformat(d).isocalendar()
+        key = (y, w)
+        if key == wk:
+            out[-1] = [d, c]
+        else:
+            out.append([d, c]); wk = key
+    return out
+
+
+# ---------- source 1: stooq bulk ----------
+def stooq_bulk(wanted):
+    """Return {ticker: daily rows} for tickers present in the archive."""
+    url = 'https://static.stooq.com/db/h/d_us_txt.zip'
+    print('downloading', url, flush=True)
+    data = get(url, timeout=900)
+    print('zip bytes', len(data), flush=True)
+    z = zipfile.ZipFile(io.BytesIO(data))
+    want = {t.lower().replace('.', '-') + '.us.txt': t for t in wanted}
+    found = {}
+    for name in z.namelist():
+        base = name.rsplit('/', 1)[-1].lower()
+        t = want.get(base)
+        if not t:
             continue
-        rows.append([dt.datetime.utcfromtimestamp(s).date().isoformat(), round(float(c), 4)])
+        rows = []
+        for line in z.open(name).read().decode('utf-8', 'ignore').splitlines()[1:]:
+            p = line.split(',')
+            if len(p) < 8:
+                continue
+            d = p[2]
+            if len(d) != 8:
+                continue
+            d = d[:4] + '-' + d[4:6] + '-' + d[6:]
+            if d < CUTOFF:
+                continue
+            try:
+                rows.append([d, round(float(p[7]), 4)])
+            except ValueError:
+                pass
+        if len(rows) >= 4:
+            rows.sort()
+            found[t] = rows
+    print('stooq matched', len(found), 'of', len(wanted), flush=True)
+    return found
+
+
+# ---------- source 2: nasdaq per ticker ----------
+def nasdaq(t):
+    url = ('https://api.nasdaq.com/api/quote/%s/chart?assetclass=stocks&fromdate=%s&todate=%s'
+           % (t.replace('.', '%2E'), CUTOFF, TODAY.isoformat()))
+    j = json.loads(get(url, timeout=30, headers={'Accept': 'application/json, text/plain, */*',
+                                                  'Accept-Language': 'en-US,en;q=0.9', 'Origin': 'https://www.nasdaq.com',
+                                                  'Referer': 'https://www.nasdaq.com/'}))
+    ch = ((j.get('data') or {}).get('chart')) or []
+    rows = []
+    for p in ch:
+        z = p.get('z') or {}
+        d, c = z.get('dateTime'), z.get('value')
+        if not d or c is None:
+            continue
+        try:
+            mm, dd, yy = d.split('/')
+            rows.append(['%s-%s-%s' % (yy, mm, dd), round(float(str(c).replace(',', '')), 4)])
+        except Exception:
+            pass
+    rows.sort()
     return rows
 
 
-def stooq(t):
-    url = f'https://stooq.com/q/d/l/?s={t.lower()}.us&i=w'
-    txt = get(url).decode('utf-8', 'ignore')
-    rows = []
-    for r in csv.DictReader(io.StringIO(txt)):
-        try:
-            rows.append([r['Date'], round(float(r['Close']), 4)])
-        except Exception:
-            pass
-    cutoff = (dt.date.today() - dt.timedelta(days=3660)).isoformat()
-    return [r for r in rows if r[0] >= cutoff]
-
-
-def one(t):
+def nasdaq_one(t):
     for attempt in range(3):
         try:
-            rows = yahoo(t)
+            rows = nasdaq(t)
             if len(rows) >= 4:
-                return t, rows, 'yahoo'
-            break
+                return t, rows
+            return t, None
         except urllib.error.HTTPError as e:
-            if e.code == 429:
-                time.sleep(20 * (attempt + 1)); continue
-            break
+            if e.code in (429, 403):
+                time.sleep(10 * (attempt + 1)); continue
+            return t, None
         except Exception:
             time.sleep(2)
-    try:
-        rows = stooq(t)
-        if len(rows) >= 4:
-            return t, rows, 'stooq'
-    except Exception:
-        pass
-    return t, None, None
+    return t, None
+
+
+def write(t, rows, src):
+    json.dump({'t': t, 'as_of': TODAY.isoformat(), 'src': src, 'w': weekly(rows)},
+              open(os.path.join(OUT, t + '.json'), 'w'), separators=(',', ':'))
 
 
 def main():
     tickers = [x['t'] for x in json.load(open(IDX))]
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1]:
         tickers = tickers[:int(sys.argv[1])]
     os.makedirs(OUT, exist_ok=True)
-    ok = fail = 0
-    src = {'yahoo': 0, 'stooq': 0}
+    ok = {'stooq': 0, 'nasdaq': 0}
+    try:
+        bulk = stooq_bulk(tickers)
+    except Exception as e:
+        print('stooq bulk failed:', e, flush=True)
+        bulk = {}
+    for t, rows in bulk.items():
+        write(t, rows, 'stooq'); ok['stooq'] += 1
+    missing = [t for t in tickers if t not in bulk]
+    print('fallback via nasdaq for', len(missing), flush=True)
+    fail = 0
     t0 = time.time()
-    with cf.ThreadPoolExecutor(max_workers=4) as ex:
-        for i, (t, rows, s) in enumerate(ex.map(one, tickers)):
+    with cf.ThreadPoolExecutor(max_workers=3) as ex:
+        for i, (t, rows) in enumerate(ex.map(nasdaq_one, missing)):
             if rows:
-                json.dump({'t': t, 'as_of': TODAY, 'src': s, 'w': rows}, open(os.path.join(OUT, t + '.json'), 'w'), separators=(',', ':'))
-                ok += 1; src[s] += 1
+                write(t, rows, 'nasdaq'); ok['nasdaq'] += 1
             else:
                 fail += 1
-            if i % 250 == 0:
-                print(f'{i}/{len(tickers)} ok={ok} fail={fail} {time.time()-t0:.0f}s', flush=True)
-    json.dump({'as_of': TODAY, 'ok': ok, 'fail': fail, 'src': src}, open(os.path.join(OUT, 'meta.json'), 'w'))
-    print('done', ok, fail, src)
+            if i % 100 == 0:
+                print('%d/%d ok=%s fail=%d %.0fs' % (i, len(missing), ok, fail, time.time() - t0), flush=True)
+    json.dump({'as_of': TODAY.isoformat(), 'ok': ok, 'fail': fail, 'tickers': len(tickers)},
+              open(os.path.join(OUT, 'meta.json'), 'w'))
+    print('done', ok, 'fail', fail)
 
 
 if __name__ == '__main__':

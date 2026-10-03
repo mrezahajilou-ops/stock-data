@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """
-Nightly SEC EDGAR fundamentals engine for rezahajiloubooks.com
+SEC EDGAR fundamentals engine for rezahajiloubooks.com  (v2)
 
 1. Downloads SEC's bulk companyfacts.zip (one file, all companies, all XBRL facts).
 2. Downloads company_tickers.json (ticker -> CIK map).
 3. For every company with a ticker, extracts up to 12 fiscal years of annual figures
    from 10-K / 20-F / 40-F filings, with tag fallbacks (US-GAAP and IFRS).
-4. Computes margins, growth, FCF, ROIC, per-share data, etc.
-5. Writes data/stocks/<TICKER>.json  (one small file per stock)
-          data/index.json             (ticker, name, cik, last FY — for the search box)
-          data/meta.json              (build time, counts)
+4. Computes margins, growth, FCF, ROIC, per-share data, EV multiples, quality checks, etc.
+5. Writes data/stocks/<TICKER>.json (one small file per stock)
+          data/index.json   (ticker, name, cik — for the search box)
+          data/screener.json (one row per stock for the screener)
+          data/meta.json    (build time, counts)
 
 Data source: U.S. Securities and Exchange Commission, EDGAR XBRL APIs (public domain).
 """
@@ -18,7 +19,7 @@ from collections import defaultdict
 import urllib.request
 
 UA = os.environ.get("SEC_USER_AGENT", "Reza Hajilou mreza.hajilou@gmail.com")
-OUT = os.path.join(os.path.dirname(__file__), "..", "data")
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 YEARS = 12
 ANNUAL_FORMS = {"10-K", "10-K/A", "10-KT", "20-F", "20-F/A", "40-F", "40-F/A"}
 LIMIT = int(os.environ.get("LIMIT", "0"))  # for testing: process only N companies
@@ -39,7 +40,7 @@ CONCEPTS = {
         "ifrs-full:RevenueFromContractsWithCustomers",
     ]),
     "cogs": ("dur", ["us-gaap:CostOfRevenue", "us-gaap:CostOfGoodsAndServicesSold", "us-gaap:CostOfGoodsSold",
-                      "us-gaap:CostOfServices", "ifrs-full:CostOfSales"]),
+                     "us-gaap:CostOfServices", "ifrs-full:CostOfSales"]),
     "gross_profit": ("dur", ["us-gaap:GrossProfit", "ifrs-full:GrossProfit"]),
     "op_income": ("dur", ["us-gaap:OperatingIncomeLoss", "ifrs-full:ProfitLossFromOperatingActivities"]),
     "pretax_income": ("dur", [
@@ -48,62 +49,68 @@ CONCEPTS = {
         "ifrs-full:ProfitLossBeforeTax"]),
     "tax": ("dur", ["us-gaap:IncomeTaxExpenseBenefit", "ifrs-full:IncomeTaxExpenseContinuingOperations"]),
     "net_income": ("dur", ["us-gaap:NetIncomeLoss", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
-                            "us-gaap:ProfitLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "ifrs-full:ProfitLoss"]),
+                           "us-gaap:ProfitLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "ifrs-full:ProfitLoss"]),
     "eps_diluted": ("dur", ["us-gaap:EarningsPerShareDiluted", "us-gaap:EarningsPerShareBasicAndDiluted",
-                             "ifrs-full:DilutedEarningsLossPerShare"]),
+                            "ifrs-full:DilutedEarningsLossPerShare"]),
     "shares_diluted": ("dur", ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
-                                "us-gaap:WeightedAverageNumberOfShareOutstandingBasicAndDiluted",
-                                "ifrs-full:WeightedAverageNumberOfDilutedSharesOutstanding",
-                                "ifrs-full:AdjustedWeightedAverageShares"]),
+                               "us-gaap:WeightedAverageNumberOfShareOutstandingBasicAndDiluted",
+                               "ifrs-full:WeightedAverageNumberOfDilutedSharesOutstanding",
+                               "ifrs-full:AdjustedWeightedAverageShares"]),
     "shares_basic": ("dur", ["us-gaap:WeightedAverageNumberOfSharesOutstandingBasic",
-                              "ifrs-full:WeightedAverageShares"]),
+                             "ifrs-full:WeightedAverageShares"]),
     "cfo": ("dur", ["us-gaap:NetCashProvidedByUsedInOperatingActivities",
-                     "us-gaap:NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
-                     "ifrs-full:CashFlowsFromUsedInOperatingActivities"]),
+                    "us-gaap:NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+                    "ifrs-full:CashFlowsFromUsedInOperatingActivities"]),
     "capex": ("dur", ["us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
-                       "us-gaap:PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
-                       "us-gaap:PaymentsToAcquireProductiveAssets",
-                       "us-gaap:PaymentsForCapitalImprovements",
-                       "us-gaap:PaymentsToDevelopSoftware",
-                       "us-gaap:PaymentsForSoftware",
-                       "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"]),
+                      "us-gaap:PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
+                      "us-gaap:PaymentsToAcquireProductiveAssets",
+                      "us-gaap:PaymentsForCapitalImprovements",
+                      "us-gaap:PaymentsToDevelopSoftware",
+                      "us-gaap:PaymentsForSoftware",
+                      "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"]),
     "sbc": ("dur", ["us-gaap:ShareBasedCompensation", "us-gaap:AllocatedShareBasedCompensationExpense"]),
     "dividends": ("dur", ["us-gaap:PaymentsOfDividendsCommonStock", "us-gaap:PaymentsOfDividends",
-                           "ifrs-full:DividendsPaidClassifiedAsFinancingActivities"]),
+                          "ifrs-full:DividendsPaidClassifiedAsFinancingActivities"]),
     "buybacks": ("dur", ["us-gaap:PaymentsForRepurchaseOfCommonStock",
-                          "ifrs-full:PaymentsToAcquireOrRedeemEntitysShares"]),
+                         "ifrs-full:PaymentsToAcquireOrRedeemEntitysShares"]),
     "rnd": ("dur", ["us-gaap:ResearchAndDevelopmentExpense",
-                     "us-gaap:ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]),
+                    "us-gaap:ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]),
     "da": ("dur", ["us-gaap:DepreciationDepletionAndAmortization", "us-gaap:DepreciationAndAmortization",
-                    "us-gaap:DepreciationAmortizationAndAccretionNet",
-                    "ifrs-full:DepreciationAndAmortisationExpense"]),
+                   "us-gaap:DepreciationAmortizationAndAccretionNet",
+                   "ifrs-full:DepreciationAndAmortisationExpense"]),
     "interest_exp": ("dur", ["us-gaap:InterestExpense", "us-gaap:InterestExpenseNonoperating",
-                              "ifrs-full:InterestExpense"]),
+                             "ifrs-full:InterestExpense"]),
     # balance sheet (instant)
     "assets": ("inst", ["us-gaap:Assets", "ifrs-full:Assets"]),
     "liabilities": ("inst", ["us-gaap:Liabilities", "ifrs-full:Liabilities"]),
     "equity": ("inst", ["us-gaap:StockholdersEquity",
-                         "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
-                         "ifrs-full:EquityAttributableToOwnersOfParent", "ifrs-full:Equity"]),
+                        "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+                        "ifrs-full:EquityAttributableToOwnersOfParent", "ifrs-full:Equity"]),
     "cash": ("inst", ["us-gaap:CashAndCashEquivalentsAtCarryingValue",
-                       "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
-                       "us-gaap:CashCashEquivalentsAndShortTermInvestments",
-                       "ifrs-full:CashAndCashEquivalents"]),
+                      "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+                      "us-gaap:CashCashEquivalentsAndShortTermInvestments",
+                      "ifrs-full:CashAndCashEquivalents"]),
     "st_investments": ("inst", ["us-gaap:ShortTermInvestments", "us-gaap:MarketableSecuritiesCurrent",
-                                 "us-gaap:AvailableForSaleSecuritiesDebtSecuritiesCurrent"]),
+                                "us-gaap:AvailableForSaleSecuritiesDebtSecuritiesCurrent"]),
     "debt_lt": ("inst", ["us-gaap:LongTermDebtNoncurrent", "us-gaap:LongTermDebtAndCapitalLeaseObligations",
-                          "us-gaap:LongTermDebt", "ifrs-full:NoncurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
-                          "ifrs-full:LongtermBorrowings"]),
+                         "us-gaap:LongTermDebt", "ifrs-full:NoncurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+                         "ifrs-full:LongtermBorrowings"]),
     "debt_st": ("inst", ["us-gaap:LongTermDebtCurrent", "us-gaap:DebtCurrent", "us-gaap:ShortTermBorrowings",
-                          "us-gaap:LongTermDebtAndCapitalLeaseObligationsCurrent", "ifrs-full:ShorttermBorrowings",
-                          "ifrs-full:CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"]),
+                         "us-gaap:LongTermDebtAndCapitalLeaseObligationsCurrent", "ifrs-full:ShorttermBorrowings",
+                         "ifrs-full:CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"]),
     "goodwill": ("inst", ["us-gaap:Goodwill", "ifrs-full:Goodwill"]),
+    "intangibles": ("inst", ["us-gaap:IntangibleAssetsNetExcludingGoodwill",
+                             "ifrs-full:IntangibleAssetsOtherThanGoodwill"]),
+    "current_assets": ("inst", ["us-gaap:AssetsCurrent", "ifrs-full:CurrentAssets"]),
+    "current_liabilities": ("inst", ["us-gaap:LiabilitiesCurrent", "ifrs-full:CurrentLiabilities"]),
     "shares_out": ("inst", ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding",
-                             "ifrs-full:NumberOfSharesOutstanding"]),
+                            "ifrs-full:NumberOfSharesOutstanding"]),
 }
+
 
 def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
+
 
 def fetch(url, retries=4):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Encoding": "gzip, deflate"})
@@ -112,29 +119,34 @@ def fetch(url, retries=4):
             with urllib.request.urlopen(req, timeout=600) as r:
                 data = r.read()
                 if r.headers.get("Content-Encoding") == "gzip":
-                    import gzip; data = gzip.decompress(data)
+                    import gzip
+                    data = gzip.decompress(data)
                 return data
         except Exception as e:
-            log("fetch retry", i, url, e); time.sleep(3 * (i + 1))
+            log("fetch retry", i, url, e)
+            time.sleep(3 * (i + 1))
     raise RuntimeError("fetch failed " + url)
+
 
 def days(a, b):
     return (dt.date.fromisoformat(b) - dt.date.fromisoformat(a)).days
 
+
 # ---------------- currency conversion (foreign filers -> USD) ----------------
-FX_HIST = {}     # cur -> sorted list of (date, units_per_usd)   (ECB reference rates)
-FX_LATEST = {}   # cur -> units_per_usd                          (all currencies, latest)
+FX_HIST = {}    # cur -> sorted list of (date, units_per_usd) (ECB reference rates)
+FX_LATEST = {}  # cur -> units_per_usd (all currencies, latest)
+
 
 def load_fx():
     """ECB history via frankfurter.app (no key) + latest rates for all currencies (fallback)."""
-    import bisect  # noqa
     try:
         start = (dt.date.today() - dt.timedelta(days=365 * 14)).isoformat()
         j = json.loads(fetch(f"https://api.frankfurter.app/{start}..?from=USD", retries=3))
         for d, rates in j.get("rates", {}).items():
             for c, v in rates.items():
                 FX_HIST.setdefault(c.upper(), []).append((d, v))
-        for c in FX_HIST: FX_HIST[c].sort()
+        for c in FX_HIST:
+            FX_HIST[c].sort()
         log("fx history currencies:", len(FX_HIST))
     except Exception as e:
         log("fx history failed", e)
@@ -143,9 +155,11 @@ def load_fx():
         try:
             j = json.loads(fetch(url, retries=2))
             FX_LATEST.update({k.upper(): v for k, v in j["usd"].items() if isinstance(v, (int, float)) and v > 0})
-            log("fx latest currencies:", len(FX_LATEST)); break
+            log("fx latest currencies:", len(FX_LATEST))
+            break
         except Exception as e:
             log("fx latest failed", url, e)
+
 
 def fx_rate(cur, date):
     """Units of cur per 1 USD at date (nearest earlier ECB fixing, else latest rate)."""
@@ -158,7 +172,9 @@ def fx_rate(cur, date):
     v = FX_LATEST.get(cur)
     return (v, False) if v else (None, False)
 
+
 CUR_RE = re.compile(r"^([A-Z]{3})(/shares)?$")
+
 
 def annual_series(facts, tags, kind, meta=None):
     """Merge annual values across fallback tags (priority order) per fiscal-period end.
@@ -168,7 +184,8 @@ def annual_series(facts, tags, kind, meta=None):
     for tag in tags:
         ns, name = tag.split(":")
         node = facts.get(ns, {}).get(name)
-        if not node: continue
+        if not node:
+            continue
         units = node.get("units", {})
         unit_key = next((u for u in ("USD", "shares", "USD/shares") if u in units), None)
         cur = "USD"
@@ -176,34 +193,42 @@ def annual_series(facts, tags, kind, meta=None):
             for u in units:
                 m = CUR_RE.match(u)
                 if m and m.group(1) != "USD":
-                    unit_key, cur = u, m.group(1); break
-        if unit_key is None: continue
+                    unit_key, cur = u, m.group(1)
+                    break
+        if unit_key is None:
+            continue
         series, h = {}, defaultdict(list)
         for f in units[unit_key]:
-            if f.get("form") not in ANNUAL_FORMS: continue
+            if f.get("form") not in ANNUAL_FORMS:
+                continue
             end = f.get("end")
-            if not end: continue
+            if not end:
+                continue
             if kind == "dur":
                 st = f.get("start")
-                if not st or not (340 <= days(st, end) <= 380): continue
+                if not st or not (340 <= days(st, end) <= 380):
+                    continue
             fd = f.get("filed", "")
             val = f["val"]
             if cur != "USD":
                 rate, exact = fx_rate(cur, end)
-                if not rate: continue
+                if not rate:
+                    continue
                 val = val / rate
                 if meta is not None:
                     meta["currency"] = cur
-                    if not exact: meta["fx_approx"] = True
+                    if not exact:
+                        meta["fx_approx"] = True
             h[end].append((fd, val))
             prev = series.get(end)
-            if prev is None or fd >= prev[1]:   # most recently filed (restated) value wins
+            if prev is None or fd >= prev[1]:  # most recently filed (restated) value wins
                 series[end] = (val, fd)
         for end, (v, fd) in series.items():
-            if any(abs(days(e, end)) <= 20 for e in vals):   # higher-priority tag already covers it
+            if any(abs(days(e, end)) <= 20 for e in vals):  # higher-priority tag already covers it
                 continue
             vals[end], filed[end], hist[end] = v, fd, h[end]
     return vals, filed, hist
+
 
 def split_factors(hist):
     """Detect stock splits from restated share counts: same period reported with an integer ratio
@@ -213,7 +238,8 @@ def split_factors(hist):
         obs = sorted(obs)
         for i in range(1, len(obs)):
             a, b = obs[i - 1][1], obs[i][1]
-            if not a or not b: continue
+            if not a or not b:
+                continue
             r = b / a
             ratio = r if r >= 1 else 1 / r
             if ratio >= 1.9 and abs(ratio - round(ratio)) / ratio < 0.03:
@@ -226,6 +252,7 @@ def split_factors(hist):
             continue
         merged.append((fd, r))
     return merged
+
 
 def pick_fy_ends(all_series):
     """Fiscal-year end dates = union of ends seen on revenue/net income/assets (most reliable tags)."""
@@ -242,21 +269,28 @@ def pick_fy_ends(all_series):
             merged.append(e)
     return merged[-YEARS:]
 
+
 def nearest(series, end, tol=20):
-    if end in series: return series[end]
+    if end in series:
+        return series[end]
     for k, v in series.items():
-        if abs(days(k, end)) <= tol: return v
+        if abs(days(k, end)) <= tol:
+            return v
     return None
+
 
 def safe_div(a, b):
     try:
-        if a is None or b in (None, 0): return None
+        if a is None or b in (None, 0):
+            return None
         return a / b
     except Exception:
         return None
 
+
 def r4(x):
     return None if x is None else (round(x, 4) if abs(x) < 1000 else round(x))
+
 
 def build_company(cik, entry, facts):
     series, filed, hist = {}, {}, {}
@@ -271,7 +305,8 @@ def build_company(cik, entry, facts):
             for end in list(series[key]):
                 f = 1.0
                 for fd, r in splits:
-                    if filed[key].get(end, "") < fd: f *= r
+                    if filed[key].get(end, "") < fd:
+                        f *= r
                 if f != 1.0 and series[key][end] is not None:
                     series[key][end] = series[key][end] * f if mult == 1 else series[key][end] / f
     ends = pick_fy_ends(series)
@@ -286,18 +321,25 @@ def build_company(cik, entry, facts):
         op = g("op_income")
         tax, pretax = g("tax"), g("pretax_income")
         tax_rate = safe_div(tax, pretax)
-        if tax_rate is None or tax_rate < 0 or tax_rate > 0.5: tax_rate = 0.21
+        if tax_rate is None or tax_rate < 0 or tax_rate > 0.5:
+            tax_rate = 0.21
         nopat = op * (1 - tax_rate) if op is not None else None
         debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
         cash = (g("cash") or 0) + (g("st_investments") or 0)
         equity = g("equity")
         invested = (equity + debt) if equity is not None else None
-        if invested is not None and invested <= 0: invested = None
+        if invested is not None and invested <= 0:
+            invested = None
         gp = g("gross_profit")
-        if gp is None and rev is not None and g("cogs") is not None: gp = rev - g("cogs")
+        if gp is None and rev is not None and g("cogs") is not None:
+            gp = rev - g("cogs")
         sh_d = g("shares_diluted") or g("shares_basic")
         if not sh_d and ni and g("eps_diluted"):
             sh_d = abs(ni / g("eps_diluted"))
+        da = g("da")
+        ebitda = (op + da) if (op is not None and da is not None) else None
+        ie = g("interest_exp")
+        ca, cl = g("current_assets"), g("current_liabilities")
         rows.append({
             "fy_end": end,
             "fy": int(end[:4]),
@@ -305,41 +347,54 @@ def build_company(cik, entry, facts):
             "eps_diluted": g("eps_diluted"), "shares_diluted": sh_d, "shares_out": g("shares_out"),
             "cfo": cfo, "capex": None if capex is None else abs(capex), "fcf": fcf,
             "sbc": g("sbc"), "dividends": g("dividends"), "buybacks": g("buybacks"),
-            "rnd": g("rnd"), "da": g("da"), "interest_exp": g("interest_exp"),
+            "rnd": g("rnd"), "da": da, "ebitda": ebitda, "interest_exp": ie,
             "assets": g("assets"), "liabilities": g("liabilities"), "equity": equity,
             "cash": cash or None, "debt": debt or None, "net_debt": (debt - cash) if (debt or cash) else None,
-            "goodwill": g("goodwill"),
+            "goodwill": g("goodwill"), "intangibles": g("intangibles"),
+            "current_assets": ca, "current_liabilities": cl,
             # ratios
             "gross_margin": r4(safe_div(gp, rev)),
             "op_margin": r4(safe_div(op, rev)),
             "net_margin": r4(safe_div(ni, rev)),
             "fcf_margin": r4(safe_div(fcf, rev)),
+            "ebitda_margin": r4(safe_div(ebitda, rev)),
             "roic": r4(safe_div(nopat, invested)),
             "roe": r4(safe_div(ni, equity)),
             "roa": r4(safe_div(ni, g("assets"))),
             "debt_to_equity": r4(safe_div(debt, equity)),
+            "current_ratio": r4(safe_div(ca, cl)),
+            "interest_cov": r4(safe_div(op, ie)) if (ie and ie > 0) else None,
+            "nd_ebitda": r4(safe_div(debt - cash, ebitda)) if (ebitda and ebitda > 0) else None,
+            "fcf_conv": r4(safe_div(fcf, ni)) if (ni and ni > 0) else None,
+            "sbc_pct": r4(safe_div(g("sbc"), rev)),
+            "payout": r4(safe_div((g("dividends") or 0) + (g("buybacks") or 0), fcf)) if (fcf and fcf > 0) else None,
             "fcf_per_share": r4(safe_div(fcf, sh_d)),
             "revenue_per_share": r4(safe_div(rev, sh_d)),
             "book_value_per_share": r4(safe_div(equity, sh_d)),
+            "div_per_share": r4(safe_div(g("dividends"), sh_d)),
         })
     rows = [r for r in rows if r["revenue"] is not None or r["net_income"] is not None]
     dedup = {}
-    for r in rows: dedup[r["fy"]] = r          # later fiscal-year end wins
+    for r in rows:
+        dedup[r["fy"]] = r  # later fiscal-year end wins
     rows = [dedup[k] for k in sorted(dedup)]
     if len(rows) < 2:
         return None
     # growth rates
     for i, r in enumerate(rows):
-        for k in ("revenue", "net_income", "fcf", "eps_diluted", "shares_diluted"):
+        for k in ("revenue", "net_income", "fcf", "eps_diluted", "shares_diluted", "dividends"):
             prev = rows[i - 1][k] if i > 0 else None
             cur = r[k]
             r[k + "_growth"] = r4((cur - prev) / abs(prev)) if (prev not in (None, 0) and cur is not None) else None
 
     def cagr(key, n):
-        if len(rows) <= n: return None
+        if len(rows) <= n:
+            return None
         a, b = rows[-1 - n][key], rows[-1][key]
-        if a in (None, 0) or b is None or a < 0 or b < 0: return None
+        if a in (None, 0) or b is None or a < 0 or b < 0:
+            return None
         return r4((b / a) ** (1 / n) - 1)
+
     def avg(key, n):
         vals = [r[key] for r in rows[-n:] if r[key] is not None]
         return r4(sum(vals) / len(vals)) if vals else None
@@ -354,6 +409,23 @@ def build_company(cik, entry, facts):
         summary[f"fcf_margin_avg_{n}y"] = avg("fcf_margin", n)
         summary[f"roic_avg_{n}y"] = avg("roic", n)
         summary[f"op_margin_avg_{n}y"] = avg("op_margin", n)
+        summary[f"gross_margin_avg_{n}y"] = avg("gross_margin", n)
+    for n in (3, 5):
+        # share count change per year (negative = buybacks shrink the count)
+        a = rows[-1 - n]["shares_diluted"] if len(rows) > n else None
+        b = rows[-1]["shares_diluted"]
+        summary[f"sh_cagr_{n}y"] = r4((b / a) ** (1 / n) - 1) if (a and b and a > 0 and b > 0) else None
+    # margin trend: latest net margin minus the average of the 3 years before it
+    prev_nm = [r["net_margin"] for r in rows[-4:-1] if r["net_margin"] is not None]
+    summary["nm_trend"] = r4(rows[-1]["net_margin"] - sum(prev_nm) / len(prev_nm)) \
+        if (prev_nm and rows[-1]["net_margin"] is not None) else None
+    prev_om = [r["op_margin"] for r in rows[-4:-1] if r["op_margin"] is not None]
+    summary["om_trend"] = r4(rows[-1]["op_margin"] - sum(prev_om) / len(prev_om)) \
+        if (prev_om and rows[-1]["op_margin"] is not None) else None
+    summary["profit_years"] = sum(1 for r in rows[-10:] if (r["net_income"] or 0) > 0)
+    summary["fcf_pos_years"] = sum(1 for r in rows[-10:] if (r["fcf"] or 0) > 0)
+    summary["div_years"] = sum(1 for r in rows[-10:] if (r["dividends"] or 0) > 0)
+    summary["years"] = len(rows)
     last = rows[-1]
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
@@ -367,12 +439,14 @@ def build_company(cik, entry, facts):
         "annual": rows,
     }
 
+
 # ---------------- market data (price, market cap, sector) ----------------
 def num(x):
     try:
         return float(str(x).replace("$", "").replace(",", "").replace("%", "").strip())
     except Exception:
         return None
+
 
 def load_market():
     """Last close, market cap, sector & industry for all US-listed stocks (Nasdaq screener, one request).
@@ -391,35 +465,44 @@ def load_market():
             out[t] = {"price": num(row.get("lastsale")), "mcap": num(row.get("marketCap")),
                       "sector": (row.get("sector") or "").strip() or None,
                       "industry": (row.get("industry") or "").strip() or None,
-                      "country": (row.get("country") or "").strip() or None}
+                      "country": (row.get("country") or "").strip() or None,
+                      "ipo": (row.get("ipoyear") or "").strip() or None}
         log("market rows:", len(out))
     except Exception as e:
         log("market data failed", e)
     return out
 
+
 def clamp(x, a, b):
     return max(a, min(b, x))
+
 
 def dcf_fair_mcap(rec):
     """Company-level fair value with the same default 'medium' assumptions as the DCF page."""
     s, last = rec["summary"], rec["annual"][-1]
     rev = last["revenue"]
-    if not rev or rev <= 0: return None
+    if not rev or rev <= 0:
+        return None
     g = s.get("rev_cagr_5y") if s.get("rev_cagr_5y") is not None else s.get("rev_cagr_1y")
     g = clamp((g if g is not None else 0.05) * 0.8, -0.05, 0.25)
     pm = s.get("net_margin_avg_5y") if s.get("net_margin_avg_5y") is not None else last.get("net_margin")
-    if pm is None or pm < 0.02: pm = last.get("net_margin") if (last.get("net_margin") or 0) > 0.02 else 0.08
+    if pm is None or pm < 0.02:
+        pm = last.get("net_margin") if (last.get("net_margin") or 0) > 0.02 else 0.08
     fm = s.get("fcf_margin_avg_5y") if s.get("fcf_margin_avg_5y") is not None else last.get("fcf_margin")
-    if fm is None or fm < 0.02: fm = pm
+    if fm is None or fm < 0.02:
+        fm = pm
     pm, fm = clamp(pm, 0.02, 0.5), clamp(fm, 0.02, 0.55)
     rev10 = rev * (1 + g) ** 10
     return ((rev10 * pm * 22) + (rev10 * fm * 22)) / 2 / (1.10 ** 10)
+
 
 def pts(*checks):
     """Each check is True/False/None. Score = passed checks (0-5); None = not enough data (counts as fail)."""
     return sum(1 for c in checks if c is True)
 
+
 def score(rec, mk, sector_pe):
+    """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     a, s = rec["annual"], rec["summary"]
     last = a[-1]
     prev3 = a[-4] if len(a) >= 4 else None
@@ -428,51 +511,82 @@ def score(rec, mk, sector_pe):
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
     ps = mcap / rev if (mcap and rev and rev > 0) else None
+    pb = mcap / last["equity"] if (mcap and last.get("equity") and last["equity"] > 0) else None
     eg = s.get("eps_cagr_5y") if s.get("eps_cagr_5y") is not None else s.get("ni_cagr_5y")
     peg = pe / (eg * 100) if (pe and eg and eg > 0) else None
     fair = dcf_fair_mcap(rec)
     spe = sector_pe.get((mk or {}).get("sector"))
-    value = pts(pe is not None and pe < 25,
+    debt, cash = last.get("debt") or 0, last.get("cash") or 0
+    ev = (mcap + debt - cash) if mcap else None
+    ebitda = last.get("ebitda")
+    ev_ebitda = ev / ebitda if (ev and ebitda and ebitda > 0) else None
+    fcf_yield = fcf / mcap if (mcap and fcf is not None) else None
+    earn_yield = ni / mcap if (mcap and ni is not None) else None
+
+    v_checks = [pe is not None and pe < 25,
                 pe is not None and spe is not None and pe < spe,
                 pfcf is not None and pfcf < 20,
                 fair is not None and mcap is not None and fair > mcap,
-                peg is not None and peg < 1.5) if mcap else None
+                peg is not None and peg < 1.5] if mcap else None
+    value = pts(*v_checks) if v_checks else None
 
     nm_hist = [r["net_margin"] for r in a[-3:] if r["net_margin"] is not None]
-    future = pts((last.get("revenue_growth") or 0) > 0.10,
-                 (s.get("rev_cagr_3y") or 0) > 0.10,
-                 bool(nm_hist) and last["net_margin"] is not None and last["net_margin"] > sum(nm_hist) / len(nm_hist),
-                 (s.get("fcf_cagr_3y") or 0) > 0.10,
-                 rev and last.get("rnd") is not None and last["rnd"] / rev > 0.05 or (last.get("revenue_growth") or 0) > 0.20)
+    f_checks = [(last.get("revenue_growth") or 0) > 0.10,
+                (s.get("rev_cagr_3y") or 0) > 0.10,
+                bool(nm_hist) and last["net_margin"] is not None and last["net_margin"] > sum(nm_hist) / len(nm_hist),
+                (s.get("fcf_cagr_3y") or 0) > 0.10,
+                bool(rev and last.get("rnd") is not None and last["rnd"] / rev > 0.05) or (last.get("revenue_growth") or 0) > 0.20]
+    future = pts(*f_checks)
 
-    past = pts((s.get("eps_cagr_5y") or 0) > 0.10,
-               (s.get("rev_cagr_5y") or 0) > 0.08,
-               (s.get("roic_avg_5y") or 0) > 0.12,
-               len(a) >= 5 and all((r["net_income"] or -1) > 0 for r in a[-5:]),
-               (last.get("roe") or 0) > 0.15)
+    p_checks = [(s.get("eps_cagr_5y") or 0) > 0.10,
+                (s.get("rev_cagr_5y") or 0) > 0.08,
+                (s.get("roic_avg_5y") or 0) > 0.12,
+                len(a) >= 5 and all((r["net_income"] or -1) > 0 for r in a[-5:]),
+                (last.get("roe") or 0) > 0.15]
+    past = pts(*p_checks)
 
-    debt, cash, eq = last.get("debt") or 0, last.get("cash") or 0, last.get("equity")
+    eq = last.get("equity")
     op, ie = last.get("op_income"), last.get("interest_exp")
-    health = pts(cash >= debt or (eq and eq > 0 and debt / eq < 0.5),
-                 fcf is not None and fcf > 0,
-                 debt == 0 or (op is not None and ie and ie > 0 and op / ie > 5) or (op and op > 0 and not ie),
-                 debt == 0 or (fcf is not None and fcf > 0 and debt / fcf < 3),
-                 bool(last.get("assets")) and last.get("liabilities") is not None and last["liabilities"] / last["assets"] < 0.6)
+    h_checks = [cash >= debt or bool(eq and eq > 0 and debt / eq < 0.5),
+                fcf is not None and fcf > 0,
+                debt == 0 or bool(op is not None and ie and ie > 0 and op / ie > 5) or bool(op and op > 0 and not ie),
+                debt == 0 or bool(fcf is not None and fcf > 0 and debt / fcf < 3),
+                bool(last.get("assets")) and last.get("liabilities") is not None and last["liabilities"] / last["assets"] < 0.6]
+    health = pts(*h_checks)
 
     divs = [r.get("dividends") for r in a[-3:]]
     sh_now, sh_3 = last.get("shares_diluted"), (prev3 or {}).get("shares_diluted")
     returned = (last.get("dividends") or 0) + (last.get("buybacks") or 0)
-    capital = pts((last.get("dividends") or 0) > 0,
-                  bool(sh_now and sh_3) and sh_now < sh_3 * 0.99,
-                  fcf is not None and fcf > 0 and 0.2 <= returned / fcf <= 1.0,
-                  len(divs) == 3 and all((d or 0) > 0 for d in divs),
-                  rev and last.get("sbc") is not None and last["sbc"] / rev < 0.05)
+    c_checks = [(last.get("dividends") or 0) > 0,
+                bool(sh_now and sh_3) and sh_now < sh_3 * 0.99,
+                fcf is not None and fcf > 0 and 0.2 <= returned / fcf <= 1.0,
+                len(divs) == 3 and all((d or 0) > 0 for d in divs),
+                bool(rev and last.get("sbc") is not None and last["sbc"] / rev < 0.05)]
+    capital = pts(*c_checks)
 
     parts = [x for x in (value, future, past, health, capital) if x is not None]
     total = round(sum(parts) / len(parts), 1) if parts else None
     divy = (last.get("dividends") or 0) / mcap if mcap else None
-    return {"value": value, "future": future, "past": past, "health": health, "capital": capital, "total": total}, \
-           {"pe": pe, "pfcf": pfcf, "ps": ps, "peg": peg, "fair_mcap": fair, "div_yield": divy}
+    buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
+    checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
+              "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],
+              "health": [int(bool(c)) for c in h_checks], "capital": [int(bool(c)) for c in c_checks]}
+    scores = {"value": value, "future": future, "past": past, "health": health, "capital": capital, "total": total}
+    ratios = {"pe": pe, "pfcf": pfcf, "ps": ps, "pb": pb, "peg": peg, "fair_mcap": fair, "div_yield": divy,
+              "buyback_yield": buyback_y, "shareholder_yield": (divy or 0) + (buyback_y or 0) if mcap else None,
+              "ev": ev, "ev_ebitda": ev_ebitda, "fcf_yield": fcf_yield, "earnings_yield": earn_yield,
+              "sector_pe": spe}
+    return scores, ratios, checks
+
+
+SCREENER_COLS = ["t", "n", "sector", "industry", "price", "mcap", "pe", "pfcf", "ps", "divy",
+                 "revg1", "revg5", "nm", "fm", "roic", "de",
+                 "s_value", "s_future", "s_past", "s_health", "s_capital", "s_total", "rev", "cur",
+                 # v2 columns
+                 "revg3", "epsg5", "fcfg3", "gm", "om", "roe", "ev_ebitda", "fcf_yield", "peg", "pb",
+                 "nd_ebitda", "int_cov", "sh_chg3", "sbc_pct", "nm_trend", "shy", "profit_yrs", "div_yrs",
+                 "fcf_conv", "fair_up", "years"]
+
 
 def finish(recs, market):
     # sector median P/E (positive earners with a market cap)
@@ -492,11 +606,15 @@ def finish(recs, market):
         m = (market.get(r["ticker"]) or {}).get("mcap") or 0
         best[r["cik"]] = max(best[r["cik"]], m)
     multi = defaultdict(int)
-    for r in recs: multi[r["cik"]] += 1
+    for r in recs:
+        multi[r["cik"]] += 1
+
     def keep(r):
-        if multi[r["cik"]] == 1: return True
+        if multi[r["cik"]] == 1:
+            return True
         m = (market.get(r["ticker"]) or {}).get("mcap") or 0
         return best[r["cik"]] == 0 or m >= 0.5 * best[r["cik"]]
+
     dropped = [r["ticker"] for r in recs if not keep(r)]
     # alias every dropped ticker to the company's main listing, so a search for e.g. GOOGM
     # opens Alphabet (GOOGL) instead of "not found"
@@ -515,22 +633,31 @@ def finish(recs, market):
     index, screener = [], []
     for r in recs:
         mk = market.get(r["ticker"]) or {}
-        sc, ratios = score(r, mk, sector_pe)
+        sc, ratios, checks = score(r, mk, sector_pe)
         r["market"] = {"price": mk.get("price"), "mcap": mk.get("mcap"), "sector": mk.get("sector"),
-                       "industry": mk.get("industry"), "country": mk.get("country"), "as_of": dt.date.today().isoformat()}
+                       "industry": mk.get("industry"), "country": mk.get("country"), "ipo": mk.get("ipo"),
+                       "as_of": dt.date.today().isoformat()}
         r["ratios"] = {k: r4(v) for k, v in ratios.items()}
         r["scores"] = sc
+        r["checks"] = checks
         with open(os.path.join(OUT, "stocks", f"{r['ticker']}.json"), "w") as f:
             json.dump(r, f, separators=(",", ":"))
         last, s = r["annual"][-1], r["summary"]
         index.append({"t": r["ticker"], "n": r["name"], "rev": last["revenue"]})
+        fair_up = (ratios["fair_mcap"] / mk["mcap"] - 1) if (ratios.get("fair_mcap") and mk.get("mcap")) else None
         screener.append([r["ticker"], r["name"], mk.get("sector"), mk.get("industry"),
                          mk.get("price"), mk.get("mcap"),
                          r4(ratios["pe"]), r4(ratios["pfcf"]), r4(ratios["ps"]), r4(ratios["div_yield"]),
                          r4(last.get("revenue_growth")), s.get("rev_cagr_5y"), last.get("net_margin"),
                          last.get("fcf_margin"), last.get("roic"), last.get("debt_to_equity"),
                          sc["value"], sc["future"], sc["past"], sc["health"], sc["capital"], sc["total"],
-                         last["revenue"], r.get("reported_currency", "USD")])
+                         last["revenue"], r.get("reported_currency", "USD"),
+                         s.get("rev_cagr_3y"), s.get("eps_cagr_5y"), s.get("fcf_cagr_3y"),
+                         last.get("gross_margin"), last.get("op_margin"), last.get("roe"),
+                         r4(ratios["ev_ebitda"]), r4(ratios["fcf_yield"]), r4(ratios["peg"]), r4(ratios["pb"]),
+                         last.get("nd_ebitda"), last.get("interest_cov"), s.get("sh_cagr_3y"), last.get("sbc_pct"),
+                         s.get("nm_trend"), r4(ratios["shareholder_yield"]), s.get("profit_years"), s.get("div_years"),
+                         last.get("fcf_conv"), r4(fair_up), s.get("years")])
     index.sort(key=lambda x: -(x["rev"] or 0))
     with open(os.path.join(OUT, "index.json"), "w") as f:
         json.dump([{"t": x["t"], "n": x["n"]} for x in index] +
@@ -538,11 +665,24 @@ def finish(recs, market):
                   f, separators=(",", ":"))
     screener.sort(key=lambda x: -(x[5] or 0))
     with open(os.path.join(OUT, "screener.json"), "w") as f:
-        json.dump({"cols": ["t", "n", "sector", "industry", "price", "mcap", "pe", "pfcf", "ps", "divy",
-                            "revg1", "revg5", "nm", "fm", "roic", "de",
-                            "s_value", "s_future", "s_past", "s_health", "s_capital", "s_total", "rev", "cur"],
-                   "as_of": dt.date.today().isoformat(), "rows": screener}, f, separators=(",", ":"))
+        json.dump({"cols": SCREENER_COLS, "as_of": dt.date.today().isoformat(), "rows": screener},
+                  f, separators=(",", ":"))
+    # sector / industry medians for the "compared to sector" view
+    med = defaultdict(lambda: defaultdict(list))
+    ci = {c: i for i, c in enumerate(SCREENER_COLS)}
+    for row in screener:
+        sec = row[ci["sector"]]
+        if not sec:
+            continue
+        for k in ("pe", "pfcf", "ps", "ev_ebitda", "nm", "gm", "roic", "revg1", "divy", "fcf_yield", "de"):
+            v = row[ci[k]]
+            if v is not None and isinstance(v, (int, float)):
+                med[sec][k].append(v)
+    with open(os.path.join(OUT, "sectors.json"), "w") as f:
+        json.dump({sec: {k: r4(sorted(v)[len(v) // 2]) for k, v in d.items() if len(v) >= 10}
+                   for sec, d in med.items()}, f, separators=(",", ":"))
     log("wrote", len(recs), "stocks + screener")
+
 
 def main():
     os.makedirs(os.path.join(OUT, "stocks"), exist_ok=True)
@@ -560,7 +700,8 @@ def main():
     with urllib.request.urlopen(req, timeout=1800) as r, open(zpath, "wb") as f:
         while True:
             chunk = r.read(8 << 20)
-            if not chunk: break
+            if not chunk:
+                break
             f.write(chunk)
     log("downloaded", os.path.getsize(zpath) // 1_000_000, "MB")
     zf = zipfile.ZipFile(zpath)
@@ -573,29 +714,36 @@ def main():
     recs, done, skipped = [], 0, 0
     for name in zf.namelist():
         m = re.match(r"CIK(\d+)\.json$", name)
-        if not m: continue
+        if not m:
+            continue
         cik = int(m.group(1))
-        if cik not in by_cik: continue
-        if LIMIT and done >= LIMIT: break
+        if cik not in by_cik:
+            continue
+        if LIMIT and done >= LIMIT:
+            break
         try:
             doc = json.loads(zf.read(name))
         except Exception as e:
-            log("bad json", name, e); continue
+            log("bad json", name, e)
+            continue
         facts = doc.get("facts", {})
         for entry in by_cik[cik]:
             # one listing can have several share classes (GOOGL/GOOG): same data, both tickers
             rec = build_company(cik, entry, facts)
             if not rec:
-                skipped += 1; continue
+                skipped += 1
+                continue
             recs.append(rec)
             done += 1
-        if done % 500 == 0 and done: log("processed", done)
+            if done % 500 == 0 and done:
+                log("processed", done)
 
     finish(recs, market)
     with open(os.path.join(OUT, "meta.json"), "w") as f:
         json.dump({"built": dt.datetime.now(dt.timezone.utc).isoformat(), "stocks": done, "skipped": skipped,
-                   "source": "SEC EDGAR"}, f)
+                   "source": "SEC EDGAR", "version": 2}, f)
     log("done. stocks:", done, "skipped (no usable annual data):", skipped)
+
 
 if __name__ == "__main__":
     main()

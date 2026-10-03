@@ -498,8 +498,19 @@ def finish(recs, market):
         m = (market.get(r["ticker"]) or {}).get("mcap") or 0
         return best[r["cik"]] == 0 or m >= 0.5 * best[r["cik"]]
     dropped = [r["ticker"] for r in recs if not keep(r)]
+    # alias every dropped ticker to the company's main listing, so a search for e.g. GOOGM
+    # opens Alphabet (GOOGL) instead of "not found"
+    primary = {}
+    for r in recs:
+        m = (market.get(r["ticker"]) or {}).get("mcap") or 0
+        if keep(r) and (r["cik"] not in primary or m > primary[r["cik"]][1]):
+            primary[r["cik"]] = (r["ticker"], m)
+    aliases = {r["ticker"]: primary[r["cik"]][0] for r in recs if not keep(r) and r["cik"] in primary}
+    alias_names = {r["ticker"]: r["name"] for r in recs if not keep(r)}
     recs = [r for r in recs if keep(r)]
     log("dropped secondary instruments:", len(dropped), dropped[:20])
+    with open(os.path.join(OUT, "aliases.json"), "w") as f:
+        json.dump(aliases, f, separators=(",", ":"))
 
     index, screener = [], []
     for r in recs:
@@ -522,7 +533,9 @@ def finish(recs, market):
                          last["revenue"], r.get("reported_currency", "USD")])
     index.sort(key=lambda x: -(x["rev"] or 0))
     with open(os.path.join(OUT, "index.json"), "w") as f:
-        json.dump([{"t": x["t"], "n": x["n"]} for x in index], f, separators=(",", ":"))
+        json.dump([{"t": x["t"], "n": x["n"]} for x in index] +
+                  [{"t": a, "n": alias_names.get(a, ""), "a": p} for a, p in sorted(aliases.items())],
+                  f, separators=(",", ":"))
     screener.sort(key=lambda x: -(x[5] or 0))
     with open(os.path.join(OUT, "screener.json"), "w") as f:
         json.dump({"cols": ["t", "n", "sector", "industry", "price", "mcap", "pe", "pfcf", "ps", "divy",

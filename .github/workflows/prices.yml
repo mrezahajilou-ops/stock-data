@@ -1,0 +1,32 @@
+name: Price history (every 4 days)
+on:
+  schedule:
+    - cron: '20 12 */4 * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Only first N tickers (test run)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+jobs:
+  prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch weekly prices
+        run: python prices.py ${{ inputs.limit }}
+      - name: Publish to branch "prices" (single commit, no history growth)
+        run: |
+          cd prices
+          git init -b prices
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "prices $(date -u +%F)"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" prices:prices

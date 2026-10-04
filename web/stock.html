@@ -122,10 +122,11 @@ var FREE_PER_WEEK = 10;
 var $=function(i){return document.getElementById(i)};
 var INDEX=null, cur=null, SECT=null;
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
-function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
+function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
+function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
+function pct(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'}
 function x(v,d){return v==null||!isFinite(v)?'—':v.toFixed(d==null?1:d)}
-function faN(n){return Number(n).toLocaleString('fa-IR',{useGrouping:false})}
+function faN(n){return Number(n).toLocaleString('en-US',{useGrouping:false})}
 function nz(v){return v==null||!isFinite(v)}
 
 /* ---- weekly free quota (per browser) ---- */
@@ -175,7 +176,7 @@ function verdict(d){
   var tag=t==null?['بدون امتیاز','#93a7bf']:t>=4?['شرکت قوی','#2ec4b6']:t>=3?['خوب با چند نقطه ضعف','#b5e36b']:t>=2?['متوسط؛ با احتیاط','#f5b700']:['ضعیف؛ ریسک بالا','#ff5a5f'];
   var plus=[],minus=[];
   if(c){AX.forEach(function(A){var k=A[0];if(!c[k])return;c[k].forEach(function(ok,i){(ok?plus:minus).push(WHY[k][i])})})}
-  var h='<div class="card"><div class="axhead"><h3 style="margin:0">خلاصه در یک نگاه</h3><span class="vtag" style="background:'+tag[1]+'22;color:'+tag[1]+'">'+tag[0]+(t==null?'':' · '+t.toFixed(1)+'/۵')+'</span></div>';
+  var h='<div class="card"><div class="axhead"><h3 style="margin:0">خلاصه در یک نگاه</h3><span class="vtag" style="background:'+tag[1]+'22;color:'+tag[1]+'">'+tag[0]+(t==null?'':' · \u2066'+t.toFixed(1)+'/5\u2069')+'</span></div>';
   if(!c){h+='<div class="meta">توضیح دلیل امتیازها بعد از به‌روزرسانی بعدی داده‌ها نمایش داده میشه.</div></div>';return h}
   h+='<div class="verdict"><div class="pl"><h4>✅ نقاط قوت ('+faN(plus.length)+')</h4><ul>'+(plus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div>'+
      '<div class="mi"><h4>⚠️ نقاط ضعف ('+faN(minus.length)+')</h4><ul>'+(minus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div></div></div>';
@@ -228,7 +229,7 @@ function statCards(d){
     ['پوشش بهره',x(icov),'سود عملیاتی ÷ هزینه بهره. بالای ۵ یعنی بهره‌ی بدهی فشار نمیاره.',null,0],
     ['نسبت جاری',x(L.current_ratio,2),'دارایی جاری ÷ بدهی جاری. بالای ۱ یعنی تعهدات کوتاه‌مدت پوشش داده میشه.',null,0],
     ['سرقفلی / دارایی‌ها',L.goodwill!=null&&L.assets?pct(L.goodwill/L.assets):'—','چه بخشی از دارایی‌ها سرقفلی (حاصل خرید شرکت‌های دیگه) است.',null,1],
-    ['سال‌های سودده (۱۰ سال)',sm.profit_years==null?'—':faN(sm.profit_years)+' از '+faN(Math.min(10,sm.years||a.length)),'چند سال از ۱۰ سال اخیر سود خالص مثبت بوده.',null,0]]],
+    ['سال‌های سودده (۱۰ سال)',sm.profit_years==null?'—':'\u2067'+faN(sm.profit_years)+' از '+faN(Math.min(10,sm.years||a.length))+'\u2069','چند سال از ۱۰ سال اخیر سود خالص مثبت بوده.',null,0]]],
    ['بازگشت سرمایه به سهامدار',[
     ['بازده سود نقدی',pct(r.div_yield,2),'سود نقدی سالانه ÷ ارزش بازار.','divy',0],
     ['بازده بازخرید سهام',pct(bby,2),'مبلغ بازخرید سهام ÷ ارزش بازار.',null,0],
@@ -262,14 +263,14 @@ function render(d){
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
   var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small></div>'+
-    '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا '+esc(L.fy_end||'')+')'+
+    '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا \u2066'+esc(L.fy_end||'')+'\u2069)'+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
-    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+'</div><div class="d">ارزش بازار '+big(m.mcap)+(m.as_of?' · '+esc(m.as_of):'')+'</div>'+
-    '<div class="d">EV '+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</div></div></div></div>';
+    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+'</div><div class="d">ارزش بازار '+big(m.mcap)+(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
+    '<div class="d">\u2066EV '+big0(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'\u2069</div></div></div></div>';
   h+=verdict(d);
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
-  h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / ۵</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
+  h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
      '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/pages/dcf#'+esc(d.ticker)+'">محاسبه‌ی ارزش ذاتی (DCF) ←</a><a class="btn ghost" href="/pages/screener">سهم‌های مشابه در غربالگر</a></div></div></div>';
   h+=statCards(d);

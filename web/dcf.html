@@ -37,7 +37,7 @@
 #rzd .tbl td.n{text-align:right;font-weight:800;padding-right:14px;color:#fff}
 #rzd .tbl td.n span{display:block;font-size:11.5px;color:var(--mut);font-weight:600}
 #rzd .tbl td.h{color:#cfe0f2;direction:ltr}
-#rzd .tbl td.sep{border-right:2px solid var(--line)}
+#rzd .tbl td.sep{border-left:2px solid var(--line)}
 #rzd .tbl input{width:66px;background:#0e1d30;border:1.5px solid var(--line);color:#fff;border-radius:8px;padding:6px 4px;text-align:center;font-weight:800;font-size:15px;outline:none;direction:ltr}
 #rzd .tbl input:focus{border-color:var(--ac)}
 #rzd .tbl tr:nth-child(even) td{background:rgba(255,255,255,.015)}
@@ -129,9 +129,10 @@ var SUB_URL = window.RZD_SUB_URL || '/products/dcf-subscription';
 var INDEX = null;
 function loadIndex(){ if(INDEX||!API) return; INDEX=[]; fetch(API+'/index.json').then(function(r){return r.json()}).then(function(j){INDEX=j.map(function(x){return {t:x.t,n:x.n,a:x.a}}); if(q.value) q.dispatchEvent(new Event('input'));}).catch(function(){INDEX=null}); }
 var $=function(i){return document.getElementById(i)};
-var fa=function(n,d){return Number(n).toLocaleString('fa-IR',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d||0})};
-var usd=function(v){return v==null||!isFinite(v)?'—':(v<0?'-':'')+'$'+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:v>=100||v<=-100?0:2,minimumFractionDigits:v>=100||v<=-100?0:2})};
-var pct=function(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'};
+var fa=function(n,d){return Number(n).toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d||0})};
+var usd=function(v,suf){return v==null||!isFinite(v)?'—':'\u2066'+(v<0?'-':'')+'$'+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:v>=100||v<=-100?0:2,minimumFractionDigits:v>=100||v<=-100?0:2})+(suf||'')+'\u2069'};
+var spct=function(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v>=0?'+':'')+(v*100).toFixed(d==null?1:d)+'%\u2069'};
+var pct=function(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'};
 var cur=null, YEARS=10;
 
 /* ---------- data ---------- */
@@ -181,14 +182,14 @@ function render(s){
   var saved=null; try{saved=JSON.parse(localStorage.getItem('rzd_m_'+s.t)||'null')}catch(e){}
   var thin=s.rows.length<5;
   var html='<div class="card"><div class="head"><div><div class="co">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div>'+
-    '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+'آخرین سال مالی: '+Number(last.fy).toLocaleString('fa-IR',{useGrouping:false})+' · درآمد '+usd(last.rev/1e9)+' میلیارد · سهام رقیق‌شده '+fa((last.sh||0)/1e6,0)+' میلیون'+(s.sc&&s.sc.total!=null?' · امتیاز کلی <b style="color:#fff">'+s.sc.total.toFixed(1)+'/۵</b>':'')+' · <a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div></div>'+
+    '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+'آخرین سال مالی: '+String(last.fy)+' · درآمد '+usd(last.rev/1e9)+' میلیارد · سهام رقیق‌شده '+fa((last.sh||0)/1e6,0)+' میلیون'+(s.sc&&s.sc.total!=null?' · امتیاز کلی <b style="color:#fff">'+'\u2066'+s.sc.total.toFixed(1)+'/5\u2069</b>':'')+' · <a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div></div>'+
     '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(mk.as_of?' · '+esc(mk.as_of):'')+'<input class="pin" id="rzd-price" inputmode="decimal" placeholder="مثلاً 180" value="'+(mk.price?mk.price.toFixed(2):'')+'"></label>'+
-    '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">۵ سال</option><option value="10" selected>۱۰ سال</option></select></label></div></div>'+
+    '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">5 سال</option><option value="10" selected>10 سال</option></select></label></div></div>'+
     '<div class="warn" id="rzd-warn"></div></div>';
   html+='<div class="tblwrap"><table class="tbl"><thead><tr><th rowspan="2" style="text-align:right;padding-right:14px">معیار</th><th colspan="3" class="grp hh">گذشته (واقعی)</th><th colspan="3" class="grp">فرض‌های من</th></tr>'+
-        '<tr><th class="hh">۱ ساله</th><th class="hh">۵ ساله</th><th class="hh">۱۰ ساله</th><th>بدبینانه</th><th>متوسط</th><th>خوش‌بینانه</th></tr></thead><tbody>';
+        '<tr><th class="hh">1 ساله</th><th class="hh">5 ساله</th><th class="hh">10 ساله</th><th>بدبینانه</th><th>متوسط</th><th>خوش‌بینانه</th></tr></thead><tbody>';
   ROWS.forEach(function(R){
-    var k=R[0], hm=h[k]?'<div class="hm">گذشته — ۱ساله <bdi dir="ltr">'+pct(h[k][0])+'</bdi> · ۵ساله <bdi dir="ltr">'+pct(h[k][1])+'</bdi> · ۱۰ساله <bdi dir="ltr">'+pct(h[k][2])+'</bdi></div>':'';
+    var k=R[0], hm=h[k]?'<div class="hm">گذشته — 1 ساله <bdi dir="ltr">'+pct(h[k][0])+'</bdi> · 5 ساله <bdi dir="ltr">'+pct(h[k][1])+'</bdi> · 10 ساله <bdi dir="ltr">'+pct(h[k][2])+'</bdi></div>':'';
     html+='<tr><td class="n">'+R[1]+'<span>'+R[2]+'</span>'+hm+'</td>';
     if(h[k]) h[k].forEach(function(v,i){html+='<td class="h'+(i==2?' sep':'')+'">'+pct(v)+'</td>'});
     else html+='<td class="h"></td><td class="h"></td><td class="h sep"></td>';
@@ -197,7 +198,7 @@ function render(s){
     html+='</tr>';
   });
   html+='</tbody></table></div>';
-  html+='<label class="opt"><input type="checkbox" id="rzd-bs"'+(saved&&saved.bs?' checked':'')+'> نقد منهای بدهی (ترازنامه) هم به ارزش اضافه بشه — نقد: '+usd((last.cash||0)/1e9)+'B · بدهی: '+usd((last.debt||0)/1e9)+'B</label>';
+  html+='<label class="opt"><input type="checkbox" id="rzd-bs"'+(saved&&saved.bs?' checked':'')+'> نقد منهای بدهی (ترازنامه) هم به ارزش اضافه بشه — نقد: '+usd((last.cash||0)/1e9,'B')+' · بدهی: '+usd((last.debt||0)/1e9,'B')+'</label>';
   html+='<div class="tools"><button class="btn ghost sm" id="rzd-reset">برگشت به پیش‌فرض</button>'+(ACCESS?'<button class="btn ghost sm" id="rzd-save">ذخیره‌ی فرض‌هام برای '+esc(s.t)+'</button>':'')+'<button class="btn ghost sm" id="rzd-share">کپی لینک این مدل</button></div>';
   html+='<div class="card" style="margin-top:14px"><div class="res" id="rzd-res"></div><div class="bar"><svg id="rzd-svg" viewBox="0 0 800 150"></svg></div></div>';
   html+='<div class="card"><h3>DCF معکوس: بازار چه رشدی رو قیمت‌گذاری کرده؟</h3><div class="rev" id="rzd-rev"></div></div>';
@@ -236,11 +237,11 @@ function calc(){
     var irr=price>0&&V.fut>0?Math.pow(V.fut/price,1/N)-1:null, mos=price>0?(V.fair/price-1):null;
     out.push({fair:V.fair});
     var tag='';
-    if(price>0){var cls=mos>0.15?'good':(mos>-0.1?'mid':'bad');var txt=mos>0.15?'ارزون':(mos>-0.1?'نزدیک ارزش منصفانه':'گرون');tag='<div class="tag '+cls+'">'+txt+' · '+(mos>=0?'+':'')+pct(mos,0)+'</div>'}
+    if(price>0){var cls=mos>0.15?'good':(mos>-0.1?'mid':'bad');var txt=mos>0.15?'ارزون':(mos>-0.1?'نزدیک ارزش منصفانه':'گرون');tag='<div class="tag '+cls+'">'+txt+' · '+spct(mos,0)+'</div>'}
     html+='<div class="sc"><div class="t">سناریوی '+names[i]+'</div><div class="v" style="color:'+(i==0?'#ff8a8e':i==1?'#f5d36b':'#5fe0d3')+'">'+usd(V.fair)+'</div>'+
       '<div class="r">با P/E: <b>'+usd(V.vPE)+'</b> · با P/FCF: <b>'+usd(V.vPF)+'</b></div>'+
       (irr!=null?'<div class="r">اگه امروز بخری: سالانه <b>'+pct(irr,1)+'</b></div>':'')+
-      (mos!=null&&i==1?'<div class="r">حاشیه امنیت: <b>'+(mos>=0?'+':'')+pct(mos,0)+'</b> · قیمت خرید با ۲۵٪ حاشیه: <b>'+usd(V.fair*0.75)+'</b></div>':'')+tag+'</div>';
+      (mos!=null&&i==1?'<div class="r">حاشیه امنیت: <b>'+spct(mos,0)+'</b> · قیمت خرید با 25% حاشیه: <b>'+usd(V.fair*0.75)+'</b></div>':'')+tag+'</div>';
   }
   $('rzd-res').innerHTML=html; bars(out,price);
   reverse(L,N,sh0,bs,price); sens(L,N,sh0,bs,price);
@@ -258,7 +259,7 @@ function reverse(L,N,sh0,bs,price){
   var tone=g>0.25?'#ff8a8e':g>0.12?'#f5d36b':'#5fe0d3';
   // IRR at current price with the medium scenario
   var Vm=value(L,N,sh0,bs,myg,pm,fm,pe,pf,r,shg), irr=Vm.fut>0?Math.pow(Vm.fut/price,1/N)-1:null;
-  box.innerHTML='<div class="bx"><div class="t">رشد سالانه‌ی درآمدی که قیمت '+usd(price)+' فرض می‌کنه</div><div class="big" style="color:'+tone+'">'+(g>=0?'+':'')+pct(g,1)+'</div>'+
+  box.innerHTML='<div class="bx"><div class="t">رشد سالانه‌ی درآمدی که قیمت '+usd(price)+' فرض می‌کنه</div><div class="big" style="color:'+tone+'">'+spct(g,1)+'</div>'+
     '<div class="d">یعنی اگه درآمد '+esc(cur.s.t)+' هر سال '+pct(g,1)+' رشد کنه و بقیه‌ی فرض‌های سناریوی متوسط درست باشن، خریدار امروز دقیقاً '+pct(r,0)+' بازده سالانه می‌گیره. '+cmp+'</div></div>'+
     '<div class="bx"><div class="t">بازده سالانه‌ای که با فرض‌های متوسطِ خودت می‌گیری</div><div class="big" style="color:'+(irr==null?'#fff':irr>=r?'#5fe0d3':irr>=0?'#f5d36b':'#ff8a8e')+'">'+(irr==null?'—':pct(irr,1))+'</div>'+
     '<div class="d">با رشد '+pct(myg,1)+' که تو وارد کردی. '+(irr==null?'':irr>=r?'بیشتر از بازده مورد انتظارته؛ سهم با این فرض‌ها ارزونه.':irr>=0?'کمتر از '+pct(r,0)+' که می‌خوای؛ یا رشد بیشتری لازمه یا قیمت پایین‌تر.':'با این فرض‌ها از خرید امروز ضرر می‌کنی.')+'</div></div>';

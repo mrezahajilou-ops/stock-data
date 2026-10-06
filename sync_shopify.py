@@ -23,8 +23,11 @@ UPSERT = '''mutation Up($h: MetaobjectHandleInput!, $m: MetaobjectUpsertInput!) 
 
 
 def token():
-    body = urllib.parse.urlencode({'client_id': os.environ['SHOPIFY_CLIENT_ID'],
-                                   'client_secret': os.environ['SHOPIFY_CLIENT_SECRET'],
+    cid, sec = os.environ['SHOPIFY_CLIENT_ID'].strip(), os.environ['SHOPIFY_CLIENT_SECRET'].strip()
+    # safe diagnostics (never prints the values): lengths and whether the two are identical
+    print('client id length %d, secret length %d, same=%s' % (len(cid), len(sec), cid == sec), flush=True)
+    body = urllib.parse.urlencode({'client_id': os.environ['SHOPIFY_CLIENT_ID'].strip(),
+                                   'client_secret': os.environ['SHOPIFY_CLIENT_SECRET'].strip(),
                                    'grant_type': 'client_credentials'}).encode()
     req = urllib.request.Request('https://%s/admin/oauth/access_token' % SHOP, data=body,
                                  headers={'Content-Type': 'application/x-www-form-urlencoded'})

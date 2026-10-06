@@ -1,0 +1,25 @@
+{%- layout none -%}
+{%- assign ic = settings.favicon -%}
+{
+  "name": {{ shop.name | json }},
+  "short_name": "تحلیل سهام",
+  "description": "تحلیل فارسی سهام آمریکا، غربالگر، ماشین‌حساب ارزش ذاتی، واچ‌لیست و تقویم گزارش‌های مالی",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "{{ shop.url }}/pages/stock?source=pwa",
+  "scope": "{{ shop.url }}/",
+  "display": "standalone",
+  "background_color": "#0b1726",
+  "theme_color": "#0b1726",
+  "icons": [
+    {%- if ic -%}
+    { "src": "{{ ic | image_url: width: 192, height: 192, crop: 'center' }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ ic | image_url: width: 512, height: 512, crop: 'center' }}", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {%- endif -%}
+  ],
+  "shortcuts": [
+    { "name": "تحلیل سهام", "url": "/pages/stock" },
+    { "name": "واچ‌لیست", "url": "/pages/watchlist" },
+    { "name": "تقویم گزارش‌ها", "url": "/pages/earnings" }
+  ]
+}

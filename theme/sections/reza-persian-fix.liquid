@@ -1,0 +1,71 @@
+{%- comment -%}
+  Site-wide fixes and extras, loaded on every page from the header group.
+  1) Persian text fix: Dawn sets body { letter-spacing: 0.06rem }. Any letter-spacing breaks the joining of
+     Persian letters, and in Safari/iOS it also breaks the order of text inside SVG charts. Never use it.
+  2) Install-as-app (PWA): manifest (/pages/manifest), home-screen icon, and a small install banner on phones.
+{%- endcomment -%}
+<style id="rz-persian-text-fix">
+  body,
+  body *,
+  body *::before,
+  body *::after {
+    letter-spacing: 0 !important;
+  }
+  .rzpwa{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:80;display:none;align-items:center;gap:10px;
+    background:#13233a;border:1px solid #25405f;border-radius:16px;padding:10px 12px;box-shadow:0 12px 34px rgba(0,0,0,.45);direction:rtl;
+    font-family:'Vazirmatn',Tahoma,sans-serif;color:#eef3f9}
+  .rzpwa img{width:42px;height:42px;border-radius:10px;flex:none}
+  .rzpwa b{display:block;font-size:14px}
+  .rzpwa small{display:block;color:#93a7bf;font-size:12px;line-height:1.6}
+  .rzpwa .go{margin-right:auto;background:#b5e36b;color:#0b1726;font-weight:900;border:0;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap}
+  .rzpwa .x{background:transparent;border:0;color:#93a7bf;font-size:20px;padding:0 4px}
+  @media (min-width:821px){.rzpwa{display:none!important}}
+</style>
+{%- assign ic = settings.favicon -%}
+<script>
+(function(){
+  var h=document.head; if(!h) return;
+  function add(tag,attrs){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);h.appendChild(e)}
+  add('link',{rel:'manifest',href:'/pages/manifest'});
+  add('meta',{name:'theme-color',content:'#0b1726'});
+  add('meta',{name:'apple-mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'apple-mobile-web-app-title',content:'تحلیل سهام'});
+  add('meta',{name:'apple-mobile-web-app-status-bar-style',content:'black-translucent'});
+  {%- if ic %}
+  add('link',{rel:'apple-touch-icon',href:{{ ic | image_url: width: 180, height: 180, crop: 'center' | json }}});
+  {%- endif %}
+})();
+</script>
+<div class="rzpwa" id="rzpwa" role="dialog" aria-label="نصب روی گوشی">
+  {%- if ic -%}<img src="{{ ic | image_url: width: 84, height: 84, crop: 'center' }}" alt="" width="42" height="42">{%- endif -%}
+  <div><b>سایت رو مثل اپ روی گوشیت نصب کن</b><small id="rzpwa-t">با یک لمس به تحلیل سهام، واچ‌لیست و تقویم گزارش‌ها برسی.</small></div>
+  <button class="go" id="rzpwa-go">نصب</button><button class="x" id="rzpwa-x" aria-label="بستن">×</button>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('rzpwa'); if(!box) return;
+  var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone;
+  if(standalone) return;
+  try{ if(localStorage.getItem('rz_pwa_x')) return;
+       var n=+(localStorage.getItem('rz_pv')||0)+1; localStorage.setItem('rz_pv',n); if(n<3) return; }catch(e){ return; }
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent), deferred=null;
+  function show(){ box.style.display='flex'; }
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; show(); });
+  if(ios){ document.getElementById('rzpwa-t').textContent='در Safari دکمه‌ی اشتراک‌گذاری (مربع با فلش ⬆️) رو بزن و بعد «Add to Home Screen».'; document.getElementById('rzpwa-go').textContent='فهمیدم'; setTimeout(show,2500); }
+  document.getElementById('rzpwa-go').onclick=function(){
+    if(deferred){ deferred.prompt(); deferred.userChoice.then(function(){ box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} }); }
+    else { box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} }
+  };
+  document.getElementById('rzpwa-x').onclick=function(){ box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Persian text fix + app",
+  "tag": "div",
+  "class": "rz-persian-fix",
+  "settings": []
+}
+{% endschema %}

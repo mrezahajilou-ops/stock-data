@@ -1,0 +1,16 @@
+{%- comment -%}
+  Generic thin loader for the stock tools: the page (HTML + CSS + JS) lives in github.com/mrezahajilou-ops/stock-data/web/<app>.html,
+  so tool updates only need a commit there. Usage: {% render 'rz-app', app: 'compare' %}
+{%- endcomment -%}
+<div id="rz-app-{{ app }}" dir="rtl" style="min-height:300px;color:#93a7bf;text-align:center;padding:40px 0;font-family:Vazirmatn,Tahoma,sans-serif">در حال بارگذاری…</div>
+<script>
+(function(){
+  var RAW = 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
+  window.RZS_API = RAW + '/main/data';
+  var c = document.getElementById('rz-app-{{ app }}');
+  fetch(RAW + '/main/web/{{ app }}.html?v=' + Math.floor(Date.now()/300000)).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }).then(function(html){
+    c.style.cssText = ''; c.innerHTML = html;
+    [].slice.call(c.querySelectorAll('script')).forEach(function(s){ var n = document.createElement('script'); n.textContent = s.textContent; s.parentNode.replaceChild(n, s); });
+  }).catch(function(){ c.innerHTML = 'بارگذاری ابزار ناموفق بود؛ چند لحظه بعد صفحه رو دوباره باز کن.'; });
+})();
+</script>

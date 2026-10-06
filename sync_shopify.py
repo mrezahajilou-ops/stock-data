@@ -9,7 +9,7 @@ Optional env SHOPIFY_SHOP (default jev8ju-dh.myshopify.com), LIMIT=N for a test 
 Only pages whose content changed since the last successful sync are sent (hashes in pages/hashes.json,
 cached between runs by the workflow).
 """
-import json, os, sys, time, hashlib, urllib.request, urllib.parse
+import json, os, sys, time, hashlib, urllib.request, urllib.parse, urllib.error
 
 SHOP = os.environ.get('SHOPIFY_SHOP', 'jev8ju-dh.myshopify.com')
 API = 'https://%s/admin/api/2026-01/graphql.json' % SHOP
@@ -78,8 +78,8 @@ def main():
         ue = (((j.get('data') or {}).get('metaobjectUpsert')) or {}).get('userErrors') or j.get('errors')
         if ue:
             failed += 1
-            if failed <= 10:
-                print('error', p['handle'], ue, flush=True)
+            if failed <= 5:
+                print('::error::%s %s' % (p['handle'], json.dumps(ue)[:300]), flush=True)
             continue
         new[p['handle']] = h
         sent += 1
@@ -93,4 +93,12 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except urllib.error.HTTPError as e:
+        body = e.read().decode('utf-8', 'ignore')[:300]
+        print('::error::HTTP %s from %s: %s' % (e.code, e.url.split('?')[0], body), flush=True)
+        sys.exit(1)
+    except Exception as e:
+        print('::error::%s: %s' % (type(e).__name__, str(e)[:300]), flush=True)
+        sys.exit(1)

@@ -60,7 +60,9 @@ def main():
                     continue
                 q[t] = [round(p, 4), num(d.get('percentageChange')), num(d.get('previousClosePrice')),
                         d.get('lastTradeTimestampDateTime') or d.get('lastTradeTimestamp')]
-                ms = d.get('marketStatus')
+                ms = (d.get('marketStatus') or '').lower()
+                ms = ('Pre Market' if 'pre' in ms else 'After Hours' if 'after' in ms else
+                      'Closed' if 'close' in ms else 'Open' if 'open' in ms else None)
                 if ms:
                     status[ms] = status.get(ms, 0) + 1
     print('quotes', len(q), 'of', len(tickers), 'in %.0fs' % (time.time() - t0), status, flush=True)

@@ -25,7 +25,7 @@ UPSERT = '''mutation Up($h: MetaobjectHandleInput!, $m: MetaobjectUpsertInput!) 
 def token():
     cid, sec = os.environ['SHOPIFY_CLIENT_ID'].strip(), os.environ['SHOPIFY_CLIENT_SECRET'].strip()
     # safe diagnostics (never prints the values): lengths and whether the two are identical
-    print('client id length %d, secret length %d, same=%s' % (len(cid), len(sec), cid == sec), flush=True)
+    print('::notice::client id length %d, secret length %d, same=%s' % (len(cid), len(sec), cid == sec), flush=True)
     body = urllib.parse.urlencode({'client_id': os.environ['SHOPIFY_CLIENT_ID'].strip(),
                                    'client_secret': os.environ['SHOPIFY_CLIENT_SECRET'].strip(),
                                    'grant_type': 'client_credentials'}).encode()

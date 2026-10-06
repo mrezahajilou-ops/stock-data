@@ -331,7 +331,7 @@ function paywall(t){
   var login = LOGGED ? '' : '<a class="btn" style="background:transparent;border:1.5px solid var(--line);color:#fff!important" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً خریدی؟ وارد حسابت شو</a>';
   $('rzd-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div>'+
    '<div class="co" style="margin:6px 0">تحلیل '+esc(t)+' مخصوص اعضاست</div>'+
-   '<p class="sub" style="margin:0 auto 16px;max-width:520px">با اشتراک ماهانه به ارزش ذاتی، DCF معکوس و جدول حساسیتِ بیش از ۶٬۸۰۰ سهم آمریکایی دسترسی داری؛ اعداد هر ۴ روز از گزارش‌های رسمی SEC به‌روز میشن. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
+   '<p class="sub" style="margin:0 auto 16px;max-width:520px">با اشتراک ماهانه به ارزش ذاتی، DCF معکوس و جدول حساسیتِ بیش از ۶٬۸۰۰ سهم آمریکایی دسترسی داری؛ اعداد هر شب از گزارش‌های رسمی SEC و قیمت‌ها هر ۱۵ دقیقه به‌روز میشن. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">اشتراک ماهانه ۴٫۹۹ یورو</a>'+login+'</div>'+
    '<p class="sub" style="margin:14px auto 0;font-size:13px">بعد از پرداخت، همین سهم ('+esc(t)+') خودکار برات باز میشه.</p></div>';
 }

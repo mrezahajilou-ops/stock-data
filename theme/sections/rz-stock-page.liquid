@@ -148,7 +148,7 @@
       <div class="kpi"><span>P/FCF</span><b data-k="pfcf">{% if d.ratios.pfcf %}{{ d.ratios.pfcf | round: 1 }}{% else %}—{% endif %}</b></div>
       <div class="kpi"><span>P/S</span><b data-k="ps">{% if d.ratios.ps %}{{ d.ratios.ps | round: 1 }}{% else %}—{% endif %}</b></div>
       <div class="kpi"><span>EV/EBITDA</span><b>{% if d.ratios.ev_ebitda %}{{ d.ratios.ev_ebitda | round: 1 }}{% else %}—{% endif %}</b></div>
-      <div class="kpi"><span>ارزش بازار</span><b id="rzx-m">{% if d.mcap %}${{ d.mcap | divided_by: 1000000000.0 | round: 1 }}B{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>ارزش بازار</span><b id="rzx-m">{% if d.mcap >= 1000000000000 %}${{ d.mcap | divided_by: 1000000000000.0 | round: 2 }}T{% elsif d.mcap %}${{ d.mcap | divided_by: 1000000000.0 | round: 1 }}B{% else %}—{% endif %}</b></div>
       <div class="kpi"><span>فاصله تا ارزش ذاتی</span><b>{% if d.fair_gap != nil %}{% if d.fair_gap >= 0 %}+{% endif %}{{ d.fair_gap | times: 100 | round }}%{% else %}—{% endif %}</b></div>
       <div class="kpi"><span>رشد درآمد ۵ ساله</span><b>{% if d.growth.rev_cagr_5y != nil %}{{ d.growth.rev_cagr_5y | times: 100 | round: 1 }}%{% else %}—{% endif %}</b></div>
       <div class="kpi"><span>میانگین ROIC ۵ ساله</span><b>{% if d.growth.roic_avg_5y != nil %}{{ d.growth.roic_avg_5y | times: 100 | round: 1 }}%{% else %}—{% endif %}</b></div>
@@ -230,7 +230,7 @@
       if(Q[1]!=null){var c=document.getElementById('rzx-c');c.textContent=(Q[1]>=0?'+':'')+Q[1].toFixed(2)+'%';c.className='ch '+(Q[1]>=0?'up':'dn')}
       var when=''; try{when=new Date(Q[3]||j.as_of).toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){}
       document.getElementById('rzx-w').textContent=(ST[j.status]||'آخرین قیمت')+(when?' · '+when:'');
-      if(base>0&&mc>0){var f=Q[0]/base;document.getElementById('rzx-m').textContent='$'+(mc*f/1e9).toFixed(1)+'B';
+      if(base>0&&mc>0){var f=Q[0]/base;var nm=mc*f;document.getElementById('rzx-m').textContent=nm>=1e12?'$'+(nm/1e12).toFixed(2)+'T':'$'+(nm/1e9).toFixed(1)+'B';
         [].forEach.call(box.querySelectorAll('.kpi b[data-k]'),function(b){var v=parseFloat(b.textContent);if(isFinite(v))b.textContent=(v*f).toFixed(1)})}
     }).catch(function(){});
 })();

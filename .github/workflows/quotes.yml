@@ -1,0 +1,42 @@
+name: Live quotes (every 15 min, market hours)
+
+on:
+  schedule:
+    # Mon-Fri, every 15 min from 11:00 to 21:45 UTC: pre-market, the whole US session
+    # (13:30-20:00 UTC in summer, 14:30-21:00 in winter) and the closing prints.
+    - cron: '*/15 11-21 * * 1-5'
+    # one late run for the final after-hours / official closing prices
+    - cron: '30 23 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: quotes
+  cancel-in-progress: true
+
+jobs:
+  quotes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            quotes.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch live quotes
+        run: python quotes.py
+      - name: Publish to branch "quotes" (single commit, no history growth)
+        run: |
+          cd quotes
+          git init -q -b quotes
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "quotes $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" quotes:quotes

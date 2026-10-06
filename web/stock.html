@@ -28,6 +28,8 @@
 #rzs .px{text-align:left}
 #rzs .px .p{font-size:28px;font-weight:900;direction:ltr}
 #rzs .px .d{font-size:12px;color:var(--mut)}
+#rzs .px .live{color:#9fe8de}
+#rzs .px .live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2ec4b6;margin-left:5px;vertical-align:middle;box-shadow:0 0 0 3px rgba(46,196,182,.2)}
 #rzs .grid2{display:grid;grid-template-columns:300px 1fr;gap:14px}
 #rzs .score .big{font-size:44px;font-weight:900;text-align:center;line-height:1.1}
 #rzs .score .stars{text-align:center;color:var(--gold);font-size:20px;letter-spacing:2px}
@@ -112,7 +114,7 @@
   <div><h3>این امتیازها رو چطور بخونم؟</h3><p>معنی P/E، ROIC، جریان نقد آزاد و سلامت ترازنامه رو با مثال واقعی تو کتاب آموزش بورس به فارسی توضیح دادیم.</p></div>
   <a class="btn" href="/products/از-اولین-سهم-تا-انتخاب-حرفه‌ای‌ها-مرجع-کامل-فارسی-برای-یادگرفتن-سرمایه‌گذاری-در-بورس">مشاهده‌ی کتاب ←</a>
 </div>
-<p class="note">داده‌ها: SEC EDGAR (هر ۴ روز به‌روز میشه) · قیمت: آخرین قیمت بسته‌شدن روز به‌روزرسانی · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
+<p class="note">داده‌ها: SEC EDGAR (هر ۴ روز به‌روز میشه) · قیمت: هر ۱۵ دقیقه در ساعات بازار آمریکا به‌روز میشه (حدود ۱۵ تا ۳۰ دقیقه تأخیر) · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 
 <script>
 (function(){
@@ -121,6 +123,48 @@ var ACCESS = !!window.RZS_ACCESS, LOGGED = !!window.RZS_LOGGED, SUB_URL = window
 var FREE_PER_WEEK = 10;
 var $=function(i){return document.getElementById(i)};
 var INDEX=null, cur=null, SECT=null;
+
+/* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ----
+   Fundamentals and scores are built from SEC data with a build-time price; here every price-based
+   number (market cap, EV, P/E, P/FCF, P/S, P/B, PEG, EV/EBITDA, yields, DCF gap, value score) is
+   rescaled to the latest price, so the page is current between data builds. */
+var RZQ_URL=(window.RZS_QUOTES||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes')+'/quotes.json';
+var RZQ=null, RZQ_P=null;
+function liveQuotes(){
+  if(!RZQ_P){
+    var p=fetch(RZQ_URL+'?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+    RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3000)})]);
+    p.then(function(){RZQ_P=Promise.resolve(RZQ)});
+  }
+  return RZQ_P;
+}
+function liveQ(t){return RZQ&&RZQ.q?RZQ.q[t]||null:null}
+var RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveWhen(iso){
+  try{var d=new Date(iso);if(isNaN(d))return '';
+    return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
+}
+function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
+function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
+function applyLive(d){
+  var Q=d&&liveQ(d.ticker), m=d&&d.market;
+  if(!Q||!m||!m.price||!(Q[0]>0))return d;
+  var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
+  m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
+  if(mc0){m.mcap=mc0*f;
+    if(r.ev!=null){var ev0=r.ev;r.ev=ev0+m.mcap-mc0;if(r.ev_ebitda!=null&&ev0)r.ev_ebitda=r.ev_ebitda*r.ev/ev0}}
+  ['pe','pfcf','ps','pb','peg'].forEach(function(k){r[k]=liveScale(r[k],f)});
+  ['div_yield','buyback_yield','shareholder_yield','fcf_yield','earnings_yield'].forEach(function(k){r[k]=liveScale(r[k],1/f)});
+  var c=d.checks, s=d.scores;
+  if(c&&c.value&&s&&m.mcap){
+    var spe=r.sector_pe;
+    c.value=[r.pe!=null&&r.pe<25, r.pe!=null&&spe!=null&&r.pe<spe, r.pfcf!=null&&r.pfcf<20, r.fair_mcap!=null&&r.fair_mcap>m.mcap, r.peg!=null&&r.peg<1.5].map(Number);
+    s.value=c.value.reduce(function(a,b){return a+b},0);
+    var parts=['value','future','past','health','capital'].map(function(k){return s[k]}).filter(function(v){return v!=null});
+    if(parts.length)s.total=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10;
+  }
+  return d;
+}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
@@ -148,8 +192,8 @@ function open(t,via){
   try{localStorage.setItem('rz_last_ticker',t)}catch(e){}
   showQuota(); $('rzs-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';
   try{history.replaceState(null,'','#'+t)}catch(e){}
-  fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(d){
-    if(d){render(d);recent(d.ticker);return}
+  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes()]).then(function(x){var d=x[0];
+    if(d){applyLive(d);render(d);recent(d.ticker);return}
     if(via){notFound(t);return}
     fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(p){ALIAS={from:t,to:p};open(p,true)}else notFound(t)}).catch(function(){notFound(t)});
   }).catch(function(){notFound(t)});
@@ -266,7 +310,7 @@ function render(d){
     '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا \u2066'+esc(L.fy_end||'')+'\u2069)'+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
-    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+'</div><div class="d">ارزش بازار '+big(m.mcap)+(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
+    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+(m.live?'<div class="d live"><i></i>'+esc(liveLabel(d.ticker))+'</div>':'')+'<div class="d">ارزش بازار '+big(m.mcap)+(!m.live&&m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
     '<div class="d">\u2066EV '+big0(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'\u2069</div></div></div></div>';
   h+=verdict(d);
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
@@ -304,6 +348,9 @@ function loadPrice(t){
   fetch(PRICES+'/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(j){
     var box=$('rzs-price'); if(!box) return;
     if(!j||!j.w||j.w.length<2){box.innerHTML='<h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">تاریخچه‌ی قیمت برای این سهم در دسترس نیست.</div>';return}
+    var Q=liveQ(t); if(Q&&Q[0]>0){var dt=String(Q[3]||RZQ.as_of).slice(0,10), lw=j.w[j.w.length-1];
+      if(dt>lw[0]){var wk=function(s){var x=new Date(s+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+3-((x.getUTCDay()+6)%7));return x.toISOString().slice(0,10)};
+        if(wk(dt)===wk(lw[0]))j.w[j.w.length-1]=[dt,Q[0]];else j.w.push([dt,Q[0]])}}
     PX=j; drawPrice();
   }).catch(function(){var box=$('rzs-price');if(box)box.innerHTML='<h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">تاریخچه‌ی قیمت در دسترس نیست.</div>'});
 }

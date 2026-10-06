@@ -137,12 +137,54 @@ var cur=null, YEARS=10;
 
 /* ---------- data ---------- */
 function listTickers(){return API&&INDEX&&INDEX.length?INDEX:Object.keys(DATA).map(function(t){return {t:t,n:DATA[t].n}})}
+
+/* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ----
+   Fundamentals and scores are built from SEC data with a build-time price; here every price-based
+   number (market cap, EV, P/E, P/FCF, P/S, P/B, PEG, EV/EBITDA, yields, DCF gap, value score) is
+   rescaled to the latest price, so the page is current between data builds. */
+var RZQ_URL=(window.RZS_QUOTES||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes')+'/quotes.json';
+var RZQ=null, RZQ_P=null;
+function liveQuotes(){
+  if(!RZQ_P){
+    var p=fetch(RZQ_URL+'?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+    RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3000)})]);
+    p.then(function(){RZQ_P=Promise.resolve(RZQ)});
+  }
+  return RZQ_P;
+}
+function liveQ(t){return RZQ&&RZQ.q?RZQ.q[t]||null:null}
+var RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveWhen(iso){
+  try{var d=new Date(iso);if(isNaN(d))return '';
+    return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
+}
+function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
+function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
+function applyLive(d){
+  var Q=d&&liveQ(d.ticker), m=d&&d.market;
+  if(!Q||!m||!m.price||!(Q[0]>0))return d;
+  var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
+  m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
+  if(mc0){m.mcap=mc0*f;
+    if(r.ev!=null){var ev0=r.ev;r.ev=ev0+m.mcap-mc0;if(r.ev_ebitda!=null&&ev0)r.ev_ebitda=r.ev_ebitda*r.ev/ev0}}
+  ['pe','pfcf','ps','pb','peg'].forEach(function(k){r[k]=liveScale(r[k],f)});
+  ['div_yield','buyback_yield','shareholder_yield','fcf_yield','earnings_yield'].forEach(function(k){r[k]=liveScale(r[k],1/f)});
+  var c=d.checks, s=d.scores;
+  if(c&&c.value&&s&&m.mcap){
+    var spe=r.sector_pe;
+    c.value=[r.pe!=null&&r.pe<25, r.pe!=null&&spe!=null&&r.pe<spe, r.pfcf!=null&&r.pfcf<20, r.fair_mcap!=null&&r.fair_mcap>m.mcap, r.peg!=null&&r.peg<1.5].map(Number);
+    s.value=c.value.reduce(function(a,b){return a+b},0);
+    var parts=['value','future','past','health','capital'].map(function(k){return s[k]}).filter(function(v){return v!=null});
+    if(parts.length)s.total=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10;
+  }
+  return d;
+}
 var ALIAS=null;
 function load(t,cb,viaAlias){
   if(!viaAlias) ALIAS=null;
   if(DATA[t]) return cb(norm(t,DATA[t]));
   if(!API) return cb(null);
-  fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(d){
+  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes()]).then(function(x){var d=x[0]; if(d)applyLive(d);
     if(!d){ if(viaAlias) return cb(null);
       return fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(!p)return cb(null);ALIAS={from:t,to:p};load(p,cb,true)}).catch(function(){cb(null)}); }
     cb({t:t,n:d.name,mk:d.market||null,sc:d.scores||null,cur:d.reported_currency||'USD',rows:d.annual.map(function(r){return {fy:r.fy,rev:r.revenue,ni:r.net_income,fcf:r.fcf,sh:r.shares_diluted,eps:r.eps_diluted,roic:r.roic,cash:r.cash,debt:r.debt}})});
@@ -183,7 +225,7 @@ function render(s){
   var thin=s.rows.length<5;
   var html='<div class="card"><div class="head"><div><div class="co">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div>'+
     '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+'آخرین سال مالی: '+String(last.fy)+' · درآمد '+usd(last.rev/1e9)+' میلیارد · سهام رقیق‌شده '+fa((last.sh||0)/1e6,0)+' میلیون'+(s.sc&&s.sc.total!=null?' · امتیاز کلی <b style="color:#fff">'+'\u2066'+s.sc.total.toFixed(1)+'/5\u2069</b>':'')+' · <a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div></div>'+
-    '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(mk.as_of?' · '+esc(mk.as_of):'')+'<input class="pin" id="rzd-price" inputmode="decimal" placeholder="مثلاً 180" value="'+(mk.price?mk.price.toFixed(2):'')+'"></label>'+
+    '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(mk.live?' · '+esc(liveLabel(s.t)):(mk.as_of?' · '+esc(mk.as_of):''))+'<input class="pin" id="rzd-price" inputmode="decimal" placeholder="مثلاً 180" value="'+(mk.price?mk.price.toFixed(2):'')+'"></label>'+
     '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">5 سال</option><option value="10" selected>10 سال</option></select></label></div></div>'+
     '<div class="warn" id="rzd-warn"></div></div>';
   html+='<div class="tblwrap"><table class="tbl"><thead><tr><th rowspan="2" style="text-align:right;padding-right:14px">معیار</th><th colspan="3" class="grp hh">گذشته (واقعی)</th><th colspan="3" class="grp">فرض‌های من</th></tr>'+

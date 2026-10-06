@@ -111,6 +111,79 @@ var API = window.RZS_API || 'https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-
 var ACCESS = !!window.RZS_ACCESS, LOGGED = !!window.RZS_LOGGED, SUB_URL = window.RZS_SUB_URL || '/products/stock-data-pro';
 var FREE_ROWS = 10, PAGE = 50;
 var $=function(i){return document.getElementById(i)};
+
+/* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ----
+   Fundamentals and scores are built from SEC data with a build-time price; here every price-based
+   number (market cap, EV, P/E, P/FCF, P/S, P/B, PEG, EV/EBITDA, yields, DCF gap, value score) is
+   rescaled to the latest price, so the page is current between data builds. */
+var RZQ_URL=(window.RZS_QUOTES||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes')+'/quotes.json';
+var RZQ=null, RZQ_P=null;
+function liveQuotes(){
+  if(!RZQ_P){
+    var p=fetch(RZQ_URL+'?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+    RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3000)})]);
+    p.then(function(){RZQ_P=Promise.resolve(RZQ)});
+  }
+  return RZQ_P;
+}
+function liveQ(t){return RZQ&&RZQ.q?RZQ.q[t]||null:null}
+var RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveWhen(iso){
+  try{var d=new Date(iso);if(isNaN(d))return '';
+    return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
+}
+function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
+function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
+function applyLive(d){
+  var Q=d&&liveQ(d.ticker), m=d&&d.market;
+  if(!Q||!m||!m.price||!(Q[0]>0))return d;
+  var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
+  m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
+  if(mc0){m.mcap=mc0*f;
+    if(r.ev!=null){var ev0=r.ev;r.ev=ev0+m.mcap-mc0;if(r.ev_ebitda!=null&&ev0)r.ev_ebitda=r.ev_ebitda*r.ev/ev0}}
+  ['pe','pfcf','ps','pb','peg'].forEach(function(k){r[k]=liveScale(r[k],f)});
+  ['div_yield','buyback_yield','shareholder_yield','fcf_yield','earnings_yield'].forEach(function(k){r[k]=liveScale(r[k],1/f)});
+  var c=d.checks, s=d.scores;
+  if(c&&c.value&&s&&m.mcap){
+    var spe=r.sector_pe;
+    c.value=[r.pe!=null&&r.pe<25, r.pe!=null&&spe!=null&&r.pe<spe, r.pfcf!=null&&r.pfcf<20, r.fair_mcap!=null&&r.fair_mcap>m.mcap, r.peg!=null&&r.peg<1.5].map(Number);
+    s.value=c.value.reduce(function(a,b){return a+b},0);
+    var parts=['value','future','past','health','capital'].map(function(k){return s[k]}).filter(function(v){return v!=null});
+    if(parts.length)s.total=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10;
+  }
+  return d;
+}
+
+function applyLiveRows(j){
+  if(!RZQ)return 0; var C2={};j.cols.forEach(function(c,i){C2[c]=i});
+  var SPE={}; try{SPE=window.RZ_SECT_PE||{}}catch(e){}
+  var I=function(k){return C2[k]}, n=0;
+  j.rows.forEach(function(r){
+    var Q=RZQ.q[r[I('t')]], p0=r[I('price')]; if(!Q||!(Q[0]>0)||!p0)return;
+    var f=Q[0]/p0; n++;
+    var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:I('fair_up')!=null?r[I('fair_up')]:null,sv:I('s_value')!=null?r[I('s_value')]:null};
+    r[I('price')]=Q[0];
+    if(r[I('mcap')]!=null)r[I('mcap')]*=f;
+    ['pe','pfcf','ps','pb','peg'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+    ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
+    if(I('ev_ebitda')!=null&&r[I('ev_ebitda')]!=null){var nd=I('nd_ebitda')!=null?r[I('nd_ebitda')]:null;
+      r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
+    if(I('fair_up')!=null&&r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;
+    if(I('s_value')!=null&&r[I('s_value')]!=null){
+      var spe=SPE[r[I('sector')]];
+      /* 4 of the 5 value checks are recomputed exactly; the "P/E below sector median" check is taken
+         from the build and only flipped if the live price moves P/E across the sector median */
+      var c4=function(pe,pf,pg,fu){return (pe!=null&&pe<25?1:0)+(pf!=null&&pf<20?1:0)+(fu!=null&&fu>0?1:0)+(pg!=null&&pg<1.5?1:0)};
+      var pe=r[I('pe')], pf=r[I('pfcf')], pg=r[I('peg')], fu=I('fair_up')!=null?r[I('fair_up')]:null;
+      var cs=Math.max(0,Math.min(1,o.sv-c4(o.pe,o.pf,o.pg,o.fu)));
+      if(spe!=null&&pe!=null&&o.pe!=null&&((o.pe<spe)!==(pe<spe)))cs=pe<spe?1:0;
+      r[I('s_value')]=c4(pe,pf,pg,fu)+cs;
+      var parts=['s_value','s_future','s_past','s_health','s_capital'].map(function(k){return I(k)!=null?r[I(k)]:null}).filter(function(x){return x!=null});
+      if(I('s_total')!=null&&parts.length)r[I('s_total')]=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10;
+    }
+  });
+  return n;
+}
 var C={}, ROWS=[], view=[], sortKey='mcap', asc=false, shown=PAGE, group='basic', cmp=[];
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v);if(a>=1e12)return '$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return '$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return '$'+(a/1e6).toFixed(0)+'M';return '$'+a.toFixed(0)}
@@ -208,12 +281,13 @@ $('rzc2-csv').addEventListener('click',function(){if(!ACCESS){location.href=SUB_
 $('f-sector').addEventListener('change',function(){fillInd()});
 function fillInd(){var sec=$('f-sector').value,inds={};ROWS.forEach(function(r){if(sec&&g(r,'sector')!==sec)return;var s=g(r,'industry');if(s)inds[s]=1});var cur=$('f-industry').value;$('f-industry').innerHTML='<option value="">همه</option>'+Object.keys(inds).sort().map(function(s){return '<option'+(s===cur?' selected':'')+'>'+esc(s)+'</option>'}).join('')}
 head();
-fetch(API+'/screener.json').then(function(r){return r.json()}).then(function(j){
+Promise.all([fetch(API+'/screener.json').then(function(r){return r.json()}),liveQuotes(),
+  fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).then(function(sj){var o={};Object.keys(sj||{}).forEach(function(k){if(sj[k]&&sj[k].pe)o[k]=sj[k].pe});window.RZ_SECT_PE=o}).catch(function(){})]).then(function(x){var j=x[0], nLive=applyLiveRows(j);
   j.cols.forEach(function(c,i){C[c]=i}); ROWS=j.rows;
   var secs={};ROWS.forEach(function(r){var s=g(r,'sector');if(s)secs[s]=1});
   $('f-sector').innerHTML='<option value="">همه</option>'+Object.keys(secs).sort().map(function(s){return '<option>'+esc(s)+'</option>'}).join('');
   fillInd(); drawSaved();
-  $('rzc2-asof').textContent='به‌روزرسانی: \u2066'+j.as_of+'\u2069'+(C.fair_up==null?' · (ستون‌های جدید بعد از به‌روزرسانی بعدی داده‌ها پر میشن)':'');
+  $('rzc2-asof').textContent='داده‌های مالی: \u2066'+j.as_of+'\u2069'+(nLive?' · قیمت‌ها: '+(RZQ_ST[RZQ.status]||'آخرین قیمت')+' '+liveWhen(RZQ.as_of):'')+(C.fair_up==null?' · (ستون‌های جدید بعد از به‌روزرسانی بعدی داده‌ها پر میشن)':'');
   var p=(location.hash||'').slice(1); if(p&&PRE[p])setPreset(p);
   apply();
 }).catch(function(){$('rzc2-count').textContent='بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.'});

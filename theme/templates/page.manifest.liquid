@@ -1,5 +1,4 @@
 {%- layout none -%}
-{%- assign ic = settings.favicon -%}
 {
   "name": {{ shop.name | json }},
   "short_name": "تحلیل سهام",
@@ -12,10 +11,9 @@
   "background_color": "#0b1726",
   "theme_color": "#0b1726",
   "icons": [
-    {%- if ic -%}
-    { "src": "{{ ic | image_url: width: 192, height: 192, crop: 'center' }}", "sizes": "192x192", "type": "image/png" },
-    { "src": "{{ ic | image_url: width: 512, height: 512, crop: 'center' }}", "sizes": "512x512", "type": "image/png", "purpose": "any" }
-    {%- endif -%}
+    { "src": "{{ 'rz-app-192.png' | asset_url }}", "sizes": "192x192", "type": "image/png" },
+    { "src": "{{ 'rz-app-512.png' | asset_url }}", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "{{ 'rz-app-512-maskable.png' | asset_url }}", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     { "name": "تحلیل سهام", "url": "/pages/stock" },

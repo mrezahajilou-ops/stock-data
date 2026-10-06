@@ -21,7 +21,6 @@
   .rzpwa .x{background:transparent;border:0;color:#93a7bf;font-size:20px;padding:0 4px}
   @media (min-width:821px){.rzpwa{display:none!important}}
 </style>
-{%- assign ic = settings.favicon -%}
 <script>
 (function(){
   var h=document.head; if(!h) return;
@@ -32,13 +31,11 @@
   add('meta',{name:'mobile-web-app-capable',content:'yes'});
   add('meta',{name:'apple-mobile-web-app-title',content:'تحلیل سهام'});
   add('meta',{name:'apple-mobile-web-app-status-bar-style',content:'black-translucent'});
-  {%- if ic %}
-  add('link',{rel:'apple-touch-icon',href:{{ ic | image_url: width: 180, height: 180, crop: 'center' | json }}});
-  {%- endif %}
+  add('link',{rel:'apple-touch-icon',sizes:'512x512',href:{{ 'rz-app-512.png' | asset_url | json }}});
 })();
 </script>
 <div class="rzpwa" id="rzpwa" role="dialog" aria-label="نصب روی گوشی">
-  {%- if ic -%}<img src="{{ ic | image_url: width: 84, height: 84, crop: 'center' }}" alt="" width="42" height="42">{%- endif -%}
+  <img src="{{ 'rz-app-192.png' | asset_url }}" alt="" width="42" height="42">
   <div><b>سایت رو مثل اپ روی گوشیت نصب کن</b><small id="rzpwa-t">با یک لمس به تحلیل سهام، واچ‌لیست و تقویم گزارش‌ها برسی.</small></div>
   <button class="go" id="rzpwa-go">نصب</button><button class="x" id="rzpwa-x" aria-label="بستن">×</button>
 </div>

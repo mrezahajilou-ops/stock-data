@@ -96,7 +96,11 @@ if __name__ == '__main__':
     try:
         main()
     except urllib.error.HTTPError as e:
-        body = e.read().decode('utf-8', 'ignore')[:300]
+        import re as _re
+        raw = e.read().decode('utf-8', 'ignore')
+        txt = _re.sub(r'\s+', ' ', _re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', ' ', raw, flags=_re.S))
+        i = max(txt.lower().find('error'), txt.lower().find('oauth'), 0)
+        body = txt[max(0, i - 80): i + 300]
         print('::error::HTTP %s from %s: %s' % (e.code, e.url.split('?')[0], body), flush=True)
         sys.exit(1)
     except Exception as e:

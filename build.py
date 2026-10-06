@@ -470,6 +470,24 @@ def load_market():
         log("market rows:", len(out))
     except Exception as e:
         log("market data failed", e)
+    # The screener's "lastsale" can lag several days. Overlay the near-live prices from the
+    # quotes branch (quotes.py, every 15 min in market hours); market cap scales with price.
+    try:
+        url = "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "mrezahajilou-ops/stock-data") + "/quotes/quotes.json"
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "stock-data-build"}), timeout=60) as r:
+            q = json.loads(r.read()).get("q") or {}
+        n = 0
+        for t, v in q.items():
+            m, p = out.get(t), (v[0] if v else None)
+            if not m or not p or p <= 0:
+                continue
+            if m.get("price") and m.get("mcap"):
+                m["mcap"] = m["mcap"] * p / m["price"]
+            m["price"] = p
+            n += 1
+        log("live quotes applied:", n)
+    except Exception as e:
+        log("live quotes unavailable", e)
     return out
 
 

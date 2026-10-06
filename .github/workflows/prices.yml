@@ -1,7 +1,7 @@
-name: Price history (every 4 days)
+name: Price history (daily, after US close)
 on:
   schedule:
-    - cron: '20 12 */4 * *'
+    - cron: '40 0 * * 2-6'
   workflow_dispatch:
     inputs:
       limit:

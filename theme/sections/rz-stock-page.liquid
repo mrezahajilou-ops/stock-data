@@ -1,0 +1,246 @@
+{%- comment -%}
+  One SEO page per stock: /pages/stocks/<ticker> (metaobject type rz_stock).
+  Content is generated nightly by build_pages.py + sync_shopify.py in github.com/mrezahajilou-ops/stock-data
+  and rendered here server-side, so search engines can read it. Price is refreshed live in the browser.
+{%- endcomment -%}
+{%- liquid
+  assign d = metaobject.data.value
+  assign t = metaobject.ticker.value
+  assign tl = t | downcase
+  if d.fa != blank
+    assign label = d.fa | append: ' (' | append: t | append: ')'
+  else
+    assign label = d.name | append: ' (' | append: t | append: ')'
+  endif
+  assign tot = d.total
+  assign book_url = section.settings.book_url | default: '/products/از-اولین-سهم-تا-انتخاب-حرفه‌ای‌ها-مرجع-کامل-فارسی-برای-یادگرفتن-سرمایه‌گذاری-در-بورس'
+-%}
+<style>
+  .rzx{--bg:#0b1726;--card:#13233a;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+    direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1040px;margin:0 auto;padding:18px 16px 40px;line-height:1.85;box-sizing:border-box}
+  @media (min-width:750px){.rzx{border-radius:22px;margin:18px auto}}
+  .rzx *{box-sizing:border-box;font-family:inherit}
+  .rzx a{color:var(--ac)}
+  .rzx .crumb{font-size:12.5px;color:var(--mut);margin-bottom:10px}
+  .rzx .crumb a{color:var(--mut);text-decoration:none}
+  .rzx h1{font-size:clamp(22px,4.6vw,30px);font-weight:900;margin:0 0 4px;color:#fff;line-height:1.45}
+  .rzx h2{font-size:19px;font-weight:900;margin:0 0 12px;color:#fff}
+  .rzx .meta{color:var(--mut);font-size:13px}
+  .rzx .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+  .rzx .top{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .rzx .px{direction:ltr;text-align:left}
+  .rzx .px b{font-size:30px;font-weight:900;color:#fff}
+  .rzx .px .ch{font-weight:800;margin-left:6px}
+  .rzx .px small{display:block;color:var(--mut);font-size:12px;direction:rtl;text-align:left}
+  .rzx .up{color:var(--ac)}.rzx .dn{color:var(--red)}
+  .rzx .grid{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:center}
+  @media (max-width:700px){.rzx .grid{grid-template-columns:1fr}}
+  .rzx .score{text-align:center}
+  .rzx .score .big{font-size:52px;font-weight:900;line-height:1.1;color:var(--lime)}
+  .rzx .score .big small{font-size:20px;color:var(--mut)}
+  .rzx .score .vd{display:inline-block;margin-top:6px;padding:2px 12px;border-radius:999px;background:#1d3550;font-weight:800;font-size:13px}
+  .rzx .ax{display:grid;grid-template-columns:110px 1fr 40px;gap:10px;align-items:center;font-size:14px;margin:8px 0}
+  .rzx .ax .bar{height:9px;background:#0b1726;border-radius:99px;overflow:hidden}
+  .rzx .ax .bar i{display:block;height:100%;border-radius:99px}
+  .rzx .ax .v{direction:ltr;text-align:left;font-weight:800}
+  .rzx .sum p{margin:0 0 10px;font-size:15.5px}
+  .rzx .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .rzx .btn{display:inline-block;background:var(--lime);color:#0b1726!important;font-weight:900;padding:11px 18px;border-radius:12px;text-decoration:none!important;font-size:15px}
+  .rzx .btn.ghost{background:transparent;color:#fff!important;border:1.5px solid var(--line)}
+  .rzx .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:700px){.rzx .two{grid-template-columns:1fr}}
+  .rzx ul.ck{list-style:none;margin:0;padding:0}
+  .rzx ul.ck li{padding:6px 0;border-bottom:1px solid #1c3150;font-size:14.5px}
+  .rzx ul.ck li::before{font-weight:900;margin-left:8px}
+  .rzx ul.ok li::before{content:"✓";color:var(--ac)}
+  .rzx ul.no li::before{content:"✗";color:var(--red)}
+  .rzx .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .rzx .kpi{background:#0f1d31;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .rzx .kpi span{display:block;color:var(--mut);font-size:12.5px}
+  .rzx .kpi b{display:block;direction:ltr;text-align:right;font-size:18px;color:#fff}
+  .rzx .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .rzx table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}
+  .rzx th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);text-align:center}
+  .rzx td{padding:8px;border-bottom:1px solid #1c3150;text-align:center;direction:ltr}
+  .rzx td:first-child,.rzx th:first-child{text-align:right;direction:rtl}
+  .rzx .rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .rzx .rel a{display:block;background:#0f1d31;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-decoration:none;color:#fff}
+  .rzx .rel a b{color:var(--ac);direction:ltr;display:inline-block}
+  .rzx .rel a small{display:block;color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rzx .book{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(135deg,#1a3350,#13233a)}
+  .rzx .book p{margin:4px 0 0;color:var(--mut);font-size:14px}
+  .rzx .note{color:var(--mut);font-size:12px;margin-top:16px}
+  .rzx .faq details{border-bottom:1px solid #1c3150;padding:10px 0}
+  .rzx .faq summary{cursor:pointer;font-weight:800}
+  .rzx .faq p{margin:8px 0 0;color:#cfdbe8;font-size:14.5px}
+</style>
+
+<div class="rzx" id="rzx" data-t="{{ t | escape }}">
+  <nav class="crumb"><a href="/">خانه</a> › <a href="/pages/stock">تحلیل سهام</a> › <span dir="ltr">{{ t | escape }}</span></nav>
+  <div class="top">
+    <div>
+      <h1>تحلیل سهام {{ label | escape }} به فارسی</h1>
+      <div class="meta">
+        {%- if d.sector_fa != blank -%}بخش {{ d.sector_fa | escape }}{%- endif -%}
+        {%- if d.industry != blank %} · <span dir="ltr">{{ d.industry | escape }}</span>{%- endif -%}
+        · {{ d.name | escape }}
+      </div>
+    </div>
+    <div class="px">
+      <b id="rzx-p">{% if d.price %}${{ d.price | round: 2 }}{% endif %}</b><span class="ch" id="rzx-c"></span>
+      <small id="rzx-w">قیمت پایانی {{ d.as_of }}</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="grid">
+      <div class="score">
+        <div class="meta">امتیاز کلی</div>
+        <div class="big">{% if tot != blank %}{{ tot }}{% else %}—{% endif %}<small> / 5</small></div>
+        <div class="vd">{{ d.verdict | escape }}</div>
+      </div>
+      <div>
+        {%- for a in d.axes -%}
+          {%- liquid
+            assign v = a.v | default: 0
+            assign w = v | times: 20
+            if v >= 4
+              assign c = '#2ec4b6'
+            elsif v >= 3
+              assign c = '#b5e36b'
+            elsif v >= 2
+              assign c = '#f5b700'
+            else
+              assign c = '#ff5a5f'
+            endif
+          -%}
+          <div class="ax"><span>{{ a.fa }}</span><div class="bar"><i style="width:{{ w }}%;background:{{ c }}"></i></div><span class="v">{% if a.v != nil %}{{ a.v }}/5{% else %}—{% endif %}</span></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="card sum">
+    <h2>خلاصه‌ی تحلیل {{ label | escape }}</h2>
+    {%- assign paras = metaobject.summary.value | split: '
+
+' -%}
+    {%- for p in paras -%}<p>{{ p | escape }}</p>{%- endfor -%}
+    <div class="btns">
+      <a class="btn" href="/pages/stock#{{ t | escape }}">تحلیل کامل و نمودارها ←</a>
+      <a class="btn ghost" href="/pages/dcf#{{ t | escape }}">محاسبه‌ی ارزش ذاتی (DCF)</a>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card"><h2>✅ نقاط قوت</h2>
+      {%- if d.strengths.size > 0 -%}<ul class="ck ok">{%- for s in d.strengths -%}<li>{{ s | escape }}</li>{%- endfor -%}</ul>{%- else -%}<p class="meta">موردی پیدا نشد.</p>{%- endif -%}
+    </div>
+    <div class="card"><h2>⚠️ نقاط ضعف</h2>
+      {%- if d.weaknesses.size > 0 -%}<ul class="ck no">{%- for s in d.weaknesses -%}<li>{{ s | escape }}</li>{%- endfor -%}</ul>{%- else -%}<p class="meta">موردی پیدا نشد.</p>{%- endif -%}
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>نسبت‌های کلیدی</h2>
+    <div class="kpis">
+      <div class="kpi"><span>P/E</span><b data-k="pe">{% if d.ratios.pe %}{{ d.ratios.pe | round: 1 }}{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>P/FCF</span><b data-k="pfcf">{% if d.ratios.pfcf %}{{ d.ratios.pfcf | round: 1 }}{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>P/S</span><b data-k="ps">{% if d.ratios.ps %}{{ d.ratios.ps | round: 1 }}{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>EV/EBITDA</span><b>{% if d.ratios.ev_ebitda %}{{ d.ratios.ev_ebitda | round: 1 }}{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>ارزش بازار</span><b id="rzx-m">{% if d.mcap %}${{ d.mcap | divided_by: 1000000000.0 | round: 1 }}B{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>فاصله تا ارزش ذاتی</span><b>{% if d.fair_gap != nil %}{% if d.fair_gap >= 0 %}+{% endif %}{{ d.fair_gap | times: 100 | round }}%{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>رشد درآمد ۵ ساله</span><b>{% if d.growth.rev_cagr_5y != nil %}{{ d.growth.rev_cagr_5y | times: 100 | round: 1 }}%{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>میانگین ROIC ۵ ساله</span><b>{% if d.growth.roic_avg_5y != nil %}{{ d.growth.roic_avg_5y | times: 100 | round: 1 }}%{% else %}—{% endif %}</b></div>
+      <div class="kpi"><span>بازده سود نقدی</span><b>{% if d.yields.div_yield != nil %}{{ d.yields.div_yield | times: 100 | round: 2 }}%{% else %}—{% endif %}</b></div>
+    </div>
+  </div>
+
+  {%- if d.hist.size > 0 -%}
+  <div class="card">
+    <h2>صورت‌های مالی خلاصه (میلیارد دلار)</h2>
+    <div class="tw"><table>
+      <thead><tr><th>سال مالی</th>{%- for h in d.hist -%}<th>{{ h.fy }}</th>{%- endfor -%}</tr></thead>
+      <tbody>
+        <tr><td>درآمد</td>{%- for h in d.hist -%}<td>{% if h.rev != nil %}{{ h.rev | divided_by: 1000000000.0 | round: 1 }}{% else %}—{% endif %}</td>{%- endfor -%}</tr>
+        <tr><td>سود خالص</td>{%- for h in d.hist -%}<td>{% if h.ni != nil %}{{ h.ni | divided_by: 1000000000.0 | round: 1 }}{% else %}—{% endif %}</td>{%- endfor -%}</tr>
+        <tr><td>جریان نقد آزاد</td>{%- for h in d.hist -%}<td>{% if h.fcf != nil %}{{ h.fcf | divided_by: 1000000000.0 | round: 1 }}{% else %}—{% endif %}</td>{%- endfor -%}</tr>
+        <tr><td>حاشیه سود خالص</td>{%- for h in d.hist -%}<td>{% if h.nm != nil %}{{ h.nm | times: 100 | round }}%{% else %}—{% endif %}</td>{%- endfor -%}</tr>
+        <tr><td>ROIC</td>{%- for h in d.hist -%}<td>{% if h.roic != nil %}{{ h.roic | times: 100 | round }}%{% else %}—{% endif %}</td>{%- endfor -%}</tr>
+      </tbody>
+    </table></div>
+    <p class="meta" style="margin:8px 0 0">منبع: گزارش‌های رسمی شرکت به کمیسیون بورس آمریکا (SEC EDGAR). صورت‌های مالی کامل ۱۰ ساله در <a href="/pages/stock#{{ t | escape }}">تحلیل کامل</a>.</p>
+  </div>
+  {%- endif -%}
+
+  <div class="card faq">
+    <h2>سؤال‌های رایج درباره‌ی سهم {{ label | escape }}</h2>
+    <details open><summary>آیا سهم {{ label | escape }} ارزان است؟</summary>
+      <p>{% if d.ratios.pe %}نسبت P/E فعلی حدود {{ d.ratios.pe | round: 1 }} است{% else %}شرکت در سال آخر سود مثبت نداشته و P/E معنادار نیست{% endif %}{% if d.fair_gap != nil %} و بر اساس DCF با فرض‌های متوسط، ارزش ذاتی حدود {{ d.fair_gap | times: 100 | round | abs }}٪ {% if d.fair_gap >= 0 %}بالاتر{% else %}پایین‌تر{% endif %} از قیمت فعلی است{% endif %}. امتیاز «ارزش» این سهم {{ d.scores.value | default: '—' }} از ۵ است.</p></details>
+    <details><summary>وضعیت سلامت مالی {{ label | escape }} چطور است؟</summary>
+      <p>امتیاز سلامت مالی {{ d.scores.health | default: '—' }} از ۵ است؛ این امتیاز بدهی، نقدینگی، پوشش بهره و جریان نقد آزاد را می‌سنجد.</p></details>
+    <details><summary>آیا {{ label | escape }} سود نقدی می‌دهد؟</summary>
+      <p>{% if d.yields.div_yield and d.yields.div_yield > 0 %}بله؛ بازده سود نقدی فعلی حدود {{ d.yields.div_yield | times: 100 | round: 2 }}٪ است.{% else %}در آخرین سال مالی سود نقدی پرداخت نکرده است.{% endif %}</p></details>
+  </div>
+
+  {%- if d.related.size > 0 -%}
+  <div class="card">
+    <h2>سهم‌های هم‌صنعت</h2>
+    <div class="rel">
+      {%- for r in d.related -%}
+        <a href="/pages/stocks/{{ r.t | downcase }}"><b>{{ r.t }}</b>{% if r.s != nil %} · {{ r.s }}/5{% endif %}<small>{{ r.n | escape }}</small></a>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <div class="card book">
+    <div><h2 style="margin:0">این اعداد را خودت بخوان و تحلیل کن</h2>
+      <p>P/E، جریان نقد آزاد، ROIC و ارزش‌گذاری DCF را با مثال‌های واقعی در کتاب «از اولین سهم تا انتخاب حرفه‌ای‌ها» یاد بگیر.</p></div>
+    <a class="btn" href="{{ book_url }}">مشاهده‌ی کتاب ←</a>
+  </div>
+
+  <p class="note">آخرین به‌روزرسانی داده‌ها: {{ metaobject.updated.value }} · داده‌ها: SEC EDGAR · قیمت: با حدود ۱۵ تا ۳۰ دقیقه تأخیر در ساعات بازار. این صفحه آموزشی است و توصیه‌ی خرید یا فروش نیست.</p>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "خانه", "item": "{{ shop.url }}/"},
+      {"@type": "ListItem", "position": 2, "name": "تحلیل سهام", "item": "{{ shop.url }}/pages/stock"},
+      {"@type": "ListItem", "position": 3, "name": {{ t | json }}, "item": "{{ shop.url }}/pages/stocks/{{ tl }}"}]},
+    {"@type": "FAQPage", "mainEntity": [
+      {"@type": "Question", "name": {{ 'آیا سهم ' | append: label | append: ' ارزان است؟' | json }},
+       "acceptedAnswer": {"@type": "Answer", "text": {{ 'امتیاز ارزش این سهم ' | append: d.scores.value | append: ' از ۵ و امتیاز کلی آن ' | append: tot | append: ' از ۵ است.' | json }}}}]}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var box=document.getElementById('rzx'); if(!box||!window.fetch) return;
+  var t=box.getAttribute('data-t'), base={{ d.price | default: 0 | json }}, mc={{ d.mcap | default: 0 | json }};
+  var ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+  fetch('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes/quotes.json?v='+Math.floor(Date.now()/120000))
+    .then(function(r){return r.ok?r.json():null}).then(function(j){
+      var Q=j&&j.q&&j.q[t]; if(!Q||!(Q[0]>0)) return;
+      document.getElementById('rzx-p').textContent='$'+Q[0].toFixed(2);
+      if(Q[1]!=null){var c=document.getElementById('rzx-c');c.textContent=(Q[1]>=0?'+':'')+Q[1].toFixed(2)+'%';c.className='ch '+(Q[1]>=0?'up':'dn')}
+      var when=''; try{when=new Date(Q[3]||j.as_of).toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){}
+      document.getElementById('rzx-w').textContent=(ST[j.status]||'آخرین قیمت')+(when?' · '+when:'');
+      if(base>0&&mc>0){var f=Q[0]/base;document.getElementById('rzx-m').textContent='$'+(mc*f/1e9).toFixed(1)+'B';
+        [].forEach.call(box.querySelectorAll('.kpi b[data-k]'),function(b){var v=parseFloat(b.textContent);if(isFinite(v))b.textContent=(v*f).toFixed(1)})}
+    }).catch(function(){});
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Stock SEO page",
+  "settings": [
+    { "type": "url", "id": "book_url", "label": "Book link" }
+  ]
+}
+{% endschema %}

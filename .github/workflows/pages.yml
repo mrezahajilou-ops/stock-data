@@ -1,0 +1,59 @@
+name: Stock SEO pages -> Shopify (after each data build)
+
+on:
+  workflow_run:
+    workflows: ["SEC data build (daily, after US close)"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Only first N pages (test run)'
+        required: false
+        default: ''
+      full:
+        description: 'Resend every page (ignore the change cache)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  pages:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build page content
+        run: python build_pages.py
+      - name: Restore change cache
+        if: ${{ !inputs.full }}
+        uses: actions/cache/restore@v4
+        with:
+          path: pages/hashes.json
+          key: pages-hashes-${{ github.run_id }}
+          restore-keys: pages-hashes-
+      - name: Sync to Shopify
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          if [ -z "$SHOPIFY_CLIENT_ID" ]; then echo "Shopify secrets not set yet - skipping"; exit 0; fi
+          python sync_shopify.py
+      - name: Save change cache
+        if: ${{ always() && hashFiles('pages/hashes.json') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: pages/hashes.json
+          key: pages-hashes-${{ github.run_id }}

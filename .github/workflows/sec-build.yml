@@ -31,6 +31,8 @@ jobs:
         env:
           SEC_USER_AGENT: "Reza Hajilou mreza.hajilou@gmail.com"
         run: python scripts/build.py
+      - name: Compact screener file
+        run: python min_screener.py
       - name: Verify against reference values
         run: python scripts/verify.py || true
       - name: Commit data

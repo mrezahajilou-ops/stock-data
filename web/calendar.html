@@ -1,0 +1,122 @@
+<div id="rze" dir="rtl">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
+#rze{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1040px;margin:0 auto;padding:18px 16px 40px;border-radius:22px;line-height:1.7;box-sizing:border-box}
+#rze *{box-sizing:border-box;font-family:inherit}
+#rze a{color:var(--ac)}
+#rze .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#rze .nav a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--mut)!important;text-decoration:none!important;font-weight:800;font-size:14px}
+#rze .nav a.on{background:var(--lime);color:#0b1726!important;border-color:var(--lime)}
+#rze h1{font-size:26px;font-weight:900;margin:0 0 2px;color:#fff}
+#rze h3{font-size:17px;font-weight:900;margin:0 0 10px;color:#fff}
+#rze .sub{color:var(--mut);margin:0 0 14px;font-size:14.5px}
+#rze .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+#rze .mut{color:var(--mut)}
+#rze .up{color:var(--ac)}#rze .dn{color:var(--red)}
+#rze .tk{direction:ltr;unicode-bidi:isolate;font-weight:900;color:var(--ac)}
+#rze .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+#rze .btn{display:inline-block;background:var(--lime);color:#0b1726!important;font-weight:900;padding:9px 16px;border-radius:12px;text-decoration:none!important;border:0;cursor:pointer;font-size:14px}
+#rze .btn.ghost{background:transparent;color:#fff!important;border:1.5px solid var(--line)}
+#rze .btn.sm{padding:5px 10px;font-size:12.5px;border-radius:9px}
+#rze input,#rze select{background:var(--bg);border:1.5px solid var(--line);border-radius:10px;color:#fff;font-size:15px;padding:8px 10px;outline:none}
+#rze input:focus{border-color:var(--ac)}
+#rze .search{position:relative}
+#rze .sugg{position:absolute;top:100%;right:0;left:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-top:6px;z-index:20;max-height:280px;overflow:auto;display:none}
+#rze .sugg div{padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line)}
+#rze .sugg div:hover{background:#21395a}
+#rze .sugg b{direction:ltr;color:var(--ac)}
+#rze .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#rze table{border-collapse:collapse;width:100%;font-size:14px}
+#rze th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+#rze td{padding:8px;border-bottom:1px solid #1c3150;white-space:nowrap}
+#rze .sc{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;color:#0b1726;font-weight:900;direction:ltr}
+#rze .empty{color:var(--mut);text-align:center;padding:22px}
+#rze .note{color:var(--mut);font-size:12px;margin-top:10px}
+#rze .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#rze .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
+#rze .chip:hover{color:#fff;border-color:var(--ac)}
+</style>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a class="on" href="/pages/earnings">تقویم گزارش‌ها</a></div>
+<h1>تقویم گزارش‌های مالی</h1>
+<p class="sub">کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.</p>
+
+<div class="card"><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+<div class="chips" id="rze-f" style="margin:0"><span class="chip" data-f="all" style="color:#fff;border-color:var(--ac)">همه</span><span class="chip" data-f="big">فقط شرکت‌های بزرگ (بالای ۱۰ میلیارد)</span><span class="chip" data-f="watch">⭐ فقط واچ‌لیست من</span></div>
+<span class="mut" id="rze-asof" style="font-size:12.5px"></span></div></div>
+<div id="rze-main"><div class="card empty">در حال بارگذاری…</div></div>
+<p class="note">پیش‌بینی EPS = میانگین پیش‌بینی تحلیلگرها. «قبل از بازار» یعنی صبح قبل از شروع معاملات (حدود ۱۴ تا ۱۵ به وقت ایران/اروپا متفاوت است) و «بعد از بازار» یعنی بعد از بسته شدن بازار نیویورک. منبع: Nasdaq.</p>
+
+<script>
+(function(){
+
+var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
+var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
+var $=function(i){return document.getElementById(i)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
+function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
+function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
+function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
+/* live quotes */
+var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveQuotes(){if(!RZQ_P){var p=fetch(RAW+'/quotes/quotes.json?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+  RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3500)})]);p.then(function(){RZQ_P=Promise.resolve(RZQ)})}return RZQ_P}
+function liveWhen(iso){try{var d=new Date(iso);if(isNaN(d))return '';return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}}
+/* compact screener rows (+ browser cache), rescaled to live prices */
+function decodeMin(m){var cols=m.cols,D=m.dict||{},S=m.scale||{},idx=cols.map(function(c){return D[c]?['d',D[c]]:S[c]?['s',S[c]]:null});
+  return {cols:cols,as_of:m.as_of,rows:m.rows.map(function(r){return r.map(function(v,i){var x=idx[i];if(!x||v==null)return v;return x[0]==='d'?x[1][v]:v*x[1]})})}}
+function loadScreener(){var full=function(){return fetch(API+'/screener.json').then(function(r){return r.json()})};
+  return fetch(API+'/meta.json?v='+Math.floor(Date.now()/600000)).then(function(r){return r.json()}).catch(function(){return {}}).then(function(meta){var key=meta&&meta.built||'';
+    try{var c=JSON.parse(localStorage.getItem('rzc2_data')||'null');if(c&&key&&c.k===key&&c.m)return decodeMin(c.m)}catch(e){}
+    return fetch(API+'/screener.min.json?v='+encodeURIComponent(key)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(m){try{localStorage.removeItem('rzc2_data');if(key)localStorage.setItem('rzc2_data',JSON.stringify({k:key,m:m}))}catch(e){}return decodeMin(m)}).catch(full)}).catch(full)}
+var C={},ROWS=[],BY={},SPE={};
+function liveRow(r){var I=function(k){return C[k]},Q=RZQ&&RZQ.q[r[I('t')]],p0=r[I('price')];if(!Q||!(Q[0]>0)||!p0)return;var f=Q[0]/p0;
+  var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:r[I('fair_up')],sv:r[I('s_value')]};
+  r[I('price')]=Q[0];r.chg=Q[1];if(r[I('mcap')]!=null)r[I('mcap')]*=f;
+  ['pe','pfcf','ps','pb','peg'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+  ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
+  if(r[I('ev_ebitda')]!=null){var nd=r[I('nd_ebitda')];r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
+  if(r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;
+  if(o.sv!=null){var c4=function(pe,pf,pg,fu){return (pe!=null&&pe<25?1:0)+(pf!=null&&pf<20?1:0)+(fu!=null&&fu>0?1:0)+(pg!=null&&pg<1.5?1:0)},spe=SPE[r[I('sector')]];
+    var cs=Math.max(0,Math.min(1,o.sv-c4(o.pe,o.pf,o.pg,o.fu))),pe=r[I('pe')];if(spe!=null&&pe!=null&&o.pe!=null&&((o.pe<spe)!==(pe<spe)))cs=pe<spe?1:0;
+    r[I('s_value')]=c4(pe,r[I('pfcf')],r[I('peg')],r[I('fair_up')])+cs;
+    var parts=['s_value','s_future','s_past','s_health','s_capital'].map(function(k){return r[I(k)]}).filter(function(x){return x!=null});if(parts.length)r[I('s_total')]=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10}}
+function loadAll(){return Promise.all([loadScreener(),liveQuotes(),fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).catch(function(){return {}})]).then(function(x){
+  var j=x[0];j.cols.forEach(function(c,i){C[c]=i});Object.keys(x[2]||{}).forEach(function(k){if(x[2][k]&&x[2][k].pe)SPE[k]=x[2][k].pe});
+  ROWS=j.rows;ROWS.forEach(function(r){liveRow(r);BY[r[C.t]]=r});return j})}
+function g(r,k){return r&&C[k]!=null?r[C[k]]:null}
+/* ticker search box */
+function picker(inp,box,onPick){inp.addEventListener('input',function(){var q=inp.value.trim().toUpperCase();if(!q){box.style.display='none';return}
+  var res=ROWS.filter(function(r){return r[C.t].indexOf(q)===0}).slice(0,6).concat(ROWS.filter(function(r){return r[C.t].indexOf(q)!==0&&String(r[C.n]).toUpperCase().indexOf(q)>=0}).slice(0,4));
+  box.innerHTML=res.map(function(r){return '<div data-t="'+esc(r[C.t])+'"><span>'+esc(r[C.n])+'</span><b>'+esc(r[C.t])+'</b></div>'}).join('');box.style.display=res.length?'block':'none'});
+  box.addEventListener('click',function(e){var d=e.target.closest('div[data-t]');if(!d)return;box.style.display='none';inp.value='';onPick(d.dataset.t)});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){var t=inp.value.trim().toUpperCase();if(BY[t]){box.style.display='none';inp.value='';onPick(t)}}})}
+/* watchlist storage (this device) */
+function wlGet(){try{return JSON.parse(localStorage.getItem('rz_watch')||'[]')}catch(e){return []}}
+function wlSet(a){try{localStorage.setItem('rz_watch',JSON.stringify(a))}catch(e){}}
+function alGet(){try{return JSON.parse(localStorage.getItem('rz_alerts')||'{}')}catch(e){return {}}}
+function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(e){}}
+
+
+var CAL=null,F='all',WD=['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
+var TM={pre:'☀️ قبل از بازار',after:'🌙 بعد از بازار',na:'—'};
+function eps(v){return v==null?'—':'<span class="num">$'+v.toFixed(2)+'</span>'}
+function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقویم هنوز آماده نیست؛ کمی بعد دوباره سر بزن.</div>';return}
+  var W=wlGet(),today=new Date().toISOString().slice(0,10),ds=Object.keys(CAL.days).sort(),h='',any=0;
+  ds.forEach(function(d){var rows=CAL.days[d].filter(function(e){return F==='big'?e.mcap>=1e10:F==='watch'?W.indexOf(e.t)>=0:true});if(!rows.length)return;any=1;
+    var dt=new Date(d+'T12:00:00Z'),past=d<today,lbl=WD[dt.getUTCDay()]+' '+dt.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',timeZone:'UTC'});
+    h+='<div class="card"'+(d===today?' style="border-color:var(--lime)"':'')+(past?' data-past="1"':'')+'><h3>'+lbl+(d===today?' · امروز':'')+' <span class="mut" style="font-size:13px;font-weight:600">('+rows.length+' شرکت)</span></h3><div class="tw"><table><thead><tr><th style="text-align:right">شرکت</th><th>زمان</th><th>ارزش بازار</th><th>'+(past?'EPS واقعی':'پیش‌بینی EPS')+'</th><th>'+(past?'پیش‌بینی':'EPS سال قبل')+'</th>'+(past?'<th>غافلگیری</th>':'')+'<th>امتیاز ما</th><th></th></tr></thead><tbody>'+
+      rows.slice(0,60).map(function(e){var inW=W.indexOf(e.t)>=0;return '<tr><td><a class="tk" href="/pages/stock#'+esc(e.t)+'">'+esc(e.t)+'</a> <span class="mut" style="font-size:12.5px">'+esc(e.n).slice(0,34)+'</span></td><td>'+TM[e.time]+'</td><td class="num">'+big(e.mcap)+'</td>'+
+        (past?'<td>'+eps(e.act)+'</td><td>'+eps(e.f)+'</td><td class="num '+((e.sur||0)>=0?'up':'dn')+'">'+(e.sur==null?'—':(e.sur>=0?'+':'')+e.sur.toFixed(1)+'%')+'</td>':'<td>'+eps(e.f)+'</td><td>'+eps(e.ly)+'</td>')+
+        '<td style="text-align:center">'+sc(e.s)+'</td><td><button class="btn '+(inW?'':'ghost ')+'sm" data-w="'+esc(e.t)+'">'+(inW?'⭐':'☆')+'</button></td></tr>'}).join('')+'</tbody></table></div>'+(rows.length>60?'<div class="note">'+(rows.length-60)+' شرکت کوچک‌تر دیگه هم گزارش میدن.</div>':'')+'</div>'});
+  $('rze-main').innerHTML=any?h:'<div class="card empty">'+(F==='watch'?'هیچ‌کدوم از سهم‌های واچ‌لیستت در این بازه گزارش نمیدن.':'موردی نیست.')+'</div>';
+  var t=$('rze-main').querySelector('.card:not([data-past])');if(t&&!draw.done){draw.done=1;setTimeout(function(){t.scrollIntoView({block:'start'})},50)}}
+document.addEventListener('click',function(e){var f=e.target.closest('#rze-f .chip');if(f){F=f.dataset.f;[].forEach.call(document.querySelectorAll('#rze-f .chip'),function(c){c.style.color=c===f?'#fff':'';c.style.borderColor=c===f?'var(--ac)':''});draw();return}
+  var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);draw()}});
+fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/1800000)).then(function(r){return r.ok?r.json():null}).then(function(j){CAL=j;if(j)$('rze-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){draw()});
+
+})();
+</script>
+</div>

@@ -54,7 +54,7 @@
 @media (max-width:760px){#rzc2 .filters{grid-template-columns:repeat(2,1fr)}#rzc2 h1{font-size:22px}#rzc2 .hm{display:none}#rzc2 td.nm{width:170px;min-width:170px;max-width:170px}}
 </style>
 
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a></div>
 <h1>غربالگر سهام آمریکا</h1>
 <p class="sub">بین بیش از ۶٬۸۰۰ سهم، اونایی رو پیدا کن که با معیارهای تو جور درمیان. فیلتر آماده انتخاب کن یا خودت بساز؛ روی هر ستون بزنی مرتب میشه.</p>
 
@@ -184,6 +184,20 @@ function applyLiveRows(j){
   });
   return n;
 }
+
+/* ---- compact screener data + browser cache (repeat visits load instantly) ---- */
+function decodeMin(m){var cols=m.cols,D=m.dict||{},S=m.scale||{},idx=cols.map(function(c){return D[c]?['d',D[c]]:S[c]?['s',S[c]]:null});
+  return {cols:cols,as_of:m.as_of,rows:m.rows.map(function(r){return r.map(function(v,i){var x=idx[i];if(!x||v==null)return v;return x[0]==='d'?x[1][v]:v*x[1]})})}}
+function loadScreener(){
+  var full=function(){return fetch(API+'/screener.json').then(function(r){return r.json()})};
+  return fetch(API+'/meta.json?v='+Math.floor(Date.now()/600000)).then(function(r){return r.json()}).catch(function(){return {}}).then(function(meta){
+    var key=meta&&meta.built||'';
+    try{var c=JSON.parse(localStorage.getItem('rzc2_data')||'null');if(c&&key&&c.k===key&&c.m)return decodeMin(c.m)}catch(e){}
+    return fetch(API+'/screener.min.json?v='+encodeURIComponent(key)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(m){
+      try{localStorage.removeItem('rzc2_data');if(key)localStorage.setItem('rzc2_data',JSON.stringify({k:key,m:m}))}catch(e){}
+      return decodeMin(m)}).catch(full);
+  }).catch(full);
+}
 var C={}, ROWS=[], view=[], sortKey='mcap', asc=false, shown=PAGE, group='basic', cmp=[];
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v);if(a>=1e12)return '$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return '$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return '$'+(a/1e6).toFixed(0)+'M';return '$'+a.toFixed(0)}
@@ -281,7 +295,7 @@ $('rzc2-csv').addEventListener('click',function(){if(!ACCESS){location.href=SUB_
 $('f-sector').addEventListener('change',function(){fillInd()});
 function fillInd(){var sec=$('f-sector').value,inds={};ROWS.forEach(function(r){if(sec&&g(r,'sector')!==sec)return;var s=g(r,'industry');if(s)inds[s]=1});var cur=$('f-industry').value;$('f-industry').innerHTML='<option value="">همه</option>'+Object.keys(inds).sort().map(function(s){return '<option'+(s===cur?' selected':'')+'>'+esc(s)+'</option>'}).join('')}
 head();
-Promise.all([fetch(API+'/screener.json').then(function(r){return r.json()}),liveQuotes(),
+Promise.all([loadScreener(),liveQuotes(),
   fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).then(function(sj){var o={};Object.keys(sj||{}).forEach(function(k){if(sj[k]&&sj[k].pe)o[k]=sj[k].pe});window.RZ_SECT_PE=o}).catch(function(){})]).then(function(x){var j=x[0], nLive=applyLiveRows(j);
   j.cols.forEach(function(c,i){C[c]=i}); ROWS=j.rows;
   var secs={};ROWS.forEach(function(r){var s=g(r,'sector');if(s)secs[s]=1});

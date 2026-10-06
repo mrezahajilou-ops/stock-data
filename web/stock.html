@@ -25,6 +25,8 @@
 #rzs .co{font-size:24px;font-weight:900;color:#fff;line-height:1.4}
 #rzs .co small{font-size:14px;color:var(--ac);margin-right:8px;direction:ltr;display:inline-block}
 #rzs .meta{color:var(--mut);font-size:13px}
+#rzs .wl{font-size:12.5px;font-weight:800;border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:999px;padding:2px 10px;cursor:pointer;vertical-align:middle;margin-right:6px}
+#rzs .wl.on{color:var(--gold);border-color:var(--gold)}
 #rzs .px{text-align:left}
 #rzs .px .p{font-size:28px;font-weight:900;direction:ltr}
 #rzs .px .d{font-size:12px;color:var(--mut)}
@@ -99,7 +101,7 @@
 @media (max-width:720px){#rzs .perf{grid-template-columns:repeat(3,1fr)}}
 </style>
 
-<div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a></div>
+<div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a></div>
 <h1>تحلیل سهام آمریکا به فارسی</h1>
 <p class="sub">امتیاز ۰ تا ۵ در پنج بخش با توضیح دلیل هر امتیاز، صورت‌های مالی ۱۰ ساله، نسبت‌های ارزش‌گذاری و مقایسه با میانگین صنعت؛ مستقیم از گزارش‌های رسمی شرکت‌ها به SEC.</p>
 
@@ -123,6 +125,9 @@ var ACCESS = !!window.RZS_ACCESS, LOGGED = !!window.RZS_LOGGED, SUB_URL = window
 var FREE_PER_WEEK = 10;
 var $=function(i){return document.getElementById(i)};
 var INDEX=null, cur=null, SECT=null;
+document.addEventListener('click',function(e){var b=e.target.closest('#rzs [data-wl]');if(!b)return;var t=b.dataset.wl,W=[];try{W=JSON.parse(localStorage.getItem('rz_watch')||'[]')}catch(x){}
+  var i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);try{localStorage.setItem('rz_watch',JSON.stringify(W))}catch(x){}
+  b.classList.toggle('on',i<0);b.innerHTML=i<0?'⭐ در واچ‌لیست <a href="/pages/watchlist" style="color:inherit">(دیدن)</a>':'☆ واچ‌لیست'});
 
 /* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ----
    Fundamentals and scores are built from SEC data with a build-time price; here every price-based
@@ -306,7 +311,8 @@ function fillSector(){
 function render(d){
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
-  var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small></div>'+
+  var inW=false;try{inW=JSON.parse(localStorage.getItem('rz_watch')||'[]').indexOf(d.ticker)>=0}catch(e){}
+  var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'⭐ در واچ‌لیست':'☆ واچ‌لیست')+'</button></div>'+
     '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا \u2066'+esc(L.fy_end||'')+'\u2069)'+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+

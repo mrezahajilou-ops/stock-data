@@ -1,0 +1,38 @@
+name: Earnings calendar (twice a day)
+
+on:
+  schedule:
+    - cron: '10 5 * * *'     # morning (Europe) - picks up overnight reports
+    - cron: '50 21 * * 1-5'  # after the US close - picks up today's after-hours reports
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: calendar
+  cancel-in-progress: true
+
+jobs:
+  calendar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            calendar_build.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python calendar_build.py
+      - name: Publish to branch "calendar"
+        run: |
+          cd calendar
+          git init -q -b calendar
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "calendar $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" calendar:calendar

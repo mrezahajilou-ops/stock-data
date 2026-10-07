@@ -76,6 +76,21 @@
 #rzs .btn{display:inline-block;background:var(--ac);color:#06201d!important;text-decoration:none!important;font-weight:900;padding:10px 20px;border-radius:999px;border:0;cursor:pointer;white-space:nowrap}
 #rzs .btn.ghost{background:transparent;border:1.5px solid var(--line);color:#fff!important}
 #rzs .empty{color:var(--mut);text-align:center;padding:30px 10px}
+#rzs .ab-lead{font-size:15.5px;line-height:1.95;margin:0 0 12px;color:#eef3f9}
+#rzs .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#rzs .ab-grid>div,#rzs .ab-sec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+#rzs .ab-sec{margin-top:12px}
+#rzs .ab-grid b,#rzs .ab-sec>b{display:block;color:#fff;font-size:14.5px;margin-bottom:4px}
+#rzs .ab-grid p,#rzs .ab-sec p{margin:0;font-size:14px;line-height:1.9;color:#d6e1ee}
+#rzs ul.ab-money,#rzs ul.ab-risk{margin:4px 0 0;padding:0 18px 0 0;font-size:14px;line-height:1.85;color:#d6e1ee}
+#rzs ul.ab-money li{margin-bottom:6px}
+#rzs ul.ab-money span{font-weight:800;color:#fff}
+#rzs ul.ab-money i{font-style:normal;color:var(--lime);font-weight:800;margin-right:4px}
+#rzs ul.ab-money small{display:block;font-size:13px;color:#b9c7d8}
+#rzs .ab-riv a{color:var(--ac)!important;text-decoration:none!important;font-weight:700}
+#rzs .ab-en{font-size:14px;line-height:1.75;color:#d6e1ee;margin:0;text-align:left;max-height:7.2em;overflow:hidden;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+#rzs .ab-en.open{max-height:none}
+@media (max-width:760px){#rzs .ab-grid{grid-template-columns:1fr}}
 #rzs .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 #rzs .two>.card{min-width:0}
 #rzs .mut2{font-size:12px;color:var(--mut);font-weight:600}
@@ -339,6 +354,7 @@ function render(d){
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
     '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+(m.live?'<div class="d live"><i></i>'+esc(liveLabel(d.ticker))+'</div>':'')+'<div class="d">ارزش بازار '+big(m.mcap)+(!m.live&&m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
     '<div class="d">\u2066EV '+big0(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'\u2069</div></div></div></div>';
+  h+='<div class="card" id="rzs-about" style="display:none"></div>';
   h+=verdict(d);
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
@@ -367,6 +383,7 @@ function render(d){
   loadSectors(); fillSector();
   loadPrice(d.ticker);
   loadExtras(d);
+  loadAbout(d);
 }
 
 /* ---- news links + insider trades (branches `news` every 3h, `insider` nightly; extras.py) ---- */
@@ -411,6 +428,34 @@ function loadExtras(d){
     box.innerHTML='<h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><p class="isig">'+sig+'</p>'+st+tb+
       '<p class="xnote">منبع: فرم‌های ۴ ثبت‌شده در کمیسیون بورس آمریکا (SEC)، از طریق Nasdaq. مدیران باید هر معامله رو ظرف ۲ روز کاری گزارش بدن. هر شب به‌روز میشه.</p>';
   }).catch(function(){});
+}
+
+/* ---- company intro: Persian profile (content/profiles, hand-written from the official description) or the official English description (branch `profile`) ---- */
+function loadAbout(d){
+  var t=d.ticker, box=$('rzs-about'); if(!box) return;
+  var v='?v='+Math.floor(Date.now()/600000);
+  var get=function(u){return fetch(u).then(function(r){return r.ok?r.json():null}).catch(function(){return null})};
+  Promise.all([get(XRAW+'/main/content/profiles/'+encodeURIComponent(t)+'.json'+v),get(XRAW+'/profile/'+encodeURIComponent(t)+'.json'+v)]).then(function(x){
+    if(cur!==d) return; var P=x[0], O=x[1]&&x[1].data, h='';
+    var lnk=function(s){var m=String(s).match(/^(.*)\|([A-Z.\-]{1,6})$/);return m?'<a href="/pages/stock#'+esc(m[2])+'">'+esc(m[1])+' <bdi>('+esc(m[2])+')</bdi></a>':esc(s)};
+    if(P){
+      h='<h3>🏢 '+esc(P.title||('این شرکت چه کار می‌کند؟'))+'</h3><p class="ab-lead">'+esc(P.what)+'</p>'+
+        '<div class="ab-grid">'+
+        (P.problem?'<div><b>🧩 چه مشکلی را حل می‌کند؟</b><p>'+esc(P.problem)+'</p></div>':'')+
+        (P.customers?'<div><b>👥 مشتری‌هایش کی‌اند؟</b><p>'+esc(P.customers)+'</p></div>':'')+'</div>'+
+        (P.money&&P.money.length?'<div class="ab-sec"><b>💰 چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+esc(m[0])+(m[1]?' <i>'+esc(m[1])+'</i>':'')+'</span>'+(m[2]?'<small>'+esc(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
+        (P.moat?'<div class="ab-sec"><b>🛡️ مزیت رقابتی</b><p>'+esc(P.moat)+'</p></div>':'')+
+        (P.rivals&&P.rivals.length?'<div class="ab-sec"><b>⚔️ رقبای اصلی</b><p class="ab-riv">'+P.rivals.map(lnk).join('، ')+'</p></div>':'')+
+        (P.risks&&P.risks.length?'<div class="ab-sec"><b>⚠️ ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
+        '<p class="xnote">این معرفی بر اساس توضیحات رسمی شرکت و گزارش سالانه‌اش به SEC نوشته شده'+(P.updated?' (بازبینی: <bdi>'+esc(P.updated)+'</bdi>)':'')+'. سهم هر بخش از درآمد تقریبیه.'+(O&&O.web?' · <a target="_blank" rel="noopener nofollow" href="'+esc(/^https?:/.test(O.web)?O.web:'https://'+O.web)+'">سایت شرکت</a>':'')+'</p>';
+    } else if(O&&O.desc){
+      h='<h3>🏢 معرفی شرکت <span class="mut2">(توضیح رسمی شرکت، به انگلیسی)</span></h3><p class="ab-en" dir="ltr" id="rzs-aben">'+esc(O.desc)+'</p>'+
+        (O.desc.length>420?'<button class="lnk" id="rzs-abmore">بیشتر ▾</button>':'')+
+        '<p class="xnote">معرفی فارسی این شرکت به‌زودی اضافه میشه.'+(O.web?' · <a target="_blank" rel="noopener nofollow" href="'+esc(/^https?:/.test(O.web)?O.web:'https://'+O.web)+'">سایت شرکت</a>':'')+'</p>';
+    }
+    if(!h) return; box.innerHTML=h; box.style.display='';
+    var mb=$('rzs-abmore'); if(mb){mb.addEventListener('click',function(){var e=$('rzs-aben');var on=!e.classList.contains('open');e.classList.toggle('open',on);mb.textContent=on?'کمتر ▴':'بیشتر ▾'})}
+  });
 }
 
 /* ---- price performance (weekly) ---- */

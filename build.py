@@ -624,13 +624,24 @@ def finish(recs, market):
         m = (market.get(r["ticker"]) or {}).get("mcap") or 0
         best[r["cik"]] = max(best[r["cik"]], m)
     multi = defaultdict(int)
+    first = {}
     for r in recs:
         multi[r["cik"]] += 1
+        first.setdefault(r["cik"], r["ticker"])   # SEC lists a company's main common stock first
+
+    def mc(t):
+        return (market.get(t) or {}).get("mcap") or 0
 
     def keep(r):
         if multi[r["cik"]] == 1:
             return True
-        m = (market.get(r["ticker"]) or {}).get("mcap") or 0
+        ref = mc(first[r["cik"]])
+        if ref:
+            # main listing always stays; other classes only when their market cap matches it
+            # (GOOG next to GOOGL). Notes / preferreds / warrants often carry a bogus screener
+            # market cap (CCZ next to Comcast's CMCSA) and must not replace the common stock.
+            return r["ticker"] == first[r["cik"]] or 0.5 * ref <= mc(r["ticker"]) <= 1.5 * ref
+        m = mc(r["ticker"])
         return best[r["cik"]] == 0 or m >= 0.5 * best[r["cik"]]
 
     dropped = [r["ticker"] for r in recs if not keep(r)]
@@ -638,8 +649,12 @@ def finish(recs, market):
     # opens Alphabet (GOOGL) instead of "not found"
     primary = {}
     for r in recs:
-        m = (market.get(r["ticker"]) or {}).get("mcap") or 0
-        if keep(r) and (r["cik"] not in primary or m > primary[r["cik"]][1]):
+        if not keep(r):
+            continue
+        m = mc(r["ticker"])
+        if mc(first[r["cik"]]):
+            primary[r["cik"]] = (first[r["cik"]], m)
+        elif r["cik"] not in primary or m > primary[r["cik"]][1]:
             primary[r["cik"]] = (r["ticker"], m)
     aliases = {r["ticker"]: primary[r["cik"]][0] for r in recs if not keep(r) and r["cik"] in primary}
     alias_names = {r["ticker"]: r["name"] for r in recs if not keep(r)}

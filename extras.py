@@ -57,15 +57,79 @@ def num(s):
 
 
 # ------------------------------------------------------------------ news
-def news_one(t):
-    raw = get('https://feeds.finance.yahoo.com/rss/2.0/headline?s=%s&region=US&lang=en-US' % urllib.parse.quote(t.replace('-', '.')),
-              {'User-Agent': UA, 'Accept': 'application/rss+xml, application/xml, text/xml'})
+NAMES = {}
+SUFFIX = re.compile(r'[,.]?\s+(inc|incorporated|corp|corporation|co|company|ltd|limited|plc|holdings?|group|n\.?v|s\.?a|ag|se|lp|l\.?p|llc|class [a-c]|common stock|ordinary shares|adr|the)\.?$', re.I)
+
+
+def clean_name(n):
+    n = re.sub(r'\s+', ' ', (n or '').replace('&amp;', '&')).strip(' .,')
+    for _ in range(4):
+        m = SUFFIX.sub('', n).strip(' .,')
+        if m == n:
+            break
+        n = m
+    n = re.sub(r'^the\s+', '', n, flags=re.I)
+    if n.isupper() and not (len(n.split()) == 1 and len(n) <= 5):
+        n = n.title()
+    return n
+
+
+def gnews_one(t):
+    name = clean_name(NAMES.get(t, ''))
+    q = ('"%s" stock' % name) if len(name) >= 3 else ('%s stock' % t)
+    raw = get('https://news.google.com/rss/search?' + urllib.parse.urlencode({'q': q + ' when:14d', 'hl': 'en-US', 'gl': 'US', 'ceid': 'US:en'}),
+              {'User-Agent': UA, 'Accept': 'application/rss+xml, application/xml'})
     if not raw:
-        return t, None
+        return None
     try:
         root = ET.fromstring(raw)
     except ET.ParseError:
-        return t, None
+        return None
+    items, seen = [], set()
+    for it in root.iter('item'):
+        title = html.unescape((it.findtext('title') or '').strip())
+        link = (it.findtext('link') or '').strip()
+        src = it.find('source')
+        pub = (src.text or '').strip() if src is not None else ''
+        if pub and title.endswith(' - ' + pub):
+            title = title[: -len(pub) - 3]
+        if not title or not link.startswith('http') or title.lower() in seen:
+            continue
+        try:
+            d = email.utils.parsedate_to_datetime(it.findtext('pubDate') or '')
+        except Exception:
+            d = None
+        seen.add(title.lower())
+        host = urllib.parse.urlparse(src.get('url')).netloc.replace('www.', '') if (src is not None and src.get('url')) else ''
+        items.append({'h': title[:220], 'u': link, 's': pub or host, 'd': d.strftime('%Y-%m-%dT%H:%M:%SZ') if d else None})
+    items.sort(key=lambda x: x['d'] or '', reverse=True)
+    return items[:10] or None
+
+
+YSTAT = {'try': 0, 'ok': 0}
+
+
+def news_one(t):
+    # Yahoo's feed is tagged by ticker (best quality) but often blocks cloud servers:
+    # stop trying it after 25 attempts without a single success, then use Google News only.
+    if not (YSTAT['try'] >= 25 and YSTAT['ok'] == 0):
+        YSTAT['try'] += 1
+        y = yahoo_one(t)
+        if y:
+            YSTAT['ok'] += 1
+            return t, y
+    return t, gnews_one(t)
+
+
+def yahoo_one(t):
+    raw = get('https://feeds.finance.yahoo.com/rss/2.0/headline?s=%s&region=US&lang=en-US' % urllib.parse.quote(t.replace('-', '.')),
+              {'User-Agent': UA, 'Accept': 'application/rss+xml, application/xml, text/xml'}, tries=1, timeout=15)
+    if not raw:
+        return None
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError:
+        return None
     cut = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=45)
     items, seen = [], set()
     for it in root.iter('item'):
@@ -85,7 +149,7 @@ def news_one(t):
         items.append({'h': title[:220], 'u': link, 's': host, 'd': d.strftime('%Y-%m-%dT%H:%M:%SZ') if d else None})
         if len(items) >= 10:
             break
-    return t, items
+    return items or None
 
 
 # ------------------------------------------------------------------ insider
@@ -135,6 +199,12 @@ def main():
     out_dir = os.path.join(ROOT, kind)
     os.makedirs(out_dir, exist_ok=True)
     ts = tickers(limit)
+    if kind == 'news':
+        for t in ts:
+            try:
+                NAMES[t] = json.load(open(os.path.join(STOCKS, t + '.json'))).get('name') or ''
+            except Exception:
+                pass
     ok = fail = 0
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
@@ -150,7 +220,8 @@ def main():
                 print('%s %d/%d ok=%d fail=%d %.0fs' % (kind, i, len(ts), ok, fail, time.time() - t0), flush=True)
     json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'ok': ok, 'fail': fail},
               open(os.path.join(out_dir, 'meta.json'), 'w'))
-    print('::notice::%s done: ok %d, no data %d, %.0fs' % (kind, ok, fail, time.time() - t0))
+    print('::notice::%s done: ok %d, no data %d, %.0fs%s' % (kind, ok, fail, time.time() - t0,
+          (' (yahoo ok %d of %d tries)' % (YSTAT['ok'], YSTAT['try'])) if kind == 'news' else ''))
     if ok < len(ts) * 0.2:
         sys.exit('too little data, keeping the previous branch')
 

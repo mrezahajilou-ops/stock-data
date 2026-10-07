@@ -192,10 +192,27 @@ def insider_one(t):
     return t, {'sum': summ, 'rows': rows}
 
 
+# ------------------------------------------------------------------ company profile (official description)
+def profile_one(t):
+    raw = get('https://api.nasdaq.com/api/company/%s/company-profile' % urllib.parse.quote(t.replace('-', '.')), NASDAQ_HDR)
+    if not raw:
+        return t, None
+    try:
+        d = json.loads(raw).get('data') or {}
+    except Exception:
+        return t, None
+    val = lambda k: (((d.get(k) or {}).get('value')) or '').strip()
+    desc = re.sub(r'\s+', ' ', html.unescape(val('CompanyDescription')))
+    if len(desc) < 40:
+        return t, None
+    return t, {'desc': desc[:4000], 'web': val('CompanyUrl'), 'sector': val('Sector'), 'industry': val('Industry'),
+               'country': val('Region') or val('Country'), 'employees': val('Employees') or None}
+
+
 def main():
     kind = sys.argv[1] if len(sys.argv) > 1 else ''
     limit = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] else 0
-    fn, workers = {'news': (news_one, 10), 'insider': (insider_one, 4)}[kind]
+    fn, workers = {'news': (news_one, 10), 'insider': (insider_one, 4), 'profile': (profile_one, 4)}[kind]
     out_dir = os.path.join(ROOT, kind)
     os.makedirs(out_dir, exist_ok=True)
     ts = tickers(limit)

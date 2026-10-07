@@ -4,10 +4,11 @@ on:
   schedule:
     - cron: '25 5-20/3 * * *'   # news: every 3 hours, 07:25-22:25 Berlin (summer)
     - cron: '10 2 * * 2-6'      # insider trades: nightly after US trading days (Form 4s are filed within 2 days)
+    - cron: '40 3 * * 0'        # company profiles: weekly (Sunday)
   workflow_dispatch:
     inputs:
       kind:
-        description: 'news or insider'
+        description: 'news, insider or profile'
         required: true
         default: 'news'
       limit:
@@ -32,6 +33,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "kind=${{ inputs.kind }}" >> $GITHUB_OUTPUT;
           elif [ "${{ github.event.schedule }}" = "10 2 * * 2-6" ]; then echo "kind=insider" >> $GITHUB_OUTPUT;
+          elif [ "${{ github.event.schedule }}" = "40 3 * * 0" ]; then echo "kind=profile" >> $GITHUB_OUTPUT;
           else echo "kind=news" >> $GITHUB_OUTPUT; fi
       - uses: actions/checkout@v4
         with:

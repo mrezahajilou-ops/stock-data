@@ -627,7 +627,14 @@ def finish(recs, market):
     first = {}
     for r in recs:
         multi[r["cik"]] += 1
-        first.setdefault(r["cik"], r["ticker"])   # SEC lists a company's main common stock first
+        first.setdefault(r["cik"], r["ticker"])   # SEC usually lists a company's main common stock first
+    # ...but not always (BIPH note before BIP, LUCYW warrant before LUCY): if another ticker of the
+    # same company is a prefix of the chosen one and has market data, it is the real common stock.
+    for r in recs:
+        f = first[r["cik"]]
+        t = r["ticker"]
+        if t != f and f.startswith(t) and len(t) < len(f) and (market.get(t) or {}).get("mcap"):
+            first[r["cik"]] = t
 
     def mc(t):
         return (market.get(t) or {}).get("mcap") or 0

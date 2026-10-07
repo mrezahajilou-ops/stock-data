@@ -57,6 +57,57 @@ def gql(tok, query, variables):
     raise RuntimeError('throttled too long')
 
 
+LIST = '''query($c: String) { metaobjects(type: "rz_stock", first: 250, after: $c) {
+  nodes { id handle } pageInfo { hasNextPage endCursor } } }'''
+DELETE = '''mutation($id: ID!) { metaobjectDelete(id: $id) { deletedId userErrors { field message } } }'''
+REDIRECT = '''mutation($r: UrlRedirectInput!) { urlRedirectCreate(urlRedirect: $r) {
+  urlRedirect { id } userErrors { field message } } }'''
+MAX_PRUNE = 400   # safety: never delete more than this in one run
+
+
+def prune(tok, keep, new):
+    """Delete stock pages whose ticker left the data set (delisted, or a note/preferred that used to
+    stand in for the real common stock) and redirect the old URL to the right company when known."""
+    have, cur = {}, None
+    while True:
+        j = gql(tok, LIST, {'c': cur})
+        mo = ((j.get('data') or {}).get('metaobjects')) or {}
+        for n in mo.get('nodes') or []:
+            have[n['handle']] = n['id']
+        if not (mo.get('pageInfo') or {}).get('hasNextPage'):
+            break
+        cur = mo['pageInfo']['endCursor']
+    stale = sorted(h for h in have if h not in keep)
+    print('pages in Shopify: %d, current: %d, stale: %d %s' % (len(have), len(keep), len(stale), stale[:30]), flush=True)
+    if len(stale) > MAX_PRUNE:
+        print('::warning::%d stale pages is more than the safety limit %d - not deleting' % (len(stale), MAX_PRUNE))
+        return
+    try:
+        aliases = json.load(open(os.path.join(ROOT, 'data', 'aliases.json')))
+    except Exception:
+        aliases = {}
+    deleted = redirected = 0
+    redirects_ok = True
+    for h in stale:
+        j = gql(tok, DELETE, {'id': have[h]})
+        ue = (((j.get('data') or {}).get('metaobjectDelete')) or {}).get('userErrors') or j.get('errors')
+        if ue:
+            print('::warning::delete %s %s' % (h, json.dumps(ue)[:200]), flush=True)
+            continue
+        deleted += 1
+        new.pop(h, None)
+        target = (aliases.get(h.upper()) or '').lower()
+        if redirects_ok and target and target in keep:
+            j = gql(tok, REDIRECT, {'r': {'path': '/pages/stocks/' + h, 'target': '/pages/stocks/' + target}})
+            ue = (((j.get('data') or {}).get('urlRedirectCreate')) or {}).get('userErrors') or j.get('errors')
+            if ue and 'access' in json.dumps(ue).lower():
+                redirects_ok = False
+                print('::notice::app has no redirect permission; skipping redirects', flush=True)
+            elif not ue:
+                redirected += 1
+    print('pruned %d stale pages, %d redirected' % (deleted, redirected), flush=True)
+
+
 def main():
     old = {}
     if os.path.exists(HASHES):
@@ -89,6 +140,11 @@ def main():
         if sent % 250 == 0:
             print('sent %d (%.0fs)' % (sent, time.time() - t0), flush=True)
             json.dump(new, open(HASHES, 'w'))
+    if not LIMIT and failed < 20:
+        try:
+            prune(tok, {p['handle'] for p in rows}, new)
+        except Exception as e:
+            print('::warning::prune failed: %s' % str(e)[:300], flush=True)
     json.dump(new, open(HASHES, 'w'))
     print('done: sent %d, unchanged %d, failed %d, %.0fs' % (sent, skipped, failed, time.time() - t0))
     if failed > max(20, len(rows) // 20):

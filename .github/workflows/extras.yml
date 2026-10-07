@@ -1,0 +1,55 @@
+name: Stock news + insider trades
+
+on:
+  schedule:
+    - cron: '25 5-21/2 * * *'   # news: every 2 hours, 07:25-23:25 Berlin (summer)
+    - cron: '10 2 * * 2-6'      # insider trades: nightly after US trading days (Form 4s are filed within 2 days)
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: 'news or insider'
+        required: true
+        default: 'news'
+      limit:
+        description: 'Only first N tickers (test run)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: extras-${{ github.event.schedule || inputs.kind }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Pick job
+        id: k
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "kind=${{ inputs.kind }}" >> $GITHUB_OUTPUT;
+          elif [ "${{ github.event.schedule }}" = "10 2 * * 2-6" ]; then echo "kind=insider" >> $GITHUB_OUTPUT;
+          else echo "kind=news" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            extras.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch
+        run: python extras.py ${{ steps.k.outputs.kind }} ${{ inputs.limit }}
+      - name: Publish to its own branch (single commit, no history growth)
+        run: |
+          K=${{ steps.k.outputs.kind }}
+          cd $K
+          git init -q -b $K
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "$K $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $K:$K

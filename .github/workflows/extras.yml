@@ -2,7 +2,7 @@ name: Stock news + insider trades
 
 on:
   schedule:
-    - cron: '25 5-21/2 * * *'   # news: every 2 hours, 07:25-23:25 Berlin (summer)
+    - cron: '25 5-20/3 * * *'   # news: every 3 hours, 07:25-22:25 Berlin (summer)
     - cron: '10 2 * * 2-6'      # insider trades: nightly after US trading days (Form 4s are filed within 2 days)
   workflow_dispatch:
     inputs:
@@ -25,7 +25,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - name: Pick job
         id: k

@@ -58,7 +58,7 @@ def num(s):
 
 # ------------------------------------------------------------------ news
 NAMES = {}
-SUFFIX = re.compile(r'[,.]?\s+(inc|incorporated|corp|corporation|co|company|ltd|limited|plc|holdings?|group|n\.?v|s\.?a|ag|se|lp|l\.?p|llc|class [a-c]|common stock|ordinary shares|adr|the)\.?$', re.I)
+SUFFIX = re.compile(r'[,.]?\s+(inc|incorporated|corp|corporation|co|com|company|ltd|limited|plc|holdings?|group|n\.?v|s\.?a|ag|se|lp|l\.?p|llc|class [a-c]|common stock|ordinary shares|adr|the)\.?$', re.I)
 
 
 def clean_name(n):
@@ -195,7 +195,7 @@ def insider_one(t):
 def main():
     kind = sys.argv[1] if len(sys.argv) > 1 else ''
     limit = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] else 0
-    fn, workers = {'news': (news_one, 6), 'insider': (insider_one, 4)}[kind]
+    fn, workers = {'news': (news_one, 10), 'insider': (insider_one, 4)}[kind]
     out_dir = os.path.join(ROOT, kind)
     os.makedirs(out_dir, exist_ok=True)
     ts = tickers(limit)

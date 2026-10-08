@@ -1,0 +1,44 @@
+name: Earnings history (twice a day)
+
+on:
+  schedule:
+    - cron: '25 5 * * *'     # after the morning calendar run
+    - cron: '15 22 * * 1-5'  # after the US close (after-hours reports of the day before)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: earnings
+  cancel-in-progress: false
+
+jobs:
+  earnings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            earnings.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Previous output
+        run: git clone -q --depth 1 -b earnings "https://github.com/${{ github.repository }}" earnings || mkdir -p earnings
+      - name: Build
+        env:
+          SEC_USER_AGENT: "Reza Hajilou mreza.hajilou@gmail.com"
+        run: python earnings.py
+      - name: Publish to branch "earnings"
+        run: |
+          cd earnings
+          rm -rf .git
+          git init -q -b earnings
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "earnings $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" earnings:earnings

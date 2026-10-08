@@ -23,7 +23,7 @@ TIME = {'time-pre-market': 'pre', 'time-after-hours': 'after'}
 TODAY = dt.date.today()
 BACK_DAYS = 400          # first run: read this many days of the calendar
 MAX_NEW_DAYS = 160       # calendar days read per run (spreads the backfill over a few runs)
-KEEP = 8
+KEEP = 9
 REV_TAGS = ['Revenues', 'RevenueFromContractWithCustomerExcludingAssessedTax', 'RevenueFromContractWithCustomerIncludingAssessedTax',
             'SalesRevenueNet', 'SalesRevenueGoodsNet', 'RevenuesNetOfInterestExpense', 'InterestAndDividendIncomeOperating']
 
@@ -260,6 +260,15 @@ def main():
         if time.time() - t0 > 3000:
             break
 
+    # EPS a year ago from our own history when the calendar did not give it
+    for t, e in db.items():
+        by = {x.get('q'): x for x in e['q']}
+        for x in e['q']:
+            if x.get('ly') is None and x.get('q') and '/' in x['q']:
+                mon, yr = x['q'].split('/')
+                prev = by.get('%s/%d' % (mon, int(yr) - 1)) if yr.isdigit() else None
+                if prev and prev.get('act') is not None:
+                    x['ly'] = prev['act']
     n = 0
     for t, e in db.items():
         e['q'] = sorted(e['q'], key=lambda x: x['d'], reverse=True)[:KEEP]

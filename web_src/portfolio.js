@@ -123,14 +123,18 @@ function drawPosts(){var el=$('rzp-posts');if(!el)return;var ps=P.posts||[];
 
 /* ---- page ---- */
 function cta(){var login=P.logged?'':'<p class="note" style="margin-top:12px">قبلاً مشترک شدی؟ <a href="'+esc(P.login||'/account/login?return_url=/pages/portfolio')+'">وارد حسابت شو</a></p>';
-  return '<div class="cta-box"><h3>🔒 پورتفوی کامل رضا، فقط برای مشترکین</h3><ul><li>همه‌ی سهم‌ها با وزن، قیمت خرید و سود و زیان دقیق</li><li>هر خرید و فروش، همون روز، با دلیلش</li><li>جامعه‌ی مشترکین: زیر هر تصمیم نظر و سؤالت رو بنویس</li><li>ایمیل فوری هر معامله و یادداشت جدید</li></ul>'+
+  return '<div class="cta-box"><h3>🔒 پورتفوی کامل رضا، فقط برای مشترکین</h3><ul><li>بازده واقعی پورتفوی و نمودار عملکرد از آوریل ۲۰۲۵</li><li>همه‌ی سهم‌ها با وزن، قیمت خرید و سود و زیان دقیق</li><li>هر خرید و فروش، همون روز، با دلیلش</li><li>جامعه‌ی مشترکین: زیر هر تصمیم نظر و سؤالت رو بنویس</li><li>ایمیل فوری هر معامله و یادداشت جدید</li></ul>'+
     '<div class="pr">$300</div> <span class="mut">/ سال</span><br><a class="btn" style="margin-top:12px;font-size:16px;padding:11px 26px" href="'+esc(P.sub||'/products/portfolio-pro')+'">عضویت سالانه</a>'+login+'</div>'}
 function header(){var s=series(),o=stats(s),cell=function(l,v){return '<div><small>'+l+'</small><b class="'+cls(v)+'">'+sg(v)+'</b></div>'};
   $('rzp-head').innerHTML='<div class="ph"><div class="av">'+(P.avatar?'<img src="'+esc(P.avatar)+'" alt="">':'ر')+'</div><div class="who"><b>پورتفوی رضا حاجیلو</b><span>سرمایه‌گذاری بلندمدت در سهام آمریکا · از آوریل ۲۰۲۵</span></div></div>'+
     '<div class="stats">'+cell('۱ روز',o.d1)+cell('۱ ماه',o.m1)+cell('از ابتدای سال',o.ytd)+cell('۱ سال',o.y1)+cell('کل',o.tot)+cell('رشد سالانه (CAGR)',o.cagr)+
     '<div><small>ارزش پورتفوی</small><b>'+(ACC&&V?money(V,'k'):'🔒')+'</b></div></div>'+
     '<p class="note">'+(RZQ&&RZQ.as_of?(RZQ_ST[RZQ.status]||'قیمت')+' · '+liveWhen(RZQ.as_of):'')+(P.live&&P.live.as_of&&!ACC?'به‌روزرسانی: '+liveWhen(P.live.as_of):'')+'</p>'}
-function render(){header();var m=$('rzp-main');
+function locked(){$('rzp-head').innerHTML='<div class="ph"><div class="av">'+(P.avatar?'<img src="'+esc(P.avatar)+'" alt="">':'ر')+'</div><div class="who"><b>پورتفوی رضا حاجیلو</b><span>سرمایه‌گذاری بلندمدت در سهام آمریکا · از آوریل ۲۰۲۵</span></div></div>'+
+    '<div class="stats">'+['۱ روز','۱ ماه','از ابتدای سال','۱ سال','کل','رشد سالانه (CAGR)','ارزش پورتفوی'].map(function(l){return '<div><small>'+l+'</small><b>🔒</b></div>'}).join('')+'</div>';
+  $('rzp-main').innerHTML='<div class="lock card" style="min-height:560px;margin-top:14px"><div class="blur">'+fakePos()+fakeFeed()+'</div><div class="cta">'+cta()+'</div></div>'+
+    '<p class="note">این پورتفوی واقعی رضاست و فقط برای آموزش و شفافیت منتشر میشه؛ پیشنهاد خرید یا فروش نیست.</p>'}
+function render(){if(!ACC){locked();return}header();var m=$('rzp-main');
   var tabs='<div class="tabs"><button data-tab="port"'+(TAB==='port'?' class="on"':'')+'>پورتفوی</button><button data-tab="hist"'+(TAB==='hist'?' class="on"':'')+'>تاریخچه‌ی معاملات</button><button data-tab="comm"'+(TAB==='comm'?' class="on"':'')+'>جامعه</button></div>';
   var perf='<div class="card"><div class="chd"><h3>عملکرد</h3><div class="seg" id="rzp-rg">'+['1M','3M','6M','YTD','1Y','MAX'].map(function(r){return '<button data-r="'+r+'"'+(r===RANGE?' class="on"':'')+'>'+r+'</button>'}).join('')+'</div></div><div id="rzp-ch"></div>'+'</div>';
   var body='';

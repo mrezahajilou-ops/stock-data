@@ -1,0 +1,31 @@
+name: Benchmark history (SPY, QQQ)
+
+on:
+  schedule:
+    - cron: '15 22 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: bench.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python bench.py
+      - name: Publish to branch bench
+        run: |
+          cd bench
+          git init -q -b bench
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "bench $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" bench:bench

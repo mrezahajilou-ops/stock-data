@@ -121,6 +121,15 @@
 #rzs .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:5px;vertical-align:middle}
 @media (max-width:760px){#rzs .grid2,#rzs .charts,#rzs .verdict{grid-template-columns:1fr}#rzs .stats{grid-template-columns:repeat(2,1fr)}#rzs .px{text-align:right}#rzs h1{font-size:22px}}
 #rzs .pr{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+#rzs .ern{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:4px 0 8px}
+#rzs .ern .vtag{margin:0}
+#rzs .ernp{margin:0 0 6px;font-size:14.5px;line-height:2}
+#rzs .ltr{direction:ltr;unicode-bidi:isolate;font-weight:800}
+#rzs .vbig{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 10px}
+#rzs .vbig div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}
+#rzs .vbig small{display:block;color:var(--mut);font-size:12px}
+#rzs .vbig b{direction:ltr;unicode-bidi:isolate;font-size:16px;color:#fff}
+@media (max-width:760px){#rzs .vbig{grid-template-columns:repeat(2,minmax(0,1fr))}}
 #rzs .rng{display:flex;gap:4px;flex-wrap:wrap}
 #rzs .rng button{background:var(--bg);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
 #rzs .rng button.on{background:var(--lime);color:#0b1726;border-color:var(--lime)}
@@ -355,8 +364,10 @@ function render(d){
     '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+(m.live?'<div class="d live"><i></i>'+esc(liveLabel(d.ticker))+'</div>':'')+'<div class="d">ارزش بازار '+big(m.mcap)+(!m.live&&m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
     '<div class="d">\u2066EV '+big0(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'\u2069</div></div></div></div>';
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
+  h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   h+=verdict(d);
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
+  h+='<div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-si" style="display:none"></div>';
@@ -386,7 +397,76 @@ function render(d){
   loadExtras(d);
   loadAbout(d);
   loadSI(d);
+  loadEarn(d);
+  loadVal(d);
 }
+
+/* ---- latest quarterly report in plain Persian (branch `earnings`, earnings.py) ---- */
+var FA_MON={Jan:'ژانویه',Feb:'فوریه',Mar:'مارس',Apr:'آوریل',May:'مه',Jun:'ژوئن',Jul:'ژوئیه',Aug:'اوت',Sep:'سپتامبر',Oct:'اکتبر',Nov:'نوامبر',Dec:'دسامبر'};
+function eL(x){return '<span class="ltr">'+x+'</span>'}
+function eQ(q){var m=String(q||'').split('/');return m.length===2?(FA_MON[m[0].slice(0,3)]||m[0])+' '+m[1]:esc(q||'')}
+function eD(d){try{return new Date(d+'T12:00:00Z').toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}catch(e){return d}}
+function eP(v,dg){return v==null||!isFinite(v)?'—':(v>=0?'+':'')+(v*100).toFixed(dg==null?1:dg)+'%'}
+function eUsd(v){return v==null?'—':(v<0?'-$':'$')+Math.abs(v).toFixed(2)}
+function eGrow(a,b){return a!=null&&b!=null&&b>0?a/b-1:null}
+function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker;
+  fetch(XRAW+'/earnings/e/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){
+    if(cur!==d||!j||!j.q||!j.q.length)return;var x=j.q[0],sv=0,P=[];
+    var eg=eGrow(x.act,x.ly),rg=eGrow(x.rev,x.revly);
+    var when=x.tm==='pre'?'قبل از شروع بازار':x.tm==='after'?'بعد از بسته شدن بازار':'';
+    P.push(esc(d.name)+' روز '+eD(x.d)+(when?' ('+when+')':'')+' نتایج فصل منتهی به '+eQ(x.q)+' رو منتشر کرد.');
+    if(x.f!=null){var beat=x.act>=x.f;if(x.act>x.f)sv++;
+      P.push('سود هر سهم (EPS) '+eL(eUsd(x.act))+' بود، در برابر پیش‌بینی تحلیلگرها '+eL(eUsd(x.f))+'؛ یعنی '+(x.act===x.f?'دقیقاً مطابق انتظار.':(x.sur!=null?eL(Math.abs(x.sur).toFixed(1)+'%')+' ':'')+(beat?'<b class="up">بهتر از انتظار</b>.':'<b class="dn">ضعیف‌تر از انتظار</b>.')))}
+    else P.push('سود هر سهم (EPS) '+eL(eUsd(x.act))+' بود.');
+    if(x.ly!=null){if(x.ly>0&&eg!=null){if(eg>0)sv++;P.push('نسبت به همین فصل سال قبل ('+eL(eUsd(x.ly))+') سود هر سهم '+eL(eP(eg))+' '+(eg>=0?'رشد کرد':'کم شد')+'.')}
+      else if(x.ly<=0&&x.act>0){sv++;P.push('همین فصل سال قبل زیان‌ده بود ('+eL(eUsd(x.ly))+') و حالا به سود رسیده.')}
+      else if(x.ly<0&&x.act<0)P.push('شرکت هنوز زیان‌ده است؛ سال قبل '+eL(eUsd(x.ly))+' در هر سهم.')}
+    if(x.rev){if(rg!=null&&rg>0)sv++;P.push('درآمد فصل '+big(x.rev)+(rg!=null?' بود که نسبت به سال قبل '+eL(eP(rg))+' '+(rg>=0?'بیشتر':'کمتر')+' شد.':' بود.'))}
+    if(x.rx!=null){if(x.rx>0)sv++;P.push('واکنش بازار: سهم در اولین روز معاملاتی بعد از گزارش '+eL(eP(x.rx))+' '+(x.rx>=0?'<b class="up">بالا رفت</b>':'<b class="dn">پایین اومد</b>')+'.')}
+    var mx=1+(x.f!=null?1:0)+(x.ly!=null?1:0)+(x.rev&&rg!=null?1:0)+(x.rx!=null?1:0)-1,r=mx?sv/mx:0;
+    var V=r>=0.75?['💪 گزارش قوی','#2ec4b6']:r>=0.5?['👍 گزارش خوب','#b5e36b']:r>=0.25?['😐 گزارش متوسط','#f5b700']:['👎 گزارش ضعیف','#ff5a5f'];
+    var h='<div class="axhead"><h3 style="margin:0">📊 آخرین گزارش فصلی به زبان ساده</h3><a class="lnk" href="/pages/earnings">تقویم گزارش‌ها ←</a></div>'+
+      '<div class="ern"><span class="vtag" style="background:'+V[1]+';color:#0b1726">'+V[0]+'</span><span class="mut2" style="font-size:13px">فصل '+eQ(x.q)+' · '+eD(x.d)+'</span></div>'+
+      '<p class="ernp">'+P.join(' ')+'</p>';
+    if(j.q.length>1){var rows=j.q.map(function(y){var g1=eGrow(y.act,y.ly),g2=eGrow(y.rev,y.revly);return '<tr><td>'+eQ(y.q)+'</td><td>'+eL(eUsd(y.act))+'</td><td>'+eL(eUsd(y.f))+'</td><td class="'+(y.sur==null?'':y.sur>=0?'up':'dn')+'">'+(y.sur==null?'—':eL((y.sur>=0?'+':'')+y.sur.toFixed(1)+'%'))+'</td><td class="'+(g1==null?'':g1>=0?'up':'dn')+'">'+eL(eP(g1))+'</td><td>'+(y.rev?big(y.rev):'—')+'</td><td class="'+(g2==null?'':g2>=0?'up':'dn')+'">'+eL(eP(g2))+'</td><td class="'+(y.rx==null?'':y.rx>=0?'up':'dn')+'">'+eL(eP(y.rx))+'</td></tr>'}).join('');
+      var tb='<div class="tblwrap" style="margin-top:8px"><table><thead><tr><th>فصل</th><th>EPS واقعی</th><th>پیش‌بینی</th><th>غافلگیری</th><th>رشد EPS سالانه</th><th>درآمد</th><th>رشد درآمد</th><th>واکنش قیمت</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+      h+=ACCESS?'<details><summary class="lnk" style="margin-top:4px">تاریخچه‌ی '+j.q.length+' گزارش اخیر ▾</summary>'+tb+'</details>':'<p class="xnote">🔒 تاریخچه‌ی '+j.q.length+' گزارش اخیر برای مشترکین Stock Pro.</p>'}
+    h+='<p class="xnote">این خلاصه خودکار از داده‌های رسمی ساخته میشه: EPS و پیش‌بینی تحلیلگرها از Nasdaq، درآمد از گزارش 10-Q/10-K شرکت به SEC (ممکنه چند روز بعد از اعلام نتایج اضافه بشه). «واکنش بازار» تغییر قیمت در اولین روز معاملاتی بعد از گزارشه.</p>';
+    box.innerHTML=h;box.style.display=''})}
+
+/* ---- valuation history: P/E, P/FCF, P/S over 10 years vs the stock's own range ---- */
+var VAL_M='pe';
+function loadVal(d){var box=$('rzs-val');if(!box)return;var t=d.ticker;
+  fetch(PRICES+'/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){
+    if(cur!==d||!j||!j.w||j.w.length<60)return;
+    var A=(d.annual||[]).filter(function(y){return y.fy_end}).slice().sort(function(a,b){return a.fy_end<b.fy_end?-1:1});if(A.length<3)return;
+    var Q=liveQ(t),W=j.w.slice();if(Q&&Q[0]>0)W.push([new Date().toISOString().slice(0,10),Q[0]]);
+    var known=function(y){var k=new Date(y.fy_end+'T00:00:00Z');k.setUTCDate(k.getUTCDate()+75);return k.toISOString().slice(0,10)};
+    var DEF={pe:['P/E','eps_diluted',150,'سود هر سهم'],pfcf:['P/FCF','fcf_per_share',150,'جریان نقد آزاد هر سهم'],ps:['P/S','revenue_per_share',80,'فروش هر سهم']};
+    var ser=function(k){var f=DEF[k][1],out=[];W.forEach(function(w){var y=null;for(var i=A.length-1;i>=0;i--){if(known(A[i])<=w[0]){y=A[i];break}}if(!y)return;var v=y[f];if(!(v>0))return;var m=w[1]/v;if(m>0&&m<DEF[k][2])out.push([w[0],m,v])});return out};
+    var draw=function(){var S=ser(VAL_M),D=DEF[VAL_M];
+      var head='<div class="axhead"><h3 style="margin:0">📐 ارزون یا گرون؟ تاریخچه‌ی ارزش‌گذاری ۱۰ ساله</h3><div class="rng" id="rzs-vm">'+Object.keys(DEF).map(function(k){return '<button data-vm="'+k+'"'+(k===VAL_M?' class="on"':'')+'>'+DEF[k][0]+'</button>'}).join('')+'</div></div>';
+      if(S.length<60){box.innerHTML=head+'<div class="empty" style="padding:14px">برای '+D[0]+' داده‌ی کافی نیست (احتمالاً '+D[3]+' در بعضی سال‌ها منفی بوده).</div>';box.style.display='';return}
+      var vals=S.map(function(p){return p[1]}).slice().sort(function(a,b){return a-b}),qn=function(q){return vals[Math.min(vals.length-1,Math.floor(q*(vals.length-1)))]};
+      var med=qn(0.5),p25=qn(0.25),p75=qn(0.75),now=S[S.length-1],below=vals.filter(function(v){return v<now[1]}).length/vals.length;
+      var fair=med*now[2],px=W[W.length-1][1],up=fair/px-1,yrs=Math.round((new Date(S[S.length-1][0])-new Date(S[0][0]))/3.156e10);
+      var tag=below<0.25?['🟢 ارزون نسبت به گذشته‌ی خودش','#2ec4b6']:below>0.75?['🔴 گرون نسبت به گذشته‌ی خودش','#ff5a5f']:['🟡 در محدوده‌ی معمول خودش','#f5b700'];
+      var Wd=640,Hh=210,pl=8,pr=44,pt=10,pb=22,mn=Math.min(vals[0],p25)*0.9,mxv=Math.max(vals[vals.length-1],p75)*1.05;
+      var X=function(i){return pl+i*(Wd-pl-pr)/(S.length-1)},Y=function(v){return pt+(1-(v-mn)/(mxv-mn))*(Hh-pt-pb)};
+      var line=S.map(function(p,i){return (i?'L':'M')+X(i).toFixed(1)+' '+Y(p[1]).toFixed(1)}).join('');
+      var yr={},lab='';S.forEach(function(p,i){var y=p[0].slice(0,4);if(!yr[y]&&p[0].slice(5,7)<='01'){yr[y]=1;lab+='<text x="'+X(i).toFixed(0)+'" y="'+(Hh-6)+'" fill="#93a7bf" font-size="10" text-anchor="middle">'+y+'</text>'}});
+      var svg='<svg viewBox="0 0 '+Wd+' '+Hh+'" style="width:100%;height:auto;display:block;direction:ltr">'+
+        '<rect x="'+pl+'" y="'+Y(p75).toFixed(1)+'" width="'+(Wd-pl-pr)+'" height="'+(Y(p25)-Y(p75)).toFixed(1)+'" fill="rgba(46,196,182,.10)"/>'+
+        '<line x1="'+pl+'" x2="'+(Wd-pr)+'" y1="'+Y(med).toFixed(1)+'" y2="'+Y(med).toFixed(1)+'" stroke="#f5b700" stroke-dasharray="5 4" stroke-width="1.3"/>'+
+        '<text x="'+(Wd-pr+4)+'" y="'+(Y(med)+4).toFixed(1)+'" fill="#f5b700" font-size="11">'+med.toFixed(1)+'</text>'+
+        '<text x="'+(Wd-pr+4)+'" y="'+(Y(p75)+4).toFixed(1)+'" fill="#93a7bf" font-size="10">'+p75.toFixed(1)+'</text><text x="'+(Wd-pr+4)+'" y="'+(Y(p25)+4).toFixed(1)+'" fill="#93a7bf" font-size="10">'+p25.toFixed(1)+'</text>'+
+        '<path d="'+line+'" fill="none" stroke="#2ec4b6" stroke-width="1.8"/><circle cx="'+X(S.length-1).toFixed(1)+'" cy="'+Y(now[1]).toFixed(1)+'" r="4.5" fill="#b5e36b" stroke="#0b1726" stroke-width="1.5"/>'+lab+'</svg>';
+      var body='<div class="ern"><span class="vtag" style="background:'+tag[1]+';color:#0b1726">'+tag[0]+'</span></div>'+
+        '<div class="vbig"><div><small>'+D[0]+' فعلی</small><b>'+now[1].toFixed(1)+'</b></div><div><small>میانه‌ی '+yrs+' ساله</small><b>'+med.toFixed(1)+'</b></div><div><small>محدوده‌ی معمول (۵۰٪ وسط)</small><b>'+p25.toFixed(1)+' – '+p75.toFixed(1)+'</b></div><div><small>قیمت در '+D[0]+' میانه</small><b>$'+fair.toFixed(2)+' <span style="font-size:12px" class="'+(up>=0?'up':'dn')+'">'+(up>=0?'+':'')+(up*100).toFixed(0)+'%</span></b></div></div>'+svg+
+        '<p class="ernp" style="margin-top:8px">'+D[0]+' فعلی '+eL(now[1].toFixed(1))+'ه؛ در '+eL(Math.round(below*100)+'%')+' از هفته‌های '+yrs+' سال گذشته این عدد پایین‌تر از الان بوده. اگه '+D[0]+' به میانه‌ی تاریخی خودش ('+eL(med.toFixed(1))+') برگرده، با '+D[3]+'ِ فعلی قیمت حدود '+eL('$'+fair.toFixed(2))+' میشه.</p>'+
+        '<p class="xnote">هر نقطه = قیمت اون هفته تقسیم بر '+D[3]+' آخرین سال مالیِ منتشرشده تا اون موقع. خط زرد = میانه، نوار سبز = نیمه‌ی وسط ۱۰ سال. ارزون بودن نسبت به گذشته همیشه یعنی فرصت نیست؛ شاید چشم‌انداز شرکت عوض شده باشه.</p>';
+      box.innerHTML=head+(ACCESS?body:'<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+body+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 مخصوص مشترکین Stock Pro</a></div></div>');box.style.display=''};
+    draw();box.onclick=function(e){var b=e.target.closest('[data-vm]');if(b){VAL_M=b.dataset.vm;draw()}}})}
 
 /* ---- super investors who own this stock (branch `superinvestors`, superinvestors.py) ---- */
 var SI_P=null,SI_SAME={GOOG:'GOOGL','BRK-A':'BRK-B',FOX:'FOXA',NWS:'NWSA',FWONK:'FWONA',LBRDA:'LBRDK','HEI-A':'HEI'};

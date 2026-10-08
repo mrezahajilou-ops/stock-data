@@ -42,8 +42,8 @@ def load_trades(tok):
         mo = ((j.get('data') or {}).get('metaobjects')) or {}
         for n in mo.get('nodes') or []:
             f = {x['key']: x['value'] for x in n['fields']}
-            if not f.get('date') or not f.get('action'):
-                continue
+            if not f.get('date') or not f.get('action') or f.get('history_only') == 'true':
+                continue  # history_only = imported past trades, shown on the page but already in the opening balance
             out.append({'d': dt.datetime.fromisoformat(f['date'].replace('Z', '+00:00')), 'a': f['action'],
                         't': (f.get('ticker') or '').strip().upper(), 'n': num(f.get('shares')),
                         'p': num(f.get('price')), 'm': num(f.get('amount'))})

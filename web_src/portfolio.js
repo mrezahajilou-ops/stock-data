@@ -13,9 +13,12 @@ function nyDate(t){return new Date(t||Date.now()).toLocaleDateString('en-CA',{ti
 function fdate(s){try{return new Date(typeof s==='number'?s*1000:s).toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'})}catch(e){return s}}
 function shares(n){return (Math.round(n*10000)/10000).toLocaleString('en-US')}
 
+/* imported past trades (Savvy Trader): shown in the feed only; their effect is already in the opening balance */
+function hist(t){var e={a:t.a,d:t.d,t:(t.t||'').toUpperCase(),n:+t.n||0,p:+t.p||0,x:t.x,h:1},m=t.m==null?null:+t.m;
+  if(t.a==='SELL')e.gp=m==null?null:m/100;else if(t.a==='BUY')e.inc=m==null?null:m/100;else e.m=m||0;if(t.a==='DIVIDEND')e.ps=+t.p||null;return e}
 /* ---- ledger: holdings, cash, realized gains and a readable event feed ---- */
 function book(trades){var pos={},cash=0,real=0,div=0,ev=[];
-  trades.forEach(function(t){var a=t.a,k=(t.t||'').toUpperCase(),n=+t.n||0,p=+t.p||0,m=+t.m||0,o=k?(pos[k]||(pos[k]={n:0,cost:0,div:0,real:0,first:t.d})):null;
+  trades.forEach(function(t){if(t.h){ev.push(hist(t));return}var a=t.a,k=(t.t||'').toUpperCase(),n=+t.n||0,p=+t.p||0,m=+t.m||0,o=k?(pos[k]||(pos[k]={n:0,cost:0,div:0,real:0,first:t.d})):null;
     if(a==='OPEN'){if(o){o.n+=n;o.cost+=n*p}else cash+=m;ev.push({a:a,d:t.d,t:k,n:n,p:p,m:m,x:t.x});return}
     if(a==='BUY'&&o){var before=o.n;o.n+=n;o.cost+=n*p;cash-=n*p;ev.push({a:a,d:t.d,t:k,n:n,p:p,inc:before>0?n/before:null,x:t.x});return}
     if(a==='SELL'&&o&&o.n>0){var q=Math.min(n,o.n),avg=o.cost/o.n,g=(p-avg)*q,frac=q/o.n;o.real+=g;real+=g;o.cost-=avg*q;o.n-=q;cash+=q*p;if(o.n<1e-6){o.n=0;o.cost=0}
@@ -102,13 +105,14 @@ function drawPos(){var el=$('rzp-pos');if(!el)return;var rows=H.slice();
 var ACT={BUY:'خرید',SELL:'فروش',DIVIDEND:'سود نقدی',DEPOSIT:'واریز',WITHDRAW:'برداشت',NOTE:'یادداشت'};
 function evText(e){var t='<span class="tk">'+esc(e.t||'')+'</span>';
   if(e.a==='BUY')return t+' — خرید '+L(shares(e.n))+' سهم'+(e.inc!=null?' ('+L(sg(e.inc,0))+' افزایش)':' (موقعیت جدید)')+' به قیمت '+L('$'+e.p.toFixed(2));
-  if(e.a==='SELL')return t+' — فروش '+L(shares(e.n))+' سهم ('+(e.frac>=0.999?'کل موقعیت':L(sg(e.frac,0))+' از موقعیت')+') به قیمت '+L('$'+e.p.toFixed(2))+(e.gp!=null?' با '+L(sg(e.gp),cls(e.gp))+' '+(e.gp>=0?'سود':'زیان'):'');
+  if(e.a==='SELL')return t+' — فروش '+L(shares(e.n))+' سهم'+(e.frac!=null?' ('+(e.frac>=0.999?'کل موقعیت':L(sg(e.frac,0))+' از موقعیت')+')':'')+' به قیمت '+L('$'+e.p.toFixed(2))+(e.gp!=null?' با '+L(sg(e.gp),cls(e.gp))+' '+(e.gp>=0?'سود':'زیان'):'');
   if(e.a==='DIVIDEND')return t+' — دریافت سود نقدی '+L(money(e.m),'up')+(e.ps?' (<span class="num">$'+e.ps.toFixed(3)+'</span> برای هر سهم)':'');
   if(e.a==='DEPOSIT')return 'واریز پول نقد '+L(money(e.m));if(e.a==='WITHDRAW')return 'برداشت پول نقد '+L(money(e.m));return t+' — یادداشت'}
-function drawFeed(){var el=$('rzp-feed');if(!el)return;var ev=B.ev.filter(function(e){return e.a!=='OPEN'}).reverse(),open=B.ev.filter(function(e){return e.a==='OPEN'});
-  var html=ev.map(function(e){return '<div class="ev '+({BUY:'buy',SELL:'sell',DIVIDEND:'div'}[e.a]||'')+'"><b>'+evText(e)+'</b><span class="when">'+fdate(e.d)+'</span>'+(e.x?'<p>'+esc(e.x)+'</p>':'')+'</div>'}).join('');
-  if(open.length)html+='<div class="ev"><b>📦 انتقال پورتفوی از Savvy Trader</b><span class="when">'+fdate(open[0].d)+'</span><p>'+open.filter(function(e){return e.t}).length+' سهم و '+L(money(open.filter(function(e){return !e.t}).reduce(function(a,b){return a+b.m},0)))+' پول نقد با همان قیمت خرید قبلی منتقل شد. تاریخچه‌ی بازده از آوریل ۲۰۲۵ حفظ شده.</p></div>';
-  el.innerHTML=html||'<div class="empty">هنوز معامله‌ای ثبت نشده.</div>'}
+function drawFeed(){var el=$('rzp-feed');if(!el)return;var open=B.ev.filter(function(e){return e.a==='OPEN'}),ev=B.ev.filter(function(e){return e.a!=='OPEN'});
+  if(open.length)ev.push({a:'XFER',d:open[0].d,n:open.filter(function(e){return e.t}).length,m:open.filter(function(e){return !e.t}).reduce(function(a,b){return a+b.m},0)});
+  ev.sort(function(a,b){return b.d-a.d});
+  el.innerHTML=ev.map(function(e){if(e.a==='XFER')return '<div class="ev"><b>📦 انتقال پورتفوی از <bdi>Savvy Trader</bdi></b><span class="when">'+fdate(e.d)+'</span><p>'+e.n+' سهم و '+L(money(e.m))+' پول نقد با همون قیمت خرید قبلی منتقل شد. از اینجا به بعد همه‌ی معاملات همین‌جا ثبت میشه. معاملات قبل از این تاریخ از تاریخچه‌ی <bdi>Savvy Trader</bdi> آورده شده.</p></div>';
+    return '<div class="ev '+({BUY:'buy',SELL:'sell',DIVIDEND:'div'}[e.a]||'')+'"><b>'+evText(e)+'</b><span class="when">'+fdate(e.d)+(e.h?' · Savvy Trader':'')+'</span>'+(e.x?'<p>'+esc(e.x)+'</p>':'')+'</div>'}).join('')||'<div class="empty">هنوز معامله‌ای ثبت نشده.</div>'}
 
 /* ---- community (blog posts with subscriber-only comments) ---- */
 function drawPosts(){var el=$('rzp-posts');if(!el)return;var ps=P.posts||[];

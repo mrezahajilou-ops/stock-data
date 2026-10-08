@@ -108,13 +108,22 @@ def main():
         print('no trades yet'); return
 
     now = dt.datetime.now(dt.timezone.utc)
-    today = now.astimezone(NY).date()
-    if today.weekday() >= 5:
-        print('weekend, nothing to do'); return
-    d = today.isoformat()
+    # the trading day the quotes belong to (not the clock: before the open the feed still shows yesterday)
+    days = {}
+    for v in q.values():
+        if v and len(v) > 3 and v[3]:
+            days[str(v[3])[:10]] = days.get(str(v[3])[:10], 0) + 1
+    if not days:
+        print('no quote dates'); return
+    d = max(days, key=days.get)
+    today = dt.date.fromisoformat(d)
+    lock = (meta.get('savvy') or {}).get('as_of') or ''
+    if d <= lock:
+        print('quotes are from %s, history up to %s comes from Savvy Trader - nothing to do' % (d, lock)); return
     start_of_day = dt.datetime.combine(today, dt.time(0, 0), NY)
 
-    hold, cash = book([t for t in trades if t['d'] <= now])
+    end_of_day = start_of_day + dt.timedelta(days=1)
+    hold, cash = book([t for t in trades if t['d'] < min(now, end_of_day)])
     missing = [k for k in hold if not (q.get(k) and q[k][0])]
     if missing:
         print('::warning::%d holdings without a quote' % len(missing))

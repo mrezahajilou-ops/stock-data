@@ -1,0 +1,30 @@
+{%- comment -%}
+  Reza's portfolio. Holdings/trades are rendered into the HTML ONLY for subscribers (server-side check).
+  Visitors get percentages only (history index + live day change). Page code: web/portfolio.html in GitHub.
+  Trades: Shopify admin -> Content -> Metaobjects -> "Portfolio trade". Notes: blog "portfolio".
+{%- endcomment -%}
+{%- capture rzp_acc -%}{%- render 'rz-portfolio-access' -%}{%- endcapture -%}
+{%- assign rzp_access = false -%}{%- if rzp_acc contains '1' -%}{%- assign rzp_access = true -%}{%- endif -%}
+{%- assign pm = metaobjects.rz_portfolio.main -%}
+<script>
+window.RZP = {
+  access: {{ rzp_access | json }},
+  logged: {% if customer %}true{% else %}false{% endif %},
+  sub: '/products/portfolio-pro',
+  login: '/account/login?return_url=%2Fpages%2Fportfolio',
+  meta: {{ pm.meta.value | json }},
+  hist: {{ pm.history.value | json }},
+  live: {{ pm.live.value | json }},
+  posts: [{%- for a in blogs.portfolio.articles limit: 30 -%}{"h":{{ a.title | json }},"u":{{ a.url | json }},"d":{{ a.published_at | date: '%Y-%m-%d' | json }},"c":{{ a.comments_count | default: 0 }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+  {%- if rzp_access -%},
+  trades: [{%- paginate metaobjects.rz_trade.values by 250 -%}{%- for t in metaobjects.rz_trade.values -%}{"d":{{ t.date.value | date: '%s' | plus: 0 }},"a":{{ t.action.value | json }},"t":{{ t.ticker.value | json }},"n":{{ t.shares.value | json }},"p":{{ t.price.value | json }},"m":{{ t.amount.value | json }},"x":{{ t.note.value | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}{%- endpaginate -%}]
+  {%- endif %}
+};
+</script>
+<div style="padding:18px 0 48px">
+  {% render 'rz-app', app: 'portfolio' %}
+</div>
+
+{% schema %}
+{ "name": "Reza portfolio v2", "settings": [] }
+{% endschema %}

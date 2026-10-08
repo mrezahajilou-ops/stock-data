@@ -1,0 +1,22 @@
+<style>
+  .rzcb{position:fixed;left:18px;bottom:80px;z-index:60;display:flex;align-items:center;gap:8px;background:#1f9d6b;color:#fff!important;
+        font-family:'Vazirmatn',Tahoma,sans-serif;font-weight:900;font-size:15px;padding:11px 16px 11px 18px;border-radius:999px;text-decoration:none!important;
+        box-shadow:0 10px 26px rgba(31,157,107,.40);direction:rtl;animation:rzcbIn .5s ease-out both 1s}
+  .rzcb .ic{font-size:18px;line-height:1}
+  @keyframes rzcbIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @media (max-width:820px){.rzcb{bottom:132px;left:12px;font-size:14px;padding:9px 14px}}
+</style>
+<a class="rzcb" href="{{ section.settings.link | default: '/pages/return-calculator' }}" aria-label="{{ section.settings.label }}">
+  <span class="ic">{{ section.settings.icon | default: '📈' }}</span><span>{{ section.settings.label }}</span>
+</a>
+{% schema %}
+{
+  "name": "Reza calculator button",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "ماشین‌حساب بازده" },
+    { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "📈" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Reza calculator button" }]
+}
+{% endschema %}

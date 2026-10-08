@@ -1,0 +1,59 @@
+{%- comment -%}
+  Article page for the subscriber-only blog "portfolio" (rendered from reza-news-article).
+  Public: title, date, short teaser (article body). Subscribers: full note (metafield custom.private_body)
+  + comments. Only subscribers can comment; only Reza can write posts (in the admin).
+{%- endcomment -%}
+{%- capture rzp_acc -%}{%- render 'rz-portfolio-access' -%}{%- endcapture -%}
+{%- assign ok = false -%}{%- if rzp_acc contains '1' -%}{%- assign ok = true -%}{%- endif -%}
+<style>
+  .rzpa{direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif;max-width:780px;margin:0 auto;padding:26px 16px 60px;color:#eef3f9}
+  .rzpa *{box-sizing:border-box}
+  .rzpa-card{background:#13233a;border:1px solid #25405f;border-radius:18px;padding:20px;margin-bottom:16px}
+  .rzpa a{color:#2ec4b6}
+  .rzpa h1{font-size:clamp(22px,4.5vw,32px);font-weight:900;line-height:1.45;margin:6px 0 4px;color:#fff}
+  .rzpa .meta{color:#93a7bf;font-size:13px}
+  .rzpa .body{font-size:16.5px;line-height:2.05;color:#dbe6f2}
+  .rzpa .body img{max-width:100%;height:auto;border-radius:12px}
+  .rzpa .lock{text-align:center;padding:26px 18px;border:1.5px solid #b5e36b;border-radius:18px;background:linear-gradient(160deg,#16314f,#0f2238)}
+  .rzpa .btn{display:inline-block;background:#b5e36b;color:#0b1726!important;font-weight:900;padding:11px 24px;border-radius:12px;text-decoration:none!important;border:0;cursor:pointer;font-size:15px}
+  .rzpa .cm{border-top:1px solid #25405f;padding:12px 0}
+  .rzpa .cm b{color:#fff}.rzpa .cm small{color:#93a7bf;margin-right:8px}
+  .rzpa .cm .tx{margin-top:4px;line-height:1.9;white-space:pre-wrap}
+  .rzpa textarea,.rzpa input{width:100%;background:#0b1726;border:1.5px solid #25405f;border-radius:12px;color:#fff;font-size:15px;padding:10px 12px;font-family:inherit;margin-bottom:8px}
+  .rzpa .ok{background:#14302e;border:1px solid #2a6b5a;border-radius:12px;padding:10px 12px;margin-bottom:10px}
+  .rzpa .err{background:#2e1820;border:1px solid #6b2a35;border-radius:12px;padding:10px 12px;margin-bottom:10px}
+</style>
+<div class="rzpa" style="background:#0b1726;border-radius:22px;margin-top:16px;margin-bottom:16px">
+  <p class="meta"><a href="/pages/portfolio#comm">← جامعه‌ی پورتفوی رضا</a> · {{ article.published_at | date: '%Y/%m/%d' }}</p>
+  <h1>{{ article.title }}</h1>
+  {%- if article.content != blank -%}<div class="rzpa-card body">{{ article.content }}</div>{%- endif -%}
+  {%- if ok -%}
+    {%- assign pb = article.metafields.custom.private_body -%}
+    {%- if pb != blank -%}<div class="rzpa-card body">{{ pb | metafield_tag }}</div>{%- endif -%}
+    <div class="rzpa-card" id="comments">
+      <h3 style="margin:0 0 6px;color:#fff">💬 نظرها ({{ article.comments_count }})</h3>
+      {%- paginate article.comments by 100 -%}
+        {%- for c in article.comments -%}
+          <div class="cm"><b>{{ c.author | escape }}</b><small>{{ c.created_at | date: '%Y/%m/%d %H:%M' }}</small><div class="tx">{{ c.content | escape }}</div></div>
+        {%- else -%}<p class="meta">هنوز نظری ثبت نشده. اولین نفر باش!</p>
+        {%- endfor -%}
+      {%- endpaginate -%}
+      {%- form 'new_comment', article -%}
+        {%- if form.posted_successfully? -%}<div class="ok">{% if blog.moderated? %}نظرت ثبت شد و بعد از تأیید نمایش داده میشه.{% else %}نظرت ثبت شد.{% endif %}</div>{%- endif -%}
+        {%- if form.errors -%}<div class="err">{{ form.errors | default_errors }}</div>{%- endif -%}
+        <input type="text" name="comment[author]" value="{{ customer.first_name | default: customer.name | escape }}" placeholder="نام" required>
+        <input type="email" name="comment[email]" value="{{ customer.email }}" style="display:none">
+        <textarea name="comment[body]" rows="4" placeholder="نظر یا سؤالت درباره‌ی این تصمیم…" required></textarea>
+        <button type="submit" class="btn">ارسال نظر</button>
+      {%- endform -%}
+    </div>
+  {%- else -%}
+    <div class="lock">
+      <h3 style="color:#fff;margin:0 0 8px">🔒 متن کامل و نظرها فقط برای مشترکین پورتفوی</h3>
+      <p class="meta" style="font-size:14.5px">دلیل هر خرید و فروش، به‌روزرسانی پورتفوی و گفتگو با بقیه‌ی مشترکین.</p>
+      <a class="btn" href="/products/portfolio-pro">عضویت سالانه · $300</a>
+      {%- unless customer -%}<p class="meta" style="margin-top:12px">قبلاً مشترک شدی؟ <a href="/account/login?return_url={{ article.url | url_encode }}">وارد شو</a></p>{%- endunless -%}
+    </div>
+  {%- endif -%}
+  <p class="meta" style="margin-top:14px">این یادداشت‌ها گزارش معاملات شخصی نویسنده است و توصیه‌ی سرمایه‌گذاری نیست. نویسنده در سهم‌های ذکرشده موقعیت دارد.</p>
+</div>

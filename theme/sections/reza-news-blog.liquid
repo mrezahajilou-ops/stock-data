@@ -1,0 +1,75 @@
+{%- if blog.handle == 'portfolio' -%}
+<script>location.replace('/pages/portfolio#comm');</script>
+<p style="text-align:center;padding:60px 16px;font-family:Vazirmatn,Tahoma,sans-serif"><a href="/pages/portfolio#comm">جامعه‌ی پورتفوی رضا</a></p>
+{%- else -%}
+{%- render 'reza-news-css' -%}
+{%- assign p = section.settings.product -%}
+<div class="rzn">
+  <div class="rzn-wrap">
+    <div class="rzn-head">
+      <div>
+        <span class="rzn-live">آخرین مطالب</span>
+        <h1>{{ section.settings.heading }}</h1>
+        <p>{{ section.settings.subheading }}</p>
+      </div>
+    </div>
+
+    {%- if blog.all_tags.size > 0 -%}
+      <div class="rzn-tags">
+        <a href="{{ blog.url }}" class="{% unless current_tags %}on{% endunless %}">همه</a>
+        {%- for tag in blog.all_tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="{% if current_tags contains tag %}on{% endif %}">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if p -%}{%- render 'reza-book-card', product: p, style: 'compact' -%}{%- endif -%}
+
+    {%- paginate blog.articles by 13 -%}
+      {%- if blog.articles.size == 0 -%}
+        <div class="rzn-empty">به‌زودی اولین مطالب اینجا منتشر می‌شود.</div>
+      {%- else -%}
+        <div class="rzn-grid">
+          {%- for article in blog.articles -%}
+            <a class="rzn-card{% if forloop.first and paginate.current_page == 1 %} rzn-card--lead{% endif %}" href="{{ article.url }}">
+              {%- if article.image -%}
+                <img src="{{ article.image | image_url: width: 900 }}" alt="{{ article.image.alt | default: article.title | escape }}" loading="lazy">
+              {%- endif -%}
+              <div class="in">
+                <div class="rzn-meta">
+                  {%- if article.tags.size > 0 -%}<span class="rzn-cat">{{ article.tags.first }}</span>{%- endif -%}
+                  <span>{{ article.published_at | date: '%Y/%m/%d' }}</span>
+                </div>
+                <h2>{{ article.title }}</h2>
+                {%- if article.excerpt != blank -%}<p>{{ article.excerpt | strip_html | truncate: 150 }}</p>{%- endif -%}
+              </div>
+            </a>
+            {%- if forloop.index == 4 and p -%}
+              <div class="rzn-slot">{%- render 'reza-book-card', product: p, style: 'wide' -%}</div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <div class="rzn-pag">{{ paginate | default_pagination: previous: '→ جدیدتر', next: 'قدیمی‌تر ←' }}</div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+{%- if p -%}
+  {%- assign sv = p.selected_or_first_available_variant -%}
+  <div class="rzn-sticky"><span>📘 کتاب آموزش بورس · {{ sv.price | money }}</span><a href="/cart/{{ sv.id }}:1">خرید کتاب</a></div>
+{%- endif -%}
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Reza news list",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "اخبار و مقالات" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "خبرها و مقاله‌های مهم بورس، اقتصاد و سیاست؛ با توضیح ساده و نظر رضا حاجیلو" },
+    { "type": "product", "id": "product", "label": "Book product" }
+  ]
+}
+{% endschema %}

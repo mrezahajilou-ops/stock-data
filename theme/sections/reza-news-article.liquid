@@ -1,0 +1,63 @@
+{%- if blog.handle == 'portfolio' -%}
+{%- render 'rz-portfolio-article' -%}
+{%- else -%}
+{%- render 'reza-news-css' -%}
+{%- assign p = section.settings.product -%}
+<div class="rzn">
+  <article class="rza">
+    <div class="rzn-meta">
+      <a href="{{ blog.url }}" class="rzn-cat">← اخبار و مقالات</a>
+      {%- if article.tags.size > 0 -%}<span class="rzn-cat">{{ article.tags.first }}</span>{%- endif -%}
+      <span>{{ article.published_at | date: '%Y/%m/%d' }}</span>
+    </div>
+    <h1>{{ article.title }}</h1>
+    {%- if article.image -%}
+      <img class="rza-hero" src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.image.alt | default: article.title | escape }}">
+    {%- endif -%}
+
+    <div class="rza-body">{{ article.content }}</div>
+
+    {%- if p -%}{%- render 'reza-book-card', product: p, style: 'wide' -%}{%- endif -%}
+
+    <div class="rza-share">
+      <a href="https://x.com/intent/tweet?url={{ shop.url | append: article.url | url_encode }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener">اشتراک در ایکس</a>
+      <a href="https://wa.me/?text={{ article.title | append: ' ' | append: shop.url | append: article.url | url_encode }}" target="_blank" rel="noopener">واتس‌اپ</a>
+      <a href="https://t.me/share/url?url={{ shop.url | append: article.url | url_encode }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener">تلگرام</a>
+    </div>
+
+    <div class="rza-more">
+      <h3>مطالب دیگر</h3>
+      <div class="rzn-grid">
+        {%- assign shown = 0 -%}
+        {%- for a in blog.articles -%}
+          {%- if a.id != article.id and shown < 4 -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <a class="rzn-card" href="{{ a.url }}">
+              <div class="in">
+                <div class="rzn-meta">{%- if a.tags.size > 0 -%}<span class="rzn-cat">{{ a.tags.first }}</span>{%- endif -%}<span>{{ a.published_at | date: '%Y/%m/%d' }}</span></div>
+                <h2>{{ a.title }}</h2>
+              </div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <p class="rza-disc">این مطلب آموزشی و خبری است و توصیه خرید یا فروش هیچ دارایی نیست.</p>
+  </article>
+</div>
+{%- if p -%}
+  {%- assign sv = p.selected_or_first_available_variant -%}
+  <div class="rzn-sticky"><span>📘 کتاب آموزش بورس · {{ sv.price | money }}</span><a href="/cart/{{ sv.id }}:1">خرید کتاب</a></div>
+{%- endif -%}
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Reza news article",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Book product" }
+  ]
+}
+{% endschema %}

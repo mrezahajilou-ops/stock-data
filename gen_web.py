@@ -11,7 +11,8 @@ WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
-        ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها')]
+        ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'),
+        ('calc', '/pages/return-calculator', '📈 ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', '💼 پورتفوی رضا')]
 
 
 def nav(on):
@@ -232,8 +233,17 @@ fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/1800000)).then(func
 """
 
 
+def portfolio_page():
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'portfolio.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'portfolio.js'), encoding='utf-8').read()
+    return ('<div id="rzp" dir="rtl">\n<style>%s</style>\n%s\n<div class="card" id="rzp-head"></div>\n<div id="rzp-main"></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzp'), nav('portfolio'), JS, js)
+
+
 def main():
     pages = {
+        'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', '⭐ واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),
         'calendar.html': page('calendar', 'rze', 'تقویم گزارش‌های مالی', 'کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.', CAL_BODY, CAL_JS),

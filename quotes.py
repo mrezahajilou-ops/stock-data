@@ -31,8 +31,12 @@ def num(s):
         return None
 
 
+ETFS = ['SPY', 'QQQ']  # benchmarks for the portfolio page
+
+
 def fetch(batch):
-    qs = '&'.join('symbol=' + urllib.parse.quote(t.replace('-', '.').lower() + '|stocks') for t in batch)
+    qs = '&'.join('symbol=' + urllib.parse.quote(t.replace('-', '.').lower() + ('|etf' if t in ETFS else '|stocks'))
+                  for t in batch)
     url = 'https://api.nasdaq.com/api/quote/watchlist?' + qs
     for attempt in range(4):
         try:
@@ -48,7 +52,7 @@ def main():
     tickers = sorted(f[:-5] for f in os.listdir(STOCKS) if f.endswith('.json'))
     if len(sys.argv) > 1 and sys.argv[1]:
         tickers = tickers[:int(sys.argv[1])]
-    batches = [tickers[i:i + BATCH] for i in range(0, len(tickers), BATCH)]
+    batches = [tickers[i:i + BATCH] for i in range(0, len(tickers), BATCH)] + [ETFS]
     q, status = {}, {}
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=4) as ex:

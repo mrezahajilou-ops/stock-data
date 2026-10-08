@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "reza-landing": {
+      "type": "reza-landing",
+      "settings": {
+        "product": "از-اولین-سهم-تا-انتخاب-حرفه‌ای‌ها-مرجع-کامل-فارسی-برای-یادگرفتن-سرمایه‌گذاری-در-بورس"
+      }
+    },
+    "reza-news-button": {
+      "type": "reza-news-button",
+      "settings": { "label": "اخبار و مقالات", "link": "/blogs/news" }
+    },
+    "reza-calc-button": {
+      "type": "reza-calc-button",
+      "settings": { "label": "پورتفوی رضا", "icon": "💼", "link": "/pages/portfolio" }
+    },
+    "reza-stocks-button": {
+      "type": "reza-stocks-button",
+      "settings": { "label": "تحلیل سهام", "link": "/pages/stock" }
+    },
+    "reza-contest-button": {
+      "type": "reza-contest-button",
+      "settings": { "label": "مسابقه", "link": "/pages/contest" }
+    }
+  },
+  "order": ["reza-landing", "reza-news-button", "reza-calc-button", "reza-stocks-button", "reza-contest-button"]
+}

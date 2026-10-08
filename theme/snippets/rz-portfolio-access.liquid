@@ -1,0 +1,33 @@
+{%- comment -%}
+  Prints "1" when the logged-in customer may see Reza's portfolio, otherwise nothing.
+  Access = customer tag 'pro' or 'portfolio' (owner / gifts), or a paid order of the product
+  'portfolio-pro' in the last 380 days (one year + a short renewal grace period).
+  Use:  {%- capture rzp_acc -%}{%- render 'rz-portfolio-access' -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign ok = false
+  if customer
+    if customer.tags contains 'pro' or customer.tags contains 'portfolio'
+      assign ok = true
+    endif
+    unless ok
+      assign now_s = 'now' | date: '%s' | plus: 0
+      for order in customer.orders
+        assign ots = order.created_at | date: '%s' | plus: 0
+        assign age = now_s | minus: ots
+        if age < 32832000
+          if order.financial_status == 'paid' or order.financial_status == 'partially_refunded'
+            for li in order.line_items
+              if li.product.handle == 'portfolio-pro'
+                assign ok = true
+              endif
+            endfor
+          endif
+        endif
+      endfor
+    endunless
+  endif
+  if ok
+    echo '1'
+  endif
+-%}

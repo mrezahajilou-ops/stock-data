@@ -144,13 +144,14 @@ def main():
         base = hist[-1] if hist else None
     if base is None:
         sv = meta.get('savvy') or {}
-        base = [sv.get('as_of', d), 1 + (sv.get('total') or 0) / 100, None]
+        base = [sv.get('as_of', d), 1 + (sv.get('total') or 0) / 100, 1.0]
         hist = [base]
     r = (V - flows(trades, d)) / Vb if Vb > 0 else 1.0
     if not (0.5 < r < 1.5):
         sys.exit('implausible daily change, not saving')
     if spy and not spy0:
-        spy0 = meta['spy0'] = spy / (base[2] or 1)  # anchor so that the first point keeps its benchmark index
+        # anchor: the base day's SPY close maps to the base point's benchmark index
+        spy0 = meta['spy0'] = (px('SPY', 2) or spy) / (base[2] or 1)
     spy_idx = round(spy / spy0, 6) if spy and spy0 else (base[2] if base else None)
     hist.append([d, round(base[1] * r, 6), spy_idx])
     vals.append([d, round(V, 2)])

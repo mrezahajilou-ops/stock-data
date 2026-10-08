@@ -45,8 +45,6 @@ MANAGERS = [
      'شریک قدیمی سوروس و یکی از بهترین سابقه‌های بازدهی تاریخ؛ بر اساس روندهای کلان اقتصاد سریع جابه‌جا میشه.'),
     ('icahn', 921669, 'ICAHN', 'Carl Icahn', 'Icahn Capital', 'کارل آیکان', 'آیکان', 'فعال',
      'معروف‌ترین سرمایه‌گذار فعال (اکتیویست)؛ سهم بزرگ می‌خره و هیئت‌مدیره رو برای تغییر تحت فشار می‌ذاره.'),
-    ('einhorn', 1079114, 'GREENLIGHT', 'David Einhorn', 'Greenlight Capital', 'دیوید آینهورن', 'گرین‌لایت', 'ارزشی',
-     'سرمایه‌گذار ارزشی که به خاطر فروش استقراضی‌های معروفش شناخته میشه؛ این‌جا فقط بخش خرید پورتفوش دیده میشه.'),
     ('loeb', 1040273, 'THIRD POINT', 'Dan Loeb', 'Third Point', 'دن لوب', 'تِرد پوینت', 'فعال / رویدادمحور',
      'اکتیویست معروف با نامه‌های تند به مدیران شرکت‌ها؛ روی رویدادهایی مثل جداسازی و تغییر مدیریت سرمایه‌گذاری می‌کنه.'),
     ('coleman', 1167483, 'TIGER GLOBAL', 'Chase Coleman', 'Tiger Global', 'چیس کلمن', 'تایگر گلوبال', 'رشد / تکنولوژی',
@@ -97,8 +95,6 @@ MANAGERS = [
      'برندهای جهانی مصرفی که ده‌ها سال رشد می‌کنن؛ سهم‌ها رو خیلی طولانی نگه می‌داره.'),
     ('bloomstran', 1115373, 'SEMPER AUGUSTUS', 'Chris Bloomstran', 'Semper Augustus', 'کریس بلومستران', 'سمپر آگوستوس', 'ارزشی',
      'از بهترین تحلیلگرهای برکشایر؛ پورتفوی متمرکز و نامه‌های سالانه‌ی خیلی مفصل.'),
-    ('spier', 1404599, 'AQUAMARINE', 'Guy Spier', 'Aquamarine Capital', 'گای اسپیر', 'آکوامارین', 'ارزشی',
-     'نویسنده‌ی کتاب «آموزش یک سرمایه‌گذار ارزشی»؛ کسی که با پابرای ناهار با بافت رو خرید.'),
     ('firsteagle', 1325447, 'FIRST EAGLE', 'First Eagle', 'First Eagle Investment', 'فرست ایگل', 'فرست ایگل', 'ارزشی / محافظه‌کار',
      'سرمایه‌گذاری محتاطانه با حاشیه‌ی امن؛ همیشه بخشی رو در طلا نگه می‌داره.'),
     ('tweedy', 732905, 'TWEEDY', 'Tweedy, Browne', 'Tweedy, Browne', 'تویدی براون', 'تویدی براون', 'ارزشی',
@@ -158,6 +154,7 @@ def get(url, tries=4, data=None, headers=None):
 
 
 _last = [0.0]
+DEBUG = {}
 
 
 def sec(url):
@@ -274,6 +271,7 @@ def load_manager(m):
             filed = a['filed']
         eq, opt = quarter_rows(rows, base['filed'])
         Q.append({'period': p, 'filed': filed, 'first_filed': base['filed'], 'eq': eq, 'opt': opt})
+    DEBUG[mid] = {'sec': name, 'forms': [[f['form'], f['period'], f['filed']] for f in fs[:6]]}
     print('%s: %s, %d quarters, latest %s (%d positions)' % (mid, name, len(Q), Q[0]['period'] if Q else '-', len(Q[0]['eq']) if Q else 0))
     return {'m': m, 'sec_name': name, 'Q': Q}
 
@@ -300,12 +298,31 @@ def figi(cusips, cache):
                 cache[c] = [d['ticker'].replace('/', '-').upper(), d.get('name') or '', d.get('securityType') or '']
             elif isinstance(res, dict) and 'error' in res and 'No identifier' in str(res.get('error')):
                 cache[c] = [None, '', '']
+    # second pass for misses (foreign-domiciled CUSIPs etc.): any exchange, keep a US listing if there is one
+    US = ('US', 'UN', 'UW', 'UQ', 'UA', 'UR', 'UP', 'UV', 'UF')
+    miss = [c for c in cusips if c in cache and not cache[c][0] and len(cache[c]) < 4]
+    print('OpenFIGI retry: %d' % len(miss))
+    for i in range(0, len(miss), step):
+        chunk = miss[i:i + step]
+        body = json.dumps([{'idType': 'ID_CUSIP', 'idValue': c} for c in chunk]).encode()
+        b = get('https://api.openfigi.com/v3/mapping', data=body, headers=hdr, tries=6)
+        time.sleep(pause)
+        if not b:
+            continue
+        for c, res in zip(chunk, json.loads(b)):
+            ds = (res.get('data') or []) if isinstance(res, dict) else []
+            us = [d for d in ds if d.get('exchCode') in US and d.get('ticker')]
+            if us:
+                d = us[0]
+                cache[c] = [d['ticker'].replace('/', '-').upper(), d.get('name') or '', d.get('securityType') or '']
+            elif isinstance(res, dict) and ('data' in res or 'No identifier' in str(res.get('error'))):
+                cache[c] = [None, (ds[0].get('name') if ds else '') or '', '', 1]
     return cache
 
 
 def norm(s):
     s = re.sub(r'[^A-Z0-9 ]', ' ', (s or '').upper())
-    s = re.sub(r'\b(INC|CORP|CORPORATION|CO|COMPANY|LTD|PLC|HOLDINGS?|GROUP|THE|CL|CLASS|A|B|C|NEW|DEL|COM|SA|NV|AG|SPONSORED|ADR|ADS)\b', ' ', s)
+    s = re.sub(r'\b(INC|CORP|CORPORATION|CO|COMPANY|LTD|LIMITED|PLC|PUB|HOLDINGS?|HLDGS?|HLDNGS|GROUP|GRP|THE|CL|CLASS|A|B|C|NEW|DEL|COM|SA|NV|N V|AG|SE|SPONSORED|ADR|ADS|IRELAND|INTL|INTERNATIONAL|INTERNATION)\b', ' ', s)
     return ' '.join(s.split())
 
 
@@ -315,9 +332,13 @@ def main():
     idx = json.load(open(os.path.join(ROOT, 'data', 'index.json')))
     aliases = json.load(open(os.path.join(ROOT, 'data', 'aliases.json')))
     universe = {r['t'] for r in idx}
+    names_by_t = {r['t']: r['n'] for r in idx}
     byname = {}
+    byname2 = {}
     for r in idx:
         byname.setdefault(norm(r['n']), r['t'])
+        k2 = ' '.join(norm(r['n']).split()[:2])
+        byname2[k2] = r['t'] if k2 not in byname2 else None  # only unique prefixes
     try:
         cache = json.load(open(os.path.join(OUT, 'cusip.json')))
     except Exception:
@@ -352,11 +373,16 @@ def main():
             if t not in universe and t.replace('-', '') in universe:
                 t = t.replace('-', '')
             return t
-        return byname.get(norm(name))
+        k = norm(name)
+        if k in byname:
+            return byname[k]
+        k2 = ' '.join(k.split()[:2])
+        return byname2.get(k2) if len(k2) >= 6 else None
 
     def title(s):
         return ' '.join(w if len(w) <= 3 and w.isupper() and w not in ('INC', 'COM', 'NEW', 'THE', 'CO') else w.capitalize() for w in (s or '').split())
 
+    SAME = {'GOOG': 'GOOGL', 'BRK-A': 'BRK-B', 'FOX': 'FOXA', 'NWS': 'NWSA', 'FWONK': 'FWONA', 'LBRDA': 'LBRDK', 'LSXMK': 'LSXMA', 'UHAL': 'UHAL-B', 'HEI-A': 'HEI'}
     latest_all = max(d['Q'][0]['period'] for d in data)
     summary, owners, act_all = [], defaultdict(list), []
     for d in data:
@@ -428,15 +454,30 @@ def main():
         full = dict(rec, q=q_hist, hold=hold[:TOP], more=max(0, len(hold) - TOP), sold=sold[:60], opt=opts)
         json.dump(full, open(os.path.join(OUT, 'm', mid + '.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
         if not stale:
+            agg = {}
             for h in hold:
                 if h['t'] and h['w'] >= 0.001:
-                    owners[h['t']].append([mid, h['w'], h['a'], h['c'], h['n']])
+                    k = SAME.get(h['t'], h['t'])
+                    if k in agg:
+                        agg[k][1] += h['w']
+                        if not agg[k][2]:
+                            agg[k][2] = h['a']
+                    else:
+                        agg[k] = [mid, h['w'], h['a'], h['c'], h['n'] if k == h['t'] else (names_by_t.get(k) or h['n'])]
+            for k, v in agg.items():
+                v[1] = round(v[1], 5)
+                owners[k].append(v)
+            seen = set()
             for s in sold:
-                if s['t']:
-                    act_all.append((s['t'], s['n'], mid, 'sold', s['w']))
+                if s['t'] and SAME.get(s['t'], s['t']) not in agg:
+                    k = SAME.get(s['t'], s['t'])
+                    if k not in seen:
+                        seen.add(k); act_all.append((k, s['n'], mid, 'sold', s['w']))
             for h in hold:
                 if h['t'] and h['a'] in ('new', 'add', 'cut'):
-                    act_all.append((h['t'], h['n'], mid, h['a'], h['e'] or 0))
+                    k = SAME.get(h['t'], h['t'])
+                    if k not in seen:
+                        seen.add(k); act_all.append((k, h['n'], mid, h['a'], h['e'] or 0))
 
     # most owned
     pop = []
@@ -465,6 +506,7 @@ def main():
     json.dump(index, open(os.path.join(OUT, 'index.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
     json.dump({t: [[x[0], x[1], x[2]] for x in sorted(L, key=lambda x: -x[1])] for t, L in owners.items()},
               open(os.path.join(OUT, 'owners.json'), 'w'), separators=(',', ':'))
+    json.dump(DEBUG, open(os.path.join(OUT, 'debug.json'), 'w'), indent=0)
     print('done: %d managers, %d stocks owned, latest quarter %s' % (len(summary), len(owners), latest_all))
 
 

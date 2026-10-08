@@ -38,9 +38,11 @@ function value(){H=[];V=B?B.cash:0;DAY=0;COST=0;if(!B)return;
   H.forEach(function(h){h.w=V?h.val/V:0});H.sort(function(a,b){return b.val-a.val})}
 
 /* ---- performance index: stored daily history (+ today's live point for subscribers) ---- */
-function series(){var s=HIST.map(function(r){return [r[0],r[1],r[2]]}),today=nyDate();
-  if(ACC&&B&&V>0&&s.length){var last=s[s.length-1],base=last[0]===today&&s.length>1?s[s.length-2]:last,dp=(V-DAY)>0?DAY/(V-DAY):0;
-    var pt=[today,base[1]*(1+dp),last[0]===today?last[2]:base[2]];if(last[0]===today)s[s.length-1]=pt;else s.push(pt)}
+function quoteDay(){var c={},best=null;if(!RZQ)return null;H.forEach(function(h){var q=RZQ.q[h.t];if(q&&q[3]){var d=String(q[3]).slice(0,10);c[d]=(c[d]||0)+1;if(!best||c[d]>c[best])best=d}});return best}
+function series(){var s=HIST.map(function(r){return [r[0],r[1],r[2]]}),today=quoteDay()||'0000';
+  if(s.length&&today<=s[s.length-1][0]&&s[s.length-1][0]!==today)today='0000';
+  if(ACC&&B&&V>0&&s.length&&today>s[0][0]&&(today>s[s.length-1][0]||(s.length>1&&today===s[s.length-1][0]&&!(META.savvy&&META.savvy.as_of>=today)))){var last=s[s.length-1],base=last[0]===today&&s.length>1?s[s.length-2]:last,dp=(V-DAY)>0?DAY/(V-DAY):0;
+    var sq=RZQ&&RZQ.q.SPY,pt=[today,base[1]*(1+dp),sq&&sq[0]>0&&META.spy0?sq[0]/META.spy0:(last[0]===today?last[2]:base[2])];if(last[0]===today)s[s.length-1]=pt;else s.push(pt)}
   else if(P.live&&P.live.idx&&s.length){var l=P.live,lt=s[s.length-1];if(l.date&&l.date>=lt[0]){if(l.date===lt[0])s[s.length-1]=[l.date,l.idx,l.spy||lt[2]];else s.push([l.date,l.idx,l.spy||lt[2]])}}
   return s}
 function at(s,date){var v=null;for(var i=0;i<s.length;i++){if(s[i][0]<=date)v=s[i];else break}return v||s[0]}

@@ -11,7 +11,7 @@ WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
-        ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'),
+        ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('superinvestors', '/pages/superinvestors', '🦈 سوپر سرمایه‌گذارها'),
         ('calc', '/pages/return-calculator', '📈 ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', '💼 پورتفوی رضا')]
 
 

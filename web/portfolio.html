@@ -160,7 +160,7 @@ function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(
    trades/vals/posts bodies are only present for subscribers (the template decides server-side). */
 var P=window.RZP||{},ACC=!!P.access,META=P.meta||{},HIST=(P.hist||[]).filter(function(r){return r&&r[0]&&r[1]>0});
 var TR=(P.trades||[]).slice().sort(function(a,b){return a.d<b.d?-1:a.d>b.d?1:0});
-var NAMES={},TAB='port',RANGE='MAX',MODE='total',CMP=true;
+var NAMES={},TAB='port',RANGE='MAX',MODE='total',CMP=false;
 var COLORS={up:['#bfe8dc','#8fd6c2','#5cc2a5','#2ea886'],dn:['#f6cfd2','#efa7ad','#e67c85','#d6505c']};
 function money(v,d){if(v==null||!isFinite(v))return '—';var s=v<0?'-':'',a=Math.abs(v);if(d==='k'&&a>=1000)return s+'$'+(a/1000).toFixed(2)+'K';return s+'$'+a.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function sg(v,d){return v==null||!isFinite(v)?'—':(v>=0?'+':'')+(v*100).toFixed(d==null?2:d)+'%'}
@@ -289,8 +289,7 @@ function header(){var s=series(),o=stats(s),cell=function(l,v){return '<div><sma
     '<p class="note">'+(RZQ&&RZQ.as_of?(RZQ_ST[RZQ.status]||'قیمت')+' · '+liveWhen(RZQ.as_of):'')+(P.live&&P.live.as_of&&!ACC?'به‌روزرسانی: '+liveWhen(P.live.as_of):'')+'</p>'}
 function render(){header();var m=$('rzp-main');
   var tabs='<div class="tabs"><button data-tab="port"'+(TAB==='port'?' class="on"':'')+'>پورتفوی</button><button data-tab="hist"'+(TAB==='hist'?' class="on"':'')+'>تاریخچه‌ی معاملات</button><button data-tab="comm"'+(TAB==='comm'?' class="on"':'')+'>جامعه</button></div>';
-  var perf='<div class="card"><div class="chd"><h3>عملکرد</h3><div class="seg" id="rzp-rg">'+['1M','3M','6M','YTD','1Y','MAX'].map(function(r){return '<button data-r="'+r+'"'+(r===RANGE?' class="on"':'')+'>'+r+'</button>'}).join('')+'</div></div><div id="rzp-ch"></div>'+
-    '<label class="mut" style="font-size:13px;cursor:pointer"><input type="checkbox" id="rzp-cmp"'+(CMP?' checked':'')+' style="vertical-align:middle;margin-left:4px">مقایسه با S&amp;P 500</label></div>';
+  var perf='<div class="card"><div class="chd"><h3>عملکرد</h3><div class="seg" id="rzp-rg">'+['1M','3M','6M','YTD','1Y','MAX'].map(function(r){return '<button data-r="'+r+'"'+(r===RANGE?' class="on"':'')+'>'+r+'</button>'}).join('')+'</div></div><div id="rzp-ch"></div>'+'</div>';
   var body='';
   if(TAB==='port'){
     if(ACC)body='<div class="grid2">'+perf+'<div class="card"><div class="chd"><h3>ترکیب پورتفوی</h3><div class="seg" id="rzp-md"><button data-m="today"'+(MODE==='today'?' class="on"':'')+'>امروز</button><button data-m="total"'+(MODE==='total'?' class="on"':'')+'>کل</button></div></div><div class="tm" id="rzp-tm"></div></div></div>'+

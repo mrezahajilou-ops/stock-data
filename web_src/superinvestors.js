@@ -1,9 +1,10 @@
 /* Super investors (13F). Data: branch "superinvestors" (built daily by superinvestors.py from SEC filings). */
 var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',FREE={buffett:1};
-var D=null,M={},BYID={},OWN=null,TAB='mgr',STY='all',SORT='value',Q='',HF='all',HS='w',BS='buys';
+var D=null,M={},BYID={},OWN=null,TAB='mgr',STY='all',SORT='fame',Q='',HF='all',HS='w',BS='buys';
 var SI=RAW+'/superinvestors/';
 var STYLES=[['all','همه'],['ارزشی','ارزشی'],['کیفیت','کیفیت'],['رشد','رشد و تکنولوژی'],['فعال','اکتیویست'],['کلان','کلان']];
 var COL=['#2ec4b6','#b5e36b','#f5b700','#7ab8ff','#ff9f6b','#c9a7ff','#5ef0d2','#ffd36b','#9fe39a','#ff8fb1'];
+function nz(s){return String(s||'').toLowerCase().replace(/[\u200c\s\-_.]+/g,'').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/[ًٌٍَُِّ]/g,'')}
 function hc(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return COL[h%COL.length]}
 function ini(m){var p=String(m.who||m.firm).replace(/[^A-Za-z ]/g,' ').trim().split(/\s+/);return ((p[0]||'?')[0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase()}
 function av(m,c){return '<span class="av'+(c?' '+c:'')+'" style="background:'+hc(m.id)+'">'+ini(m)+'</span>'}
@@ -23,9 +24,9 @@ function mlink(id){var m=BYID[id];return m?'<span data-m="'+id+'">'+av(m)+esc(m.
 
 /* ------------------------------------------------------------- list views */
 function tabs(){return '<div class="tabs">'+[['mgr','👤 سرمایه‌گذارها'],['pop','🏆 محبوب‌ترین سهم‌ها'],['act','🔄 خرید و فروش فصل'],['who','🔎 این سهم دست کیه؟'],['feed','🗓️ آخرین گزارش‌ها']].map(function(t){return '<button data-tab="'+t[0]+'"'+(TAB===t[0]?' class="on"':'')+'>'+t[1]+'</button>'}).join('')+'</div>'}
-function mgrList(){var L=D.managers.filter(function(m){if(STY!=='all'&&String(m.style).indexOf(STY)<0)return false;if(!Q)return true;var s=(m.who+' '+m.firm+' '+m.fa+' '+m.ffa).toLowerCase();return s.indexOf(Q.toLowerCase())>=0});
-  L=L.slice().sort(function(a,b){return SORT==='filed'?(b.filed>a.filed?1:-1):SORT==='buys'?((b.nnew+b.nadd)-(a.nnew+a.nadd)):SORT==='conc'?b.top10-a.top10:b.value-a.value});
-  var h='<div class="bar"><input id="rzi-q" placeholder="جستجوی اسم سرمایه‌گذار یا صندوق…" value="'+esc(Q)+'"><select id="rzi-sort"><option value="value"'+(SORT==='value'?' selected':'')+'>بزرگ‌ترین پورتفوی</option><option value="filed"'+(SORT==='filed'?' selected':'')+'>تازه‌ترین گزارش</option><option value="buys"'+(SORT==='buys'?' selected':'')+'>بیشترین خرید این فصل</option><option value="conc"'+(SORT==='conc'?' selected':'')+'>متمرکزترین پورتفوی</option></select></div>'+
+function mgrList(){var L=D.managers.filter(function(m){if(STY!=='all'&&String(m.style).indexOf(STY)<0)return false;if(!Q)return true;return nz(m.who+' '+m.firm+' '+m.fa+' '+m.ffa+' '+m.sec).indexOf(nz(Q))>=0});
+  L=L.slice().sort(function(a,b){if(a.stale!==b.stale)return a.stale?1:-1;return SORT==='fame'?(a.rank==null?999:a.rank)-(b.rank==null?999:b.rank):SORT==='filed'?(b.filed>a.filed?1:-1):SORT==='buys'?((b.nnew+b.nadd)-(a.nnew+a.nadd)):SORT==='conc'?b.top10-a.top10:b.value-a.value});
+  var h='<div class="bar"><input id="rzi-q" placeholder="جستجوی اسم سرمایه‌گذار یا صندوق…" value="'+esc(Q)+'"><select id="rzi-sort"><option value="fame"'+(SORT==='fame'?' selected':'')+'>مشهورترین‌ها</option><option value="value"'+(SORT==='value'?' selected':'')+'>بزرگ‌ترین پورتفوی</option><option value="filed"'+(SORT==='filed'?' selected':'')+'>تازه‌ترین گزارش</option><option value="buys"'+(SORT==='buys'?' selected':'')+'>بیشترین خرید این فصل</option><option value="conc"'+(SORT==='conc'?' selected':'')+'>متمرکزترین پورتفوی</option></select></div>'+
     '<div class="chips" style="margin:0 0 12px">'+STYLES.map(function(s){return '<span class="chip'+(STY===s[0]?' on':'')+'" data-sty="'+s[0]+'" style="direction:rtl">'+s[1]+'</span>'}).join('')+'</div>';
   if(!L.length)return h+'<div class="card empty">موردی پیدا نشد.</div>';
   return h+'<div class="mgrs">'+L.map(function(m){return '<a class="mg" href="#m='+m.id+'" data-m="'+m.id+'"><div class="hd">'+av(m)+'<div class="who"><b>'+esc(m.fa)+'</b><span>'+esc(m.ffa)+' · <span dir="ltr">'+esc(m.who)+'</span></span></div></div>'+

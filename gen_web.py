@@ -12,7 +12,7 @@ WEB = os.path.join(ROOT, 'web')
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
         ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('superinvestors', '/pages/superinvestors', '🦈 سوپر سرمایه‌گذارها'),
-        ('myportfolio', '/pages/my-portfolio', '📒 پورتفوی من'), ('calc', '/pages/return-calculator', '📈 ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', '💼 پورتفوی رضا')]
+        ('myportfolio', '/pages/my-portfolio', '📒 دفترچه سهام من'), ('calc', '/pages/return-calculator', '📈 ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', '💼 پورتفوی رضا')]
 
 
 def nav(on):
@@ -255,8 +255,8 @@ def myportfolio_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'myportfolio.css'), encoding='utf-8').read()
     js = open(os.path.join(src, 'myportfolio.js'), encoding='utf-8').read()
-    return ('<div id="rzm" dir="rtl">\n<style>%s</style>\n%s\n<h1>📒 پورتفوی من</h1>\n'
-            '<p class="sub">سهم‌هات رو اضافه کن تا ارزش لحظه‌ای، سود و زیان، ترکیب صنعت‌ها، چکاپ ریسک، درآمد سود نقدی و سوپرسرمایه‌گذارهای هم‌مسیرت رو ببینی.</p>\n'
+    return ('<div id="rzm" dir="rtl">\n<style>%s</style>\n%s\n<h1>📒 دفترچه سهام من</h1>\n'
+            '<p class="sub">سهم‌هایی که خودت داری رو اضافه کن تا ارزش لحظه‌ای، سود و زیان، ترکیب صنعت‌ها، چکاپ ریسک، درآمد سود نقدی و سوپرسرمایه‌گذارهای هم‌مسیرت رو ببینی.</p>\n'
             '<div id="rzm-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzm'), nav('myportfolio'), JS, js)
 

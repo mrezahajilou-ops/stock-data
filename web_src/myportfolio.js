@@ -86,7 +86,7 @@ function io(){if(!ACC)return '<div class="card empty">این بخش برای م�
     '<hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><button class="btn ghost sm" id="rzm-clear" style="color:var(--red)!important">پاک کردن کل پورتفو</button></div></div>'}
 function draw(){var R=rows(),o=totals(R),b='';
   if(TAB==='h')b=addForm()+table(R);else if(TAB==='mix')b=mix(R);else if(TAB==='health')b=health(R,o);else if(TAB==='div')b=divs(R,o);else b=io();
-  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه پورتفوی نمونه‌ست</b><p>با اشتراک Stock Pro پورتفوی خودت رو اینجا بساز: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
+  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه دفترچه‌ی نمونه‌ست</b><p>با اشتراک Stock Pro سهم‌های خودت رو اینجا دنبال کن: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
     head(R,o)+tabs()+b;
   if(TAB==='h'&&ACC){picker($('rzm-q'),$('rzm-s'),function(t){$('rzm-q').value=t;var r=BY[t];$('rzm-p').placeholder=r&&g(r,'price')?g(r,'price').toFixed(2):'';$('rzm-n').focus()})}}
 function addH(t,n,p,rep){t=String(t||'').trim().toUpperCase().replace('.','-');n=parseFloat(String(n).replace(',','.'));p=parseFloat(String(p||'').replace(',','.'));

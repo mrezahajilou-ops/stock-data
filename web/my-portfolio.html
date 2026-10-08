@@ -83,9 +83,9 @@
   #rzm .add{grid-template-columns:1fr 1fr}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a class="on" href="/pages/my-portfolio">📒 پورتفوی من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
-<h1>📒 پورتفوی من</h1>
-<p class="sub">سهم‌هات رو اضافه کن تا ارزش لحظه‌ای، سود و زیان، ترکیب صنعت‌ها، چکاپ ریسک، درآمد سود نقدی و سوپرسرمایه‌گذارهای هم‌مسیرت رو ببینی.</p>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a class="on" href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
+<h1>📒 دفترچه سهام من</h1>
+<p class="sub">سهم‌هایی که خودت داری رو اضافه کن تا ارزش لحظه‌ای، سود و زیان، ترکیب صنعت‌ها، چکاپ ریسک، درآمد سود نقدی و سوپرسرمایه‌گذارهای هم‌مسیرت رو ببینی.</p>
 <div id="rzm-main"><div class="card empty">در حال بارگذاری…</div></div>
 <script>
 (function(){
@@ -227,7 +227,7 @@ function io(){if(!ACC)return '<div class="card empty">این بخش برای م�
     '<hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><button class="btn ghost sm" id="rzm-clear" style="color:var(--red)!important">پاک کردن کل پورتفو</button></div></div>'}
 function draw(){var R=rows(),o=totals(R),b='';
   if(TAB==='h')b=addForm()+table(R);else if(TAB==='mix')b=mix(R);else if(TAB==='health')b=health(R,o);else if(TAB==='div')b=divs(R,o);else b=io();
-  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه پورتفوی نمونه‌ست</b><p>با اشتراک Stock Pro پورتفوی خودت رو اینجا بساز: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
+  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه دفترچه‌ی نمونه‌ست</b><p>با اشتراک Stock Pro سهم‌های خودت رو اینجا دنبال کن: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
     head(R,o)+tabs()+b;
   if(TAB==='h'&&ACC){picker($('rzm-q'),$('rzm-s'),function(t){$('rzm-q').value=t;var r=BY[t];$('rzm-p').placeholder=r&&g(r,'price')?g(r,'price').toFixed(2):'';$('rzm-n').focus()})}}
 function addH(t,n,p,rep){t=String(t||'').trim().toUpperCase().replace('.','-');n=parseFloat(String(n).replace(',','.'));p=parseFloat(String(p||'').replace(',','.'));

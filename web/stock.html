@@ -359,6 +359,7 @@ function render(d){
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
+  h+='<div class="card" id="rzs-si" style="display:none"></div>';
   h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
      '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/pages/dcf#'+esc(d.ticker)+'">محاسبه‌ی ارزش ذاتی (DCF) ←</a><a class="btn ghost" href="/pages/screener">سهم‌های مشابه در غربالگر</a></div></div></div>';
@@ -384,7 +385,26 @@ function render(d){
   loadPrice(d.ticker);
   loadExtras(d);
   loadAbout(d);
+  loadSI(d);
 }
+
+/* ---- super investors who own this stock (branch `superinvestors`, superinvestors.py) ---- */
+var SI_P=null,SI_SAME={GOOG:'GOOGL','BRK-A':'BRK-B',FOX:'FOXA',NWS:'NWSA',FWONK:'FWONA',LBRDA:'LBRDK','HEI-A':'HEI'};
+function loadSI(d){var box=$('rzs-si');if(!box)return;var t=SI_SAME[d.ticker]||d.ticker,v='?v='+Math.floor(Date.now()/3600000);
+  if(!SI_P)SI_P=Promise.all([fetch(XRAW+'/superinvestors/owners.json'+v).then(function(r){return r.ok?r.json():null}),fetch(XRAW+'/superinvestors/index.json'+v).then(function(r){return r.ok?r.json():null})]).catch(function(){return [null,null]});
+  SI_P.then(function(x){if(cur!==d||!x[0]||!x[1])return;var L=x[0][t]||[],by={};x[1].managers.forEach(function(m){by[m.id]=m});L=L.filter(function(o){return by[o[0]]});
+    var q=function(p){return p?'Q'+Math.ceil(+p.slice(5,7)/3)+' '+p.slice(0,4):''},w=function(v){return '<bdi dir="ltr">'+(v*100).toFixed(1)+'%</bdi>'};
+    var bd=function(a){return a==='new'?'<span style="background:#123f37;color:#5ef0d2;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">خرید جدید</span>':a==='add'?'<span style="background:#16352d;color:#7fe0c4;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">افزایش</span>':a==='cut'?'<span style="background:#3d1f26;color:#ff9aa0;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">کاهش</span>':'<span style="color:var(--mut);font-size:12px">بدون تغییر</span>'};
+    var h='<div class="axhead"><h3 style="margin:0">🦈 سوپر سرمایه‌گذارهایی که '+esc(d.ticker)+' رو دارن</h3><a class="lnk" href="/pages/superinvestors#t='+esc(t)+'">همه‌ی سوپر سرمایه‌گذارها ←</a></div>';
+    if(!L.length){h+='<p style="margin:10px 0 0;color:var(--mut)">هیچ‌کدوم از '+x[1].managers.length+' سرمایه‌گذار مشهور این بخش (بافت، اکمن، لی لو، تری اسمیت و …) در آخرین گزارش 13F خودشون این سهم رو نداشتن.</p>';box.innerHTML=h;box.style.display='';return}
+    var nb=L.filter(function(o){return o[2]==='new'||o[2]==='add'}).length,ns=L.filter(function(o){return o[2]==='cut'}).length;
+    h+='<p style="margin:8px 0 10px">در پورتفوی <b>'+faN(L.length)+'</b> سرمایه‌گذار مشهور'+(nb?' · <span class="up">'+faN(nb)+' نفر در آخرین فصل خریدن یا اضافه کردن</span>':'')+(ns?' · <span class="dn">'+faN(ns)+' نفر کم کردن</span>':'')+'</p>';
+    var rows=L.slice(0,12).map(function(o){var m=by[o[0]];return '<tr><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:800">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
+    var tb='<div class="tblwrap"><table><thead><tr><th style="text-align:right">سرمایه‌گذار</th><th>وزن در پورتفوی</th><th>آخرین فعالیت</th><th>گزارش</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+    if(ACCESS)h+=tb+(L.length>12?'<p class="xnote">و '+faN(L.length-12)+' سرمایه‌گذار دیگه · <a href="/pages/superinvestors#t='+esc(t)+'">لیست کامل</a></p>':'');
+    else h+='<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+tb+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 اسم‌ها برای مشترکین Stock Pro</a></div></div>';
+    h+='<p class="xnote">از گزارش‌های فصلی 13F به SEC؛ این گزارش‌ها تا ۴۵ روز بعد از پایان هر فصل منتشر میشن، پس وضعیت امروز نیستن.</p>';
+    box.innerHTML=h;box.style.display=''})}
 
 /* ---- news links + insider trades (branches `news` every 3h, `insider` nightly; extras.py) ---- */
 var XRAW=window.RZS_RAW||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';

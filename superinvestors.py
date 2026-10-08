@@ -41,7 +41,7 @@ MANAGERS = [
      'نویسنده‌ی کتاب افسانه‌ای Margin of Safety؛ خیلی محتاطه و فقط وقتی قیمت با حاشیه‌ی امن زیاد پایینه می‌خره.'),
     ('tepper', 1656456, 'APPALOOSA', 'David Tepper', 'Appaloosa', 'دیوید تپر', 'آپالوسا', 'رشد / فرصت‌طلب',
      'یکی از موفق‌ترین مدیران صندوق پوشش ریسک؛ وقتی بازار ترسیده با جسارت می‌خره. این روزها بیشتر روی تکنولوژی و چین.'),
-    ('druck', 1536411, 'DUQUESNE', 'Stanley Druckenmiller', 'Duquesne Family Office', 'استنلی دراکنمیلر', 'دوکین', 'کلان / رشد',
+    ('druck', 1536411, 'DUQUESNE', 'Stanley Druckenmiller', 'Duquesne Family Office', 'استنلی دراکن‌میلر', 'دوکین (دفتر خانوادگی دراکن‌میلر)', 'کلان / رشد',
      'شریک قدیمی سوروس و یکی از بهترین سابقه‌های بازدهی تاریخ؛ بر اساس روندهای کلان اقتصاد سریع جابه‌جا میشه.'),
     ('icahn', 921669, 'ICAHN', 'Carl Icahn', 'Icahn Capital', 'کارل آیکان', 'آیکان', 'فعال',
      'معروف‌ترین سرمایه‌گذار فعال (اکتیویست)؛ سهم بزرگ می‌خره و هیئت‌مدیره رو برای تغییر تحت فشار می‌ذاره.'),
@@ -55,20 +55,20 @@ MANAGERS = [
      'صندوق بزرگ با تحلیل بنیادی دقیق؛ پورتفوی متنوع از شرکت‌های بزرگ در همه‌ی بخش‌ها.'),
     ('laffont', 1135730, 'COATUE', 'Philippe Laffont', 'Coatue Management', 'فیلیپ لافون', 'کواتو', 'تکنولوژی',
      'متخصص سهام تکنولوژی؛ از اولین‌ها در هوش مصنوعی و نیمه‌هادی‌ها.'),
-    ('dalio', 1350694, 'BRIDGEWATER', 'Ray Dalio', 'Bridgewater Associates', 'ری دالیو', 'بریج‌واتر', 'کلان',
-     'بزرگ‌ترین صندوق پوشش ریسک دنیا؛ پورتفوی خیلی متنوع و بر پایه‌ی مدل‌های اقتصاد کلان. دالیو دیگه در مدیریت نیست.'),
-    ('soros', 1029160, 'SOROS FUND', 'George Soros', 'Soros Fund Management', 'جورج سوروس', 'سوروس', 'کلان',
-     'کسی که با شرط علیه پوند انگلیس معروف شد؛ دفتر خانوادگیش امروز پورتفوی متنوعی داره.'),
+    ('dalio', 1350694, 'BRIDGEWATER', 'Ray Dalio', 'Bridgewater Associates', 'بریج‌واتر', 'بنیان‌گذار: ری دالیو', 'کلان',
+     'بزرگ‌ترین صندوق پوشش ریسک دنیا که ری دالیو ساخت؛ دالیو از ۲۰۲۲ کنار رفته و صندوق رو تیم مدیریت جدید اداره می‌کنه. پورتفوی خیلی متنوع و بر پایه‌ی مدل‌های اقتصاد کلان.'),
+    ('soros', 1029160, 'SOROS FUND', 'George Soros', 'Soros Fund Management', 'سوروس فاند', 'جورج سوروس / الکس سوروس', 'کلان',
+     'جورج سوروس با شرط علیه پوند انگلیس معروف شد؛ امروز دفتر خانوادگیش رو پسرش الکس سوروس و تیم سرمایه‌گذاری اداره می‌کنن.'),
     ('gates', 1166559, 'GATES FOUNDATION', 'Bill Gates', 'Gates Foundation Trust', 'بیل گیتس', 'بنیاد گیتس', 'ارزشی / بلندمدت',
      'صندوق بنیاد بیل و ملیندا گیتس؛ سهم بزرگی از مایکروسافت و برکشایر و چند شرکت باثبات دیگه.'),
     ('gayner', 1096343, 'MARKEL', 'Tom Gayner', 'Markel Group', 'تام گینر', 'مارکل', 'کیفیت',
      'به «برکشایر کوچک» معروفه؛ شرکت‌های باکیفیت با مدیران صادق رو برای سال‌ها نگه می‌داره.'),
     ('watsa', 915191, 'FAIRFAX', 'Prem Watsa', 'Fairfax Financial', 'پرم واتسا', 'فیرفکس', 'ارزشی',
      'به «وارن بافت کانادا» معروفه؛ سرمایه‌گذاری ارزشی و مخالف جریان.'),
-    ('munger', 783412, 'DAILY JOURNAL', 'Charlie Munger', 'Daily Journal', 'چارلی مانگر', 'دیلی ژورنال', 'ارزشی',
-     'پورتفوی شرکت دیلی ژورنال که چارلی مانگر تا ۲۰۲۳ مدیریتش می‌کرد؛ چند سهم معدود و بسیار متمرکز.'),
-    ('akre', 1112520, 'AKRE', 'Chuck Akre', 'Akre Capital', 'چاک ایکر', 'ایکر کپیتال', 'کیفیت',
-     'فلسفه‌ی «چارپایه‌ی سه‌پایه»: کسب‌وکار عالی، مدیران عالی، و فرصت‌های سرمایه‌گذاری مجدد. سهم‌ها رو ده‌ها سال نگه می‌داره.'),
+    ('munger', 783412, 'DAILY JOURNAL', 'Daily Journal', 'Daily Journal (Munger legacy)', 'دیلی ژورنال', 'میراث چارلی مانگر', 'ارزشی',
+     'چارلی مانگر، شریک افسانه‌ای بافت، نوامبر ۲۰۲۳ درگذشت. این پورتفوی شرکت دیلی ژورناله که خودش ساخته بود و هنوز تقریباً دست‌نخورده مونده؛ پس «انتخاب‌های مانگر» رو نشون میده، نه تصمیم‌های امروز او.'),
+    ('akre', 1112520, 'AKRE', 'Chuck Akre', 'Akre Capital', 'ایکر کپیتال', 'بنیان‌گذار: چاک ایکر', 'کیفیت',
+     'چاک ایکر در ۲۰۲۰ مدیریت رو به جان نف و کریس سرونه سپرد و خودش کنار رفت؛ فلسفه همون «چارپایه‌ی سه‌پایه» مونده: کسب‌وکار عالی، مدیران عالی، و فرصت سرمایه‌گذاری مجدد.'),
     ('rochon', 1641864, 'GIVERNY', 'François Rochon', 'Giverny Capital', 'فرانسوا روشون', 'جیورنی', 'کیفیت',
      'مدیر کانادایی با سابقه‌ی بلند شکست دادن بازار؛ شرکت‌های باکیفیت با قیمت منطقی.'),
     ('marks', 949509, 'OAKTREE', 'Howard Marks', 'Oaktree Capital', 'هوارد مارکس', 'اوک‌تری', 'ارزشی / اعتباری',
@@ -128,6 +128,11 @@ MANAGERS = [
     ('gabelli', 807249, 'GAMCO', 'Mario Gabelli', 'GAMCO Investors', 'ماریو گابلی', 'گمکو', 'ارزشی',
      'سرمایه‌گذار ارزشی قدیمی با تمرکز روی شرکت‌های رسانه‌ای و صنعتی و موقعیت‌های ادغام.'),
 ]
+
+
+# order of the default "most famous" view on the page
+FAME = ['buffett', 'ackman', 'druck', 'lilu', 'smith', 'burry', 'klarman', 'tepper', 'pabrai', 'icahn', 'munger', 'soros',
+        'dalio', 'gates', 'wood', 'marks', 'loeb', 'coleman', 'gayner', 'watsa', 'akre', 'hohn', 'train', 'sequoia', 'elliott', 'peltz']
 
 
 def get(url, tries=4, data=None, headers=None):
@@ -445,7 +450,7 @@ def main():
         turnover = None
         if prev:
             turnover = round(sum(abs(h['e'] or 0) for h in hold) / 2 + sum(s['w'] for s in sold) / 2, 4)
-        rec = {'id': mid, 'who': m[3], 'firm': m[4], 'fa': m[5], 'ffa': m[6], 'style': m[7], 'bio': m[8], 'sec': d['sec_name'],
+        rec = {'rank': FAME.index(mid) if mid in FAME else 100 + [x[0] for x in MANAGERS].index(mid), 'id': mid, 'who': m[3], 'firm': m[4], 'fa': m[5], 'ffa': m[6], 'style': m[7], 'bio': m[8], 'sec': d['sec_name'],
                'cik': m[1], 'period': cur['period'], 'filed': cur['filed'], 'value': round(tot[0]), 'n': len(cur['eq']),
                'chg': round(tot[0] / tot[1] - 1, 4) if len(tot) > 1 and tot[1] else None, 'top10': round(top10, 4), 'turn': turnover,
                'stale': stale, 'nnew': sum(1 for h in hold if h['a'] == 'new'), 'nadd': sum(1 for h in hold if h['a'] == 'add'),

@@ -1,0 +1,46 @@
+name: Super investors (13F portfolios, daily)
+
+on:
+  schedule:
+    - cron: '40 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: superinvestors
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/index.json
+            data/aliases.json
+            superinvestors.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Previous output (keeps the CUSIP cache)
+        run: git clone -q --depth 1 -b superinvestors "https://github.com/${{ github.repository }}" superinvestors || mkdir -p superinvestors
+      - name: Build
+        env:
+          SEC_USER_AGENT: "Reza Hajilou mreza.hajilou@gmail.com"
+          OPENFIGI_KEY: ${{ secrets.OPENFIGI_KEY }}
+        run: python superinvestors.py
+      - name: Publish to branch "superinvestors"
+        run: |
+          cd superinvestors
+          rm -rf .git
+          git init -q -b superinvestors
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "13F $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" superinvestors:superinvestors

@@ -369,7 +369,8 @@ def main():
         c = cache.get(cu)
         t = c[0] if c else None
         if t:
-            t = aliases.get(t, t)
+            if t not in universe:
+                t = aliases.get(t, t)
             if t not in universe and t.replace('-', '') in universe:
                 t = t.replace('-', '')
             return t

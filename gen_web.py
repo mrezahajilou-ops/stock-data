@@ -241,8 +241,19 @@ def portfolio_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzp'), nav('portfolio'), JS, js)
 
 
+def superinvestors_page():
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'superinvestors.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'superinvestors.js'), encoding='utf-8').read()
+    return ('<div id="rzi" dir="rtl">\n<style>%s</style>\n%s\n<h1>🦈 سوپر سرمایه‌گذارها</h1>\n'
+            '<p class="sub">پورتفوی و خرید و فروش هر فصل وارن بافت، بیل اکمن، مایکل بری، لی لو، تری اسمیت و بیش از ۵۰ مدیر صندوق افسانه‌ای، از روی گزارش‌های رسمی 13F به SEC.</p>\n'
+            '<div id="rzi-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzi'), nav('superinvestors'), JS, js)
+
+
 def main():
     pages = {
+        'superinvestors.html': superinvestors_page(),
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', '⭐ واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),

@@ -243,8 +243,8 @@ function notFound(t){$('rzs-main').innerHTML='<div class="card empty">برای '
 function paywall(t){
   var login=LOGGED?'':'<a class="btn ghost" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً خریدی؟ وارد شو</a>';
   $('rzs-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div><div class="co" style="margin:6px 0">۱۰ جستجوی رایگان این هفته‌ات تموم شد</div>'+
-  '<p class="sub" style="max-width:540px;margin:0 auto 16px">با اشتراک ماهانه، تحلیل و امتیاز بیش از ۶٬۸۰۰ سهم آمریکایی، غربالگر کامل با خروجی اکسل و صورت‌های مالی ۱۰ ساله رو بی‌محدودیت داری.</p>'+
-  '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">اشتراک ماهانه ۷٫۹۹ یورو</a>'+login+'</div></div>';
+  '<p class="sub" style="max-width:540px;margin:0 auto 16px">با اشتراک Stock Pro، تحلیل و امتیاز بیش از ۶٬۸۰۰ سهم آمریکایی، غربالگر کامل با خروجی اکسل، ماشین‌حساب DCF، سوپر سرمایه‌گذارها و صورت‌های مالی ۱۰ ساله رو بی‌محدودیت داری.</p>'+
+  '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">ماهانه ۷٫۹۹ یورو</a>'+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div></div>';
 }
 
 /* ---- score explanations (same checks as the data engine) ---- */

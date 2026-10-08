@@ -17,7 +17,7 @@ function tkl(t,u){if(!t)return '<span class="mut">—</span>';return u?'<a class
 function bigv(v){return v!=null&&Math.abs(v)<1e6?'$'+(v/1e3).toFixed(0)+'K':big(v)}
 function live(t){var q=RZQ&&RZQ.q&&t?RZQ.q[t]:null;return q&&q[0]>0?q[0]:null}
 function can(id){return ACC||FREE[id]}
-function cta(t){return '<div class="cta-box"><h3>🔒 '+(t||'این بخش مخصوص مشترکین Stock Pro است')+'</h3><p>پورتفوی کامل و خرید و فروش هر فصل بیش از ۵۰ سرمایه‌گذار افسانه‌ای، پرطرفدارترین سهم‌هاشون و اینکه چه کسی چه سهمی رو داره.</p><a class="btn" href="'+esc(SUB)+'">اشتراک Stock Pro</a>'+(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fsuperinvestors">وارد حسابت شو</a></p>')+'</div>'}
+function cta(t){return '<div class="cta-box"><h3>🔒 '+(t||'این بخش مخصوص مشترکین Stock Pro است')+'</h3><p>پورتفوی کامل و خرید و فروش هر فصل بیش از ۵۰ سرمایه‌گذار افسانه‌ای، پرطرفدارترین سهم‌هاشون و اینکه چه کسی چه سهمی رو داره.</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div>'+(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fsuperinvestors">وارد حسابت شو</a></p>')+'</div>'}
 function locked(inner,t){return '<div class="lockw"><div class="blur">'+inner+'</div><div class="cta">'+cta(t)+'</div></div>'}
 function mlink(id){var m=BYID[id];return m?'<span data-m="'+id+'">'+av(m)+esc(m.fa)+'</span>':''}
 

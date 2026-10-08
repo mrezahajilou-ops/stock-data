@@ -125,7 +125,7 @@ var API = window.RZD_API || null;
 var ACCESS = window.RZD_ACCESS !== false;
 var LOGGED = !!window.RZD_LOGGED;
 var FREE = ['AAPL','MSFT','NVDA'];
-var SUB_URL = window.RZD_SUB_URL || '/products/dcf-subscription';
+var SUB_URL = '/products/stock-data-pro'; /* DCF is part of Stock Pro since Oct 2026 */
 var INDEX = null;
 function loadIndex(){ if(INDEX||!API) return; INDEX=[]; fetch(API+'/index.json').then(function(r){return r.json()}).then(function(j){INDEX=j.map(function(x){return {t:x.t,n:x.n,a:x.a}}); if(q.value) q.dispatchEvent(new Event('input'));}).catch(function(){INDEX=null}); }
 var $=function(i){return document.getElementById(i)};
@@ -331,8 +331,8 @@ function paywall(t){
   var login = LOGGED ? '' : '<a class="btn" style="background:transparent;border:1.5px solid var(--line);color:#fff!important" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً خریدی؟ وارد حسابت شو</a>';
   $('rzd-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div>'+
    '<div class="co" style="margin:6px 0">تحلیل '+esc(t)+' مخصوص اعضاست</div>'+
-   '<p class="sub" style="margin:0 auto 16px;max-width:520px">با اشتراک ماهانه به ارزش ذاتی، DCF معکوس و جدول حساسیتِ بیش از ۶٬۸۰۰ سهم آمریکایی دسترسی داری؛ اعداد هر شب از گزارش‌های رسمی SEC و قیمت‌ها هر ۱۵ دقیقه به‌روز میشن. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
-   '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">اشتراک ماهانه ۴٫۹۹ یورو</a>'+login+'</div>'+
+   '<p class="sub" style="margin:0 auto 16px;max-width:520px">ماشین‌حساب DCF بخشی از اشتراک Stock Pro است: ارزش ذاتی، DCF معکوس و جدول حساسیتِ بیش از ۶٬۸۰۰ سهم آمریکایی، به‌علاوه‌ی تحلیل نامحدود سهم‌ها، غربالگر و سوپر سرمایه‌گذارها؛ اعداد هر شب از گزارش‌های رسمی SEC و قیمت‌ها هر ۱۵ دقیقه به‌روز میشن. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
+   '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">ماهانه ۷٫۹۹ یورو</a>'+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>'+
    '<p class="sub" style="margin:14px auto 0;font-size:13px">بعد از پرداخت، همین سهم ('+esc(t)+') خودکار برات باز میشه.</p></div>';
 }
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}

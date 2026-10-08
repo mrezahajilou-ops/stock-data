@@ -271,7 +271,7 @@ function draw(){
   [].forEach.call(document.querySelectorAll('#rzc2-head th'),function(th){th.classList.toggle('s',th.dataset.k===sortKey);th.classList.toggle('asc',th.dataset.k===sortKey&&asc)});
   if(!ACCESS&&view.length>FREE_ROWS){
     var login=LOGGED?'':' <a class="btn ghost" href="/account/login?return_url='+encodeURIComponent(location.pathname)+'">قبلاً خریدی؟ وارد شو</a>';
-    $('rzc2-more').innerHTML='<div class="wall"><div style="font-size:28px">🔒</div><b>'+(view.length-FREE_ROWS).toLocaleString('en-US')+' سهم دیگه هم با این فیلترها پیدا شد</b><p style="color:#93a7bf;margin:4px 0 12px">با اشتراک ماهانه کل نتایج غربالگر، ۴۰+ ستون داده، خروجی CSV، ذخیره‌ی فیلترها و تحلیل نامحدود سهم‌ها رو داری.</p><a class="btn" href="'+SUB_URL+'">اشتراک ماهانه ۷٫۹۹ یورو</a>'+login+'</div>';
+    $('rzc2-more').innerHTML='<div class="wall"><div style="font-size:28px">🔒</div><b>'+(view.length-FREE_ROWS).toLocaleString('en-US')+' سهم دیگه هم با این فیلترها پیدا شد</b><p style="color:#93a7bf;margin:4px 0 12px">با اشتراک Stock Pro کل نتایج غربالگر، ۴۰+ ستون داده، خروجی CSV، ذخیره‌ی فیلترها و تحلیل نامحدود سهم‌ها رو داری.</p><a class="btn" href="'+SUB_URL+'">ماهانه ۷٫۹۹ یورو</a> '+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>';
   } else if(ACCESS&&view.length>shown){ $('rzc2-more').innerHTML='<button class="btn ghost" id="rzc2-mb">نمایش بیشتر ('+(view.length-shown).toLocaleString('en-US')+' سهم دیگه)</button>'; $('rzc2-mb').onclick=function(){shown+=PAGE;draw()} }
   else $('rzc2-more').innerHTML='';
 }

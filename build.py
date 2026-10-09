@@ -22,7 +22,9 @@ UA = os.environ.get("SEC_USER_AGENT", "Reza Hajilou mreza.hajilou@gmail.com")
 OUT = os.path.join(os.getcwd(), "data")
 YEARS = 12
 ANNUAL_FORMS = {"10-K", "10-K/A", "10-KT", "20-F", "20-F/A", "40-F", "40-F/A"}
-LIMIT = int(os.environ.get("LIMIT", "0"))  # for testing: process only N companies
+LIMIT = int(os.environ.get("LIMIT", "0"))
+# new holding companies that took over a listed company's ticker: CIK -> predecessor CIK with the history
+PREDECESSOR = {2115436: 34088}  # ExxonMobil Holdings Corp (2026) <- Exxon Mobil Corp  # for testing: process only N companies
 
 # ---- concept fallbacks: first tag with data wins (per fiscal year) ----
 # (kind: 'dur' = duration/flow over the year, 'inst' = instant/balance at FY end)
@@ -38,6 +40,8 @@ CONCEPTS = {
         "us-gaap:InterestAndDividendIncomeOperating",
         "ifrs-full:Revenue",
         "ifrs-full:RevenueFromContractsWithCustomers",
+        "ifrs-full:RevenueAndOperatingIncome",
+        "ifrs-full:RevenueFromSaleOfGoods",
         # utilities, REITs, miners, energy, healthcare (fill-only: used when the tags above are missing)
         "us-gaap:RegulatedAndUnregulatedOperatingRevenue",
         "us-gaap:RegulatedOperatingRevenue",
@@ -221,16 +225,19 @@ def annual_series(facts, tags, kind, meta=None):
         if not node:
             continue
         units = node.get("units", {})
-        unit_key = next((u for u in ("USD", "shares", "USD/shares") if u in units), None)
-        cur = "USD"
-        if unit_key is None:
-            for u in units:
-                m = CUR_RE.match(u)
-                if m and m.group(1) != "USD":
-                    unit_key, cur = u, m.group(1)
-                    break
-        if unit_key is None:
+        # pick the unit with the most recent annual data: foreign filers sometimes add a USD
+        # convenience translation for one old year next to their full home-currency history (SAP)
+        def latest_end(u):
+            return max((f.get("end", "") for f in units[u] if f.get("form") in ANNUAL_FORMS), default="")
+        cands = [u for u in ("USD", "shares", "USD/shares") if u in units]
+        cands += [u for u in units if CUR_RE.match(u) and CUR_RE.match(u).group(1) != "USD"]
+        if not cands:
             continue
+        unit_key = max(cands, key=lambda u: (latest_end(u)[:4], u in ("USD", "shares", "USD/shares")))
+        cur = "USD"
+        m = CUR_RE.match(unit_key)
+        if m and m.group(1) != "USD":
+            cur = m.group(1)
         series, h = {}, defaultdict(list)
         if kind == "dur":
             q4s, ytd9 = [], {}
@@ -429,7 +436,7 @@ def build_company(cik, entry, facts):
                 if f != 1.0 and series[key][end] is not None:
                     series[key][end] = series[key][end] * f if mult == 1 else series[key][end] / f
     ends = pick_fy_ends(series)
-    if len(ends) < 2 or not series["revenue"]:
+    if len(ends) < 2 or not (series["revenue"] or series["net_income"]):
         return None
     has_debt = bool(series["debt_lt"] or series["debt_st"])
     has_capex = bool(series["capex"])
@@ -970,6 +977,19 @@ def main():
             continue
         facts = doc.get("facts", {})
         seen_cik.add(cik)
+        pred = PREDECESSOR.get(cik)
+        if pred:
+            try:
+                old = json.loads(zf.read("CIK%010d.json" % pred)).get("facts", {})
+                for ns, tags in old.items():
+                    for name, node in tags.items():
+                        cur = facts.setdefault(ns, {}).setdefault(name, {"units": {}})
+                        for u, arr in node.get("units", {}).items():
+                            cur.setdefault("units", {})
+                            cur["units"][u] = arr + cur["units"].get(u, [])
+                log("merged predecessor", pred, "into", cik)
+            except Exception as e:
+                log("predecessor merge failed", cik, e)
         for entry in by_cik[cik]:
             # one listing can have several share classes (GOOGL/GOOG): same data, both tickers
             try:

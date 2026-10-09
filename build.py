@@ -246,7 +246,15 @@ def annual_series(facts, tags, kind, meta=None):
         cands += [u for u in units if CUR_RE.match(u) and CUR_RE.match(u).group(1) != "USD"]
         if not cands:
             continue
-        unit_key = max(cands, key=lambda u: (latest_end(u)[:4], u in ("USD", "shares", "USD/shares")))
+        usd = [u for u in ("USD", "shares", "USD/shares") if u in units]
+        unit_key = usd[0] if usd else None
+        other = [u for u in cands if u not in usd]
+        if other:
+            best_other = max(other, key=latest_end)
+            # a foreign currency only wins when USD is missing or clearly stale (SAP: USD for one old year only);
+            # never because of a single foreign-currency debt line (Oracle's yen bonds)
+            if unit_key is None or (latest_end(best_other)[:4] and int(latest_end(best_other)[:4] or 0) - int(latest_end(unit_key)[:4] or 0) >= 2):
+                unit_key = best_other
         cur = "USD"
         m = CUR_RE.match(unit_key)
         if m and m.group(1) != "USD":
@@ -371,26 +379,26 @@ def fy_of(end):
 QFORMS = {"10-Q", "10-Q/A", "10-K", "10-K/A", "10-KT"}
 
 
-def quarterly(facts, tags, n=12):
+def quarterly(facts, tags, n=12, unit="USD"):
     """{quarter_end: value} for the last n fiscal quarters (USD filers).
     3-month values are taken directly when tagged, otherwise derived from the year-to-date figures
     (cash-flow items are only reported YTD): Q2 = 6M - 3M, Q3 = 9M - 6M, Q4 = 12M - 9M."""
     for tag in tags:
         ns, name = tag.split(":")
         units = (facts.get(ns, {}).get(name) or {}).get("units", {})
-        if "USD" not in units:
+        if unit not in units:
             continue
         direct, cum = {}, {}
-        for f in units["USD"]:
+        for f in units[unit]:
             st, en = f.get("start"), f.get("end")
             if not st or not en or f.get("form") not in QFORMS:
                 continue  # proxy statements (DEF 14A) and 8-Ks sometimes repeat figures in the wrong unit
             k = days(st, en)
             fd = f.get("filed", "")
-            if 80 <= k <= 100:
+            if 80 <= k <= 115:  # 12- and 16-week quarters too (PepsiCo)
                 if en not in direct or fd >= direct[en][1]:
                     direct[en] = (f["val"], fd)
-            if 80 <= k <= 100 or 170 <= k <= 195 or 255 <= k <= 290 or 350 <= k <= 380:
+            if 80 <= k <= 115 or 165 <= k <= 200 or 245 <= k <= 290 or 350 <= k <= 380:
                 key = (st, en)
                 if key not in cum or fd >= cum[key][1]:
                     cum[key] = (f["val"], fd)
@@ -405,7 +413,7 @@ def quarterly(facts, tags, n=12):
         for st, rows in by_start.items():
             rows.sort()
             for (e0, v0), (e1, v1) in zip(rows, rows[1:]):
-                if 80 <= days(e0, e1) <= 100:
+                if 80 <= days(e0, e1) <= 115:
                     derived[e1] = v1 - v0
         for en, v in derived.items():
             if en not in q:
@@ -492,7 +500,7 @@ def build_company(cik, entry, facts):
     series, filed, hist = {}, {}, {}
     meta = {}
     for key, (kind, tags) in CONCEPTS.items():
-        series[key], filed[key], hist[key] = annual_series(facts, tags, kind, meta)
+        series[key], filed[key], hist[key] = annual_series(facts, tags, kind, meta if key in ("revenue", "net_income", "assets", "cfo", "equity") else {})
     # split-adjust per-share series: values taken from filings made before a split get scaled
     splits = split_factors(hist["shares_diluted"]) or split_factors(hist["shares_basic"]) \
         or [(fd, 1 / r) for fd, r in split_factors(hist["eps_diluted"])]
@@ -695,6 +703,12 @@ def build_company(cik, entry, facts):
                 t_op, e_op = t_pt + (t_ie or 0), e_pt
         t_da, e_da = ttm_tags(facts, CONCEPTS["da"][1])
         t_div, e_div = ttm_tags(facts, CONCEPTS["dividends"][1])
+        t_eps, e_eps = None, None
+        for tag in CONCEPTS["eps_diluted"][1]:
+            v, e = ttm(quarterly(facts, [tag], unit="USD/shares"))
+            if v is not None:
+                t_eps, e_eps = v, e
+                break
         end = e_ni or e_rev
         if end and end > last["fy_end"]:
             same = lambda e: e is not None and abs(days(e, end)) <= 10
@@ -705,7 +719,8 @@ def build_company(cik, entry, facts):
                        "capex": abs(t_cap) if same(e_cap) else (0.0 if (same(e_cfo) and not series["capex"] and last["capex"] == 0) else None),
                        "op_income": t_op if same(e_op) else None,
                        "da": t_da if same(e_da) else None,
-                       "dividends": abs(t_div) if same(e_div) else None}
+                       "dividends": abs(t_div) if same(e_div) else None,
+                       "eps": t_eps if same(e_eps) else None}
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
@@ -888,6 +903,11 @@ def score(rec, mk, sector_pe):
         ebitda = t["ebitda"]
     mcap = (mk or {}).get("mcap")
     pe = mcap / ni if (mcap and ni and ni > 0) else None
+    price = (mk or {}).get("price")
+    if t.get("eps") and t["eps"] > 0 and price:
+        pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)
+    elif t.get("eps") is not None and t["eps"] <= 0:
+        pe = None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
     ps = mcap / rev if (mcap and rev and rev > 0) else None
     b = rec.get("bs") or {}
@@ -1102,6 +1122,8 @@ def finish(recs, market):
                     continue  # EPS was reported correctly, only the share count had the wrong unit
                 if row.get(f) is not None:
                     row[f] = r4(row[f] / n)
+        if (r.get("ttm") or {}).get("eps") is not None and n not in (1e6, 1000):
+            r["ttm"]["eps"] = r["ttm"]["eps"] / n
         r["share_factor"] = n
         fixed.append(r["ticker"])
     for r in recs:

@@ -104,7 +104,7 @@ CONCEPTS = {
                     "us-gaap:ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]),
     "da": ("dur", ["us-gaap:DepreciationDepletionAndAmortization", "us-gaap:DepreciationAndAmortization",
                    "us-gaap:DepreciationAmortizationAndAccretionNet",
-                   "ifrs-full:DepreciationAndAmortisationExpense", "us-gaap:Depreciation",
+                   "ifrs-full:DepreciationAndAmortisationExpense",
                    "us-gaap:DepreciationAmortizationAndOther",
                    "ifrs-full:DepreciationAmortisationAndImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLoss",
                    "ifrs-full:DepreciationExpense"]),
@@ -142,6 +142,8 @@ CONCEPTS = {
     "ppe": ("inst", ["us-gaap:PropertyPlantAndEquipmentNet",
                      "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
                      "ifrs-full:PropertyPlantAndEquipment"]),
+    "dep": ("dur", ["us-gaap:Depreciation"]),
+    "amort": ("dur", ["us-gaap:AmortizationOfIntangibleAssets"]),
     "liab_eq": ("inst", ["us-gaap:LiabilitiesAndStockholdersEquity", "ifrs-full:EquityAndLiabilities"]),
     "equity_total": ("inst", ["us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "ifrs-full:Equity"]),
     "costs_expenses": ("dur", ["us-gaap:CostsAndExpenses"]),
@@ -407,10 +409,20 @@ def quarterly(facts, tags, n=12):
             # a full year tagged as one quarter with no way to derive it: several times both neighbours
             for i in range(1, len(ks) - 1):
                 a, v, b = out[ks[i - 1]], out[ks[i]], out[ks[i + 1]]
-                if a and b and v and a > 0 and b > 0 and v > 2.5 * max(a, b):
+                if ks[i] in direct and ks[i] not in derived and a and b and v and a > 0 and b > 0 and v > 2.5 * max(a, b):
                     out[ks[i]] = None
             return out
     return {}
+
+
+def ttm_tags(facts, tags):
+    """TTM from the first tag that has four consecutive recent quarters (companies switch tags over time)."""
+    best = (None, None)
+    for tag in tags:
+        v, e = ttm(quarterly(facts, [tag]))
+        if v is not None and (best[1] is None or e > best[1]):
+            best = (v, e)
+    return best
 
 
 def ttm(qs):
@@ -480,6 +492,8 @@ def build_company(cik, entry, facts):
         op = g("op_income")
         if op is None and rev is not None and g("costs_expenses") is not None:
             op = rev - g("costs_expenses")
+        if op is None and rev is not None and g("pretax_income") is not None and g("cogs") is not None:
+            op = g("pretax_income") + (g("interest_exp") or 0)  # EBIT for companies without an operating income line
         tax, pretax = g("tax"), g("pretax_income")
         tax_rate = safe_div(tax, pretax)
         if tax_rate is None or tax_rate < 0 or tax_rate > 0.5:
@@ -519,6 +533,8 @@ def build_company(cik, entry, facts):
         if capex is None and not has_capex and cfo is not None and asset_light:
             capex, fcf = 0.0, cfo  # no capital spending line at all (banks, insurers, asset managers)
         da = g("da")
+        if da is None and g("dep") is not None:
+            da = g("dep") + (g("amort") or 0)  # depreciation and intangible amortization reported separately (AMD)
         ebitda = (op + da) if (op is not None and da is not None) else None
         ie = g("interest_exp")
         ca, cl = g("current_assets"), g("current_liabilities")
@@ -618,11 +634,21 @@ def build_company(cik, entry, facts):
             qrows.append([k, qr.get(k), nearest(qn, k, 10) if qn else None])
         # trailing twelve months (what most sites use for P/E, P/S, P/FCF, EV/EBITDA)
         t_rev, e_rev = ttm(qr)
+        if t_rev is None:
+            t_rev, e_rev = ttm_tags(facts, CONCEPTS["revenue"][1])
         t_ni, e_ni = ttm(qn)
-        t_cfo, e_cfo = ttm(quarterly(facts, CONCEPTS["cfo"][1]))
-        t_cap, e_cap = ttm(quarterly(facts, CONCEPTS["capex"][1]))
-        t_op, e_op = ttm(quarterly(facts, CONCEPTS["op_income"][1]))
-        t_da, e_da = ttm(quarterly(facts, CONCEPTS["da"][1]))
+        if t_ni is None:
+            t_ni, e_ni = ttm_tags(facts, CONCEPTS["net_income"][1])
+        t_cfo, e_cfo = ttm_tags(facts, CONCEPTS["cfo"][1])
+        t_cap, e_cap = ttm_tags(facts, CONCEPTS["capex"][1])
+        t_op, e_op = ttm_tags(facts, CONCEPTS["op_income"][1])
+        if t_op is None:
+            # no operating income line (Eli Lilly): EBIT = pre-tax income + interest expense
+            t_pt, e_pt = ttm_tags(facts, CONCEPTS["pretax_income"][1])
+            t_ie, e_ie = ttm_tags(facts, CONCEPTS["interest_exp"][1])
+            if t_pt is not None:
+                t_op, e_op = t_pt + (t_ie or 0), e_pt
+        t_da, e_da = ttm_tags(facts, CONCEPTS["da"][1])
         end = e_ni or e_rev
         if end and end > last["fy_end"]:
             same = lambda e: e is not None and abs(days(e, end)) <= 10
@@ -634,7 +660,8 @@ def build_company(cik, entry, facts):
                        "op_income": t_op if same(e_op) else None,
                        "da": t_da if same(e_da) else None}
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
-            ttm_rec["ebitda"] = (ttm_rec["op_income"] + ttm_rec["da"]) if (ttm_rec["op_income"] is not None and ttm_rec["da"] is not None) else None
+            da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
+            ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
@@ -765,6 +792,12 @@ def forward(rec, mk):
     cur = e.get("cur") or "USD"
     fx = 1.0 if cur == "USD" else (FX_LATEST.get(cur) or None)
     eps, revn = ntm(e.get("e0"), e.get("e1")), ntm(e.get("r0"), e.get("r1"))
+    # preferred: next four quarters = the two quarters analysts estimate explicitly + two average quarters of
+    # the next fiscal year (avoids one-off gains already booked in the current year's GAAP figure)
+    if e.get("qe0") is not None and e.get("qe1") is not None and e.get("e1") is not None:
+        eps = e["qe0"] + e["qe1"] + e["e1"] / 2
+    if e.get("qr0") and e.get("qr1") and e.get("r1"):
+        revn = e["qr0"] + e["qr1"] + e["r1"] / 2
     if cur == "USD":
         if eps and eps > 0:
             out["fwd_pe"] = price / eps

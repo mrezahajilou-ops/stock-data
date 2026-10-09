@@ -59,11 +59,15 @@ def one(t):
             ks = res.get('defaultKeyStatistics') or {}
             by = {x.get('period'): x for x in tr}
             y0, y1 = by.get('0y') or {}, by.get('+1y') or {}
+            q0, q1 = by.get('0q') or {}, by.get('+1q') or {}
             o = {'cur': fd.get('financialCurrency'),
                  'fy0': y0.get('endDate'), 'fy1': y1.get('endDate'),
                  'e0': raw((y0.get('earningsEstimate') or {}).get('avg')), 'e1': raw((y1.get('earningsEstimate') or {}).get('avg')),
                  'r0': raw((y0.get('revenueEstimate') or {}).get('avg')), 'r1': raw((y1.get('revenueEstimate') or {}).get('avg')),
                  'n': raw((y0.get('earningsEstimate') or {}).get('numberOfAnalysts')),
+                 'q0': q0.get('endDate'), 'q1': q1.get('endDate'),
+                 'qe0': raw((q0.get('earningsEstimate') or {}).get('avg')), 'qe1': raw((q1.get('earningsEstimate') or {}).get('avg')),
+                 'qr0': raw((q0.get('revenueEstimate') or {}).get('avg')), 'qr1': raw((q1.get('revenueEstimate') or {}).get('avg')),
                  'tgt': raw(fd.get('targetMeanPrice')), 'tlo': raw(fd.get('targetLowPrice')), 'thi': raw(fd.get('targetHighPrice')),
                  'nt': raw(fd.get('numberOfAnalystOpinions')), 'rec': fd.get('recommendationKey'), 'rm': raw(fd.get('recommendationMean')),
                  'fpe': raw(ks.get('forwardPE')), 'feps': raw(ks.get('forwardEps'))}

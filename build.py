@@ -305,6 +305,8 @@ def annual_series(facts, tags, kind, meta=None):
                     if not exact:
                         meta["fx_approx"] = True
             h[end].append((fd, val))
+            if meta is not None:
+                meta.setdefault("forms", set()).add(f.get("form"))
             prev = series.get(end)
             if prev is None or fd >= prev[1]:  # most recently filed (restated) value wins
                 series[end] = (val, fd)
@@ -727,6 +729,7 @@ def build_company(cik, entry, facts):
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
+        "foreign": bool((meta.get("forms") or set()) & {"20-F", "20-F/A", "40-F", "40-F/A"}),
         "fx_approx": bool(meta.get("fx_approx")), "source": "SEC EDGAR XBRL (companyfacts)",
         "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "latest": {k: last[k] for k in ("fy", "fy_end", "revenue", "net_income", "fcf", "eps_diluted",
@@ -902,12 +905,29 @@ def score(rec, mk, sector_pe):
     if t.get("ebitda") is not None:
         ebitda = t["ebitda"]
     mcap = (mk or {}).get("mcap")
-    pe = mcap / ni if (mcap and ni and ni > 0) else None
     price = (mk or {}).get("price")
-    if t.get("eps") and t["eps"] > 0 and price:
+    # SEC data can lag: a 10-Q missing from SEC's XBRL feed (Abbott, NextEra) or foreign filers without quarterly
+    # XBRL (Shell, Toyota). Then use the independent trailing figures (Yahoo) instead of stale ones.
+    ref = (EST.get(rec["ticker"]) or {}).get("ref") or {}
+    e = EST.get(rec["ticker"]) or {}
+    stale = (not t.get("end")) or (dt.date.today() - dt.date.fromisoformat(t["end"])).days > 135
+    rec["ttm_src"] = "sec"
+    if stale and ref:
+        fxr = 1.0 if (e.get("cur") or "USD") == "USD" else FX_LATEST.get(e.get("cur"))
+        if isinstance(ref.get("rev"), (int, float)) and ref["rev"] > 0 and fxr:
+            rev = ref["rev"] / fxr
+        if isinstance(ref.get("ni"), (int, float)) and fxr:
+            ni = ref["ni"] / fxr
+        if isinstance(ref.get("ebitda"), (int, float)) and fxr:
+            ebitda = ref["ebitda"] / fxr
+        rec["ttm_src"] = "yahoo"
+    pe = mcap / ni if (mcap and ni and ni > 0) else None
+    if not stale and t.get("eps") and t["eps"] > 0 and price:
         pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)
-    elif t.get("eps") is not None and t["eps"] <= 0:
+    elif not stale and t.get("eps") is not None and t["eps"] <= 0:
         pe = None
+    elif isinstance(ref.get("teps"), (int, float)) and price and (stale or t.get("eps") is None):
+        pe = price / ref["teps"] if ref["teps"] > 0 else None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
     ps = mcap / rev if (mcap and rev and rev > 0) else None
     b = rec.get("bs") or {}
@@ -1103,13 +1123,21 @@ def finish(recs, market):
                 fixed.append(r["ticker"])
             continue
         k = implied / sh
-        if 0.87 <= k <= 1.15:
-            continue
-        n = next((c for c in CAND if abs(k / c - 1) < (0.12 if c in (1000, 1e6) else 0.06)), None)
+        n = next((c for c in CAND if abs(k / c - 1) < (0.12 if c in (1000, 1e6) else 0.06)), None) if not (0.87 <= k <= 1.15) else None
+        if not r.get("foreign") and n not in (1000, 1e6):
+            # US filers: share counts vs market cap are unreliable for multi-class companies (Interactive Brokers)
+            # and spin-offs, so detect a stock split from EPS instead: our EPS of the last four quarters vs the
+            # independent trailing EPS (Yahoo), which is restated for splits
+            n = None
+            te, ye = (r.get("ttm") or {}).get("eps"), ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("teps")
+            if te and ye and isinstance(ye, (int, float)) and ye > 0 and te > 0:
+                q = te / ye
+                n = next((c for c in CAND if c not in (1000, 1e6) and abs(q / c - 1) < 0.06), None)
+                n = 1 / n if n else None  # EPS too high by q -> shares too low by q
         if not n:
             continue
         prev = r["annual"][-2].get("shares_diluted") if len(r["annual"]) > 1 else None
-        if n > 1 and prev and sh / prev > 1.3 and n not in (1000, 1e6):
+        if r.get("foreign") and n > 1 and prev and sh / prev > 1.3 and n not in (1000, 1e6):
             continue  # share count is exploding through issuance (crypto treasuries etc.), not a split
         # ADRs (one ADS = several ordinary shares) and filers that report shares in thousands:
         # restate share counts and per-share values in the units the market price is quoted in

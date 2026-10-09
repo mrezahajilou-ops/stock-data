@@ -1,0 +1,32 @@
+name: Data diagnostics (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: 'Tickers (space separated)'
+        required: true
+permissions:
+  contents: write
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            diag.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python diag.py ${{ inputs.tickers }}
+      - name: Publish to branch "diag"
+        run: |
+          cd diag
+          git init -q -b diag
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "diag"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" diag:diag

@@ -400,6 +400,8 @@ def quarterly(facts, tags, n=12, unit="USD"):
             if 80 <= k <= 115:  # 12- and 16-week quarters too (PepsiCo)
                 if en not in direct or fd >= direct[en][1]:
                     direct[en] = (f["val"], fd)
+            if k >= 350 and not f.get("form", "").startswith("10-K"):
+                continue  # a full year inside a 10-Q is a tagging error (Comfort Systems), not a YTD figure
             if 80 <= k <= 115 or 165 <= k <= 200 or 245 <= k <= 290 or 350 <= k <= 380:
                 key = (st, en)
                 if key not in cum or fd >= cum[key][1]:
@@ -453,6 +455,28 @@ def latest_inst(facts, tags, after=""):
         if cand[0] is not None and (best[0] is None or days(best[1], cand[1]) > 10):
             best = cand
     return best
+
+
+# revenue tags that can each be the company's TOTAL revenue (not a component): the largest one per period wins
+REV_TOTAL = ["us-gaap:RevenuesNetOfInterestExpense", "us-gaap:Revenues", "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+             "us-gaap:SalesRevenueNet", "us-gaap:SalesRevenueGoodsNet", "us-gaap:RegulatedAndUnregulatedOperatingRevenue",
+             "us-gaap:ElectricUtilityRevenue", "us-gaap:OperatingLeaseLeaseIncome", "us-gaap:OperatingLeasesIncomeStatementLeaseRevenue",
+             "us-gaap:RealEstateRevenueNet", "us-gaap:HealthCareOrganizationRevenue", "ifrs-full:Revenue",
+             "ifrs-full:RevenueAndOperatingIncome"]
+BANK_NII, BANK_NONII = "us-gaap:InterestIncomeExpenseNet", "us-gaap:NoninterestIncome"
+
+
+def revenue_max(per_tag):
+    """per_tag: list of {end: value}. Max per period end (ends within 10 days are the same period)."""
+    out = {}
+    for d in per_tag:
+        for e, v in d.items():
+            if v is None:
+                continue
+            k = next((x for x in out if abs(days(x, e)) <= 10), e)
+            if out.get(k) is None or v > out[k]:
+                out[k] = v
+    return out
 
 
 def ttm_tags(facts, tags):
@@ -519,6 +543,22 @@ def build_company(cik, entry, facts):
     if len(ends) < 2 or not (series["revenue"] or series["net_income"]):
         return None
     has_debt = bool(series["debt_lt"] or series["debt_st"] or series["debt_total"])
+    # total revenue: a high-priority tag can hold only a component (fee income of a bank or REIT, Owl Rock's
+    # "Revenues"), so take the largest total-revenue tag per year; banks: net interest income + non-interest income
+    alts = [annual_series(facts, [tg], "dur", {})[0] for tg in REV_TOTAL]
+    nii, nonii = annual_series(facts, [BANK_NII], "dur", {})[0], annual_series(facts, [BANK_NONII], "dur", {})[0]
+    bank = {e: v + nearest(nonii, e) for e, v in nii.items() if nearest(nonii, e) is not None}
+    best = revenue_max(alts)
+    for e, v in best.items():
+        cur = nearest(series["revenue"], e)
+        if cur is None or v > cur * 1.02:
+            k = next((x for x in series["revenue"] if abs(days(x, e)) <= 20), e)
+            series["revenue"][k] = v
+    # banks: revenue = net interest income + non-interest income (gross interest income is not revenue)
+    netrev = alts[0]
+    for e, v in bank.items():
+        k = next((x for x in series["revenue"] if abs(days(x, e)) <= 20), e)
+        series["revenue"][k] = max(v, nearest(netrev, e) or 0)
     has_capex = bool(series["capex"])
     pays_div = bool(series["dividends"])
     rows = []
@@ -684,6 +724,21 @@ def build_company(cik, entry, facts):
             if not near(e_c):
                 bs["cash"] = None
         qr = quarterly(facts, CONCEPTS["revenue"][1])
+        q_alts = [quarterly(facts, [tg]) for tg in REV_TOTAL]
+        q_nii, q_non = quarterly(facts, [BANK_NII]), quarterly(facts, [BANK_NONII])
+        q_bank = {e: v + q_non[e] for e, v in q_nii.items() if v is not None and q_non.get(e) is not None}
+        qbest = revenue_max(q_alts)
+        for e, v in qbest.items():
+            k = next((x for x in qr if abs(days(x, e)) <= 10), None)
+            if k is None:
+                if qr and e >= min(qr):
+                    qr[e] = v
+            elif qr[k] is None or v > qr[k] * 1.02:
+                qr[k] = v
+        for e, v in q_bank.items():
+            k = next((x for x in qr if abs(days(x, e)) <= 10), e)
+            qr[k] = max(v, (q_alts[0] or {}).get(e) or 0)
+        qr = dict(sorted(qr.items())[-12:])
         qn = quarterly(facts, CONCEPTS["net_income"][1])
         for k in sorted(set(qr) | set(qn))[-12:]:
             qrows.append([k, qr.get(k), nearest(qn, k, 10) if qn else None])

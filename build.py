@@ -988,7 +988,8 @@ def score(rec, mk, sector_pe):
     # XBRL (Shell, Toyota). Then use the independent trailing figures (Yahoo) instead of stale ones.
     ref = (EST.get(rec["ticker"]) or {}).get("ref") or {}
     e = EST.get(rec["ticker"]) or {}
-    stale = (not t.get("end")) or (dt.date.today() - dt.date.fromisoformat(t["end"])).days > 135
+    latest_end = t.get("end") or last["fy_end"]
+    stale = (dt.date.today() - dt.date.fromisoformat(latest_end)).days > 135
     rec["ttm_src"] = "sec"
     if stale and ref:
         fxr = 1.0 if (e.get("cur") or "USD") == "USD" else FX_LATEST.get(e.get("cur"))
@@ -1000,7 +1001,10 @@ def score(rec, mk, sector_pe):
             ebitda = ref["ebitda"] / fxr
         rec["ttm_src"] = "yahoo"
     pe = mcap / ni if (mcap and ni and ni > 0) else None
-    if not stale and t.get("eps") and t["eps"] > 0 and price:
+    yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
+    if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.25:
+        pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
+    elif not stale and t.get("eps") and t["eps"] > 0 and price:
         pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)
     elif not stale and t.get("eps") is not None and t["eps"] <= 0:
         pe = None
@@ -1067,10 +1071,10 @@ def score(rec, mk, sector_pe):
     total = round(sum(parts) / len(parts), 1) if parts else None
     div_t = t.get("dividends") if t.get("dividends") is not None else last.get("dividends")
     divy = (div_t or 0) / mcap if mcap else None
-    if t.get("dps") and price:
+    if isinstance(ref.get("divy"), (int, float)):
+        divy = ref["divy"]  # forward yield: current dividend rate / price (reflects cuts, raises and spin-offs)
+    elif t.get("dps") and price:
         divy = t["dps"] / price  # dividends declared per share in the last four quarters / price
-    elif isinstance(ref.get("divy"), (int, float)) and (stale or not t):
-        divy = ref["divy"]
     buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
     checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],

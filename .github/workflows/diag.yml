@@ -27,6 +27,7 @@ jobs:
       - run: python diag.py ${{ inputs.tickers }}
         env:
           FULL: ${{ inputs.full }}
+          RAW: '1'
       - name: Publish to branch "diag"
         run: |
           cd diag

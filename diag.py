@@ -8,7 +8,8 @@ KW = ('Revenue', 'Sales', 'Debt', 'Borrowing', 'Notes', 'Depreciation', 'Amortiz
 os.makedirs('diag', exist_ok=True)
 for t in sys.argv[1:]:
     try:
-        cik = json.load(open('data/stocks/%s.json' % t))['cik']
+        cik = int(t.split('=')[1]) if '=' in t else json.load(open('data/stocks/%s.json' % t))['cik']
+        t = t.split('=')[0]
     except Exception:
         print(t, 'no file'); continue
     req = urllib.request.Request('https://data.sec.gov/api/xbrl/companyfacts/CIK%010d.json' % int(cik), headers={'User-Agent': UA, 'Accept-Encoding': 'gzip'})
@@ -18,6 +19,8 @@ for t in sys.argv[1:]:
             if r.headers.get('Content-Encoding') == 'gzip': b = gzip.decompress(b)
     except Exception as e:
         print(t, 'err', e); continue
+    if os.environ.get('RAW'):
+        open('diag/%s.raw.json' % t, 'wb').write(b)
     j = json.loads(b); out = {'t': t, 'cik': cik, 'name': j.get('entityName'), 'tags': {}}
     for ns, tags in (j.get('facts') or {}).items():
         for name, node in tags.items():

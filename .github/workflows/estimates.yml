@@ -1,0 +1,39 @@
+name: Analyst estimates (daily)
+on:
+  schedule:
+    - cron: '50 23 * * 0-4'
+  workflow_dispatch:
+    inputs:
+      args:
+        description: 'Test: tickers or a number'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: estimates
+  cancel-in-progress: false
+jobs:
+  est:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/screener.json
+            estimates.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python estimates.py ${{ inputs.args }}
+      - name: Publish to branch "estimates"
+        run: |
+          cd estimates
+          git init -q -b estimates
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "estimates $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" estimates:estimates

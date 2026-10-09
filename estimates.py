@@ -46,7 +46,7 @@ def raw(x):
 
 def one(t):
     sym = t.replace('.', '-')
-    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics&crumb=%s'
+    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail&crumb=%s'
            % (urllib.parse.quote(sym), urllib.parse.quote(CRUMB[0] or '')))
     for a in range(3):
         try:
@@ -57,6 +57,7 @@ def one(t):
             tr = (res.get('earningsTrend') or {}).get('trend') or []
             fd = res.get('financialData') or {}
             ks = res.get('defaultKeyStatistics') or {}
+            sd = res.get('summaryDetail') or {}
             by = {x.get('period'): x for x in tr}
             y0, y1 = by.get('0y') or {}, by.get('+1y') or {}
             q0, q1 = by.get('0q') or {}, by.get('+1q') or {}
@@ -71,7 +72,17 @@ def one(t):
                  'tgt': raw(fd.get('targetMeanPrice')), 'tlo': raw(fd.get('targetLowPrice')), 'thi': raw(fd.get('targetHighPrice')),
                  'nt': raw(fd.get('numberOfAnalystOpinions')), 'rec': fd.get('recommendationKey'), 'rm': raw(fd.get('recommendationMean')),
                  'fpe': raw(ks.get('forwardPE')), 'feps': raw(ks.get('forwardEps'))}
-            if not any(o.get(k) for k in ('e0', 'e1', 'r0', 'tgt')):
+            # reference values for the nightly data check (verify_all.py); not shown on the site
+            o['ref'] = {k: v for k, v in {
+                'mcap': raw(sd.get('marketCap')), 'pe': raw(sd.get('trailingPE')), 'fpe': raw(sd.get('forwardPE')),
+                'ps': raw(sd.get('priceToSalesTrailing12Months')), 'divy': raw(sd.get('dividendYield')),
+                'pb': raw(ks.get('priceToBook')), 'evebitda': raw(ks.get('enterpriseToEbitda')), 'ev': raw(ks.get('enterpriseValue')),
+                'sh': raw(ks.get('sharesOutstanding')), 'rev': raw(fd.get('totalRevenue')), 'ebitda': raw(fd.get('ebitda')),
+                'fcf': raw(fd.get('freeCashflow')), 'cfo': raw(fd.get('operatingCashflow')), 'debt': raw(fd.get('totalDebt')),
+                'cash': raw(fd.get('totalCash')), 'gm': raw(fd.get('grossMargins')), 'om': raw(fd.get('operatingMargins')),
+                'nm': raw(fd.get('profitMargins')), 'roe': raw(fd.get('returnOnEquity')), 'price': raw(fd.get('currentPrice')),
+                'teps': raw(ks.get('trailingEps')), 'ni': raw(ks.get('netIncomeToCommon'))}.items() if v is not None}
+            if not any(o.get(k) for k in ('e0', 'e1', 'r0', 'tgt')) and not o['ref']:
                 return t, None
             return t, {k: v for k, v in o.items() if v not in (None, '', {})}
         except urllib.error.HTTPError as e:

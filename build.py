@@ -403,7 +403,13 @@ def quarterly(facts, tags, n=12):
                 q[en] = v  # a full year tagged as the 4th quarter (L3Harris 2025)
         if q and max(q) >= (dt.date.today() - dt.timedelta(days=400)).isoformat():
             ks = sorted(q)[-n:]
-            return {k: q[k] for k in ks}
+            out = {k: q[k] for k in ks}
+            # a full year tagged as one quarter with no way to derive it: several times both neighbours
+            for i in range(1, len(ks) - 1):
+                a, v, b = out[ks[i - 1]], out[ks[i]], out[ks[i + 1]]
+                if a and b and v and a > 0 and b > 0 and v > 2.5 * max(a, b):
+                    out[ks[i]] = None
+            return out
     return {}
 
 

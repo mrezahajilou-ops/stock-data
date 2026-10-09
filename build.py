@@ -30,13 +30,13 @@ PREDECESSOR = {2115436: 34088}  # ExxonMobil Holdings Corp (2026) <- Exxon Mobil
 # (kind: 'dur' = duration/flow over the year, 'inst' = instant/balance at FY end)
 CONCEPTS = {
     "revenue": ("dur", [
+        "us-gaap:RevenuesNetOfInterestExpense",  # banks / card issuers: total net revenue (American Express, JPMorgan)
         "us-gaap:Revenues",
         "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
         "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
         "us-gaap:SalesRevenueNet",
         "us-gaap:SalesRevenueGoodsNet",
         "us-gaap:SalesRevenueServicesNet",
-        "us-gaap:RevenuesNetOfInterestExpense",
         "us-gaap:InterestAndDividendIncomeOperating",
         "ifrs-full:Revenue",
         "ifrs-full:RevenueFromContractsWithCustomers",
@@ -97,7 +97,8 @@ CONCEPTS = {
     "dividends": ("dur", ["us-gaap:PaymentsOfDividendsCommonStock", "us-gaap:PaymentsOfDividends",
                           "ifrs-full:DividendsPaidClassifiedAsFinancingActivities", "us-gaap:PaymentsOfOrdinaryDividends",
                           "us-gaap:DividendsCommonStockCash", "us-gaap:DividendsCommonStock",
-                          "ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities", "ifrs-full:DividendsPaid"]),
+                          "ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities", "ifrs-full:DividendsPaid",
+                          "us-gaap:DividendsCash"]),
     "buybacks": ("dur", ["us-gaap:PaymentsForRepurchaseOfCommonStock",
                          "ifrs-full:PaymentsToAcquireOrRedeemEntitysShares", "us-gaap:PaymentsForRepurchaseOfEquity"]),
     "rnd": ("dur", ["us-gaap:ResearchAndDevelopmentExpense",
@@ -121,15 +122,20 @@ CONCEPTS = {
                       "us-gaap:CashCashEquivalentsAndShortTermInvestments",
                       "ifrs-full:CashAndCashEquivalents"]),
     "st_investments": ("inst", ["us-gaap:ShortTermInvestments", "us-gaap:MarketableSecuritiesCurrent",
-                                "us-gaap:AvailableForSaleSecuritiesDebtSecuritiesCurrent"]),
+                                "us-gaap:AvailableForSaleSecuritiesDebtSecuritiesCurrent", "us-gaap:DebtSecuritiesCurrent",
+                                "us-gaap:HeldToMaturitySecuritiesCurrent", "ifrs-full:CurrentInvestments"]),
+    # long-term debt WITHOUT the current portion
     "debt_lt": ("inst", ["us-gaap:LongTermDebtNoncurrent", "us-gaap:LongTermDebtAndCapitalLeaseObligations",
-                         "us-gaap:LongTermDebt", "ifrs-full:NoncurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
-                         "ifrs-full:LongtermBorrowings", "us-gaap:LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
-                         "us-gaap:DebtLongtermAndShorttermCombinedAmount", "us-gaap:SeniorLongTermNotes", "us-gaap:SeniorNotes",
-                         "us-gaap:LongTermNotesPayable", "us-gaap:NotesPayable", "us-gaap:ConvertibleNotesPayable",
-                         "us-gaap:ConvertibleDebtNoncurrent", "us-gaap:UnsecuredLongTermDebt", "us-gaap:SecuredLongTermDebt",
-                         "us-gaap:OtherLongTermDebtNoncurrent", "us-gaap:LongTermLineOfCredit", "us-gaap:DebtInstrumentCarryingAmount",
-                         "ifrs-full:Borrowings", "ifrs-full:NoncurrentPortionOfNoncurrentBorrowings"]),
+                         "us-gaap:LongTermNotesPayable", "us-gaap:SeniorLongTermNotes", "us-gaap:ConvertibleDebtNoncurrent",
+                         "us-gaap:UnsecuredLongTermDebt", "us-gaap:SecuredLongTermDebt", "us-gaap:OtherLongTermDebtNoncurrent",
+                         "us-gaap:LongTermLineOfCredit", "ifrs-full:LongtermBorrowings",
+                         "ifrs-full:NoncurrentPortionOfNoncurrentBorrowings"]),
+    # total debt tags (already include the current portion)
+    "debt_total": ("inst", ["us-gaap:DebtLongtermAndShorttermCombinedAmount",
+                            "us-gaap:LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities", "us-gaap:LongTermDebt",
+                            "ifrs-full:Borrowings", "ifrs-full:NoncurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+                            "us-gaap:SeniorNotes", "us-gaap:NotesPayable", "us-gaap:ConvertibleNotesPayable",
+                            "us-gaap:DebtInstrumentCarryingAmount"]),
     "debt_st": ("inst", ["us-gaap:LongTermDebtCurrent", "us-gaap:DebtCurrent", "us-gaap:ShortTermBorrowings",
                          "us-gaap:LongTermDebtAndCapitalLeaseObligationsCurrent", "ifrs-full:ShorttermBorrowings",
                          "ifrs-full:CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "us-gaap:CommercialPaper",
@@ -362,6 +368,9 @@ def fy_of(end):
     return d.year - 1 if (d.month == 1 and d.day <= 10) else d.year
 
 
+QFORMS = {"10-Q", "10-Q/A", "10-K", "10-K/A", "10-KT"}
+
+
 def quarterly(facts, tags, n=12):
     """{quarter_end: value} for the last n fiscal quarters (USD filers).
     3-month values are taken directly when tagged, otherwise derived from the year-to-date figures
@@ -374,8 +383,8 @@ def quarterly(facts, tags, n=12):
         direct, cum = {}, {}
         for f in units["USD"]:
             st, en = f.get("start"), f.get("end")
-            if not st or not en:
-                continue
+            if not st or not en or f.get("form") not in QFORMS:
+                continue  # proxy statements (DEF 14A) and 8-Ks sometimes repeat figures in the wrong unit
             k = days(st, en)
             fd = f.get("filed", "")
             if 80 <= k <= 100:
@@ -413,6 +422,27 @@ def quarterly(facts, tags, n=12):
                     out[ks[i]] = None
             return out
     return {}
+
+
+def latest_inst(facts, tags, after=""):
+    """Most recent balance-sheet value (10-Q or 10-K), USD only: (value, end). Tags are tried in priority order;
+    a lower-priority tag is only used when it is more recent than everything found so far."""
+    best = (None, "")
+    for tag in tags:
+        ns, name = tag.split(":")
+        arr = ((facts.get(ns, {}).get(name) or {}).get("units", {}) or {}).get("USD") or []
+        cand = (None, "")
+        for f in arr:
+            if f.get("start") or f.get("form") not in QFORMS:
+                continue
+            en = f.get("end", "")
+            if en >= after and (en > cand[1] or (en == cand[1] and f.get("filed", "") >= cand_f)):
+                cand, cand_f = (f["val"], en), f.get("filed", "")
+            if cand[0] is None:
+                cand_f = ""
+        if cand[0] is not None and (best[0] is None or days(best[1], cand[1]) > 10):
+            best = cand
+    return best
 
 
 def ttm_tags(facts, tags):
@@ -478,7 +508,7 @@ def build_company(cik, entry, facts):
     ends = pick_fy_ends(series)
     if len(ends) < 2 or not (series["revenue"] or series["net_income"]):
         return None
-    has_debt = bool(series["debt_lt"] or series["debt_st"])
+    has_debt = bool(series["debt_lt"] or series["debt_st"] or series["debt_total"])
     has_capex = bool(series["capex"])
     pays_div = bool(series["dividends"])
     rows = []
@@ -499,8 +529,8 @@ def build_company(cik, entry, facts):
         if tax_rate is None or tax_rate < 0 or tax_rate > 0.5:
             tax_rate = 0.21
         nopat = op * (1 - tax_rate) if op is not None else None
-        debt_known = g("debt_lt") is not None or g("debt_st") is not None
-        debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
+        debt_known = g("debt_lt") is not None or g("debt_st") is not None or g("debt_total") is not None
+        debt = max((g("debt_lt") or 0) + (g("debt_st") or 0), g("debt_total") or 0)
         ie0 = g("interest_exp")
         if not debt and not has_debt and g("assets") and (not ie0 or (rev and ie0 <= 0.002 * rev)):
             debt, debt_known = 0.0, True  # the company never reports any borrowings: debt-free
@@ -626,8 +656,23 @@ def build_company(cik, entry, facts):
     summary["years"] = len(rows)
     last = rows[-1]
     # last 12 quarters of revenue and net income (charts on the stock page); USD filers only
-    qrows, ttm_rec = [], None
+    qrows, ttm_rec, bs = [], None, None
     if meta.get("currency", "USD") == "USD":
+        # latest balance sheet (most recent 10-Q), used for P/B and enterprise value
+        eq, e_eq = latest_inst(facts, CONCEPTS["equity"][1], last["fy_end"])
+        if e_eq and e_eq > last["fy_end"]:
+            near = lambda e: bool(e) and abs(days(e, e_eq)) <= 10
+            c, e_c = latest_inst(facts, CONCEPTS["cash"][1], last["fy_end"])
+            si, e_si = latest_inst(facts, CONCEPTS["st_investments"][1], last["fy_end"])
+            dl, e_dl = latest_inst(facts, CONCEPTS["debt_lt"][1], last["fy_end"])
+            ds, e_ds = latest_inst(facts, CONCEPTS["debt_st"][1], last["fy_end"])
+            dt_, e_dt = latest_inst(facts, CONCEPTS["debt_total"][1], last["fy_end"])
+            bs = {"end": e_eq, "equity": eq,
+                  "cash": ((c or 0) if near(e_c) else 0) + ((si or 0) if near(e_si) else 0) or None,
+                  "debt": max(((dl or 0) + ((ds or 0) if near(e_ds) else 0)) if near(e_dl) else 0,
+                              ((dt_ or 0) if near(e_dt) else 0)) if (near(e_dl) or near(e_dt)) else None}
+            if not near(e_c):
+                bs["cash"] = None
         qr = quarterly(facts, CONCEPTS["revenue"][1])
         qn = quarterly(facts, CONCEPTS["net_income"][1])
         for k in sorted(set(qr) | set(qn))[-12:]:
@@ -649,6 +694,7 @@ def build_company(cik, entry, facts):
             if t_pt is not None:
                 t_op, e_op = t_pt + (t_ie or 0), e_pt
         t_da, e_da = ttm_tags(facts, CONCEPTS["da"][1])
+        t_div, e_div = ttm_tags(facts, CONCEPTS["dividends"][1])
         end = e_ni or e_rev
         if end and end > last["fy_end"]:
             same = lambda e: e is not None and abs(days(e, end)) <= 10
@@ -658,7 +704,8 @@ def build_company(cik, entry, facts):
                        "cfo": t_cfo if same(e_cfo) else None,
                        "capex": abs(t_cap) if same(e_cap) else (0.0 if (same(e_cfo) and not series["capex"] and last["capex"] == 0) else None),
                        "op_income": t_op if same(e_op) else None,
-                       "da": t_da if same(e_da) else None}
+                       "da": t_da if same(e_da) else None,
+                       "dividends": abs(t_div) if same(e_div) else None}
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
@@ -674,6 +721,7 @@ def build_company(cik, entry, facts):
         "annual": rows,
         "quarterly": qrows,
         "ttm": ttm_rec,
+        "bs": bs,
     }
 
 
@@ -842,12 +890,15 @@ def score(rec, mk, sector_pe):
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
     ps = mcap / rev if (mcap and rev and rev > 0) else None
-    pb = mcap / last["equity"] if (mcap and last.get("equity") and last["equity"] > 0) else None
+    b = rec.get("bs") or {}
+    equity_now = b.get("equity") if b.get("equity") is not None else last.get("equity")
+    pb = mcap / equity_now if (mcap and equity_now and equity_now > 0) else None
     eg = s.get("eps_cagr_5y") if s.get("eps_cagr_5y") is not None else s.get("ni_cagr_5y")
     peg = pe / (eg * 100) if (pe and eg and eg > 0) else None
     fair = dcf_fair_mcap(rec)
     spe = sector_pe.get((mk or {}).get("sector"))
-    debt, cash = last.get("debt") or 0, last.get("cash") or 0
+    debt = (b["debt"] if b.get("debt") is not None else last.get("debt")) or 0
+    cash = (b["cash"] if b.get("cash") is not None else last.get("cash")) or 0
     ev = (mcap + debt - cash) if mcap else None
     ev_ebitda = ev / ebitda if (ev and ebitda and ebitda > 0) else None
     fcf_yield = fcf / mcap if (mcap and fcf is not None) else None
@@ -896,7 +947,8 @@ def score(rec, mk, sector_pe):
 
     parts = [x for x in (value, future, past, health, capital) if x is not None]
     total = round(sum(parts) / len(parts), 1) if parts else None
-    divy = (last.get("dividends") or 0) / mcap if mcap else None
+    div_t = t.get("dividends") if t.get("dividends") is not None else last.get("dividends")
+    divy = (div_t or 0) / mcap if mcap else None
     buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
     checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],
@@ -922,7 +974,25 @@ SCREENER_COLS = ["t", "n", "sector", "industry", "price", "mcap", "pe", "pfcf", 
                  "fwd_pe", "fwd_ps", "fwd_pfcf", "tgt_up", "rm"]
 
 
+def fix_mcap(recs, market):
+    """Cross-check market caps with an independent source (Yahoo, via the estimates branch). The Nasdaq screener
+    sometimes counts only one share class (Interactive Brokers, Blackstone) or a stale share count (after splits).
+    When the share counts differ by more than 8%, use the independent share count with our price."""
+    fixed = []
+    for r in recs:
+        t = r["ticker"]
+        mk, ref = market.get(t), ((EST.get(t) or {}).get("ref") or {})
+        if not mk or not mk.get("mcap") or not mk.get("price") or not ref.get("mcap") or not ref.get("price"):
+            continue
+        sh_ours, sh_ref = mk["mcap"] / mk["price"], ref["mcap"] / ref["price"]
+        if abs(sh_ours / sh_ref - 1) > 0.08:
+            mk["mcap"] = mk["price"] * sh_ref
+            fixed.append((t, round(sh_ours / sh_ref, 2)))
+    log("market caps corrected:", len(fixed), fixed[:30])
+
+
 def finish(recs, market):
+    fix_mcap(recs, market)
     # sector median P/E (positive earners with a market cap)
     by_sector = defaultdict(list)
     for r in recs:

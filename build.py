@@ -1242,10 +1242,42 @@ def finish(recs, market):
             r["ttm"]["dps"] = r["ttm"]["dps"] / n
         r["share_factor"] = n
         fixed.append(r["ticker"])
+    # foreign filers: per-share figures in the filings are per ordinary share and sometimes in the home currency;
+    # restate every year per ADS / per listed share (net figure / the share count the market price refers to)
+    PS_SRC = (("eps_diluted", "net_income"), ("fcf_per_share", "fcf"), ("revenue_per_share", "revenue"),
+              ("book_value_per_share", "equity"), ("div_per_share", "dividends"))
+    for r in recs:
+        mk = market.get(r["ticker"]) or {}
+        if not (mk.get("mcap") and mk.get("price")):
+            continue
+        implied = mk["mcap"] / mk["price"]
+        last = r["annual"][-1]
+        if r.get("foreign"):
+            for row in r["annual"]:
+                row["shares_diluted"] = implied
+                for k, src in PS_SRC:
+                    row[k] = r4(safe_div(row.get(src), implied)) if row.get(src) is not None else None
+            r["per_share_basis"] = "market"
+            continue
+        # US filers: a stock split after the last annual report leaves the annual EPS on the old basis
+        eps, ye = last.get("eps_diluted"), ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("teps")
+        if eps and eps > 0 and isinstance(ye, (int, float)) and ye > 0 and mk["price"] / eps < 4:
+            q = eps / ye
+            n = next((c for c in (2, 3, 4, 5, 6, 8, 10, 15, 20, 25, 30, 40, 50, 100) if abs(q / c - 1) < 0.25), None)
+            if n:
+                for row in r["annual"]:
+                    for f in ("shares_diluted", "shares_out"):
+                        if row.get(f):
+                            row[f] = row[f] * n
+                    for f in PS_FIELDS:
+                        if row.get(f) is not None:
+                            row[f] = r4(row[f] / n)
+                r["share_factor"] = n
+                fixed.append(r["ticker"])
     for r in recs:
         last = r["annual"][-1]
         r["latest"].update({k: last.get(k) for k in ("eps_diluted", "shares_diluted", "shares_out")})
-    log("per-share fixes (ADR ratio / missing shares):", len(fixed), fixed[:25])
+    log("per-share fixes (ADR ratio / missing shares / late splits):", len(fixed), fixed[:25])
 
     index, screener = [], []
     for r in recs:

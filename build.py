@@ -729,6 +729,65 @@ def pts(*checks):
     return sum(1 for c in checks if c is True)
 
 
+EST = {}
+
+
+def load_estimates():
+    """Analyst consensus (estimates.py -> branch "estimates")."""
+    try:
+        url = "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "mrezahajilou-ops/stock-data") + "/estimates/est.json"
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "stock-data-build"}), timeout=60) as r:
+            EST.update(json.loads(r.read()).get("est") or {})
+        log("analyst estimates:", len(EST))
+    except Exception as e:
+        log("estimates unavailable", e)
+
+
+def forward(rec, mk):
+    """Forward multiples on the next twelve months (NTM) of analyst consensus: the current and next fiscal
+    year estimates weighted by how much of the current fiscal year is still ahead (FactSet/stockanalysis style)."""
+    e = EST.get(rec["ticker"]) or {}
+    out = {}
+    mcap, price = (mk or {}).get("mcap"), (mk or {}).get("price")
+    if not e or not mcap or not price:
+        return out
+    today = dt.date.today()
+    try:
+        w = (dt.date.fromisoformat(e["fy0"]) - today).days / 365.0 if e.get("fy0") else 0.5
+    except Exception:
+        w = 0.5
+    w = max(0.0, min(1.0, w))
+
+    def ntm(a, b):
+        if a is not None and b is not None:
+            return w * a + (1 - w) * b
+        return b if b is not None else a
+    cur = e.get("cur") or "USD"
+    fx = 1.0 if cur == "USD" else (FX_LATEST.get(cur) or None)
+    eps, revn = ntm(e.get("e0"), e.get("e1")), ntm(e.get("r0"), e.get("r1"))
+    if cur == "USD":
+        if eps and eps > 0:
+            out["fwd_pe"] = price / eps
+            out["fwd_eps"] = eps
+    elif e.get("fpe") and e["fpe"] > 0:
+        out["fwd_pe"] = e["fpe"]  # foreign filers: per-ADS conversion done by the data provider
+    if revn and revn > 0 and fx:
+        out["fwd_ps"] = mcap / (revn / fx)
+        out["fwd_rev"] = revn / fx
+        # forward P/FCF: no consensus FCF is published, so analysts' revenue x the company's own FCF margin
+        # (latest 12 months, else last fiscal year)
+        t, last = rec.get("ttm") or {}, rec["annual"][-1]
+        fm = (t["fcf"] / t["revenue"]) if (t.get("fcf") is not None and t.get("revenue")) else last.get("fcf_margin")
+        if fm and fm > 0:
+            out["fwd_pfcf"] = mcap / (revn / fx * fm)
+    if e.get("tgt"):
+        rec["analyst"] = {k: e.get(k) for k in ("tgt", "tlo", "thi", "nt", "rec", "rm", "n", "fy0", "fy1", "e0", "e1", "r0", "r1", "cur")}
+        rec["analyst"]["up"] = e["tgt"] / price - 1
+        rec["analyst"]["fwd_eps"] = out.get("fwd_eps")
+        rec["analyst"]["fwd_rev"] = out.get("fwd_rev")
+    return out
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     a, s = rec["annual"], rec["summary"]
@@ -810,7 +869,9 @@ def score(rec, mk, sector_pe):
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],
               "health": [int(bool(c)) for c in h_checks], "capital": [int(bool(c)) for c in c_checks]}
     scores = {"value": value, "future": future, "past": past, "health": health, "capital": capital, "total": total}
+    fwd = forward(rec, mk)
     ratios = {"pe": pe, "pfcf": pfcf, "ps": ps, "pb": pb, "peg": peg, "fair_mcap": fair, "div_yield": divy,
+              "fwd_pe": fwd.get("fwd_pe"), "fwd_ps": fwd.get("fwd_ps"), "fwd_pfcf": fwd.get("fwd_pfcf"),
               "buyback_yield": buyback_y, "shareholder_yield": (divy or 0) + (buyback_y or 0) if mcap else None,
               "ev": ev, "ev_ebitda": ev_ebitda, "fcf_yield": fcf_yield, "earnings_yield": earn_yield,
               "sector_pe": spe}
@@ -823,7 +884,9 @@ SCREENER_COLS = ["t", "n", "sector", "industry", "price", "mcap", "pe", "pfcf", 
                  # v2 columns
                  "revg3", "epsg5", "fcfg3", "gm", "om", "roe", "ev_ebitda", "fcf_yield", "peg", "pb",
                  "nd_ebitda", "int_cov", "sh_chg3", "sbc_pct", "nm_trend", "shy", "profit_yrs", "div_yrs",
-                 "fcf_conv", "fair_up", "years"]
+                 "fcf_conv", "fair_up", "years",
+                 # v3: analyst consensus
+                 "fwd_pe", "fwd_ps", "fwd_pfcf", "tgt_up", "rm"]
 
 
 def finish(recs, market):
@@ -970,7 +1033,9 @@ def finish(recs, market):
                          r4(ratios["ev_ebitda"]), r4(ratios["fcf_yield"]), r4(ratios["peg"]), r4(ratios["pb"]),
                          last.get("nd_ebitda"), last.get("interest_cov"), s.get("sh_cagr_3y"), last.get("sbc_pct"),
                          s.get("nm_trend"), r4(ratios["shareholder_yield"]), s.get("profit_years"), s.get("div_years"),
-                         last.get("fcf_conv"), r4(fair_up), s.get("years")])
+                         last.get("fcf_conv"), r4(fair_up), s.get("years"),
+                         r4(ratios.get("fwd_pe")), r4(ratios.get("fwd_ps")), r4(ratios.get("fwd_pfcf")),
+                         r4((r.get("analyst") or {}).get("up")), (r.get("analyst") or {}).get("rm")])
     index.sort(key=lambda x: -(x["rev"] or 0))
     with open(os.path.join(OUT, "index.json"), "w") as f:
         json.dump([{"t": x["t"], "n": x["n"]} for x in index] +
@@ -987,7 +1052,7 @@ def finish(recs, market):
         sec = row[ci["sector"]]
         if not sec:
             continue
-        for k in ("pe", "pfcf", "ps", "ev_ebitda", "nm", "gm", "roic", "revg1", "divy", "fcf_yield", "de"):
+        for k in ("pe", "pfcf", "ps", "ev_ebitda", "nm", "gm", "roic", "revg1", "divy", "fcf_yield", "de", "fwd_pe", "fwd_ps"):
             v = row[ci[k]]
             if v is not None and isinstance(v, (int, float)):
                 med[sec][k].append(v)
@@ -1024,6 +1089,7 @@ def main():
     os.makedirs(os.path.join(OUT, "stocks"), exist_ok=True)
     load_fx()
     market = load_market()
+    load_estimates()
     recs, done, skipped = [], 0, 0
     seen_cik, why = set(), {}
     for name in zf.namelist():

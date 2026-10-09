@@ -157,7 +157,7 @@ var C={},ROWS=[],BY={},SPE={};
 function liveRow(r){var I=function(k){return C[k]},Q=RZQ&&RZQ.q[r[I('t')]],p0=r[I('price')];if(!Q||!(Q[0]>0)||!p0)return;var f=Q[0]/p0;
   var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:r[I('fair_up')],sv:r[I('s_value')]};
   r[I('price')]=Q[0];r.chg=Q[1];if(r[I('mcap')]!=null)r[I('mcap')]*=f;
-  ['pe','pfcf','ps','pb','peg'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+  ['pe','pfcf','ps','pb','peg','fwd_pe','fwd_ps','fwd_pfcf'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
   ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
   if(r[I('ev_ebitda')]!=null){var nd=r[I('nd_ebitda')];r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
   if(r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;

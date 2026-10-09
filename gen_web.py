@@ -84,7 +84,7 @@ var C={},ROWS=[],BY={},SPE={};
 function liveRow(r){var I=function(k){return C[k]},Q=RZQ&&RZQ.q[r[I('t')]],p0=r[I('price')];if(!Q||!(Q[0]>0)||!p0)return;var f=Q[0]/p0;
   var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:r[I('fair_up')],sv:r[I('s_value')]};
   r[I('price')]=Q[0];r.chg=Q[1];if(r[I('mcap')]!=null)r[I('mcap')]*=f;
-  ['pe','pfcf','ps','pb','peg'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+  ['pe','pfcf','ps','pb','peg','fwd_pe','fwd_ps','fwd_pfcf'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
   ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
   if(r[I('ev_ebitda')]!=null){var nd=r[I('nd_ebitda')];r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
   if(r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;
@@ -127,7 +127,7 @@ COMPARE_BODY = r"""
 COMPARE_JS = r"""
 var SEL=[];
 var ROWDEF=[['امتیازها',[['s_total','امتیاز کلی',1,'sc'],['s_value','ارزش',1,'sc'],['s_future','آینده',1,'sc'],['s_past','گذشته',1,'sc'],['s_health','سلامت مالی',1,'sc'],['s_capital','بازگشت سرمایه',1,'sc']]],
- ['قیمت و ارزش‌گذاری',[['price','قیمت',0,'px'],['mcap','ارزش بازار',0,'big'],['pe','P/E',-1,'x'],['pfcf','P/FCF',-1,'x'],['ps','P/S',-1,'x'],['pb','P/B',-1,'x'],['ev_ebitda','EV/EBITDA',-1,'x'],['peg','PEG',-1,'x'],['fair_up','فاصله تا ارزش ذاتی',1,'pct'],['fcf_yield','بازده جریان نقد آزاد',1,'pct']]],
+ ['قیمت و ارزش‌گذاری',[['price','قیمت',0,'px'],['mcap','ارزش بازار',0,'big'],['pe','P/E',-1,'x'],['fwd_pe','P/E آینده',-1,'x'],['fwd_ps','P/S آینده',-1,'x'],['tgt_up','تا هدف تحلیلگرها',1,'pct'],['pfcf','P/FCF',-1,'x'],['ps','P/S',-1,'x'],['pb','P/B',-1,'x'],['ev_ebitda','EV/EBITDA',-1,'x'],['peg','PEG',-1,'x'],['fair_up','فاصله تا ارزش ذاتی',1,'pct'],['fcf_yield','بازده جریان نقد آزاد',1,'pct']]],
  ['رشد',[['revg1','رشد درآمد ۱ ساله',1,'pct'],['revg3','رشد درآمد ۳ ساله',1,'pct'],['revg5','رشد درآمد ۵ ساله',1,'pct'],['epsg5','رشد EPS ۵ ساله',1,'pct'],['fcfg3','رشد FCF ۳ ساله',1,'pct']]],
  ['کیفیت و سودآوری',[['gm','حاشیه ناخالص',1,'pct'],['om','حاشیه عملیاتی',1,'pct'],['nm','حاشیه خالص',1,'pct'],['fm','حاشیه FCF',1,'pct'],['roic','ROIC',1,'pct'],['roe','ROE',1,'pct']]],
  ['سلامت مالی',[['de','بدهی / حقوق صاحبان سهام',-1,'x'],['nd_ebitda','بدهی خالص / EBITDA',-1,'x'],['int_cov','پوشش بهره',1,'x']]],
@@ -142,7 +142,7 @@ function draw(){var m=$('rzk-main');if(!SEL.length){m.innerHTML='<div class="car
   var h='<div class="card"><div class="tw"><table><thead><tr><th style="text-align:right">معیار</th>'+rs.map(function(r){return '<th><a class="tk" href="/pages/stocks/'+esc(g(r,'t').toLowerCase())+'">'+esc(g(r,'t'))+'</a><div class="mut" style="font-weight:600;max-width:160px;white-space:normal">'+esc(g(r,'n'))+'</div></th>'}).join('')+'</tr></thead><tbody>';
   ROWDEF.forEach(function(G){h+='<tr><td colspan="'+(rs.length+1)+'" style="color:#fff;font-weight:900;padding-top:16px">'+G[0]+'</td></tr>';
     G[1].forEach(function(R){var vals=rs.map(function(r){return g(r,R[0])}),best=null;
-      if(R[2]&&rs.length>1){var ok=vals.filter(function(v){return v!=null&&isFinite(v)});if(ok.length>1){best=R[2]>0?Math.max.apply(null,ok):Math.min.apply(null,ok);if(R[0]==='pe'||R[0]==='pfcf'||R[0]==='ps'||R[0]==='pb'||R[0]==='ev_ebitda'||R[0]==='peg'){var pos=ok.filter(function(v){return v>0});best=pos.length?Math.min.apply(null,pos):null}}}
+      if(R[2]&&rs.length>1){var ok=vals.filter(function(v){return v!=null&&isFinite(v)});if(ok.length>1){best=R[2]>0?Math.max.apply(null,ok):Math.min.apply(null,ok);if(R[0]==='pe'||R[0]==='fwd_pe'||R[0]==='fwd_ps'||R[0]==='pfcf'||R[0]==='ps'||R[0]==='pb'||R[0]==='ev_ebitda'||R[0]==='peg'){var pos=ok.filter(function(v){return v>0});best=pos.length?Math.min.apply(null,pos):null}}}
       h+='<tr><td>'+R[1]+'</td>'+vals.map(function(v,i){var w=best!=null&&v===best;return '<td style="text-align:center'+(w?';background:rgba(46,196,182,.14)':'')+'">'+fmt(v,R[3],rs[i])+'</td>'}).join('')+'</tr>'})});
   h+='</tbody></table></div><div class="chips">'+SEL.map(function(t){return '<a class="btn ghost sm" href="/pages/stock#'+t+'">تحلیل کامل '+t+'</a>'}).join('')+'</div></div>';
   var tots=rs.map(function(r){return [g(r,'t'),g(r,'s_total')]}).filter(function(x){return x[1]!=null}).sort(function(a,b){return b[1]-a[1]});

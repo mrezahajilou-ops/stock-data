@@ -207,7 +207,8 @@ function applyLive(d){
   m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
   if(mc0){m.mcap=mc0*f;
     if(r.ev!=null){var ev0=r.ev;r.ev=ev0+m.mcap-mc0;if(r.ev_ebitda!=null&&ev0)r.ev_ebitda=r.ev_ebitda*r.ev/ev0}}
-  ['pe','pfcf','ps','pb','peg'].forEach(function(k){r[k]=liveScale(r[k],f)});
+  ['pe','pfcf','ps','pb','peg','fwd_pe','fwd_ps','fwd_pfcf'].forEach(function(k){r[k]=liveScale(r[k],f)});
+  if(d.analyst&&d.analyst.tgt)d.analyst.up=d.analyst.tgt/Q[0]-1;
   ['div_yield','buyback_yield','shareholder_yield','fcf_yield','earnings_yield'].forEach(function(k){r[k]=liveScale(r[k],1/f)});
   var c=d.checks, s=d.scores;
   if(c&&c.value&&s&&m.mcap){
@@ -298,9 +299,12 @@ function statCards(d){
   if(sh3==null&&a.length>=4&&a[a.length-4].shares_diluted>0&&L.shares_diluted>0)sh3=Math.pow(L.shares_diluted/a[a.length-4].shares_diluted,1/3)-1;
   var groups=[
    ['ارزش‌گذاری',[
-    ['P/E',x(r.pe),'قیمت تقسیم بر سود هر سهم. هر چی کمتر، سهم نسبت به سودش ارزون‌تره.','pe',1],
+    ['P/E (۱۲ ماه اخیر)',x(r.pe),'قیمت تقسیم بر سود هر سهم در ۱۲ ماه اخیر (جمع ۴ فصل آخر). هر چی کمتر، سهم نسبت به سودش ارزون‌تره.','pe',1],
+    ['P/E آینده (Forward)',x(r.fwd_pe),'قیمت تقسیم بر پیش‌بینی میانگین تحلیلگرها از سود هر سهم در ۱۲ ماه آینده. اگه خیلی کمتر از P/E فعلی باشه یعنی تحلیلگرها رشد سود زیادی انتظار دارن.','fwd_pe',1],
     ['P/FCF',x(r.pfcf),'ارزش بازار تقسیم بر جریان نقد آزاد. برای شرکت‌هایی که سود حسابداری‌شون گمراه‌کننده‌ست مفیده.','pfcf',1],
-    ['P/S',x(r.ps),'ارزش بازار تقسیم بر درآمد. برای شرکت‌های زیان‌ده یا در حال رشد.','ps',1],
+    ['P/S',x(r.ps),'ارزش بازار تقسیم بر درآمد ۱۲ ماه اخیر. برای شرکت‌های زیان‌ده یا در حال رشد.','ps',1],
+    ['P/S آینده (Forward)',x(r.fwd_ps),'ارزش بازار تقسیم بر پیش‌بینی میانگین تحلیلگرها از درآمد ۱۲ ماه آینده.','fwd_ps',1],
+    ['P/FCF آینده (تخمینی)',x(r.fwd_pfcf),'تحلیلگرها جریان نقد آزاد رو پیش‌بینی عمومی نمی‌کنن؛ این عدد = ارزش بازار تقسیم بر (پیش‌بینی درآمد ۱۲ ماه آینده × حاشیه‌ی جریان نقد آزاد فعلی شرکت).',null,1],
     ['P/B',x(pb),'ارزش بازار تقسیم بر ارزش دفتری (حقوق صاحبان سهام).',null,1],
     ['EV/EBITDA',x(evEbitda),'ارزش کل شرکت (با بدهی) تقسیم بر سود قبل از بهره، مالیات و استهلاک. برای مقایسه شرکت‌ها با ساختار بدهی متفاوت.','ev_ebitda',1],
     ['بازده جریان نقد آزاد',pct(fcfy),'جریان نقد آزاد تقسیم بر ارزش بازار. مثل «نرخ سودی» که شرکت واقعاً تولید می‌کنه.','fcf_yield',0],
@@ -347,7 +351,7 @@ function statCards(d){
 function fillSector(){
   if(!cur||!SECT)return; var m=cur.market||{}, S=SECT[m.sector]; if(!S)return;
   var a=cur.annual, L=a[a.length-1], r=cur.ratios||{};
-  var val={pe:r.pe,pfcf:r.pfcf,ps:r.ps,ev_ebitda:r.ev_ebitda,nm:L.net_margin,gm:L.gross_margin,roic:L.roic,revg1:L.revenue_growth,divy:r.div_yield,fcf_yield:r.fcf_yield,de:L.debt_to_equity};
+  var val={fwd_pe:r.fwd_pe,fwd_ps:r.fwd_ps,pe:r.pe,pfcf:r.pfcf,ps:r.ps,ev_ebitda:r.ev_ebitda,nm:L.net_margin,gm:L.gross_margin,roic:L.roic,revg1:L.revenue_growth,divy:r.div_yield,fcf_yield:r.fcf_yield,de:L.debt_to_equity};
   var isPct={nm:1,gm:1,roic:1,revg1:1,divy:1,fcf_yield:1};
   [].forEach.call(document.querySelectorAll('#rzs .st .s[data-sk]'),function(el){
     var k=el.dataset.sk; if(!k||S[k]==null||val[k]==null)return;
@@ -373,6 +377,7 @@ function render(d){
   h+='<div class="card" id="rzs-rn"></div>';
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
   h+='<div class="card" id="rzs-val" style="display:none"></div>';
+  h+='<div class="card" id="rzs-an" style="display:none"></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-si" style="display:none"></div>';
@@ -406,7 +411,31 @@ function render(d){
   loadEarn(d);
   loadVal(d);
   drawRN(d);
+  drawAnalyst(d);
 }
+
+/* ---- analyst consensus: rating, price target, EPS / revenue estimates (branch `estimates`) ---- */
+function drawAnalyst(d){var box=$('rzs-an'),A=d.analyst;if(!box||!A||!A.tgt)return;
+  var m=d.market||{},px=m.price,up=A.up,L=(d.annual||[])[d.annual.length-1]||{},T=d.ttm||{};
+  var REC={strong_buy:['خرید قوی','#2ec4b6'],buy:['خرید','#b5e36b'],hold:['نگه‌داری','#f5b700'],underperform:['ضعیف‌تر از بازار','#ff9f6b'],sell:['فروش','#ff5a5f']};
+  var R=REC[A.rec]||[A.rec||'—','#93a7bf'],cur=A.cur||'USD',fx=cur==='USD';
+  var P=function(v){return v==null||!isFinite(v)?'—':'<span class="ltr">'+(v>=0?'+':'')+(v*100).toFixed(1)+'%</span>'},U=function(v){return v==null?'—':'<span class="ltr">$'+v.toFixed(2)+'</span>'};
+  var fy=function(x){return x?String(x).slice(0,4):''};
+  var lo=A.tlo,hi=A.thi,pos=function(v){return hi>lo?Math.max(0,Math.min(100,(v-lo)/(hi-lo)*100)):50};
+  var bar=lo&&hi?'<div style="position:relative;height:38px;margin:14px 6px 6px"><div style="position:absolute;top:16px;left:0;right:0;height:6px;border-radius:4px;background:linear-gradient(90deg,#ff5a5f,#f5b700,#2ec4b6)"></div>'+
+    '<div title="قیمت فعلی" style="position:absolute;top:8px;left:'+pos(px)+'%;transform:translateX(-50%);width:3px;height:22px;background:#fff;border-radius:2px"></div>'+
+    '<div title="میانگین هدف" style="position:absolute;top:10px;left:'+pos(A.tgt)+'%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:#b5e36b;border:2px solid #0b1726;margin-top:2px"></div>'+
+    '<span style="position:absolute;top:28px;left:0;font-size:11px;color:var(--mut);direction:ltr">$'+lo.toFixed(0)+' کمترین</span><span style="position:absolute;top:28px;right:0;font-size:11px;color:var(--mut)">بیشترین $'+hi.toFixed(0)+'</span></div>':'';
+  var rows='';
+  if(fx&&(A.e0!=null||A.e1!=null)){var eb=T.net_income!=null&&L.shares_diluted?T.net_income/L.shares_diluted:L.eps_diluted;
+    rows+='<tr><td>سود هر سهم (EPS)</td><td>'+U(eb)+'</td><td>'+U(A.e0)+' <small class="'+(A.e0>=eb?'up':'dn')+'">'+(eb>0&&A.e0!=null?P(A.e0/eb-1):'')+'</small></td><td>'+U(A.e1)+' <small class="'+(A.e1>=A.e0?'up':'dn')+'">'+(A.e0>0&&A.e1!=null?P(A.e1/A.e0-1):'')+'</small></td></tr>'}
+  if(A.r0!=null||A.r1!=null){var rb=T.revenue!=null?T.revenue:L.revenue,k=fx?1:null;
+    if(fx)rows+='<tr><td>درآمد</td><td>'+(rb?big(rb):'—')+'</td><td>'+(A.r0?big(A.r0):'—')+' <small class="up">'+(rb&&A.r0?P(A.r0/rb-1):'')+'</small></td><td>'+(A.r1?big(A.r1):'—')+' <small class="up">'+(A.r0&&A.r1?P(A.r1/A.r0-1):'')+'</small></td></tr>'}
+  var h='<div class="axhead"><h3 style="margin:0">🎯 نظر تحلیلگرها</h3><span class="mut2" style="font-size:12.5px">'+(A.nt||A.n||'?')+' تحلیلگر</span></div>'+
+    '<div class="vbig"><div><small>توصیه‌ی میانگین</small><b style="color:'+R[1]+'">'+R[0]+'</b></div><div><small>قیمت هدف میانگین</small><b>$'+A.tgt.toFixed(2)+'</b></div><div><small>فاصله تا هدف</small><b class="'+(up>=0?'up':'dn')+'">'+(up>=0?'+':'')+(up*100).toFixed(1)+'%</b></div><div><small>P/E آینده</small><b>'+(d.ratios&&d.ratios.fwd_pe?d.ratios.fwd_pe.toFixed(1):'—')+'</b></div></div>'+bar+
+    (rows?'<div class="tblwrap" style="margin-top:10px"><table><thead><tr><th style="text-align:right">پیش‌بینی میانگین</th><th>۱۲ ماه اخیر</th><th>سال مالی '+fy(A.fy0)+'</th><th>سال مالی '+fy(A.fy1)+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'')+
+    '<p class="xnote">میانگین پیش‌بینی تحلیلگرهای وال‌استریت (منبع: Yahoo Finance)، روزانه به‌روز میشه. P/E و P/S آینده بر اساس ۱۲ ماه آینده‌ی همین پیش‌بینی‌ها حساب میشن. پیش‌بینی تحلیلگرها اغلب اشتباه از آب درمیاد؛ آموزشیه و پیشنهاد خرید یا فروش نیست.</p>';
+  box.innerHTML=ACCESS?h:'<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+h+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 مخصوص مشترکین Stock Pro</a></div></div>';box.style.display=''}
 
 /* ---- revenue & net income history (annual 10 years / last 12 quarters) ---- */
 var RN_MODE='y';

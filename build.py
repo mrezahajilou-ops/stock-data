@@ -1002,7 +1002,7 @@ def score(rec, mk, sector_pe):
         rec["ttm_src"] = "yahoo"
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
-    if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.25:
+    if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10:
         pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
     elif not stale and t.get("eps") and t["eps"] > 0 and price:
         pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)

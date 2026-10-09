@@ -447,10 +447,11 @@ def build_company(cik, entry, facts):
         if tax_rate is None or tax_rate < 0 or tax_rate > 0.5:
             tax_rate = 0.21
         nopat = op * (1 - tax_rate) if op is not None else None
+        debt_known = g("debt_lt") is not None or g("debt_st") is not None
         debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
         ie0 = g("interest_exp")
         if not debt and not has_debt and g("assets") and (not ie0 or (rev and ie0 <= 0.002 * rev)):
-            debt = 0.0  # the company never reports any borrowings: debt-free
+            debt, debt_known = 0.0, True  # the company never reports any borrowings: debt-free
         cash = (g("cash") or 0) + (g("st_investments") or 0)
         equity = g("equity")
         invested = (equity + debt) if equity is not None else None
@@ -488,7 +489,7 @@ def build_company(cik, entry, facts):
             "sbc": g("sbc"), "dividends": g("dividends"), "buybacks": g("buybacks"),
             "rnd": g("rnd"), "da": da, "ebitda": ebitda, "interest_exp": ie,
             "assets": g("assets"), "liabilities": liab, "equity": equity,
-            "cash": cash or None, "debt": debt if (debt or debt == 0.0) else None, "net_debt": (debt - cash) if (debt or cash) else None,
+            "cash": cash or None, "debt": debt if debt_known else None, "net_debt": (debt - cash) if (debt or cash) else None,
             "goodwill": g("goodwill"), "intangibles": g("intangibles"),
             "current_assets": ca, "current_liabilities": cl,
             # ratios
@@ -846,7 +847,7 @@ def finish(recs, market):
         k = implied / sh
         if 0.87 <= k <= 1.15:
             continue
-        n = next((c for c in CAND if abs(k / c - 1) < 0.06), None)
+        n = next((c for c in CAND if abs(k / c - 1) < (0.12 if c in (1000, 1e6) else 0.06)), None)
         if not n:
             continue
         prev = r["annual"][-2].get("shares_diluted") if len(r["annual"]) > 1 else None
@@ -952,6 +953,7 @@ def main():
     load_fx()
     market = load_market()
     recs, done, skipped = [], 0, 0
+    seen_cik, why = set(), {}
     for name in zf.namelist():
         m = re.match(r"CIK(\d+)\.json$", name)
         if not m:
@@ -967,17 +969,38 @@ def main():
             log("bad json", name, e)
             continue
         facts = doc.get("facts", {})
+        seen_cik.add(cik)
         for entry in by_cik[cik]:
             # one listing can have several share classes (GOOGL/GOOG): same data, both tickers
-            rec = build_company(cik, entry, facts)
+            try:
+                rec = build_company(cik, entry, facts)
+            except Exception as e:
+                log("build error", entry["ticker"], repr(e)[:200])
+                why[entry["ticker"]] = "error: " + repr(e)[:120]
+                rec = None
             if not rec:
                 skipped += 1
+                why.setdefault(entry["ticker"], "no usable annual data")
                 continue
             recs.append(rec)
             done += 1
             if done % 500 == 0 and done:
                 log("processed", done)
 
+    # large listed companies that did not make it into the data set, with the reason (data/missing.json)
+    built = {r["ticker"] for r in recs}
+    t2cik = {e["ticker"]: c for c, es in by_cik.items() for e in es}
+    miss = []
+    for t, mk in market.items():
+        if (mk.get("mcap") or 0) < 2e9 or t in built:
+            continue
+        reason = why.get(t) or ("not in SEC ticker map" if t not in t2cik else
+                               ("no companyfacts file" if t2cik[t] not in seen_cik else "unknown"))
+        miss.append({"t": t, "mcap": round(mk["mcap"]), "why": reason, "cik": t2cik.get(t)})
+    miss.sort(key=lambda x: -x["mcap"])
+    with open(os.path.join(OUT, "missing.json"), "w") as f:
+        json.dump(miss, f, indent=0)
+    log("large companies missing:", len(miss), [(m["t"], m["why"]) for m in miss[:30]])
     finish(recs, market)
     with open(os.path.join(OUT, "meta.json"), "w") as f:
         json.dump({"built": dt.datetime.now(dt.timezone.utc).isoformat(), "stocks": done, "skipped": skipped,

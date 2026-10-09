@@ -440,6 +440,7 @@ def build_company(cik, entry, facts):
         return None
     has_debt = bool(series["debt_lt"] or series["debt_st"])
     has_capex = bool(series["capex"])
+    pays_div = bool(series["dividends"])
     rows = []
     for end in ends:
         g = lambda k: nearest(series[k], end)
@@ -495,7 +496,7 @@ def build_company(cik, entry, facts):
             "revenue": rev, "gross_profit": gp, "op_income": op, "net_income": ni,
             "eps_diluted": eps, "shares_diluted": sh_d, "shares_out": g("shares_out"),
             "cfo": cfo, "capex": None if capex is None else abs(capex), "fcf": fcf,
-            "sbc": g("sbc"), "dividends": g("dividends"), "buybacks": g("buybacks"),
+            "sbc": g("sbc"), "dividends": g("dividends") if pays_div else (0.0 if ni is not None else None), "buybacks": g("buybacks"),
             "rnd": g("rnd"), "da": da, "ebitda": ebitda, "interest_exp": ie,
             "assets": g("assets"), "liabilities": liab, "equity": equity,
             "cash": cash or None, "debt": debt if debt_known else None, "net_debt": (debt - cash) if (debt or cash) else None,
@@ -520,7 +521,7 @@ def build_company(cik, entry, facts):
             "fcf_per_share": r4(safe_div(fcf, sh_d)),
             "revenue_per_share": r4(safe_div(rev, sh_d)),
             "book_value_per_share": r4(safe_div(equity, sh_d)),
-            "div_per_share": r4(safe_div(g("dividends"), sh_d)),
+            "div_per_share": r4(safe_div(g("dividends"), sh_d)) if pays_div else (0.0 if sh_d else None),
         })
     rows = [r for r in rows if r["revenue"] is not None or r["net_income"] is not None]
     dedup = {}

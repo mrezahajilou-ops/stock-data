@@ -243,21 +243,18 @@ def annual_series(facts, tags, kind, meta=None):
                     q4s.append(f)
                 elif 255 <= n <= 290:
                     ytd9.setdefault((st, en), f)
+            cands = {}
             for f in q4s:
                 for (s9, e9), g in ytd9.items():
                     if abs(days(e9, f["start"])) <= 6 and 350 <= days(s9, f["end"]) <= 380:
-                        val = f["val"] + g["val"]
+                        rate = 1.0
                         if cur != "USD":
                             rate, _ = fx_rate(cur, f["end"])
                             if not rate:
                                 break
-                            val = val / rate
-                        prev = series.get(f["end"])
-                        if prev is None:
-                            series[f["end"]] = (val, f.get("filed", ""))
-                            h[f["end"]].append((f.get("filed", ""), val))
+                        cands[f["end"]] = ((f["val"] + g["val"]) / rate, f["val"] / rate, g["val"] / rate, f.get("filed", ""))
                         break
-        derived = set(series)
+        derived = set()
         for f in units[unit_key]:
             if f.get("form") not in ANNUAL_FORMS:
                 continue
@@ -281,9 +278,23 @@ def annual_series(facts, tags, kind, meta=None):
                         meta["fx_approx"] = True
             h[end].append((fd, val))
             prev = series.get(end)
-            if prev is None or end in derived or fd >= prev[1]:  # most recently filed (restated) value wins
+            if prev is None or fd >= prev[1]:  # most recently filed (restated) value wins
                 series[end] = (val, fd)
-                derived.discard(end)
+        if kind == "dur":
+            # fiscal years whose 10-K only tags the 4th quarter: Q4 + 9-month YTD. Some filers tag the full
+            # year with a 3-month start date by mistake, so check against the prior year before adding.
+            for end, (summed, q4, y9, fd) in cands.items():
+                if end in series:
+                    continue
+                prior = [v for e, (v, _) in series.items() if 330 <= days(e, end) <= 400]
+                val = summed
+                if prior and prior[0]:
+                    if abs(q4 / prior[0] - 1) < abs(summed / prior[0] - 1):
+                        val = q4
+                elif q4 > 0.6 * y9:
+                    val = q4
+                series[end] = (val, fd)
+                h[end].append((fd, val))
         for end, (v, fd) in series.items():
             if any(abs(days(e, end)) <= 20 for e in vals):  # higher-priority tag already covers it
                 continue
@@ -367,7 +378,14 @@ def quarterly(facts, tags, n=12):
                     break
         if q and max(q) >= (dt.date.today() - dt.timedelta(days=400)).isoformat():
             ks = sorted(q)[-n:]
-            return {k: q[k][0] for k in ks}
+            out = {k: q[k][0] for k in ks}
+            vs = sorted(abs(v) for v in out.values() if v is not None)
+            med = vs[len(vs) // 2] if vs else 0
+            for k in ks:
+                v = out[k]
+                if med and v is not None and abs(v) > 2.6 * med and len(vs) >= 6 and v > 0:
+                    out[k] = None  # a full year tagged as one quarter
+            return out
     return {}
 
 
@@ -430,7 +448,8 @@ def build_company(cik, entry, facts):
             tax_rate = 0.21
         nopat = op * (1 - tax_rate) if op is not None else None
         debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
-        if not debt and not has_debt and g("assets"):
+        ie0 = g("interest_exp")
+        if not debt and not has_debt and g("assets") and (not ie0 or (rev and ie0 <= 0.002 * rev)):
             debt = 0.0  # the company never reports any borrowings: debt-free
         cash = (g("cash") or 0) + (g("st_investments") or 0)
         equity = g("equity")
@@ -469,7 +488,7 @@ def build_company(cik, entry, facts):
             "sbc": g("sbc"), "dividends": g("dividends"), "buybacks": g("buybacks"),
             "rnd": g("rnd"), "da": da, "ebitda": ebitda, "interest_exp": ie,
             "assets": g("assets"), "liabilities": liab, "equity": equity,
-            "cash": cash or None, "debt": debt if (debt or not has_debt) else None, "net_debt": (debt - cash) if (debt or cash) else None,
+            "cash": cash or None, "debt": debt if (debt or debt == 0.0) else None, "net_debt": (debt - cash) if (debt or cash) else None,
             "goodwill": g("goodwill"), "intangibles": g("intangibles"),
             "current_assets": ca, "current_liabilities": cl,
             # ratios
@@ -804,7 +823,7 @@ def finish(recs, market):
         if t in market and not market[t].get("sector"):
             market[t]["sector"], market[t]["industry"] = sec, ind
     PS_FIELDS = ("eps_diluted", "fcf_per_share", "revenue_per_share", "book_value_per_share", "div_per_share")
-    CAND = [1000, 100, 50, 40, 30, 25, 20, 15, 10, 8, 6, 5, 4, 3, 2, 1 / 2, 1 / 3, 1 / 4, 1 / 5, 1 / 6, 1 / 8, 1 / 10,
+    CAND = [1e6, 1000, 100, 50, 40, 30, 25, 20, 15, 10, 8, 6, 5, 4, 3, 2, 1 / 2, 1 / 3, 1 / 4, 1 / 5, 1 / 6, 1 / 8, 1 / 10,
             1 / 15, 1 / 20, 1 / 25, 1 / 30, 1 / 40, 1 / 50, 1 / 100, 1 / 1000]
     fixed = []
     for r in recs:
@@ -831,7 +850,7 @@ def finish(recs, market):
         if not n:
             continue
         prev = r["annual"][-2].get("shares_diluted") if len(r["annual"]) > 1 else None
-        if n > 1 and prev and sh / prev > 1.3 and n not in (1000,):
+        if n > 1 and prev and sh / prev > 1.3 and n not in (1000, 1e6):
             continue  # share count is exploding through issuance (crypto treasuries etc.), not a split
         # ADRs (one ADS = several ordinary shares) and filers that report shares in thousands:
         # restate share counts and per-share values in the units the market price is quoted in
@@ -840,6 +859,8 @@ def finish(recs, market):
                 if row.get(f):
                     row[f] = row[f] * n
             for f in PS_FIELDS:
+                if f == "eps_diluted" and n in (1e6, 1000):
+                    continue  # EPS was reported correctly, only the share count had the wrong unit
                 if row.get(f) is not None:
                     row[f] = r4(row[f] / n)
         r["share_factor"] = n

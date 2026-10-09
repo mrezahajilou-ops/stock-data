@@ -444,6 +444,8 @@ def build_company(cik, entry, facts):
     for end in ends:
         g = lambda k: nearest(series[k], end)
         rev, ni, cfo = g("revenue"), g("net_income"), g("cfo")
+        if rev is not None and ni is not None and ni > 0 and rev < 0.5 * ni:
+            rev = None  # a partial revenue line (e.g. a bank's "sale of goods"), not total revenue
         capex = g("capex")
         fcf = (cfo - abs(capex)) if (cfo is not None and capex is not None) else None
         op = g("op_income")

@@ -130,6 +130,10 @@
 #rzs .vbig small{display:block;color:var(--mut);font-size:12px}
 #rzs .vbig b{direction:ltr;unicode-bidi:isolate;font-size:16px;color:#fff}
 @media (max-width:760px){#rzs .vbig{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#rzs .rnsum{margin:6px 0 10px;font-size:14px;line-height:1.9}
+#rzs .rnleg{display:flex;gap:14px;font-size:12.5px;color:var(--mut);margin-top:4px}
+#rzs .rnleg i{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:middle;margin-left:5px}
+#rzs .rnbar:hover{opacity:.8}
 #rzs .rng{display:flex;gap:4px;flex-wrap:wrap}
 #rzs .rng button{background:var(--bg);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 11px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit}
 #rzs .rng button.on{background:var(--lime);color:#0b1726;border-color:var(--lime)}
@@ -366,6 +370,7 @@ function render(d){
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
   h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   h+=verdict(d);
+  h+='<div class="card" id="rzs-rn"></div>';
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
   h+='<div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
@@ -399,7 +404,38 @@ function render(d){
   loadSI(d);
   loadEarn(d);
   loadVal(d);
+  drawRN(d);
 }
+
+/* ---- revenue & net income history (annual 10 years / last 12 quarters) ---- */
+var RN_MODE='y';
+function rnUnit(m){return m>=5e9?[1e9,'B']:m>=5e6?[1e6,'M']:[1e3,'K']}
+function rnFmt(v,u){if(v==null)return '—';var x=v/u[0],a=Math.abs(x);return (x<0?'-':'')+'$'+(a>=100||a===Math.round(a)?a.toFixed(0):a.toFixed(1))+u[1]}
+function drawRN(d){var box=$('rzs-rn');if(!box)return;
+  var A=(d.annual||[]).slice(-10).map(function(y){return {l:String(y.fy),r:y.revenue,n:y.net_income}}),Q=(d.quarterly||[]).map(function(q){var e=new Date(q[0]+'T12:00:00Z');return {l:'Q'+(Math.floor(e.getUTCMonth()/3)+1)+"'"+String(e.getUTCFullYear()).slice(2),r:q[1],n:q[2],e:q[0]}});
+  if(RN_MODE==='q'&&!Q.length)RN_MODE='y';var S=RN_MODE==='q'?Q:A;
+  var head='<div class="axhead"><h3 style="margin:0">📈 درآمد و سود خالص</h3><div class="rng">'+'<button data-rn="y"'+(RN_MODE==='y'?' class="on"':'')+'>سالانه</button>'+(Q.length?'<button data-rn="q"'+(RN_MODE==='q'?' class="on"':'')+'>فصلی</button>':'')+'</div></div>';
+  var pts=S.filter(function(x){return x.r!=null||x.n!=null});if(pts.length<2){box.innerHTML=head+'<div class="empty" style="padding:14px">داده‌ی کافی نیست.</div>';return}
+  var mx=0,mn=0;pts.forEach(function(x){[x.r,x.n].forEach(function(v){if(v!=null){mx=Math.max(mx,v);mn=Math.min(mn,v)}})});if(mx<=0)mx=1;var u=rnUnit(Math.max(mx,-mn));
+  var st=(function(r){var e=Math.pow(10,Math.floor(Math.log10(r/4))),m=r/4/e;return (m<=1?1:m<=2?2:m<=5?5:10)*e})(mx-mn);mx=Math.ceil(mx/st)*st;mn=Math.floor(mn/st)*st;
+  var W=680,H=250,PL=46,PR=8,PT=14,PB=28,span=mx-mn,bw=(W-PL-PR)/pts.length,b=Math.min(26,bw*0.34);
+  var Y=function(v){return PT+(H-PT-PB)*(mx-v)/span},z=Y(0),g='';
+  for(var v=mn;v<=mx+st/2;v+=st){var y=Y(v);g+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#1c3150"/><text x="'+(PL-6)+'" y="'+(y+4).toFixed(1)+'" fill="#93a7bf" font-size="10.5" text-anchor="end">'+rnFmt(v,u)+'</text>'}
+  g+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+z.toFixed(1)+'" y2="'+z.toFixed(1)+'" stroke="#3a5a80"/>';
+  pts.forEach(function(x,i){var cx=PL+bw*i+bw/2;
+    if(x.r!=null){var y1=Y(Math.max(0,x.r)),y2=Y(Math.min(0,x.r));g+='<rect class="rnbar" x="'+(cx-b-1).toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="3" fill="#2ec4b6"><title>'+x.l+' · درآمد '+rnFmt(x.r,u)+'</title></rect>'}
+    if(x.n!=null){var y3=Y(Math.max(0,x.n)),y4=Y(Math.min(0,x.n));g+='<rect class="rnbar" x="'+(cx+1).toFixed(1)+'" y="'+y3.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y4-y3).toFixed(1)+'" rx="3" fill="'+(x.n<0?'#ff5a5f':'#b5e36b')+'"><title>'+x.l+' · سود خالص '+rnFmt(x.n,u)+'</title></rect>'}
+    g+='<text x="'+cx.toFixed(1)+'" y="'+(H-8)+'" fill="#93a7bf" font-size="10.5" text-anchor="middle">'+x.l+'</text>'});
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block;direction:ltr">'+g+'</svg>';
+  var f=pts[0],l=pts[pts.length-1],sum='';
+  var cg=function(a,b2,n){return a>0&&b2>0&&n>0?Math.pow(b2/a,1/n)-1:null},P=function(v){return '<span class="ltr">'+(v>=0?'+':'')+(v*100).toFixed(1)+'%</span>'};
+  if(RN_MODE==='y'){var n=pts.length-1,rg=cg(f.r,l.r,n),ng=cg(f.n,l.n,n);
+    sum='در '+n+' سال گذشته درآمد از '+'<span class="ltr">'+rnFmt(f.r,u)+'</span> به <span class="ltr">'+rnFmt(l.r,u)+'</span> رسیده'+(rg!=null?' (رشد سالانه‌ی میانگین '+P(rg)+')':'')+'؛ سود خالص از <span class="ltr">'+rnFmt(f.n,u)+'</span> به <span class="ltr">'+rnFmt(l.n,u)+'</span>'+(ng!=null?' ('+P(ng)+' در سال)':'')+'. حاشیه‌ی سود خالص آخرین سال: '+(l.r&&l.n!=null?'<span class="ltr">'+(l.n/l.r*100).toFixed(1)+'%</span>':'—')+'.'}
+  else{var yo=pts.length>=5?pts[pts.length-5]:null,ry=yo&&yo.r>0&&l.r!=null?l.r/yo.r-1:null,ny=yo&&yo.n>0&&l.n!=null?l.n/yo.n-1:null;
+    sum='آخرین فصل ('+l.l+'): درآمد <span class="ltr">'+rnFmt(l.r,u)+'</span>'+(ry!=null?' ('+P(ry)+' نسبت به همین فصل سال قبل)':'')+'، سود خالص <span class="ltr">'+rnFmt(l.n,u)+'</span>'+(ny!=null?' ('+P(ny)+')':'')+'.'}
+  box.innerHTML=head+'<p class="rnsum">'+sum+'</p>'+svg+'<div class="rnleg"><span><i style="background:#2ec4b6"></i>درآمد</span><span><i style="background:#b5e36b"></i>سود خالص</span><span><i style="background:#ff5a5f"></i>زیان</span></div>'+
+    '<p class="xnote">از گزارش‌های رسمی 10-K و 10-Q شرکت به SEC'+(d.reported_currency&&d.reported_currency!=='USD'?' (تبدیل‌شده به دلار)':'')+'. '+(RN_MODE==='q'?'فصل چهارم = کل سال منهای سه فصل اول.':'')+'</p>';
+  box.onclick=function(e){var t=e.target.closest('[data-rn]');if(t){RN_MODE=t.dataset.rn;drawRN(d)}}}
 
 /* ---- latest quarterly report in plain Persian (branch `earnings`, earnings.py) ---- */
 var FA_MON={Jan:'ژانویه',Feb:'فوریه',Mar:'مارس',Apr:'آوریل',May:'مه',Jun:'ژوئن',Jul:'ژوئیه',Aug:'اوت',Sep:'سپتامبر',Oct:'اکتبر',Nov:'نوامبر',Dec:'دسامبر'};

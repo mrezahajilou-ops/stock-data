@@ -38,6 +38,16 @@ CONCEPTS = {
         "us-gaap:InterestAndDividendIncomeOperating",
         "ifrs-full:Revenue",
         "ifrs-full:RevenueFromContractsWithCustomers",
+        # utilities, REITs, miners, energy, healthcare (fill-only: used when the tags above are missing)
+        "us-gaap:RegulatedAndUnregulatedOperatingRevenue",
+        "us-gaap:RegulatedOperatingRevenue",
+        "us-gaap:ElectricUtilityRevenue",
+        "us-gaap:OperatingLeaseLeaseIncome",
+        "us-gaap:OperatingLeasesIncomeStatementLeaseRevenue",
+        "us-gaap:RealEstateRevenueNet",
+        "us-gaap:RevenueMineralSales",
+        "us-gaap:OilAndGasRevenue",
+        "us-gaap:HealthCareOrganizationRevenue",
     ]),
     "cogs": ("dur", ["us-gaap:CostOfRevenue", "us-gaap:CostOfGoodsAndServicesSold", "us-gaap:CostOfGoodsSold",
                      "us-gaap:CostOfServices", "ifrs-full:CostOfSales"]),
@@ -51,7 +61,9 @@ CONCEPTS = {
     "net_income": ("dur", ["us-gaap:NetIncomeLoss", "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
                            "us-gaap:ProfitLoss", "ifrs-full:ProfitLossAttributableToOwnersOfParent", "ifrs-full:ProfitLoss"]),
     "eps_diluted": ("dur", ["us-gaap:EarningsPerShareDiluted", "us-gaap:EarningsPerShareBasicAndDiluted",
-                            "ifrs-full:DilutedEarningsLossPerShare"]),
+                            "ifrs-full:DilutedEarningsLossPerShare", "us-gaap:EarningsPerShareBasic",
+                            "us-gaap:IncomeLossFromContinuingOperationsPerDilutedShare",
+                            "ifrs-full:BasicAndDilutedEarningsLossPerShare", "ifrs-full:BasicEarningsLossPerShare"]),
     "shares_diluted": ("dur", ["us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
                                "us-gaap:WeightedAverageNumberOfShareOutstandingBasicAndDiluted",
                                "ifrs-full:WeightedAverageNumberOfDilutedSharesOutstanding",
@@ -67,17 +79,29 @@ CONCEPTS = {
                       "us-gaap:PaymentsForCapitalImprovements",
                       "us-gaap:PaymentsToDevelopSoftware",
                       "us-gaap:PaymentsForSoftware",
-                      "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"]),
-    "sbc": ("dur", ["us-gaap:ShareBasedCompensation", "us-gaap:AllocatedShareBasedCompensationExpense"]),
+                      "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+                      "us-gaap:PaymentsToAcquireOtherPropertyPlantAndEquipment",
+                      "us-gaap:PaymentsForProceedsFromProductiveAssets",
+                      "us-gaap:PaymentsToAcquireRealEstate",
+                      "us-gaap:PaymentsToDevelopRealEstateAssets",
+                      "us-gaap:PaymentsToAcquireOilAndGasPropertyAndEquipment",
+                      "ifrs-full:PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets"]),
+    "sbc": ("dur", ["us-gaap:ShareBasedCompensation", "us-gaap:AllocatedShareBasedCompensationExpense",
+                    "ifrs-full:AdjustmentsForSharebasedPayments"]),
     "dividends": ("dur", ["us-gaap:PaymentsOfDividendsCommonStock", "us-gaap:PaymentsOfDividends",
-                          "ifrs-full:DividendsPaidClassifiedAsFinancingActivities"]),
+                          "ifrs-full:DividendsPaidClassifiedAsFinancingActivities", "us-gaap:PaymentsOfOrdinaryDividends",
+                          "us-gaap:DividendsCommonStockCash", "us-gaap:DividendsCommonStock",
+                          "ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities", "ifrs-full:DividendsPaid"]),
     "buybacks": ("dur", ["us-gaap:PaymentsForRepurchaseOfCommonStock",
-                         "ifrs-full:PaymentsToAcquireOrRedeemEntitysShares"]),
+                         "ifrs-full:PaymentsToAcquireOrRedeemEntitysShares", "us-gaap:PaymentsForRepurchaseOfEquity"]),
     "rnd": ("dur", ["us-gaap:ResearchAndDevelopmentExpense",
                     "us-gaap:ResearchAndDevelopmentExpenseExcludingAcquiredInProcessCost"]),
     "da": ("dur", ["us-gaap:DepreciationDepletionAndAmortization", "us-gaap:DepreciationAndAmortization",
                    "us-gaap:DepreciationAmortizationAndAccretionNet",
-                   "ifrs-full:DepreciationAndAmortisationExpense"]),
+                   "ifrs-full:DepreciationAndAmortisationExpense", "us-gaap:Depreciation",
+                   "us-gaap:DepreciationAmortizationAndOther",
+                   "ifrs-full:DepreciationAmortisationAndImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLoss",
+                   "ifrs-full:DepreciationExpense"]),
     "interest_exp": ("dur", ["us-gaap:InterestExpense", "us-gaap:InterestExpenseNonoperating",
                              "ifrs-full:InterestExpense"]),
     # balance sheet (instant)
@@ -94,15 +118,25 @@ CONCEPTS = {
                                 "us-gaap:AvailableForSaleSecuritiesDebtSecuritiesCurrent"]),
     "debt_lt": ("inst", ["us-gaap:LongTermDebtNoncurrent", "us-gaap:LongTermDebtAndCapitalLeaseObligations",
                          "us-gaap:LongTermDebt", "ifrs-full:NoncurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
-                         "ifrs-full:LongtermBorrowings"]),
+                         "ifrs-full:LongtermBorrowings", "us-gaap:LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+                         "us-gaap:DebtLongtermAndShorttermCombinedAmount", "us-gaap:SeniorLongTermNotes", "us-gaap:SeniorNotes",
+                         "us-gaap:LongTermNotesPayable", "us-gaap:NotesPayable", "us-gaap:ConvertibleNotesPayable",
+                         "us-gaap:ConvertibleDebtNoncurrent", "us-gaap:UnsecuredLongTermDebt", "us-gaap:SecuredLongTermDebt",
+                         "us-gaap:OtherLongTermDebtNoncurrent", "us-gaap:LongTermLineOfCredit", "us-gaap:DebtInstrumentCarryingAmount",
+                         "ifrs-full:Borrowings", "ifrs-full:NoncurrentPortionOfNoncurrentBorrowings"]),
     "debt_st": ("inst", ["us-gaap:LongTermDebtCurrent", "us-gaap:DebtCurrent", "us-gaap:ShortTermBorrowings",
                          "us-gaap:LongTermDebtAndCapitalLeaseObligationsCurrent", "ifrs-full:ShorttermBorrowings",
-                         "ifrs-full:CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings"]),
+                         "ifrs-full:CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "us-gaap:CommercialPaper",
+                         "us-gaap:NotesPayableCurrent", "us-gaap:ConvertibleNotesPayableCurrent", "us-gaap:LinesOfCreditCurrent"]),
     "goodwill": ("inst", ["us-gaap:Goodwill", "ifrs-full:Goodwill"]),
     "intangibles": ("inst", ["us-gaap:IntangibleAssetsNetExcludingGoodwill",
                              "ifrs-full:IntangibleAssetsOtherThanGoodwill"]),
     "current_assets": ("inst", ["us-gaap:AssetsCurrent", "ifrs-full:CurrentAssets"]),
     "current_liabilities": ("inst", ["us-gaap:LiabilitiesCurrent", "ifrs-full:CurrentLiabilities"]),
+    "liab_eq": ("inst", ["us-gaap:LiabilitiesAndStockholdersEquity", "ifrs-full:EquityAndLiabilities"]),
+    "equity_total": ("inst", ["us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "ifrs-full:Equity"]),
+    "costs_expenses": ("dur", ["us-gaap:CostsAndExpenses"]),
+    "opex": ("dur", ["us-gaap:OperatingExpenses"]),
     "shares_out": ("inst", ["dei:EntityCommonStockSharesOutstanding", "us-gaap:CommonStockSharesOutstanding",
                             "ifrs-full:NumberOfSharesOutstanding"]),
 }
@@ -198,6 +232,32 @@ def annual_series(facts, tags, kind, meta=None):
         if unit_key is None:
             continue
         series, h = {}, defaultdict(list)
+        if kind == "dur":
+            q4s, ytd9 = [], {}
+            for f in units[unit_key]:
+                st, en = f.get("start"), f.get("end")
+                if not st or not en:
+                    continue
+                n = days(st, en)
+                if f.get("form") in ANNUAL_FORMS and 80 <= n <= 100:
+                    q4s.append(f)
+                elif 255 <= n <= 290:
+                    ytd9.setdefault((st, en), f)
+            for f in q4s:
+                for (s9, e9), g in ytd9.items():
+                    if abs(days(e9, f["start"])) <= 6 and 350 <= days(s9, f["end"]) <= 380:
+                        val = f["val"] + g["val"]
+                        if cur != "USD":
+                            rate, _ = fx_rate(cur, f["end"])
+                            if not rate:
+                                break
+                            val = val / rate
+                        prev = series.get(f["end"])
+                        if prev is None:
+                            series[f["end"]] = (val, f.get("filed", ""))
+                            h[f["end"]].append((f.get("filed", ""), val))
+                        break
+        derived = set(series)
         for f in units[unit_key]:
             if f.get("form") not in ANNUAL_FORMS:
                 continue
@@ -221,8 +281,9 @@ def annual_series(facts, tags, kind, meta=None):
                         meta["fx_approx"] = True
             h[end].append((fd, val))
             prev = series.get(end)
-            if prev is None or fd >= prev[1]:  # most recently filed (restated) value wins
+            if prev is None or end in derived or fd >= prev[1]:  # most recently filed (restated) value wins
                 series[end] = (val, fd)
+                derived.discard(end)
         for end, (v, fd) in series.items():
             if any(abs(days(e, end)) <= 20 for e in vals):  # higher-priority tag already covers it
                 continue
@@ -270,6 +331,46 @@ def pick_fy_ends(all_series):
     return merged[-YEARS:]
 
 
+def fy_of(end):
+    """52/53-week fiscal years that end in the first days of January belong to the previous year."""
+    d = dt.date.fromisoformat(end)
+    return d.year - 1 if (d.month == 1 and d.day <= 10) else d.year
+
+
+def quarterly(facts, tags, n=12):
+    """{quarter_end: value} for the last n quarters (3-month values; Q4 = fiscal year minus the 9-month YTD)."""
+    for tag in tags:
+        ns, name = tag.split(":")
+        units = (facts.get(ns, {}).get(name) or {}).get("units", {})
+        if "USD" not in units:
+            continue
+        q, ytd9, ann = {}, {}, {}
+        for f in units["USD"]:
+            st, en = f.get("start"), f.get("end")
+            if not st or not en:
+                continue
+            k = days(st, en)
+            fd = f.get("filed", "")
+            if 80 <= k <= 100:
+                if en not in q or fd >= q[en][1]:
+                    q[en] = (f["val"], fd)
+            elif 255 <= k <= 290:
+                ytd9[(st, en)] = f["val"]
+            elif 350 <= k <= 380 and f.get("form") in ANNUAL_FORMS:
+                ann[(st, en)] = f["val"]
+        for (st, en), v in ann.items():
+            if en in q:
+                continue
+            for (s9, e9), v9 in ytd9.items():
+                if s9 == st and 80 <= days(e9, en) <= 100:
+                    q[en] = (v - v9, "")
+                    break
+        if q and max(q) >= (dt.date.today() - dt.timedelta(days=400)).isoformat():
+            ks = sorted(q)[-n:]
+            return {k: q[k][0] for k in ks}
+    return {}
+
+
 def nearest(series, end, tol=20):
     if end in series:
         return series[end]
@@ -312,6 +413,8 @@ def build_company(cik, entry, facts):
     ends = pick_fy_ends(series)
     if len(ends) < 2 or not series["revenue"]:
         return None
+    has_debt = bool(series["debt_lt"] or series["debt_st"])
+    has_capex = bool(series["capex"])
     rows = []
     for end in ends:
         g = lambda k: nearest(series[k], end)
@@ -319,12 +422,16 @@ def build_company(cik, entry, facts):
         capex = g("capex")
         fcf = (cfo - abs(capex)) if (cfo is not None and capex is not None) else None
         op = g("op_income")
+        if op is None and rev is not None and g("costs_expenses") is not None:
+            op = rev - g("costs_expenses")
         tax, pretax = g("tax"), g("pretax_income")
         tax_rate = safe_div(tax, pretax)
         if tax_rate is None or tax_rate < 0 or tax_rate > 0.5:
             tax_rate = 0.21
         nopat = op * (1 - tax_rate) if op is not None else None
         debt = (g("debt_lt") or 0) + (g("debt_st") or 0)
+        if not debt and not has_debt and g("assets"):
+            debt = 0.0  # the company never reports any borrowings: debt-free
         cash = (g("cash") or 0) + (g("st_investments") or 0)
         equity = g("equity")
         invested = (equity + debt) if equity is not None else None
@@ -333,23 +440,36 @@ def build_company(cik, entry, facts):
         gp = g("gross_profit")
         if gp is None and rev is not None and g("cogs") is not None:
             gp = rev - g("cogs")
+        if op is None and gp is not None and g("opex") is not None:
+            op = gp - g("opex")
+            nopat = op * (1 - tax_rate)
         sh_d = g("shares_diluted") or g("shares_basic")
-        if not sh_d and ni and g("eps_diluted"):
-            sh_d = abs(ni / g("eps_diluted"))
+        eps = g("eps_diluted")
+        if not sh_d and ni and eps:
+            sh_d = abs(ni / eps)
+        if eps is None and ni is not None and sh_d:
+            eps = ni / sh_d
+        liab = g("liabilities")
+        if liab is None and g("liab_eq") is not None:
+            eqt = g("equity_total") if g("equity_total") is not None else equity
+            if eqt is not None:
+                liab = g("liab_eq") - eqt
+        if capex is None and not has_capex and cfo is not None:
+            capex, fcf = 0.0, cfo  # no capital spending line at all (banks, insurers, asset managers)
         da = g("da")
         ebitda = (op + da) if (op is not None and da is not None) else None
         ie = g("interest_exp")
         ca, cl = g("current_assets"), g("current_liabilities")
         rows.append({
             "fy_end": end,
-            "fy": int(end[:4]),
+            "fy": fy_of(end),
             "revenue": rev, "gross_profit": gp, "op_income": op, "net_income": ni,
-            "eps_diluted": g("eps_diluted"), "shares_diluted": sh_d, "shares_out": g("shares_out"),
+            "eps_diluted": eps, "shares_diluted": sh_d, "shares_out": g("shares_out"),
             "cfo": cfo, "capex": None if capex is None else abs(capex), "fcf": fcf,
             "sbc": g("sbc"), "dividends": g("dividends"), "buybacks": g("buybacks"),
             "rnd": g("rnd"), "da": da, "ebitda": ebitda, "interest_exp": ie,
-            "assets": g("assets"), "liabilities": g("liabilities"), "equity": equity,
-            "cash": cash or None, "debt": debt or None, "net_debt": (debt - cash) if (debt or cash) else None,
+            "assets": g("assets"), "liabilities": liab, "equity": equity,
+            "cash": cash or None, "debt": debt if (debt or not has_debt) else None, "net_debt": (debt - cash) if (debt or cash) else None,
             "goodwill": g("goodwill"), "intangibles": g("intangibles"),
             "current_assets": ca, "current_liabilities": cl,
             # ratios
@@ -427,6 +547,13 @@ def build_company(cik, entry, facts):
     summary["div_years"] = sum(1 for r in rows[-10:] if (r["dividends"] or 0) > 0)
     summary["years"] = len(rows)
     last = rows[-1]
+    # last 12 quarters of revenue and net income (charts on the stock page); USD filers only
+    qrows = []
+    if meta.get("currency", "USD") == "USD":
+        qr = quarterly(facts, CONCEPTS["revenue"][1])
+        qn = quarterly(facts, CONCEPTS["net_income"][1])
+        for k in sorted(set(qr) | set(qn))[-12:]:
+            qrows.append([k, qr.get(k), nearest(qn, k, 10) if qn else None])
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
@@ -437,6 +564,7 @@ def build_company(cik, entry, facts):
                                          "net_margin", "fcf_margin", "roic")},
         "summary": summary,
         "annual": rows,
+        "quarterly": qrows,
     }
 
 
@@ -669,6 +797,57 @@ def finish(recs, market):
     log("dropped secondary instruments:", len(dropped), dropped[:20])
     with open(os.path.join(OUT, "aliases.json"), "w") as f:
         json.dump(aliases, f, separators=(",", ":"))
+
+    SECTOR_FIX = {"BRK-A": ("Finance", "Property-Casualty Insurers"), "BRK-B": ("Finance", "Property-Casualty Insurers"),
+                  "KSPI": ("Finance", "Major Banks")}
+    for t, (sec, ind) in SECTOR_FIX.items():
+        if t in market and not market[t].get("sector"):
+            market[t]["sector"], market[t]["industry"] = sec, ind
+    PS_FIELDS = ("eps_diluted", "fcf_per_share", "revenue_per_share", "book_value_per_share", "div_per_share")
+    CAND = [1000, 100, 50, 40, 30, 25, 20, 15, 10, 8, 6, 5, 4, 3, 2, 1 / 2, 1 / 3, 1 / 4, 1 / 5, 1 / 6, 1 / 8, 1 / 10,
+            1 / 15, 1 / 20, 1 / 25, 1 / 30, 1 / 40, 1 / 50, 1 / 100, 1 / 1000]
+    fixed = []
+    for r in recs:
+        mk = market.get(r["ticker"]) or {}
+        last = r["annual"][-1]
+        if not (mk.get("mcap") and mk.get("price")):
+            continue
+        implied = mk["mcap"] / mk["price"]   # shares (or ADS) the market price refers to
+        sh = last.get("shares_diluted")
+        if not sh:
+            # no share count in the filings (Berkshire's class-A equivalents): use the market's for the latest year
+            if last.get("net_income") is not None:
+                last["shares_diluted"] = implied
+                last["eps_diluted"] = r4(last["net_income"] / implied)
+                for k, src in (("fcf_per_share", "fcf"), ("revenue_per_share", "revenue"), ("book_value_per_share", "equity"),
+                               ("div_per_share", "dividends")):
+                    last[k] = r4(safe_div(last.get(src), implied))
+                fixed.append(r["ticker"])
+            continue
+        k = implied / sh
+        if 0.87 <= k <= 1.15:
+            continue
+        n = next((c for c in CAND if abs(k / c - 1) < 0.06), None)
+        if not n:
+            continue
+        prev = r["annual"][-2].get("shares_diluted") if len(r["annual"]) > 1 else None
+        if n > 1 and prev and sh / prev > 1.3 and n not in (1000,):
+            continue  # share count is exploding through issuance (crypto treasuries etc.), not a split
+        # ADRs (one ADS = several ordinary shares) and filers that report shares in thousands:
+        # restate share counts and per-share values in the units the market price is quoted in
+        for row in r["annual"]:
+            for f in ("shares_diluted", "shares_out"):
+                if row.get(f):
+                    row[f] = row[f] * n
+            for f in PS_FIELDS:
+                if row.get(f) is not None:
+                    row[f] = r4(row[f] / n)
+        r["share_factor"] = n
+        fixed.append(r["ticker"])
+    for r in recs:
+        last = r["annual"][-1]
+        r["latest"].update({k: last.get(k) for k in ("eps_diluted", "shares_diluted", "shares_out")})
+    log("per-share fixes (ADR ratio / missing shares):", len(fixed), fixed[:25])
 
     index, screener = [], []
     for r in recs:

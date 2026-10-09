@@ -412,9 +412,9 @@
    "ticker": "SE",
    "fy": 2025,
    "metric": "eps_diluted",
-   "ours": 2.52,
+   "ours": 2.5766,
    "ref": 2.52,
-   "diff": 0.0,
+   "diff": 0.022,
    "status": "OK"
   },
   {
@@ -457,9 +457,9 @@
    "ticker": "SE",
    "fy": 2024,
    "metric": "eps_diluted",
-   "ours": 0.74,
+   "ours": 0.7254,
    "ref": 0.74,
-   "diff": 0.0,
+   "diff": 0.0197,
    "status": "OK"
   },
   {
@@ -502,9 +502,9 @@
    "ticker": "SE",
    "fy": 2023,
    "metric": "eps_diluted",
-   "ours": 0.25,
+   "ours": 0.2461,
    "ref": 0.25,
-   "diff": 0.0,
+   "diff": 0.0156,
    "status": "OK"
   },
   {

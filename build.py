@@ -148,6 +148,9 @@ CONCEPTS = {
     "ppe": ("inst", ["us-gaap:PropertyPlantAndEquipmentNet",
                      "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
                      "ifrs-full:PropertyPlantAndEquipment"]),
+    "op_lease": ("inst", ["us-gaap:OperatingLeaseLiability"]),
+    "op_lease_nc": ("inst", ["us-gaap:OperatingLeaseLiabilityNoncurrent"]),
+    "op_lease_c": ("inst", ["us-gaap:OperatingLeaseLiabilityCurrent"]),
     "dep": ("dur", ["us-gaap:Depreciation"]),
     "amort": ("dur", ["us-gaap:AmortizationOfIntangibleAssets"]),
     "liab_eq": ("inst", ["us-gaap:LiabilitiesAndStockholdersEquity", "ifrs-full:EquityAndLiabilities"]),
@@ -581,6 +584,12 @@ def build_company(cik, entry, facts):
         nopat = op * (1 - tax_rate) if op is not None else None
         debt_known = g("debt_lt") is not None or g("debt_st") is not None or g("debt_total") is not None
         debt = max((g("debt_lt") or 0) + (g("debt_st") or 0), g("debt_total") or 0)
+        # total debt includes operating lease liabilities (as Yahoo / stockanalysis report it)
+        lease = g("op_lease") if g("op_lease") is not None else (
+            (g("op_lease_nc") or 0) + (g("op_lease_c") or 0) if (g("op_lease_nc") is not None or g("op_lease_c") is not None) else None)
+        if lease:
+            debt += lease
+            debt_known = True
         ie0 = g("interest_exp")
         if not debt and not has_debt and g("assets") and (not ie0 or (rev and ie0 <= 0.002 * rev)):
             debt, debt_known = 0.0, True  # the company never reports any borrowings: debt-free
@@ -717,12 +726,19 @@ def build_company(cik, entry, facts):
             dl, e_dl = latest_inst(facts, CONCEPTS["debt_lt"][1], last["fy_end"])
             ds, e_ds = latest_inst(facts, CONCEPTS["debt_st"][1], last["fy_end"])
             dt_, e_dt = latest_inst(facts, CONCEPTS["debt_total"][1], last["fy_end"])
+            ls, e_ls = latest_inst(facts, CONCEPTS["op_lease"][1], last["fy_end"])
+            if not near(e_ls):
+                lnc, e_lnc = latest_inst(facts, CONCEPTS["op_lease_nc"][1], last["fy_end"])
+                lc, e_lc = latest_inst(facts, CONCEPTS["op_lease_c"][1], last["fy_end"])
+                ls, e_ls = ((lnc or 0) + ((lc or 0) if near(e_lc) else 0), e_lnc) if near(e_lnc) else (None, None)
             bs = {"end": e_eq, "equity": eq,
                   "cash": ((c or 0) if near(e_c) else 0) + ((si or 0) if near(e_si) else 0) or None,
                   "debt": max(((dl or 0) + ((ds or 0) if near(e_ds) else 0)) if near(e_dl) else 0,
                               ((dt_ or 0) if near(e_dt) else 0)) if (near(e_dl) or near(e_dt)) else None}
             if not near(e_c):
                 bs["cash"] = None
+            if bs["debt"] is not None and near(e_ls) and ls:
+                bs["debt"] += ls
         qr = quarterly(facts, CONCEPTS["revenue"][1])
         q_alts = [quarterly(facts, [tg]) for tg in REV_TOTAL]
         q_nii, q_non = quarterly(facts, [BANK_NII]), quarterly(facts, [BANK_NONII])
@@ -760,6 +776,12 @@ def build_company(cik, entry, facts):
                 t_op, e_op = t_pt + (t_ie or 0), e_pt
         t_da, e_da = ttm_tags(facts, CONCEPTS["da"][1])
         t_div, e_div = ttm_tags(facts, CONCEPTS["dividends"][1])
+        t_dps, e_dps = None, None
+        for tag in ("us-gaap:CommonStockDividendsPerShareDeclared", "us-gaap:CommonStockDividendsPerShareCashPaid"):
+            v, e = ttm(quarterly(facts, [tag], unit="USD/shares"))
+            if v is not None and e >= (dt.date.today() - dt.timedelta(days=200)).isoformat():
+                t_dps, e_dps = v, e
+                break
         t_eps, e_eps = None, None
         for tag in CONCEPTS["eps_diluted"][1]:
             v, e = ttm(quarterly(facts, [tag], unit="USD/shares"))
@@ -777,7 +799,8 @@ def build_company(cik, entry, facts):
                        "op_income": t_op if same(e_op) else None,
                        "da": t_da if same(e_da) else None,
                        "dividends": abs(t_div) if same(e_div) else None,
-                       "eps": t_eps if same(e_eps) else None}
+                       "eps": t_eps if same(e_eps) else None,
+                       "dps": t_dps}
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
@@ -1044,6 +1067,10 @@ def score(rec, mk, sector_pe):
     total = round(sum(parts) / len(parts), 1) if parts else None
     div_t = t.get("dividends") if t.get("dividends") is not None else last.get("dividends")
     divy = (div_t or 0) / mcap if mcap else None
+    if t.get("dps") and price:
+        divy = t["dps"] / price  # dividends declared per share in the last four quarters / price
+    elif isinstance(ref.get("divy"), (int, float)) and (stale or not t):
+        divy = ref["divy"]
     buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
     checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],
@@ -1207,6 +1234,8 @@ def finish(recs, market):
                     row[f] = r4(row[f] / n)
         if (r.get("ttm") or {}).get("eps") is not None and n not in (1e6, 1000):
             r["ttm"]["eps"] = r["ttm"]["eps"] / n
+        if (r.get("ttm") or {}).get("dps") is not None and n not in (1e6, 1000):
+            r["ttm"]["dps"] = r["ttm"]["dps"] / n
         r["share_factor"] = n
         fixed.append(r["ticker"])
     for r in recs:

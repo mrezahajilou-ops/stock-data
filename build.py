@@ -89,6 +89,8 @@ CONCEPTS = {
                       "us-gaap:PaymentsToAcquireRealEstate",
                       "us-gaap:PaymentsToDevelopRealEstateAssets",
                       "us-gaap:PaymentsToAcquireOilAndGasPropertyAndEquipment",
+                      "us-gaap:PaymentsToExploreAndDevelopOilAndGasProperties",
+                      "us-gaap:PaymentsToAcquireOilAndGasProperty",
                       "ifrs-full:PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets"]),
     "sbc": ("dur", ["us-gaap:ShareBasedCompensation", "us-gaap:AllocatedShareBasedCompensationExpense",
                     "ifrs-full:AdjustmentsForSharebasedPayments"]),
@@ -137,6 +139,9 @@ CONCEPTS = {
                              "ifrs-full:IntangibleAssetsOtherThanGoodwill"]),
     "current_assets": ("inst", ["us-gaap:AssetsCurrent", "ifrs-full:CurrentAssets"]),
     "current_liabilities": ("inst", ["us-gaap:LiabilitiesCurrent", "ifrs-full:CurrentLiabilities"]),
+    "ppe": ("inst", ["us-gaap:PropertyPlantAndEquipmentNet",
+                     "us-gaap:PropertyPlantAndEquipmentAndFinanceLeaseRightOfUseAssetAfterAccumulatedDepreciationAndAmortization",
+                     "ifrs-full:PropertyPlantAndEquipment"]),
     "liab_eq": ("inst", ["us-gaap:LiabilitiesAndStockholdersEquity", "ifrs-full:EquityAndLiabilities"]),
     "equity_total": ("inst", ["us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "ifrs-full:Equity"]),
     "costs_expenses": ("dur", ["us-gaap:CostsAndExpenses"]),
@@ -356,13 +361,15 @@ def fy_of(end):
 
 
 def quarterly(facts, tags, n=12):
-    """{quarter_end: value} for the last n quarters (3-month values; Q4 = fiscal year minus the 9-month YTD)."""
+    """{quarter_end: value} for the last n fiscal quarters (USD filers).
+    3-month values are taken directly when tagged, otherwise derived from the year-to-date figures
+    (cash-flow items are only reported YTD): Q2 = 6M - 3M, Q3 = 9M - 6M, Q4 = 12M - 9M."""
     for tag in tags:
         ns, name = tag.split(":")
         units = (facts.get(ns, {}).get(name) or {}).get("units", {})
         if "USD" not in units:
             continue
-        q, ytd9, ann = {}, {}, {}
+        direct, cum = {}, {}
         for f in units["USD"]:
             st, en = f.get("start"), f.get("end")
             if not st or not en:
@@ -370,30 +377,45 @@ def quarterly(facts, tags, n=12):
             k = days(st, en)
             fd = f.get("filed", "")
             if 80 <= k <= 100:
-                if en not in q or fd >= q[en][1]:
-                    q[en] = (f["val"], fd)
-            elif 255 <= k <= 290:
-                ytd9[(st, en)] = f["val"]
-            elif 350 <= k <= 380 and f.get("form") in ANNUAL_FORMS:
-                ann[(st, en)] = f["val"]
-        for (st, en), v in ann.items():
-            if en in q:
-                continue
-            for (s9, e9), v9 in ytd9.items():
-                if s9 == st and 80 <= days(e9, en) <= 100:
-                    q[en] = (v - v9, "")
-                    break
+                if en not in direct or fd >= direct[en][1]:
+                    direct[en] = (f["val"], fd)
+            if 80 <= k <= 100 or 170 <= k <= 195 or 255 <= k <= 290 or 350 <= k <= 380:
+                key = (st, en)
+                if key not in cum or fd >= cum[key][1]:
+                    cum[key] = (f["val"], fd)
+        q = {en: v for en, (v, _) in direct.items()}
+        annual_ends = {}
+        by_start = defaultdict(list)
+        for (st, en), (v, _) in cum.items():
+            by_start[st].append((en, v))
+            if 350 <= days(st, en) <= 380:
+                annual_ends[en] = v
+        derived = {}
+        for st, rows in by_start.items():
+            rows.sort()
+            for (e0, v0), (e1, v1) in zip(rows, rows[1:]):
+                if 80 <= days(e0, e1) <= 100:
+                    derived[e1] = v1 - v0
+        for en, v in derived.items():
+            if en not in q:
+                q[en] = v
+            elif en in annual_ends and annual_ends[en] and abs(q[en] / annual_ends[en] - 1) < 0.03:
+                q[en] = v  # a full year tagged as the 4th quarter (L3Harris 2025)
         if q and max(q) >= (dt.date.today() - dt.timedelta(days=400)).isoformat():
             ks = sorted(q)[-n:]
-            out = {k: q[k][0] for k in ks}
-            vs = sorted(abs(v) for v in out.values() if v is not None)
-            med = vs[len(vs) // 2] if vs else 0
-            for k in ks:
-                v = out[k]
-                if med and v is not None and abs(v) > 2.6 * med and len(vs) >= 6 and v > 0:
-                    out[k] = None  # a full year tagged as one quarter
-            return out
+            return {k: q[k] for k in ks}
     return {}
+
+
+def ttm(qs):
+    """Sum of the last four quarters if they are consecutive."""
+    ks = sorted(k for k, v in qs.items() if v is not None)
+    if len(ks) < 4:
+        return None, None
+    last4 = ks[-4:]
+    if not (250 <= days(last4[0], last4[-1]) <= 290):
+        return None, None
+    return sum(qs[k] for k in last4), last4[-1]
 
 
 def nearest(series, end, tol=20):
@@ -484,7 +506,11 @@ def build_company(cik, entry, facts):
             eqt = g("equity_total") if g("equity_total") is not None else equity
             if eqt is not None:
                 liab = g("liab_eq") - eqt
-        if capex is None and not has_capex and cfo is not None:
+        ppe = g("ppe")
+        A0, L0 = g("assets"), (g("liabilities") or (g("liab_eq") - (g("equity_total") or equity or 0) if g("liab_eq") else None))
+        financial = bool(A0 and L0 and L0 / A0 > 0.8)  # banks, insurers, mortgage REITs: balance sheet is mostly liabilities
+        asset_light = (ppe is not None and A0 and ppe < 0.05 * A0) or (ppe is None and financial)
+        if capex is None and not has_capex and cfo is not None and asset_light:
             capex, fcf = 0.0, cfo  # no capital spending line at all (banks, insurers, asset managers)
         da = g("da")
         ebitda = (op + da) if (op is not None and da is not None) else None
@@ -578,12 +604,31 @@ def build_company(cik, entry, facts):
     summary["years"] = len(rows)
     last = rows[-1]
     # last 12 quarters of revenue and net income (charts on the stock page); USD filers only
-    qrows = []
+    qrows, ttm_rec = [], None
     if meta.get("currency", "USD") == "USD":
         qr = quarterly(facts, CONCEPTS["revenue"][1])
         qn = quarterly(facts, CONCEPTS["net_income"][1])
         for k in sorted(set(qr) | set(qn))[-12:]:
             qrows.append([k, qr.get(k), nearest(qn, k, 10) if qn else None])
+        # trailing twelve months (what most sites use for P/E, P/S, P/FCF, EV/EBITDA)
+        t_rev, e_rev = ttm(qr)
+        t_ni, e_ni = ttm(qn)
+        t_cfo, e_cfo = ttm(quarterly(facts, CONCEPTS["cfo"][1]))
+        t_cap, e_cap = ttm(quarterly(facts, CONCEPTS["capex"][1]))
+        t_op, e_op = ttm(quarterly(facts, CONCEPTS["op_income"][1]))
+        t_da, e_da = ttm(quarterly(facts, CONCEPTS["da"][1]))
+        end = e_ni or e_rev
+        if end and end > last["fy_end"]:
+            same = lambda e: e is not None and abs(days(e, end)) <= 10
+            ttm_rec = {"end": end,
+                       "revenue": t_rev if same(e_rev) else None,
+                       "net_income": t_ni if same(e_ni) else None,
+                       "cfo": t_cfo if same(e_cfo) else None,
+                       "capex": abs(t_cap) if same(e_cap) else (0.0 if (same(e_cfo) and not series["capex"] and last["capex"] == 0) else None),
+                       "op_income": t_op if same(e_op) else None,
+                       "da": t_da if same(e_da) else None}
+            ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
+            ttm_rec["ebitda"] = (ttm_rec["op_income"] + ttm_rec["da"]) if (ttm_rec["op_income"] is not None and ttm_rec["da"] is not None) else None
     return {
         "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
@@ -595,6 +640,7 @@ def build_company(cik, entry, facts):
         "summary": summary,
         "annual": rows,
         "quarterly": qrows,
+        "ttm": ttm_rec,
     }
 
 
@@ -683,6 +729,17 @@ def score(rec, mk, sector_pe):
     last = a[-1]
     prev3 = a[-4] if len(a) >= 4 else None
     rev, ni, fcf = last["revenue"], last["net_income"], last["fcf"]
+    ebitda = last.get("ebitda")
+    t = rec.get("ttm") or {}
+    # valuation multiples on the trailing twelve months when the quarters are available
+    if t.get("net_income") is not None:
+        ni = t["net_income"]
+    if t.get("revenue") is not None:
+        rev = t["revenue"]
+    if t.get("fcf") is not None:
+        fcf = t["fcf"]
+    if t.get("ebitda") is not None:
+        ebitda = t["ebitda"]
     mcap = (mk or {}).get("mcap")
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
@@ -694,7 +751,6 @@ def score(rec, mk, sector_pe):
     spe = sector_pe.get((mk or {}).get("sector"))
     debt, cash = last.get("debt") or 0, last.get("cash") or 0
     ev = (mcap + debt - cash) if mcap else None
-    ebitda = last.get("ebitda")
     ev_ebitda = ev / ebitda if (ev and ebitda and ebitda > 0) else None
     fcf_yield = fcf / mcap if (mcap and fcf is not None) else None
     earn_yield = ni / mcap if (mcap and ni is not None) else None

@@ -5,6 +5,10 @@ on:
       tickers:
         description: 'Tickers (space separated)'
         required: true
+      full:
+        description: 'Full fact dump for these tags (ns:name ...)'
+        required: false
+        default: ''
 permissions:
   contents: write
 jobs:
@@ -21,6 +25,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python diag.py ${{ inputs.tickers }}
+        env:
+          FULL: ${{ inputs.full }}
       - name: Publish to branch "diag"
         run: |
           cd diag

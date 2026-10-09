@@ -29,6 +29,10 @@ for t in sys.argv[1:]:
                 out['tags']['%s:%s|%s' % (ns, name, unit)] = [last.get('start'), last.get('end'), last.get('val'), last.get('form'), last.get('filed'), len(ann)]
     forms = sorted({(f.get('form'), f.get('fy')) for node in (j.get('facts') or {}).get('dei', {}).values() for arr in node.get('units', {}).values() for f in arr if f.get('form')})
     out['dei_forms'] = forms[-12:]
+    for full in (os.environ.get('FULL') or '').split():
+        ns, name = full.split(':')
+        node = (j.get('facts') or {}).get(ns, {}).get(name) or {}
+        out.setdefault('full', {})[full] = {u: [[f.get('start'), f.get('end'), f.get('val'), f.get('form'), f.get('filed'), f.get('fy'), f.get('fp'), f.get('frame')] for f in arr if (f.get('end') or '') >= '2024-06'] for u, arr in (node.get('units') or {}).items()}
     json.dump(out, open('diag/%s.json' % t, 'w'), indent=0)
     print(t, len(out['tags']))
     time.sleep(0.15)

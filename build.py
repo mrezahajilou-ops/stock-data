@@ -1274,6 +1274,14 @@ def finish(recs, market):
                             row[f] = r4(row[f] / n)
                 r["share_factor"] = n
                 fixed.append(r["ticker"])
+            elif mk["price"] / eps < 2:
+                # per-share history on an unknown old basis: restate from net figures and today's share count
+                for row in r["annual"]:
+                    row["shares_diluted"] = implied
+                    for k, src in PS_SRC:
+                        row[k] = r4(safe_div(row.get(src), implied)) if row.get(src) is not None else None
+                r["per_share_basis"] = "market"
+                fixed.append(r["ticker"])
     for r in recs:
         last = r["annual"][-1]
         r["latest"].update({k: last.get(k) for k in ("eps_diluted", "shares_diluted", "shares_out")})

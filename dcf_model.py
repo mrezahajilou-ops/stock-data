@@ -20,6 +20,7 @@ Model, year by year for N years (5 or 10):
   dividends       today's payout ratio of each year's profit, counted while you hold the stock
   three methods   1) P/E exit:   EPS(N) x P/E, discounted + dividends received
                   2) P/FCF exit: FCF per share(N) x P/FCF, discounted + dividends received
+                  (both minus the discounted cash burn of years with negative FCF, which needs new money)
                   3) classic DCF: every year's free cash flow discounted + terminal value FCF(N)x(1+tg)/(r-tg),
                      per today's share (buybacks are paid from that FCF, so only dilution counts)
                   Profit and FCF are after interest, so debt is already paid for and interest earned on cash
@@ -68,21 +69,23 @@ def value(b, N, g1, g2, pm, fm, pe, pf, r, shg, tg):
     ys = project(b, N, g1, g2, pm, fm, shg)
     payout = b.get("payout") or 0
     nc = (b.get("nc") or 0) / sh0
-    dps_pv, fcf_pv = 0.0, 0.0
+    dps_pv, fcf_pv, burn = 0.0, 0.0, 0.0
     for t, y in enumerate(ys, 1):
         disc = (1 + r) ** t
         dps_pv += max(y["ni"], 0) * payout / y["sh"] / disc
         fcf_pv += y["fcf"] / disc
+        burn += min(y["fcf"], 0) / sh0 / disc     # years of negative FCF must be funded (new shares or debt)
     L, discN = ys[-1], (1 + r) ** N
     mode = b.get("mode") or "all"
-    v_pe = (L["ni"] / L["sh"] * pe / discN + dps_pv + nc) if (L["ni"] > 0 and mode != "cash") else None
-    v_pf = (L["fcf"] / L["sh"] * pf / discN + dps_pv + nc) if (L["fcf"] > 0 and mode != "earn") else None
+    burn = burn if mode != "earn" else 0.0           # banks: cash flow is client money, not burn
+    v_pe = (L["ni"] / L["sh"] * pe / discN + dps_pv + burn + nc) if (L["ni"] > 0 and mode != "cash") else None
+    v_pf = (L["fcf"] / L["sh"] * pf / discN + dps_pv + burn + nc) if (L["fcf"] > 0 and mode != "earn") else None
     v_dcf = None
     if L["fcf"] > 0 and mode != "earn" and r - tg >= 0.01:
         tv = L["fcf"] * (1 + tg) / (r - tg)
         v_dcf = (fcf_pv + tv / discN + (b.get("nc") or 0)) / sh0 / (1 + max(shg, 0)) ** N
     vals = [v for v in (v_pe, v_pf, v_dcf) if v is not None]
-    fair = sum(vals) / len(vals) if vals else None
+    fair = max(sum(vals) / len(vals), 0.0) if vals else None   # shareholders can't lose more than the share
     # value of one share in year N (exit methods) + dividends received, for the buy-and-hold return
     ex = [v for v in ((L["ni"] / L["sh"] * pe) if v_pe is not None else None,
                       (L["fcf"] / L["sh"] * pf) if v_pf is not None else None) if v is not None]
@@ -163,7 +166,7 @@ def block(rec, mk, est, fx, peer=None, today=None):
     reit = "real estate" in ind or "reit" in ind
     FC = "cfo" if reit else "fcf"
     hist = [{"end": r["fy_end"], "rev": r.get("revenue"), "ni": r.get("net_income"), "fcf": r.get(FC),
-             "sh": r.get("shares_diluted"), "roic": r.get("roic")} for r in a if r.get("revenue")]
+             "sh": r.get("shares_diluted"), "roic": r.get("roic")} for r in a if (r.get("revenue") or 0) > 0]
     y_rev, y_ni = _ts_annual(ts, "annualTotalRevenue", fx), _ts_annual(ts, "annualNetIncomeCommonStockholders", fx) or _ts_annual(ts, "annualNetIncome", fx)
     y_fcf = _ts_annual(ts, "annualOperatingCashFlow" if reit else "annualFreeCashFlow", fx)
     added = 0
@@ -183,9 +186,9 @@ def block(rec, mk, est, fx, peer=None, today=None):
     rate = 1.0 if cur == "USD" else fx.get(cur)
     base = None
     sec_end, sec = None, None
-    if t.get("revenue"):
+    if (t.get("revenue") or 0) > 0 and t.get("end"):
         sec_end, sec = t["end"], t
-    if last.get("revenue") and (not sec_end or last["fy_end"] >= sec_end):  # the 10-K is the latest 12 months
+    if (last.get("revenue") or 0) > 0 and (not sec_end or last["fy_end"] >= sec_end):  # the 10-K is the latest 12 months
         sec_end, sec = last["fy_end"], {"revenue": last["revenue"], "net_income": last.get("net_income"),
                                         "fcf": last.get(FC), "dividends": last.get("dividends")}
     elif sec is not None and reit:
@@ -299,10 +302,10 @@ def block(rec, mk, est, fx, peer=None, today=None):
         R0, R1 = (r0 / rate if r0 else None), r1 / rate
         g_in = R1 / R0 - 1 if R0 and R0 > 0 else None        # next year vs this year: same analysts, same definition
         # growth from today's trailing revenue to next fiscal year's estimate (annualised over the time between)
-        fy1 = est.get("fy1") or ((est["fy0"][:4] and str(int(est["fy0"][:4]) + 1) + est["fy0"][4:]) if est.get("fy0") else None)
+        fy1 = est.get("fy1") or (str(int(est["fy0"][:4]) + 1) + est["fy0"][4:10] if len(est.get("fy0") or "") >= 10 else None)
+        if fy1 and len(fy1) < 10:
+            fy1 = None
         span = max(0.75, days(base["end"], fy1) / 365.0) if fy1 else 1.5
-        if fy0_past:
-            span = max(0.75, span - 1)                         # stale fiscal-year labels (the 0y year is already over)
         g_tr = (R1 / rev_ref) ** (1 / span) - 1
         same_def = R0 is not None and 0.75 <= R0 / rev_ref <= 2.5
         gg = g_tr if (same_def or R0 is None) and -0.6 < g_tr < 3.0 else g_in
@@ -339,6 +342,14 @@ def block(rec, mk, est, fx, peer=None, today=None):
         mode = "earn"       # profitable but capex funded with debt for years (utilities, pipelines)
 
     # ---- defaults
+    # share count: median yearly change of the last 5 years (one-off mergers / spin-offs don't set the trend)
+    chg = []
+    if not (rec.get("foreign") or rec.get("per_share_basis") == "market"):
+        for x, y in zip(hist[-6:-1], hist[-5:]):
+            if x.get("sh") and y.get("sh"):
+                chg.append(y["sh"] / x["sh"] - 1)
+    shs = sorted(chg)[len(chg) // 2] if chg else 0.0
+    shs = clamp(shs, -0.04, 0.04)
     g5 = H["g"][2] if H["g"][2] is not None else H["g"][1]
     g_1y = H["g"][0] if H["g"][0] is not None else H["g"][1]
     if g5 is not None and g_1y is not None:
@@ -349,7 +360,10 @@ def block(rec, mk, est, fx, peer=None, today=None):
         gh = 0.05
     ga = an.get("g")
     if mode == "earn" and an.get("g_eps") is not None and an["g_eps"] > -0.5:
-        ga = an["g_eps"]                                       # banks / insurers: profit growth, not "revenue"
+        # banks / insurers: profit growth, not "revenue". EPS growth already includes buybacks, which the model
+        # adds separately through the share count, so take them out; blend with revenue growth (one-year EPS is noisy)
+        ge = (1 + an["g_eps"]) / (1 + shs) - 1
+        ga = 0.5 * ge + 0.5 * an["g"] if an.get("g") is not None else ge
     if ga is not None:
         g1 = 0.75 * ga + 0.25 * clamp(gh, ga - 0.10, ga + 0.10)
     else:
@@ -394,14 +408,6 @@ def block(rec, mk, est, fx, peer=None, today=None):
     # heavy investment years (AI data centres, factories) depress today's FCF; over a full cycle free cash flow
     # converges towards profit (capex ~ depreciation + growth), so the long-run FCF margin is at least 60% of profit
     fm_c = max(fm_c, 0.6 * pm_c)
-    # share count: median yearly change of the last 5 years (one-off mergers / spin-offs don't set the trend)
-    chg = []
-    if not (rec.get("foreign") or rec.get("per_share_basis") == "market"):
-        for x, y in zip(hist[-6:-1], hist[-5:]):
-            if x.get("sh") and y.get("sh"):
-                chg.append(y["sh"] / x["sh"] - 1)
-    shs = sorted(chg)[len(chg) // 2] if chg else 0.0
-    shs = clamp(shs, -0.04, 0.04)
     q5 = H["roic"][2]
     prem = 3 if (q5 or 0) > 0.20 else (1.5 if (q5 or 0) > 0.12 else 0)
     if mode == "earn":
@@ -428,6 +434,8 @@ def block(rec, mk, est, fx, peer=None, today=None):
          "sh": [half(P(shs) + 1), P(shs), half(P(shs) - 1)],
          "ret": [ret, ret, ret],
          "tg": [2.5, 3, 3.5]}
+    # perpetual growth after year N can't be above the growth the company has faded to (floor: 1% ~ inflation)
+    d["tg"] = [min(d["tg"][i], max(d["g2"][i], 1.0)) for i in range(3)]
     if d["pm"][0] <= 0:
         d["pm"][0] = 0.5
     if d["fm"][0] <= 0:
@@ -469,6 +477,6 @@ def fair_mcap(blk):
     if not blk:
         return None
     v = scen(bvals(blk), blk["d"], 1)
-    if not v or v["fair"] is None:
-        return None
+    if not v or not v["fair"]:
+        return None          # no meaningful value (losses / cash burn larger than the business is worth)
     return v["fair"] * blk["sh"]

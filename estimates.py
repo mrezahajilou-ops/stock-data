@@ -44,6 +44,41 @@ def raw(x):
     return x.get('raw') if isinstance(x, dict) else x
 
 
+TS_TYPES = ['TotalRevenue', 'NetIncomeCommonStockholders', 'NetIncome', 'OperatingCashFlow', 'CapitalExpenditure',
+            'FreeCashFlow', 'CashDividendsPaid', 'DilutedAverageShares']
+TS_BAL = ['CashCashEquivalentsAndShortTermInvestments', 'TotalDebt', 'StockholdersEquity']
+
+
+def series(t):
+    """Fundamentals time series (Yahoo): trailing twelve months, the last annual reports and the latest balance
+    sheet. Used for the DCF when SEC's XBRL feed lags (foreign 20-F filers: SEC has not loaded their 2026 filings)."""
+    sym = t.replace('.', '-')
+    types = ['trailing' + x for x in TS_TYPES] + ['annual' + x for x in TS_TYPES] + ['quarterly' + x for x in TS_BAL]
+    url = ('https://query2.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/%s?symbol=%s&type=%s&period1=%d&period2=%d&crumb=%s'
+           % (urllib.parse.quote(sym), urllib.parse.quote(sym), ','.join(types), int(time.time()) - 7 * 365 * 86400,
+              int(time.time()) + 86400, urllib.parse.quote(CRUMB[0] or '')))
+    for a in range(2):
+        try:
+            j = json.loads(get(url))
+            out = {}
+            for r in ((j.get('timeseries') or {}).get('result')) or []:
+                ty = ((r.get('meta') or {}).get('type') or [None])[0]
+                pts = [p for p in (r.get(ty) or []) if p and isinstance(p.get('reportedValue'), dict)]
+                if not ty or not pts:
+                    continue
+                pts.sort(key=lambda p: p.get('asOfDate') or '')
+                keep = 6 if ty.startswith('annual') else 1
+                out[ty] = [[p.get('asOfDate'), p['reportedValue'].get('raw'), p.get('currencyCode')] for p in pts[-keep:]]
+            return out or None
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                time.sleep(15 * (a + 1)); continue
+            return None
+        except Exception:
+            time.sleep(2)
+    return None
+
+
 def one(t):
     sym = t.replace('.', '-')
     url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail&crumb=%s'
@@ -84,6 +119,9 @@ def one(t):
                 'teps': raw(ks.get('trailingEps')), 'ni': raw(ks.get('netIncomeToCommon'))}.items() if v is not None}
             if not any(o.get(k) for k in ('e0', 'e1', 'r0', 'tgt')) and not o['ref']:
                 return t, None
+            ts = series(t)
+            if ts:
+                o['ts'] = ts
             return t, {k: v for k, v in o.items() if v not in (None, '', {})}
         except urllib.error.HTTPError as e:
             if e.code == 401 and a == 0:
@@ -112,11 +150,12 @@ def main():
                 out[t] = o; ok += 1
             if i % 500 == 0:
                 print(i, ok, round(time.time() - t0), flush=True)
-    if ok < max(10, len(tickers) // 4):
+    if ok < max(10, len(tickers) // 4) and len(sys.argv) <= 1:
         sys.exit('too few estimates (%d of %d) - not publishing' % (ok, len(tickers)))
     json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'est': out},
               open(os.path.join(OUT, 'est.json'), 'w'), separators=(',', ':'))
     print('estimates:', ok, 'of', len(tickers))
+    print('with fundamentals series:', sum(1 for v in out.values() if v.get('ts')))
     for t in ('AAPL', 'CRDO', 'TSM', 'BRK-B'):
         print(t, out.get(t))
 

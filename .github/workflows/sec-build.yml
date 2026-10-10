@@ -26,6 +26,7 @@ jobs:
         run: |
           mkdir -p scripts
           [ -f build.py ] && cp build.py scripts/build.py || true
+          cp dcf_model.py scripts/dcf_model.py
           [ -f verify.py ] && cp verify.py scripts/verify.py || true
       - name: Build data
         env:

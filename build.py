@@ -17,6 +17,8 @@ Data source: U.S. Securities and Exchange Commission, EDGAR XBRL APIs (public do
 import io, json, os, re, sys, time, zipfile, datetime as dt
 from collections import defaultdict
 import urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import dcf_model  # noqa: E402
 
 UA = os.environ.get("SEC_USER_AGENT", "Reza Hajilou mreza.hajilou@gmail.com")
 OUT = os.path.join(os.getcwd(), "data")
@@ -876,23 +878,21 @@ def clamp(x, a, b):
     return max(a, min(b, x))
 
 
-def dcf_fair_mcap(rec):
-    """Company-level fair value with the same default 'medium' assumptions as the DCF page."""
-    s, last = rec["summary"], rec["annual"][-1]
-    rev = last["revenue"]
-    if not rev or rev <= 0:
-        return None
-    g = s.get("rev_cagr_5y") if s.get("rev_cagr_5y") is not None else s.get("rev_cagr_1y")
-    g = clamp((g if g is not None else 0.05) * 0.8, -0.05, 0.25)
-    pm = s.get("net_margin_avg_5y") if s.get("net_margin_avg_5y") is not None else last.get("net_margin")
-    if pm is None or pm < 0.02:
-        pm = last.get("net_margin") if (last.get("net_margin") or 0) > 0.02 else 0.08
-    fm = s.get("fcf_margin_avg_5y") if s.get("fcf_margin_avg_5y") is not None else last.get("fcf_margin")
-    if fm is None or fm < 0.02:
-        fm = pm
-    pm, fm = clamp(pm, 0.02, 0.5), clamp(fm, 0.02, 0.55)
-    rev10 = rev * (1 + g) ** 10
-    return ((rev10 * pm * 22) + (rev10 * fm * 22)) / 2 / (1.10 ** 10)
+PEER = {}   # industry -> {"pe", "pf"} medians (exit multiples of the DCF), filled in finish()
+
+
+def dcf_fair(rec, mk):
+    """Fresh DCF inputs (dcf_model.block) + medium-scenario fair value of the company. Same engine as the DCF page."""
+    try:
+        e = EST.get(rec["ticker"]) or {}
+        ind = (mk or {}).get("industry")
+        blk = dcf_model.block(rec, mk, e, FX_LATEST, PEER.get(ind) or PEER.get("sector:" + str((mk or {}).get("sector"))))
+    except Exception as ex:
+        log("dcf block failed", rec["ticker"], repr(ex))
+        return None, None
+    if blk:
+        rec["dcf"] = blk
+    return blk, dcf_model.fair_mcap(blk)
 
 
 def pts(*checks):
@@ -1017,7 +1017,7 @@ def score(rec, mk, sector_pe):
     pb = mcap / equity_now if (mcap and equity_now and equity_now > 0) else None
     eg = s.get("eps_cagr_5y") if s.get("eps_cagr_5y") is not None else s.get("ni_cagr_5y")
     peg = pe / (eg * 100) if (pe and eg and eg > 0) else None
-    fair = dcf_fair_mcap(rec)
+    _, fair = dcf_fair(rec, mk)
     spe = sector_pe.get((mk or {}).get("sector"))
     debt = (b["debt"] if b.get("debt") is not None else last.get("debt")) or 0
     cash = (b["cash"] if b.get("cash") is not None else last.get("cash")) or 0
@@ -1286,6 +1286,30 @@ def finish(recs, market):
         last = r["annual"][-1]
         r["latest"].update({k: last.get(k) for k in ("eps_diluted", "shares_diluted", "shares_out")})
     log("per-share fixes (ADR ratio / missing shares / late splits):", len(fixed), fixed[:25])
+
+    # peer multiples for the DCF exit value: median forward P/E (Yahoo; trailing when missing) and trailing P/FCF
+    # of companies above $2B in the same industry (at least 5), else the sector
+    pe_g, pf_g = defaultdict(list), defaultdict(list)
+    for r in recs:
+        mk = market.get(r["ticker"]) or {}
+        if not mk.get("mcap") or mk["mcap"] < 2e9:
+            continue
+        t_, a_ = r.get("ttm") or {}, r["annual"][-1]
+        ni_ = t_["net_income"] if t_.get("net_income") is not None else a_.get("net_income")
+        fc_ = t_["fcf"] if t_.get("fcf") is not None else a_.get("fcf")
+        fpe = ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("fpe")
+        pe_ = fpe if isinstance(fpe, (int, float)) and 0 < fpe < 200 else (mk["mcap"] / ni_ if ni_ and ni_ > 0 else None)
+        for k in (mk.get("industry"), "sector:" + str(mk.get("sector"))):
+            if not k:
+                continue
+            if pe_:
+                pe_g[k].append(pe_)
+            if fc_ and fc_ > 0:
+                pf_g[k].append(mk["mcap"] / fc_)
+    med = lambda v: sorted(v)[len(v) // 2] if len(v) >= 5 else None
+    PEER.clear()
+    PEER.update({k: {"pe": med(pe_g[k]), "pf": med(pf_g.get(k, []))} for k in pe_g if med(pe_g[k])})
+    log("peer multiples:", len(PEER))
 
     index, screener = [], []
     for r in recs:

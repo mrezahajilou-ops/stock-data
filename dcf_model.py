@@ -296,6 +296,8 @@ def block(rec, mk, est, fx, peer=None, today=None):
     rev_ref = base["rev"]
     if base["src"] == "annual":
         rev_ref = y_ttm or (ref["rev"] / rate if (rate and isinstance(ref.get("rev"), (int, float)) and ref["rev"] > 0) else None) or base["rev"]
+        if not rev_ref or rev_ref <= 0:
+            rev_ref = base["rev"]
     fy0_past = bool(est.get("fy0")) and est["fy0"] < (today - dt.timedelta(days=20)).isoformat()
     e0, e1 = est.get("e0"), est.get("e1")
     if rate and r1 and r1 > 0:
@@ -384,6 +386,9 @@ def block(rec, mk, est, fx, peer=None, today=None):
     one_off = pm_t is not None and an_nm is not None and an_nm > 0 and pm_t > 1.35 * max(an_nm, p5 or 0)
     if one_off:          # today's profit inflated by one-off gains (investment gains, tax benefits): trust the forecast
         pm_c = wavg([(pm_t, 0.15), (max(p5, 0) if p5 is not None else None, 0.25), (an_nm, 0.6)])
+    elif pm_t is not None and p5 is not None and p5 > 0.02 and pm_t < 0.4 * p5 and not cyc:
+        # one bad year (impairments, spin-off accounting) in a business that is normally profitable: mostly reverts
+        pm_c = wavg([(max(pm_t, 0), 0.15), (p5, 0.55), (an_nm, 0.3)])
     elif cyc:            # cyclical (memory, energy, airlines): steer to the through-cycle average, not today's peak/trough
         pm_c = wavg([(pm_t, 0.25), (max(p5, 0) if p5 is not None else None, 0.5), (an.get("nm"), 0.25)])
     else:

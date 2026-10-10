@@ -23,11 +23,11 @@ UA = os.environ.get('SEC_USER_AGENT', 'Reza Hajilou mreza.hajilou@gmail.com')
 NQ = 8          # quarters kept per manager
 TOP = 200       # holdings stored per manager (rest only counted)
 
-# id, CIK, words that must appear in the SEC filer name, person (en), firm (en), person (fa), firm (fa), style, bio (fa)
+# id, CIK (or several, newest first, when a manager moved to a new SEC registration), words that must appear in the SEC filer name, person (en), firm (en), person (fa), firm (fa), style, bio (fa)
 MANAGERS = [
     ('buffett', 1067983, 'BERKSHIRE', 'Warren Buffett', 'Berkshire Hathaway', 'وارن بافت', 'برکشایر هاتاوی', 'ارزشی',
      'مشهورترین سرمایه‌گذار دنیا؛ برکشایر سهم شرکت‌های باکیفیت رو برای سال‌های طولانی نگه می‌داره. از ۲۰۲۶ گرگ ایبل مدیرعامله و بافت رئیس هیئت‌مدیره است.'),
-    ('ackman', 1336528, 'PERSHING', 'Bill Ackman', 'Pershing Square', 'بیل اکمن', 'پرشینگ اسکوئر', 'متمرکز / فعال',
+    ('ackman', (2026053, 1336528), 'PERSHING', 'Bill Ackman', 'Pershing Square', 'بیل اکمن', 'پرشینگ اسکوئر', 'متمرکز / فعال',
      'پورتفوی خیلی متمرکز (معمولاً کمتر از ۱۲ سهم) از شرکت‌های بزرگ و ساده؛ گاهی برای تغییر مدیریت فشار میاره.'),
     ('burry', 1649339, 'SCION', 'Michael Burry', 'Scion Asset Management', 'مایکل بِری', 'سایون', 'ارزشی / مخالف‌جریان',
      'همون کسی که بحران ۲۰۰۸ رو پیش‌بینی کرد (فیلم Big Short). معاملاتش سریع و مخالف جریان بازاره. صندوقش در اواخر ۲۰۲۵ ثبتش رو پس گرفت، پس آخرین گزارش قدیمیه.'),
@@ -246,17 +246,22 @@ def quarter_rows(rows, filed):
 
 
 def load_manager(m):
-    mid, cik, word = m[0], m[1], m[2]
-    b = sec('https://data.sec.gov/submissions/CIK%010d.json' % cik)
-    if not b:
-        print('::warning::%s: no SEC submissions (CIK %d)' % (mid, cik)); return None
-    j = json.loads(b)
-    name = j.get('name') or ''
-    if word.upper() not in name.upper():
-        print('::warning::%s: CIK %d is "%s" - expected %s, skipped' % (mid, cik, name, word)); return None
-    rc = j['filings']['recent']
-    fs = [dict(form=rc['form'][i], acc=rc['accessionNumber'][i], filed=rc['filingDate'][i], period=rc['reportDate'][i])
-          for i in range(len(rc['form'])) if rc['form'][i] in ('13F-HR', '13F-HR/A')]
+    mid, word = m[0], m[2]
+    ciks = m[1] if isinstance(m[1], (tuple, list)) else (m[1],)
+    fs, name = [], ''
+    for cik in ciks:
+        b = sec('https://data.sec.gov/submissions/CIK%010d.json' % cik)
+        if not b:
+            print('::warning::%s: no SEC submissions (CIK %d)' % (mid, cik)); continue
+        j = json.loads(b)
+        nm = j.get('name') or ''
+        if word.upper() not in nm.upper():
+            print('::warning::%s: CIK %d is "%s" - expected %s, skipped' % (mid, cik, nm, word)); continue
+        name = name or nm
+        rc = j['filings']['recent']
+        fs += [dict(form=rc['form'][i], acc=rc['accessionNumber'][i], filed=rc['filingDate'][i], period=rc['reportDate'][i], cik=cik)
+               for i in range(len(rc['form'])) if rc['form'][i] in ('13F-HR', '13F-HR/A')]
+    fs.sort(key=lambda f: f['filed'], reverse=True)
     if not fs:
         print('::warning::%s: no 13F filings' % mid); return None
     periods = sorted({f['period'] for f in fs if f['form'] == '13F-HR'}, reverse=True)[:NQ]
@@ -265,11 +270,11 @@ def load_manager(m):
         group = sorted([f for f in fs if f['period'] == p], key=lambda f: f['filed'])
         orig = [f for f in group if f['form'] == '13F-HR']
         base = orig[-1]
-        rows = info_table(cik, base['acc']) or []
+        rows = info_table(base['cik'], base['acc']) or []
         filed = base['filed']
         for a in [f for f in group if f['form'] == '13F-HR/A' and f['filed'] >= base['filed']]:
-            t = amendment_type(cik, a['acc'])
-            ar = info_table(cik, a['acc']) or []
+            t = amendment_type(a['cik'], a['acc'])
+            ar = info_table(a['cik'], a['acc']) or []
             if not ar:
                 continue
             rows = ar if t.startswith('RESTATEMENT') else rows + ar
@@ -451,7 +456,7 @@ def main():
         if prev:
             turnover = round(sum(abs(h['e'] or 0) for h in hold) / 2 + sum(s['w'] for s in sold) / 2, 4)
         rec = {'rank': FAME.index(mid) if mid in FAME else 100 + [x[0] for x in MANAGERS].index(mid), 'id': mid, 'who': m[3], 'firm': m[4], 'fa': m[5], 'ffa': m[6], 'style': m[7], 'bio': m[8], 'sec': d['sec_name'],
-               'cik': m[1], 'period': cur['period'], 'filed': cur['filed'], 'value': round(tot[0]), 'n': len(cur['eq']),
+               'cik': (m[1][0] if isinstance(m[1], (tuple, list)) else m[1]), 'period': cur['period'], 'filed': cur['filed'], 'value': round(tot[0]), 'n': len(cur['eq']),
                'chg': round(tot[0] / tot[1] - 1, 4) if len(tot) > 1 and tot[1] else None, 'top10': round(top10, 4), 'turn': turnover,
                'stale': stale, 'nnew': sum(1 for h in hold if h['a'] == 'new'), 'nadd': sum(1 for h in hold if h['a'] == 'add'),
                'ncut': sum(1 for h in hold if h['a'] == 'cut'), 'nsold': len(sold),

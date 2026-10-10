@@ -430,7 +430,7 @@ def block(rec, mk, est, fx, peer=None, today=None):
     m_pe, m_pf = clamp(m_pe, 6, 32), clamp(m_pf, 6, 32)
     country = COUNTRY_OVERRIDE.get(rec["ticker"]) or mk.get("country") or ""
     crp = CRP.get(country, 0.0)
-    ret = half(10 + crp)
+    ret = half(9 + crp)   # ~ what the market prices in: 10y Treasury ~4.3% + equity risk premium ~4.5%
 
     P = lambda x: half(x * 100)
     g1m, g2m = P(g1), P(g2)

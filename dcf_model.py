@@ -237,8 +237,9 @@ def block(rec, mk, est, fx, peer=None, today=None):
         h = hist[-1]
         base = {"src": "annual", "end": h["end"], "rev": h["rev"], "ni": h["ni"], "fcf": h["fcf"],
                 "div": last.get("dividends") if h["end"] == last["fy_end"] else None}
-    if base.get("div") is None:
-        base["div"] = ref["divy"] * mcap if isinstance(ref.get("divy"), (int, float)) else (last.get("dividends") or 0)
+    if not base.get("div"):   # missing or zero in the filings: today's dividend yield x market cap (when it pays one)
+        dy = ref.get("divy")
+        base["div"] = dy * mcap if isinstance(dy, (int, float)) and dy > 0 else (base.get("div") or last.get("dividends") or 0)
     if not base["rev"] or base["rev"] <= 0:
         return None
     # ---- latest balance sheet
@@ -409,7 +410,10 @@ def block(rec, mk, est, fx, peer=None, today=None):
     elif fm_c <= 0.005:
         fm_c = H["fm"][3] if (H["fm"][3] or 0) > 0.005 else 0.5 * pm_c
     # FCF far above profit is usually stock pay (not a cash cost) or customer money: cap it near the profit margin
-    fm_c = clamp(min(fm_c, max(1.6 * pm_c, pm_c + (0.05 if hi_g else 0.03))), 0.002, 0.6)
+    if reit:             # REITs: operating cash flow (~FFO) is naturally far above profit (depreciation of buildings)
+        fm_c = clamp(fm_c, 0.002, 0.8)
+    else:
+        fm_c = clamp(min(fm_c, max(1.6 * pm_c, pm_c + (0.05 if hi_g else 0.03))), 0.002, 0.6)
     # heavy investment years (AI data centres, factories) depress today's FCF; over a full cycle free cash flow
     # converges towards profit (capex ~ depreciation + growth), so the long-run FCF margin is at least 60% of profit
     fm_c = max(fm_c, 0.6 * pm_c)
@@ -433,7 +437,7 @@ def block(rec, mk, est, fx, peer=None, today=None):
     d = {"g1": [half(g1m - max(3, 0.35 * abs(g1m))), g1m, half(g1m + max(3, 0.25 * abs(g1m)))],
          "g2": [half(max(g2m - 2, -3)), g2m, half(min(g2m + 2, 10))],
          "pm": [half(P(pm_c) * 0.75), P(pm_c), half(min(P(pm_c) * 1.15, 60))],
-         "fm": [half(P(fm_c) * 0.75), P(fm_c), half(min(P(fm_c) * 1.15, 60))],
+         "fm": [half(P(fm_c) * 0.75), P(fm_c), half(min(P(fm_c) * 1.15, 80 if reit else 60))],
          "pe": [round(max(m_pe * 0.8, 5)), round(m_pe), round(m_pe * 1.2)],
          "pf": [round(max(m_pf * 0.8, 5)), round(m_pf), round(m_pf * 1.2)],
          "sh": [half(P(shs) + 1), P(shs), half(P(shs) - 1)],
@@ -454,7 +458,7 @@ def block(rec, mk, est, fx, peer=None, today=None):
         flags.append("yahoo_annual")
     if cyc:
         flags.append("cyclical")
-    if fm_t is not None and pm_t and pm_t > 0 and fm_t > 2.5 * pm_t:
+    if fm_t is not None and pm_t and pm_t > 0 and fm_t > 2.5 * pm_t and not reit:
         flags.append("fcf_high")
     if g5 is not None and H["g"][1] is not None and H["g"][1] < 0 < g5:
         flags.append("rev_drop")

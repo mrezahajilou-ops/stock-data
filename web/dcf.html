@@ -78,6 +78,19 @@
 #rzd .sens td.rh{background:var(--card2);color:var(--mut);font-weight:800}
 #rzd .sens td.cur{outline:2px solid #fff}
 #rzd .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#rzd .fresh{font-size:12.5px;color:#cfe0f2;margin-top:4px}
+#rzd .fresh b{color:var(--lime)}
+#rzd .snap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:14px}
+#rzd .snap div{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:9px 8px;text-align:center}
+#rzd .snap small{display:block;font-size:11.5px;color:var(--mut);font-weight:800}
+#rzd .snap b{display:block;font-size:16px;color:#fff;font-weight:900;direction:ltr;unicode-bidi:isolate}
+#rzd .snap em{display:block;font-style:normal;font-size:11.5px;color:#9fb6cf}
+#rzd .proj{width:100%;border-collapse:collapse;font-size:12.5px;direction:ltr}
+#rzd .proj th{background:var(--card2);color:var(--mut);font-weight:800;padding:6px 6px;white-space:nowrap;font-size:11.5px}
+#rzd .proj td{padding:6px 6px;text-align:center;border-top:1px solid var(--line);white-space:nowrap;color:#e2ebf5}
+#rzd .proj td.rh{text-align:right;color:var(--mut);font-weight:800;direction:rtl;position:sticky;left:0;background:var(--card)}
+#rzd .proj td.y0{color:var(--lime);font-weight:800}
+@media (max-width:860px){#rzd .snap{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:720px){#rzd h1{font-size:23px}#rzd .res,#rzd .rev{grid-template-columns:1fr}#rzd .sc .v{font-size:26px}
   #rzd .tbl .h,#rzd .tbl .hh{display:none}#rzd .hm{display:block}#rzd .tbl td.n span{display:none}
   #rzd .tbl input{width:54px;font-size:14px;padding:5px 2px}#rzd .tbl td{padding:8px 3px}#rzd .tbl td.n{padding-right:8px;white-space:normal;font-size:13.5px}
@@ -86,7 +99,7 @@
 
 <div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
 <h1>ماشین‌حساب ارزش ذاتی سهام (DCF)</h1>
-<p class="sub">نماد شرکت رو بنویس، ببین با فرض‌های خودت سهم الان چقدر می‌ارزه، بازار چه رشدی رو قیمت‌گذاری کرده و جواب چقدر به فرض‌هات حساسه. اعداد تاریخی مستقیم از گزارش‌های رسمی شرکت‌ها به SEC میاد.</p>
+<p class="sub">نماد شرکت رو بنویس، ببین با فرض‌های خودت سهم الان چقدر می‌ارزه، بازار چه رشدی رو قیمت‌گذاری کرده و جواب چقدر به فرض‌هات حساسه. همه‌چیز بر پایه‌ی ۱۲ ماه اخیر گزارش‌های رسمی شرکت‌ها و پیش‌بینی تحلیلگرهاست و هر شب به‌روز میشه.</p>
 
 <div class="card">
   <div class="search">
@@ -101,26 +114,27 @@
 <details>
   <summary>این ماشین‌حساب چطور کار می‌کنه؟</summary>
   <ol>
-    <li>درآمد فعلی شرکت رو با «رشد درآمد» تو برای ۵ یا ۱۰ سال جلو می‌بریم.</li>
-    <li>سود خالص و جریان نقد آزادِ سال آخر = درآمد اون سال × حاشیه‌ای که تو وارد کردی.</li>
-    <li>ارزش شرکت در اون سال = سود × P/E، و جداگانه جریان نقد آزاد × P/FCF.</li>
-    <li>تعداد سهام هم با «تغییر تعداد سهام» جلو میره (منفی یعنی شرکت سهام خودش رو بازخرید می‌کنه و سهم هر سهامدار بزرگ‌تر میشه).</li>
-    <li>ارزش رو با «بازده سالانه‌ای که می‌خوای» به امروز برمی‌گردونیم و تقسیم بر تعداد سهام می‌کنیم. میانگین دو روش، قیمت منصفانه‌ی امروزه.</li>
+    <li><b>نقطه‌ی شروع تازه است:</b> درآمد، سود و جریان نقد آزادِ <b>۱۲ ماه اخیر</b> (جمع چهار فصل آخر از گزارش‌های رسمی شرکت به SEC؛ برای شرکت‌های خارجی که SEC دیر به‌روز می‌کنه، از آخرین گزارش‌های خود شرکت) و نقد و بدهیِ آخرین ترازنامه.</li>
+    <li><b>رشد درآمد:</b> سال ۱ و ۲ با رشدی که وارد کردی (پیش‌فرض: ۷۵٪ پیش‌بینی میانگین تحلیلگرها + ۲۵٪ روند گذشته). بعد از اون، فاصله‌ی رشد تا «رشد بلندمدت» هر سال ۲۵٪ کم میشه، چون هیچ شرکتی برای همیشه سریع رشد نمی‌کنه.</li>
+    <li><b>حاشیه‌ها:</b> از حاشیه‌ی امروز در یک خط صاف تا سال ۵ به حاشیه‌ی هدف می‌رسن. برای شرکت‌های دوره‌ای، هدف به میانگین چرخه نزدیکه نه به اوج.</li>
+    <li><b>سه روش ارزش‌گذاری:</b> (۱) سود هر سهمِ سال آخر × P/E خروج، (۲) جریان نقد آزاد هر سهم × P/FCF خروج — هر دو به امروز تنزیل میشن و سود نقدی‌ای که در این مدت می‌گیری هم اضافه میشه، (۳) DCF کلاسیک: جریان نقد آزاد همه‌ی سال‌ها + ارزش پایانی با «رشد دائمی»، همه تنزیل‌شده. ارزش منصفانه میانگین روش‌هاست.</li>
+    <li><b>ضریب‌های خروج:</b> نصفش از رشد بلندمدت و کیفیت شرکت (ROIC) و نصفش از میانه‌ی P/E آینده‌نگرِ هم‌صنعتی‌ها، نه یک عدد ثابت برای همه.</li>
+    <li><b>بازده مورد انتظار:</b> ۱۰٪، به‌علاوه‌ی ریسک کشور برای شرکت‌هایی که کسب‌وکارشون در بازارهای نوظهوره (روش داموداران).</li>
+    <li><b>تعداد سهام:</b> با میانه‌ی تغییر سالانه‌ی ۵ سال اخیر جلو میره (منفی = بازخرید).</li>
   </ol>
-  <p><b>DCF معکوس:</b> به‌جای اینکه تو رشد رو حدس بزنی، از قیمت فعلی شروع می‌کنیم و حساب می‌کنیم بازار چه رشد درآمدی رو برای این شرکت فرض کرده. اگه اون رشد غیرواقعی به نظر میاد، سهم گرونه؛ اگه راحت قابل دستیابیه، سهم ارزونه.</p>
-  <p><b>جدول حساسیت:</b> نشون میده ارزش منصفانه با تغییر رشد و بازده مورد انتظار چقدر جابه‌جا میشه. خونه‌های سبز یعنی با اون فرض‌ها سهم زیر ارزش ذاتیه.</p>
-  <p>این مدل ترازنامه (نقد و بدهی) رو حساب نمی‌کنه، مگه اینکه تیکش رو بزنی.</p>
+  <p><b>بانک‌ها و بیمه‌ها:</b> فقط با P/E و رشد سود ارزش‌گذاری میشن. <b>صندوق‌های املاک (REIT):</b> با جریان نقد عملیاتی.</p>
+  <p><b>DCF معکوس:</b> از قیمت فعلی شروع می‌کنیم و حساب می‌کنیم بازار چه رشدی برای سال ۱ و ۲ فرض کرده، و با پیش‌بینی تحلیلگرها مقایسه‌اش می‌کنیم.</p>
+  <p><b>بازده خرید امروز:</b> اگه امروز بخری، سود نقدی بگیری و در سال آخر با ضریب‌های خروج بفروشی، سالانه چقدر سود می‌کنی.</p>
 </details>
 
 <div class="book">
   <div><h3>می‌خوای این عددها رو حرفه‌ای انتخاب کنی؟</h3><p>رشد، حاشیه سود، P/E و DCF رو با داستان‌های واقعی، قدم‌به‌قدم تو کتاب آموزش بورس به فارسی توضیح دادیم.</p></div>
   <a class="btn" href="/products/از-اولین-سهم-تا-انتخاب-حرفه‌ای‌ها-مرجع-کامل-فارسی-برای-یادگرفتن-سرمایه‌گذاری-در-بورس">مشاهده‌ی کتاب ←</a>
 </div>
-<p class="note">داده‌ها: SEC EDGAR · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
+<p class="note">داده‌ها: SEC EDGAR، گزارش‌های شرکت‌ها و پیش‌بینی تحلیلگرها (Yahoo Finance) · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 
 <script>
 (function(){
-var DATA = window.RZD_SAMPLE || {};
 var API = window.RZD_API || null;
 var ACCESS = window.RZD_ACCESS !== false;
 var LOGGED = !!window.RZD_LOGGED;
@@ -130,18 +144,14 @@ var INDEX = null;
 function loadIndex(){ if(INDEX||!API) return; INDEX=[]; fetch(API+'/index.json').then(function(r){return r.json()}).then(function(j){INDEX=j.map(function(x){return {t:x.t,n:x.n,a:x.a}}); if(q.value) q.dispatchEvent(new Event('input'));}).catch(function(){INDEX=null}); }
 var $=function(i){return document.getElementById(i)};
 var fa=function(n,d){return Number(n).toLocaleString('en-US',{maximumFractionDigits:d==null?0:d,minimumFractionDigits:d||0})};
-var usd=function(v,suf){return v==null||!isFinite(v)?'—':'\u2066'+(v<0?'-':'')+'$'+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:v>=100||v<=-100?0:2,minimumFractionDigits:v>=100||v<=-100?0:2})+(suf||'')+'\u2069'};
-var spct=function(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v>=0?'+':'')+(v*100).toFixed(d==null?1:d)+'%\u2069'};
-var pct=function(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'};
-var cur=null, YEARS=10;
+var usd=function(v,suf){return v==null||!isFinite(v)?'—':'⁦'+(v<0?'-':'')+'$'+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:Math.abs(v)>=100?0:2,minimumFractionDigits:Math.abs(v)>=100?0:2})+(suf||'')+'⁩'};
+var big=function(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';return '⁦'+s+'$'+(a>=1e12?(a/1e12).toFixed(2)+'T':a>=1e9?(a/1e9).toFixed(a>=1e11?0:1)+'B':(a/1e6).toFixed(0)+'M')+'⁩'};
+var spct=function(v,d){return v==null||!isFinite(v)?'—':'⁦'+(v>=0?'+':'')+(v*100).toFixed(d==null?1:d)+'%⁩'};
+var pct=function(v,d){return v==null||!isFinite(v)?'—':'⁦'+(v*100).toFixed(d==null?1:d)+'%⁩'};
+var cur=null;
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
-/* ---------- data ---------- */
-function listTickers(){return API&&INDEX&&INDEX.length?INDEX:Object.keys(DATA).map(function(t){return {t:t,n:DATA[t].n}})}
-
-/* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ----
-   Fundamentals and scores are built from SEC data with a build-time price; here every price-based
-   number (market cap, EV, P/E, P/FCF, P/S, P/B, PEG, EV/EBITDA, yields, DCF gap, value score) is
-   rescaled to the latest price, so the page is current between data builds. */
+/* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ---- */
 var RZQ_URL=(window.RZS_QUOTES||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes')+'/quotes.json';
 var RZQ=null, RZQ_P=null;
 function liveQuotes(){
@@ -159,169 +169,208 @@ function liveWhen(iso){
     return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
 }
 function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
-function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
-function applyLive(d){
-  var Q=d&&liveQ(d.ticker), m=d&&d.market;
-  if(!Q||!m||!m.price||!(Q[0]>0))return d;
-  var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
-  m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
-  if(mc0){m.mcap=mc0*f;
-    if(r.ev!=null){var ev0=r.ev;r.ev=ev0+m.mcap-mc0;if(r.ev_ebitda!=null&&ev0)r.ev_ebitda=r.ev_ebitda*r.ev/ev0}}
-  ['pe','pfcf','ps','pb','peg'].forEach(function(k){r[k]=liveScale(r[k],f)});
-  ['div_yield','buyback_yield','shareholder_yield','fcf_yield','earnings_yield'].forEach(function(k){r[k]=liveScale(r[k],1/f)});
-  var c=d.checks, s=d.scores;
-  if(c&&c.value&&s&&m.mcap){
-    var spe=r.sector_pe;
-    c.value=[r.pe!=null&&r.pe<25, r.pe!=null&&spe!=null&&r.pe<spe, r.pfcf!=null&&r.pfcf<20, r.fair_mcap!=null&&r.fair_mcap>m.mcap, r.peg!=null&&r.peg<1.5].map(Number);
-    s.value=c.value.reduce(function(a,b){return a+b},0);
-    var parts=['value','future','past','health','capital'].map(function(k){return s[k]}).filter(function(v){return v!=null});
-    if(parts.length)s.total=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10;
-  }
-  return d;
-}
 var ALIAS=null;
 function load(t,cb,viaAlias){
   if(!viaAlias) ALIAS=null;
-  if(DATA[t]) return cb(norm(t,DATA[t]));
   if(!API) return cb(null);
-  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes()]).then(function(x){var d=x[0]; if(d)applyLive(d);
+  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes()]).then(function(x){var d=x[0];
     if(!d){ if(viaAlias) return cb(null);
       return fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(!p)return cb(null);ALIAS={from:t,to:p};load(p,cb,true)}).catch(function(){cb(null)}); }
-    cb({t:t,n:d.name,mk:d.market||null,sc:d.scores||null,cur:d.reported_currency||'USD',rows:d.annual.map(function(r){return {fy:r.fy,rev:r.revenue,ni:r.net_income,fcf:r.fcf,sh:r.shares_diluted,eps:r.eps_diluted,roic:r.roic,cash:r.cash,debt:r.debt}})});
+    var Q=liveQ(d.ticker), mk=d.market||{};
+    var price=Q&&Q[0]>0?Q[0]:mk.price;
+    cb({t:d.ticker,n:d.name,mk:mk,live:!!(Q&&Q[0]>0),price:price,sc:d.scores||null,b:d.dcf||null,cur:d.reported_currency||'USD'});
   }).catch(function(){cb(null)});
 }
-function norm(t,d){var M=1e6;return {t:t,n:d.n,rows:d.a.filter(function(r){return r[1]!=null}).map(function(r){return {fy:r[0],rev:r[1]*M,ni:r[2]==null?null:r[2]*M,fcf:r[3]==null?null:r[3]*M,sh:r[4]==null?null:r[4]*M,eps:r[5],roic:r[6],cash:r[7]==null?null:r[7]*M,debt:r[8]==null?null:r[8]*M}})}}
 
-/* ---------- history ---------- */
-function cagr(rows,k,n){if(rows.length<=n)return null;var a=rows[rows.length-1-n][k],b=rows[rows.length-1][k];if(!a||b==null||a<=0||b<=0)return null;return Math.pow(b/a,1/n)-1}
-function avg(rows,f,n){if(rows.length<n)return null;var v=rows.slice(-n).map(f).filter(function(x){return x!=null&&isFinite(x)});return v.length?v.reduce(function(s,x){return s+x},0)/v.length:null}
-function hist(rows){
-  var nm=function(r){return r.ni!=null&&r.rev?r.ni/r.rev:null}, fm=function(r){return r.fcf!=null&&r.rev?r.fcf/r.rev:null}, ro=function(r){return r.roic};
-  return {
-    roic:[avg(rows,ro,1),avg(rows,ro,5),avg(rows,ro,10)],
-    g:[cagr(rows,'rev',1),cagr(rows,'rev',5),cagr(rows,'rev',10)],
-    pm:[avg(rows,nm,1),avg(rows,nm,5),avg(rows,nm,10)],
-    fm:[avg(rows,fm,1),avg(rows,fm,5),avg(rows,fm,10)],
-    sh:[cagr(rows,'sh',1),cagr(rows,'sh',5),cagr(rows,'sh',10)]
-  };
+/* =====================================================================================
+   DCF engine: identical to dcf_model.py (value / project). Keep both in sync.
+   ===================================================================================== */
+var K_NEAR=2, FADE=0.75, M_YEARS=5;
+function project(b,N,g1,g2,pm,fm,shg){
+  var rev=b.rev, sh0=b.sh;
+  var pm0=(b.ni!=null&&rev)?b.ni/rev:pm, fm0=(b.fcf!=null&&rev)?b.fcf/rev:fm;
+  var out=[], mN=Math.min(M_YEARS,N);
+  for(var t=1;t<=N;t++){
+    var g=t<=K_NEAR?g1:g2+(g1-g2)*Math.pow(FADE,t-K_NEAR);
+    rev=rev*(1+g);
+    var w=Math.min(1,t/mN), p=pm0+(pm-pm0)*w, f=fm0+(fm-fm0)*w;
+    out.push({g:g,rev:rev,ni:rev*p,fcf:rev*f,sh:sh0*Math.pow(1+shg,t),pm:p,fm:f});
+  }
+  return out;
 }
-var clamp=function(x,a,b){return Math.max(a,Math.min(b,x))};
-var r1=function(x){return Math.round(x*2)/2};
-function defaults(h){
-  var g=h.g[1]!=null?h.g[1]:(h.g[0]!=null?h.g[0]:0.05); var gm=r1(clamp(g*100*0.8,-5,25));
-  var pm=h.pm[1]!=null?h.pm[1]:h.pm[0]; if(pm==null||pm<0.02) pm=h.pm[0]!=null&&h.pm[0]>0.02?h.pm[0]:0.08; pm=r1(clamp(pm*100,2,50));
-  var fm=h.fm[1]!=null?h.fm[1]:h.fm[0]; if(fm==null||fm<0.02) fm=h.fm[0]!=null&&h.fm[0]>0.02?h.fm[0]:pm/100; fm=r1(clamp(fm*100,2,55));
-  var sc=h.sh[1]!=null?h.sh[1]:(h.sh[0]!=null?h.sh[0]:0); sc=r1(clamp(sc*100,-5,8));
-  return {sh:[r1(sc+1),sc,r1(sc-1)], g:[r1(Math.max(gm-4,-5)),gm,r1(gm+4)], pm:[r1(pm*0.8),pm,r1(pm*1.15)], fm:[r1(fm*0.8),fm,r1(fm*1.15)], pe:[18,22,26], pf:[18,22,26], ret:[10,10,10]};
+function value(b,N,g1,g2,pm,fm,pe,pf,r,shg,tg){
+  var sh0=b.sh; if(!b.rev||!sh0||r<=-0.99) return null;
+  var ys=project(b,N,g1,g2,pm,fm,shg), payout=b.payout||0, nc=(b.nc||0)/sh0, dps=0, fpv=0, burn=0;
+  for(var t=1;t<=N;t++){var y=ys[t-1], disc=Math.pow(1+r,t); dps+=Math.max(y.ni,0)*payout/y.sh/disc; fpv+=y.fcf/disc; burn+=Math.min(y.fcf,0)/sh0/disc;}
+  var L=ys[N-1], dN=Math.pow(1+r,N), mode=b.mode||'all';
+  if(mode==='earn')burn=0;
+  var vPE=(L.ni>0&&mode!=='cash')?L.ni/L.sh*pe/dN+dps+burn+nc:null;
+  var vPF=(L.fcf>0&&mode!=='earn')?L.fcf/L.sh*pf/dN+dps+burn+nc:null;
+  var vD=null;
+  if(L.fcf>0&&mode!=='earn'&&r-tg>=0.01){var tv=L.fcf*(1+tg)/(r-tg); vD=(fpv+tv/dN+(b.nc||0))/sh0/Math.pow(1+Math.max(shg,0),N);}
+  var vals=[vPE,vPF,vD].filter(function(v){return v!=null});
+  return {fair:vals.length?Math.max(vals.reduce(function(a,c){return a+c},0)/vals.length,0):null,pe:vPE,pf:vPF,dcf:vD,path:ys,div:dps,burn:burn};
 }
+/* buy-and-hold yearly return at today's price: the discount rate at which the P/E and P/FCF exit values = price */
+function irr(b,N,P,price){
+  var ex=function(r){var v=value(b,N,P.g1,P.g2,P.pm,P.fm,P.pe,P.pf,r,P.sh,P.tg);if(!v)return null;var a=[v.pe,v.pf].filter(function(x){return x!=null});return a.length?a.reduce(function(s,x){return s+x},0)/a.length:null};
+  var lo=-0.6,hi=1.5,flo=ex(lo),fhi=ex(hi); if(flo==null||!(price>0))return null;
+  if(flo<price)return -Infinity; if(fhi>price)return Infinity;
+  for(var k=0;k<70;k++){var m=(lo+hi)/2,f=ex(m);if(f==null)return null;if(f>price)lo=m;else hi=m}
+  return (lo+hi)/2;
+}
+
+function irrTxt(R){return R===Infinity?'\u2066> 150%\u2069':R===-Infinity?'\u2066< -60%\u2069':pct(R,1)}
+/* ---------- inputs ---------- */
+var ROWS=[
+ ['g1','رشد درآمد — سال ۱ و ۲','از پیش‌بینی تحلیلگرها + روند گذشته','g'],
+ ['g2','رشد بلندمدت (سال آخر)','بعد از سال ۲، رشد هر سال ۲۵٪ به این عدد نزدیک‌تر میشه',null],
+ ['pm','حاشیه سود خالص هدف','تا سال ۵ از حاشیه‌ی امروز به این عدد می‌رسه','pm'],
+ ['fm','حاشیه جریان نقد آزاد هدف','FCF ÷ درآمد','fm'],
+ ['pe','P/E خروج','ضریب سود در سال آخر',null],
+ ['pf','P/FCF خروج','ضریب جریان نقد آزاد در سال آخر',null],
+ ['sh','تغییر سالانه‌ی تعداد سهام','منفی = بازخرید سهام','sh'],
+ ['ret','بازده مورد انتظار (نرخ تنزیل)','چقدر سود سالانه می‌خوای؟',null],
+ ['tg','رشد دائمی (DCF کلاسیک)','رشد جریان نقد بعد از سال آخر، برای همیشه',null]];
+var KEYS=ROWS.map(function(r){return r[0]});
+function toEn(x){return String(x||'').replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c)}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c)}).replace(/[٫,]/g,'.')}
+function val(k,i){var el=document.querySelector('#rzd-main input[data-k="'+k+'"][data-i="'+i+'"]');var v=parseFloat(toEn(el&&el.value));return isFinite(v)?v:0}
+function params(i){return {g1:val('g1',i)/100,g2:val('g2',i)/100,pm:val('pm',i)/100,fm:val('fm',i)/100,pe:val('pe',i),pf:val('pf',i),sh:val('sh',i)/100,ret:val('ret',i)/100,tg:val('tg',i)/100}}
+function base(){var B=cur.b, bb=B.base; return {rev:bb.rev,ni:bb.ni,fcf:bb.fcf,sh:B.sh,payout:B.payout,mode:B.mode,nc:$('rzd-bs')&&$('rzd-bs').checked&&B.mode!=='earn'?(B.cash-B.debt):0}}
+function run(b,N,P){return value(b,N,P.g1,P.g2,P.pm,P.fm,P.pe,P.pf,P.ret,P.sh,P.tg)}
 
 /* ---------- render ---------- */
-var ROWS=[['roic','ROIC','بازده سرمایه‌ی به‌کاررفته',false],['g','رشد درآمد','سالانه',true],['pm','حاشیه سود خالص','سود ÷ درآمد',true],['fm','حاشیه جریان نقد آزاد','FCF ÷ درآمد',true],['pe','P/E','ضریب سود در سال آخر',true],['pf','P/FCF','ضریب جریان نقد آزاد',true],['sh','تغییر تعداد سهام','منفی = بازخرید سهام',true],['ret','بازده سالانه‌ی مورد انتظار','چقدر سود می‌خوای؟',true]];
+var SRC={sec:'گزارش‌های فصلی شرکت به SEC',yahoo:'آخرین گزارش‌های شرکت (Yahoo Finance)',annual:'آخرین گزارش سالانه'};
+var MODE={earn:'بانک / بیمه / شرکت با جریان نقد نامنظم: فقط روش P/E (جریان نقد این شرکت‌ها با پول مشتری‌ها و وام‌ها بالا و پایین میره و معیار ارزش نیست).',
+          cash:'صندوق املاک (REIT): به‌جای جریان نقد آزاد، جریان نقد عملیاتی (نزدیک به FFO) حساب میشه، چون خرید ساختمون جدید رشده نه هزینه‌ی نگهداری.'};
 function render(s){
   if(!s){$('rzd-main').innerHTML='<div class="card empty">برای این نماد هنوز داده‌ای نداریم.</div>';return}
-  var last=s.rows[s.rows.length-1], h=hist(s.rows), d=defaults(h); cur={s:s,h:h,last:last,d:d};
-  var mk=s.mk||{}; cur.mkPrice=mk.price||null; cur.mkShares=(mk.price&&mk.mcap)?mk.mcap/mk.price:null;
-  var saved=null; try{saved=JSON.parse(localStorage.getItem('rzd_m_'+s.t)||'null')}catch(e){}
-  var thin=s.rows.length<5;
+  if(!s.b){$('rzd-main').innerHTML='<div class="card empty">داده‌ی DCF این نماد آماده نیست (درآمد یا قیمت معتبر نداره).</div>';return}
+  var B=s.b, bb=B.base, H=B.hist, d=B.d; cur=s;
+  var saved=null; try{saved=JSON.parse(localStorage.getItem('rzd3_m_'+s.t)||'null')}catch(e){}
+  var mk=s.mk||{};
   var html='<div class="card"><div class="head"><div><div class="co">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div>'+
-    '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+'آخرین سال مالی: '+String(last.fy)+' · درآمد '+usd(last.rev/1e9)+' میلیارد · سهام رقیق‌شده '+fa((last.sh||0)/1e6,0)+' میلیون'+(s.sc&&s.sc.total!=null?' · امتیاز کلی <b style="color:#fff">'+'\u2066'+s.sc.total.toFixed(1)+'/5\u2069</b>':'')+' · <a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div></div>'+
-    '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(mk.live?' · '+esc(liveLabel(s.t)):(mk.as_of?' · '+esc(mk.as_of):''))+'<input class="pin" id="rzd-price" inputmode="decimal" placeholder="مثلاً 180" value="'+(mk.price?mk.price.toFixed(2):'')+'"></label>'+
-    '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">5 سال</option><option value="10" selected>10 سال</option></select></label></div></div>'+
-    '<div class="warn" id="rzd-warn"></div></div>';
-  html+='<div class="tblwrap"><table class="tbl"><thead><tr><th rowspan="2" style="text-align:right;padding-right:14px">معیار</th><th colspan="3" class="grp hh">گذشته (واقعی)</th><th colspan="3" class="grp">فرض‌های من</th></tr>'+
-        '<tr><th class="hh">1 ساله</th><th class="hh">5 ساله</th><th class="hh">10 ساله</th><th>بدبینانه</th><th>متوسط</th><th>خوش‌بینانه</th></tr></thead><tbody>';
+    '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+(mk.sector?esc(mk.sector)+' · ':'')+(s.sc&&s.sc.total!=null?'امتیاز کلی <b style="color:#fff">⁦'+s.sc.total.toFixed(1)+'/5⁩</b> · ':'')+'<a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div>'+
+    '<div class="fresh">📅 پایه‌ی محاسبه: <b>۱۲ ماه اخیر تا '+esc(bb.end)+'</b> · منبع: '+esc(SRC[bb.src]||bb.src)+' · ترازنامه: '+esc(B.bs_end)+'</div></div>'+
+    '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(s.live?' · '+esc(liveLabel(s.t)):'')+'<input class="pin" id="rzd-price" inputmode="decimal" value="'+(s.price?s.price.toFixed(2):'')+'"></label>'+
+    '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">5 سال</option><option value="10" selected>10 سال</option></select></label></div></div>';
+  html+='<div class="snap">'+
+    snap('درآمد ۱۲ ماهه',big(bb.rev),H.g[0]!=null?'رشد '+spct(H.g[0]):'')+
+    snap('سود خالص',big(bb.ni),'حاشیه '+pct(H.pm[0]))+
+    snap('جریان نقد آزاد'+(B.mode==='cash'?' (عملیاتی)':''),big(bb.fcf),'حاشیه '+pct(H.fm[0]))+
+    snap('نقد / بدهی',big(B.cash)+' / '+big(B.debt),'خالص '+big(B.cash-B.debt))+
+    snap('سهام',fa(B.sh/1e6,0)+'M',B.payout?'سود نقدی '+pct(B.payout,0)+' از سود':'بدون سود نقدی')+
+    snap('رشد پیش‌بینی تحلیلگرها',B.an&&B.an.g!=null?spct(B.an.g):'—',B.an&&B.an.n?B.an.n+' تحلیلگر · سالانه، ۲ سال آینده':'پیش‌بینی موجود نیست')+
+    '</div><div class="warn" id="rzd-warn"></div></div>';
+  html+='<div class="tblwrap"><table class="tbl"><thead><tr><th rowspan="2" style="text-align:right;padding-right:14px">فرض</th><th colspan="4" class="grp hh">گذشته (واقعی)</th><th colspan="3" class="grp">فرض‌های من</th></tr>'+
+        '<tr><th class="hh">12 ماه اخیر</th><th class="hh">1 ساله</th><th class="hh">5 ساله</th><th class="hh">10 ساله</th><th>بدبینانه</th><th>متوسط</th><th>خوش‌بینانه</th></tr></thead><tbody>';
   ROWS.forEach(function(R){
-    var k=R[0], hm=h[k]?'<div class="hm">گذشته — 1 ساله <bdi dir="ltr">'+pct(h[k][0])+'</bdi> · 5 ساله <bdi dir="ltr">'+pct(h[k][1])+'</bdi> · 10 ساله <bdi dir="ltr">'+pct(h[k][2])+'</bdi></div>':'';
-    html+='<tr><td class="n">'+R[1]+'<span>'+R[2]+'</span>'+hm+'</td>';
-    if(h[k]) h[k].forEach(function(v,i){html+='<td class="h'+(i==2?' sep':'')+'">'+pct(v)+'</td>'});
-    else html+='<td class="h"></td><td class="h"></td><td class="h sep"></td>';
-    if(R[3]) d[k].forEach(function(v,i){var sv=saved&&saved[k]&&saved[k][i]!=null?saved[k][i]:v;html+='<td><input data-k="'+k+'" data-i="'+i+'" value="'+sv+'" inputmode="decimal"></td>'});
-    else html+='<td></td><td></td><td></td>';
+    var k=R[0], hk=R[3], hv=hk?H[hk]:null;
+    var hm=hv?'<div class="hm">گذشته — ۱۲ماه <bdi dir="ltr">'+pct(hv[0])+'</bdi> · ۱ساله <bdi dir="ltr">'+pct(hv[1])+'</bdi> · ۵ساله <bdi dir="ltr">'+pct(hv[2])+'</bdi></div>':'';
+    var note=R[2]; if(k==='g1'&&B.an&&B.an.g!=null) note='تحلیلگرها: '+spct(B.an.g)+' · گذشته‌ی ۵ ساله: '+pct(H.g[2]);
+    if(k==='ret'&&B.crp) note='۱۰٪ + ریسک کشور '+B.crp+'٪';
+    if(k==='pm'&&B.an&&B.an.nm!=null) note='تحلیلگرها: '+pct(B.an.nm)+' · تا سال ۵ به این عدد می‌رسه';
+    html+='<tr><td class="n">'+R[1]+'<span>'+note+'</span>'+hm+'</td>';
+    if(hv) hv.forEach(function(v,i){html+='<td class="h'+(i==3?' sep':'')+'">'+pct(v)+'</td>'});
+    else html+='<td class="h"></td><td class="h"></td><td class="h"></td><td class="h sep"></td>';
+    d[k].forEach(function(v,i){var sv=saved&&saved[k]&&saved[k][i]!=null?saved[k][i]:v;html+='<td><input data-k="'+k+'" data-i="'+i+'" value="'+sv+'" inputmode="decimal"></td>'});
     html+='</tr>';
   });
+  html+='<tr><td class="n">ROIC<span>بازده سرمایه‌ی به‌کاررفته (کیفیت کسب‌وکار)</span></td>'+H.roic.map(function(v,i){return '<td class="h'+(i==3?' sep':'')+'">'+pct(v)+'</td>'}).join('')+'<td></td><td></td><td></td></tr>';
   html+='</tbody></table></div>';
-  html+='<label class="opt"><input type="checkbox" id="rzd-bs"'+(saved&&saved.bs?' checked':'')+'> نقد منهای بدهی (ترازنامه) هم به ارزش اضافه بشه — نقد: '+usd((last.cash||0)/1e9,'B')+' · بدهی: '+usd((last.debt||0)/1e9,'B')+'</label>';
+  html+='<label class="opt"><input type="checkbox" id="rzd-bs"'+(saved&&saved.bs?' checked':'')+(B.mode==='earn'?' disabled':'')+'> نقد منهای بدهی رو هم جدا اضافه کن ('+big(B.cash-B.debt)+'). <span style="opacity:.75">پیش‌فرض خاموشه چون سود و جریان نقد بعد از هزینه‌ی بهره حساب شدن و بهره‌ی نقد هم داخل سوده؛ اضافه کردنش یعنی دوبار شمردن.</span></label>';
   html+='<div class="tools"><button class="btn ghost sm" id="rzd-reset">برگشت به پیش‌فرض</button>'+(ACCESS?'<button class="btn ghost sm" id="rzd-save">ذخیره‌ی فرض‌هام برای '+esc(s.t)+'</button>':'')+'<button class="btn ghost sm" id="rzd-share">کپی لینک این مدل</button></div>';
-  html+='<div class="card" style="margin-top:14px"><div class="res" id="rzd-res"></div><div class="bar"><svg id="rzd-svg" viewBox="0 0 800 150"></svg></div></div>';
+  html+='<div class="card" style="margin-top:14px"><div class="res" id="rzd-res"></div><div class="bar"><svg id="rzd-svg" viewBox="0 0 800 150"></svg></div><div class="meta" id="rzd-mnote" style="margin-top:8px"></div></div>';
+  html+='<div class="card"><h3>پیش‌بینی سال‌به‌سال (سناریوی متوسط)</h3><div class="tblwrap"><table class="proj" id="rzd-proj"></table></div></div>';
   html+='<div class="card"><h3>DCF معکوس: بازار چه رشدی رو قیمت‌گذاری کرده؟</h3><div class="rev" id="rzd-rev"></div></div>';
-  html+='<div class="card"><h3>جدول حساسیت: ارزش منصفانه بر اساس رشد × بازده مورد انتظار</h3><div class="meta" style="margin-bottom:8px">با حاشیه‌ها و ضریب‌های سناریوی متوسط. سبز = قیمت فعلی زیر ارزش منصفانه، قرمز = بالاتر. خونه‌ی سفید فرض فعلی توئه.</div><div class="tblwrap"><table class="sens" id="rzd-sens"></table></div></div>';
+  html+='<div class="card"><h3>جدول حساسیت: ارزش منصفانه بر اساس رشد سال ۱ و ۲ × بازده مورد انتظار</h3><div class="meta" style="margin-bottom:8px">بقیه‌ی فرض‌ها مثل سناریوی متوسط. سبز = قیمت فعلی زیر ارزش منصفانه، قرمز = بالاتر. خونه‌ی سفید فرض فعلی توئه.</div><div class="tblwrap"><table class="sens" id="rzd-sens"></table></div></div>';
   $('rzd-main').innerHTML=html;
-  var w=$('rzd-warn'); var msgs=[];
-  if(thin) msgs.push('این شرکت کمتر از ۵ سال داده داره؛ ستون‌های ۵ و ۱۰ ساله ممکنه خالی باشن.');
-  if(last.ni!=null&&last.ni<0) msgs.push('شرکت پارسال زیان‌ده بوده؛ پیش‌فرض‌های حاشیه سود حدسی‌اند، خودت تنظیمشون کن.');
-  if(h.fm[1]!=null&&h.pm[1]!=null&&h.pm[1]>0&&h.fm[1]>h.pm[1]*2.5) msgs.push('جریان نقد آزاد این شرکت خیلی بیشتر از سودشه (معمولاً به‌خاطر وام‌دهی یا سپرده‌ی مشتری‌ها در شرکت‌های فین‌تک). به روش P/E بیشتر اعتماد کن یا حاشیه FCF رو پایین‌تر بذار.');
-  if(h.g[0]!=null&&h.g[1]!=null&&h.g[0]<0&&h.g[1]>0) msgs.push('درآمد سال آخر افت کرده ولی میانگین ۵ ساله مثبته؛ اگه فکر می‌کنی افت ادامه‌داره، رشد رو پایین‌تر بذار.');
-  if(msgs.length){w.style.display='block';w.textContent=msgs.join(' ')}
+  var msgs=[], F=B.flags||[];
+  if(B.mode&&MODE[B.mode]) msgs.push(MODE[B.mode]);
+  if(F.indexOf('stale')>=0) msgs.push('آخرین گزارش این شرکت قدیمیه؛ عددها رو با احتیاط بخون.');
+  if(F.indexOf('loss')>=0) msgs.push('شرکت الان زیان‌ده یا نزدیک به صفره؛ حاشیه‌ی هدف از پیش‌بینی تحلیلگرها یا بهترین سال‌های گذشته اومده، خودت تنظیمش کن.');
+  if(F.indexOf('cyclical')>=0) msgs.push('کسب‌وکار دوره‌ایه (سود سال‌به‌سال زیاد بالا پایین میره)؛ حاشیه‌ی هدف به میانگین چرخه نزدیک شده، نه به اوج یا کف امروز.');
+  if(F.indexOf('fcf_high')>=0) msgs.push('جریان نقد آزاد خیلی بیشتر از سوده (معمولاً پاداش سهمی کارکنان یا پول مشتری‌ها)؛ حاشیه FCF هدف نزدیک حاشیه سود محدود شده.');
+  if(F.indexOf('rev_drop')>=0) msgs.push('درآمد سال آخر افت کرده ولی روند ۵ ساله مثبته؛ اگه فکر می‌کنی افت ادامه‌داره، رشد رو پایین‌تر بذار.');
+  if(msgs.length){var w=$('rzd-warn');w.style.display='block';w.innerHTML=msgs.map(function(m){return '• '+esc(m)}).join('<br>')}
   [].forEach.call(document.querySelectorAll('#rzd-main input, #rzd-main select'),function(el){el.addEventListener('input',calc);el.addEventListener('change',calc)});
-  $('rzd-reset').addEventListener('click',function(){try{localStorage.removeItem('rzd_m_'+s.t)}catch(e){}render(s)});
-  var sb=$('rzd-save'); if(sb)sb.addEventListener('click',function(){var o={bs:$('rzd-bs').checked};['g','pm','fm','pe','pf','sh','ret'].forEach(function(k){o[k]=[0,1,2].map(function(i){return val(k,i)})});try{localStorage.setItem('rzd_m_'+s.t,JSON.stringify(o));sb.textContent='ذخیره شد ✓'}catch(e){}});
-  $('rzd-share').addEventListener('click',function(){var o=[];['g','pm','fm','pe','pf','sh','ret'].forEach(function(k){o.push(k+'='+[0,1,2].map(function(i){return val(k,i)}).join(','))});var u=location.origin+location.pathname+'#'+s.t+'|'+o.join(';');try{navigator.clipboard.writeText(u);this.textContent='کپی شد ✓'}catch(e){prompt('لینک:',u)}});
+  $('rzd-reset').addEventListener('click',function(){try{localStorage.removeItem('rzd3_m_'+s.t)}catch(e){}render(s)});
+  var sb=$('rzd-save'); if(sb)sb.addEventListener('click',function(){var o={bs:$('rzd-bs').checked};KEYS.forEach(function(k){o[k]=[0,1,2].map(function(i){return val(k,i)})});try{localStorage.setItem('rzd3_m_'+s.t,JSON.stringify(o));sb.textContent='ذخیره شد ✓'}catch(e){}});
+  $('rzd-share').addEventListener('click',function(){var o=[];KEYS.forEach(function(k){o.push(k+'='+[0,1,2].map(function(i){return val(k,i)}).join(','))});var u=location.origin+location.pathname+'#'+s.t+'|'+o.join(';');try{navigator.clipboard.writeText(u);this.textContent='کپی شد ✓'}catch(e){prompt('لینک:',u)}});
   applyHashModel();
   calc();
 }
+function snap(t,v,sub){return '<div><small>'+t+'</small><b>'+v+'</b><em>'+(sub||'')+'</em></div>'}
 function applyHashModel(){var hs=(location.hash||'').slice(1);var p=hs.indexOf('|');if(p<0)return;hs.slice(p+1).split(';').forEach(function(kv){var a=kv.split('=');if(a.length<2)return;a[1].split(',').forEach(function(v,i){var el=document.querySelector('#rzd-main input[data-k="'+a[0]+'"][data-i="'+i+'"]');if(el&&v!=='')el.value=v})})}
-function toEn(x){return String(x||'').replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c)}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c)}).replace(/[٫,]/g,'.')}
-function val(k,i){var el=document.querySelector('#rzd-main input[data-k="'+k+'"][data-i="'+i+'"]');var v=parseFloat(toEn(el&&el.value));return isFinite(v)?v:0}
-/* core valuation for one scenario; returns {fair, vPE, vPF, fut} */
-function value(L,N,sh0,bs,g,pm,fm,pe,pf,r,shg){
-  var sh=sh0*Math.pow(1+shg,N);
-  var revN=L.rev*Math.pow(1+g,N), niN=revN*pm, fcfN=revN*fm;
-  var futPE=niN*pe/sh, futPF=fcfN*pf/sh, disc=Math.pow(1+r,N);
-  var vPE=futPE/disc+bs/sh0, vPF=futPF/disc+bs/sh0;
-  return {fair:(vPE+vPF)/2, vPE:vPE, vPF:vPF, fut:(futPE+futPF)/2+bs/sh0};
-}
 function calc(){
-  if(!cur) return; var L=cur.last, N=parseInt($('rzd-years').value,10), price=parseFloat(toEn($('rzd-price').value));
-  var bs=$('rzd-bs').checked?((L.cash||0)-(L.debt||0)):0, sh0=cur.mkShares||L.sh||1;
-  var names=['بدبینانه','متوسط','خوش‌بینانه'], out=[], html='';
+  if(!cur||!cur.b) return; var N=parseInt($('rzd-years').value,10), price=parseFloat(toEn($('rzd-price').value)), b=base();
+  var names=['بدبینانه','متوسط','خوش‌بینانه'], out=[], html='', Vm=null;
   for(var i=0;i<3;i++){
-    var V=value(L,N,sh0,bs,val('g',i)/100,val('pm',i)/100,val('fm',i)/100,val('pe',i),val('pf',i),val('ret',i)/100,val('sh',i)/100);
-    var irr=price>0&&V.fut>0?Math.pow(V.fut/price,1/N)-1:null, mos=price>0?(V.fair/price-1):null;
-    out.push({fair:V.fair});
+    var P=params(i), V=run(b,N,P); if(i==1)Vm=V;
+    var fair=V&&V.fair, R=price>0?irr(b,N,P,price):null, mos=price>0&&fair!=null?(fair/price-1):null;
+    out.push({fair:fair});
     var tag='';
-    if(price>0){var cls=mos>0.15?'good':(mos>-0.1?'mid':'bad');var txt=mos>0.15?'ارزون':(mos>-0.1?'نزدیک ارزش منصفانه':'گرون');tag='<div class="tag '+cls+'">'+txt+' · '+spct(mos,0)+'</div>'}
-    html+='<div class="sc"><div class="t">سناریوی '+names[i]+'</div><div class="v" style="color:'+(i==0?'#ff8a8e':i==1?'#f5d36b':'#5fe0d3')+'">'+usd(V.fair)+'</div>'+
-      '<div class="r">با P/E: <b>'+usd(V.vPE)+'</b> · با P/FCF: <b>'+usd(V.vPF)+'</b></div>'+
-      (irr!=null?'<div class="r">اگه امروز بخری: سالانه <b>'+pct(irr,1)+'</b></div>':'')+
-      (mos!=null&&i==1?'<div class="r">حاشیه امنیت: <b>'+spct(mos,0)+'</b> · قیمت خرید با 25% حاشیه: <b>'+usd(V.fair*0.75)+'</b></div>':'')+tag+'</div>';
+    if(fair===0)mos=null;
+    if(mos!=null){var cls=mos>0.15?'good':(mos>-0.1?'mid':'bad');var txt=mos>0.15?'ارزون':(mos>-0.1?'نزدیک ارزش منصفانه':'گرون');tag='<div class="tag '+cls+'">'+txt+' · '+spct(mos,0)+'</div>'}
+    var parts=[]; if(V){if(V.pe!=null)parts.push('P/E: <b>'+usd(V.pe)+'</b>');if(V.pf!=null)parts.push('P/FCF: <b>'+usd(V.pf)+'</b>');if(V.dcf!=null)parts.push('DCF کلاسیک: <b>'+usd(V.dcf)+'</b>')}
+    html+='<div class="sc"><div class="t">سناریوی '+names[i]+'</div><div class="v" style="color:'+(i==0?'#ff8a8e':i==1?'#f5d36b':'#5fe0d3')+'">'+(fair==null||fair===0?'—':usd(fair))+'</div>'+
+      '<div class="r">'+(fair===0?'زیان و مصرف نقدینگی بیشتر از ارزش کسب‌وکاره؛ با این فرض‌ها DCF ارزشی نشون نمیده.':(parts.join(' · ')||'با این فرض‌ها سود یا جریان نقد سال آخر منفیه'))+'</div>'+
+      (R!=null?'<div class="r">اگه امروز بخری و سال '+N+' بفروشی: سالانه <b>'+irrTxt(R)+'</b></div>':'')+
+      (mos!=null&&i==1?'<div class="r">قیمت خرید با 25% حاشیه امنیت: <b>'+usd(fair*0.75)+'</b></div>':'')+tag+'</div>';
   }
   $('rzd-res').innerHTML=html; bars(out,price);
-  reverse(L,N,sh0,bs,price); sens(L,N,sh0,bs,price);
+  var mm=cur.b.mode==='earn'?'روش: P/E خروج (+ سود نقدی).':cur.b.mode==='cash'?'روش‌ها: P/FCF خروج و DCF کلاسیک (+ سود نقدی).':'ارزش منصفانه = میانگین سه روش: P/E خروج، P/FCF خروج (هر دو + سود نقدی دریافتی) و DCF کلاسیک (همه‌ی جریان‌های نقد سالانه + ارزش پایانی با رشد دائمی).';
+  $('rzd-mnote').innerHTML=mm+(Vm&&Vm.div>0?' سود نقدی دوران نگهداری (ارزش امروز): <b style="color:#fff">'+usd(Vm.div)+'</b> برای هر سهم.':'');
+  proj(b,N,params(1));
+  reverse(b,N,price); sens(b,N,price);
 }
-/* reverse DCF: growth the market implies with the medium scenario's other inputs */
-function reverse(L,N,sh0,bs,price){
+function proj(b,N,P){
+  var t=$('rzd-proj'); if(!t)return; var V=run(b,N,P); if(!V){t.innerHTML='';return}
+  var ys=V.path, bb=cur.b.base;
+  var row=function(lab,f0,f){return '<tr><td class="rh">'+lab+'</td><td class="y0">'+f0+'</td>'+ys.map(function(y,i){return '<td>'+f(y,i)+'</td>'}).join('')+'</tr>'};
+  var h='<tr><th></th><th>12 ماه اخیر</th>'+ys.map(function(y,i){return '<th>سال '+(i+1)+'</th>'}).join('')+'</tr>';
+  h+=row('رشد درآمد',pct(cur.b.hist.g[0]),function(y){return pct(y.g,1)});
+  h+=row('درآمد',big(bb.rev),function(y){return big(y.rev)});
+  h+=row('حاشیه سود',pct(bb.ni/bb.rev),function(y){return pct(y.pm,1)});
+  h+=row('سود خالص',big(bb.ni),function(y){return big(y.ni)});
+  h+=row(cur.b.mode==='cash'?'جریان نقد عملیاتی':'جریان نقد آزاد',big(bb.fcf),function(y){return big(y.fcf)});
+  h+=row('سود هر سهم',usd(bb.ni/b.sh),function(y){return usd(y.ni/y.sh)});
+  t.innerHTML=h;
+}
+/* reverse DCF: near-term growth the price implies, other medium-scenario inputs unchanged */
+function reverse(b,N,price){
   var box=$('rzd-rev'); if(!box)return;
   if(!(price>0)){box.innerHTML='<div class="bx"><div class="t">قیمت فعلی رو وارد کن تا رشد ضمنی بازار حساب بشه.</div></div>';return}
-  var pm=val('pm',1)/100, fm=val('fm',1)/100, pe=val('pe',1), pf=val('pf',1), r=val('ret',1)/100, shg=val('sh',1)/100;
-  var f=function(g){return value(L,N,sh0,bs,g,pm,fm,pe,pf,r,shg).fair-price};
-  var lo=-0.5, hi=1.5, g=null;
+  var P=params(1);
+  var f=function(g){var v=value(b,N,g,P.g2,P.pm,P.fm,P.pe,P.pf,P.ret,P.sh,P.tg);return v&&v.fair!=null?v.fair-price:-price};
+  var LO=-0.5,HI=2.0,lo=LO,hi=HI,g=null;
   if(f(lo)>0) g=lo; else if(f(hi)<0) g=hi; else {for(var k=0;k<60;k++){var m=(lo+hi)/2;if(f(m)>0)hi=m;else lo=m}g=(lo+hi)/2}
-  var h5=cur.h.g[1], h1=cur.h.g[0], myg=val('g',1)/100;
-  var cmp=h5!=null?(g>h5+0.03?'بالاتر از رشد واقعی ۵ سال اخیر ('+pct(h5)+')؛ بازار داره آینده‌ی بهتری از گذشته می‌خره.':g<h5-0.03?'پایین‌تر از رشد واقعی ۵ سال اخیر ('+pct(h5)+')؛ بازار بدبین‌تر از گذشته‌ی شرکته.':'نزدیک به رشد واقعی ۵ سال اخیر ('+pct(h5)+').'):'';
-  var tone=g>0.25?'#ff8a8e':g>0.12?'#f5d36b':'#5fe0d3';
-  // IRR at current price with the medium scenario
-  var Vm=value(L,N,sh0,bs,myg,pm,fm,pe,pf,r,shg), irr=Vm.fut>0?Math.pow(Vm.fut/price,1/N)-1:null;
-  box.innerHTML='<div class="bx"><div class="t">رشد سالانه‌ی درآمدی که قیمت '+usd(price)+' فرض می‌کنه</div><div class="big" style="color:'+tone+'">'+spct(g,1)+'</div>'+
-    '<div class="d">یعنی اگه درآمد '+esc(cur.s.t)+' هر سال '+pct(g,1)+' رشد کنه و بقیه‌ی فرض‌های سناریوی متوسط درست باشن، خریدار امروز دقیقاً '+pct(r,0)+' بازده سالانه می‌گیره. '+cmp+'</div></div>'+
-    '<div class="bx"><div class="t">بازده سالانه‌ای که با فرض‌های متوسطِ خودت می‌گیری</div><div class="big" style="color:'+(irr==null?'#fff':irr>=r?'#5fe0d3':irr>=0?'#f5d36b':'#ff8a8e')+'">'+(irr==null?'—':pct(irr,1))+'</div>'+
-    '<div class="d">با رشد '+pct(myg,1)+' که تو وارد کردی. '+(irr==null?'':irr>=r?'بیشتر از بازده مورد انتظارته؛ سهم با این فرض‌ها ارزونه.':irr>=0?'کمتر از '+pct(r,0)+' که می‌خوای؛ یا رشد بیشتری لازمه یا قیمت پایین‌تر.':'با این فرض‌ها از خرید امروز ضرر می‌کنی.')+'</div></div>';
+  var an=cur.b.an&&cur.b.an.g, h5=cur.b.hist.g[2];
+  var cmp=[]; if(an!=null)cmp.push('تحلیلگرها: '+spct(an)); if(h5!=null)cmp.push('۵ سال گذشته: '+spct(h5));
+  var tone=g>0.3?'#ff8a8e':g>0.15?'#f5d36b':'#5fe0d3';
+  var R=irr(b,N,P,price);
+  var say=g>=HI?'حتی با رشد بیش از ۲۰۰٪ هم این قیمت توجیه نمیشه.':g<=LO?'قیمت حتی با کوچیک‌شدن شدید درآمد هم توجیه میشه.':
+    (an!=null&&g>an+0.05?'بازار بیشتر از تحلیلگرها رشد می‌خواد؛ قیمت جای خطای کمی داره.':an!=null&&g<an-0.05?'بازار کمتر از تحلیلگرها رشد فرض کرده؛ اگه پیش‌بینی‌ها درست باشن، سهم ارزونه.':'نزدیک به پیش‌بینی تحلیلگرهاست.');
+  box.innerHTML='<div class="bx"><div class="t">رشد سالانه‌ی درآمد در سال ۱ و ۲ که قیمت '+usd(price)+' فرض می‌کنه</div><div class="big" style="color:'+tone+'">'+spct(g,1)+'</div>'+
+    '<div class="d">با بقیه‌ی فرض‌های سناریوی متوسط. '+cmp.join(' · ')+'. '+say+'</div></div>'+
+    '<div class="bx"><div class="t">بازده سالانه‌ی تو اگه امروز بخری (سناریوی متوسط)</div><div class="big" style="color:'+(R==null?'#fff':R>=P.ret?'#5fe0d3':R>=0?'#f5d36b':'#ff8a8e')+'">'+(R==null?'—':irrTxt(R))+'</div>'+
+    '<div class="d">خرید امروز، دریافت سود نقدی و فروش در سال '+N+' با ضریب‌های خروج. '+(R==null?'':R>=P.ret?'بیشتر از بازده مورد انتظارته ('+pct(P.ret,1)+')؛ با این فرض‌ها سهم ارزونه.':R>=0?'کمتر از '+pct(P.ret,1)+' که می‌خوای؛ یا رشد بیشتری لازمه یا قیمت پایین‌تر.':'با این فرض‌ها از خرید امروز ضرر می‌کنی.')+'</div></div>';
 }
-/* sensitivity: growth x expected return */
-function sens(L,N,sh0,bs,price){
+function sens(b,N,price){
   var t=$('rzd-sens'); if(!t)return;
-  var pm=val('pm',1)/100, fm=val('fm',1)/100, pe=val('pe',1), pf=val('pf',1), shg=val('sh',1)/100, g0=val('g',1), r0=val('ret',1);
-  var gs=[-8,-4,-2,0,2,4,8].map(function(d){return Math.round((g0+d)*2)/2}), rs=[6,8,10,12,15];
-  if(rs.indexOf(r0)<0){rs.push(r0);rs.sort(function(a,b){return a-b})}
+  var P=params(1), g0=Math.round(P.g1*1000)/10, r0=Math.round(P.ret*1000)/10;
+  var gs=[-10,-5,-2.5,0,2.5,5,10].map(function(x){return Math.round((g0+x)*2)/2}), rs=[7,8,9,10,11,12,14];
+  if(rs.indexOf(r0)<0){rs.push(r0);rs.sort(function(a,c){return a-c})}
   var h='<tr><th>رشد ↓ / بازده →</th>'+rs.map(function(r){return '<th>'+r+'%</th>'}).join('')+'</tr>';
-  gs.forEach(function(g){h+='<tr><td class="rh">'+(g>=0?'+':'')+g+'%</td>'+rs.map(function(r){var v=value(L,N,sh0,bs,g/100,pm,fm,pe,pf,r/100,shg).fair;var c='#1a2a44',fc='#fff';
-    if(price>0){var m=v/price-1;c=m>0.25?'#1f6f5f':m>0?'#2f8a5a':m>-0.15?'#8a6b1f':'#8a2f3a'}
-    return '<td style="background:'+c+';color:'+fc+'"'+(g===g0&&r===r0?' class="cur"':'')+'>'+usd(v)+'</td>'}).join('')+'</tr>'});
+  gs.forEach(function(g){h+='<tr><td class="rh">'+(g>=0?'+':'')+g+'%</td>'+rs.map(function(r){var V=value(b,N,g/100,P.g2,P.pm,P.fm,P.pe,P.pf,r/100,P.sh,P.tg),v=V&&V.fair;var c='#1a2a44';
+    if(price>0&&v!=null){var m=v/price-1;c=m>0.25?'#1f6f5f':m>0?'#2f8a5a':m>-0.15?'#8a6b1f':'#8a2f3a'}
+    return '<td style="background:'+c+';color:#fff"'+(g===g0&&r===r0?' class="cur"':'')+'>'+(v==null?'—':usd(v))+'</td>'}).join('')+'</tr>'});
   t.innerHTML=h;
 }
 function bars(out,price){
-  var W=800,H=150,max=Math.max.apply(null,out.map(function(o){return o.fair}).concat([price||0]))*1.12; if(!(max>0)) max=1;
+  var W=800,max=Math.max.apply(null,out.map(function(o){return o.fair||0}).concat([price||0]))*1.12; if(!(max>0)) max=1;
   var cols=['#ff8a8e','#f5d36b','#5fe0d3'],s='';
-  out.forEach(function(o,i){var w=Math.max(0,o.fair)/max*(W-110),y=12+i*42;
+  out.forEach(function(o,i){var w=Math.max(0,o.fair||0)/max*(W-110),y=12+i*42;
     s+='<rect x="'+(W-20-w)+'" y="'+y+'" width="'+w+'" height="28" rx="7" fill="'+cols[i]+'" opacity=".9"/>';
     s+='<text x="'+(W-28-w)+'" y="'+(y+19)+'" text-anchor="end" fill="#fff" font-size="14" font-weight="800" font-family="Vazirmatn,Tahoma">'+usd(o.fair)+'</text>';});
   if(price>0){var x=W-20-price/max*(W-110);s+='<line x1="'+x+'" x2="'+x+'" y1="4" y2="138" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/><text x="'+x+'" y="150" text-anchor="middle" fill="#fff" font-size="13" font-family="Vazirmatn,Tahoma">'+String.fromCharCode(0x2067)+'قیمت فعلی '+usd(price)+String.fromCharCode(0x2069)+'</text>'}
@@ -331,19 +380,19 @@ function paywall(t){
   var login = LOGGED ? '' : '<a class="btn" style="background:transparent;border:1.5px solid var(--line);color:#fff!important" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً خریدی؟ وارد حسابت شو</a>';
   $('rzd-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div>'+
    '<div class="co" style="margin:6px 0">تحلیل '+esc(t)+' مخصوص اعضاست</div>'+
-   '<p class="sub" style="margin:0 auto 16px;max-width:520px">ماشین‌حساب DCF بخشی از اشتراک Stock Pro است: ارزش ذاتی، DCF معکوس و جدول حساسیتِ بیش از ۶٬۸۰۰ سهم آمریکایی، به‌علاوه‌ی تحلیل نامحدود سهم‌ها، غربالگر و سوپر سرمایه‌گذارها؛ اعداد هر شب از گزارش‌های رسمی SEC و قیمت‌ها هر ۱۵ دقیقه به‌روز میشن. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
+   '<p class="sub" style="margin:0 auto 16px;max-width:520px">ماشین‌حساب DCF بخشی از اشتراک Stock Pro است: ارزش ذاتی با سه روش، پیش‌بینی سال‌به‌سال، DCF معکوس و جدول حساسیتِ بیش از ۶٬۰۰۰ سهم آمریکایی، بر پایه‌ی آخرین ۱۲ ماه گزارش‌های رسمی و پیش‌بینی تحلیلگرها؛ به‌علاوه‌ی تحلیل نامحدود سهم‌ها، غربالگر و سوپر سرمایه‌گذارها. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">ماهانه ۷٫۹۹ یورو</a>'+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>'+
    '<p class="sub" style="margin:14px auto 0;font-size:13px">بعد از پرداخت، همین سهم ('+esc(t)+') خودکار برات باز میشه.</p></div>';
 }
-function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 /* ---------- search ---------- */
 var q=$('rzd-q'), sg=$('rzd-sugg');
+function listTickers(){return INDEX&&INDEX.length?INDEX:[]}
 function pick(t){sg.style.display='none';q.value=t;try{localStorage.setItem('rz_last_ticker',t)}catch(e){}if(!ACCESS&&FREE.indexOf(t)<0){paywall(t);return}$('rzd-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';load(t,render);try{var hs=(location.hash||'').slice(1);if(hs.indexOf(t+'|')!==0)history.replaceState(null,'','#'+t)}catch(e){}}
 q.addEventListener('focus',loadIndex);
 q.addEventListener('input',function(){loadIndex();
   var v=q.value.trim().toUpperCase(); if(!v){sg.style.display='none';return}
-  var L=listTickers().filter(function(x){return x.t.indexOf(v)===0||x.n.toUpperCase().indexOf(v)>=0}).slice(0,8);
+  var L=listTickers().filter(function(x){return x.t.indexOf(v)===0||(x.n||'').toUpperCase().indexOf(v)>=0}).slice(0,8);
   sg.innerHTML=L.map(function(x){return '<div data-t="'+esc(x.t)+'"><span>'+esc(x.n)+'</span><b>'+esc(x.t)+(x.a?' → '+esc(x.a):'')+'</b></div>'}).join('')||'<div>پیدا نشد</div>';
   sg.style.display='block';
 });
@@ -354,6 +403,7 @@ $('rzd-pop').innerHTML=['AAPL','NVDA','MSFT','GOOGL','AMZN','META','TSLA','NKE',
 $('rzd-pop').addEventListener('click',function(e){var c=e.target.closest('[data-t]');if(c)pick(c.dataset.t)});
 var h0=(location.hash||'').slice(1).toUpperCase().split('|')[0]; if(!h0){try{h0=localStorage.getItem('rz_last_ticker')||''}catch(e){}}
 pick(h0&&/^[A-Z.-]{1,7}$/.test(h0)?h0:'AAPL');
+window.RZD_ENGINE={value:value,project:project,irr:irr};
 })();
 </script>
 </div>

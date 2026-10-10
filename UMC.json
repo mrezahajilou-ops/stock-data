@@ -1,0 +1,1883 @@
+{
+"t": "UMC",
+"cik": 1033767,
+"name": "United Microelectronics Corporation",
+"tags": {
+"dei:EntityCommonStockSharesOutstanding|shares": [
+null,
+"2025-12-31",
+12588156344,
+"20-F",
+"2026-04-30",
+9
+],
+"ifrs-full:AdditionalPaidinCapital|TWD": [
+null,
+"2018-12-31",
+41302035000,
+"20-F",
+"2019-04-25",
+1
+],
+"ifrs-full:AdjustedWeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+12365469000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInEmployeeBenefitLiabilities|TWD": [
+"2024-01-01",
+"2024-12-31",
+-584384000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInEmployeeBenefitLiabilities|USD": [
+"2024-01-01",
+"2024-12-31",
+-17822000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInOtherCurrentLiabilities|TWD": [
+"2024-01-01",
+"2024-12-31",
+1056250000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInOtherCurrentLiabilities|USD": [
+"2024-01-01",
+"2024-12-31",
+32213000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:AdjustmentsToReconcileProfitLossOtherThanChangesInWorkingCapital|TWD": [
+"2024-01-01",
+"2024-12-31",
+45186650000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:AdjustmentsToReconcileProfitLossOtherThanChangesInWorkingCapital|USD": [
+"2024-01-01",
+"2024-12-31",
+1378062000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:BondsIssuedUndiscountedCashFlows|TWD": [
+null,
+"2024-12-31",
+31281434000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:CancellationOfTreasuryShares|TWD": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+5
+],
+"ifrs-full:CapitalisationRateOfBorrowingCostsEligibleForCapitalisation|pure": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2023-04-27",
+4
+],
+"ifrs-full:CapitalRedemptionReserve|TWD": [
+null,
+"2024-12-31",
+9067812000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:CapitalRedemptionReserve|USD": [
+null,
+"2024-12-31",
+276542000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CashAndCashEquivalents|TWD": [
+null,
+"2024-12-31",
+105000226000,
+"20-F",
+"2025-04-24",
+32
+],
+"ifrs-full:CashAndCashEquivalents|USD": [
+null,
+"2024-12-31",
+3202203000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:CashAndCashEquivalentsInSubsidiaryOrBusinessesAcquiredOrDisposed2013|TWD": [
+"2018-01-01",
+"2018-12-31",
+-14430000,
+"20-F",
+"2020-04-28",
+5
+],
+"ifrs-full:CashAndCashEquivalentsInSubsidiaryOrBusinessesAcquiredOrDisposed2013|USD": [
+"2017-01-01",
+"2017-12-31",
+0,
+"20-F",
+"2018-04-26",
+1
+],
+"ifrs-full:CashFlowsFromLosingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|TWD": [
+"2018-01-01",
+"2018-12-31",
+9813000,
+"20-F",
+"2020-04-28",
+7
+],
+"ifrs-full:CashFlowsFromLosingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|USD": [
+"2018-01-01",
+"2018-12-31",
+-321000,
+"20-F",
+"2019-04-25",
+2
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+-39199747000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-1195479000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+-85941103000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-2620955000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+93872042000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+2862825000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CashFlowsFromUsedInOperations|TWD": [
+"2024-01-01",
+"2024-12-31",
+98761663000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CashFlowsFromUsedInOperations|USD": [
+"2024-01-01",
+"2024-12-31",
+3011945000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CashOnHand|TWD": [
+null,
+"2024-12-31",
+6258000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:ContractLiabilities|TWD": [
+null,
+"2024-12-31",
+2660181000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:ContractualCommitmentsForAcquisitionOfPropertyPlantAndEquipment|TWD": [
+null,
+"2024-12-31",
+70900000000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CostOfInventoriesRecognisedAsExpenseDuringPeriod|TWD": [
+"2024-01-01",
+"2024-12-31",
+148575000000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CostOfSales|TWD": [
+"2024-01-01",
+"2024-12-31",
+156648504000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:CostOfSales|USD": [
+"2024-01-01",
+"2024-12-31",
+4777326000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CurrentContractLiabilities|TWD": [
+null,
+"2024-12-31",
+2200561000,
+"20-F",
+"2025-04-24",
+22
+],
+"ifrs-full:CurrentContractLiabilities|USD": [
+null,
+"2024-12-31",
+67111000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:CurrentFinancialLiabilitiesAtFairValueThroughProfitOrLoss|TWD": [
+null,
+"2024-12-31",
+901000000,
+"20-F",
+"2025-04-24",
+11
+],
+"ifrs-full:CurrentFinancialLiabilitiesAtFairValueThroughProfitOrLoss|USD": [
+null,
+"2024-12-31",
+27478000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:CurrentLeaseLiabilities|TWD": [
+null,
+"2024-12-31",
+636357000,
+"20-F",
+"2025-04-24",
+12
+],
+"ifrs-full:CurrentLeaseLiabilities|USD": [
+null,
+"2024-12-31",
+19407000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:CurrentLiabilities|TWD": [
+null,
+"2024-12-31",
+77399343000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:CurrentLiabilities|USD": [
+null,
+"2024-12-31",
+2360456000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CurrentPortionOfLongtermBorrowings|TWD": [
+null,
+"2024-12-31",
+10994998000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:CurrentPortionOfLongtermBorrowings|USD": [
+null,
+"2024-12-31",
+335316000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:CurrentTaxLiabilitiesCurrent|TWD": [
+null,
+"2024-12-31",
+5504166000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:CurrentTaxLiabilitiesCurrent|USD": [
+null,
+"2024-12-31",
+167861000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:DeferredTaxLiabilities|TWD": [
+null,
+"2024-12-31",
+8118251000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:DeferredTaxLiabilities|USD": [
+null,
+"2024-12-31",
+247583000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:DeferredTaxRelatingToItemsChargedOrCreditedDirectlyToEquity|TWD": [
+"2024-01-01",
+"2024-12-31",
+1174000,
+"20-F",
+"2025-04-24",
+20
+],
+"ifrs-full:DepreciationExpense|TWD": [
+"2024-01-01",
+"2024-12-31",
+45336692000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:DepreciationPropertyPlantAndEquipment|TWD": [
+"2024-01-01",
+"2024-12-31",
+45472102000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:DepreciationPropertyPlantAndEquipment|USD": [
+"2024-01-01",
+"2024-12-31",
+1386767000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:DepreciationRightofuseAssets|TWD": [
+"2024-01-01",
+"2024-12-31",
+698651000,
+"20-F",
+"2025-04-24",
+11
+],
+"ifrs-full:DerivativeFinancialLiabilitiesUndiscountedCashFlows|TWD": [
+null,
+"2020-12-31",
+-2326000,
+"20-F",
+"2022-04-28",
+3
+],
+"ifrs-full:DilutiveEffectOfConvertibleInstrumentsOnNumberOfOrdinaryShares|shares": [
+"2022-01-01",
+"2022-12-31",
+0,
+"20-F",
+"2023-04-27",
+18
+],
+"ifrs-full:DilutiveEffectOfShareOptionsOnNumberOfOrdinaryShares|shares": [
+"2017-01-01",
+"2017-12-31",
+0,
+"20-F",
+"2018-04-26",
+3
+],
+"ifrs-full:DividendsPaidClassifiedAsFinancingActivities|TWD": [
+"2021-01-01",
+"2021-12-31",
+19871129000,
+"20-F",
+"2022-04-28",
+15
+],
+"ifrs-full:DividendsPaidClassifiedAsFinancingActivities|USD": [
+"2021-01-01",
+"2021-12-31",
+716335000,
+"20-F",
+"2022-04-28",
+5
+],
+"ifrs-full:DividendsPaidOrdinarySharesPerShare|TWD/shares": [
+"2023-01-01",
+"2023-12-31",
+3.000117,
+"20-F",
+"2025-04-24",
+10
+],
+"ifrs-full:DividendsReceivedClassifiedAsOperatingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+2274607000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:DividendsReceivedClassifiedAsOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+69369000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:DividendsRecognisedAsDistributionsToOwnersOfParent|TWD": [
+"2024-01-01",
+"2024-12-31",
+37587102000,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:DividendsRecognisedForInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncomeDerecognisedDuringPeriod|TWD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+10
+],
+"ifrs-full:DividendsRecognisedForInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncomeHeldAtEndOfReportingPeriod|TWD": [
+"2024-01-01",
+"2024-12-31",
+888826000,
+"20-F",
+"2025-04-24",
+12
+],
+"ifrs-full:EffectOfExchangeRateChangesOnCashAndCashEquivalents|TWD": [
+"2024-01-01",
+"2024-12-31",
+3715419000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:EffectOfExchangeRateChangesOnCashAndCashEquivalents|USD": [
+"2024-01-01",
+"2024-12-31",
+113310000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:Equity|TWD": [
+null,
+"2024-12-31",
+365706711000,
+"20-F",
+"2025-04-24",
+32
+],
+"ifrs-full:Equity|USD": [
+null,
+"2024-12-31",
+11152995000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:EquityAndLiabilities|TWD": [
+null,
+"2024-12-31",
+560168955000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:EquityAndLiabilities|USD": [
+null,
+"2024-12-31",
+17083530000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|TWD": [
+null,
+"2024-12-31",
+365450098000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|USD": [
+null,
+"2024-12-31",
+11145169000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:FinancialLiabilities|TWD": [
+null,
+"2024-12-31",
+167497785000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:FinancialLiabilitiesAtAmortisedCost|TWD": [
+null,
+"2017-12-31",
+151453615000,
+"20-F",
+"2018-04-26",
+2
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLoss|TWD": [
+null,
+"2024-12-31",
+901000000,
+"20-F",
+"2025-04-24",
+9
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesBeforeTax|TWD": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+7
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesBeforeTax|USD": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+2
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesNetOfTax|TWD": [
+"2018-01-01",
+"2018-12-31",
+-2058000,
+"20-F",
+"2021-04-29",
+3
+],
+"ifrs-full:GainsOnDisposalsOfPropertyPlantAndEquipment|TWD": [
+"2024-01-01",
+"2024-12-31",
+72402000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:GainsOnDisposalsOfPropertyPlantAndEquipment|USD": [
+"2024-01-01",
+"2024-12-31",
+2208000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:GrossProfit|TWD": [
+"2024-01-01",
+"2024-12-31",
+75654080000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:GrossProfit|USD": [
+"2024-01-01",
+"2024-12-31",
+2307230000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment|TWD": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+12
+],
+"ifrs-full:IncomeTaxRelatingToCashFlowHedgesOfOtherComprehensiveIncome|TWD": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+7
+],
+"ifrs-full:IncomeTaxRelatingToInvestmentsInEquityInstrumentsOfOtherComprehensiveIncome|TWD": [
+"2024-01-01",
+"2024-12-31",
+-25123000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:IncomeTaxRelatingToShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLoss|TWD": [
+"2024-01-01",
+"2024-12-31",
+24317000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:IncomeTaxRelatingToShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLoss|TWD": [
+"2024-01-01",
+"2024-12-31",
+-28783000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|TWD": [
+"2024-01-01",
+"2024-12-31",
+-27553389000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|USD": [
+"2024-01-01",
+"2024-12-31",
+-840299000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:IncreaseDecreaseThroughCumulativeCatchupAdjustmentsToRevenueContractAssets|TWD": [
+"2024-01-01",
+"2024-12-31",
+110439000,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:IncreaseDecreaseThroughCumulativeCatchupAdjustmentsToRevenueContractAssets|USD": [
+"2024-01-01",
+"2024-12-31",
+3368000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:IncreaseDecreaseThroughCumulativeCatchupAdjustmentsToRevenueContractLiabilities|TWD": [
+"2024-01-01",
+"2024-12-31",
+599528000,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:IncreaseDecreaseThroughCumulativeCatchupAdjustmentsToRevenueContractLiabilities|USD": [
+"2024-01-01",
+"2024-12-31",
+18284000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersAndOtherChangesEquity|TWD": [
+"2024-01-01",
+"2024-12-31",
+1462000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:InterestCostsCapitalised|TWD": [
+"2024-01-01",
+"2024-12-31",
+13560000,
+"20-F",
+"2025-04-24",
+12
+],
+"ifrs-full:InterestExpenseOnLeaseLiabilities|TWD": [
+"2024-01-01",
+"2024-12-31",
+196457000,
+"20-F",
+"2025-04-24",
+17
+],
+"ifrs-full:InterestExpenseOnOtherFinancialLiabilities|TWD": [
+"2024-01-01",
+"2024-12-31",
+18225000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:InventoriesPledgedAsSecurityForLiabilities|TWD": [
+null,
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+20
+],
+"ifrs-full:InvestmentAccountedForUsingEquityMethod|TWD": [
+null,
+"2024-12-31",
+33274869000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:InvestmentAccountedForUsingEquityMethod|USD": [
+null,
+"2024-12-31",
+1014787000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:IssuedCapital|TWD": [
+null,
+"2024-12-31",
+125607164000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:IssuedCapital|USD": [
+null,
+"2024-12-31",
+3830655000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:LeaseLiabilities|TWD": [
+null,
+"2024-12-31",
+6419016000,
+"20-F",
+"2025-04-24",
+13
+],
+"ifrs-full:Liabilities|TWD": [
+null,
+"2024-12-31",
+194462244000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:Liabilities|USD": [
+null,
+"2024-12-31",
+5930535000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:NetDebt|TWD": [
+null,
+"2024-12-31",
+89462018000,
+"20-F",
+"2025-04-24",
+14
+],
+"ifrs-full:NoncurrentContractLiabilities|TWD": [
+null,
+"2024-12-31",
+459620000,
+"20-F",
+"2025-04-24",
+17
+],
+"ifrs-full:NoncurrentContractLiabilities|USD": [
+null,
+"2024-12-31",
+14017000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:NoncurrentLeaseLiabilities|TWD": [
+null,
+"2024-12-31",
+5782659000,
+"20-F",
+"2025-04-24",
+12
+],
+"ifrs-full:NoncurrentLeaseLiabilities|USD": [
+null,
+"2024-12-31",
+176354000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:NoncurrentLiabilities|TWD": [
+null,
+"2024-12-31",
+117062901000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:NoncurrentLiabilities|USD": [
+null,
+"2024-12-31",
+3570079000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:NoncurrentRecognisedLiabilitiesDefinedBenefitPlan|TWD": [
+null,
+"2024-12-31",
+1432249000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:NoncurrentRecognisedLiabilitiesDefinedBenefitPlan|USD": [
+null,
+"2024-12-31",
+43679000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:NonderivativeFinancialLiabilitiesUndiscountedCashFlows|TWD": [
+null,
+"2024-12-31",
+172612552000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:NumberOfSharesAuthorised|shares": [
+null,
+"2024-12-31",
+26000000000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:NumberOfSharesIssued|shares": [
+null,
+"2024-12-31",
+12560716000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:OperatingExpenseExcludingCostOfSales|TWD": [
+"2024-01-01",
+"2024-12-31",
+25365419000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:OperatingExpenseExcludingCostOfSales|USD": [
+"2024-01-01",
+"2024-12-31",
+773571000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:OtherComprehensiveIncomeBeforeTaxGainsLossesFromInvestmentsInEquityInstruments|TWD": [
+"2024-01-01",
+"2024-12-31",
+-539327000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:OtherComprehensiveIncomeBeforeTaxGainsLossesFromInvestmentsInEquityInstruments|USD": [
+"2024-01-01",
+"2024-12-31",
+-16448000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxGainsLossesFromInvestmentsInEquityInstruments|TWD": [
+"2024-01-01",
+"2024-12-31",
+-514204000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:OtherCurrentLiabilities|TWD": [
+null,
+"2024-12-31",
+6387463000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:OtherCurrentLiabilities|USD": [
+null,
+"2024-12-31",
+194799000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:OtherEquityInterest|TWD": [
+null,
+"2024-12-31",
+20858000,
+"20-F",
+"2025-04-24",
+15
+],
+"ifrs-full:OtherEquityInterest|USD": [
+null,
+"2024-12-31",
+636000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:OtherFinancialLiabilities|TWD": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+12
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsFinancingActivities|TWD": [
+"2023-01-01",
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+14
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsFinancingActivities|USD": [
+"2023-01-01",
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+5
+],
+"ifrs-full:OtherNoncurrentFinancialLiabilities|TWD": [
+null,
+"2017-12-31",
+20486119000,
+"20-F",
+"2018-04-26",
+2
+],
+"ifrs-full:OtherNoncurrentLiabilities|TWD": [
+null,
+"2024-12-31",
+3783283000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:OtherNoncurrentLiabilities|USD": [
+null,
+"2024-12-31",
+115379000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:OtherOperatingIncomeExpense|TWD": [
+"2024-01-01",
+"2024-12-31",
+1323909000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:OtherOperatingIncomeExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+40375000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:OtherRevenue|TWD": [
+"2017-01-01",
+"2017-12-31",
+2985501000,
+"20-F",
+"2020-04-28",
+6
+],
+"ifrs-full:PaymentsForDebtIssueCosts|TWD": [
+"2024-01-01",
+"2024-12-31",
+465000,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:PaymentsForDebtIssueCosts|USD": [
+"2024-01-01",
+"2024-12-31",
+14000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:PaymentsOfLeaseLiabilitiesClassifiedAsFinancingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+731138000,
+"20-F",
+"2025-04-24",
+17
+],
+"ifrs-full:PaymentsOfLeaseLiabilitiesClassifiedAsFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+22298000,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:PaymentsToAcquireOrRedeemEntitysShares|TWD": [
+"2022-01-01",
+"2022-12-31",
+0,
+"20-F",
+"2023-04-27",
+18
+],
+"ifrs-full:PaymentsToAcquireOrRedeemEntitysShares|USD": [
+"2022-01-01",
+"2022-12-31",
+0,
+"20-F",
+"2023-04-27",
+6
+],
+"ifrs-full:ProceedsFromCurrentBorrowings|TWD": [
+"2024-01-01",
+"2024-12-31",
+30683900000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProceedsFromCurrentBorrowings|USD": [
+"2024-01-01",
+"2024-12-31",
+935770000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProceedsFromIssueOfBondsNotesAndDebentures|TWD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:ProceedsFromIssueOfBondsNotesAndDebentures|USD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:ProceedsFromNoncurrentBorrowings|TWD": [
+"2024-01-01",
+"2024-12-31",
+36286030000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProceedsFromNoncurrentBorrowings|USD": [
+"2024-01-01",
+"2024-12-31",
+1106619000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProceedsFromSaleOrIssueOfTreasuryShares|TWD": [
+"2022-01-01",
+"2022-12-31",
+0,
+"20-F",
+"2023-04-27",
+17
+],
+"ifrs-full:ProceedsFromSaleOrIssueOfTreasuryShares|USD": [
+"2022-01-01",
+"2022-12-31",
+0,
+"20-F",
+"2023-04-27",
+6
+],
+"ifrs-full:ProceedsFromSalesOfInvestmentsAccountedForUsingEquityMethod|TWD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:ProceedsFromSalesOfInvestmentsAccountedForUsingEquityMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+120939000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+3688000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProfitLoss|TWD": [
+"2024-01-01",
+"2024-12-31",
+48674626000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+1484435000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|TWD": [
+"2024-01-01",
+"2024-12-31",
+-104674000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|USD": [
+"2024-01-01",
+"2024-12-31",
+-3192000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProfitLossAttributableToOrdinaryEquityHoldersOfParentEntityIncludingDilutiveEffects|TWD": [
+"2022-01-01",
+"2022-12-31",
+89478805000,
+"20-F",
+"2023-04-27",
+18
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|TWD": [
+"2024-01-01",
+"2024-12-31",
+48779300000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|USD": [
+"2024-01-01",
+"2024-12-31",
+1487627000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProfitLossBeforeTax|TWD": [
+"2024-01-01",
+"2024-12-31",
+57044820000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProfitLossBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+1739702000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ProfitLossFromOperatingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+51612570000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ProfitLossFromOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+1574034000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:PropertyPlantAndEquipment|TWD": [
+null,
+"2024-12-31",
+279059037000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:PropertyPlantAndEquipment|USD": [
+null,
+"2024-12-31",
+8510492000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod|TWD": [
+"2024-01-01",
+"2024-12-31",
+533973000,
+"20-F",
+"2025-04-24",
+21
+],
+"ifrs-full:PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+16285000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|TWD": [
+"2024-01-01",
+"2024-12-31",
+88543595000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+2700323000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:PurchaseOfTreasuryShares|TWD": [
+"2020-01-01",
+"2020-12-31",
+1678272000,
+"20-F",
+"2023-04-27",
+12
+],
+"ifrs-full:RepaymentsOfBondsNotesAndDebentures|TWD": [
+"2024-01-01",
+"2024-12-31",
+8500000000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:RepaymentsOfBondsNotesAndDebentures|USD": [
+"2024-01-01",
+"2024-12-31",
+259225000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:RepaymentsOfCurrentBorrowings|TWD": [
+"2024-01-01",
+"2024-12-31",
+35698900000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:RepaymentsOfCurrentBorrowings|USD": [
+"2024-01-01",
+"2024-12-31",
+1088713000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:RepaymentsOfNoncurrentBorrowings|TWD": [
+"2024-01-01",
+"2024-12-31",
+23107596000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:RepaymentsOfNoncurrentBorrowings|USD": [
+"2024-01-01",
+"2024-12-31",
+704715000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ReserveOfCashFlowHedges|TWD": [
+null,
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+4
+],
+"ifrs-full:ReserveOfCashFlowHedges|USD": [
+null,
+"2019-12-31",
+0,
+"20-F",
+"2020-04-28",
+2
+],
+"ifrs-full:ReserveOfEquityComponentOfConvertibleInstruments|TWD": [
+null,
+"2019-12-31",
+1476405000,
+"20-F",
+"2021-04-29",
+7
+],
+"ifrs-full:ReserveOfEquityComponentOfConvertibleInstruments|USD": [
+null,
+"2019-12-31",
+49362000,
+"20-F",
+"2020-04-28",
+3
+],
+"ifrs-full:Revenue|TWD": [
+"2024-01-01",
+"2024-12-31",
+232302584000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:Revenue|USD": [
+"2024-01-01",
+"2024-12-31",
+7084556000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:RevenueFromContractsWithCustomers|TWD": [
+"2024-01-01",
+"2024-12-31",
+232302584000,
+"20-F",
+"2025-04-24",
+18
+],
+"ifrs-full:RevenueFromDividends|TWD": [
+"2024-01-01",
+"2024-12-31",
+1202714000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:RevenueFromDividends|USD": [
+"2024-01-01",
+"2024-12-31",
+36679000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:RevenueFromGovernmentGrants|TWD": [
+"2024-01-01",
+"2024-12-31",
+1337458000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:RevenueFromInterest|TWD": [
+"2024-01-01",
+"2024-12-31",
+3670218000,
+"20-F",
+"2025-04-24",
+15
+],
+"ifrs-full:RevenueFromInterest|USD": [
+"2024-01-01",
+"2024-12-31",
+111931000,
+"20-F",
+"2025-04-24",
+5
+],
+"ifrs-full:RevenueFromRenderingOfServices|TWD": [
+"2017-01-01",
+"2017-12-31",
+3334844000,
+"20-F",
+"2020-04-28",
+6
+],
+"ifrs-full:RevenueFromRoyalties|TWD": [
+"2017-01-01",
+"2017-12-31",
+6817000,
+"20-F",
+"2020-04-28",
+6
+],
+"ifrs-full:RevenueFromSaleOfGoods|TWD": [
+"2017-01-01",
+"2017-12-31",
+142957544000,
+"20-F",
+"2020-04-28",
+6
+],
+"ifrs-full:RevenueThatWasIncludedInContractLiabilityBalanceAtBeginningOfPeriod|TWD": [
+"2024-01-01",
+"2024-12-31",
+3416000000,
+"20-F",
+"2025-04-24",
+13
+],
+"ifrs-full:ReverseRepurchaseAgreementsAndCashCollateralOnSecuritiesBorrowed|TWD": [
+null,
+"2024-12-31",
+6097831000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:SalesAndMarketingExpense|TWD": [
+"2024-01-01",
+"2024-12-31",
+2701483000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:SalesAndMarketingExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+82387000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLossBeforeTax|TWD": [
+"2024-01-01",
+"2024-12-31",
+323374000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLossBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+9862000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLossNetOfTax|TWD": [
+"2024-01-01",
+"2024-12-31",
+299057000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLossBeforeTax|TWD": [
+"2024-01-01",
+"2024-12-31",
+301134000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLossBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+9184000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLossNetOfTax|TWD": [
+"2024-01-01",
+"2024-12-31",
+329917000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|TWD": [
+"2024-01-01",
+"2024-12-31",
+1238628000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+37775000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ShorttermBorrowings|TWD": [
+null,
+"2024-12-31",
+8515000000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:ShorttermBorrowings|USD": [
+null,
+"2024-12-31",
+259683000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:ShorttermDepositsClassifiedAsCashEquivalents|TWD": [
+null,
+"2024-12-31",
+73507742000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:ShorttermDepositsNotClassifiedAsCashEquivalents|TWD": [
+null,
+"2021-12-31",
+28834684000,
+"20-F",
+"2022-04-28",
+4
+],
+"ifrs-full:TradeAndOtherPayablesUndiscountedCashFlows|TWD": [
+null,
+"2024-12-31",
+42136632000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:TreasuryShares|TWD": [
+null,
+"2024-12-31",
+9803778000,
+"20-F",
+"2025-04-24",
+16
+],
+"ifrs-full:TreasuryShares|USD": [
+null,
+"2024-12-31",
+298987000,
+"20-F",
+"2025-04-24",
+8
+],
+"ifrs-full:WeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+12173188000,
+"20-F",
+"2025-04-24",
+24
+],
+"ifrs-full:FairValueOfInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncome|TWD": [
+null,
+"2024-12-31",
+5893000000,
+"20-F",
+"2025-04-24",
+7
+],
+"ifrs-full:GainsLossesRecognisedInProfitOrLossAttributableToChangeInUnrealisedGainsOrLossesForLiabilitiesHeldAtEndOfPeriodFairValueMeasurement|TWD": [
+"2024-01-01",
+"2024-12-31",
+119000000,
+"20-F",
+"2025-04-24",
+12
+],
+"ifrs-full:OtherAdjustmentsToReconcileProfitLoss|TWD": [
+"2023-01-01",
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+7
+],
+"ifrs-full:OtherAdjustmentsToReconcileProfitLoss|USD": [
+"2023-01-01",
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+3
+],
+"ifrs-full:OtherCurrentFinancialLiabilities|TWD": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+5
+],
+"ifrs-full:OtherCurrentFinancialLiabilities|USD": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+3
+],
+"ifrs-full:CorporateDebtInstrumentsHeld|TWD": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-25",
+4
+],
+"ifrs-full:CumulativeGainLossOnDisposalOfInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncome|TWD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-24",
+6
+],
+"ifrs-full:SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates|shares": [
+null,
+"2024-12-31",
+900961000,
+"20-F",
+"2025-04-24",
+4
+],
+"ifrs-full:UndrawnBorrowingFacilities|TWD": [
+null,
+"2024-12-31",
+700000000,
+"20-F",
+"2025-04-24",
+2
+],
+"ifrs-full:NetAmountsForPayfloatingReceivefixedInterestRateSwapsForWhichNetCashFlowsAreExchanged|TWD": [
+null,
+"2024-12-31",
+-1039000,
+"20-F",
+"2025-04-24",
+1
+]
+},
+"dei_forms": [
+[
+"20-F",
+2017
+],
+[
+"20-F",
+2018
+],
+[
+"20-F",
+2019
+],
+[
+"20-F",
+2020
+],
+[
+"20-F",
+2021
+],
+[
+"20-F",
+2022
+],
+[
+"20-F",
+2023
+],
+[
+"20-F",
+2024
+],
+[
+"20-F",
+2025
+]
+],
+"full": {
+"ifrs-full:Revenue": {
+"TWD": [
+[
+"2024-01-01",
+"2024-12-31",
+232302584000,
+"20-F",
+"2025-04-24",
+2024,
+"FY",
+"CY2024"
+]
+],
+"USD": [
+[
+"2024-01-01",
+"2024-12-31",
+7084556000,
+"20-F",
+"2025-04-24",
+2024,
+"FY",
+"CY2024"
+]
+]
+},
+"ifrs-full:ProfitLoss": {
+"TWD": [
+[
+"2024-01-01",
+"2024-12-31",
+48674626000,
+"20-F",
+"2025-04-24",
+2024,
+"FY",
+"CY2024"
+]
+],
+"USD": [
+[
+"2024-01-01",
+"2024-12-31",
+1484435000,
+"20-F",
+"2025-04-24",
+2024,
+"FY",
+"CY2024"
+]
+]
+}
+}
+}

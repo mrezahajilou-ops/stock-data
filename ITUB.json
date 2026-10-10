@@ -1,0 +1,2115 @@
+{
+"t": "ITUB",
+"cik": 1132597,
+"name": "Itau Unibanco Holding S.A.",
+"tags": {
+"dei:EntityCommonStockSharesOutstanding|shares": [
+null,
+"2023-12-31",
+4958290359,
+"20-F",
+"2024-04-29",
+9
+],
+"ifrs-full:AcquisitionsThroughBusinessCombinationsLiabilitiesUnderInsuranceContractsAndReinsuranceContractsIssued|BRL": [
+"2022-01-01",
+"2022-12-31",
+17886000000,
+"20-F",
+"2023-04-28",
+12
+],
+"ifrs-full:AdditionalPaidinCapital|BRL": [
+null,
+"2020-12-31",
+2519000000,
+"20-F",
+"2021-04-30",
+9
+],
+"ifrs-full:AdjustedWeightedAverageShares|shares": [
+"2022-01-01",
+"2022-12-31",
+4840703872,
+"20-F",
+"2023-04-28",
+12
+],
+"ifrs-full:AdjustmentsForDepreciationAndAmortisationExpense|BRL": [
+"2024-01-01",
+"2024-12-31",
+6440000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:AdjustmentsForDividendIncome|BRL": [
+"2017-01-01",
+"2017-12-31",
+301000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment|BRL": [
+"2017-01-01",
+"2017-12-31",
+93000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInOtherLiabilities|BRL": [
+"2024-01-01",
+"2024-12-31",
+13892000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:AdjustmentsForReconcileProfitLoss|BRL": [
+"2024-01-01",
+"2024-12-31",
+-3942000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:AssetsLiabilitiesOfBenefitPlan|BRL": [
+null,
+"2019-12-31",
+1083000000,
+"20-F",
+"2020-04-27",
+8
+],
+"ifrs-full:Borrowings|BRL": [
+null,
+"2021-12-31",
+103512000000,
+"20-F",
+"2022-04-28",
+6
+],
+"ifrs-full:CancellationOfTreasuryShares|BRL": [
+"2018-01-01",
+"2018-12-31",
+0,
+"20-F",
+"2019-04-30",
+3
+],
+"ifrs-full:CapitalReserve|BRL": [
+null,
+"2024-12-31",
+2732000000,
+"20-F",
+"2025-04-28",
+22
+],
+"ifrs-full:Cash|BRL": [
+null,
+"2024-12-31",
+36127000000,
+"20-F",
+"2025-04-28",
+22
+],
+"ifrs-full:CashAndCashEquivalents|BRL": [
+null,
+"2024-12-31",
+117286000000,
+"20-F",
+"2025-04-28",
+32
+],
+"ifrs-full:CashCollateralPledgedSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialLiabilities|BRL": [
+null,
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+6
+],
+"ifrs-full:CashFlowsFromLosingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+47000000,
+"20-F",
+"2025-04-28",
+21
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+-21698000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:CashFlowsFromUsedInIncreaseDecreaseInCurrentBorrowings|BRL": [
+"2021-01-01",
+"2021-12-31",
+8229000000,
+"20-F",
+"2022-04-28",
+15
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+6968000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+7069000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:CashFlowsUsedInObtainingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+399000000,
+"20-F",
+"2025-04-28",
+23
+],
+"ifrs-full:CashOutflowForLeases|BRL": [
+"2024-01-01",
+"2024-12-31",
+987000000,
+"20-F",
+"2025-04-28",
+6
+],
+"ifrs-full:ChangesInEquity|BRL": [
+"2024-01-01",
+"2024-12-31",
+22234000000,
+"20-F",
+"2025-04-28",
+20
+],
+"ifrs-full:ContractualCapitalCommitments|BRL": [
+null,
+"2023-12-31",
+3000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:ContractualCommitmentsForAcquisitionOfPropertyPlantAndEquipment|BRL": [
+null,
+"2024-12-31",
+0,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:CurrentDerivativeFinancialLiabilities|BRL": [
+null,
+"2017-12-31",
+-13412000000,
+"20-F",
+"2018-04-20",
+2
+],
+"ifrs-full:CurrentDividendPayables|BRL": [
+null,
+"2024-12-31",
+5004000000,
+"20-F",
+"2025-04-28",
+18
+],
+"ifrs-full:CurrentFinancialLiabilitiesAtFairValueThroughProfitOrLossClassifiedAsHeldForTrading|BRL": [
+null,
+"2023-12-31",
+2000000,
+"20-F",
+"2025-04-28",
+13
+],
+"ifrs-full:CurrentInvestmentsInEquityInstrumentsDesignatedAtFairValueThroughOtherComprehensiveIncome|BRL": [
+null,
+"2021-12-31",
+743000000,
+"20-F",
+"2022-04-28",
+8
+],
+"ifrs-full:DebtSecurities|BRL": [
+null,
+"2024-12-31",
+140547000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:DeferredTaxLiabilities|BRL": [
+null,
+"2024-12-31",
+11950000000,
+"20-F",
+"2025-04-28",
+8
+],
+"ifrs-full:DepreciationAndAmortisationExpense|BRL": [
+"2022-01-01",
+"2022-12-31",
+5750000000,
+"20-F",
+"2023-04-28",
+15
+],
+"ifrs-full:DepreciationExpense|BRL": [
+"2017-01-01",
+"2017-12-31",
+1564000000,
+"20-F",
+"2018-04-20",
+2
+],
+"ifrs-full:DepreciationRightofuseAssets|BRL": [
+"2022-01-01",
+"2022-12-31",
+-951000000,
+"20-F",
+"2023-04-28",
+9
+],
+"ifrs-full:DerivativeFinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+85413000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:DilutiveEffectOfShareOptionsOnNumberOfOrdinaryShares|shares": [
+"2022-01-01",
+"2022-12-31",
+59765428,
+"20-F",
+"2023-04-28",
+18
+],
+"ifrs-full:DividendPayables|BRL": [
+null,
+"2017-12-31",
+17558000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:DividendsPaid|BRL": [
+"2022-01-01",
+"2022-12-31",
+-293000000,
+"20-F",
+"2023-04-28",
+19
+],
+"ifrs-full:DividendsPaidOrdinarySharesPerShare|BRL/shares": [
+"2021-01-01",
+"2021-12-31",
+0.015,
+"20-F",
+"2022-04-28",
+18
+],
+"ifrs-full:EffectOfExchangeRateChangesOnCashAndCashEquivalents|BRL": [
+"2024-01-01",
+"2024-12-31",
+8404000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:Equity|BRL": [
+null,
+"2024-12-31",
+221284000000,
+"20-F",
+"2025-04-28",
+33
+],
+"ifrs-full:EquityAndLiabilities|BRL": [
+null,
+"2024-12-31",
+2854475000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|BRL": [
+null,
+"2024-12-31",
+211090000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:ExpenseRelatingToVariableLeasePaymentsNotIncludedInMeasurementOfLeaseLiabilities|BRL": [
+"2024-01-01",
+"2024-12-31",
+51000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:FairValueOfInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncome|BRL": [
+null,
+"2024-12-31",
+566000000,
+"20-F",
+"2025-04-28",
+14
+],
+"ifrs-full:FinancialAssetsPledgedAsCollateralForLiabilitiesOrContingentLiabilities|BRL": [
+null,
+"2022-12-31",
+36357000000,
+"20-F",
+"2023-04-28",
+12
+],
+"ifrs-full:FinancialInstrumentsSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+637000000,
+"20-F",
+"2025-04-28",
+12
+],
+"ifrs-full:FinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+2239979000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:FinancialLiabilitiesAtAmortisedCost|BRL": [
+null,
+"2024-12-31",
+2148776000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLoss|BRL": [
+null,
+"2024-12-31",
+86275000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLossClassifiedAsHeldForTrading|BRL": [
+null,
+"2024-12-31",
+318000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesBeforeTax|BRL": [
+"2024-01-01",
+"2024-12-31",
+-941000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesNetOfTax|BRL": [
+"2024-01-01",
+"2024-12-31",
+-488000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:GainsLossesRecognisedInOtherComprehensiveIncomeFairValueMeasurementEntitysOwnEquityInstruments|BRL": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+8
+],
+"ifrs-full:GrossFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|BRL": [
+null,
+"2024-12-31",
+85413000000,
+"20-F",
+"2025-04-28",
+12
+],
+"ifrs-full:GrossLeaseLiabilities|BRL": [
+null,
+"2024-12-31",
+417751000000,
+"20-F",
+"2025-04-28",
+14
+],
+"ifrs-full:ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment|BRL": [
+"2024-01-01",
+"2024-12-31",
+312000000,
+"20-F",
+"2025-04-28",
+12
+],
+"ifrs-full:IncomeTaxRelatingToCashFlowHedgesOfOtherComprehensiveIncome|BRL": [
+"2024-01-01",
+"2024-12-31",
+-453000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|BRL": [
+"2017-01-01",
+"2017-12-31",
+-12118000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalentsBeforeEffectOfExchangeRateChanges|BRL": [
+"2024-01-01",
+"2024-12-31",
+-7661000000,
+"20-F",
+"2025-04-28",
+21
+],
+"ifrs-full:IncreaseDecreaseInInsuranceLiabilitiesNetOfReinsurance|BRL": [
+"2022-01-01",
+"2022-12-31",
+-29287000000,
+"20-F",
+"2023-04-28",
+18
+],
+"ifrs-full:IncreaseDecreaseInWorkingCapital|BRL": [
+"2024-01-01",
+"2024-12-31",
+31117000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersAndOtherChangesEquity|BRL": [
+"2024-01-01",
+"2024-12-31",
+-180000000,
+"20-F",
+"2025-04-28",
+22
+],
+"ifrs-full:InterestExpenseOnLeaseLiabilities|BRL": [
+"2024-01-01",
+"2024-12-31",
+261000000,
+"20-F",
+"2025-04-28",
+15
+],
+"ifrs-full:IssuedCapital|BRL": [
+null,
+"2024-12-31",
+90729000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:Liabilities|BRL": [
+null,
+"2024-12-31",
+2633191000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:LiabilitiesArisingFromInsuranceContracts|BRL": [
+null,
+"2022-12-31",
+235150000000,
+"20-F",
+"2023-04-28",
+13
+],
+"ifrs-full:MiscellaneousOtherOperatingIncome|BRL": [
+"2017-01-01",
+"2017-12-31",
+906000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:NetFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|BRL": [
+null,
+"2024-12-31",
+84776000000,
+"20-F",
+"2025-04-28",
+12
+],
+"ifrs-full:NetFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreementsInStatementOfFinancialPosition|BRL": [
+null,
+"2024-12-31",
+85413000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:NoncurrentDerivativeFinancialLiabilities|BRL": [
+null,
+"2017-12-31",
+-13334000000,
+"20-F",
+"2018-04-20",
+2
+],
+"ifrs-full:NoncurrentFinancialLiabilitiesAtFairValueThroughProfitOrLossClassifiedAsHeldForTrading|BRL": [
+null,
+"2024-12-31",
+318000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:NumberOfSharesIssued|shares": [
+null,
+"2024-12-31",
+9804135348,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:NumberOfSharesOutstanding|shares": [
+null,
+"2024-12-31",
+9776104515,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:OtherAdjustmentsToReconcileProfitLoss|BRL": [
+"2024-01-01",
+"2024-12-31",
+-1252000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:OtherCurrentFinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+237767000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:OtherCurrentNonfinancialLiabilities|BRL": [
+null,
+"2020-12-31",
+35248000000,
+"20-F",
+"2021-04-30",
+8
+],
+"ifrs-full:OtherFinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+192407000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:OtherLiabilities|BRL": [
+null,
+"2022-12-31",
+48044000000,
+"20-F",
+"2023-04-28",
+13
+],
+"ifrs-full:OtherNoncurrentFinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+10943000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:OtherNoncurrentNonfinancialLiabilities|BRL": [
+null,
+"2020-12-31",
+3263000000,
+"20-F",
+"2021-04-30",
+8
+],
+"ifrs-full:OtherNonfinancialLiabilities|BRL": [
+null,
+"2024-12-31",
+55759000000,
+"20-F",
+"2025-04-28",
+16
+],
+"ifrs-full:PaymentsToAcquireOrRedeemEntitysShares|BRL": [
+"2017-01-01",
+"2017-12-31",
+3089000000,
+"20-F",
+"2018-04-20",
+1
+],
+"ifrs-full:PercentageOfVotingEquityInterestsAcquired|pure": [
+null,
+"2017-12-31",
+0.3358,
+"20-F",
+"2018-04-20",
+1
+],
+"ifrs-full:ProceedsFromSaleOrIssueOfTreasuryShares|BRL": [
+"2024-01-01",
+"2024-12-31",
+772000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:ProceedsFromSalesOfIntangibleAssetsClassifiedAsInvestingActivities|BRL": [
+"2018-01-01",
+"2018-12-31",
+35000000,
+"20-F",
+"2019-04-30",
+6
+],
+"ifrs-full:ProceedsFromSalesOfInvestmentsOtherThanInvestmentsAccountedForUsingEquityMethod|BRL": [
+"2017-01-01",
+"2017-12-31",
+201000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+575000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:ProceedsFromSalesOrMaturityOfFinancialInstrumentsClassifiedAsInvestingActivities|BRL": [
+"2019-01-01",
+"2019-12-31",
+8085000000,
+"20-F",
+"2020-04-27",
+9
+],
+"ifrs-full:ProfitLoss|BRL": [
+"2024-01-01",
+"2024-12-31",
+42128000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|BRL": [
+"2024-01-01",
+"2024-12-31",
+1043000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|BRL": [
+"2024-01-01",
+"2024-12-31",
+41085000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:PropertyPlantAndEquipment|BRL": [
+null,
+"2024-12-31",
+9193000000,
+"20-F",
+"2025-04-28",
+25
+],
+"ifrs-full:PropertyPlantAndEquipmentPledgedAsSecurity|BRL": [
+null,
+"2018-12-31",
+3000000,
+"20-F",
+"2020-04-27",
+7
+],
+"ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|BRL": [
+"2024-01-01",
+"2024-12-31",
+1833000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:PurchaseOfTreasuryShares|BRL": [
+"2024-01-01",
+"2024-12-31",
+1775000000,
+"20-F",
+"2025-04-28",
+11
+],
+"ifrs-full:RecognisedLiabilitiesDefinedBenefitPlan|BRL": [
+null,
+"2019-12-31",
+1800000000,
+"20-F",
+"2020-04-27",
+8
+],
+"ifrs-full:RepaymentsOfNoncurrentBorrowings|BRL": [
+"2021-01-01",
+"2021-12-31",
+32388000000,
+"20-F",
+"2022-04-28",
+15
+],
+"ifrs-full:RepurchaseAgreementsAndCashCollateralOnSecuritiesLent|BRL": [
+null,
+"2024-12-31",
+388787000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:ReserveOfCashFlowHedgesHedgingRelationshipsForWhichHedgeAccountingIsNoLongerApplied|BRL": [
+null,
+"2024-12-31",
+53000000,
+"20-F",
+"2025-04-28",
+10
+],
+"ifrs-full:Revenue|BRL": [
+"2024-01-01",
+"2024-12-31",
+168050000000,
+"20-F",
+"2025-04-28",
+18
+],
+"ifrs-full:RevenueFromDividends|BRL": [
+"2017-01-01",
+"2017-12-31",
+301000000,
+"20-F",
+"2018-04-20",
+3
+],
+"ifrs-full:RevenueFromRenderingOfServices|BRL": [
+"2022-01-01",
+"2022-12-31",
+46378000000,
+"20-F",
+"2023-04-28",
+13
+],
+"ifrs-full:ReverseRepurchaseAgreementsAndCashCollateralOnSecuritiesBorrowed|BRL": [
+null,
+"2024-12-31",
+243220000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:SaleOrIssueOfTreasuryShares|BRL": [
+"2024-01-01",
+"2024-12-31",
+860000000,
+"20-F",
+"2025-04-28",
+20
+],
+"ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|BRL": [
+"2024-01-01",
+"2024-12-31",
+1047000000,
+"20-F",
+"2025-04-28",
+24
+],
+"ifrs-full:ShorttermDepositsClassifiedAsCashEquivalents|BRL": [
+null,
+"2024-12-31",
+66931000000,
+"20-F",
+"2025-04-28",
+17
+],
+"ifrs-full:SubordinatedLiabilities|BRL": [
+null,
+"2024-12-31",
+45224000000,
+"20-F",
+"2025-04-28",
+13
+],
+"ifrs-full:TransfersIntoLevel3OfFairValueHierarchyLiabilities|BRL": [
+"2018-01-01",
+"2018-12-31",
+0,
+"20-F",
+"2019-04-30",
+3
+],
+"ifrs-full:TransfersIntoLevel3OfFairValueHierarchyLiabilities|USD": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+4
+],
+"ifrs-full:TransfersOutOfLevel1IntoLevel2OfFairValueHierarchyLiabilities|BRL": [
+"2018-01-01",
+"2018-12-31",
+0,
+"20-F",
+"2019-04-30",
+3
+],
+"ifrs-full:TransfersOutOfLevel1IntoLevel2OfFairValueHierarchyLiabilities|USD": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+4
+],
+"ifrs-full:TransfersOutOfLevel2IntoLevel1OfFairValueHierarchyLiabilities|BRL": [
+"2018-01-01",
+"2018-12-31",
+0,
+"20-F",
+"2019-04-30",
+3
+],
+"ifrs-full:TransfersOutOfLevel2IntoLevel1OfFairValueHierarchyLiabilities|USD": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+4
+],
+"ifrs-full:TransfersOutOfLevel3OfFairValueHierarchyLiabilities|BRL": [
+"2018-01-01",
+"2018-12-31",
+0,
+"20-F",
+"2019-04-30",
+3
+],
+"ifrs-full:TransfersOutOfLevel3OfFairValueHierarchyLiabilities|USD": [
+"2021-01-01",
+"2021-12-31",
+0,
+"20-F",
+"2022-04-28",
+4
+],
+"ifrs-full:TreasuryShares|BRL": [
+null,
+"2024-12-31",
+909000000,
+"20-F",
+"2025-04-28",
+21
+],
+"ifrs-full:CashCollateralReceivedSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialAssets|BRL": [
+null,
+"2024-12-31",
+367000000,
+"20-F",
+"2025-04-28",
+7
+],
+"ifrs-full:CurrentTaxLiabilitiesCurrent|BRL": [
+null,
+"2024-12-31",
+8444000000,
+"20-F",
+"2025-04-28",
+8
+],
+"ifrs-full:CurrentTaxLiabilitiesNoncurrent|BRL": [
+null,
+"2024-12-31",
+2901000000,
+"20-F",
+"2025-04-28",
+8
+],
+"ifrs-full:DepreciationPropertyPlantAndEquipment|BRL": [
+"2024-01-01",
+"2024-12-31",
+15978000000,
+"20-F",
+"2025-04-28",
+8
+],
+"ifrs-full:DisposalsPropertyPlantAndEquipment|BRL": [
+"2024-01-01",
+"2024-12-31",
+9193000000,
+"20-F",
+"2025-04-28",
+8
+],
+"ifrs-full:HedgingInstrumentLiabilities|BRL": [
+null,
+"2022-12-31",
+1965000000,
+"20-F",
+"2023-04-28",
+4
+],
+"ifrs-full:AdjustmentsForDepreciationExpense|BRL": [
+"2024-01-01",
+"2024-12-31",
+710000000,
+"20-F",
+"2025-04-28",
+6
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInInsuranceReinsuranceAndInvestmentContractLiabilities|BRL": [
+"2024-01-01",
+"2024-12-31",
+23679000000,
+"20-F",
+"2025-04-28",
+6
+],
+"ifrs-full:InsuranceContractsThatAreLiabilities|BRL": [
+null,
+"2024-12-31",
+306899000000,
+"20-F",
+"2025-04-28",
+4
+],
+"ifrs-full:OtherCurrentLiabilities|BRL": [
+null,
+"2024-12-31",
+55759000000,
+"20-F",
+"2025-04-28",
+4
+],
+"ifrs-full:IncreaseDecreaseThroughModificationOfContractualCashFlowsFinancialAssets|BRL": [
+"2024-01-01",
+"2024-12-31",
+266000000,
+"20-F",
+"2025-04-28",
+2
+],
+"us-gaap:AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment|BRL": [
+null,
+"2010-12-31",
+-7319000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:AccumulatedOtherComprehensiveIncomeLossCumulativeChangesInNetGainLossFromCashFlowHedgesEffectNetOfTax|BRL": [
+null,
+"2010-12-31",
+-3000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:AdditionalPaidInCapital|BRL": [
+null,
+"2010-12-31",
+13218000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther|BRL": [
+"2009-01-01",
+"2009-12-31",
+485000000,
+"20-F/A",
+"2010-06-09",
+3
+],
+"us-gaap:AllowanceForLoanAndLeaseLossesRecoveriesOfBadDebts|BRL": [
+"2010-01-01",
+"2010-12-31",
+4457000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:AmortizationOfIntangibleAssets|BRL": [
+"2010-01-01",
+"2010-12-31",
+4592000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount|shares": [
+"2010-01-01",
+"2010-12-31",
+10762133,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterFiveThroughTenYearsAmortizedCost|BRL": [
+null,
+"2010-12-31",
+7252000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterFiveThroughTenYearsFairValue|BRL": [
+null,
+"2010-12-31",
+7416000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsAmortizedCost|BRL": [
+null,
+"2010-12-31",
+11816000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsFairValue|BRL": [
+null,
+"2010-12-31",
+11992000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterTenYearsAmortizedCost|BRL": [
+null,
+"2010-12-31",
+5810000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterTenYearsFairValue|BRL": [
+null,
+"2010-12-31",
+6081000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearAmortizedCost|BRL": [
+null,
+"2010-12-31",
+14378000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearFairValue|BRL": [
+null,
+"2010-12-31",
+13647000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithoutSingleMaturityDateAmortizedCost|BRL": [
+null,
+"2010-12-31",
+4711000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithoutSingleMaturityDateFairValue|BRL": [
+null,
+"2010-12-31",
+5500000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:BrokerageCommissionsRevenue|BRL": [
+"2010-01-01",
+"2010-12-31",
+506000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:CapitalizedComputerSoftwareGross|BRL": [
+null,
+"2010-12-31",
+1313000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:CapitalLeaseObligations|BRL": [
+null,
+"2010-12-31",
+14000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDue|BRL": [
+null,
+"2010-12-31",
+3673000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueCurrent|BRL": [
+null,
+"2010-12-31",
+802000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInFiveYears|BRL": [
+null,
+"2010-12-31",
+351000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInFourYears|BRL": [
+null,
+"2010-12-31",
+456000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInThreeYears|BRL": [
+null,
+"2010-12-31",
+538000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInTwoYears|BRL": [
+null,
+"2010-12-31",
+680000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueThereafter|BRL": [
+null,
+"2010-12-31",
+846000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CashAcquiredFromAcquisition|BRL": [
+"2010-01-01",
+"2010-12-31",
+0,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:CashAndCashEquivalentsAtCarryingValue|BRL": [
+null,
+"2010-12-31",
+37933000000,
+"20-F/A",
+"2011-07-13",
+10
+],
+"us-gaap:CashAndCashEquivalentsPeriodIncreaseDecrease|BRL": [
+"2010-01-01",
+"2010-12-31",
+-27523000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:CashAndDueFromBanks|BRL": [
+null,
+"2010-12-31",
+5568000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:CashFlowHedgeGainLossToBeReclassifiedWithinTwelveMonths|BRL": [
+"2010-01-01",
+"2010-12-31",
+1000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:CommonStockDividendsPerShareCashPaid|BRL": [
+"2010-01-01",
+"2010-12-31",
+0.7,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:CommonStockSharesAuthorized|shares": [
+null,
+"2010-12-31",
+3300000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:CommonStockSharesIssued|shares": [
+null,
+"2010-12-31",
+2289286475,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:DeferredRevenueAndCredits|BRL": [
+null,
+"2010-12-31",
+72000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DeferredTaxAssetsLiabilitiesNet|BRL": [
+null,
+"2010-12-31",
+6396000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DeferredTaxLiabilities|BRL": [
+null,
+"2010-12-31",
+19362000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DeferredTaxLiabilitiesOther|BRL": [
+null,
+"2010-12-31",
+8190000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DeferredTaxLiabilitiesPrepaidPensionCosts|BRL": [
+null,
+"2010-12-31",
+1064000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DefinedBenefitPensionPlanCurrentAndNoncurrentLiabilities|BRL": [
+null,
+"2010-12-31",
+123000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DefinedBenefitPlanAmortizationOfGainsLosses|BRL": [
+"2010-01-01",
+"2010-12-31",
+-10000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:DepreciationNonproduction|BRL": [
+"2010-01-01",
+"2010-12-31",
+1476000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:DepreciationPremisesAndEquipment|BRL": [
+"2009-01-01",
+"2009-12-31",
+1250000000,
+"20-F/A",
+"2010-06-09",
+3
+],
+"us-gaap:DerivativeCollateralObligationToReturnCash|BRL": [
+null,
+"2010-12-31",
+49000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:DerivativeLiabilities|BRL": [
+null,
+"2010-12-31",
+6674000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:EarningsPerShareBasic|BRL": [
+"2010-01-01",
+"2010-12-31",
+2.44,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:EarningsPerShareDiluted|BRL": [
+"2010-01-01",
+"2010-12-31",
+2.44,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:EmployeeRelatedLiabilitiesCurrentAndNoncurrent|BRL": [
+null,
+"2010-12-31",
+3426000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:EquityMethodInvestmentDividendsOrDistributions|BRL": [
+"2010-01-01",
+"2010-12-31",
+85000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:EquityMethodInvestments|BRL": [
+null,
+"2010-12-31",
+3049000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization|BRL": [
+null,
+"2010-12-31",
+13843000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:FutureAmortizationExpenseYearFive|BRL": [
+"2010-01-01",
+"2010-12-31",
+1430000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearFour|BRL": [
+"2010-01-01",
+"2010-12-31",
+1709000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearOne|BRL": [
+"2010-01-01",
+"2010-12-31",
+4140000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearThree|BRL": [
+"2010-01-01",
+"2010-12-31",
+2659000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearTwo|BRL": [
+"2010-01-01",
+"2010-12-31",
+2967000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:GainLossOnSaleOfPropertyPlantEquipment|BRL": [
+"2010-01-01",
+"2010-12-31",
+5000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:GainsLossesOnSalesOfAssets|BRL": [
+"2010-01-01",
+"2010-12-31",
+176000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:IncomeLossFromEquityMethodInvestments|BRL": [
+"2010-01-01",
+"2010-12-31",
+308000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:IncomeTaxReconciliationEquityInEarningsLossesOfUnconsolidatedSubsidiary|BRL": [
+"2010-01-01",
+"2010-12-31",
+-308000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:IncreaseDecreaseInOtherOperatingCapitalNet|BRL": [
+"2010-01-01",
+"2010-12-31",
+4026000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestAndDividendIncomeOperating|BRL": [
+"2010-01-01",
+"2010-12-31",
+78369000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestAndDividendIncomeSecuritiesAvailableForSale|BRL": [
+"2010-01-01",
+"2010-12-31",
+3315000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestAndDividendIncomeSecuritiesHeldToMaturity|BRL": [
+"2010-01-01",
+"2010-12-31",
+479000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestAndDividendIncomeSecuritiesTradingOrMeasuredAtFairValue|BRL": [
+"2010-01-01",
+"2010-12-31",
+7767000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestBearingDepositLiabilities|BRL": [
+null,
+"2010-12-31",
+176221000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:InterestCostsIncurredCapitalized|BRL": [
+"2010-01-01",
+"2010-12-31",
+23000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:InterestExpenseLongTermDebt|BRL": [
+"2010-01-01",
+"2010-12-31",
+4802000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestExpenseSecuritiesSoldUnderAgreementsToRepurchase|BRL": [
+"2010-01-01",
+"2010-12-31",
+7291000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:InterestExpenseShortTermBorrowings|BRL": [
+"2010-01-01",
+"2010-12-31",
+8198000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:Liabilities|BRL": [
+null,
+"2010-12-31",
+656879000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:LiabilitiesAndStockholdersEquity|BRL": [
+null,
+"2010-12-31",
+746580000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:LongTermDebt|BRL": [
+null,
+"2010-12-31",
+84768000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:LongTermDebtFairValue|BRL": [
+null,
+"2010-12-31",
+84617000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalAfterYearFive|BRL": [
+null,
+"2010-12-31",
+20910000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInNextTwelveMonths|BRL": [
+null,
+"2010-12-31",
+13141000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearFive|BRL": [
+null,
+"2010-12-31",
+4692000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearFour|BRL": [
+null,
+"2010-12-31",
+8461000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearThree|BRL": [
+null,
+"2010-12-31",
+11641000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearTwo|BRL": [
+null,
+"2010-12-31",
+25923000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LongtermDebtPercentageBearingFixedInterestAmount|BRL": [
+null,
+"2010-12-31",
+550000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:LossesGainsOnSalesOfAssetsAndAssetImpairmentCharges|BRL": [
+"2010-01-01",
+"2010-12-31",
+55000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:NetCashProvidedByUsedInFinancingActivities|BRL": [
+"2010-01-01",
+"2010-12-31",
+122630000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NetCashProvidedByUsedInInvestingActivities|BRL": [
+"2010-01-01",
+"2010-12-31",
+-113251000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NetCashProvidedByUsedInOperatingActivities|BRL": [
+"2010-01-01",
+"2010-12-31",
+-36902000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NetIncomeLoss|BRL": [
+"2010-01-01",
+"2010-12-31",
+11067000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NetIncomeLossAttributableToNoncontrollingInterest|BRL": [
+"2010-01-01",
+"2010-12-31",
+824000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic|BRL": [
+"2010-01-01",
+"2010-12-31",
+11018000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:NoninterestBearingDepositLiabilities|BRL": [
+null,
+"2010-12-31",
+26439000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:NoninterestIncomeOtherOperatingIncome|BRL": [
+"2010-01-01",
+"2010-12-31",
+3535000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:NotionalAmountOfCashFlowHedgeInstruments|BRL": [
+null,
+"2010-12-31",
+11000000,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:OtherLiabilities|BRL": [
+null,
+"2010-12-31",
+87975000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:OtherSundryLiabilities|BRL": [
+null,
+"2010-12-31",
+5880000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:PaymentsForRepurchaseOfEquity|BRL": [
+"2010-01-01",
+"2010-12-31",
+0,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:PaymentsOfDividendsMinorityInterest|BRL": [
+"2010-01-01",
+"2010-12-31",
+-753000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:PaymentsToAcquireBusinessesNetOfCashAcquired|BRL": [
+"2007-01-01",
+"2007-12-31",
+-1637000000,
+"20-F/A",
+"2010-06-09",
+1
+],
+"us-gaap:PaymentsToAcquireEquityMethodInvestments|BRL": [
+"2010-01-01",
+"2010-12-31",
+7000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:PaymentsToAcquirePropertyPlantAndEquipment|BRL": [
+"2010-01-01",
+"2010-12-31",
+2131000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:PensionAndOtherPostretirementDefinedBenefitPlansLiabilitiesCurrentAndNoncurrent|BRL": [
+null,
+"2010-12-31",
+-123000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:PreferredStockDividendsAndOtherAdjustments|BRL": [
+"2010-01-01",
+"2010-12-31",
+-49000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:PreferredStockDividendsPerShareCashPaid|BRL": [
+"2010-01-01",
+"2010-12-31",
+0.7,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:PreferredStockSharesAuthorized|shares": [
+null,
+"2010-12-31",
+3300000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:PreferredStockSharesIssued|shares": [
+null,
+"2010-12-31",
+2281649744,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:ProceedsFromContributedCapital|BRL": [
+"2007-01-01",
+"2007-12-31",
+122000000,
+"20-F/A",
+"2010-06-09",
+1
+],
+"us-gaap:ProceedsFromIssuanceOfLongTermDebt|BRL": [
+"2010-01-01",
+"2010-12-31",
+35909000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlans|BRL": [
+"2010-01-01",
+"2010-12-31",
+62000000,
+"20-F/A",
+"2011-07-13",
+3
+],
+"us-gaap:ProceedsFromPaymentsForInSecuritiesSoldUnderAgreementsToRepurchase|BRL": [
+"2010-01-01",
+"2010-12-31",
+31848000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:ProceedsFromRepaymentsOfShortTermDebt|BRL": [
+"2010-01-01",
+"2010-12-31",
+43888000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:ProceedsFromSaleOfEquityMethodInvestments|BRL": [
+"2010-01-01",
+"2010-12-31",
+125000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:ProceedsFromSaleOfPropertyPlantAndEquipment|BRL": [
+"2010-01-01",
+"2010-12-31",
+86000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:ProfitLoss|BRL": [
+"2010-01-01",
+"2010-12-31",
+11891000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:PropertyPlantAndEquipmentGross|BRL": [
+null,
+"2010-12-31",
+12470000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:PropertyPlantAndEquipmentNet|BRL": [
+null,
+"2010-12-31",
+5151000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:RepaymentsOfLongTermDebt|BRL": [
+"2010-01-01",
+"2010-12-31",
+12978000000,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:RestrictedCashAndCashEquivalents|BRL": [
+null,
+"2008-12-31",
+84000000,
+"20-F/A",
+"2010-06-09",
+1
+],
+"us-gaap:SecuredDebt|BRL": [
+null,
+"2010-12-31",
+1217000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:SecuritiesSoldUnderAgreementsToRepurchase|BRL": [
+null,
+"2010-12-31",
+97972000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardFairValueAssumptionsExpectedDividendRate|pure": [
+"2010-01-01",
+"2010-12-31",
+0.005,
+"20-F/A",
+"2011-07-13",
+1
+],
+"us-gaap:SharesIssued|shares": [
+null,
+"2010-12-31",
+4570936219,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:ShortTermBorrowings|BRL": [
+null,
+"2010-12-31",
+123041000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:StockholdersEquity|BRL": [
+null,
+"2010-12-31",
+76625000000,
+"20-F/A",
+"2011-07-13",
+4
+],
+"us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest|BRL": [
+null,
+"2010-12-31",
+89701000000,
+"20-F/A",
+"2011-07-13",
+7
+],
+"us-gaap:SubordinatedDebt|BRL": [
+null,
+"2010-12-31",
+34407000000,
+"20-F/A",
+"2011-07-13",
+2
+],
+"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding|shares": [
+"2010-01-01",
+"2010-12-31",
+2288034273,
+"20-F/A",
+"2011-07-13",
+6
+],
+"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic|shares": [
+"2010-01-01",
+"2010-12-31",
+2288034273,
+"20-F/A",
+"2011-07-13",
+6
+]
+},
+"dei_forms": [
+[
+"20-F",
+2017
+],
+[
+"20-F",
+2018
+],
+[
+"20-F",
+2019
+],
+[
+"20-F",
+2020
+],
+[
+"20-F",
+2021
+],
+[
+"20-F",
+2022
+],
+[
+"20-F",
+2023
+],
+[
+"20-F/A",
+2009
+],
+[
+"20-F/A",
+2010
+]
+],
+"full": {
+"ifrs-full:Revenue": {
+"BRL": [
+[
+"2024-01-01",
+"2024-12-31",
+168050000000,
+"20-F",
+"2025-04-28",
+2024,
+"FY",
+"CY2024"
+]
+]
+},
+"ifrs-full:ProfitLoss": {
+"BRL": [
+[
+"2024-01-01",
+"2024-12-31",
+42128000000,
+"20-F",
+"2025-04-28",
+2024,
+"FY",
+"CY2024"
+]
+]
+}
+}
+}

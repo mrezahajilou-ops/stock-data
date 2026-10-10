@@ -1,0 +1,510 @@
+{
+"t": "NU",
+"cik": 1691493,
+"name": "Nu Holdings Ltd.",
+"tags": {
+"ifrs-full:AccrualsAndDeferredIncomeIncludingContractLiabilities|USD": [
+null,
+"2024-12-31",
+71636000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:AdjustedWeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+4888918000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:AdjustmentsForDepreciationAndAmortisationExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+77128000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:AdjustmentsForReconcileProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+5320050000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:BankBorrowingsUndiscountedCashFlows|USD": [
+null,
+"2021-12-31",
+10011000,
+"20-F",
+"2022-04-21",
+2
+],
+"ifrs-full:Borrowings|USD": [
+null,
+"2024-12-31",
+1730357000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:BorrowingsInterestRate|pure": [
+null,
+"2021-12-31",
+0.84,
+"20-F",
+"2022-04-21",
+2
+],
+"ifrs-full:CashAndCashEquivalents|USD": [
+null,
+"2024-12-31",
+9185742000,
+"20-F",
+"2025-04-16",
+16
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+727741000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-330627000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+2399044000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ChangesInEquity|USD": [
+"2021-01-01",
+"2021-12-31",
+-4607000,
+"20-F",
+"2024-04-19",
+6
+],
+"ifrs-full:DeferredTaxLiabilities|USD": [
+null,
+"2022-12-31",
+41118000,
+"20-F",
+"2024-04-19",
+5
+],
+"ifrs-full:DepreciationExpense|USD": [
+"2023-01-01",
+"2023-12-31",
+62895000,
+"20-F",
+"2024-04-19",
+9
+],
+"ifrs-full:DerivativeFinancialLiabilities|USD": [
+null,
+"2024-12-31",
+32329000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:Equity|USD": [
+null,
+"2024-12-31",
+7647076000,
+"20-F",
+"2025-04-16",
+16
+],
+"ifrs-full:EquityAndLiabilities|USD": [
+null,
+"2024-12-31",
+49931214000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|USD": [
+null,
+"2024-12-31",
+7646289000,
+"20-F",
+"2025-04-16",
+6
+],
+"ifrs-full:FinancialLiabilities|USD": [
+null,
+"2021-12-31",
+10400000,
+"20-F",
+"2023-04-20",
+2
+],
+"ifrs-full:FinancialLiabilitiesAtAmortisedCost|USD": [
+null,
+"2024-12-31",
+39918963000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:FinancialLiabilitiesAtFairValue|USD": [
+null,
+"2024-12-31",
+336000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLoss|USD": [
+null,
+"2024-12-31",
+340912000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:GainsLossesOnCashFlowHedgesBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+-40000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:GrossProfit|USD": [
+"2024-01-01",
+"2024-12-31",
+5252909000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|USD": [
+"2024-01-01",
+"2024-12-31",
+2796158000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:InterestExpenseOnOtherFinancialLiabilities|USD": [
+"2024-01-01",
+"2024-12-31",
+233202000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:InterestRevenueExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+2834859000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:IssuedCapital|USD": [
+null,
+"2024-12-31",
+84000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:Liabilities|USD": [
+null,
+"2024-12-31",
+42284138000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:OtherBorrowings|USD": [
+null,
+"2021-12-31",
+10011000,
+"20-F",
+"2023-04-20",
+3
+],
+"ifrs-full:OtherCashAndCashEquivalents|USD": [
+null,
+"2024-12-31",
+9000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:OtherCashPaymentsToAcquireEquityOrDebtInstrumentsOfOtherEntitiesClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+5418000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:OtherLiabilities|USD": [
+null,
+"2024-12-31",
+621612000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:ProceedsFromIssueOfPreferenceShares|USD": [
+"2021-01-01",
+"2021-12-31",
+400915000,
+"20-F",
+"2024-04-19",
+5
+],
+"ifrs-full:ProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+1972112000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|USD": [
+"2022-01-01",
+"2022-12-31",
+-56000,
+"20-F",
+"2025-04-16",
+6
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|USD": [
+"2024-01-01",
+"2024-12-31",
+1972112000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ProfitLossBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+2795198000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ProfitLossFromContinuingOperations|USD": [
+"2024-01-01",
+"2024-12-31",
+-1972112000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ProfitLossFromContinuingOperationsAttributableToOrdinaryEquityHoldersOfParentEntity|USD": [
+"2024-01-01",
+"2024-12-31",
+1972112000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:PropertyPlantAndEquipment|USD": [
+null,
+"2024-12-31",
+25879000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:RepaymentsOfBorrowingsClassifiedAsFinancingActivities|USD": [
+"2022-01-01",
+"2022-12-31",
+10633000,
+"20-F",
+"2025-04-16",
+9
+],
+"ifrs-full:RepurchaseAgreementsAndCashCollateralOnSecuritiesLent|USD": [
+null,
+"2024-12-31",
+308583000,
+"20-F",
+"2025-04-16",
+7
+],
+"ifrs-full:Revenue|USD": [
+"2024-01-01",
+"2024-12-31",
+11517075000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ReverseRepurchaseAgreementsAndCashCollateralOnSecuritiesBorrowed|USD": [
+null,
+"2024-12-31",
+2291807000,
+"20-F",
+"2025-04-16",
+8
+],
+"ifrs-full:SalesAndMarketingExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+246396000,
+"20-F",
+"2025-04-16",
+12
+],
+"ifrs-full:ShorttermBorrowings|USD": [
+null,
+"2024-12-31",
+1730357000,
+"20-F",
+"2025-04-16",
+16
+],
+"ifrs-full:ShorttermInvestmentsClassifiedAsCashEquivalents|USD": [
+null,
+"2024-12-31",
+169765000,
+"20-F",
+"2025-04-16",
+7
+],
+"ifrs-full:DerivativeFinancialLiabilitiesHeldForHedging|USD": [
+null,
+"2023-12-31",
+20671000,
+"20-F",
+"2024-04-19",
+3
+],
+"ifrs-full:FinancialLiabilitiesReclassifiedIntoEquity|USD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-16",
+5
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxGainsLossesFromInvestmentsInEquityInstruments|USD": [
+"2021-01-01",
+"2021-12-31",
+1741000,
+"20-F",
+"2024-04-19",
+2
+],
+"ifrs-full:ContractLiabilities|USD": [
+null,
+"2024-12-31",
+35179000,
+"20-F",
+"2025-04-16",
+3
+],
+"ifrs-full:CurrentFinancialLiabilities|USD": [
+null,
+"2024-12-31",
+201493000,
+"20-F",
+"2025-04-16",
+3
+],
+"ifrs-full:InsuranceContractsThatAreLiabilities|USD": [
+null,
+"2024-12-31",
+16634000,
+"20-F",
+"2025-04-16",
+4
+],
+"ifrs-full:LiabilitiesDueToCentralBanks|USD": [
+null,
+"2023-12-31",
+9271000,
+"20-F",
+"2024-04-19",
+1
+],
+"ifrs-full:NumberOfPotentialOrdinarySharesThatAreAntidilutiveInPeriodPresented|shares": [
+"2024-01-01",
+"2024-12-31",
+2808000,
+"20-F",
+"2025-04-16",
+6
+],
+"ifrs-full:OtherFinancialLiabilities|USD": [
+null,
+"2024-12-31",
+70352000,
+"20-F",
+"2025-04-16",
+4
+],
+"ifrs-full:WeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+4792081000,
+"20-F",
+"2025-04-16",
+6
+],
+"ifrs-full:InterestExpenseOnDebtInstrumentsIssued|USD": [
+"2024-01-01",
+"2024-12-31",
+259430000,
+"20-F",
+"2025-04-16",
+2
+]
+},
+"dei_forms": [],
+"full": {
+"ifrs-full:Revenue": {
+"USD": [
+[
+"2024-01-01",
+"2024-12-31",
+11517075000,
+"20-F",
+"2025-04-16",
+2024,
+"FY",
+"CY2024"
+]
+]
+},
+"ifrs-full:ProfitLoss": {
+"USD": [
+[
+"2024-01-01",
+"2024-12-31",
+1972112000,
+"20-F",
+"2025-04-16",
+2024,
+"FY",
+"CY2024"
+]
+]
+}
+}
+}

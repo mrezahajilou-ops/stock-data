@@ -1,0 +1,3788 @@
+{
+"t": "KB",
+"cik": 1445930,
+"name": "KB Financial Group Inc.",
+"tags": {
+"dei:EntityCommonStockSharesOutstanding|shares": [
+null,
+"2025-12-31",
+358587722,
+"20-F",
+"2026-04-28",
+11
+],
+"dei:EntityPublicFloat|USD": [
+null,
+"2009-11-30",
+0,
+"20-F/A",
+"2010-07-21",
+1
+],
+"ifrs-full:AcquisitionsThroughBusinessCombinationsLiabilitiesUnderInsuranceContractsAndReinsuranceContractsIssued|KRW": [
+"2020-01-01",
+"2020-12-31",
+16752889000000,
+"20-F",
+"2022-04-27",
+4
+],
+"ifrs-full:AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+11142000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+901363000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:AdjustedWeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+383367922,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:AdjustmentsForDepreciationAndAmortisationExpense|KRW": [
+"2024-01-01",
+"2024-12-31",
+916295000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:AdjustmentsForDepreciationAndAmortisationExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+620015000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInOtherLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-4948829000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:AdjustmentsForIncreaseDecreaseInOtherLiabilities|USD": [
+"2024-01-01",
+"2024-12-31",
+-3348645000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:AdjustmentsForReconcileProfitLoss|KRW": [
+"2024-01-01",
+"2024-12-31",
+-4100372000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:AdjustmentsForReconcileProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+-2774533000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:AdjustmentToProfitLossForPreferenceShareDividends|KRW": [
+"2021-01-01",
+"2021-12-31",
+2347186871,
+"20-F",
+"2022-04-27",
+15
+],
+"ifrs-full:Borrowings|KRW": [
+null,
+"2023-12-31",
+69583561000000,
+"20-F",
+"2024-04-26",
+15
+],
+"ifrs-full:Borrowings|USD": [
+null,
+"2023-12-31",
+53900215000,
+"20-F",
+"2024-04-26",
+4
+],
+"ifrs-full:CancellationOfTreasuryShares|KRW": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+10
+],
+"ifrs-full:CancellationOfTreasuryShares|USD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+3
+],
+"ifrs-full:CapitalReserve|KRW": [
+null,
+"2024-12-31",
+16646734000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:CapitalReserve|USD": [
+null,
+"2024-12-31",
+11264080000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:Cash|KRW": [
+null,
+"2024-12-31",
+1954624000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:CashAndCashEquivalents|KRW": [
+null,
+"2024-12-31",
+24608867000000,
+"20-F",
+"2025-04-25",
+32
+],
+"ifrs-full:CashAndCashEquivalents|USD": [
+null,
+"2024-12-31",
+16651690000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:CashAndCashEquivalentsIfDifferentFromStatementOfFinancialPosition|KRW": [
+null,
+"2023-12-31",
+-4089533000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:CashCollateralPledgedSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialLiabilities|KRW": [
+null,
+"2024-12-31",
+76853000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:CashCollateralReceivedSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialAssets|KRW": [
+null,
+"2024-12-31",
+195584000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:CashFlowsFromLosingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+88528000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:CashFlowsFromLosingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+59903000,
+"20-F",
+"2025-04-25",
+1
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-1983837000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:CashFlowsFromUsedInFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-1342371000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-3825055000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:CashFlowsFromUsedInInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-2588239000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+4020186000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:CashFlowsFromUsedInOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+2720275000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:CashFlowsUsedInObtainingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-88528000000,
+"20-F",
+"2025-04-25",
+20
+],
+"ifrs-full:CashFlowsUsedInObtainingControlOfSubsidiariesOrOtherBusinessesClassifiedAsInvestingActivities|USD": [
+"2023-01-01",
+"2023-12-31",
+-1004672000,
+"20-F",
+"2024-04-26",
+7
+],
+"ifrs-full:CashOutflowForLeases|KRW": [
+"2024-01-01",
+"2024-12-31",
+326821000000,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:ChangesInEquity|KRW": [
+"2024-01-01",
+"2024-12-31",
+-2226903000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ChangesInEquity|USD": [
+"2024-01-01",
+"2024-12-31",
+-1506844000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:CumulativeGainLossOnDisposalOfInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncome|KRW": [
+"2024-01-01",
+"2024-12-31",
+-3649000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:CurrentTaxLiabilities|KRW": [
+null,
+"2024-12-31",
+530720000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:CurrentTaxLiabilities|USD": [
+null,
+"2024-12-31",
+359114000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:DeferredTaxLiabilities|KRW": [
+null,
+"2024-12-31",
+4833086000000,
+"20-F",
+"2025-04-25",
+19
+],
+"ifrs-full:DeferredTaxLiabilities|USD": [
+null,
+"2017-12-31",
+499399000,
+"20-F",
+"2018-04-27",
+1
+],
+"ifrs-full:DepreciationAndAmortisationExpense|KRW": [
+"2024-01-01",
+"2024-12-31",
+916295000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:DepreciationInvestmentProperty|KRW": [
+"2024-01-01",
+"2024-12-31",
+50426000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:DepreciationPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+582940000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:DerivativeFinancialLiabilities|KRW": [
+null,
+"2024-12-31",
+11783494000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:DerivativeFinancialLiabilities|USD": [
+null,
+"2024-12-31",
+7973349000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:DilutiveEffectOfShareOptionsOnNumberOfOrdinaryShares|shares": [
+"2024-01-01",
+"2024-12-31",
+4001803,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:DisposalsPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+243369000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:DividendsPaid|KRW": [
+"2024-01-01",
+"2024-12-31",
+298285000000,
+"20-F",
+"2025-04-25",
+28
+],
+"ifrs-full:DividendsPaid|USD": [
+"2023-01-01",
+"2023-12-31",
+437632000,
+"20-F",
+"2024-04-26",
+7
+],
+"ifrs-full:DividendsPaidClassifiedAsFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+1686777000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+1486978000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:DividendsPaidToEquityHoldersOfParentClassifiedAsFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+1006170000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:DividendsPaidToNoncontrollingInterestsClassifiedAsFinancingActivities|KRW": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-24",
+9
+],
+"ifrs-full:DividendsPaidToNoncontrollingInterestsClassifiedAsFinancingActivities|USD": [
+"2019-01-01",
+"2019-12-31",
+0,
+"20-F",
+"2020-04-24",
+3
+],
+"ifrs-full:DividendsProposedOrDeclaredBeforeFinancialStatementsAuthorisedForIssueButNotRecognisedAsDistributionToOwners|KRW": [
+"2023-01-01",
+"2023-12-31",
+587006000000,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:DividendsProposedOrDeclaredBeforeFinancialStatementsAuthorisedForIssueButNotRecognisedAsDistributionToOwnersPerShare|KRW/shares": [
+"2023-01-01",
+"2023-12-31",
+1530,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:DividendsReceivedClassifiedAsOperatingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+482012000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:DividendsReceivedFromInvestmentsAccountedForUsingEquityMethodClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+14125000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:DividendsRecognisedAsDistributionsToOwnersOfParent|KRW": [
+"2024-07-01",
+"2024-09-30",
+299886000000,
+"20-F",
+"2025-04-25",
+20
+],
+"ifrs-full:DividendsRecognisedAsDistributionsToOwnersOfParent|USD": [
+"2023-01-01",
+"2023-12-31",
+454643000,
+"20-F",
+"2024-04-26",
+3
+],
+"ifrs-full:DividendsRecognisedAsDistributionsToOwnersPerShare|KRW/shares": [
+"2024-01-01",
+"2024-12-31",
+804,
+"20-F",
+"2025-04-25",
+22
+],
+"ifrs-full:DividendsRecognisedAsDistributionsToOwnersPerShare|USD/shares": [
+"2024-07-01",
+"2024-09-30",
+795,
+"20-F",
+"2025-04-25",
+3
+],
+"ifrs-full:DividendsRecognisedForInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncomeDerecognisedDuringPeriod|KRW": [
+"2024-01-01",
+"2024-12-31",
+699000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:DividendsRecognisedForInvestmentsInEquityInstrumentsDesignatedAsMeasuredAtFairValueThroughOtherComprehensiveIncomeHeldAtEndOfReportingPeriod|KRW": [
+"2024-01-01",
+"2024-12-31",
+85826000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:EffectOfExchangeRateChangesOnCashAndCashEquivalents|KRW": [
+"2024-01-01",
+"2024-12-31",
+570985000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:EffectOfExchangeRateChangesOnCashAndCashEquivalents|USD": [
+"2024-01-01",
+"2024-12-31",
+386359000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:Equity|KRW": [
+null,
+"2024-12-31",
+59815181000000,
+"20-F",
+"2025-04-25",
+34
+],
+"ifrs-full:Equity|USD": [
+null,
+"2024-12-31",
+40474187000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:EquityAndLiabilities|KRW": [
+null,
+"2024-12-31",
+757845532000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:EquityAndLiabilities|USD": [
+null,
+"2024-12-31",
+512799272000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|KRW": [
+null,
+"2024-12-31",
+57888952000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:EquityAttributableToOwnersOfParent|USD": [
+null,
+"2024-12-31",
+39170796000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:EstimatedFinancialEffectOfContingentLiabilities|KRW": [
+null,
+"2024-12-31",
+17701890000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:ExpenseIncomeIncludedInProfitOrLossLiabilitiesUnderInsuranceContractsAndReinsuranceContractsIssued|KRW": [
+"2022-01-01",
+"2022-12-31",
+-1046300000000,
+"20-F",
+"2023-04-26",
+18
+],
+"ifrs-full:ExpenseIncomeIncludedInProfitOrLossLiabilitiesUnderInsuranceContractsAndReinsuranceContractsIssued|USD": [
+"2022-01-01",
+"2022-12-31",
+-830278000,
+"20-F",
+"2023-04-26",
+6
+],
+"ifrs-full:ExpenseRelatingToVariableLeasePaymentsNotIncludedInMeasurementOfLeaseLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+147000000,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:FinancialAssetsPledgedAsCollateralForLiabilitiesOrContingentLiabilities|KRW": [
+null,
+"2020-12-31",
+49544833000000,
+"20-F",
+"2021-04-27",
+8
+],
+"ifrs-full:FinancialInstrumentsSubjectToEnforceableMasterNettingArrangementOrSimilarAgreementNotSetOffAgainstFinancialLiabilities|KRW": [
+null,
+"2024-12-31",
+32548630000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:FinancialLiabilities|KRW": [
+null,
+"2024-12-31",
+636034774000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:FinancialLiabilitiesAtFairValue|KRW": [
+null,
+"2024-12-31",
+636720016000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLoss|KRW": [
+null,
+"2024-12-31",
+10720231000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLoss|USD": [
+null,
+"2024-12-31",
+7253888000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:FinancialLiabilitiesAtFairValueThroughProfitOrLossDesignatedAsUponInitialRecognition|KRW": [
+null,
+"2017-12-31",
+10078288000000,
+"20-F",
+"2018-04-27",
+2
+],
+"ifrs-full:FinancialLiabilitiesCarryingAmountImmediatelyAfterInitialApplicationOfIFRS9|KRW": [
+null,
+"2018-01-01",
+363087242000000,
+"20-F",
+"2019-04-30",
+1
+],
+"ifrs-full:FinancialLiabilitiesCarryingAmountImmediatelyBeforeInitialApplicationOfIFRS9|KRW": [
+null,
+"2018-01-01",
+363109527000000,
+"20-F",
+"2019-04-30",
+1
+],
+"ifrs-full:GainsOnDisposalsOfPropertyPlantAndEquipment|KRW": [
+"2024-01-01",
+"2024-12-31",
+29515000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:GrossFinancialAssetsSetOffAgainstFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|KRW": [
+null,
+"2024-12-31",
+64265227000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:GrossFinancialLiabilitiesSetOffAgainstFinancialAssetsSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|KRW": [
+null,
+"2024-12-31",
+64265227000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:GrossFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|KRW": [
+null,
+"2024-12-31",
+99217414000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:IncomeTaxRelatingToCashFlowHedgesOfOtherComprehensiveIncome|KRW": [
+"2024-01-01",
+"2024-12-31",
+-12501000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:IncomeTaxRelatingToShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|KRW": [
+"2024-01-01",
+"2024-12-31",
+-170000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|KRW": [
+"2024-01-01",
+"2024-12-31",
+-1217721000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:IncreaseDecreaseInCashAndCashEquivalents|USD": [
+"2024-01-01",
+"2024-12-31",
+-823976000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:IncreaseDecreaseInFinancialLiabilitiesArisingFromChangeInMeasurementAttributeFirstApplicationOfIFRS9|KRW": [
+null,
+"2018-01-01",
+2899000000,
+"20-F",
+"2019-04-30",
+1
+],
+"ifrs-full:IncreaseDecreaseInFinancialLiabilitiesOnBasisOfMeasurementCategoryFirstApplicationOfIFRS9|KRW": [
+null,
+"2018-01-01",
+-25184000000,
+"20-F",
+"2019-04-30",
+1
+],
+"ifrs-full:IncreaseDecreaseInWorkingCapital|KRW": [
+"2024-01-01",
+"2024-12-31",
+-3091952000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:IncreaseDecreaseInWorkingCapital|USD": [
+"2024-01-01",
+"2024-12-31",
+-2092182000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:IncreaseDecreaseThroughChangesInFairValuesLiabilitiesArisingFromFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-88127000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:IncreaseDecreaseThroughEffectOfChangesInForeignExchangeRatesLiabilitiesArisingFromFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+3806908000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:IncreaseDecreaseThroughFinancingCashFlowsLiabilitiesArisingFromFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+358590000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:IncreaseDecreaseThroughObtainingOrLosingControlOfSubsidiariesOrOtherBusinessesLiabilitiesArisingFromFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-22909000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:IncreaseDecreaseThroughOtherChangesLiabilitiesArisingFromFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+1022889000000,
+"20-F",
+"2025-04-25",
+13
+],
+"ifrs-full:IncreaseDecreaseThroughOtherChangesLiabilitiesUnderInsuranceContractsAndReinsuranceContractsIssued|KRW": [
+"2022-01-01",
+"2022-12-31",
+1064367000000,
+"20-F",
+"2023-04-26",
+12
+],
+"ifrs-full:IncreaseDecreaseThroughOtherChangesPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+-101046000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersAndOtherChangesEquity|KRW": [
+"2024-01-01",
+"2024-12-31",
+-39963000000,
+"20-F",
+"2025-04-25",
+21
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersAndOtherChangesEquity|USD": [
+"2024-01-01",
+"2024-12-31",
+-27042000,
+"20-F",
+"2025-04-25",
+7
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersPropertyPlantAndEquipment|KRW": [
+"2023-01-01",
+"2023-12-31",
+-30918000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:InterestExpenseOnLeaseLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+40454000000,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:InterestExpenseOnOtherFinancialLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+635819000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:InterestRevenueExpense|KRW": [
+"2024-01-01",
+"2024-12-31",
+12826714000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:InterestRevenueExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+8679249000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:InvestmentAccountedForUsingEquityMethod|KRW": [
+null,
+"2024-12-31",
+947390000000,
+"20-F",
+"2025-04-25",
+7
+],
+"ifrs-full:InvestmentAccountedForUsingEquityMethod|USD": [
+null,
+"2024-12-31",
+641055000,
+"20-F",
+"2025-04-25",
+1
+],
+"ifrs-full:IssuedCapital|KRW": [
+null,
+"2024-12-31",
+2090558000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:IssuedCapital|USD": [
+null,
+"2024-12-31",
+1414584000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:LeaseLiabilities|KRW": [
+null,
+"2020-12-31",
+559113000000,
+"20-F",
+"2021-04-27",
+4
+],
+"ifrs-full:Liabilities|KRW": [
+null,
+"2024-12-31",
+698030351000000,
+"20-F",
+"2025-04-25",
+19
+],
+"ifrs-full:Liabilities|USD": [
+null,
+"2024-12-31",
+472325085000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:LiabilitiesArisingFromFinancingActivities|KRW": [
+null,
+"2024-12-31",
+153667051000000,
+"20-F",
+"2025-04-25",
+21
+],
+"ifrs-full:LiabilitiesArisingFromInsuranceContracts|KRW": [
+null,
+"2022-12-31",
+58230303000000,
+"20-F",
+"2023-04-26",
+18
+],
+"ifrs-full:LiabilitiesArisingFromInsuranceContracts|USD": [
+null,
+"2022-12-31",
+46207925000,
+"20-F",
+"2023-04-26",
+6
+],
+"ifrs-full:LossesOnDisposalsOfPropertyPlantAndEquipment|KRW": [
+"2024-01-01",
+"2024-12-31",
+5080000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:MiscellaneousOtherOperatingIncome|KRW": [
+"2024-01-01",
+"2024-12-31",
+673191000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:NetDeferredTaxLiabilities|KRW": [
+null,
+"2024-12-31",
+1682292000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:NetDeferredTaxLiabilities|USD": [
+null,
+"2024-12-31",
+1138330000,
+"20-F",
+"2025-04-25",
+7
+],
+"ifrs-full:NetFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreements|KRW": [
+null,
+"2024-12-31",
+2326704000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:NetFinancialLiabilitiesSubjectToOffsettingEnforceableMasterNettingArrangementsOrSimilarAgreementsInStatementOfFinancialPosition|KRW": [
+null,
+"2024-12-31",
+34952187000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:NotesAndDebenturesIssued|KRW": [
+null,
+"2023-12-31",
+69176668000000,
+"20-F",
+"2024-04-26",
+15
+],
+"ifrs-full:NotesAndDebenturesIssued|USD": [
+null,
+"2023-12-31",
+53585032000,
+"20-F",
+"2024-04-26",
+7
+],
+"ifrs-full:NumberOfSharesAuthorised|shares": [
+null,
+"2024-12-31",
+1000000000,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:NumberOfSharesOutstanding|shares": [
+null,
+"2017-12-31",
+418111537,
+"20-F",
+"2018-04-27",
+3
+],
+"ifrs-full:OtherAdjustmentsToReconcileProfitLoss|KRW": [
+"2024-01-01",
+"2024-12-31",
+793690000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:OtherAdjustmentsToReconcileProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+537054000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxCashFlowHedges|KRW": [
+"2024-01-01",
+"2024-12-31",
+34741000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxCashFlowHedges|USD": [
+"2024-01-01",
+"2024-12-31",
+23508000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxGainsLossesFromInvestmentsInEquityInstruments|KRW": [
+"2024-01-01",
+"2024-12-31",
+-254864000000,
+"20-F",
+"2025-04-25",
+21
+],
+"ifrs-full:OtherComprehensiveIncomeNetOfTaxGainsLossesFromInvestmentsInEquityInstruments|USD": [
+"2024-01-01",
+"2024-12-31",
+-172455000,
+"20-F",
+"2025-04-25",
+7
+],
+"ifrs-full:OtherDifferencesToCashAndCashEquivalentsInStatementOfCashFlows|KRW": [
+null,
+"2023-12-31",
+816105000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-28151000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-19048000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+-397226000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:OtherInflowsOutflowsOfCashClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+-268785000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:OtherLiabilities|KRW": [
+null,
+"2024-12-31",
+36429662000000,
+"20-F",
+"2025-04-25",
+18
+],
+"ifrs-full:OtherLiabilities|USD": [
+null,
+"2024-12-31",
+24650280000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:OtherOperatingIncomeExpense|KRW": [
+"2024-01-01",
+"2024-12-31",
+-1873011000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:OtherOperatingIncomeExpense|USD": [
+"2024-01-01",
+"2024-12-31",
+-1267381000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromIssueOfBondsNotesAndDebentures|KRW": [
+"2024-01-01",
+"2024-12-31",
+86031647000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromIssueOfBondsNotesAndDebentures|USD": [
+"2024-01-01",
+"2024-12-31",
+58213665000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromSalesOfIntangibleAssetsClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+21073000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromSalesOfIntangibleAssetsClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+14259000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromSalesOfInterestsInAssociates|KRW": [
+"2024-01-01",
+"2024-12-31",
+98497000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromSalesOfInterestsInAssociates|USD": [
+"2024-01-01",
+"2024-12-31",
+66648000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromSalesOfInvestmentProperty|KRW": [
+"2024-01-01",
+"2024-12-31",
+264948000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromSalesOfInvestmentProperty|USD": [
+"2024-01-01",
+"2024-12-31",
+179278000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+18616000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+12597000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProceedsFromSalesOrMaturityOfFinancialInstrumentsClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+45225323000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProceedsFromSalesOrMaturityOfFinancialInstrumentsClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+30601899000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProfitLoss|KRW": [
+"2024-01-01",
+"2024-12-31",
+5028606000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLoss|USD": [
+"2024-01-01",
+"2024-12-31",
+3402627000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|KRW": [
+"2024-01-01",
+"2024-12-31",
+-49615000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossAttributableToNoncontrollingInterests|USD": [
+"2024-01-01",
+"2024-12-31",
+-33572000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProfitLossAttributableToOrdinaryEquityHoldersOfParentEntity|KRW": [
+"2024-01-01",
+"2024-12-31",
+4878421743511,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossAttributableToOrdinaryEquityHoldersOfParentEntityIncludingDilutiveEffects|KRW": [
+"2024-01-01",
+"2024-12-31",
+4878728375201,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|KRW": [
+"2024-01-01",
+"2024-12-31",
+5078220543511,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossAttributableToOwnersOfParent|USD": [
+"2024-01-01",
+"2024-12-31",
+3436199000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProfitLossBeforeTax|KRW": [
+"2024-01-01",
+"2024-12-31",
+6985247000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossBeforeTax|USD": [
+"2024-01-01",
+"2024-12-31",
+4726596000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ProfitLossFromOperatingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+8045261000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ProfitLossFromOperatingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+5443859000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:PropertyPlantAndEquipment|KRW": [
+null,
+"2024-12-31",
+5390015000000,
+"20-F",
+"2025-04-25",
+25
+],
+"ifrs-full:PropertyPlantAndEquipment|USD": [
+null,
+"2024-12-31",
+3647176000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod|KRW": [
+"2024-01-01",
+"2024-12-31",
+339469000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+337178000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+228153000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:PurchaseOfTreasuryShares|KRW": [
+"2024-01-01",
+"2024-12-31",
+820000000000,
+"20-F",
+"2025-04-25",
+11
+],
+"ifrs-full:PurchaseOfTreasuryShares|USD": [
+"2024-01-01",
+"2024-12-31",
+554856000,
+"20-F",
+"2025-04-25",
+4
+],
+"ifrs-full:RecognisedLiabilitiesDefinedBenefitPlan|KRW": [
+null,
+"2024-12-31",
+100187000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:RecognisedLiabilitiesDefinedBenefitPlan|USD": [
+null,
+"2024-12-31",
+67792000,
+"20-F",
+"2025-04-25",
+7
+],
+"ifrs-full:RepaymentsOfBondsNotesAndDebentures|KRW": [
+"2024-01-01",
+"2024-12-31",
+80848086000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:RepaymentsOfBondsNotesAndDebentures|USD": [
+"2024-01-01",
+"2024-12-31",
+54706187000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ReserveOfCashFlowHedges|KRW": [
+null,
+"2024-12-31",
+108318000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:Revenue|KRW": [
+"2023-01-01",
+"2023-12-31",
+16229134000000,
+"20-F",
+"2024-04-26",
+14
+],
+"ifrs-full:RevenueFromDividends|KRW": [
+"2024-01-01",
+"2024-12-31",
+86524000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:RevenueFromInsuranceContractsIssuedWithoutReductionForReinsuranceHeld|KRW": [
+"2022-01-01",
+"2022-12-31",
+15765939000000,
+"20-F",
+"2023-04-26",
+18
+],
+"ifrs-full:RevenueFromInterest|KRW": [
+"2024-01-01",
+"2024-12-31",
+30491385000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:RevenueFromInterest|USD": [
+"2024-01-01",
+"2024-12-31",
+20632120000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:SaleOrIssueOfTreasuryShares|KRW": [
+"2024-01-01",
+"2024-12-31",
+238575000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:SaleOrIssueOfTreasuryShares|USD": [
+"2024-01-01",
+"2024-12-31",
+161432000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|KRW": [
+"2024-01-01",
+"2024-12-31",
+165000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+112000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodBeforeTax|KRW": [
+"2024-01-01",
+"2024-12-31",
+336000000,
+"20-F",
+"2025-04-25",
+16
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLossNetOfTax|KRW": [
+"2024-01-01",
+"2024-12-31",
+165000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillBeReclassifiedToProfitOrLossNetOfTax|USD": [
+"2024-01-01",
+"2024-12-31",
+112000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLossNetOfTax|KRW": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:ShareOfOtherComprehensiveIncomeOfAssociatesAndJointVenturesAccountedForUsingEquityMethodThatWillNotBeReclassifiedToProfitOrLossNetOfTax|USD": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|KRW": [
+"2024-01-01",
+"2024-12-31",
+-16884000000,
+"20-F",
+"2025-04-25",
+17
+],
+"ifrs-full:ShareOfProfitLossOfAssociatesAndJointVenturesAccountedForUsingEquityMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+-11425000,
+"20-F",
+"2025-04-25",
+1
+],
+"ifrs-full:TaxEffectOfRevenuesExemptFromTaxation2011|KRW": [
+"2024-01-01",
+"2024-12-31",
+68560000000,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:TreasuryShares|KRW": [
+null,
+"2024-12-31",
+1236060000000,
+"20-F",
+"2025-04-25",
+21
+],
+"ifrs-full:TreasuryShares|USD": [
+null,
+"2024-12-31",
+836385000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:WeightedAverageShares|shares": [
+"2024-01-01",
+"2024-12-31",
+378765026,
+"20-F",
+"2025-04-25",
+24
+],
+"ifrs-full:AmountRecognisedInOtherComprehensiveIncomeAndAccumulatedInEquityRelatingToNoncurrentAssetsOrDisposalGroupsHeldForSale|KRW": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-26",
+7
+],
+"ifrs-full:AmountRecognisedInOtherComprehensiveIncomeAndAccumulatedInEquityRelatingToNoncurrentAssetsOrDisposalGroupsHeldForSale|USD": [
+null,
+"2023-12-31",
+0,
+"20-F",
+"2024-04-26",
+3
+],
+"ifrs-full:AssociatedLiabilitiesThatEntityContinuesToRecognise|KRW": [
+null,
+"2024-12-31",
+2865462000000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:BankingArrangementsClassifiedAsCashEquivalents|KRW": [
+null,
+"2023-12-31",
+29836311000000,
+"20-F",
+"2024-04-26",
+7
+],
+"ifrs-full:BankingArrangementsClassifiedAsCashEquivalents|USD": [
+null,
+"2023-12-31",
+23111545000,
+"20-F",
+"2024-04-26",
+3
+],
+"ifrs-full:ContractLiabilities|KRW": [
+null,
+"2021-12-31",
+57165936000000,
+"20-F",
+"2022-04-27",
+1
+],
+"ifrs-full:CurrentAndDeferredTaxRelatingToItemsChargedOrCreditedDirectlyToEquity|KRW": [
+"2024-01-01",
+"2024-12-31",
+792346000000,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:DepreciationRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+701917000000,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment|KRW": [
+"2020-01-01",
+"2020-12-31",
+12000000,
+"20-F",
+"2022-04-27",
+1
+],
+"ifrs-full:LongtermBorrowings|KRW": [
+null,
+"2024-12-31",
+11468928000000,
+"20-F",
+"2025-04-25",
+8
+],
+"ifrs-full:PaymentsOfLeaseLiabilitiesClassifiedAsFinancingActivities|KRW": [
+"2024-01-01",
+"2024-12-31",
+311363000000,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:PaymentsOfLeaseLiabilitiesClassifiedAsFinancingActivities|USD": [
+"2024-01-01",
+"2024-12-31",
+210685000,
+"20-F",
+"2025-04-25",
+4
+],
+"ifrs-full:ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment|KRW": [
+"2020-01-01",
+"2020-12-31",
+0,
+"20-F",
+"2022-04-27",
+1
+],
+"ifrs-full:TaxRateEffectOfRevenuesExemptFromTaxation|pure": [
+"2024-01-01",
+"2024-12-31",
+0.0098,
+"20-F",
+"2025-04-25",
+12
+],
+"ifrs-full:DecreaseInFairValueMeasurementDueToChangeInMultipleUnobservableInputsToReflectReasonablyPossibleAlternativeAssumptionsRecognisedInOtherComprehensiveIncomeBeforeTaxLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:DecreaseInFairValueMeasurementDueToChangeInMultipleUnobservableInputsToReflectReasonablyPossibleAlternativeAssumptionsRecognisedInProfitOrLossBeforeTaxLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+41266000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:DilutiveEffectOfConvertibleInstrumentsOnNumberOfOrdinaryShares|shares": [
+"2024-01-01",
+"2024-12-31",
+601093,
+"20-F",
+"2025-04-25",
+9
+],
+"ifrs-full:FairValueOfInvestmentsInEquityInstrumentsMeasuredAtFairValueThroughOtherComprehensiveIncomeAtDateOfDerecognition|KRW": [
+null,
+"2024-12-31",
+139842000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:FairValueOfTransferredFinancialAssetsAssociatedFinancialLiabilitiesThatAreNotDerecognisedInTheirEntirety|KRW": [
+null,
+"2024-12-31",
+2817045000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:IncreaseDecreaseToProfitLossToReflectDilutiveEffectResultingFromAssumedConversionOfPotentialOrdinaryShares|KRW": [
+"2024-01-01",
+"2024-12-31",
+306631690,
+"20-F",
+"2025-04-25",
+9
+],
+"ifrs-full:IncreaseInFairValueMeasurementDueToChangeInMultipleUnobservableInputsToReflectReasonablyPossibleAlternativeAssumptionsRecognisedInOtherComprehensiveIncomeBeforeTaxLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+0,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:IncreaseInFairValueMeasurementDueToChangeInMultipleUnobservableInputsToReflectReasonablyPossibleAlternativeAssumptionsRecognisedInProfitOrLossBeforeTaxLiabilities|KRW": [
+"2024-01-01",
+"2024-12-31",
+38959000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:InterestRevenueCalculatedUsingEffectiveInterestMethod|KRW": [
+"2024-01-01",
+"2024-12-31",
+29001556000000,
+"20-F",
+"2025-04-25",
+9
+],
+"ifrs-full:InterestRevenueCalculatedUsingEffectiveInterestMethod|USD": [
+"2024-01-01",
+"2024-12-31",
+19624021000,
+"20-F",
+"2025-04-25",
+3
+],
+"ifrs-full:RevenueFromContractsWithCustomers|KRW": [
+"2023-01-01",
+"2023-12-31",
+16229134000000,
+"20-F",
+"2024-04-26",
+6
+],
+"ifrs-full:InsuranceContractsIssuedThatAreLiabilities|KRW": [
+null,
+"2024-12-31",
+55863701000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:InsuranceContractsIssuedThatAreLiabilities|USD": [
+null,
+"2024-12-31",
+37800401000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:InsuranceRevenue|KRW": [
+"2024-01-01",
+"2024-12-31",
+11017155000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:InsuranceRevenue|USD": [
+"2024-01-01",
+"2024-12-31",
+7454803000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:InsuranceRevenueAllocationOfPortionOfPremiumsThatRelateToRecoveryOfInsuranceAcquisitionCashFlows|KRW": [
+"2024-01-01",
+"2024-12-31",
+280737000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:InsuranceRevenueChangeInRiskAdjustmentForNonfinancialRisk|KRW": [
+"2024-01-01",
+"2024-12-31",
+212912000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:InsuranceRevenueContractualServiceMarginRecognisedInProfitOrLossBecauseOfTransferOfServices|KRW": [
+"2024-01-01",
+"2024-12-31",
+1279257000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:InsuranceRevenueInsuranceServiceExpensesIncurredDuringPeriodMeasuredAtAmountsExpectedAtBeginningOfPeriod|KRW": [
+"2024-01-01",
+"2024-12-31",
+5003839000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:InsuranceRevenueOtherAmounts|KRW": [
+"2024-01-01",
+"2024-12-31",
+-5096000000,
+"20-F",
+"2025-04-25",
+5
+],
+"ifrs-full:PaymentsToAcquireOrRedeemEntitysShares|KRW": [
+"2024-01-01",
+"2024-12-31",
+820000000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:PaymentsToAcquireOrRedeemEntitysShares|USD": [
+"2024-01-01",
+"2024-12-31",
+554856000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:ReinsuranceContractsHeldThatAreLiabilities|KRW": [
+null,
+"2024-12-31",
+56266000000,
+"20-F",
+"2025-04-25",
+6
+],
+"ifrs-full:ReinsuranceContractsHeldThatAreLiabilities|USD": [
+null,
+"2024-12-31",
+38072000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2023-01-01",
+"2023-12-31",
+11142000000,
+"20-F",
+"2025-04-25",
+1
+],
+"ifrs-full:AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+1586247000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:DebtInstrumentsAmountContributedToFairValueOfPlanAssets|KRW": [
+null,
+"2024-12-31",
+93416000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:DepreciationAmortisationAndImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLoss|KRW": [
+"2024-01-01",
+"2024-12-31",
+65452000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:DepreciationPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+620686000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:DisposalsPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+560689000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:IncreaseDecreaseThroughOtherChangesPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+62641000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:IncreaseDecreaseThroughTransfersPropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+"2024-01-01",
+"2024-12-31",
+-23197000000,
+"20-F",
+"2025-04-25",
+2
+],
+"ifrs-full:OtherBorrowings|KRW": [
+null,
+"2024-12-31",
+68077012000000,
+"20-F",
+"2025-04-25",
+3
+],
+"ifrs-full:OtherBorrowings|USD": [
+null,
+"2024-12-31",
+46064588000,
+"20-F",
+"2025-04-25",
+1
+],
+"ifrs-full:PropertyPlantAndEquipmentIncludingRightofuseAssets|KRW": [
+null,
+"2024-12-31",
+5390015000000,
+"20-F",
+"2025-04-25",
+3
+],
+"us-gaap:AccruedLiabilitiesCurrentAndNoncurrent|KRW": [
+null,
+"2010-12-31",
+295508000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment|KRW": [
+null,
+"2010-12-31",
+2170666000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:AdditionalPaidInCapitalCommonStock|KRW": [
+null,
+"2010-12-31",
+7210213000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:AdditionalPaidInCapitalCommonStock|USD": [
+null,
+"2010-12-31",
+6377333000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue|KRW": [
+"2010-01-01",
+"2010-12-31",
+9623000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue|USD": [
+"2010-01-01",
+"2010-12-31",
+8511000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AllowanceForLoanAndLeaseLossesRecoveriesOfBadDebts|KRW": [
+"2010-01-01",
+"2010-12-31",
+-520703000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:AmortizationOfDebtDiscountPremium|KRW": [
+"2010-01-01",
+"2010-12-31",
+88363000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:AmortizationOfDebtDiscountPremium|USD": [
+"2010-01-01",
+"2010-12-31",
+78155000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:AmortizationOfIntangibleAssets|KRW": [
+"2010-01-01",
+"2010-12-31",
+99140000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:AmortizationOfValueOfBusinessAcquiredVOBA|KRW": [
+"2020-01-01",
+"2020-12-31",
+2698010000000,
+"20-F",
+"2021-04-27",
+1
+],
+"us-gaap:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount|shares": [
+"2010-01-01",
+"2010-12-31",
+0,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterFiveThroughTenYearsAmortizedCost|KRW": [
+null,
+"2010-12-31",
+500764000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterFiveThroughTenYearsFairValue|KRW": [
+null,
+"2010-12-31",
+535213000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsAmortizedCost|KRW": [
+null,
+"2010-12-31",
+9384244000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsFairValue|KRW": [
+null,
+"2010-12-31",
+9490550000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterTenYearsAmortizedCost|KRW": [
+null,
+"2010-12-31",
+1578974000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterTenYearsFairValue|KRW": [
+null,
+"2010-12-31",
+1585166000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAmortizedCost|KRW": [
+null,
+"2010-12-31",
+17105676000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesFairValue|KRW": [
+null,
+"2010-12-31",
+17309120000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearAmortizedCost|KRW": [
+null,
+"2010-12-31",
+5641694000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearFairValue|KRW": [
+null,
+"2010-12-31",
+5698191000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:BrokerageCommissionsRevenue|KRW": [
+"2017-01-01",
+"2017-12-31",
+450199000000,
+"20-F",
+"2018-04-27",
+3
+],
+"us-gaap:BusinessCombinationRecognizedIdentifiableAssetsAcquiredAndLiabilitiesAssumedDeferredTaxAssets|KRW": [
+null,
+"2017-12-31",
+95181000000,
+"20-F",
+"2019-04-30",
+1
+],
+"us-gaap:BusinessCombinationRecognizedIdentifiableAssetsAcquiredAndLiabilitiesAssumedDeferredTaxLiabilities|KRW": [
+null,
+"2017-12-31",
+442206000000,
+"20-F",
+"2019-04-30",
+1
+],
+"us-gaap:Capital|KRW": [
+null,
+"2020-12-31",
+40080136000000,
+"20-F",
+"2021-04-27",
+10
+],
+"us-gaap:CapitalLeasedAssetsGross|KRW": [
+null,
+"2010-12-31",
+33045000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInRollingYearFive|KRW": [
+null,
+"2018-12-31",
+10380000000,
+"20-F",
+"2020-04-24",
+1
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsPresentValueOfNetMinimumPayments|KRW": [
+null,
+"2019-01-01",
+10161000000,
+"20-F",
+"2020-04-24",
+2
+],
+"us-gaap:CapitalToRiskWeightedAssets|pure": [
+null,
+"2020-12-31",
+0.1528,
+"20-F",
+"2021-04-27",
+10
+],
+"us-gaap:CashAndCashEquivalentsAtCarryingValue|KRW": [
+null,
+"2010-12-31",
+3867316000000,
+"20-F/A",
+"2011-07-05",
+8
+],
+"us-gaap:CashAndCashEquivalentsAtCarryingValue|USD": [
+null,
+"2010-12-31",
+3420587000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:CashAndCashEquivalentsPeriodIncreaseDecrease|KRW": [
+"2010-01-01",
+"2010-12-31",
+1171747000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:CashAndCashEquivalentsPeriodIncreaseDecrease|USD": [
+"2010-01-01",
+"2010-12-31",
+1036393000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:CashAndDueFromBanks|KRW": [
+null,
+"2020-12-31",
+25608842000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:CashAndDueFromBanks|USD": [
+null,
+"2020-12-31",
+23578497000,
+"20-F",
+"2021-04-27",
+4
+],
+"us-gaap:CommonEquityTierOneCapital|KRW": [
+null,
+"2020-12-31",
+34886283000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:CommonEquityTierOneCapitalRatio|pure": [
+null,
+"2020-12-31",
+0.133,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:CommonStockSharesAuthorized|shares": [
+null,
+"2010-12-31",
+1000000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:CommonStockSharesIssued|shares": [
+null,
+"2010-12-31",
+386351693,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:CommonStockSharesOutstanding|shares": [
+null,
+"2010-12-31",
+343028989,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:DebtInstrumentCarryingAmount|KRW": [
+null,
+"2010-12-31",
+30086412000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DebtInstrumentInterestRateDuringPeriod|pure": [
+"2010-01-01",
+"2010-12-31",
+0.0261,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DebtInstrumentUnamortizedDiscount|KRW": [
+null,
+"2010-12-31",
+6280000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DeferredRevenue|KRW": [
+null,
+"2010-12-31",
+111762000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DeferredTaxLiabilities|KRW": [
+null,
+"2010-12-31",
+11011000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DeferredTaxLiabilitiesOther|KRW": [
+null,
+"2010-12-31",
+87751000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DefinedBenefitPlanCostOfProvidingSpecialOrContractualTerminationBenefitsRecognizedDuringPeriod|KRW": [
+null,
+"2010-12-31",
+555238000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:Depreciation|KRW": [
+"2010-01-01",
+"2010-12-31",
+260428000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:DepreciationAmortizationAndAccretionNet|KRW": [
+"2010-01-01",
+"2010-12-31",
+359568000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:DepreciationAmortizationAndAccretionNet|USD": [
+"2010-01-01",
+"2010-12-31",
+318033000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:DepreciationAndAmortization|KRW": [
+"2009-01-01",
+"2009-12-31",
+431007000000,
+"20-F/A",
+"2010-07-21",
+3
+],
+"us-gaap:DepreciationAndAmortization|USD": [
+"2009-01-01",
+"2009-12-31",
+370392000,
+"20-F/A",
+"2010-07-21",
+1
+],
+"us-gaap:DepreciationPremisesAndEquipment|KRW": [
+"2010-01-01",
+"2010-12-31",
+260428000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:DividendsCommonStockCash|KRW": [
+"2010-01-01",
+"2010-12-31",
+78897000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:DividendsCommonStockCash|USD": [
+"2010-01-01",
+"2010-12-31",
+69783000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:EarningsPerShareBasic|KRW": [
+"2010-01-01",
+"2010-12-31",
+-1714,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:EarningsPerShareBasic|USD/shares": [
+"2010-01-01",
+"2010-12-31",
+-1.516,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:EarningsPerShareDiluted|KRW": [
+"2010-01-01",
+"2010-12-31",
+-1714,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:EarningsPerShareDiluted|USD/shares": [
+"2010-01-01",
+"2010-12-31",
+-1.516,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:EffectOfExchangeRateOnCashAndCashEquivalents|KRW": [
+"2010-01-01",
+"2010-12-31",
+-20214000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:EffectOfExchangeRateOnCashAndCashEquivalents|USD": [
+"2010-01-01",
+"2010-12-31",
+-17879000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:EquityMethodInvestmentRealizedGainLossOnDisposal|KRW": [
+"2019-01-01",
+"2019-12-31",
+1423000000,
+"20-F",
+"2021-04-27",
+7
+],
+"us-gaap:EquityMethodInvestmentSoldCarryingAmount|KRW": [
+"2020-01-01",
+"2020-12-31",
+251575000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:EquityMethodInvestmentUnderlyingEquityInNetAssets|KRW": [
+null,
+"2020-12-31",
+757297000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:ExcessTierOneRiskBasedCapital|KRW": [
+null,
+"2020-12-31",
+2009495000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:FairValueAssetsMeasuredOnRecurringBasisGainLossIncludedInTradingRevenue|KRW": [
+"2010-01-01",
+"2010-12-31",
+98208000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:FairValueHedgeLiabilitiesAtFairValue|KRW": [
+null,
+"2010-12-31",
+217891000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetPurchasesSalesIssuancesSettlements|KRW": [
+"2010-01-01",
+"2010-12-31",
+30138000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization|KRW": [
+null,
+"2010-12-31",
+898342000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpense|KRW": [
+"2010-01-01",
+"2010-12-31",
+99140000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:FutureAmortizationExpenseYearFive|KRW": [
+"2010-01-01",
+"2010-12-31",
+16000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearFour|KRW": [
+"2010-01-01",
+"2010-12-31",
+22986000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearOne|KRW": [
+"2010-01-01",
+"2010-12-31",
+101622000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearThree|KRW": [
+"2010-01-01",
+"2010-12-31",
+61192000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:FutureAmortizationExpenseYearTwo|KRW": [
+"2010-01-01",
+"2010-12-31",
+89492000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:GainLossOnSaleOfDebtInvestments|KRW": [
+"2010-01-01",
+"2010-12-31",
+148868000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:GainLossOnSaleOfEquityInvestments|KRW": [
+"2010-01-01",
+"2010-12-31",
+-79101000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:GainLossOnSaleOfEquityMethodInvestments|KRW": [
+"2009-01-01",
+"2009-12-31",
+-13885000000,
+"20-F/A",
+"2011-07-05",
+5
+],
+"us-gaap:GainLossOnSaleOfEquityMethodInvestments|USD": [
+"2009-01-01",
+"2009-12-31",
+-11932000,
+"20-F/A",
+"2010-07-21",
+1
+],
+"us-gaap:GainLossOnSaleOfPropertyPlantEquipment|KRW": [
+"2010-01-01",
+"2010-12-31",
+5878000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:GainLossOnSaleOfPropertyPlantEquipment|USD": [
+"2010-01-01",
+"2010-12-31",
+5199000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:GainLossOnSalesOfLoansNet|KRW": [
+"2010-01-01",
+"2010-12-31",
+55184000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:GainLossOnSalesOfLoansNet|USD": [
+"2010-01-01",
+"2010-12-31",
+48809000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterFiveThroughTenYearsFairValue|KRW": [
+null,
+"2010-12-31",
+2784603000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterFiveThroughTenYearsNetCarryingAmount|KRW": [
+null,
+"2010-12-31",
+2688712000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterOneThroughFiveYearsFairValue|KRW": [
+null,
+"2010-12-31",
+8859141000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterOneThroughFiveYearsNetCarryingAmount|KRW": [
+null,
+"2010-12-31",
+8581717000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterTenYearsFairValue|KRW": [
+null,
+"2010-12-31",
+104899000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesAfterTenYearsNetCarryingAmount|KRW": [
+null,
+"2010-12-31",
+100661000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesFairValue|KRW": [
+null,
+"2010-12-31",
+13472534000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesNetCarryingAmount|KRW": [
+null,
+"2010-12-31",
+13075976000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesWithinOneYearFairValue|KRW": [
+null,
+"2010-12-31",
+1723891000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:HeldToMaturitySecuritiesDebtMaturitiesWithinOneYearNetCarryingAmount|KRW": [
+null,
+"2010-12-31",
+1704886000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments|KRW": [
+"2010-01-01",
+"2010-12-31",
+-288416000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments|USD": [
+"2010-01-01",
+"2010-12-31",
+-255100000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncomeLossFromEquityMethodInvestments|KRW": [
+"2010-01-01",
+"2010-12-31",
+-102244000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncomeLossFromEquityMethodInvestments|USD": [
+"2010-01-01",
+"2010-12-31",
+-90433000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncomeTaxEffectsAllocatedDirectlyToEquity|KRW": [
+"2020-01-01",
+"2020-12-31",
+-149913000000,
+"20-F",
+"2021-04-27",
+3
+],
+"us-gaap:IncreaseDecreaseInInterestAndDividendsReceivable|KRW": [
+"2010-01-01",
+"2010-12-31",
+-72427000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncreaseDecreaseInInterestAndDividendsReceivable|USD": [
+"2010-01-01",
+"2010-12-31",
+-64061000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncreaseDecreaseInOtherOperatingLiabilities|KRW": [
+"2010-01-01",
+"2010-12-31",
+234822000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncreaseDecreaseInOtherOperatingLiabilities|USD": [
+"2010-01-01",
+"2010-12-31",
+207697000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncreaseDecreaseInRestrictedCash|KRW": [
+"2010-01-01",
+"2010-12-31",
+-2690776000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncreaseDecreaseInRestrictedCash|USD": [
+"2010-01-01",
+"2010-12-31",
+-2379954000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncreaseDecreaseInTradingLiabilities|KRW": [
+"2010-01-01",
+"2010-12-31",
+-976762000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:IncreaseDecreaseInTradingLiabilities|USD": [
+"2010-01-01",
+"2010-12-31",
+-863932000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:IncrementalCommonSharesAttributableToShareBasedPaymentArrangements|shares": [
+"2020-01-01",
+"2020-12-31",
+3416737,
+"20-F",
+"2021-04-27",
+9
+],
+"us-gaap:InterestAndDividendIncomeOperating|KRW": [
+"2010-01-01",
+"2010-12-31",
+13035999000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:InterestAndDividendIncomeOperating|USD": [
+"2010-01-01",
+"2010-12-31",
+11530160000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:InterestAndDividendIncomeSecuritiesTradingOrMeasuredAtFairValue|KRW": [
+"2010-01-01",
+"2010-12-31",
+233783000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:InterestAndDividendIncomeSecuritiesTradingOrMeasuredAtFairValue|USD": [
+"2010-01-01",
+"2010-12-31",
+206778000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:InterestBearingDepositLiabilities|KRW": [
+null,
+"2010-12-31",
+176846197000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:InterestBearingDepositLiabilities|USD": [
+null,
+"2010-12-31",
+156418006000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:InterestExpenseLongTermDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+1845538000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:InterestExpenseLongTermDebt|USD": [
+"2010-01-01",
+"2010-12-31",
+1632352000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:InterestExpenseOtherShortTermBorrowings|KRW": [
+"2010-01-01",
+"2010-12-31",
+215295000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:InterestExpenseOtherShortTermBorrowings|USD": [
+"2010-01-01",
+"2010-12-31",
+190426000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:InvestmentOwnedBalanceShares|shares": [
+null,
+"2011-06-20",
+34966962,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:Liabilities|KRW": [
+null,
+"2010-12-31",
+234716456000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:Liabilities|USD": [
+null,
+"2010-12-31",
+207603446000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:LiabilitiesAndStockholdersEquity|KRW": [
+null,
+"2010-12-31",
+251752002000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:LiabilitiesAndStockholdersEquity|USD": [
+null,
+"2010-12-31",
+222671151000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:LoansAndLeasesReceivableConsumerHomeEquity|KRW": [
+null,
+"2010-12-31",
+29287399000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalAfterYearFive|KRW": [
+null,
+"2010-12-31",
+5466962000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInNextTwelveMonths|KRW": [
+null,
+"2010-12-31",
+10011500000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearFive|KRW": [
+null,
+"2010-12-31",
+377793000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearFour|KRW": [
+null,
+"2010-12-31",
+4767098000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearThree|KRW": [
+null,
+"2010-12-31",
+2075068000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:LongTermDebtMaturitiesRepaymentsOfPrincipalInYearTwo|KRW": [
+null,
+"2010-12-31",
+7387991000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:NetCashProvidedByUsedInFinancingActivities|KRW": [
+"2010-01-01",
+"2010-12-31",
+-1011550000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NetCashProvidedByUsedInFinancingActivities|USD": [
+"2010-01-01",
+"2010-12-31",
+-894702000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NetCashProvidedByUsedInInvestingActivities|KRW": [
+"2010-01-01",
+"2010-12-31",
+-2132152000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NetCashProvidedByUsedInInvestingActivities|USD": [
+"2010-01-01",
+"2010-12-31",
+-1885860000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NetCashProvidedByUsedInOperatingActivities|KRW": [
+"2010-01-01",
+"2010-12-31",
+4335663000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NetCashProvidedByUsedInOperatingActivities|USD": [
+"2010-01-01",
+"2010-12-31",
+3834834000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NetIncomeLoss|KRW": [
+"2010-01-01",
+"2010-12-31",
+-588115000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NetIncomeLoss|USD": [
+"2010-01-01",
+"2010-12-31",
+-520180000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NetIncomeLossAttributableToNoncontrollingInterest|KRW": [
+"2010-01-01",
+"2010-12-31",
+-4409000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NetIncomeLossAttributableToNoncontrollingInterest|USD": [
+"2010-01-01",
+"2010-12-31",
+-3900000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NewAccountingPronouncementOrChangeInAccountingPrincipleCumulativeEffectOfChangeOnEquityOrNetAssets|KRW": [
+"2009-01-01",
+"2009-12-31",
+14195000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:NoninterestBearingDepositLiabilities|KRW": [
+null,
+"2010-12-31",
+3081938000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:NoninterestBearingDepositLiabilities|USD": [
+null,
+"2010-12-31",
+2725931000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:NoninterestIncomeOtherOperatingIncome|KRW": [
+"2010-01-01",
+"2010-12-31",
+374185000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:NoninterestIncomeOtherOperatingIncome|USD": [
+"2010-01-01",
+"2010-12-31",
+330962000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:OperatingIncomeLoss|KRW": [
+"2010-01-01",
+"2010-12-31",
+148485000000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:OtherAdditionalCapital|KRW": [
+null,
+"2020-12-31",
+4002714000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:OtherBorrowings|KRW": [
+null,
+"2010-12-31",
+8775200000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:OtherBorrowings|USD": [
+null,
+"2010-12-31",
+7761543000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:OtherLiabilities|KRW": [
+null,
+"2010-12-31",
+3825556000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:OtherLiabilities|USD": [
+null,
+"2010-12-31",
+3383651000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:OtherLongTermDebt|KRW": [
+null,
+"2010-12-31",
+30080132000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:OtherLongTermDebt|USD": [
+null,
+"2010-12-31",
+26605460000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:OtherOperatingIncome|KRW": [
+"2020-01-01",
+"2020-12-31",
+4756745000000,
+"20-F",
+"2021-04-27",
+12
+],
+"us-gaap:PaymentsForRepurchaseOfCommonStock|KRW": [
+"2020-01-01",
+"2020-12-31",
+0,
+"20-F",
+"2021-04-27",
+17
+],
+"us-gaap:PaymentsForRepurchaseOfCommonStock|USD": [
+"2020-01-01",
+"2020-12-31",
+0,
+"20-F",
+"2021-04-27",
+5
+],
+"us-gaap:PaymentsOfDividendsCommonStock|KRW": [
+"2010-01-01",
+"2010-12-31",
+78897000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:PaymentsOfDividendsCommonStock|USD": [
+"2010-01-01",
+"2010-12-31",
+69783000,
+"20-F/A",
+"2011-07-05",
+1
+],
+"us-gaap:PaymentsOfDividendsMinorityInterest|KRW": [
+"2008-01-01",
+"2008-12-31",
+1535000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:PaymentsToAcquireBusinessesNetOfCashAcquired|KRW": [
+"2009-01-01",
+"2009-12-31",
+-5501000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:PaymentsToAcquireBusinessesNetOfCashAcquired|USD": [
+"2009-01-01",
+"2009-12-31",
+-4727000,
+"20-F/A",
+"2010-07-21",
+1
+],
+"us-gaap:PaymentsToAcquireEquityMethodInvestments|KRW": [
+"2010-01-01",
+"2010-12-31",
+210658000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:PaymentsToAcquireEquityMethodInvestments|USD": [
+"2010-01-01",
+"2010-12-31",
+186324000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:PaymentsToAcquirePropertyPlantAndEquipment|KRW": [
+"2010-01-01",
+"2010-12-31",
+119816000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:PaymentsToAcquirePropertyPlantAndEquipment|USD": [
+"2010-01-01",
+"2010-12-31",
+105975000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:PledgedAssetsSeparatelyReportedRealEstatePledgedAsCollateralAtFairValue|KRW": [
+null,
+"2010-12-31",
+4103000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:ProceedsFromIssuanceOfOtherLongTermDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+8992899000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:ProceedsFromIssuanceOfOtherLongTermDebt|USD": [
+"2010-01-01",
+"2010-12-31",
+7954094000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:ProceedsFromRepaymentsOfOtherDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+-157796000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:ProceedsFromRepaymentsOfOtherDebt|USD": [
+"2010-01-01",
+"2010-12-31",
+-139568000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:ProceedsFromRepaymentsOfSecuredDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+-1948761000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:ProceedsFromRepaymentsOfSecuredDebt|USD": [
+"2010-01-01",
+"2010-12-31",
+-1723652000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:ProceedsFromSaleOfEquityMethodInvestments|KRW": [
+"2009-01-01",
+"2009-12-31",
+3354000000,
+"20-F/A",
+"2011-07-05",
+5
+],
+"us-gaap:ProceedsFromSaleOfEquityMethodInvestments|USD": [
+"2009-01-01",
+"2009-12-31",
+2882000,
+"20-F/A",
+"2010-07-21",
+1
+],
+"us-gaap:ProceedsFromSaleOfPropertyPlantAndEquipment|KRW": [
+"2010-01-01",
+"2010-12-31",
+12821000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:ProceedsFromSaleOfPropertyPlantAndEquipment|USD": [
+"2010-01-01",
+"2010-12-31",
+11339000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:ProfitLoss|KRW": [
+"2010-01-01",
+"2010-12-31",
+-592524000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:ProfitLoss|USD": [
+"2010-01-01",
+"2010-12-31",
+-524080000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:PropertyPlantAndEquipmentGross|KRW": [
+null,
+"2010-12-31",
+3648853000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:PropertyPlantAndEquipmentNet|KRW": [
+null,
+"2010-12-31",
+1478187000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:PropertyPlantAndEquipmentNet|USD": [
+null,
+"2010-12-31",
+1307436000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:RepaymentsOfOtherLongTermDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+17812574000000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:RepaymentsOfOtherLongTermDebt|USD": [
+"2010-01-01",
+"2010-12-31",
+15754975000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:RepaymentsOfRelatedPartyDebt|KRW": [
+"2010-01-01",
+"2010-12-31",
+11452000000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:RestrictedCashAndCashEquivalents|KRW": [
+null,
+"2010-12-31",
+3359465000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:RestrictedCashAndCashEquivalents|USD": [
+null,
+"2010-12-31",
+2971400000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:SegmentReportingEntityConsolidatedRevenue|KRW": [
+"2010-01-01",
+"2010-12-31",
+16399144000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:SegmentReportingInformationDepreciationDepletionAndAmortizationExpense|KRW": [
+"2010-01-01",
+"2010-12-31",
+359568000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:SegmentReportingInformationOperatingIncomeLoss|KRW": [
+"2010-01-01",
+"2010-12-31",
+-288416000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:SegmentReportingInformationProfitLoss|KRW": [
+"2010-01-01",
+"2010-12-31",
+-592524000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsForfeitedInPeriod|shares": [
+"2010-01-01",
+"2010-12-31",
+134002,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod|shares": [
+"2010-01-01",
+"2010-12-31",
+793449,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsNonvestedNumber|shares": [
+null,
+"2010-12-31",
+849092,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsVestedInPeriod|shares": [
+"2010-01-01",
+"2010-12-31",
+122994,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsVestedInPeriodTotalFairValue|KRW": [
+"2010-01-01",
+"2010-12-31",
+5963000000,
+"20-F/A",
+"2011-07-05",
+3
+],
+"us-gaap:StockholdersEquity|KRW": [
+null,
+"2010-12-31",
+16996533000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:StockholdersEquity|USD": [
+null,
+"2010-12-31",
+15033199000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest|KRW": [
+null,
+"2010-12-31",
+17035546000000,
+"20-F/A",
+"2011-07-05",
+8
+],
+"us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest|USD": [
+null,
+"2010-12-31",
+15067705000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:TierOneRiskBasedCapital|KRW": [
+null,
+"2020-12-31",
+36895778000000,
+"20-F",
+"2021-04-27",
+10
+],
+"us-gaap:TierOneRiskBasedCapitalToRiskWeightedAssets|pure": [
+null,
+"2020-12-31",
+0.1406,
+"20-F",
+"2021-04-27",
+10
+],
+"us-gaap:TierTwoRiskBasedCapital|KRW": [
+null,
+"2020-12-31",
+3184358000000,
+"20-F",
+"2021-04-27",
+8
+],
+"us-gaap:TradingLiabilities|KRW": [
+null,
+"2010-12-31",
+3269451000000,
+"20-F/A",
+"2011-07-05",
+4
+],
+"us-gaap:TradingLiabilities|USD": [
+null,
+"2010-12-31",
+2891784000,
+"20-F/A",
+"2011-07-05",
+2
+],
+"us-gaap:TreasuryStockShares|shares": [
+null,
+"2010-12-31",
+43322704,
+"20-F/A",
+"2011-07-05",
+5
+],
+"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding|shares": [
+"2010-01-01",
+"2010-12-31",
+343029000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:WeightedAverageNumberOfSharesIssuedBasic|shares": [
+"2018-01-01",
+"2018-12-31",
+418111537,
+"20-F",
+"2019-04-30",
+3
+],
+"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic|shares": [
+"2010-01-01",
+"2010-12-31",
+343029000,
+"20-F/A",
+"2011-07-05",
+6
+],
+"us-gaap:WeightedAverageNumberOfSharesTreasuryStock|shares": [
+"2018-01-01",
+"2018-12-31",
+-21611579,
+"20-F",
+"2019-04-30",
+3
+]
+},
+"dei_forms": [
+[
+"20-F",
+2017
+],
+[
+"20-F",
+2018
+],
+[
+"20-F",
+2019
+],
+[
+"20-F",
+2020
+],
+[
+"20-F",
+2021
+],
+[
+"20-F",
+2022
+],
+[
+"20-F",
+2023
+],
+[
+"20-F",
+2024
+],
+[
+"20-F",
+2025
+],
+[
+"20-F/A",
+2009
+],
+[
+"20-F/A",
+2010
+]
+],
+"full": {
+"ifrs-full:Revenue": {
+"KRW": []
+},
+"ifrs-full:ProfitLoss": {
+"KRW": [
+[
+"2024-01-01",
+"2024-12-31",
+5028606000000,
+"20-F",
+"2025-04-25",
+2024,
+"FY",
+"CY2024"
+]
+],
+"USD": [
+[
+"2024-01-01",
+"2024-12-31",
+3402627000,
+"20-F",
+"2025-04-25",
+2024,
+"FY",
+"CY2024"
+]
+]
+}
+}
+}

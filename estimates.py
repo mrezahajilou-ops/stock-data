@@ -81,7 +81,7 @@ def series(t):
 
 def one(t):
     sym = t.replace('.', '-')
-    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail&crumb=%s'
+    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail,earningsHistory&crumb=%s'
            % (urllib.parse.quote(sym), urllib.parse.quote(CRUMB[0] or '')))
     for a in range(3):
         try:
@@ -119,6 +119,14 @@ def one(t):
                 'teps': raw(ks.get('trailingEps')), 'ni': raw(ks.get('netIncomeToCommon'))}.items() if v is not None}
             if not any(o.get(k) for k in ('e0', 'e1', 'r0', 'tgt')) and not o['ref']:
                 return t, None
+            # reported quarters (Yahoo updates them hours after each earnings release, before the SEC filing)
+            eh = []
+            for h in (res.get('earningsHistory') or {}).get('history') or []:
+                qd = raw(h.get('quarter'))
+                if isinstance(qd, (int, float)) and raw(h.get('epsActual')) is not None:
+                    eh.append([dt.datetime.utcfromtimestamp(qd).strftime('%Y-%m-%d'), raw(h.get('epsActual')), raw(h.get('epsEstimate'))])
+            if eh:
+                o['eh'] = sorted(eh)
             ts = series(t)
             if ts:
                 o['ts'] = ts

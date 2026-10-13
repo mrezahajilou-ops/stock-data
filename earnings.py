@@ -151,6 +151,55 @@ def quarters(cik):
     return cands[0][2]
 
 
+def yahoo_actuals(tickers):
+    """Reported EPS (and the quarter's revenue) from Yahoo, which has them hours after the earnings release;
+    Nasdaq's calendar often fills the actual EPS only the next day.
+    -> {ticker: {"YYYY-MM": {"act", "f", "rev"}}} keyed by quarter-end month."""
+    if not tickers:
+        return {}
+    try:
+        sys.path.insert(0, ROOT)
+        import estimates as Y
+        Y.crumb()
+    except Exception as e:
+        print('yahoo unavailable', e)
+        return {}
+    import urllib.parse
+    out = {}
+    for t in tickers:
+        url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsHistory,earnings&crumb=%s'
+               % (urllib.parse.quote(t.replace('.', '-')), urllib.parse.quote(Y.CRUMB[0] or '')))
+        try:
+            res = ((json.loads(Y.get(url)).get('quoteSummary') or {}).get('result') or [None])[0] or {}
+        except Exception:
+            continue
+        hist = [h for h in (res.get('earningsHistory') or {}).get('history') or [] if Y.raw(h.get('epsActual')) is not None
+                and isinstance(Y.raw(h.get('quarter')), (int, float))]
+        hist.sort(key=lambda h: Y.raw(h['quarter']))
+        chart = (((res.get('earnings') or {}).get('financialsChart') or {}).get('quarterly')) or []
+        d = {}
+        for i, h in enumerate(hist):
+            qe = dt.datetime.utcfromtimestamp(Y.raw(h['quarter'])).date()
+            rec = {'act': Y.raw(h['epsActual']), 'f': Y.raw(h.get('epsEstimate'))}
+            if i == len(hist) - 1 and chart and Y.raw((chart[-1].get('revenue') or {})):
+                rec['rev'] = Y.raw(chart[-1]['revenue'])   # newest quarter of the chart = newest reported quarter
+            for k in (qe, qe - dt.timedelta(days=8)):       # 52/53-week years end a few days into the next month
+                d.setdefault('%04d-%02d' % (k.year, k.month), rec)
+        if d:
+            out[t] = d
+        time.sleep(0.4)
+    print('yahoo actuals:', len(out), 'of', len(tickers))
+    return out
+
+
+def qkey(qlabel):
+    try:
+        mon, yr = qlabel.split('/')
+        return '%04d-%02d' % (int(yr), dt.datetime.strptime(mon[:3], '%b').month)
+    except Exception:
+        return None
+
+
 def match(qmap, qlabel, years_back=0):
     """qlabel 'Jun/2026' -> revenue of the quarter ending in that month (+- a few days)."""
     try:
@@ -196,6 +245,7 @@ def main():
             want.append(ds)
     want = want[:MAX_NEW_DAYS]
     touched = set()
+    pending = []   # reported in the last days but Nasdaq has no actual EPS yet
     for ds in want:
         rows = cal_day(ds)
         if rows is None:
@@ -204,7 +254,11 @@ def main():
             t = (r.get('symbol') or '').strip().upper().replace('.', '-').replace('/', '-')
             mc = num(r.get('marketCap'))
             act = num(r.get('eps'))
-            if t not in cover or not mc or mc < 1e9 or act is None:
+            if t not in cover or not mc or mc < 1e9:
+                continue
+            if act is None:
+                if (TODAY - dt.date.fromisoformat(ds)).days <= 4 and ds <= TODAY.isoformat():
+                    pending.append((ds, t, r))
                 continue
             rec = {'d': ds, 'tm': TIME.get(r.get('time'), 'na'), 'q': r.get('fiscalQuarterEnding'), 'act': act,
                    'f': num(r.get('epsForecast')), 'sur': num(r.get('surprise')), 'ly': num(r.get('lastYearEPS'))}
@@ -220,7 +274,31 @@ def main():
         if (TODAY - dt.date.fromisoformat(ds)).days > 10:
             done.add(ds)
         time.sleep(0.35)
-    print('calendar days read: %d, companies updated: %d' % (len(want), len(touched)))
+    # Yahoo fallback for today's / the last days' reports Nasdaq hasn't filled yet
+    ya = yahoo_actuals(sorted({t for _, t, _ in pending}))
+    nya = 0
+    for ds, t, r in pending:
+        k = qkey(r.get('fiscalQuarterEnding') or '')
+        y = (ya.get(t) or {}).get(k)
+        if not y or y.get('act') is None:
+            continue
+        f = num(r.get('epsForecast'))
+        if f is None:
+            f = y.get('f')
+        rec = {'d': ds, 'tm': TIME.get(r.get('time'), 'na'), 'q': r.get('fiscalQuarterEnding'), 'act': y['act'], 'f': f,
+               'sur': round((y['act'] - f) / abs(f) * 100, 2) if f else None, 'ly': num(r.get('lastYearEPS')), 'src': 'yahoo'}
+        if y.get('rev'):
+            rec['rev'] = y['rev']
+        e = db.setdefault(t, {'t': t, 'q': []})
+        old = [x for x in e['q'] if x.get('q') == rec['q']]
+        if old:
+            if old[0].get('act') is None or old[0].get('src') == 'yahoo':
+                old[0].update({k2: v for k2, v in rec.items() if v is not None})
+        else:
+            e['q'].append(rec)
+        touched.add(t)
+        nya += 1
+    print('calendar days read: %d, companies updated: %d (yahoo fallback: %d of %d pending)' % (len(want), len(touched), nya, len(pending)))
 
     # 2) price reaction + revenue for records that miss them (recent ones keep trying for 75 days)
     need_rx = [t for t, e in db.items() if any(x.get('rx') is None and (TODAY - dt.date.fromisoformat(x['d'])).days <= 400

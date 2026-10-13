@@ -142,6 +142,18 @@ def _ts_annual(ts, key, fx):
     return out
 
 
+def newer_quarter(est, end):
+    """True when the company has already reported a quarter that ends after `end` (Yahoo's earnings history is
+    updated hours after the earnings release; the SEC filing follows days to weeks later)."""
+    eh = (est or {}).get("eh") or []
+    if not eh or not end:
+        return False
+    try:
+        return days(end, eh[-1][0]) > 20
+    except Exception:
+        return False
+
+
 def days(a, b):
     return (dt.date.fromisoformat(b[:10]) - dt.date.fromisoformat(a[:10])).days
 
@@ -195,8 +207,11 @@ def block(rec, mk, est, fx, peer=None, today=None):
         sec = dict(sec, fcf=sec.get("cfo"))
     yd, yrev = _ts_last(ts, "trailingTotalRevenue", fx)
     # no time series, SEC figures 100+ days old and Yahoo's trailing revenue clearly different: a newer quarter exists
-    ref_newer = ((not yd or days(sec_end or yd, yd) <= 45) and sec_end and days(sec_end, tiso) > 100 and rate and isinstance(ref.get("rev"), (int, float))
-                 and ref["rev"] > 0 and 0.08 < abs(ref["rev"] / rate / sec["revenue"] - 1) and 0.67 < ref["rev"] / rate / sec["revenue"] < 1.6)
+    ratio = (ref["rev"] / rate / sec["revenue"]) if (sec_end and rate and isinstance(ref.get("rev"), (int, float)) and ref["rev"] > 0) else None
+    # a newer quarter exists than the SEC data: either the company already reported it (earnings release) or the
+    # SEC figures are 100+ days old and Yahoo's trailing revenue clearly moved
+    ref_newer = bool(ratio and 0.67 < ratio < 1.6 and (not yd or days(sec_end, yd) <= 45) and
+                     ((newer_quarter(est, sec_end) and abs(ratio - 1) > 0.002) or (days(sec_end, tiso) > 100 and abs(ratio - 1) > 0.08)))
     # Yahoo's series only replaces SEC data when the revenue definition matches (hotels: fee vs total revenue)
     if yd and yrev and sec_end and days(sec_end, yd) < 200 and not (0.67 < yrev / sec["revenue"] < 1.6):
         yd, yrev = None, None
@@ -371,8 +386,11 @@ def block(rec, mk, est, fx, peer=None, today=None):
         g1 = 0.75 * ga + 0.25 * clamp(gh, ga - 0.10, ga + 0.10)
     else:
         g1 = gh
-    g1 = clamp(g1, -0.15, 0.35)
-    g2 = clamp(min(g1, max(0.3 * g1, 0.03)), -0.02, 0.08)
+    pm5 = [nm(r) for r in hist[-6:] if nm(r) is not None]
+    rev_fell = any(y["rev"] and x["rev"] and y["rev"] < 0.95 * x["rev"] for x, y in zip(hist[-7:-1], hist[-6:]))
+    cyc = rev_fell and len(pm5) >= 4 and (max(pm5) - min(pm5) > 0.25 or (min(pm5) < 0 < max(pm5) and max(pm5) > 0.1))
+    g1 = clamp(g1, -0.15, 0.25 if cyc else 0.35)   # cyclicals: don't extrapolate a boom
+    g2 = clamp(min(g1, max(0.3 * g1, 0.03)), -0.02, 0.04 if cyc else 0.08)
 
     def wavg(pairs):
         v = [(x, w_) for x, w_ in pairs if x is not None]
@@ -380,9 +398,6 @@ def block(rec, mk, est, fx, peer=None, today=None):
 
     p5 = H["pm"][2] if H["pm"][2] is not None else H["pm"][1]
     hi_g = g1 > 0.15     # fast growers: today's margin is depressed by growth spending, lean on the analysts
-    pm5 = [nm(r) for r in hist[-6:] if nm(r) is not None]
-    rev_fell = any(y["rev"] and x["rev"] and y["rev"] < 0.95 * x["rev"] for x, y in zip(hist[-7:-1], hist[-6:]))
-    cyc = rev_fell and len(pm5) >= 4 and (max(pm5) - min(pm5) > 0.25 or (min(pm5) < 0 < max(pm5) and max(pm5) > 0.1))
     an_nm = an.get("nm")
     one_off = pm_t is not None and an_nm is not None and an_nm > 0 and pm_t > 1.35 * max(an_nm, p5 or 0)
     if one_off:          # today's profit inflated by one-off gains (investment gains, tax benefits): trust the forecast
@@ -427,6 +442,8 @@ def block(rec, mk, est, fx, peer=None, today=None):
     peer = peer or {}
     m_pe = 0.5 * mult + 0.5 * clamp(peer["pe"], 7, 35) if peer.get("pe") else mult
     m_pf = 0.5 * mult + 0.5 * clamp(peer["pf"], 7, 35) if peer.get("pf") else m_pe
+    if cyc:              # peak profits of cyclical businesses are priced at low multiples (they don't last)
+        m_pe, m_pf = 0.75 * m_pe, 0.75 * m_pf
     m_pe, m_pf = clamp(m_pe, 6, 32), clamp(m_pf, 6, 32)
     country = COUNTRY_OVERRIDE.get(rec["ticker"]) or mk.get("country") or ""
     crp = CRP.get(country, 0.0)

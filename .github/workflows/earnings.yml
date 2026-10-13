@@ -3,6 +3,7 @@ name: Earnings history (twice a day)
 on:
   schedule:
     - cron: '25 5 * * *'     # after the morning calendar run
+    - cron: '50 15 * * 1-5'  # afternoon: the same day's pre-market reports (17:50 Berlin)
     - cron: '15 22 * * 1-5'  # after the US close (after-hours reports of the day before)
   workflow_dispatch:
 
@@ -23,6 +24,7 @@ jobs:
           sparse-checkout: |
             data/stocks
             earnings.py
+            estimates.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

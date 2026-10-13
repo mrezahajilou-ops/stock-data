@@ -990,6 +990,12 @@ def score(rec, mk, sector_pe):
     e = EST.get(rec["ticker"]) or {}
     latest_end = t.get("end") or last["fy_end"]
     stale = (dt.date.today() - dt.date.fromisoformat(latest_end)).days > 135
+    # the company already reported a newer quarter (earnings release) and Yahoo's trailing figures moved:
+    # use them until the SEC filing arrives
+    if not stale and ref and dcf_model.newer_quarter(e, latest_end):
+        fx0 = 1.0 if (e.get("cur") or "USD") == "USD" else FX_LATEST.get(e.get("cur"))
+        if fx0 and isinstance(ref.get("rev"), (int, float)) and rev and 0.67 < ref["rev"] / fx0 / rev < 1.6 and abs(ref["rev"] / fx0 / rev - 1) > 0.002:
+            stale = True
     rec["ttm_src"] = "sec"
     if stale and ref:
         fxr = 1.0 if (e.get("cur") or "USD") == "USD" else FX_LATEST.get(e.get("cur"))

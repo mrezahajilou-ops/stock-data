@@ -338,14 +338,43 @@ def main():
         if time.time() - t0 > 3000:
             break
 
+    # one basis for actual vs expected EPS: Nasdaq sometimes pairs the GAAP result with the adjusted consensus
+    # (Credo: GAAP 0.78 vs adjusted forecast 0.93 = a fake "miss"). Yahoo's earnings history has both on the
+    # analysts' (adjusted) basis, so use it wherever it has the quarter.
+    try:
+        E = json.load(open(os.path.join(ROOT, 'estimates', 'est.json'))).get('est') or {}
+    except Exception:
+        E = {}
+    nfix = 0
+    for t, e in db.items():
+        eh = (E.get(t) or {}).get('eh') or []
+        by = {}
+        for qd, a, f in eh:
+            d0 = dt.date.fromisoformat(qd)
+            for k in (d0, d0 - dt.timedelta(days=8)):
+                by.setdefault('%04d-%02d' % (k.year, k.month), (a, f))
+        for x in e['q']:
+            y = by.get(qkey(x.get('q') or ''))
+            if not y or y[0] is None:
+                continue
+            a, f = y
+            if f is None:
+                f = x.get('f')
+            if x.get('act') != a or x.get('f') != f:
+                nfix += 1
+            x['act'], x['f'] = a, f
+            x['sur'] = round((a - f) / abs(f) * 100, 2) if f else None
+            x['eb'] = 'adj'        # analysts' basis
+    print('EPS put on one basis (Yahoo):', nfix)
+
     # EPS a year ago from our own history when the calendar did not give it
     for t, e in db.items():
         by = {x.get('q'): x for x in e['q']}
         for x in e['q']:
-            if x.get('ly') is None and x.get('q') and '/' in x['q']:
+            if (x.get('ly') is None or x.get('eb') == 'adj') and x.get('q') and '/' in x['q']:
                 mon, yr = x['q'].split('/')
                 prev = by.get('%s/%d' % (mon, int(yr) - 1)) if yr.isdigit() else None
-                if prev and prev.get('act') is not None:
+                if prev and prev.get('act') is not None and (x.get('eb') != 'adj' or prev.get('eb') == 'adj' or x.get('ly') is None):
                     x['ly'] = prev['act']
     n = 0
     for t, e in db.items():

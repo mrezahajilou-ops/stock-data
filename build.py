@@ -1206,25 +1206,29 @@ def reconcile_per_share(rec, mk, ref):
         return
     implied = mcap / price
     t, last, bs = rec.get("ttm") or {}, rec["annual"][-1], rec.get("bs") or {}
-    sh_now = t.get("shares_diluted") or bs.get("shares_out") or last.get("shares_diluted")
+    # the split test must look at a *filing-sourced* share count (Yahoo-filled counts are already post-split)
+    t_filled = set(t.get("filled") or []) | ({"shares_diluted", "eps", "dps"} if t.get("src") == "yahoo" else set())
+    sh_sec = (t.get("shares_diluted") if "shares_diluted" not in t_filled else None) or last.get("shares_diluted")
+    sh_now = sh_sec or bs.get("shares_out")
     F = _split_factor(implied / sh_now) if sh_now else None
     if F and F != 1.0:
         # Up-C / partnership structures (Blackstone, Interactive Brokers) also show implied / reported = 2..4 without any
         # split: the market cap counts all units, EPS counts class A only. Demand a second witness - the independent
         # share count or the independent trailing EPS must move by the same factor.
         ysh, yeps = ref.get("sh"), ref.get("teps")
-        e_now = t.get("eps") or last.get("eps_diluted")
+        e_now = (t.get("eps") if "eps" not in t_filled else None) or last.get("eps_diluted")
         w1 = isinstance(ysh, (int, float)) and ysh and 0.8 < (ysh / sh_now) / F < 1.25
         w2 = isinstance(yeps, (int, float)) and yeps and e_now and 0.8 < (e_now / yeps) / F < 1.25
         if not (w1 or w2):
             F = None
     if F and F != 1.0:
         for row in rec["annual"] + [t, rec.get("latest") or {}]:
+            skip = t_filled if row is t else set()
             for k in SHARE_MUL:
-                if row.get(k):
+                if row.get(k) and k not in skip:
                     row[k] = row[k] * F
             for k in PER_SHARE_DIV + (("eps", "dps") if row is t else ()):
-                if row.get(k) is not None:
+                if row.get(k) is not None and k not in skip:
                     row[k] = row[k] / F
         if bs.get("shares_out"):
             bs["shares_out"] = bs["shares_out"] * F

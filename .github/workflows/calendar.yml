@@ -3,8 +3,7 @@ name: Earnings calendar (twice a day)
 on:
   schedule:
     - cron: '10 5 * * *'     # morning (Europe) - picks up overnight reports
-    - cron: '35 15 * * 1-5'  # afternoon - the same day's pre-market reports
-    - cron: '50 21 * * 1-5'  # after the US close - picks up today's after-hours reports
+    - cron: '35 11-22 * * 1-5'  # weekdays hourly from US pre-market to after-hours: results show within the hour
   workflow_dispatch:
 
 permissions:

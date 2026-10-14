@@ -225,6 +225,8 @@ def _x(el, path):
 
 
 SEC_TICKERS = {}
+# insiders of a re-incorporated company keep filing under the old issuer CIK for a while
+INSIDER_CIK = {'XOM': 34088}
 
 
 def sec_cik_for(t):
@@ -351,9 +353,11 @@ def insider_fill(ts, got):
             sec_tries += 1
             d = sec_form4(c)
             if not d:
-                c2 = sec_cik_for(t)
-                if c2 and c2 != c:
-                    d = sec_form4(c2)
+                for c2 in (INSIDER_CIK.get(t), sec_cik_for(t)):
+                    if c2 and c2 != c:
+                        d = sec_form4(c2)
+                        if d:
+                            break
             if d:
                 out[t] = d
                 by_cik.setdefault(c, []).append((m, t)); got[t] = d

@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       limit:
-        description: 'Only first N tickers (test run)'
+        description: 'Test run: first N tickers or a comma-separated ticker list (publishes to prices-test)'
         required: false
         default: ''
 permissions:
@@ -24,9 +24,10 @@ jobs:
       - name: Publish to branch "prices" (single commit, no history growth)
         run: |
           cd prices
-          git init -b prices
+          if [ -n "${{ inputs.limit }}" ]; then B=prices-test; else B=prices; fi
+          git init -b $B
           git config user.name github-actions
           git config user.email actions@github.com
           git add -A
           git commit -qm "prices $(date -u +%F)"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" prices:prices
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $B:$B

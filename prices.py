@@ -75,9 +75,9 @@ def stooq_bulk(wanted):
 
 
 # ---------- source 2: nasdaq per ticker ----------
-def nasdaq(t):
-    url = ('https://api.nasdaq.com/api/quote/%s/chart?assetclass=stocks&fromdate=%s&todate=%s'
-           % (t.replace('.', '%2E'), CUTOFF, TODAY.isoformat()))
+def nasdaq(t, assetclass='stocks'):
+    url = ('https://api.nasdaq.com/api/quote/%s/chart?assetclass=%s&fromdate=%s&todate=%s'
+           % (t.replace('.', '%2E'), assetclass, CUTOFF, TODAY.isoformat()))
     j = json.loads(get(url, timeout=30, headers={'Accept': 'application/json, text/plain, */*',
                                                   'Accept-Language': 'en-US,en;q=0.9', 'Origin': 'https://www.nasdaq.com',
                                                   'Referer': 'https://www.nasdaq.com/'}))
@@ -97,12 +97,19 @@ def nasdaq(t):
     return rows
 
 
+def nasdaq_etf(t):
+    return nasdaq(t, 'etf')
+
+
 def nasdaq_one(t):
+    # share classes: our BRK-B is BRK.B at Nasdaq; a few NYSE names answer only with assetclass=etf
+    variants = [t] + ([t.replace('-', '.')] if '-' in t else []) + [t + '?etf']
     for attempt in range(3):
         try:
-            rows = nasdaq(t)
-            if len(rows) >= 4:
-                return t, rows
+            for v in variants:
+                rows = nasdaq_etf(v[:-4]) if v.endswith('?etf') else nasdaq(v)
+                if len(rows) >= 4:
+                    return t, rows
             return t, None
         except urllib.error.HTTPError as e:
             if e.code in (429, 403):
@@ -121,7 +128,8 @@ def write(t, rows, src):
 def main():
     tickers = [x['t'] for x in json.load(open(IDX)) if not x.get('a')]  # skip alias entries (secondary share classes)
     if len(sys.argv) > 1 and sys.argv[1]:
-        tickers = tickers[:int(sys.argv[1])]
+        a = sys.argv[1]
+        tickers = tickers[:int(a)] if a.isdigit() else [x.strip().upper() for x in a.split(',') if x.strip()]
     os.makedirs(OUT, exist_ok=True)
     ok = {'stooq': 0, 'nasdaq': 0}
     bulk = {}  # stooq bulk archive needs a login (HTTP 401); nasdaq is the primary source for now

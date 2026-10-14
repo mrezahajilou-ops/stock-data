@@ -209,13 +209,137 @@ def profile_one(t):
                'country': val('Region') or val('Country'), 'employees': val('Employees') or None}
 
 
+# ------------------------------------------------------------------ insider fallback: SEC EDGAR Form 4 (when Nasdaq has nothing)
+SEC_UA = os.environ.get('SEC_USER_AGENT', 'Reza Hajilou mreza.hajilou@gmail.com')
+SEC_HDR = {'User-Agent': SEC_UA, 'Accept': 'application/json, text/xml, */*'}
+# Form 4 transaction codes -> the labels Nasdaq uses (the page already knows how to colour / translate those)
+F4_CODE = {'P': 'Buy', 'S': 'Sell', 'M': 'Option Execute', 'A': 'Acquisition (Non Open Market)', 'F': 'Disposition (Non Open Market)',
+           'G': 'Gift', 'D': 'Disposition (Non Open Market)', 'C': 'Acquisition (Non Open Market)', 'J': 'Disposition (Non Open Market)',
+           'W': 'Acquisition (Non Open Market)', 'I': 'Disposition (Non Open Market)', 'X': 'Option Execute'}
+
+
+def _x(el, path):
+    e = el.find(path)
+    return (e.text or '').strip() if e is not None and e.text else ''
+
+
+def sec_form4(cik, max_docs=40):
+    """Latest Form 4 filings for a CIK, parsed from the XML on EDGAR. Returns the same shape as insider_one()."""
+    try:
+        sub = json.loads(get('https://data.sec.gov/submissions/CIK%010d.json' % int(cik), SEC_HDR, timeout=30, tries=2) or b'null')
+    except Exception:
+        sub = None
+    if not sub:
+        return None
+    rec = sub.get('filings', {}).get('recent', {})
+    forms, accs, docs, dates = rec.get('form', []), rec.get('accessionNumber', []), rec.get('primaryDocument', []), rec.get('filingDate', [])
+    today = dt.date.today()
+    cut12 = (today - dt.timedelta(days=365)).isoformat()
+    f4 = [(dates[i], accs[i], docs[i]) for i in range(len(forms)) if forms[i] in ('4', '4/A') and dates[i] >= cut12]
+    if not f4:
+        return None
+    rows, nb3 = [], 0
+    cut3 = (today - dt.timedelta(days=91)).isoformat()
+    summ = {'buys3': 0, 'buys12': 0, 'sells3': 0, 'sells12': 0, 'bought3': 0, 'bought12': 0, 'sold3': 0, 'sold12': 0, 'net3': 0, 'net12': 0,
+            'total': len(f4)}
+    for fd, acc, doc in f4[:max_docs]:
+        if not doc:
+            continue
+        url = 'https://www.sec.gov/Archives/edgar/data/%d/%s/%s' % (int(cik), acc.replace('-', ''), doc)
+        raw = get(url, SEC_HDR, timeout=30, tries=2)
+        time.sleep(0.12)   # SEC fair-use: < 10 requests / second
+        if not raw:
+            continue
+        try:
+            root = ET.fromstring(raw)
+        except Exception:
+            continue
+        owner = root.find('reportingOwner')
+        name = _x(owner, 'reportingOwnerId/rptOwnerName') if owner is not None else ''
+        rel = ''
+        if owner is not None:
+            r = owner.find('reportingOwnerRelationship')
+            if r is not None:
+                if _x(r, 'isTenPercentOwner') in ('1', 'true'):
+                    rel = 'Beneficial Owner (10% or more)'
+                elif _x(r, 'isDirector') in ('1', 'true'):
+                    rel = 'Director'
+                elif _x(r, 'isOfficer') in ('1', 'true'):
+                    rel = _x(r, 'officerTitle') or 'Officer'
+                else:
+                    rel = 'Other'
+        # "Smith John A" (SEC order) -> "John A Smith" style is not reliable; keep SEC order, title-cased like Nasdaq
+        name = ' '.join(w.capitalize() if w.isupper() or w.islower() else w for w in name.split())
+        for tr in root.findall('nonDerivativeTable/nonDerivativeTransaction'):
+            code = _x(tr, 'transactionCoding/transactionCode')
+            date = _x(tr, 'transactionDate/value') or fd
+            q = num(_x(tr, 'transactionAmounts/transactionShares/value'))
+            pr = num(_x(tr, 'transactionAmounts/transactionPricePerShare/value'))
+            ad = _x(tr, 'transactionAmounts/transactionAcquiredDisposedCode/value')
+            held = num(_x(tr, 'postTransactionAmounts/sharesOwnedFollowingTransaction/value'))
+            own = 'Direct' if _x(tr, 'ownershipNature/directOrIndirectOwnership/value') == 'D' else 'Indirect'
+            label = F4_CODE.get(code) or ('Acquisition (Non Open Market)' if ad == 'A' else 'Disposition (Non Open Market)')
+            if code == 'S' and tr.find('transactionCoding/footnoteId') is not None:
+                pass  # Nasdaq calls 10b5-1 sales "Automatic Sell"; the XML does not say, so we keep "Sell"
+            rows.append({'n': name, 'r': rel, 'd': date, 'x': label, 'o': own, 'q': q, 'p': pr, 'h': held})
+            if q:
+                if code == 'P':
+                    summ['buys12'] += 1; summ['bought12'] += q
+                    if date >= cut3:
+                        summ['buys3'] += 1; summ['bought3'] += q
+                elif code == 'S':
+                    summ['sells12'] += 1; summ['sold12'] += q
+                    if date >= cut3:
+                        summ['sells3'] += 1; summ['sold3'] += q
+    if not rows:
+        return None
+    summ['net3'] = summ['bought3'] - summ['sold3']
+    summ['net12'] = summ['bought12'] - summ['sold12']
+    rows.sort(key=lambda r: r['d'] or '', reverse=True)
+    return {'sum': summ, 'rows': rows[:15], 'src': 'sec'}
+
+
+def insider_fill(ts, got):
+    """Second pass for tickers Nasdaq had nothing for: share-class sibling (GOOG <- GOOGL), foreign-filer marker, or SEC Form 4."""
+    info = {}
+    for t in ts:
+        try:
+            d = json.load(open(os.path.join(STOCKS, t + '.json')))
+            info[t] = (d.get('cik'), bool(d.get('foreign')), (d.get('market') or {}).get('mcap') or 0)
+        except Exception:
+            info[t] = (None, False, 0)
+    by_cik = {}
+    for t, (c, _, m) in info.items():
+        if c and t in got:
+            by_cik.setdefault(c, []).append((m, t))
+    out, sec_tries = {}, 0
+    for t in ts:
+        if t in got:
+            continue
+        c, foreign, m = info[t]
+        sib = sorted(by_cik.get(c) or [], reverse=True)
+        if sib:
+            d = dict(got[sib[0][1]]); d['via'] = sib[0][1]
+            out[t] = d
+        elif foreign:
+            out[t] = {'foreign': True}
+        elif c and m >= 2e8 and sec_tries < 400:
+            sec_tries += 1
+            d = sec_form4(c)
+            if d:
+                out[t] = d
+                by_cik.setdefault(c, []).append((m, t)); got[t] = d
+    return out
+
+
 def main():
     kind = sys.argv[1] if len(sys.argv) > 1 else ''
-    limit = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2] else 0
+    arg = sys.argv[2] if len(sys.argv) > 2 else ''
     fn, workers = {'news': (news_one, 10), 'insider': (insider_one, 4), 'profile': (profile_one, 4)}[kind]
     out_dir = os.path.join(ROOT, kind)
     os.makedirs(out_dir, exist_ok=True)
-    ts = tickers(limit)
+    # 2nd arg: N = first N tickers, or an explicit comma-separated list (test runs)
+    ts = [x.strip().upper() for x in arg.split(',') if x.strip()] if arg and not arg.isdigit() else tickers(int(arg) if arg else 0)
     if kind == 'news':
         for t in ts:
             try:
@@ -224,17 +348,28 @@ def main():
                 pass
     ok = fail = 0
     t0 = time.time()
+    got = {}
+
+    def save(t, res):
+        json.dump({'t': t, 'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'),
+                   ('items' if kind == 'news' else 'data'): res},
+                  open(os.path.join(out_dir, t + '.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
     with cf.ThreadPoolExecutor(max_workers=workers) as ex:
         for i, (t, res) in enumerate(ex.map(fn, ts)):
             if res:
-                json.dump({'t': t, 'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'),
-                           ('items' if kind == 'news' else 'data'): res},
-                          open(os.path.join(out_dir, t + '.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
-                ok += 1
+                save(t, res); got[t] = res; ok += 1
             else:
                 fail += 1
             if i % 500 == 0:
                 print('%s %d/%d ok=%d fail=%d %.0fs' % (kind, i, len(ts), ok, fail, time.time() - t0), flush=True)
+    if kind == 'insider':
+        extra = insider_fill(ts, got)
+        for t, res in extra.items():
+            save(t, res)
+        ok += len(extra); fail -= len(extra)
+        print('insider fallback: %d filled (%d via share class, %d foreign, %d from SEC)' % (
+            len(extra), sum(1 for v in extra.values() if v.get('via')), sum(1 for v in extra.values() if v.get('foreign')),
+            sum(1 for v in extra.values() if v.get('src') == 'sec')), flush=True)
     json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'ok': ok, 'fail': fail},
               open(os.path.join(out_dir, 'meta.json'), 'w'))
     print('::notice::%s done: ok %d, no data %d, %.0fs%s' % (kind, ok, fail, time.time() - t0,

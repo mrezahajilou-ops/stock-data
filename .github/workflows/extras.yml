@@ -12,7 +12,7 @@ on:
         required: true
         default: 'news'
       limit:
-        description: 'Only first N tickers (test run)'
+        description: 'Test run: first N tickers, or a comma-separated ticker list (publishes to <kind>-test)'
         required: false
         default: ''
 
@@ -49,9 +49,11 @@ jobs:
         run: |
           K=${{ steps.k.outputs.kind }}
           cd $K
-          git init -q -b $K
+          # a test run (limit / ticker list) must never replace the full branch
+          if [ -n "${{ inputs.limit }}" ]; then B=$K-test; else B=$K; fi
+          git init -q -b $B
           git config user.name github-actions
           git config user.email actions@github.com
           git add -A
           git commit -qm "$K $(date -u +%FT%H:%MZ)"
-          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $K:$K
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $B:$B

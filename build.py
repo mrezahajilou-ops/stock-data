@@ -546,7 +546,7 @@ _BRAND = {"NVIDIA": "NVIDIA", "JPMORGAN": "JPMorgan", "AT&T": "AT&T", "UNITEDHEA
 
 def nice_name(n):
     """SEC titles are shouted ("TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD"); make them readable. Mixed-case names stay."""
-    n = str(n or "").strip()
+    n = re.sub(r"\s*/\s*[A-Z]{2,3}\s*/\s*", " ", str(n or "")).strip()   # "CORP/OH/", "CORP /TX/"
     if n != n.upper() or not re.search(r"[A-Z]{2}", n):
         return n
     out = []

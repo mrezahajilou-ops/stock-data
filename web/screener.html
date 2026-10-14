@@ -323,8 +323,8 @@ function loadScreener(){
 var C={}, ROWS=[], view=[], sortKey='mcap', asc=false, shown=PAGE, group='basic', cmp=[];
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v);if(a>=1e12)return '$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return '$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return '$'+(a/1e6).toFixed(0)+'M';return '$'+a.toFixed(0)}
-function pct(v){return v==null||!isFinite(v)?'—':'<span class="'+(v<0?'neg':'')+'">'+(v*100).toFixed(1)+'%</span>'}
-function pcts(v){return v==null||!isFinite(v)?'—':'<span class="'+(v<0?'neg':'pos')+'">'+(v>0?'+':'')+(v*100).toFixed(1)+'%</span>'}
+function pct(v){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return '<span class="'+(v<0?'neg':'')+'">'+(v*100).toFixed(1)+'%</span>'}
+function pcts(v){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return '<span class="'+(v<0?'neg':'pos')+'">'+(v>0?'+':'')+(v*100).toFixed(1)+'%</span>'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
 function x2(v){return v==null||!isFinite(v)?'—':v.toFixed(2)}
 function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}

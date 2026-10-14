@@ -1110,7 +1110,7 @@ def fill_from_yahoo(rec, e):
         if not d or d <= last["fy_end"] or d > today or days(last["fy_end"], d) < 300:
             continue
         end, row = _yrow(ts, "annual", i, FX_LATEST)
-        if not row.get("revenue") or row["revenue"] <= 0 or (rev0 and not 0.5 < row["revenue"] / rev0 < 2.0):
+        if not row.get("revenue") or row["revenue"] <= 0 or (rev0 and not 0.3 < row["revenue"] / rev0 < 5.0):
             continue
         new = {k: None for k in last}
         new.update({"fy_end": d, "fy": int(d[:4]), "filed": None, "src": "yahoo"})
@@ -1134,17 +1134,30 @@ def fill_from_yahoo(rec, e):
     if added:
         rec["latest"] = {k: last.get(k) for k in rec["latest"]}
         rec["fx_approx"] = True
-    # (1) trailing twelve months
-    if not rec.get("ttm"):
-        end, row = _yrow(ts, "trailing", -1, FX_LATEST)
-        if end and row.get("revenue") and row["revenue"] > 0 and days(last["fy_end"], end) >= 45 and end <= today \
-                and (not rev0 or 0.5 < row["revenue"] / rev0 < 2.0):
-            t = {"end": end, "revenue": row.get("revenue"), "net_income": row.get("net_income"), "cfo": row.get("cfo"),
-                 "capex": row.get("capex"), "op_income": None, "da": None, "dividends": row.get("dividends"),
-                 "eps": row.get("eps_diluted"), "dps": safe_div(row.get("dividends"), row.get("shares_diluted")),
-                 "gross_profit": None, "rnd": None, "sbc": None, "buybacks": None, "interest_exp": None, "pretax_income": None,
-                 "tax": None, "shares_diluted": row.get("shares_diluted"), "fcf": row.get("fcf"), "ebitda": None, "src": "yahoo"}
-            rec["ttm"] = t
+    # (1) trailing twelve months: create it when SEC has none, replace it when Yahoo has a newer quarter (a 10-Q missing
+    #     from the XBRL feed), and fill single missing fields when both cover the same period
+    end, row = _yrow(ts, "trailing", -1, FX_LATEST)
+    t = rec.get("ttm")
+    if end and row.get("revenue") and row["revenue"] > 0 and end <= today:
+        yt = {"end": end, "revenue": row.get("revenue"), "net_income": row.get("net_income"), "cfo": row.get("cfo"),
+              "capex": row.get("capex"), "op_income": None, "da": None, "dividends": row.get("dividends"),
+              "eps": row.get("eps_diluted"), "dps": safe_div(row.get("dividends"), row.get("shares_diluted")),
+              "gross_profit": None, "rnd": None, "sbc": None, "buybacks": None, "interest_exp": None, "pretax_income": None,
+              "tax": None, "shares_diluted": row.get("shares_diluted"), "fcf": row.get("fcf"), "ebitda": None, "src": "yahoo"}
+        base_rev = (t or {}).get("revenue") or rev0
+        plausible = (not base_rev) or 0.3 < row["revenue"] / base_rev < 5.0
+        if not t:
+            if days(last["fy_end"], end) >= 45 and plausible:
+                rec["ttm"] = yt
+        elif t.get("end") and days(t["end"], end) >= 45 and plausible:
+            rec["ttm"] = yt          # newer quarter than the SEC feed has
+        elif t.get("end") and abs(days(t["end"], end)) <= 10:
+            for k in ("revenue", "net_income", "cfo", "capex", "fcf", "dividends", "shares_diluted", "eps"):
+                if t.get(k) is None and yt.get(k) is not None and (k != "revenue" or not rev0 or 0.3 < yt[k] / rev0 < 5.0):
+                    t[k] = yt[k]
+                    t.setdefault("filled", []).append(k)
+            if t.get("fcf") is None and t.get("cfo") is not None and t.get("capex") is not None:
+                t["fcf"] = t["cfo"] - t["capex"]
     # latest balance sheet
     if not rec.get("bs"):
         dc, cash = _yv(ts, "quarterlyCashCashEquivalentsAndShortTermInvestments", FX_LATEST)
@@ -1155,9 +1168,90 @@ def fill_from_yahoo(rec, e):
             rec["bs"] = {"end": d0, "cash": cash, "debt": debt, "equity": eq, "src": "yahoo"}
 
 
+SPLIT_RATIOS = [2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 40, 50, 100]
+PER_SHARE_DIV = ("eps_diluted", "fcf_per_share", "revenue_per_share", "book_value_per_share", "div_per_share")
+SHARE_MUL = ("shares_diluted", "shares_basic", "shares_out")
+
+
+def _split_factor(r):
+    """r = market-implied shares / reported shares. A clean split ratio (or its inverse) -> that factor, else None."""
+    if not r or r <= 0:
+        return None
+    for F in SPLIT_RATIOS:
+        if abs(r / F - 1) < 0.06:
+            return float(F)
+        if abs(r * F - 1) < 0.06:
+            return 1.0 / F
+    return None
+
+
+def reconcile_per_share(rec, mk, ref):
+    """Per-share figures must agree with the market. SEC companyfacts lag stock splits (a 4:1 split after the last
+    10-Q leaves share counts 4x too low and EPS 4x too high until the next filing), and quarterly EPS derived from
+    year-to-date values breaks when the split falls inside the year. Two checks, both anchored on
+    market cap / price (independent of the filings):
+      1) reported share count off by a clean split ratio -> scale every per-share series by it;
+      2) trailing EPS != trailing net income / shares -> use net income / shares (Yahoo's trailing EPS when it agrees)."""
+    price, mcap = (mk or {}).get("price"), (mk or {}).get("mcap")
+    if not price or not mcap:
+        return
+    implied = mcap / price
+    t, last, bs = rec.get("ttm") or {}, rec["annual"][-1], rec.get("bs") or {}
+    sh_now = t.get("shares_diluted") or bs.get("shares_out") or last.get("shares_diluted")
+    F = _split_factor(implied / sh_now) if sh_now else None
+    if F and F != 1.0:
+        # Up-C / partnership structures (Blackstone, Interactive Brokers) also show implied / reported = 2..4 without any
+        # split: the market cap counts all units, EPS counts class A only. Demand a second witness - the independent
+        # share count or the independent trailing EPS must move by the same factor.
+        ysh, yeps = ref.get("sh"), ref.get("teps")
+        e_now = t.get("eps") or last.get("eps_diluted")
+        w1 = isinstance(ysh, (int, float)) and ysh and 0.8 < (ysh / sh_now) / F < 1.25
+        w2 = isinstance(yeps, (int, float)) and yeps and e_now and 0.8 < (e_now / yeps) / F < 1.25
+        if not (w1 or w2):
+            F = None
+    if F and F != 1.0:
+        for row in rec["annual"] + [t, rec.get("latest") or {}]:
+            for k in SHARE_MUL:
+                if row.get(k):
+                    row[k] = row[k] * F
+            for k in PER_SHARE_DIV + (("eps", "dps") if row is t else ()):
+                if row.get(k) is not None:
+                    row[k] = row[k] / F
+        if bs.get("shares_out"):
+            bs["shares_out"] = bs["shares_out"] * F
+        rec["split_adj"] = F
+        sh_now = sh_now * F
+    # 2) trailing EPS vs net income / shares
+    ni = t.get("net_income")
+    sh = t.get("shares_diluted") or sh_now
+    if ni and sh and 0.75 < implied / sh < 1.33:
+        e2 = ni / sh
+        ours = t.get("eps")
+        if ours is None or abs(ours / e2 - 1) > 0.12 or (ours > 0) != (e2 > 0):
+            yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
+            if yeps and 0.5 < yeps / e2 < 2.0:
+                e2 = yeps   # the independent trailing diluted EPS handles dual-class / Up-C structures better than NI / shares
+            t["eps"] = e2
+            t["eps_src"] = "ni/shares"
+    # dividend per share must be a per-share number (a mis-tagged total shows up as $1,170 "per share")
+    for row, key in ((t, "dps"), (last, "div_per_share")):
+        v = row.get(key)
+        if v is not None and (v < 0 or v > 0.4 * price):
+            shv = row.get("shares_diluted") or sh_now
+            dv = row.get("dividends")
+            row[key] = (dv / shv) if (dv and shv and dv / shv <= 0.4 * price) else None
+    # last fiscal year: EPS x shares must be the year's net income (same split problem inside a 10-K year)
+    if last.get("eps_diluted") and last.get("shares_diluted") and last.get("net_income") and abs(last["net_income"]) > 1e7:
+        q = last["eps_diluted"] * last["shares_diluted"] / last["net_income"]
+        Fq = _split_factor(q)
+        if Fq and Fq != 1.0:
+            last["eps_diluted"] = last["eps_diluted"] / Fq
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     fill_from_yahoo(rec, EST.get(rec["ticker"]))
+    reconcile_per_share(rec, mk, (EST.get(rec["ticker"]) or {}).get("ref") or {})
     a, s = rec["annual"], rec["summary"]
     last = a[-1]
     prev3 = a[-4] if len(a) >= 4 else None

@@ -448,7 +448,7 @@ function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n)
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
-function pct(v,d){return v==null||!isFinite(v)?'—':'\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'}
+function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return '<span title="بیش از ۱۰۰۰٪ — پایه‌ی محاسبه خیلی کوچک است">n/m</span>';return '\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'}
 function x(v,d){return v==null||!isFinite(v)?'—':v.toFixed(d==null?1:d)}
 function faN(n){return Number(n).toLocaleString('en-US',{useGrouping:false})}
 function nz(v){return v==null||!isFinite(v)}

@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Previous earnings feed (reported EPS arrives there within hours)
+        run: git clone -q --depth 1 --branch earnings https://github.com/${{ github.repository }} earnings_prev || true
       - run: python calendar_build.py
       - name: Publish to branch "calendar"
         run: |

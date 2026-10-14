@@ -65,6 +65,33 @@ def main():
         rows.sort(key=lambda x: -x['mcap'])
         days[d.isoformat()] = rows[:200]
         time.sleep(0.4)
+    # Nasdaq posts reported EPS a day late; our earnings feed (branch `earnings`, Yahoo fallback) has it within hours.
+    # Fill today's / yesterday's gaps from there (workflow clones that branch into ./earnings_prev).
+    EP = os.path.join(ROOT, 'earnings_prev', 'e')
+    filled = 0
+    if os.path.isdir(EP):
+        for d, rows in days.items():
+            if d > today.isoformat():
+                continue
+            for e in rows:
+                if e.get('act') is not None:
+                    continue
+                try:
+                    q = json.load(open(os.path.join(EP, e['t'] + '.json'))).get('q') or []
+                except Exception:
+                    continue
+                for x in q[:2]:
+                    if x.get('act') is None or not x.get('d'):
+                        continue
+                    if abs((dt.date.fromisoformat(x['d']) - dt.date.fromisoformat(d)).days) <= 4:
+                        e['act'] = x['act']
+                        if x.get('f') is not None:
+                            e['f'] = x['f']
+                        e['sur'] = x.get('sur') if x.get('sur') is not None else (round((x['act'] / x['f'] - 1) * 100, 2) if x.get('f') else None)
+                        e['src'] = 'yahoo'
+                        filled += 1
+                        break
+    print('actuals filled from earnings feed:', filled)
     os.makedirs(OUT, exist_ok=True)
     json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'days': days},
               open(os.path.join(OUT, 'earnings.json'), 'w'), separators=(',', ':'), ensure_ascii=False)

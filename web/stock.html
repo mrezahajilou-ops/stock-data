@@ -656,7 +656,7 @@ function render(d){
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
   var inW=false;try{inW=JSON.parse(localStorage.getItem('rz_watch')||'[]').indexOf(d.ticker)>=0}catch(e){}
   var h='<div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(d.name)+'</bdi><small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'در واچ‌لیست':'واچ‌لیست')+'</button></div>'+
-    '<div class="meta facts">'+[esc(m.sector||''),m.industry?esc(m.industry):'',m.country?esc(m.country):'','سال مالی '+faN(L.fy)+' تا \u2066'+esc(L.fy_end||'')+'\u2069'].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('')+
+    '<div class="meta facts">'+[esc(m.sector||''),m.industry?esc(m.industry):'',m.country?esc(m.country):'',(TT?'داده‌ها تا \u2066'+esc(TT.fy_end)+'\u2069 (۱۲ ماه اخیر)':'سال مالی '+faN(L.fy)+' تا \u2066'+esc(L.fy_end||'')+'\u2069')].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('')+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
     '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+

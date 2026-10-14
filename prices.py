@@ -5,7 +5,7 @@ Output: prices/<TICKER>.json -> {"t":"AAPL","as_of":"2026-10-03","src":"stooq","
 Source: Nasdaq chart API https://api.nasdaq.com/api/quote/<T>/chart (daily closes, downsampled to weekly)
 Published on the orphan branch `prices` so the main repo never grows.
 """
-import json, os, sys, time, io, zipfile, urllib.request, urllib.error, datetime as dt, concurrent.futures as cf
+import json, os, sys, time, io, zipfile, urllib.request, urllib.error, urllib.parse, datetime as dt, concurrent.futures as cf
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 IDX = os.path.join(ROOT, 'data', 'index.json')
@@ -100,6 +100,23 @@ def nasdaq(t, assetclass='stocks'):
 LOG = []
 
 
+def yahoo(t):
+    """Fallback: Yahoo's chart endpoint (no crumb needed), daily closes for 10 years."""
+    url = ('https://query2.finance.yahoo.com/v8/finance/chart/%s?range=10y&interval=1d&includeAdjustedClose=false'
+           % urllib.parse.quote(t.replace('.', '-')))
+    j = json.loads(get(url, timeout=30, headers={'Accept': 'application/json', 'User-Agent':
+                   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36'}))
+    r = ((j.get('chart') or {}).get('result') or [None])[0] or {}
+    ts = r.get('timestamp') or []
+    cl = (((r.get('indicators') or {}).get('quote') or [{}])[0]).get('close') or []
+    rows = []
+    for a, c in zip(ts, cl):
+        if c is not None:
+            rows.append([dt.datetime.utcfromtimestamp(a).date().isoformat(), round(float(c), 4)])
+    rows.sort()
+    return rows
+
+
 def nasdaq_etf(t):
     return nasdaq(t, 'etf')
 
@@ -119,6 +136,13 @@ def nasdaq_one(t):
                 LOG.append('%s %s rows %d' % (t, v, len(rows)))
                 if len(rows) >= 4:
                     return t, rows
+            try:
+                rows = yahoo(t)
+                LOG.append('%s yahoo rows %d' % (t, len(rows)))
+                if len(rows) >= 4:
+                    return t, ('yahoo', rows)
+            except Exception as e:
+                LOG.append('%s yahoo %s' % (t, repr(e)[:80]))
             return t, None
         except urllib.error.HTTPError as e:
             if e.code in (429, 403):
@@ -150,7 +174,9 @@ def main():
     t0 = time.time()
     with cf.ThreadPoolExecutor(max_workers=3) as ex:
         for i, (t, rows) in enumerate(ex.map(nasdaq_one, missing)):
-            if rows:
+            if rows and isinstance(rows, tuple):
+                write(t, rows[1], rows[0]); ok[rows[0]] = ok.get(rows[0], 0) + 1
+            elif rows:
                 write(t, rows, 'nasdaq'); ok['nasdaq'] += 1
             else:
                 fail += 1

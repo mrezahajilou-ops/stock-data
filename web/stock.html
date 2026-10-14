@@ -448,13 +448,16 @@ function drawRN(d){var box=$('rzs-rn');if(!box)return;
   var pts=S.filter(function(x){return x.r!=null||x.n!=null});if(pts.length<2){box.innerHTML=head+'<div class="empty" style="padding:14px">داده‌ی کافی نیست.</div>';return}
   var mx=0,mn=0;pts.forEach(function(x){[x.r,x.n].forEach(function(v){if(v!=null){mx=Math.max(mx,v);mn=Math.min(mn,v)}})});if(mx<=0)mx=1;var u=rnUnit(Math.max(mx,-mn));
   var st=(function(r){var e=Math.pow(10,Math.floor(Math.log10(r/4))),m=r/4/e;return (m<=1?1:m<=2?2:m<=5?5:10)*e})(mx-mn);mx=Math.ceil(mx/st)*st;mn=Math.floor(mn/st)*st;
-  var W=680,H=250,PL=46,PR=8,PT=14,PB=28,span=mx-mn,bw=(W-PL-PR)/pts.length,b=Math.min(26,bw*0.34);
+  var W=680,H=262,PL=46,PR=8,PT=26,PB=28,span=mx-mn,bw=(W-PL-PR)/pts.length,b=Math.min(26,bw*0.34);
+  var lf=pts.length>8?8.5:9.5,sh=function(v){var a2=Math.abs(v)/u[0];return (v<0?'-':'')+(a2>=100?a2.toFixed(0):a2>=10?a2.toFixed(1):a2.toFixed(2))};
   var Y=function(v){return PT+(H-PT-PB)*(mx-v)/span},z=Y(0),g='';
   for(var v=mn;v<=mx+st/2;v+=st){var y=Y(v);g+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#1c3150"/><text x="'+(PL-6)+'" y="'+(y+4).toFixed(1)+'" fill="#93a7bf" font-size="10.5" text-anchor="end">'+rnFmt(v,u)+'</text>'}
   g+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+z.toFixed(1)+'" y2="'+z.toFixed(1)+'" stroke="#3a5a80"/>';
   pts.forEach(function(x,i){var cx=PL+bw*i+bw/2;
-    if(x.r!=null){var y1=Y(Math.max(0,x.r)),y2=Y(Math.min(0,x.r));g+='<rect class="rnbar" x="'+(cx-b-1).toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="3" fill="#2ec4b6"><title>'+x.l+' · درآمد '+rnFmt(x.r,u)+'</title></rect>'}
-    if(x.n!=null){var y3=Y(Math.max(0,x.n)),y4=Y(Math.min(0,x.n));g+='<rect class="rnbar" x="'+(cx+1).toFixed(1)+'" y="'+y3.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y4-y3).toFixed(1)+'" rx="3" fill="'+(x.n<0?'#ff5a5f':'#b5e36b')+'"><title>'+x.l+' · سود خالص '+rnFmt(x.n,u)+'</title></rect>'}
+    if(x.r!=null){var y1=Y(Math.max(0,x.r)),y2=Y(Math.min(0,x.r));g+='<rect class="rnbar" x="'+(cx-b-1).toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y2-y1).toFixed(1)+'" rx="3" fill="#2ec4b6"><title>'+x.l+' · درآمد '+rnFmt(x.r,u)+'</title></rect>'+
+      '<text x="'+(cx-b/2-1).toFixed(1)+'" y="'+(x.r>=0?y1-3:y2+10).toFixed(1)+'" text-anchor="middle" fill="#9fe8e0" font-size="'+lf+'" font-weight="700" font-family="Vazirmatn,Tahoma">'+sh(x.r)+'</text>'}
+    if(x.n!=null){var y3=Y(Math.max(0,x.n)),y4=Y(Math.min(0,x.n));g+='<rect class="rnbar" x="'+(cx+1).toFixed(1)+'" y="'+y3.toFixed(1)+'" width="'+b.toFixed(1)+'" height="'+Math.max(1,y4-y3).toFixed(1)+'" rx="3" fill="'+(x.n<0?'#ff5a5f':'#b5e36b')+'"><title>'+x.l+' · سود خالص '+rnFmt(x.n,u)+'</title></rect>'+
+      '<text x="'+(cx+b/2+1).toFixed(1)+'" y="'+(x.n>=0?y3-3:y4+10).toFixed(1)+'" text-anchor="middle" fill="'+(x.n<0?'#ff8a8e':'#d6f0a8')+'" font-size="'+lf+'" font-weight="700" font-family="Vazirmatn,Tahoma">'+sh(x.n)+'</text>'}
     g+='<text x="'+cx.toFixed(1)+'" y="'+(H-8)+'" fill="#93a7bf" font-size="10.5" text-anchor="middle">'+x.l+'</text>'});
   var svg='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block;direction:ltr">'+g+'</svg>';
   var f=pts[0],l=pts[pts.length-1],sum='';
@@ -507,15 +510,28 @@ function loadVal(d){var box=$('rzs-val');if(!box)return;var t=d.ticker;
     if(cur!==d||!j||!j.w||j.w.length<60)return;
     var A=(d.annual||[]).filter(function(y){return y.fy_end}).slice().sort(function(a,b){return a.fy_end<b.fy_end?-1:1});if(A.length<3)return;
     var Q=liveQ(t),W=j.w.slice();if(Q&&Q[0]>0)W.push([new Date().toISOString().slice(0,10),Q[0]]);
-    var known=function(y){var k=new Date(y.fy_end+'T00:00:00Z');k.setUTCDate(k.getUTCDate()+75);return k.toISOString().slice(0,10)};
-    var DEF={pe:['P/E','eps_diluted',150,'سود هر سهم'],pfcf:['P/FCF','fcf_per_share',150,'جریان نقد آزاد هر سهم'],ps:['P/S','revenue_per_share',80,'فروش هر سهم']};
-    var ser=function(k){var f=DEF[k][1],out=[];W.forEach(function(w){var y=null;for(var i=A.length-1;i>=0;i--){if(known(A[i])<=w[0]){y=A[i];break}}if(!y)return;var v=y[f];if(!(v>0))return;var m=w[1]/v;if(m>0&&m<DEF[k][2])out.push([w[0],m,v])});return out};
+    /* when did the market know these figures? the filing date of the 10-K; for the TTM point the day after
+       quarter end + 45 days (10-Q deadline), or the build date if that is earlier; else fiscal year end + 75 days */
+    var known=function(y){if(y.filed)return y.filed;var k=new Date(y.fy_end+'T00:00:00Z');k.setUTCDate(k.getUTCDate()+(y.ttm?45:75));var s2=k.toISOString().slice(0,10);return y.ttm&&d.updated&&d.updated.slice(0,10)<s2?d.updated.slice(0,10):s2};
+    /* most recent 12 months (last four quarters + latest balance sheet) as one more point after the last annual
+       report, so the chart ends on today's TTM figures instead of a year-old 10-K */
+    var T=d.ttm||{},BS=d.bs||{},mk=d.market||{},shN=(mk.price&&mk.mcap)?mk.mcap/mk.price:A[A.length-1].shares_diluted;
+    if(T.end&&T.end>A[A.length-1].fy_end&&shN){var L=A[A.length-1];A=A.concat([{fy_end:T.end,ttm:1,shares_diluted:shN,
+      eps_diluted:T.eps!=null?T.eps:(T.net_income!=null?T.net_income/shN:null),fcf_per_share:T.fcf!=null?T.fcf/shN:null,revenue_per_share:T.revenue!=null?T.revenue/shN:null,
+      ebitda:T.ebitda!=null?T.ebitda:null,cash:BS.cash!=null?BS.cash:L.cash,debt:BS.debt!=null?BS.debt:L.debt,
+      book_value_per_share:BS.equity!=null?BS.equity/shN:L.book_value_per_share}])}
+    /* EV/EBITDA per share: (price x shares + debt - cash) / EBITDA, all per share so one price series works */
+    A.forEach(function(y){var sh=y.shares_diluted;if(sh&&y.ebitda>0){y._ebitda_ps=y.ebitda/sh;y._nd_ps=((y.debt||0)-(y.cash||0))/sh}});
+    var DEF={pe:['P/E','eps_diluted',150,'سود هر سهم'],pfcf:['P/FCF','fcf_per_share',150,'جریان نقد آزاد هر سهم'],ps:['P/S','revenue_per_share',80,'فروش هر سهم'],
+             ev:['EV/EBITDA','_ebitda_ps',100,'EBITDA هر سهم'],pb:['P/B','book_value_per_share',80,'ارزش دفتری هر سهم']};
+    var ser=function(k){var f=DEF[k][1],out=[];W.forEach(function(w){var y=null;for(var i=A.length-1;i>=0;i--){if(known(A[i])<=w[0]){y=A[i];break}}if(!y)return;var v=y[f];if(!(v>0))return;
+      var m=k==='ev'?(w[1]+y._nd_ps)/v:w[1]/v;if(m>0&&m<DEF[k][2])out.push([w[0],m,v,k==='ev'?y._nd_ps:0])});return out};
     var draw=function(){var S=ser(VAL_M),D=DEF[VAL_M];
       var head='<div class="axhead"><h3 style="margin:0">📐 ارزون یا گرون؟ تاریخچه‌ی ارزش‌گذاری ۱۰ ساله</h3><div class="rng" id="rzs-vm">'+Object.keys(DEF).map(function(k){return '<button data-vm="'+k+'"'+(k===VAL_M?' class="on"':'')+'>'+DEF[k][0]+'</button>'}).join('')+'</div></div>';
       if(S.length<60){box.innerHTML=head+'<div class="empty" style="padding:14px">برای '+D[0]+' داده‌ی کافی نیست (احتمالاً '+D[3]+' در بعضی سال‌ها منفی بوده).</div>';box.style.display='';return}
       var vals=S.map(function(p){return p[1]}).slice().sort(function(a,b){return a-b}),qn=function(q){return vals[Math.min(vals.length-1,Math.floor(q*(vals.length-1)))]};
       var med=qn(0.5),p25=qn(0.25),p75=qn(0.75),now=S[S.length-1],below=vals.filter(function(v){return v<now[1]}).length/vals.length;
-      var fair=med*now[2],px=W[W.length-1][1],up=fair/px-1,yrs=Math.round((new Date(S[S.length-1][0])-new Date(S[0][0]))/3.156e10);
+      var fair=med*now[2]-(now[3]||0),px=W[W.length-1][1],up=fair/px-1,yrs=Math.round((new Date(S[S.length-1][0])-new Date(S[0][0]))/3.156e10);
       var tag=below<0.25?['🟢 ارزون نسبت به گذشته‌ی خودش','#2ec4b6']:below>0.75?['🔴 گرون نسبت به گذشته‌ی خودش','#ff5a5f']:['🟡 در محدوده‌ی معمول خودش','#f5b700'];
       var Wd=640,Hh=210,pl=8,pr=44,pt=10,pb=22,mn=Math.min(vals[0],p25)*0.9,mxv=Math.max(vals[vals.length-1],p75)*1.05;
       var X=function(i){return pl+i*(Wd-pl-pr)/(S.length-1)},Y=function(v){return pt+(1-(v-mn)/(mxv-mn))*(Hh-pt-pb)};
@@ -530,7 +546,7 @@ function loadVal(d){var box=$('rzs-val');if(!box)return;var t=d.ticker;
       var body='<div class="ern"><span class="vtag" style="background:'+tag[1]+';color:#0b1726">'+tag[0]+'</span></div>'+
         '<div class="vbig"><div><small>'+D[0]+' فعلی</small><b>'+now[1].toFixed(1)+'</b></div><div><small>میانه‌ی '+yrs+' ساله</small><b>'+med.toFixed(1)+'</b></div><div><small>محدوده‌ی معمول (۵۰٪ وسط)</small><b>'+p25.toFixed(1)+' – '+p75.toFixed(1)+'</b></div><div><small>قیمت در '+D[0]+' میانه</small><b>$'+fair.toFixed(2)+' <span style="font-size:12px" class="'+(up>=0?'up':'dn')+'">'+(up>=0?'+':'')+(up*100).toFixed(0)+'%</span></b></div></div>'+svg+
         '<p class="ernp" style="margin-top:8px">'+D[0]+' فعلی '+eL(now[1].toFixed(1))+'ه؛ در '+eL(Math.round(below*100)+'%')+' از هفته‌های '+yrs+' سال گذشته این عدد پایین‌تر از الان بوده. اگه '+D[0]+' به میانه‌ی تاریخی خودش ('+eL(med.toFixed(1))+') برگرده، با '+D[3]+'ِ فعلی قیمت حدود '+eL('$'+fair.toFixed(2))+' میشه.</p>'+
-        '<p class="xnote">هر نقطه = قیمت اون هفته تقسیم بر '+D[3]+' آخرین سال مالیِ منتشرشده تا اون موقع. خط زرد = میانه، نوار سبز = نیمه‌ی وسط ۱۰ سال. ارزون بودن نسبت به گذشته همیشه یعنی فرصت نیست؛ شاید چشم‌انداز شرکت عوض شده باشه.</p>';
+        '<p class="xnote">هر نقطه = قیمت اون هفته تقسیم بر '+D[3]+' آخرین گزارش منتشرشده تا اون موقع (سال مالی؛ از آخرین گزارش فصلی به بعد: ۱۲ ماه اخیر).'+(VAL_M==='ev'?' EV = ارزش بازار + بدهی − نقد.':'')+' خط زرد = میانه، نوار سبز = نیمه‌ی وسط ۱۰ سال. ارزون بودن نسبت به گذشته همیشه یعنی فرصت نیست؛ شاید چشم‌انداز شرکت عوض شده باشه.</p>';
       box.innerHTML=head+(ACCESS?body:'<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+body+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 مخصوص مشترکین Stock Pro</a></div></div>');box.style.display=''};
     draw();box.onclick=function(e){var b=e.target.closest('[data-vm]');if(b){VAL_M=b.dataset.vm;draw()}}})}
 
@@ -681,13 +697,16 @@ function radar(s){
 }
 function bars(a,keys,cols,div){
   div=div||1e9;
-  var ys=a.slice(-10),W=480,H=220,PL=8,PB=26,PT=10,max=0,min=0;
+  var ys=a.slice(-10),W=480,H=228,PL=8,PB=26,PT=22,max=0,min=0;
   ys.forEach(function(y){keys.forEach(function(k){var v=(y[k]||0)/div;max=Math.max(max,v);min=Math.min(min,v)})}); if(max<=0)max=1;
+  var lab=function(v){var a2=Math.abs(v);if(div===1e9)return (v<0?'-':'')+(a2>=100?a2.toFixed(0):a2>=10?a2.toFixed(1):a2.toFixed(2));return a2>=1000?Math.round(a2).toLocaleString('en-US'):a2>=100?a2.toFixed(0):a2.toFixed(1)};
+  var fs=keys.length>1?8.5:9.5;
   var span=max-min, bw=(W-PL*2)/ys.length, sub=(bw*0.75)/keys.length, s='';
   var Y=function(v){return PT+(H-PT-PB)*(max-v)/span}, z=Y(0);
   s+='<line x1="0" x2="'+W+'" y1="'+z+'" y2="'+z+'" stroke="#25405f"/>';
   ys.forEach(function(y,i){var x0=PL+i*bw+bw*0.125;
-    keys.forEach(function(k,j){var v=(y[k]||0)/div,yy=Y(Math.max(v,0)),hh=Math.abs(Y(v)-z);s+='<rect x="'+(x0+j*sub).toFixed(1)+'" y="'+yy.toFixed(1)+'" width="'+(sub-2).toFixed(1)+'" height="'+Math.max(hh,0.5).toFixed(1)+'" rx="2" fill="'+(v<0?'#ff5a5f':cols[j])+'"><title>'+y.fy+': '+(div===1e9?'$'+v.toFixed(2)+'B':v.toFixed(0)+'M')+'</title></rect>'});
+    keys.forEach(function(k,j){var v=(y[k]||0)/div,yy=Y(Math.max(v,0)),hh=Math.abs(Y(v)-z);s+='<rect x="'+(x0+j*sub).toFixed(1)+'" y="'+yy.toFixed(1)+'" width="'+(sub-2).toFixed(1)+'" height="'+Math.max(hh,0.5).toFixed(1)+'" rx="2" fill="'+(v<0?'#ff5a5f':cols[j])+'"><title>'+y.fy+': '+(div===1e9?'$'+v.toFixed(2)+'B':v.toFixed(0)+'M')+'</title></rect>';
+      if(y[k]!=null)s+='<text x="'+(x0+j*sub+(sub-2)/2).toFixed(1)+'" y="'+(v>=0?yy-3:Y(v)+10).toFixed(1)+'" text-anchor="middle" fill="'+(v<0?'#ff8a8e':'#e2ebf5')+'" font-size="'+fs+'" font-weight="700" font-family="Vazirmatn,Tahoma">'+lab(v)+'</text>'});
     s+='<text x="'+(x0+bw*0.375).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
   return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
 }
@@ -695,11 +714,15 @@ function lines(a,keys,cols){
   var ys=a.slice(-10),W=480,H=220,PL=8,PR=40,PB=26,PT=10,max=-1e9,min=1e9,any=false;
   ys.forEach(function(y){keys.forEach(function(k){var v=y[k];if(v==null)return;any=true;v*=100;max=Math.max(max,v);min=Math.min(min,v)})});
   if(!any)return '<div class="empty">داده‌ای نیست</div>';
-  min=Math.min(min,0); if(max<=min)max=min+1; var pad=(max-min)*0.08; max+=pad; min-=pad;
+  min=Math.min(min,0); if(max<=min)max=min+1; var pad=(max-min)*0.08; max+=pad*1.8; min-=pad;
   var X=function(i){return PL+(W-PL-PR)*(ys.length===1?0.5:i/(ys.length-1))}, Y=function(v){return PT+(H-PT-PB)*(max-v)/(max-min)}, s='';
   for(var k=0;k<=3;k++){var v=min+(max-min)*k/3,y=Y(v).toFixed(1);s+='<line x1="'+PL+'" x2="'+(W-PR)+'" y1="'+y+'" y2="'+y+'" stroke="#25405f" stroke-dasharray="3 4"/><text x="'+(W-PR+6)+'" y="'+(+y+4)+'" fill="#93a7bf" font-size="11">'+v.toFixed(0)+'%</text>'}
   keys.forEach(function(k,j){var p='';ys.forEach(function(y,i){var v=y[k];if(v==null)return;p+=(p?'L':'M')+X(i).toFixed(1)+' '+Y(v*100).toFixed(1)+' '});s+='<path d="'+p+'" fill="none" stroke="'+cols[j]+'" stroke-width="2.4" stroke-linejoin="round"/>';
-    ys.forEach(function(y,i){var v=y[k];if(v==null)return;s+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(v*100).toFixed(1)+'" r="3" fill="'+cols[j]+'"><title>'+y.fy+': '+(v*100).toFixed(1)+'%</title></circle>'})});
+    ys.forEach(function(y,i){var v=y[k];if(v==null)return;s+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(v*100).toFixed(1)+'" r="3" fill="'+cols[j]+'"><title>'+y.fy+': '+(v*100).toFixed(1)+'%</title></circle>';
+      /* label: above the line for the top series, below for the others; skip a label that would sit on another series' point */
+      var top=keys.every(function(k2){return k2===k||y[k2]==null||y[k2]<=v}),ly=top?Y(v*100)-6:Y(v*100)+13;
+      var clash=keys.some(function(k2){return k2!==k&&y[k2]!=null&&Math.abs(Y(y[k2]*100)-ly)<8});
+      if(!clash||i===ys.length-1)s+='<text x="'+X(i).toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" fill="'+cols[j]+'" font-size="9" font-weight="700" font-family="Vazirmatn,Tahoma">'+Math.round(v*100)+'</text>'})});
   ys.forEach(function(y,i){s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
   return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
 }

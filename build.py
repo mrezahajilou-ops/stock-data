@@ -629,9 +629,11 @@ def build_company(cik, entry, facts):
         ebitda = (op + da) if (op is not None and da is not None) else None
         ie = g("interest_exp")
         ca, cl = g("current_assets"), g("current_liabilities")
+        fdate = min([v for v in (filed.get(k, {}).get(end) for k in ("revenue", "net_income", "assets", "eps_diluted")) if v] or [None])
         rows.append({
             "fy_end": end,
             "fy": fy_of(end),
+            "filed": fdate,   # date the 10-K / 20-F was filed (when this year's figures became public)
             "revenue": rev, "gross_profit": gp, "op_income": op, "net_income": ni,
             "eps_diluted": eps, "shares_diluted": sh_d, "shares_out": g("shares_out"),
             "cfo": cfo, "capex": None if capex is None else abs(capex), "fcf": fcf,

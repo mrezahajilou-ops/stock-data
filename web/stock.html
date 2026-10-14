@@ -65,6 +65,23 @@
 #rzs .st .s{font-size:11px;color:var(--mut);direction:rtl}
 #rzs .st .s b{direction:ltr;display:inline-block}
 #rzs h3{font-size:17px;margin:0 0 10px;color:#fff}
+#rzs .vbig em{display:block;font-style:normal;font-size:11.5px;color:var(--mut);margin-top:2px}
+#rzs .anbar{position:relative;height:74px;margin:22px 10px 4px}
+#rzs .anbar .trk{position:absolute;top:30px;left:0;right:0;height:8px;border-radius:5px;background:linear-gradient(90deg,#ff5a5f,#f5b700,#2ec4b6)}
+#rzs .anbar .mk{position:absolute;top:0;transform:translateX(-50%);text-align:center;font-size:11px;line-height:1.3}
+#rzs .anbar .mk i{display:block;margin:0 auto}
+#rzs .anbar .mk.px i{width:3px;height:26px;background:#fff;border-radius:2px;margin-top:21px}
+#rzs .anbar .mk.px b{display:block;position:absolute;top:50px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#fff;font-weight:800}
+#rzs .anbar .mk.tg i{width:16px;height:16px;border-radius:50%;background:#b5e36b;border:2px solid #0b1726;margin-top:26px}
+#rzs .anbar .mk.tg b{display:block;position:absolute;top:-4px;left:50%;transform:translateX(-50%);white-space:nowrap;color:var(--lime);font-weight:800}
+#rzs .anbar .lo,#rzs .anbar .hi{position:absolute;top:44px;font-size:11px;color:var(--mut);white-space:nowrap}
+#rzs .anbar .lo{left:0;direction:ltr}#rzs .anbar .hi{right:0}
+#rzs .anbar small{color:#c9d6e5}
+#rzs .anrt{margin-top:14px}
+#rzs .anrt .seg{display:flex;height:12px;border-radius:6px;overflow:hidden;gap:2px;direction:ltr}
+#rzs .anrt .seg i{display:block;height:100%}
+#rzs .anrt .leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:12.5px;color:#c9d6e5}
+#rzs .antbl td small{font-size:11px;margin-right:3px}
 #rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (min-width:1450px){#rzs .charts{grid-template-columns:repeat(4,1fr)}#rzs .charts .card h3{font-size:14px}}
 #rzs .wide2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}#rzs .wide2>*{min-width:0}
@@ -457,25 +474,45 @@ function render(d){
 
 /* ---- analyst consensus: rating, price target, EPS / revenue estimates (branch `estimates`) ---- */
 function drawAnalyst(d){var box=$('rzs-an'),A=d.analyst;if(!box||!A||!A.tgt)return;
-  var m=d.market||{},px=m.price,up=A.up,L=(d.annual||[])[d.annual.length-1]||{},T=d.ttm||{};
+  var m=d.market||{},px=m.price,up=A.up,L=(d.annual||[])[d.annual.length-1]||{},T=d.ttm||{},r=d.ratios||{};
   var REC={strong_buy:['خرید قوی','#2ec4b6'],buy:['خرید','#b5e36b'],hold:['نگه‌داری','#f5b700'],underperform:['ضعیف‌تر از بازار','#ff9f6b'],sell:['فروش','#ff5a5f']};
-  var R=REC[A.rec]||[A.rec||'—','#93a7bf'],cur=A.cur||'USD',fx=cur==='USD';
-  var P=function(v){return v==null||!isFinite(v)?'—':'<span class="ltr">'+(v>=0?'+':'')+(v*100).toFixed(1)+'%</span>'},U=function(v){return v==null?'—':'<span class="ltr">$'+v.toFixed(2)+'</span>'};
-  var fy=function(x){return x?String(x).slice(0,4):''};
-  var lo=A.tlo,hi=A.thi,pos=function(v){return hi>lo?Math.max(0,Math.min(100,(v-lo)/(hi-lo)*100)):50};
-  var bar=lo&&hi?'<div style="position:relative;height:38px;margin:14px 6px 6px"><div style="position:absolute;top:16px;left:0;right:0;height:6px;border-radius:4px;background:linear-gradient(90deg,#ff5a5f,#f5b700,#2ec4b6)"></div>'+
-    '<div title="قیمت فعلی" style="position:absolute;top:8px;left:'+pos(px)+'%;transform:translateX(-50%);width:3px;height:22px;background:#fff;border-radius:2px"></div>'+
-    '<div title="میانگین هدف" style="position:absolute;top:10px;left:'+pos(A.tgt)+'%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:#b5e36b;border:2px solid #0b1726;margin-top:2px"></div>'+
-    '<span style="position:absolute;top:28px;left:0;font-size:11px;color:var(--mut);direction:ltr">$'+lo.toFixed(0)+' کمترین</span><span style="position:absolute;top:28px;right:0;font-size:11px;color:var(--mut)">بیشترین $'+hi.toFixed(0)+'</span></div>':'';
-  var rows='';
-  if(fx&&(A.e0!=null||A.e1!=null)){var eb=T.net_income!=null&&L.shares_diluted?T.net_income/L.shares_diluted:L.eps_diluted;
-    rows+='<tr><td>سود هر سهم (EPS)</td><td>'+U(eb)+'</td><td>'+U(A.e0)+' <small class="'+(A.e0>=eb?'up':'dn')+'">'+(eb>0&&A.e0!=null?P(A.e0/eb-1):'')+'</small></td><td>'+U(A.e1)+' <small class="'+(A.e1>=A.e0?'up':'dn')+'">'+(A.e0>0&&A.e1!=null?P(A.e1/A.e0-1):'')+'</small></td></tr>'}
-  if(A.r0!=null||A.r1!=null){var rb=T.revenue!=null?T.revenue:L.revenue,k=fx?1:null;
-    if(fx)rows+='<tr><td>درآمد</td><td>'+(rb?big(rb):'—')+'</td><td>'+(A.r0?big(A.r0):'—')+' <small class="up">'+(rb&&A.r0?P(A.r0/rb-1):'')+'</small></td><td>'+(A.r1?big(A.r1):'—')+' <small class="up">'+(A.r0&&A.r1?P(A.r1/A.r0-1):'')+'</small></td></tr>'}
-  var h='<div class="axhead"><h3 style="margin:0">🎯 نظر تحلیلگرها</h3><span class="mut2" style="font-size:12.5px">'+(A.nt||A.n||'?')+' تحلیلگر</span></div>'+
-    '<div class="vbig"><div><small>توصیه‌ی میانگین</small><b style="color:'+R[1]+'">'+R[0]+'</b></div><div><small>قیمت هدف میانگین</small><b>$'+A.tgt.toFixed(2)+'</b></div><div><small>فاصله تا هدف</small><b class="'+(up>=0?'up':'dn')+'">'+(up>=0?'+':'')+(up*100).toFixed(1)+'%</b></div><div><small>P/E آینده</small><b>'+(d.ratios&&d.ratios.fwd_pe?d.ratios.fwd_pe.toFixed(1):'—')+'</b></div></div>'+bar+
-    (rows?'<div class="tblwrap" style="margin-top:10px"><table><thead><tr><th style="text-align:right">پیش‌بینی میانگین</th><th>۱۲ ماه اخیر</th><th>سال مالی '+fy(A.fy0)+'</th><th>سال مالی '+fy(A.fy1)+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'')+
-    '<p class="xnote">میانگین پیش‌بینی تحلیلگرهای وال‌استریت (منبع: Yahoo Finance)، روزانه به‌روز میشه. P/E و P/S آینده بر اساس ۱۲ ماه آینده‌ی همین پیش‌بینی‌ها حساب میشن. پیش‌بینی تحلیلگرها اغلب اشتباه از آب درمیاد؛ آموزشیه و پیشنهاد خرید یا فروش نیست.</p>';
+  var R=REC[A.rec]||[A.rec||'—','#93a7bf'],cur=A.cur||'USD',usd=cur==='USD';
+  /* foreign filers: EPS estimates are per ordinary share in the home currency -> per listed share (ADS) in dollars */
+  var ads=usd?1:(A.ads||null),fx=A.fx||1,eps$=function(v){return v==null?null:(usd?v:(ads?v*ads:null))},rev$=function(v){return v==null?null:v/fx};
+  var P=function(v,dg){return v==null||!isFinite(v)?'':'<span class="ltr">'+(v>=0?'+':'')+(v*100).toFixed(dg==null?1:dg)+'%</span>'};
+  var U=function(v){return v==null?'—':'<span class="ltr">$'+(Math.abs(v)>=100?v.toFixed(0):v.toFixed(2))+'</span>'};
+  var fy=function(x){return x?String(x).slice(0,4):''},qn=function(x){if(!x)return '';var e=new Date(x+'T12:00:00Z');return 'Q'+(Math.floor(e.getUTCMonth()/3)+1)+' '+e.getUTCFullYear()};
+  var G=function(a,b){return a!=null&&b>0?a/b-1:null};
+  /* 1) target range */
+  var lo=A.tlo,hi=A.thi,pos=function(v){return hi>lo?Math.max(2,Math.min(98,(v-lo)/(hi-lo)*100)):50};
+  var bar=lo&&hi&&px?'<div class="anbar"><div class="trk"></div>'+
+    '<div class="mk px" style="left:'+pos(px)+'%"><i></i><b>قیمت فعلی<br>$'+px.toFixed(0)+'</b></div>'+
+    '<div class="mk tg" style="left:'+pos(A.tgt)+'%"><i></i><b>میانگین هدف<br>$'+A.tgt.toFixed(0)+'</b></div>'+
+    '<span class="lo">کمترین هدف $'+lo.toFixed(0)+' <small>'+P(lo/px-1,0)+'</small></span><span class="hi">بیشترین هدف $'+hi.toFixed(0)+' <small>'+P(hi/px-1,0)+'</small></span></div>':'';
+  /* 2) recommendation breakdown */
+  var rt=A.rt,rth='';
+  if(rt&&rt.reduce(function(a,b){return a+b},0)>0){var tot=rt.reduce(function(a,b){return a+b},0),lab=['خرید قوی','خرید','نگه‌داری','فروش','فروش قوی'],col=['#2ec4b6','#b5e36b','#f5b700','#ff9f6b','#ff5a5f'];
+    rth='<div class="anrt"><div class="seg">'+rt.map(function(n,i){return n?'<i style="flex:'+n+';background:'+col[i]+'" title="'+lab[i]+': '+n+'"></i>':''}).join('')+'</div><div class="leg">'+rt.map(function(n,i){return n?'<span><b style="color:'+col[i]+'">'+n+'</b> '+lab[i]+'</span>':''}).join('')+'<span class="mut2">از '+tot+' تحلیلگر</span></div></div>'}
+  /* 3) estimates table: last 12 months -> next quarters -> fiscal years */
+  var eb=T.eps!=null?T.eps:L.eps_diluted,rb=T.revenue!=null?T.revenue:L.revenue;
+  var cols=[],E0=eps$(A.e0),E1=eps$(A.e1),R0=rev$(A.r0),R1=rev$(A.r1),QE0=eps$(A.qe0),QE1=eps$(A.qe1),QR0=rev$(A.qr0),QR1=rev$(A.qr1);
+  if(A.q0&&(QE0!=null||QR0))cols.push({h:qn(A.q0),e:QE0,r:QR0,ge:A.gq0,gr:null});
+  if(A.q1&&(QE1!=null||QR1))cols.push({h:qn(A.q1),e:QE1,r:QR1,ge:A.gq1,gr:null});
+  if(A.fy0&&(E0!=null||R0))cols.push({h:'سال مالی '+fy(A.fy0),e:E0,r:R0,ge:A.ge0!=null?A.ge0:(eb>0?G(E0,eb):null),gr:G(R0,rb)});
+  if(A.fy1&&(E1!=null||R1))cols.push({h:'سال مالی '+fy(A.fy1),e:E1,r:R1,ge:A.ge1!=null?A.ge1:G(E1,E0),gr:G(R1,R0)});
+  var cell=function(v,g,f){return '<td>'+f(v)+(g!=null?' <small class="'+(g>=0?'up':'dn')+'">'+P(g,0)+'</small>':'')+'</td>'};
+  var tbl=cols.length?'<div class="tblwrap" style="margin-top:12px"><table class="antbl"><thead><tr><th style="text-align:right">پیش‌بینی میانگین</th><th>۱۲ ماه اخیر</th>'+cols.map(function(c){return '<th>'+c.h+'</th>'}).join('')+'</tr></thead><tbody>'+
+    '<tr><td>سود هر سهم (EPS)</td><td>'+U(eb)+'</td>'+cols.map(function(c){return cell(c.e,c.ge,U)}).join('')+'</tr>'+
+    '<tr><td>درآمد</td><td>'+(rb?big(rb):'—')+'</td>'+cols.map(function(c){return cell(c.r,c.gr,function(v){return v?big(v):'—'})}).join('')+'</tr>'+
+    '</tbody></table></div><p class="xnote" style="margin:4px 0 0">درصدها = رشد نسبت به همین دوره‌ی سال قبل (برای فصل‌ها و سال‌ها طبق اعلام تحلیلگرها).'+(usd?'':' برآوردها از واحد پول شرکت به دلار و به ازای هر سهم آمریکایی (ADS) تبدیل شده‌اند.')+'</p>':'';
+  /* 4) headline tiles */
+  var fpe=r.fwd_pe,peg=(fpe&&A.ge1>0)?fpe/(A.ge1*100):null;
+  var tiles='<div class="vbig"><div><small>توصیه‌ی میانگین</small><b style="color:'+R[1]+'">'+R[0]+'</b>'+(A.rm?'<em>'+A.rm.toFixed(1)+' از ۵ (۱ = خرید قوی)</em>':'')+'</div>'+
+    '<div><small>قیمت هدف میانگین</small><b>$'+A.tgt.toFixed(2)+'</b><em class="'+(up>=0?'up':'dn')+'">'+(up>=0?'+':'')+(up*100).toFixed(1)+'% تا هدف</em></div>'+
+    '<div><small>P/E آینده</small><b>'+(fpe?fpe.toFixed(1):'—')+'</b><em>'+(r.pe?'الان '+r.pe.toFixed(1):'')+'</em></div>'+
+    '<div><small>رشد EPS سال بعد</small><b class="'+((A.ge1||0)>=0?'up':'dn')+'">'+(A.ge1!=null?P(A.ge1,0):'—')+'</b><em>'+(peg?'PEG آینده '+peg.toFixed(2):'')+'</em></div></div>';
+  var h='<div class="axhead"><h3 style="margin:0">🎯 نظر تحلیلگرها</h3><span class="mut2" style="font-size:12.5px">'+(A.nt||A.n||'?')+' تحلیلگر · Yahoo Finance</span></div>'+tiles+bar+rth+tbl+
+    '<p class="xnote">میانگین پیش‌بینی تحلیلگرهای وال‌استریت، روزانه به‌روز میشه. P/E آینده = قیمت ÷ سود پیش‌بینی‌شده‌ی ۱۲ ماه آینده. پیش‌بینی تحلیلگرها اغلب اشتباه از آب درمیاد؛ آموزشیه و پیشنهاد خرید یا فروش نیست.</p>';
   box.innerHTML=ACCESS?h:'<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+h+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 مخصوص مشترکین Stock Pro</a></div></div>';box.style.display=''}
 
 /* ---- revenue & net income history (annual 10 years / last 12 quarters) ---- */

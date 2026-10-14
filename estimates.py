@@ -81,7 +81,7 @@ def series(t):
 
 def one(t):
     sym = t.replace('.', '-')
-    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail,earningsHistory&crumb=%s'
+    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail,earningsHistory,recommendationTrend&crumb=%s'
            % (urllib.parse.quote(sym), urllib.parse.quote(CRUMB[0] or '')))
     for a in range(3):
         try:
@@ -106,7 +106,16 @@ def one(t):
                  'qr0': raw((q0.get('revenueEstimate') or {}).get('avg')), 'qr1': raw((q1.get('revenueEstimate') or {}).get('avg')),
                  'tgt': raw(fd.get('targetMeanPrice')), 'tlo': raw(fd.get('targetLowPrice')), 'thi': raw(fd.get('targetHighPrice')),
                  'nt': raw(fd.get('numberOfAnalystOpinions')), 'rec': fd.get('recommendationKey'), 'rm': raw(fd.get('recommendationMean')),
-                 'fpe': raw(ks.get('forwardPE')), 'feps': raw(ks.get('forwardEps'))}
+                 'fpe': raw(ks.get('forwardPE')), 'feps': raw(ks.get('forwardEps')),
+                 # analysts' revenue / EPS growth expectations for the current and next year (as published)
+                 'ge0': raw((y0.get('growth'))), 'ge1': raw((y1.get('growth'))),
+                 'gq0': raw((q0.get('growth'))), 'gq1': raw((q1.get('growth'))),
+                 # how estimates moved in the last 30 / 90 days (number of analysts raising / lowering)
+                 'rev30': {k: raw((y0.get('epsRevisions') or {}).get(k)) for k in ('upLast30days', 'downLast30days')}}
+            rt = ((res.get('recommendationTrend') or {}).get('trend') or [])
+            rt0 = next((x for x in rt if x.get('period') == '0m'), rt[0] if rt else None)
+            if rt0:
+                o['rt'] = [rt0.get('strongBuy') or 0, rt0.get('buy') or 0, rt0.get('hold') or 0, rt0.get('sell') or 0, rt0.get('strongSell') or 0]
             # reference values for the nightly data check (verify_all.py); not shown on the site
             o['ref'] = {k: v for k, v in {
                 'mcap': raw(sd.get('marketCap')), 'pe': raw(sd.get('trailingPE')), 'fpe': raw(sd.get('forwardPE')),

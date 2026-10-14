@@ -973,8 +973,18 @@ def forward(rec, mk):
         if eps and eps > 0:
             out["fwd_pe"] = price / eps
             out["fwd_eps"] = eps
-    elif e.get("fpe") and e["fpe"] > 0:
-        out["fwd_pe"] = e["fpe"]  # foreign filers: per-ADS conversion done by the data provider
+    else:
+        # foreign filers: EPS estimates are per ordinary share in the home currency, the price is per ADS in USD.
+        # Yahoo's summaryDetail forward P/E is on a consistent basis (its defaultKeyStatistics one is not).
+        ref_ = e.get("ref") or {}
+        fpe = ref_.get("fpe") if isinstance(ref_.get("fpe"), (int, float)) else None
+        feps = e.get("feps") if isinstance(e.get("feps"), (int, float)) else None
+        if fpe and fpe > 0:
+            out["fwd_pe"] = fpe
+            out["fwd_eps"] = price / fpe
+        elif feps and feps > 0 and ref_.get("price") and 0.5 < price / ref_["price"] < 2:
+            out["fwd_pe"] = price / feps
+            out["fwd_eps"] = feps
     if revn and revn > 0 and fx:
         out["fwd_ps"] = mcap / (revn / fx)
         out["fwd_rev"] = revn / fx
@@ -985,7 +995,12 @@ def forward(rec, mk):
         if fm and fm > 0:
             out["fwd_pfcf"] = mcap / (revn / fx * fm)
     if e.get("tgt"):
-        rec["analyst"] = {k: e.get(k) for k in ("tgt", "tlo", "thi", "nt", "rec", "rm", "n", "fy0", "fy1", "e0", "e1", "r0", "r1", "cur")}
+        rec["analyst"] = {k: e.get(k) for k in ("tgt", "tlo", "thi", "nt", "rec", "rm", "n", "fy0", "fy1", "e0", "e1", "r0", "r1", "cur",
+                                                 "q0", "q1", "qe0", "qe1", "qr0", "qr1", "ge0", "ge1", "gq0", "gq1", "rt", "rev30", "feps")}
+        rec["analyst"]["fx"] = fx   # home-currency units per USD (1 for USD)
+        # per-ADS scale: Yahoo's forward EPS (USD per listed share) vs the home-currency estimate of the same year
+        if cur != "USD" and e.get("feps") and eps:
+            rec["analyst"]["ads"] = e["feps"] / eps
         rec["analyst"]["up"] = e["tgt"] / price - 1
         rec["analyst"]["fwd_eps"] = out.get("fwd_eps")
         rec["analyst"]["fwd_rev"] = out.get("fwd_rev")

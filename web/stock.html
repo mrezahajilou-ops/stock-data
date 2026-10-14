@@ -494,8 +494,10 @@ function drawAnalyst(d){var box=$('rzs-an'),A=d.analyst;if(!box||!A||!A.tgt)retu
   if(rt&&rt.reduce(function(a,b){return a+b},0)>0){var tot=rt.reduce(function(a,b){return a+b},0),lab=['خرید قوی','خرید','نگه‌داری','فروش','فروش قوی'],col=['#2ec4b6','#b5e36b','#f5b700','#ff9f6b','#ff5a5f'];
     rth='<div class="anrt"><div class="seg">'+rt.map(function(n,i){return n?'<i style="flex:'+n+';background:'+col[i]+'" title="'+lab[i]+': '+n+'"></i>':''}).join('')+'</div><div class="leg">'+rt.map(function(n,i){return n?'<span><b style="color:'+col[i]+'">'+n+'</b> '+lab[i]+'</span>':''}).join('')+'<span class="mut2">از '+tot+' تحلیلگر</span></div></div>'}
   /* 3) estimates table: last 12 months -> next quarters -> fiscal years */
-  var eb=T.eps!=null?T.eps:L.eps_diluted,rb=T.revenue!=null?T.revenue:L.revenue;
+  /* trailing EPS on the same basis as the P/E shown on the page (price / P/E); falls back to the SEC figure */
+  var eb=(r.pe&&px)?px/r.pe:(T.eps!=null?T.eps:L.eps_diluted),rb=T.revenue!=null?T.revenue:L.revenue;
   var cols=[],E0=eps$(A.e0),E1=eps$(A.e1),R0=rev$(A.r0),R1=rev$(A.r1),QE0=eps$(A.qe0),QE1=eps$(A.qe1),QR0=rev$(A.qr0),QR1=rev$(A.qr1);
+  if(!usd&&rb&&R0&&!(0.3<R0/rb&&R0/rb<3))rb=null;   /* foreign filer whose SEC revenue is on another basis: don't compare */
   if(A.q0&&(QE0!=null||QR0))cols.push({h:qn(A.q0),e:QE0,r:QR0,ge:A.gq0,gr:null});
   if(A.q1&&(QE1!=null||QR1))cols.push({h:qn(A.q1),e:QE1,r:QR1,ge:A.gq1,gr:null});
   if(A.fy0&&(E0!=null||R0))cols.push({h:'سال مالی '+fy(A.fy0),e:E0,r:R0,ge:A.ge0!=null?A.ge0:(eb>0?G(E0,eb):null),gr:G(R0,rb)});

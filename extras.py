@@ -210,6 +210,7 @@ def profile_one(t):
 
 
 # ------------------------------------------------------------------ insider fallback: SEC EDGAR Form 4 (when Nasdaq has nothing)
+LOG = []
 SEC_UA = os.environ.get('SEC_USER_AGENT', 'Reza Hajilou mreza.hajilou@gmail.com')
 SEC_HDR = {'User-Agent': SEC_UA, 'Accept': 'application/json, text/xml, */*'}
 # Form 4 transaction codes -> the labels Nasdaq uses (the page already knows how to colour / translate those)
@@ -230,6 +231,7 @@ def sec_form4(cik, max_docs=40):
     except Exception:
         sub = None
     if not sub:
+        LOG.append('sec submissions failed cik %s' % cik)
         return None
     rec = sub.get('filings', {}).get('recent', {})
     forms, accs, docs, dates = rec.get('form', []), rec.get('accessionNumber', []), rec.get('primaryDocument', []), rec.get('filingDate', [])
@@ -245,7 +247,8 @@ def sec_form4(cik, max_docs=40):
     for fd, acc, doc in f4[:max_docs]:
         if not doc:
             continue
-        url = 'https://www.sec.gov/Archives/edgar/data/%d/%s/%s' % (int(cik), acc.replace('-', ''), doc)
+        # primaryDocument is the XSL-rendered path ("xslF345X05/wk-form4_....xml"); the raw XML is the file name alone
+        url = 'https://www.sec.gov/Archives/edgar/data/%d/%s/%s' % (int(cik), acc.replace('-', ''), doc.split('/')[-1])
         raw = get(url, SEC_HDR, timeout=30, tries=2)
         time.sleep(0.12)   # SEC fair-use: < 10 requests / second
         if not raw:
@@ -292,6 +295,7 @@ def sec_form4(cik, max_docs=40):
                     if date >= cut3:
                         summ['sells3'] += 1; summ['sold3'] += q
     if not rows:
+        LOG.append('sec form4 no rows cik %s (%d filings)' % (cik, len(f4)))
         return None
     summ['net3'] = summ['bought3'] - summ['sold3']
     summ['net12'] = summ['bought12'] - summ['sold12']
@@ -370,8 +374,11 @@ def main():
         print('insider fallback: %d filled (%d via share class, %d foreign, %d from SEC)' % (
             len(extra), sum(1 for v in extra.values() if v.get('via')), sum(1 for v in extra.values() if v.get('foreign')),
             sum(1 for v in extra.values() if v.get('src') == 'sec')), flush=True)
-    json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'ok': ok, 'fail': fail},
-              open(os.path.join(out_dir, 'meta.json'), 'w'))
+    meta = {'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'ok': ok, 'fail': fail}
+    if kind == 'insider':
+        meta['missing'] = [t for t in ts if not os.path.exists(os.path.join(out_dir, t + '.json'))][:200]
+        meta['log'] = LOG[-50:]
+    json.dump(meta, open(os.path.join(out_dir, 'meta.json'), 'w'))
     print('::notice::%s done: ok %d, no data %d, %.0fs%s' % (kind, ok, fail, time.time() - t0,
           (' (yahoo ok %d of %d tries)' % (YSTAT['ok'], YSTAT['try'])) if kind == 'news' else ''))
     if ok < len(ts) * 0.2:

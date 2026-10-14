@@ -1158,6 +1158,15 @@ def fill_from_yahoo(rec, e):
                     t.setdefault("filled", []).append(k)
             if t.get("fcf") is None and t.get("cfo") is not None and t.get("capex") is not None:
                 t["fcf"] = t["cfo"] - t["capex"]
+    # EBITDA: Yahoo's trailing figure when the filings give none (IFRS filers without an operating-income tag, D&A only yearly)
+    t = rec.get("ttm")
+    ref = (e or {}).get("ref") or {}
+    if t and t.get("ebitda") is None and isinstance(ref.get("ebitda"), (int, float)) and ref["ebitda"]:
+        cur = (e or {}).get("cur") or "USD"
+        rate = 1.0 if cur == "USD" else FX_LATEST.get(cur)
+        if rate and t.get("revenue") and -0.5 < ref["ebitda"] / rate / t["revenue"] < 1.0:
+            t["ebitda"] = ref["ebitda"] / rate
+            t.setdefault("filled", []).append("ebitda")
     # latest balance sheet
     if not rec.get("bs"):
         dc, cash = _yv(ts, "quarterlyCashCashEquivalentsAndShortTermInvestments", FX_LATEST)

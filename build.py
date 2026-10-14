@@ -629,7 +629,8 @@ def build_company(cik, entry, facts):
         ebitda = (op + da) if (op is not None and da is not None) else None
         ie = g("interest_exp")
         ca, cl = g("current_assets"), g("current_liabilities")
-        fdate = min([v for v in (filed.get(k, {}).get(end) for k in ("revenue", "net_income", "assets", "eps_diluted")) if v] or [None])
+        # first filing that reported this year (hist keeps every filing; `filed` holds the latest restatement)
+        fdate = min([f_[0] for k in ("revenue", "net_income", "assets", "eps_diluted") for f_ in (hist.get(k, {}).get(end) or []) if f_[0]] or [None])
         rows.append({
             "fy_end": end,
             "fy": fy_of(end),

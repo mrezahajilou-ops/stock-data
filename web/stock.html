@@ -83,7 +83,8 @@
 #rzs .anrt .leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:12.5px;color:#c9d6e5}
 #rzs .antbl td small{font-size:11px;margin-right:3px}
 #rzs .card.rz-big{width:100%;height:100%;margin:0;box-sizing:border-box;background:var(--card);border-color:var(--ac);display:flex;flex-direction:column;padding:18px 22px;cursor:default}
-#rzs .card.rz-big svg{flex:1 1 auto;min-height:0;max-height:none;height:auto}
+#rzs .card.rz-big svg{flex:0 1 auto;min-height:0;width:100%;height:auto;max-height:calc(100% - 70px)}
+#rzs .card.rz-big{justify-content:center}
 #rzs .card.rz-big h3{font-size:18px}
 #rzs .card.rz-big .legend,#rzs .card.rz-big .rnleg{font-size:14px}
 #rzs .charts .card{cursor:zoom-in}#rzs .charts .card.rz-big{cursor:default}
@@ -106,20 +107,20 @@
 #rzs .btn{display:inline-block;background:var(--ac);color:#06201d!important;text-decoration:none!important;font-weight:900;padding:10px 20px;border-radius:999px;border:0;cursor:pointer;white-space:nowrap}
 #rzs .btn.ghost{background:transparent;border:1.5px solid var(--line);color:#fff!important}
 #rzs .empty{color:var(--mut);text-align:center;padding:30px 10px}
-#rzs .ab-lead{font-size:15.5px;line-height:1.95;margin:0 0 12px;color:#eef3f9}
-#rzs .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-#rzs .ab-grid>div,#rzs .ab-sec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-#rzs .ab-sec{margin-top:12px}
-#rzs .ab-grid b,#rzs .ab-sec>b{display:block;color:#fff;font-size:14.5px;margin-bottom:4px}
-#rzs .ab-grid p,#rzs .ab-sec p{margin:0;font-size:14px;line-height:1.9;color:#d6e1ee}
-#rzs ul.ab-money,#rzs ul.ab-risk{margin:4px 0 0;padding:0 18px 0 0;font-size:14px;line-height:1.85;color:#d6e1ee}
-#rzs ul.ab-money li{margin-bottom:6px}
+#rzs .ab-lead{font-size:15px;line-height:1.85;margin:0 0 10px;color:#eef3f9}
+#rzs .ab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch}
+#rzs .ab-grid>div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px;min-width:0}
+#rzs .ab-grid b{display:block;color:#fff;font-size:14px;margin-bottom:3px}
+#rzs .ab-grid p{margin:0;font-size:13.5px;line-height:1.75;color:#d6e1ee}
+#rzs ul.ab-money,#rzs ul.ab-risk{margin:2px 0 0;padding:0 16px 0 0;font-size:13.5px;line-height:1.7;color:#d6e1ee}
+#rzs ul.ab-money li{margin-bottom:3px}
 #rzs ul.ab-money span{font-weight:800;color:#fff}
 #rzs ul.ab-money i{font-style:normal;color:var(--lime);font-weight:800;margin-right:4px}
-#rzs ul.ab-money small{display:block;font-size:13px;color:#b9c7d8}
+#rzs ul.ab-money small{font-size:12.5px;color:#b9c7d8}
 #rzs .ab-riv a{color:var(--ac)!important;text-decoration:none!important;font-weight:700}
 #rzs .ab-en{font-size:14px;line-height:1.75;color:#d6e1ee;margin:0;text-align:left;max-height:7.2em;overflow:hidden;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
 #rzs .ab-en.open{max-height:none}
+@media (max-width:1100px){#rzs .ab-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){#rzs .ab-grid{grid-template-columns:1fr}}
 #rzs .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 #rzs .two>.card{min-width:0}
@@ -535,6 +536,7 @@ function drawRN(d){var box=$('rzs-rn');if(!box)return;
   var pts=S.filter(function(x){return x.r!=null||x.n!=null});if(pts.length<2){box.innerHTML=head+'<div class="empty" style="padding:14px">داده‌ی کافی نیست.</div>';return}
   var mx=0,mn=0;pts.forEach(function(x){[x.r,x.n].forEach(function(v){if(v!=null){mx=Math.max(mx,v);mn=Math.min(mn,v)}})});if(mx<=0)mx=1;var u=rnUnit(Math.max(mx,-mn));
   var st=(function(r){var e=Math.pow(10,Math.floor(Math.log10(r/4))),m=r/4/e;return (m<=1?1:m<=2?2:m<=5?5:10)*e})(mx-mn);mx=Math.ceil(mx/st)*st;mn=Math.floor(mn/st)*st;
+  if(mn<0&&pts.some(function(x){return (x.n!=null&&x.n<0)||(x.r!=null&&x.r<0)}))mn-=st*0.6;   /* labels under negative bars must not touch the quarter labels */
   var W=680,H=262,PL=46,PR=8,PT=26,PB=28,span=mx-mn,bw=(W-PL-PR)/pts.length,b=Math.min(26,bw*0.34);
   var lf=pts.length>8?8.5:9.5,sh=function(v){var a2=Math.abs(v)/u[0];return (v<0?'-':'')+(a2>=100?a2.toFixed(0):a2>=10?a2.toFixed(1):a2.toFixed(2))};
   var Y=function(v){return PT+(H-PT-PB)*(mx-v)/span},z=Y(0),g='';
@@ -709,13 +711,15 @@ function loadAbout(d){
     var lnk=function(s){var m=String(s).match(/^(.*)\|([A-Z.\-]{1,6})$/);return m?'<a href="/pages/stock#'+esc(m[2])+'">'+esc(m[1])+' <bdi>('+esc(m[2])+')</bdi></a>':esc(s)};
     if(P){
       h='<h3>🏢 '+esc(P.title||('این شرکت چه کار می‌کند؟'))+'</h3><p class="ab-lead">'+esc(P.what)+'</p>'+
+        /* one compact grid: every block the same style, no full-width cards with empty space */
         '<div class="ab-grid">'+
         (P.problem?'<div><b>🧩 چه مشکلی را حل می‌کند؟</b><p>'+esc(P.problem)+'</p></div>':'')+
-        (P.customers?'<div><b>👥 مشتری‌هایش کی‌اند؟</b><p>'+esc(P.customers)+'</p></div>':'')+'</div>'+
-        (P.money&&P.money.length?'<div class="ab-sec"><b>💰 چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+esc(m[0])+(m[1]?' <i>'+esc(m[1])+'</i>':'')+'</span>'+(m[2]?'<small>'+esc(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
-        (P.moat?'<div class="ab-sec"><b>🛡️ مزیت رقابتی</b><p>'+esc(P.moat)+'</p></div>':'')+
-        (P.rivals&&P.rivals.length?'<div class="ab-sec"><b>⚔️ رقبای اصلی</b><p class="ab-riv">'+P.rivals.map(lnk).join('، ')+'</p></div>':'')+
-        (P.risks&&P.risks.length?'<div class="ab-sec"><b>⚠️ ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
+        (P.customers?'<div><b>👥 مشتری‌هایش کی‌اند؟</b><p>'+esc(P.customers)+'</p></div>':'')+
+        (P.moat?'<div><b>🛡️ مزیت رقابتی</b><p>'+esc(P.moat)+'</p></div>':'')+
+        (P.money&&P.money.length?'<div class="ab-money-box"><b>💰 چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+esc(m[0])+(m[1]?' <i>'+esc(m[1])+'</i>':'')+'</span>'+(m[2]?' <small>'+esc(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
+        (P.risks&&P.risks.length?'<div><b>⚠️ ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
+        (P.rivals&&P.rivals.length?'<div><b>⚔️ رقبای اصلی</b><p class="ab-riv">'+P.rivals.map(lnk).join('، ')+'</p></div>':'')+
+        '</div>'+
         '<p class="xnote">این معرفی بر اساس توضیحات رسمی شرکت و گزارش سالانه‌اش به SEC نوشته شده'+(P.updated?' (بازبینی: <bdi>'+esc(P.updated)+'</bdi>)':'')+'. سهم هر بخش از درآمد تقریبیه.'+(O&&O.web?' · <a target="_blank" rel="noopener nofollow" href="'+esc(/^https?:/.test(O.web)?O.web:'https://'+O.web)+'">سایت شرکت</a>':'')+'</p>';
     } else if(O&&O.desc){
       h='<h3>🏢 معرفی شرکت <span class="mut2">(توضیح رسمی شرکت، به انگلیسی)</span></h3><p class="ab-en" dir="ltr" id="rzs-aben">'+esc(O.desc)+'</p>'+
@@ -784,8 +788,9 @@ function radar(s){
 }
 function bars(a,keys,cols,div){
   div=div||1e9;
-  var ys=a.slice(-10),W=480,H=232,PL=8,PB=26,PT=26,max=0,min=0;
-  ys.forEach(function(y){keys.forEach(function(k){var v=(y[k]||0)/div;max=Math.max(max,v);min=Math.min(min,v)})}); if(max<=0)max=1;
+  var ys=a.slice(-10),W=480,H=232,PL=8,PB=26,PT=26,max=0,min=0,anyNeg=false;
+  ys.forEach(function(y){keys.forEach(function(k){var v=(y[k]||0)/div;max=Math.max(max,v);min=Math.min(min,v);if(v<0)anyNeg=true})}); if(max<=0)max=1;
+  if(anyNeg){var padN=(max-min)*0.09;min-=padN}   /* room under negative bars for their labels, above the year labels */
   var lab=function(v){var a2=Math.abs(v);if(div===1e9)return (v<0?'-':'')+(a2>=100?a2.toFixed(0):a2>=10?a2.toFixed(1):a2.toFixed(2));return a2>=1000?Math.round(a2).toLocaleString('en-US'):a2>=100?a2.toFixed(0):a2.toFixed(1)};
   var fs=keys.length>1?10:11;
   var span=max-min, bw=(W-PL*2)/ys.length, sub=(bw*0.75)/keys.length, s='';

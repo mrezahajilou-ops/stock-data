@@ -1424,6 +1424,63 @@ def finish(recs, market):
         json.dump({sec: {k: r4(sorted(v)[len(v) // 2]) for k, v in d.items() if len(v) >= 10}
                    for sec, d in med.items()}, f, separators=(",", ":"))
     log("wrote", len(recs), "stocks + screener")
+    write_related(recs, market, screener, ci)
+
+
+# ---------------- "related companies" strip on every stock page ----------------
+MAGNETS = ["NVDA", "AAPL", "MSFT", "TSLA", "AMZN", "GOOGL", "META", "AMD", "PLTR", "AVGO", "NFLX", "MU", "COIN", "HOOD", "MELI", "SE"]
+
+
+def write_related(recs, market, screener, ci):
+    """data/related.json: {ticker: [[t, name, price, s_value, s_future, s_past, s_health, s_capital, s_total, pe], ...]}
+    Six companies a visitor is most likely to click next: the profile's named rivals, then the largest companies in the
+    same industry, then one or two 'magnet' large caps the whole audience knows. Only companies with a score."""
+    by_t = {r["ticker"]: r for r in recs}
+    rows = {row[0]: row for row in screener if row[ci["s_total"]] is not None}
+    ind = defaultdict(list)
+    for t, row in rows.items():
+        if row[ci["industry"]]:
+            ind[row[ci["industry"]]].append((row[ci["mcap"]] or 0, t))
+    for k in ind:
+        ind[k].sort(reverse=True)
+    rivals = {}
+    pdir = os.path.join(os.getcwd(), "content", "profiles")
+    if os.path.isdir(pdir):
+        for f in os.listdir(pdir):
+            try:
+                pr = json.load(open(os.path.join(pdir, f), encoding="utf-8"))
+                rivals[f[:-5]] = [x.split("|")[1] for x in (pr.get("rivals") or []) if "|" in x]
+            except Exception:
+                pass
+
+    def card(t):
+        row = rows[t]
+        return [t, row[ci["n"]], row[ci["price"]], row[ci["s_value"]], row[ci["s_future"]], row[ci["s_past"]],
+                row[ci["s_health"]], row[ci["s_capital"]], row[ci["s_total"]], row[ci["pe"]]]
+    out = {}
+    for t, row in rows.items():
+        picks = []
+        for x in rivals.get(t, []):
+            if x in rows and x != t and x not in picks:
+                picks.append(x)
+        for _, x in ind.get(row[ci["industry"]], []):
+            if len(picks) >= 4:
+                break
+            if x != t and x not in picks:
+                picks.append(x)
+        # magnets: 2 for most stocks, 1 when the industry already filled the strip; skip the stock itself
+        mag = [m for m in MAGNETS if m != t and m not in picks and m in rows]
+        for m in mag:
+            if len(picks) >= 6:
+                break
+            picks.append(m)
+        out[t] = [card(x) for x in picks[:6]]
+    rd = os.path.join(OUT, "related")
+    os.makedirs(rd, exist_ok=True)
+    for t, cards in out.items():          # one small file per stock (~0.5 KB) instead of one 2 MB file
+        with open(os.path.join(rd, t + ".json"), "w") as f:
+            json.dump(cards, f, separators=(",", ":"))
+    log("related strips:", len(out))
 
 
 def main():

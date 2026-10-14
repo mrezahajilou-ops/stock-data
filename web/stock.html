@@ -22,14 +22,14 @@
 #rzs .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #rzs .chip:hover{color:#fff;border-color:var(--ac)}
 #rzs .head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:flex-start}
-#rzs .co{font-size:24px;font-weight:900;color:#fff;line-height:1.4}
+#rzs .co{font-size:21px;font-weight:900;color:#fff;line-height:1.35}
 #rzs .co small{font-size:14px;color:var(--ac);margin-right:8px;direction:ltr;display:inline-block}
 #rzs .meta{color:var(--mut);font-size:13px}
 #rzs .wl{font-size:12.5px;font-weight:800;border:1px solid var(--line);background:transparent;color:var(--mut);border-radius:999px;padding:2px 10px;cursor:pointer;vertical-align:middle;margin-right:6px}
 #rzs .wl.on{color:var(--gold);border-color:var(--gold)}
 #rzs .px{text-align:left}
-#rzs .px .p{font-size:28px;font-weight:900;direction:ltr}
-#rzs .px .d{font-size:12px;color:var(--mut)}
+#rzs .px .p{font-size:24px;font-weight:900;direction:ltr;line-height:1.2}
+#rzs .px .d{font-size:12px;color:var(--mut)}#rzs .px .d b{color:#dfe8f2;direction:ltr;unicode-bidi:isolate}
 #rzs .px .live{color:#9fe8de}
 #rzs .px .live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2ec4b6;margin-left:5px;vertical-align:middle;box-shadow:0 0 0 3px rgba(46,196,182,.2)}
 #rzs .grid2{display:grid;grid-template-columns:300px 1fr;gap:14px}
@@ -175,6 +175,19 @@
 #rzs table.itb td,#rzs table.itb th{white-space:nowrap;padding:6px 8px}
 @media (max-width:760px){#rzs .two{grid-template-columns:1fr}}
 #rzs .note{font-size:12px;color:var(--mut);text-align:center;margin-top:12px}
+#rzs .rel{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+#rzs .relh{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:6px}
+#rzs .relh a{color:var(--ac)!important;text-decoration:none!important;font-weight:800}
+#rzs .relrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+#rzs .relc{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 6px 7px;text-decoration:none!important;color:inherit!important;min-width:0;transition:border-color .15s,transform .15s}
+#rzs .relc:hover{border-color:var(--ac);transform:translateY(-2px)}
+#rzs .relc svg{width:58px;height:58px;flex:none}
+#rzs .relc b{font-size:13.5px;color:#fff;direction:ltr}
+#rzs .relc small{font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;direction:ltr}
+#rzs .relc em{font-style:normal;font-size:11.5px;color:#c9d6e5;font-weight:800;white-space:nowrap}
+#rzs .relc i{font-style:normal;font-size:12px;color:#fff;direction:ltr;font-weight:800}
+@media (max-width:1100px){#rzs .relrow{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){#rzs .relrow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 #rzs .badge{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:rgba(245,183,0,.15);color:#f3d27a;margin-right:6px}
 #rzs .book{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:linear-gradient(135deg,#1b2f4d,#13233a);border:1px solid var(--line);border-radius:16px;padding:18px}
 #rzs .book h3{margin:0 0 2px}
@@ -482,8 +495,9 @@ function render(d){
     '<div class="meta">'+esc(m.sector||'')+(m.industry?' · '+esc(m.industry):'')+(m.country?' · '+esc(m.country):'')+' · آخرین سال مالی '+faN(L.fy)+' (تا \u2066'+esc(L.fy_end||'')+'\u2069)'+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
-    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+(m.live?'<div class="d live"><i></i>'+esc(liveLabel(d.ticker))+'</div>':'')+'<div class="d">ارزش بازار '+big(m.mcap)+(!m.live&&m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':'')+'</div>'+
-    '<div class="d">\u2066EV '+big0(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'\u2069</div></div></div></div>';
+    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+
+    '<div class="d">ارزش بازار <b>'+big(m.mcap)+'</b> · EV <b>'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
+    '<div class="rel" id="rzs-rel"></div></div>';
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
   h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   h+=verdict(d);
@@ -517,7 +531,7 @@ function render(d){
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
     var csv='\ufeff'+rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'); var b=new Blob([csv],{type:'text/csv'}); var u=URL.createObjectURL(b); var l=document.createElement('a'); l.href=u; l.download=d.ticker+'_financials.csv'; document.body.appendChild(l); l.click(); l.remove(); URL.revokeObjectURL(u)})}
-  loadSectors(); fillSector();
+  loadSectors(); fillSector(); loadRelated(d);
   loadPrice(d.ticker);
   loadExtras(d);
   loadAbout(d);
@@ -753,6 +767,21 @@ function loadExtras(d){
       '<p class="xnote">فرم‌های ۴ ثبت‌شده در SEC (از طریق Nasdaq)؛ مدیران باید هر معامله رو ظرف ۲ روز کاری گزارش بدن. هر شب به‌روز میشه.</p>';
   }).catch(function(){});
 }
+
+/* ---- related companies: six cards (rivals, same-industry peers, big names) a visitor is likely to open next.
+   Precomputed nightly (build.py -> data/related/<T>.json, ~0.5 KB). Mini radar = the same 5-axis score shape as the main one. ---- */
+function miniRadar(sc){var cx=30,cy=30,R=22,n=5,p=[],g='';
+  for(var k=1;k<=2;k++){var q=[];for(var i=0;i<n;i++){var an=-Math.PI/2+i*2*Math.PI/n;q.push((cx+R*k/2*Math.cos(an)).toFixed(1)+','+(cy+R*k/2*Math.sin(an)).toFixed(1))}g+='<polygon points="'+q.join(' ')+'" fill="none" stroke="#25405f" stroke-width="1"/>'}
+  for(var i=0;i<n;i++){var v=sc[i]||0,an=-Math.PI/2+i*2*Math.PI/n;p.push((cx+R*v/5*Math.cos(an)).toFixed(1)+','+(cy+R*v/5*Math.sin(an)).toFixed(1))}
+  var c=col(sc[5]||0);return '<svg viewBox="0 0 60 60" width="60" height="60">'+g+'<polygon points="'+p.join(' ')+'" fill="'+c+'" fill-opacity=".45" stroke="'+c+'" stroke-width="1.5"/></svg>'}
+function loadRelated(d){var box=$('rzs-rel');if(!box)return;var t=d.ticker;
+  fetch(API+'/related/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).then(function(L){
+    if(cur!==d||!L||!L.length)return;
+    box.innerHTML='<div class="relh"><span>شرکت‌های مرتبط</span><a href="/pages/compare#'+esc(t)+','+L.slice(0,3).map(function(c){return esc(c[0])}).join(',')+'">مقایسه‌ی کنار هم ←</a></div><div class="relrow">'+L.map(function(c){
+      var sc=c.slice(3,9),tot=c[8];return '<a class="relc" href="#'+esc(c[0])+'" data-t="'+esc(c[0])+'">'+miniRadar(sc)+'<b>'+esc(c[0])+'</b><small>'+esc(String(c[1]||'').slice(0,22))+'</small>'+
+        '<em><span style="color:'+col(tot||0)+'">\u2066'+(tot==null?'—':tot.toFixed(1))+'/5\u2069</span>'+(c[9]?' · P/E \u2066'+c[9].toFixed(1)+'\u2069':'')+'</em>'+(c[2]?'<i>$'+c[2].toFixed(2)+'</i>':'')+'</a>'}).join('')+'</div>';
+    box.onclick=function(e){var a=e.target.closest('[data-t]');if(a){e.preventDefault();open(a.dataset.t)}};
+  }).catch(function(){})}
 
 /* ---- company intro: Persian profile (content/profiles, hand-written from the official description) or the official English description (branch `profile`) ---- */
 function loadAbout(d){

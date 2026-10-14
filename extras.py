@@ -241,7 +241,7 @@ def sec_cik_for(t):
     return SEC_TICKERS.get(t.upper())
 
 
-def sec_form4(cik, max_docs=40):
+def sec_form4(cik, max_docs=40, issuers=None):
     """Latest Form 4 filings for a CIK, parsed from the XML on EDGAR. Returns the same shape as insider_one().
     Only filings where this CIK is the *issuer* count (a company that is itself a 10% owner of others, like Berkshire,
     also files Form 4s about other companies' shares - those are skipped)."""
@@ -277,7 +277,7 @@ def sec_form4(cik, max_docs=40):
             root = ET.fromstring(raw)
         except Exception:
             continue
-        if _x(root, 'issuer/issuerCik').lstrip('0') != str(int(cik)):
+        if _x(root, 'issuer/issuerCik').lstrip('0') not in (issuers or {str(int(cik))}):
             continue
         owner = root.find('reportingOwner')
         name = _x(owner, 'reportingOwnerId/rptOwnerName') if owner is not None else ''
@@ -351,13 +351,13 @@ def insider_fill(ts, got):
             out[t] = {'foreign': True}
         elif c and m >= 2e8 and sec_tries < 400:
             sec_tries += 1
-            d = sec_form4(c)
-            if not d:
-                for c2 in (INSIDER_CIK.get(t), sec_cik_for(t)):
-                    if c2 and c2 != c:
-                        d = sec_form4(c2)
-                        if d:
-                            break
+            cands = [x for x in (c, INSIDER_CIK.get(t), sec_cik_for(t)) if x]
+            issuers = {str(int(x)) for x in cands}
+            d = None
+            for c2 in dict.fromkeys(cands):
+                d = sec_form4(c2, issuers=issuers)
+                if d:
+                    break
             if d:
                 out[t] = d
                 by_cik.setdefault(c, []).append((m, t)); got[t] = d

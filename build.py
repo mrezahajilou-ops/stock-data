@@ -1273,6 +1273,10 @@ def finish(recs, market):
             r["ttm"]["eps"] = r["ttm"]["eps"] / n
         if (r.get("ttm") or {}).get("dps") is not None and n not in (1e6, 1000):
             r["ttm"]["dps"] = r["ttm"]["dps"] / n
+        if (r.get("ttm") or {}).get("shares_diluted"):
+            r["ttm"]["shares_diluted"] = r["ttm"]["shares_diluted"] * n
+        if (r.get("bs") or {}).get("shares_out"):
+            r["bs"]["shares_out"] = r["bs"]["shares_out"] * n
         r["share_factor"] = n
         fixed.append(r["ticker"])
     # foreign filers: per-share figures in the filings are per ordinary share and sometimes in the home currency;
@@ -1318,6 +1322,13 @@ def finish(recs, market):
     for r in recs:
         last = r["annual"][-1]
         r["latest"].update({k: last.get(k) for k in ("eps_diluted", "shares_diluted", "shares_out")})
+        mk = market.get(r["ticker"]) or {}
+        if mk.get("mcap") and mk.get("price"):
+            implied = mk["mcap"] / mk["price"]
+            for blk, key in (("ttm", "shares_diluted"), ("bs", "shares_out")):
+                v = (r.get(blk) or {}).get(key)
+                if v and not (0.75 < v / implied < 1.33):
+                    r[blk][key] = None
     log("per-share fixes (ADR ratio / missing shares / late splits):", len(fixed), fixed[:25])
 
     # peer multiples for the DCF exit value: median forward P/E (Yahoo; trailing when missing) and trailing P/FCF

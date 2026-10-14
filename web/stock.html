@@ -126,11 +126,28 @@
 #rzs .two>.card{min-width:0}
 #rzs .mut2{font-size:12px;color:var(--mut);font-weight:600}
 #rzs ul.news{list-style:none;margin:0;padding:0}
-#rzs ul.news li{padding:9px 0;border-bottom:1px solid var(--line)}
+#rzs ul.news li{padding:7px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+#rzs ul.news a{font-size:13.5px;line-height:1.45}
+#rzs ul.news span{display:flex;gap:8px;align-items:center;font-size:11.5px;color:var(--mut);direction:ltr;justify-content:flex-start}
+#rzs ul.news span em{font-style:normal;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:0 8px;color:#c9d6e5;font-weight:700}
+#rzs .iverd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+#rzs .iverd .d{font-size:13px;color:#d6e1ee;flex:1;min-width:200px}
+#rzs .ist4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:10px}
+#rzs .ist4 div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:6px 8px;text-align:center}
+#rzs .ist4 span{display:block;font-size:11px;color:var(--mut)}
+#rzs .ist4 b{font-size:13.5px;color:#fff}#rzs .ist4 i{font-style:normal;font-weight:900}
+#rzs .ilist{display:flex;flex-direction:column}
+#rzs .irow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+#rzs .irow:last-child{border-bottom:0}
+#rzs .irow i{width:8px;height:28px;border-radius:4px;flex:none}
+#rzs .irow .who{flex:1;min-width:0}#rzs .irow .who b{display:block;font-size:13.5px;color:#fff;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#rzs .irow .who small,#rzs .irow .what small{display:block;font-size:11.5px;color:var(--mut)}
+#rzs .irow .what{text-align:right;flex:none;min-width:170px}#rzs .irow .what b{display:block;font-size:13px}
+@media (max-width:760px){#rzs .ist4{grid-template-columns:1fr 1fr}#rzs .irow .what{min-width:120px}}
+
 #rzs ul.news li:last-child{border-bottom:0}
 #rzs ul.news a{display:block;color:#fff!important;text-decoration:none!important;font-weight:700;font-size:14px;line-height:1.55;text-align:left;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Vazirmatn,sans-serif}
 #rzs ul.news a:hover{color:var(--ac)!important}
-#rzs ul.news span{display:block;font-size:12px;color:var(--mut);margin-top:3px}
 #rzs .xl{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 #rzs .xl a{font-size:12.5px;font-weight:800;color:var(--ac)!important;border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none!important;direction:ltr}
 #rzs .xnote{font-size:11.5px;color:var(--mut);margin:10px 0 0;line-height:1.7}
@@ -443,8 +460,6 @@ function render(d){
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
   h+='<div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="card" id="rzs-an" style="display:none"></div></div>';
-  h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
-     '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-si" style="display:none"></div>';
   h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
@@ -465,6 +480,8 @@ function render(d){
   var yrs=a.slice(-10).concat(TT?[TT]:[]);
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrs.map(function(y){return y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
     sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrs.map(function(y){var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
+  h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
+     '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   $('rzs-main').innerHTML=h;
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
@@ -677,27 +694,32 @@ function loadExtras(d){
   fetch(XRAW+'/news/'+encodeURIComponent(t)+'.json'+v).then(function(r){return r.ok?r.json():null}).then(function(j){
     var box=$('rzs-news'); if(!box||cur!==d) return;
     var it=(j&&j.items)||[];
-    box.innerHTML='<h3>📰 آخرین اخبار '+esc(t)+' <span class="mut2">(به انگلیسی، از منبع اصلی)</span></h3>'+
-      (it.length?'<ul class="news">'+it.slice(0,8).map(function(n){return '<li><a href="'+esc(n.u)+'" target="_blank" rel="noopener nofollow ugc" dir="ltr">'+esc(n.h)+'</a><span>'+(n.d?ago(n.d):'')+(n.s?' · <bdi>'+esc(n.s)+'</bdi>':'')+'</span></li>'}).join('')+'</ul>'
+    box.innerHTML='<div class="axhead"><h3 style="margin:0">📰 آخرین اخبار '+esc(t)+'</h3><span class="mut2" style="font-size:12px">به انگلیسی · هر ۳ ساعت</span></div>'+
+      (it.length?'<ul class="news">'+it.slice(0,8).map(function(n){return '<li><a href="'+esc(n.u)+'" target="_blank" rel="noopener nofollow ugc" dir="ltr">'+esc(n.h)+'</a><span>'+(n.s?'<em>'+esc(n.s)+'</em>':'')+(n.d?'<bdi>'+ago(n.d)+'</bdi>':'')+'</span></li>'}).join('')+'</ul>'
         :'<div class="empty" style="padding:10px">خبر تازه‌ای برای این سهم پیدا نشد.</div>')+links+
-      '<p class="xnote">فقط تیتر و لینک خبر از منبع اصلی نمایش داده میشه؛ با کلیک، خبر کامل در سایت منبع باز میشه. هر ۳ ساعت به‌روز میشه.</p>';
+      '';
   }).catch(function(){var box=$('rzs-news');if(box)box.innerHTML='<h3>📰 آخرین اخبار '+esc(t)+'</h3>'+links});
   fetch(XRAW+'/insider/'+encodeURIComponent(t)+'.json'+v).then(function(r){return r.ok?r.json():null}).then(function(j){
     var box=$('rzs-ins'); if(!box||cur!==d) return;
     var D=j&&j.data, S=D&&D.sum||{}, R=(D&&D.rows)||[];
     if(!D){box.innerHTML='<h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:10px">برای این سهم معامله‌ی Insider ثبت نشده.</div>';return}
-    var b3=S.buys3||0,s3=S.sells3||0,b12=S.buys12||0,s12=S.sells12||0, sig;
-    if(b3>0&&b3>=s3) sig='<b class="up">سیگنال مثبت:</b> در ۳ ماه اخیر مدیران بیشتر از بازار <b>خرید</b> کرده‌اند تا فروش. خرید با پول شخصی معمولاً یعنی به آینده‌ی شرکت خوش‌بین‌اند.';
-    else if(b3>0) sig='در ۳ ماه اخیر هم خرید از بازار ('+b3+' بار) و هم فروش ('+s3+' بار) ثبت شده.';
-    else if(s3>0) sig='در ۳ ماه اخیر <b>هیچ خرید از بازار</b> ثبت نشده و فقط فروش بوده. بیشتر فروش‌های مدیران برنامه‌ریزی‌شده (10b5-1)، برای پرداخت مالیات یا متنوع‌سازی است و به‌تنهایی نشانه‌ی منفی نیست.';
-    else sig='در ۳ ماه اخیر خرید یا فروشی از بازار ثبت نشده.';
-    var st='<div class="ist"><div><span>۳ ماه اخیر</span><b><i class="up">'+b3+' خرید</i> · <i class="dn">'+s3+' فروش</i></b></div><div><span>۱۲ ماه اخیر</span><b><i class="up">'+b12+' خرید</i> · <i class="dn">'+s12+' فروش</i></b></div>'+
-      '<div><span>سهام فروخته‌شده (۱۲ ماه)</span><b dir="ltr">'+n0(S.sold12)+'</b></div><div><span>سهام خریداری‌شده (۱۲ ماه)</span><b dir="ltr">'+n0(S.bought12)+'</b></div></div>';
-    var tb=R.length?'<div class="tblwrap"><table class="itb"><thead><tr><th>تاریخ</th><th>نام</th><th>سمت</th><th>نوع معامله</th><th>تعداد سهام</th><th>قیمت</th><th>ارزش</th></tr></thead><tbody>'+
-      R.slice(0,10).map(function(x){var k=ikind(x.x),val=(x.q&&x.p)?x.q*x.p:null;return '<tr><td dir="ltr">'+esc(x.d||'')+'</td><td dir="ltr" style="text-align:right">'+esc(x.n)+'</td><td>'+esc(IR[(x.r||'').toLowerCase()]||x.r||'')+'</td>'+
-        '<td class="'+(k==='b'?'up':k==='s'?'dn':'')+'">'+esc(IX[(x.x||'').toLowerCase()]||x.x||'')+'</td><td dir="ltr">'+n0(x.q)+'</td><td dir="ltr">'+(x.p?'$'+x.p.toFixed(2):'—')+'</td><td dir="ltr">'+usdK(val)+'</td></tr>'}).join('')+'</tbody></table></div>':'';
-    box.innerHTML='<h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><p class="isig">'+sig+'</p>'+st+tb+
-      '<p class="xnote">منبع: فرم‌های ۴ ثبت‌شده در کمیسیون بورس آمریکا (SEC)، از طریق Nasdaq. مدیران باید هر معامله رو ظرف ۲ روز کاری گزارش بدن. هر شب به‌روز میشه.</p>';
+    var b3=S.buys3||0,s3=S.sells3||0,b12=S.buys12||0,s12=S.sells12||0;
+    /* one-line verdict: what matters is open-market buying with own money vs selling */
+    var V=b3>0&&b3>=s3?['🟢','مدیران می‌خرند','#2ec4b6','در ۳ ماه اخیر '+b3+' خرید از بازار با پول شخصی؛ معمولاً یعنی به آینده خوش‌بین‌اند.']:
+          b3>0?['🟡','هم خرید هم فروش','#f5b700','در ۳ ماه اخیر '+b3+' خرید و '+s3+' فروش از بازار.']:
+          s3>0?['🔴','فقط فروش','#ff9f6b','در ۳ ماه اخیر '+s3+' فروش و هیچ خریدی از بازار. بیشتر فروش‌ها برنامه‌ریزی‌شده یا برای مالیات‌اند؛ به‌تنهایی منفی نیست.']:
+          ['⚪','بدون معامله‌ی بازار','#93a7bf','در ۳ ماه اخیر خرید یا فروشی از بازار ثبت نشده'+(R.length?'؛ فقط پاداش سهام و اعمال اختیار.':'.')];
+    var head='<div class="iverd"><span class="vtag" style="background:'+V[2]+';color:#0b1726">'+V[0]+' '+V[1]+'</span><span class="d">'+V[3]+'</span></div>';
+    var st='<div class="ist4"><div><span>۳ ماه</span><b><i class="up">'+b3+'</i> خرید · <i class="dn">'+s3+'</i> فروش</b></div><div><span>۱۲ ماه</span><b><i class="up">'+b12+'</i> خرید · <i class="dn">'+s12+'</i> فروش</b></div>'+
+      '<div><span>خریده‌شده (۱۲ ماه)</span><b dir="ltr" class="up">'+n0(S.bought12)+'</b></div><div><span>فروخته‌شده (۱۲ ماه)</span><b dir="ltr" class="dn">'+n0(S.sold12)+'</b></div></div>';
+    /* short labels + colour chips instead of a 7-column table */
+    var SH={b:['خرید','#2ec4b6'],s:['فروش','#ff5a5f'],o:['غیر بازار','#6f86a3']};
+    var ITYPE=function(x){var k=(x||'').toLowerCase();if(k.indexOf('option')>=0)return 'اعمال اختیار';if(k.indexOf('gift')>=0)return 'هدیه';if(k.indexOf('automatic')>=0)return k.indexOf('sell')>=0?'فروش خودکار':'خرید خودکار';if(k.indexOf('non open market')>=0)return k.indexOf('acquisition')>=0||k.indexOf('buy')>=0?'پاداش سهام':'واگذاری (مالیات)';if(k.indexOf('sell')>=0)return 'فروش در بازار';if(k.indexOf('buy')>=0)return 'خرید از بازار';return x||''};
+    var list=R.length?'<div class="ilist">'+R.slice(0,8).map(function(x){var k=ikind(x.x),val=(x.q&&x.p)?x.q*x.p:null,role=IR[(x.r||'').toLowerCase()]||x.r||'';
+      return '<div class="irow"><i style="background:'+SH[k][1]+'"></i><div class="who"><b dir="ltr">'+esc(x.n)+'</b><small>'+esc(role)+' · <bdi>'+esc(x.d||'')+'</bdi></small></div>'+
+        '<div class="what"><b style="color:'+SH[k][1]+'">'+esc(ITYPE(x.x))+'</b><small><bdi dir="ltr">'+n0(x.q)+'</bdi> سهم'+(x.p?' · <bdi dir="ltr">$'+x.p.toFixed(2)+'</bdi>':'')+(val?' · <bdi dir="ltr">'+usdK(val)+'</bdi>':'')+'</small></div></div>'}).join('')+'</div>':'';
+    box.innerHTML='<h3>👔 معاملات مدیران (Insider)</h3>'+head+st+list+
+      '<p class="xnote">فرم‌های ۴ ثبت‌شده در SEC (از طریق Nasdaq)؛ مدیران باید هر معامله رو ظرف ۲ روز کاری گزارش بدن. هر شب به‌روز میشه.</p>';
   }).catch(function(){});
 }
 

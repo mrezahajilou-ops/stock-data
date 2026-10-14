@@ -82,6 +82,13 @@
 #rzs .anrt .seg i{display:block;height:100%}
 #rzs .anrt .leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:12.5px;color:#c9d6e5}
 #rzs .antbl td small{font-size:11px;margin-right:3px}
+#rzs .card.rz-big{width:100%;height:100%;margin:0;box-sizing:border-box;background:var(--card);border-color:var(--ac);display:flex;flex-direction:column;padding:18px 22px;cursor:default}
+#rzs .card.rz-big svg{flex:1 1 auto;min-height:0;max-height:none;height:auto}
+#rzs .card.rz-big h3{font-size:18px}
+#rzs .card.rz-big .legend,#rzs .card.rz-big .rnleg{font-size:14px}
+#rzs .charts .card{cursor:zoom-in}#rzs .charts .card.rz-big{cursor:default}
+#rzs .rz-ph{border:1px dashed var(--line);border-radius:16px;opacity:.5}
+#rzs .rz-zoom{background:var(--card)}
 #rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (min-width:1450px){#rzs .charts{grid-template-columns:repeat(4,1fr)}#rzs .charts .card h3{font-size:14px}}
 #rzs .wide2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}#rzs .wide2>*{min-width:0}
@@ -821,6 +828,44 @@ $('rzs-pop').addEventListener('click',function(e){var c=e.target.closest('[data-
 $('rzs-recent').addEventListener('click',function(e){var c=e.target.closest('[data-t]');if(c){e.preventDefault();open(c.dataset.t)}});
 window.addEventListener('hashchange',function(){var t=(location.hash||'').slice(1).toUpperCase();if(t&&/^[A-Z.-]{1,7}$/.test(t)&&(!cur||cur.ticker!==t))open(t)});
 showQuota(); recent(); loadSectors();
+
+/* ---- hover-to-enlarge: rest the mouse on any chart card for 1s and it zooms over the page; leave it and it drops back.
+   Works for every .card that contains an <svg> (small history charts, revenue/profit, price, valuation history), including
+   charts redrawn later, because it listens on the whole page. Desktop only (mouse); touch devices keep the normal layout. ---- */
+(function(){
+  if(!window.matchMedia||!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  var root=$('rzs'),timer=null,big=null,ph=null;
+  function cardOf(el){var c=el&&el.closest?el.closest('#rzs .card'):null;return c&&c.querySelector('svg')&&!c.classList.contains('score')&&!c.closest('.rz-zoom')?c:null}
+  function open(c){
+    if(big)close();
+    var r=c.getBoundingClientRect();
+    ph=document.createElement('div');ph.style.cssText='width:'+r.width+'px;height:'+r.height+'px;flex:none';ph.className='rz-ph';
+    c.parentNode.insertBefore(ph,c);
+    var wrap=document.createElement('div');wrap.className='rz-zoom';wrap.id='rzs-zoomhost';wrap.setAttribute('dir','rtl');
+    wrap.appendChild(c);root.appendChild(wrap);   /* inside #rzs so all page styles still apply */
+    c.classList.add('rz-big');
+    /* start from the card's old place, then animate to the centre */
+    var vw=window.innerWidth,vh=window.innerHeight,W=Math.min(vw*0.9,1240),H=Math.min(vh*0.9,760);
+    wrap.style.cssText='position:fixed;left:'+r.left+'px;top:'+r.top+'px;width:'+r.width+'px;height:'+r.height+'px;z-index:9999;transition:all .22s ease;overflow:auto;border-radius:16px;box-shadow:0 24px 80px rgba(0,0,0,.65)';
+    requestAnimationFrame(function(){wrap.style.left=((vw-W)/2)+'px';wrap.style.top=((vh-H)/2)+'px';wrap.style.width=W+'px';wrap.style.height=H+'px'});
+    var dim=document.createElement('div');dim.className='rz-dim';dim.style.cssText='position:fixed;inset:0;background:rgba(3,10,20,.55);z-index:9998';root.appendChild(dim);
+    big={c:c,wrap:wrap,dim:dim};
+    document.addEventListener('keydown',esc);
+  }
+  function close(){
+    if(!big)return;var c=big.c;c.classList.remove('rz-big');
+    ph.parentNode.insertBefore(c,ph);ph.remove();ph=null;
+    big.wrap.remove();big.dim.remove();big=null;document.removeEventListener('keydown',esc);
+  }
+  function esc(e){if(e.key==='Escape')close()}
+  root.addEventListener('mouseover',function(e){var c=cardOf(e.target);if(!c||big)return;clearTimeout(timer);timer=setTimeout(function(){if(c.matches(':hover'))open(c)},1000)});
+  root.addEventListener('mouseout',function(e){var c=cardOf(e.target);if(c&&!c.contains(e.relatedTarget))clearTimeout(timer)});
+  document.addEventListener('mousemove',function(e){if(!big)return;var r=big.wrap.getBoundingClientRect();
+    /* moved outside the enlarged card (any side or corner, with a small margin) -> back to normal */
+    if(e.clientX<r.left-12||e.clientX>r.right+12||e.clientY<r.top-12||e.clientY>r.bottom+12)close()});
+  document.addEventListener('click',function(e){if(big&&e.target.classList.contains('rz-dim'))close()});
+})();
+
 var h0=(location.hash||'').slice(1).toUpperCase(); if(h0&&/^[A-Z.-]{1,7}$/.test(h0)) open(h0);
 })();
 </script>

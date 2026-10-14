@@ -134,6 +134,8 @@
 @media (max-width:1199px){#rzs .wide2{grid-template-columns:1fr}}
 #rzs svg{width:100%;height:auto;display:block}
 #rzs .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+#rzs .tblwrap td,#rzs .tblwrap th{white-space:nowrap}
+@media (max-width:760px){#rzs .hm{display:none}}
 #rzs table{width:100%;border-collapse:collapse;font-size:13.5px;direction:rtl}
 #rzs th.ttm{color:var(--lime);background:rgba(181,227,107,.08)}#rzs th.ttm small{display:block;font-size:10px;font-weight:600;opacity:.8}
 #rzs td.ttm{background:rgba(181,227,107,.06);font-weight:800;color:#fff}#rzs td.ttm.neg{color:var(--red)}
@@ -275,6 +277,8 @@
   font-feature-settings:'tnum' 1,'lnum' 1;
 }
 #rzs *{font-family:inherit}
+#rzs a{color:var(--ac);text-decoration-color:rgba(201,169,97,.5)}
+#rzs a:hover{color:var(--ink)}
 
 /* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
 #rzs .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
@@ -355,6 +359,7 @@
   #rzs{padding:12px 14px 40px}
   #rzs .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
   #rzs .nav::-webkit-scrollbar{display:none}
+  #rzs .nav{-webkit-mask-image:linear-gradient(to left,#000 88%,transparent);mask-image:linear-gradient(to left,#000 88%,transparent)}  /* hint: the row scrolls */
   #rzs .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
   #rzs h1{font-size:23px}
   #rzs .sub{font-size:13.5px;margin-bottom:12px}
@@ -438,6 +443,8 @@ function applyLive(d){
   }
   return d;
 }
+function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n))return n;var keep={'INC':'Inc.','CORP':'Corp.','CO':'Co.','LTD':'Ltd.','PLC':'PLC','LLC':'LLC','SA':'SA','NV':'NV','AG':'AG','SE':'SE','ADR':'ADR','ETF':'ETF','USA':'USA','US':'US','UK':'UK','AI':'AI','IT':'IT','DE':'de','/DE/':'','/MD/':'','/NEW/':'','/PA/':'','/TX/':''};
+  return n.split(/\s+/).map(function(w){var k=w.replace(/[.,]/g,'');if(keep.hasOwnProperty(k))return keep[k];if(/^[A-Z]{1,2}$/.test(k)||/\d/.test(w)||/^[A-Z]&[A-Z]$/.test(k))return w;return w.charAt(0)+w.slice(1).toLowerCase()}).filter(Boolean).join(' ').replace(/\s+/g,' ').trim()}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
@@ -643,11 +650,12 @@ function ttmRow(d){
 
 /* ---- render ---- */
 function render(d){
+  d.name=niceName(d.name);
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
   var TT=ttmRow(d), aT=TT?a.concat([TT]):a;   /* annual rows + the last twelve months, for charts and the table */
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
   var inW=false;try{inW=JSON.parse(localStorage.getItem('rz_watch')||'[]').indexOf(d.ticker)>=0}catch(e){}
-  var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'در واچ‌لیست':'واچ‌لیست')+'</button></div>'+
+  var h='<div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(d.name)+'</bdi><small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'در واچ‌لیست':'واچ‌لیست')+'</button></div>'+
     '<div class="meta facts">'+[esc(m.sector||''),m.industry?esc(m.industry):'',m.country?esc(m.country):'','سال مالی '+faN(L.fy)+' تا \u2066'+esc(L.fy_end||'')+'\u2069'].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('')+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
@@ -679,8 +687,9 @@ function render(d){
     ['ترازنامه',[['نقد و سرمایه‌گذاری کوتاه‌مدت','cash',money],['بدهی','debt',money],['بدهی خالص','net_debt',money],['کل دارایی‌ها','assets',money],['کل بدهی‌ها','liabilities',money],['حقوق صاحبان سهام','equity',money],['سرقفلی','goodwill',money],['تعداد سهام (میلیون)','shares_diluted',function(v){return v==null?'—':(v/1e6).toFixed(0)}]]],
     ['نسبت‌ها',[['حاشیه سود ناخالص','gross_margin',pc],['حاشیه سود عملیاتی','op_margin',pc],['حاشیه سود خالص','net_margin',pc],['حاشیه جریان نقد آزاد','fcf_margin',pc],['ROIC','roic',pc],['ROE','roe',pc],['بدهی به حقوق صاحبان سهام','debt_to_equity',xx],['پوشش بهره','interest_cov',function(v){return x(v,1)}],['سود نقدی هر سهم','div_per_share',ps],['ارزش دفتری هر سهم','book_value_per_share',ps]]]];
   var yrs=a.slice(-10).concat(TT?[TT]:[]);
-  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrs.map(function(y){return y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
-    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrs.map(function(y){var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
+  var yrsR=yrs.slice().reverse();   /* newest first, next to the row label (natural reading order in RTL, and what phones see first) */
+  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrsR.map(function(y){return y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
+    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrsR.map(function(y){var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   $('rzs-main').innerHTML=h;
@@ -864,13 +873,13 @@ function loadSI(d){var box=$('rzs-si');if(!box)return;var t=SI_SAME[d.ticker]||d
   if(!SI_P)SI_P=Promise.all([fetch(XRAW+'/superinvestors/owners.json'+v).then(function(r){return r.ok?r.json():null}),fetch(XRAW+'/superinvestors/index.json'+v).then(function(r){return r.ok?r.json():null})]).catch(function(){return [null,null]});
   SI_P.then(function(x){if(cur!==d||!x[0]||!x[1])return;var L=x[0][t]||[],by={};x[1].managers.forEach(function(m){by[m.id]=m});L=L.filter(function(o){return by[o[0]]});
     var q=function(p){return p?'Q'+Math.ceil(+p.slice(5,7)/3)+' '+p.slice(0,4):''},w=function(v){return '<bdi dir="ltr">'+(v*100).toFixed(1)+'%</bdi>'};
-    var bd=function(a){return a==='new'?'<span style="background:#123f37;color:#5ef0d2;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">خرید جدید</span>':a==='add'?'<span style="background:#16352d;color:#7fe0c4;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">افزایش</span>':a==='cut'?'<span style="background:#3d1f26;color:#ff9aa0;border-radius:7px;padding:0 7px;font-size:12px;font-weight:800">کاهش</span>':'<span style="color:var(--mut);font-size:12px">بدون تغییر</span>'};
+    var bd=function(a){return a==='new'?'<span class="good" style="border-radius:7px;padding:0 7px;font-size:12px;font-weight:600">خرید جدید</span>':a==='add'?'<span class="good" style="border-radius:7px;padding:0 7px;font-size:12px;font-weight:600">افزایش</span>':a==='cut'?'<span class="bad" style="border-radius:7px;padding:0 7px;font-size:12px;font-weight:600">کاهش</span>':'<span style="color:var(--mut);font-size:12px">بدون تغییر</span>'};
     var h='<div class="axhead"><h3 style="margin:0">سوپر سرمایه‌گذارهایی که '+esc(d.ticker)+' رو دارن</h3><a class="lnk" href="/pages/superinvestors#t='+esc(t)+'">همه‌ی سوپر سرمایه‌گذارها ←</a></div>';
     if(!L.length){h+='<p style="margin:10px 0 0;color:var(--mut)">هیچ‌کدوم از '+x[1].managers.length+' سرمایه‌گذار مشهور این بخش (بافت، اکمن، لی لو، تری اسمیت و …) در آخرین گزارش 13F خودشون این سهم رو نداشتن.</p>';box.innerHTML=h;box.style.display='';return}
     var nb=L.filter(function(o){return o[2]==='new'||o[2]==='add'}).length,ns=L.filter(function(o){return o[2]==='cut'}).length;
     h+='<p style="margin:8px 0 10px">در پورتفوی <b>'+faN(L.length)+'</b> سرمایه‌گذار مشهور'+(nb?' · <span class="up">'+faN(nb)+' نفر در آخرین فصل خریدن یا اضافه کردن</span>':'')+(ns?' · <span class="dn">'+faN(ns)+' نفر کم کردن</span>':'')+'</p>';
-    var rows=L.slice(0,12).map(function(o){var m=by[o[0]];return '<tr><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:800">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
-    var tb='<div class="tblwrap"><table><thead><tr><th style="text-align:right">سرمایه‌گذار</th><th>وزن در پورتفوی</th><th>آخرین فعالیت</th><th>گزارش</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+    var rows=L.slice(0,12).map(function(o){var m=by[o[0]];return '<tr><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:600">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td class="hm" style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
+    var tb='<div class="tblwrap"><table><thead><tr><th style="text-align:right">سرمایه‌گذار</th><th>وزن</th><th>آخرین فعالیت</th><th class="hm">گزارش</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
     if(ACCESS)h+=tb+(L.length>12?'<p class="xnote">و '+faN(L.length-12)+' سرمایه‌گذار دیگه · <a href="/pages/superinvestors#t='+esc(t)+'">لیست کامل</a></p>':'');
     else h+='<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+tb+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 اسم‌ها برای مشترکین Stock Pro</a></div></div>';
     h+='<p class="xnote">از گزارش‌های فصلی 13F به SEC؛ این گزارش‌ها تا ۴۵ روز بعد از پایان هر فصل منتشر میشن، پس وضعیت امروز نیستن.</p>';
@@ -935,7 +944,7 @@ function loadRelated(d){var box=$('rzs-rel');if(!box)return;var t=d.ticker;
   fetch(API+'/related/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).then(function(L){
     if(cur!==d||!L||!L.length)return;
     box.innerHTML='<div class="relh"><span>شرکت‌های مرتبط</span><a href="/pages/compare#'+esc(t)+','+L.slice(0,3).map(function(c){return esc(c[0])}).join(',')+'">مقایسه‌ی کنار هم ←</a></div><div class="relrow">'+L.map(function(c){
-      var sc=c.slice(3,9),tot=c[8];return '<a class="relc" href="#'+esc(c[0])+'" data-t="'+esc(c[0])+'">'+miniRadar(sc)+'<b>'+esc(c[0])+'</b><small>'+esc(String(c[1]||'').slice(0,22))+'</small>'+
+      var sc=c.slice(3,9),tot=c[8];return '<a class="relc" href="#'+esc(c[0])+'" data-t="'+esc(c[0])+'">'+miniRadar(sc)+'<b>'+esc(c[0])+'</b><small>'+esc(niceName(String(c[1]||'')).slice(0,22))+'</small>'+
         '<em><span style="color:'+col(tot||0)+'">\u2066'+(tot==null?'—':tot.toFixed(1))+'/5\u2069</span>'+(c[9]?' · P/E \u2066'+c[9].toFixed(1)+'\u2069':'')+'</em>'+(c[2]?'<i>$'+c[2].toFixed(2)+'</i>':'')+'</a>'}).join('')+'</div>';
     box.onclick=function(e){var a=e.target.closest('[data-t]');if(a){e.preventDefault();open(a.dataset.t)}};
   }).catch(function(){})}

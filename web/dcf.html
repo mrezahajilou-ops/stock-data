@@ -123,6 +123,8 @@
   font-feature-settings:'tnum' 1,'lnum' 1;
 }
 #rzd *{font-family:inherit}
+#rzd a{color:var(--ac);text-decoration-color:rgba(201,169,97,.5)}
+#rzd a:hover{color:var(--ink)}
 
 /* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
 #rzd .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
@@ -203,6 +205,7 @@
   #rzd{padding:12px 14px 40px}
   #rzd .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
   #rzd .nav::-webkit-scrollbar{display:none}
+  #rzd .nav{-webkit-mask-image:linear-gradient(to left,#000 88%,transparent);mask-image:linear-gradient(to left,#000 88%,transparent)}  /* hint: the row scrolls */
   #rzd .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
   #rzd h1{font-size:23px}
   #rzd .sub{font-size:13.5px;margin-bottom:12px}
@@ -268,6 +271,8 @@ var big=function(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<
 var spct=function(v,d){return v==null||!isFinite(v)?'—':'⁦'+(v>=0?'+':'')+(v*100).toFixed(d==null?1:d)+'%⁩'};
 var pct=function(v,d){return v==null||!isFinite(v)?'—':'⁦'+(v*100).toFixed(d==null?1:d)+'%⁩'};
 var cur=null;
+function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n))return n;var keep={'INC':'Inc.','CORP':'Corp.','CO':'Co.','LTD':'Ltd.','PLC':'PLC','LLC':'LLC','SA':'SA','NV':'NV','AG':'AG','SE':'SE','ADR':'ADR','ETF':'ETF','USA':'USA','US':'US','UK':'UK','AI':'AI','IT':'IT','DE':'de','/DE/':'','/MD/':'','/NEW/':'','/PA/':'','/TX/':''};
+  return n.split(/\s+/).map(function(w){var k=w.replace(/[.,]/g,'');if(keep.hasOwnProperty(k))return keep[k];if(/^[A-Z]{1,2}$/.test(k)||/\d/.test(w)||/^[A-Z]&[A-Z]$/.test(k))return w;return w.charAt(0)+w.slice(1).toLowerCase()}).filter(Boolean).join(' ').replace(/\s+/g,' ').trim()}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 /* ---- live prices: branch "quotes", refreshed every ~15 min in US market hours (quotes.py) ---- */
@@ -368,7 +373,7 @@ function render(s){
   var B=s.b, bb=B.base, H=B.hist, d=B.d; cur=s;
   var saved=null; try{saved=JSON.parse(localStorage.getItem('rzd3_m_'+s.t)||'null')}catch(e){}
   var mk=s.mk||{};
-  var html='<div class="card"><div class="head"><div><div class="co">'+esc(s.n)+'<small>'+esc(s.t)+'</small></div>'+
+  var html='<div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(niceName(s.n))+'</bdi><small>'+esc(s.t)+'</small></div>'+
     '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+(mk.sector?esc(mk.sector)+' · ':'')+(s.sc&&s.sc.total!=null?'امتیاز کلی <b style="color:#fff">⁦'+s.sc.total.toFixed(1)+'/5⁩</b> · ':'')+'<a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div>'+
     '<div class="fresh">📅 پایه‌ی محاسبه: <b>۱۲ ماه اخیر تا '+esc(bb.end)+'</b> · منبع: '+esc(SRC[bb.src]||bb.src)+' · ترازنامه: '+esc(B.bs_end)+'</div></div>'+
     '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(s.live?' · '+esc(liveLabel(s.t)):'')+'<input class="pin" id="rzd-price" inputmode="decimal" value="'+(s.price?s.price.toFixed(2):'')+'"></label>'+

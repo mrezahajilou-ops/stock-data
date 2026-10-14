@@ -63,6 +63,8 @@
   font-feature-settings:'tnum' 1,'lnum' 1;
 }
 #rzw *{font-family:inherit}
+#rzw a{color:var(--ac);text-decoration-color:rgba(201,169,97,.5)}
+#rzw a:hover{color:var(--ink)}
 
 /* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
 #rzw .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
@@ -143,6 +145,7 @@
   #rzw{padding:12px 14px 40px}
   #rzw .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
   #rzw .nav::-webkit-scrollbar{display:none}
+  #rzw .nav{-webkit-mask-image:linear-gradient(to left,#000 88%,transparent);mask-image:linear-gradient(to left,#000 88%,transparent)}  /* hint: the row scrolls */
   #rzw .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
   #rzw h1{font-size:23px}
   #rzw .sub{font-size:13.5px;margin-bottom:12px}

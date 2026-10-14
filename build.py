@@ -527,6 +527,43 @@ def r4(x):
     return None if x is None else (round(x, 4) if abs(x) < 1000 else round(x))
 
 
+_KEEP = {"INC": "Inc.", "CORP": "Corp.", "CO": "Co.", "LTD": "Ltd.", "PLC": "PLC", "LLC": "LLC", "SA": "SA", "NV": "NV", "AG": "AG",
+         "SE": "SE", "ADR": "ADR", "ETF": "ETF", "USA": "USA", "US": "US", "UK": "UK", "AI": "AI", "IT": "IT", "LP": "LP", "REIT": "REIT",
+         "DE": "de", "/DE/": "", "/MD/": "", "/NEW/": "", "/PA/": "", "/TX/": "", "/NV/": "", "/OH/": "", "/MN/": "", "/CA/": "", "/NJ/": "", "/FL/": "", "/GA/": "", "/IN/": "", "/MA/": "", "/WA/": "", "/NY/": "", "/UT/": "", "/VA/": "", "/CT/": "", "/MI/": "", "/OK/": "", "/CO/": "", "/MO/": "", "/TN/": "", "/NC/": "", "/WI/": "", "/OR/": "", "/AZ/": "", "/IL/": ""}
+
+
+_BRAND = {"NVIDIA": "NVIDIA", "JPMORGAN": "JPMorgan", "AT&T": "AT&T", "UNITEDHEALTH": "UnitedHealth", "PAYPAL": "PayPal",
+          "MCDONALDS": "McDonald's", "MCDONALD'S": "McDonald's", "IBM": "IBM", "AMD": "AMD", "ASML": "ASML", "SAP": "SAP", "UBS": "UBS",
+          "HSBC": "HSBC", "BP": "BP", "CVS": "CVS", "UPS": "UPS", "GE": "GE", "KKR": "KKR", "TJX": "TJX", "CSX": "CSX", "PNC": "PNC",
+          "DTE": "DTE", "PPG": "PPG", "ADP": "ADP", "AMETEK": "AMETEK", "CDW": "CDW", "EQT": "EQT", "NXP": "NXP", "STMICROELECTRONICS": "STMicroelectronics",
+          "EBAY": "eBay", "ETSY": "Etsy", "SOFI": "SoFi", "GOPRO": "GoPro", "LULULEMON": "Lululemon", "BIONTECH": "BioNTech", "GSK": "GSK",
+          "ING": "ING", "BBVA": "BBVA", "KB": "KB", "LVMH": "LVMH", "ONEOK": "ONEOK", "CME": "CME", "ICE": "ICE", "CBRE": "CBRE", "GFL": "GFL",
+          "MSCI": "MSCI", "S&P": "S&P", "T-MOBILE": "T-Mobile", "DOORDASH": "DoorDash", "LINKEDIN": "LinkedIn", "YOUTUBE": "YouTube",
+          "SALESFORCE": "Salesforce", "SERVICENOW": "ServiceNow", "CROWDSTRIKE": "CrowdStrike", "DATADOG": "Datadog", "MERCADOLIBRE": "MercadoLibre",
+          "AIRBNB": "Airbnb", "COINBASE": "Coinbase", "GLOBALFOUNDRIES": "GlobalFoundries", "QUALCOMM": "Qualcomm", "BIOGEN": "Biogen",
+          "AUTOZONE": "AutoZone", "CARMAX": "CarMax", "DEXCOM": "DexCom", "IDEXX": "IDEXX", "KLA": "KLA", "LAM": "Lam", "MICROSOFT": "Microsoft"}
+
+
+def nice_name(n):
+    """SEC titles are shouted ("TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD"); make them readable. Mixed-case names stay."""
+    n = str(n or "").strip()
+    if n != n.upper() or not re.search(r"[A-Z]{2}", n):
+        return n
+    out = []
+    for w in n.split():
+        k = w.replace(".", "").replace(",", "")
+        if k in _BRAND:
+            out.append(_BRAND[k] + ("," if w.endswith(",") else ""))
+        elif k in _KEEP:
+            if _KEEP[k]:
+                out.append(_KEEP[k])
+        elif re.fullmatch(r"[A-Z]{1,2}", k) or re.search(r"\d", w) or re.fullmatch(r"[A-Z]&[A-Z]", k):
+            out.append(w)
+        else:
+            out.append(w[0] + w[1:].lower())
+    return re.sub(r"\s+", " ", " ".join(out)).replace(" Com Inc.", ".com Inc.").replace(" Com,", ".com,").strip()
+
+
 def build_company(cik, entry, facts):
     series, filed, hist = {}, {}, {}
     meta = {}
@@ -834,7 +871,7 @@ def build_company(cik, entry, facts):
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
     return {
-        "ticker": entry["ticker"], "name": entry["title"], "cik": cik,
+        "ticker": entry["ticker"], "name": nice_name(entry["title"]), "cik": cik,
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
         "foreign": bool((meta.get("forms") or set()) & {"20-F", "20-F/A", "40-F", "40-F/A"}),
         "fx_approx": bool(meta.get("fx_approx")), "source": "SEC EDGAR XBRL (companyfacts)",
@@ -1086,6 +1123,9 @@ def fill_from_yahoo(rec, e):
         new["revenue_growth"] = (r / last["revenue"] - 1) if last.get("revenue") else None
         new["net_income_growth"] = (new["net_income"] / last["net_income"] - 1) if (new.get("net_income") and last.get("net_income") and last["net_income"] > 0) else None
         new["payout"] = safe_div(new.get("dividends"), new.get("net_income")) if (new.get("net_income") or 0) > 0 else None
+        new["eps_diluted_growth"] = (new["eps_diluted"] / last["eps_diluted"] - 1) if (new.get("eps_diluted") and last.get("eps_diluted") and last["eps_diluted"] > 0) else None
+        new["fcf_growth"] = (new["fcf"] / last["fcf"] - 1) if (new.get("fcf") and last.get("fcf") and last["fcf"] > 0) else None
+        new["dividends_growth"] = (new["dividends"] / last["dividends"] - 1) if (new.get("dividends") and last.get("dividends")) else None
         new["div_per_share"] = safe_div(new.get("dividends"), new.get("shares_diluted"))
         new["fcf_per_share"] = safe_div(new.get("fcf"), new.get("shares_diluted"))
         new["revenue_per_share"] = safe_div(r, new.get("shares_diluted"))

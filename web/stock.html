@@ -50,6 +50,20 @@
 #rzs .why .ok b{color:var(--ac)}#rzs .why .no b{color:var(--red)}
 #rzs .axhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 #rzs .lnk{background:none;border:0;color:var(--ac);font-weight:800;cursor:pointer;font-size:13px;padding:0}
+#rzs .vgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+#rzs .vcol{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-width:0}
+#rzs .vh{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:4px}#rzs .vh b{color:#fff}#rzs .vh span{font-weight:900}
+#rzs .vbar{height:5px;border-radius:3px;background:#1c3150;margin-bottom:8px;overflow:hidden;direction:ltr}#rzs .vbar i{display:block;height:100%;border-radius:3px}
+#rzs .vrow{display:grid;grid-template-columns:16px 1fr;gap:2px 6px;padding:5px 0;border-top:1px solid rgba(255,255,255,.05);font-size:12.5px;line-height:1.45;align-items:start}
+#rzs .vrow b{font-size:13px;line-height:1.3;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#0b1726}
+#rzs .vrow.ok b{background:var(--ac)}#rzs .vrow.no b{background:var(--red)}
+#rzs .vrow span{color:#d6e1ee}#rzs .vrow.no span{color:#f2c4c6}
+#rzs .vrow em{grid-column:2;font-style:normal;font-size:12px;font-weight:800;direction:ltr;text-align:right;unicode-bidi:isolate}
+#rzs .vrow.ok em{color:var(--ac)}#rzs .vrow.no em{color:var(--red)}
+#rzs .vsum{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:13px;font-weight:800}
+@media (max-width:1200px){#rzs .vgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){#rzs .vgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){#rzs .vgrid{grid-template-columns:1fr}}
 #rzs .verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #rzs .verdict ul{margin:0;padding:0;list-style:none}
 #rzs .verdict li{font-size:13.5px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -318,15 +332,32 @@ var WHY={
   health:['نقد بیشتر از بدهی یا بدهی/حقوق صاحبان سهام کمتر از ۰٫۵','جریان نقد آزاد مثبت','پوشش بهره بالای ۵ برابر','بدهی کمتر از ۳ سال جریان نقد آزاد','بدهی‌ها کمتر از ۶۰٪ دارایی‌ها'],
   capital:['سود نقدی پرداخت می‌کنه','تعداد سهام در ۳ سال کم شده (بازخرید)','۲۰ تا ۱۰۰٪ جریان نقد آزاد به سهامدار برگشته','۳ سال پیاپی سود نقدی','پاداش سهامی کارکنان کمتر از ۵٪ درآمد']};
 function col(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+/* the company's actual figure for each check, so a reader sees WHY it passed or failed */
+function checkVals(d){
+  var a=d.annual,L=a[a.length-1],p3=a.length>=4?a[a.length-4]:null,r=d.ratios||{},s=d.summary||{},m=d.market||{};
+  var pc=function(v){return v==null?'—':(v>=0?'+':'')+(v*100).toFixed(0)+'%'},x1=function(v){return v==null?'—':v.toFixed(1)},x2=function(v){return v==null?'—':v.toFixed(2)};
+  var nm3=a.slice(-3).map(function(y){return y.net_margin}).filter(function(v){return v!=null}),nmAvg=nm3.length?nm3.reduce(function(q,w){return q+w},0)/nm3.length:null;
+  var cash=(d.bs&&d.bs.cash!=null)?d.bs.cash:L.cash,debt=(d.bs&&d.bs.debt!=null)?d.bs.debt:L.debt;
+  var fcf=(d.ttm&&d.ttm.fcf!=null)?d.ttm.fcf:L.fcf;
+  var ret=((L.dividends||0)+(L.buybacks||0)),retR=fcf>0?ret/fcf:null;
+  var prof5=a.slice(-5).filter(function(y){return (y.net_income||0)>0}).length,div3=a.slice(-3).filter(function(y){return (y.dividends||0)>0}).length;
+  return {
+    value:[x1(r.pe),r.pe!=null&&r.sector_pe!=null?x1(r.pe)+' / '+x1(r.sector_pe):x1(r.pe),x1(r.pfcf),r.fair_mcap&&m.mcap?pc(r.fair_mcap/m.mcap-1):'—',x2(r.peg)],
+    future:[pc(L.revenue_growth),pc(s.rev_cagr_3y),L.net_margin!=null&&nmAvg!=null?pc(L.net_margin)+' / میانگین '+pc(nmAvg):'—',pc(s.fcf_cagr_3y),L.rnd!=null&&L.revenue?'R&D '+pc(L.rnd/L.revenue):pc(L.revenue_growth)],
+    past:[pc(s.eps_cagr_5y),pc(s.rev_cagr_5y),pc(s.roic_avg_5y),prof5+' از ۵',pc(L.roe)],
+    health:[cash!=null&&debt!=null?big(cash)+' / '+big(debt):'—',big(fcf),x1(L.interest_cov)+'×',debt!=null&&fcf>0?x1(debt/fcf)+' سال':'—',L.assets&&L.liabilities!=null?pc(L.liabilities/L.assets):'—'],
+    capital:[L.dividends?big(L.dividends):'۰',L.shares_diluted&&p3&&p3.shares_diluted?pc(L.shares_diluted/p3.shares_diluted-1):'—',pc(retR),div3+' از ۳',L.sbc!=null&&L.revenue?pc(L.sbc/L.revenue):'—']};
+}
 function verdict(d){
   var s=d.scores||{}, c=d.checks||null, t=s.total;
   var tag=t==null?['بدون امتیاز','#93a7bf']:t>=4?['شرکت قوی','#2ec4b6']:t>=3?['خوب با چند نقطه ضعف','#b5e36b']:t>=2?['متوسط؛ با احتیاط','#f5b700']:['ضعیف؛ ریسک بالا','#ff5a5f'];
-  var plus=[],minus=[];
-  if(c){AX.forEach(function(A){var k=A[0];if(!c[k])return;c[k].forEach(function(ok,i){(ok?plus:minus).push(WHY[k][i])})})}
-  var h='<div class="card"><div class="axhead"><h3 style="margin:0">خلاصه در یک نگاه</h3><span class="vtag" style="background:'+tag[1]+'22;color:'+tag[1]+'">'+tag[0]+(t==null?'':' · \u2066'+t.toFixed(1)+'/5\u2069')+'</span></div>';
+  var h='<div class="card"><div class="axhead"><h3 style="margin:0">خلاصه در یک نگاه</h3><span class="vtag" style="background:'+tag[1]+'22;color:'+tag[1]+'">'+tag[0]+(t==null?'':' · ⁦'+t.toFixed(1)+'/5⁩')+'</span></div>';
   if(!c){h+='<div class="meta">توضیح دلیل امتیازها بعد از به‌روزرسانی بعدی داده‌ها نمایش داده میشه.</div></div>';return h}
-  h+='<div class="verdict"><div class="pl"><h4>✅ نقاط قوت ('+faN(plus.length)+')</h4><ul>'+(plus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div>'+
-     '<div class="mi"><h4>⚠️ نقاط ضعف ('+faN(minus.length)+')</h4><ul>'+(minus.slice(0,8).map(function(p){return '<li>'+p+'</li>'}).join('')||'<li class="meta">—</li>')+'</ul></div></div></div>';
+  var V=checkVals(d),np=0,nm=0;
+  h+='<div class="vgrid">'+AX.map(function(A){var k=A[0],ck=c[k];if(!ck)return '';var sc=ck.reduce(function(q,w){return q+w},0),cl=col(sc);
+    return '<div class="vcol"><div class="vh"><b>'+A[1]+'</b><span style="color:'+cl+'">⁦'+sc+'/5⁩</span></div><div class="vbar"><i style="width:'+(sc*20)+'%;background:'+cl+'"></i></div>'+
+      ck.map(function(ok,i){ok?np++:nm++;return '<div class="vrow '+(ok?'ok':'no')+'"><b>'+(ok?'✓':'✗')+'</b><span>'+WHY[k][i]+'</span><em>'+(V[k]&&V[k][i]!=null?V[k][i]:'')+'</em></div>'}).join('')+'</div>'}).join('')+'</div>';
+  h+='<div class="vsum"><span class="up">✓ '+faN(np)+' نقطه قوت</span><span class="dn">✗ '+faN(nm)+' نقطه ضعف</span><span class="mut2">عدد کنار هر معیار = وضعیت واقعی شرکت</span></div></div>';
   return h;
 }
 function whyRows(k,c){if(!c||!c[k])return '';return '<div class="why" data-k="'+k+'">'+c[k].map(function(ok,i){return '<div class="'+(ok?'ok':'no')+'"><b>'+(ok?'✓':'✗')+'</b><span>'+WHY[k][i]+'</span></div>'}).join('')+'</div>'}

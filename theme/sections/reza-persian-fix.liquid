@@ -2,8 +2,12 @@
   Site-wide fixes and extras, loaded on every page from the header group.
   1) Persian text fix: Dawn sets body { letter-spacing: 0.06rem }. Any letter-spacing breaks the joining of
      Persian letters, and in Safari/iOS it also breaks the order of text inside SVG charts. Never use it.
-  2) Install-as-app (PWA): manifest (/pages/manifest), home-screen icon, and a small install banner on phones.
+  2) Visual identity: assets/rz-theme.css (same tokens as the tools: near-black ground, antique gold, Vazirmatn + Fraunces).
+  3) Install-as-app (PWA): manifest (/pages/manifest), home-screen icon, and a small install banner on phones.
 {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{{ 'rz-theme.css' | asset_url | stylesheet_tag }}
 <style id="rz-persian-text-fix">
   body,
   body *,
@@ -12,13 +16,13 @@
     letter-spacing: 0 !important;
   }
   .rzpwa{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:80;display:none;align-items:center;gap:10px;
-    background:#13233a;border:1px solid #25405f;border-radius:16px;padding:10px 12px;box-shadow:0 12px 34px rgba(0,0,0,.45);direction:rtl;
-    font-family:'Vazirmatn',Tahoma,sans-serif;color:#eef3f9}
+    background:#15181F;border:1px solid #262B36;border-radius:16px;padding:10px 12px;box-shadow:0 12px 34px rgba(0,0,0,.45);direction:rtl;
+    font-family:'Vazirmatn',Tahoma,sans-serif;color:#E8E4DA}
   .rzpwa img{width:42px;height:42px;border-radius:10px;flex:none}
-  .rzpwa b{display:block;font-size:14px}
-  .rzpwa small{display:block;color:#93a7bf;font-size:12px;line-height:1.6}
-  .rzpwa .go{margin-right:auto;background:#b5e36b;color:#0b1726;font-weight:900;border:0;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap}
-  .rzpwa .x{background:transparent;border:0;color:#93a7bf;font-size:20px;padding:0 4px}
+  .rzpwa b{display:block;font-size:14px;font-weight:600}
+  .rzpwa small{display:block;color:#8A8F99;font-size:12px;line-height:1.6}
+  .rzpwa .go{margin-right:auto;background:#C9A961;color:#15120A;font-weight:600;border:0;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap}
+  .rzpwa .x{background:transparent;border:0;color:#8A8F99;font-size:20px;padding:0 4px}
   @media (min-width:821px){.rzpwa{display:none!important}}
 </style>
 <script>
@@ -26,7 +30,7 @@
   var h=document.head; if(!h) return;
   function add(tag,attrs){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);h.appendChild(e)}
   add('link',{rel:'manifest',href:'/pages/manifest'});
-  add('meta',{name:'theme-color',content:'#0b1726'});
+  add('meta',{name:'theme-color',content:'#0C0E12'});
   add('meta',{name:'apple-mobile-web-app-capable',content:'yes'});
   add('meta',{name:'mobile-web-app-capable',content:'yes'});
   add('meta',{name:'apple-mobile-web-app-title',content:'تحلیل سهام'});

@@ -1,0 +1,7 @@
+/* small follow-ups to rz-theme.css */
+.product-form__submit.button--secondary{background:var(--rz-gold)!important;color:var(--rz-gold-ink)!important;box-shadow:none!important}
+.shopify-payment-button{margin-top:10px}
+/* one gold action per page: Add to cart is primary, Buy it now is the quiet outline */
+.shopify-payment-button__button--unbranded{background:transparent!important;color:var(--rz-ink)!important;box-shadow:inset 0 0 0 1px var(--rz-line)!important}
+.shopify-payment-button__button--unbranded:hover{box-shadow:inset 0 0 0 1px var(--rz-gold)!important;color:var(--rz-gold)!important}
+.shopify-payment-terms-notice,.product__info-container .product-form small{color:var(--rz-mut)}

@@ -1007,8 +1007,117 @@ def forward(rec, mk):
     return out
 
 
+# ---------------- Yahoo fundamentals fill-in (foreign filers / SEC XBRL gaps) ----------------
+Y_FLOW = {"revenue": "TotalRevenue", "net_income": "NetIncomeCommonStockholders", "cfo": "OperatingCashFlow",
+          "capex": "CapitalExpenditure", "fcf": "FreeCashFlow", "dividends": "CashDividendsPaid", "shares_diluted": "DilutedAverageShares"}
+
+
+def _yv(ts, key, fx):
+    """Latest [date, value_in_usd] of a Yahoo time-series item, or (None, None)."""
+    pts = (ts or {}).get(key) or []
+    if not pts:
+        return None, None
+    d, v, cur = pts[-1]
+    if v is None:
+        return None, None
+    rate = 1.0 if (cur or "USD") == "USD" else fx.get((cur or "").upper())
+    if not rate:
+        return None, None
+    return d, v / rate
+
+
+def _yrow(ts, prefix, idx, fx):
+    """One period (annual index idx, or the trailing item) of the Yahoo series as a {field: usd} dict."""
+    out, end = {}, None
+    for f, k in Y_FLOW.items():
+        pts = (ts or {}).get(prefix + k) or []
+        if not pts:
+            continue
+        try:
+            d, v, cur = pts[idx]
+        except IndexError:
+            continue
+        if v is None:
+            continue
+        rate = 1.0 if (cur or "USD") == "USD" else fx.get((cur or "").upper())
+        if not rate:
+            continue
+        if f == "shares_diluted":
+            out[f] = v
+        elif f in ("capex", "dividends"):
+            out[f] = abs(v) / rate
+        else:
+            out[f] = v / rate
+        end = end or d
+    if out.get("fcf") is None and out.get("cfo") is not None and out.get("capex") is not None:
+        out["fcf"] = out["cfo"] - out["capex"]
+    if out.get("net_income") is not None and out.get("shares_diluted"):
+        out["eps_diluted"] = out["net_income"] / out["shares_diluted"]
+    return end, out
+
+
+def fill_from_yahoo(rec, e):
+    """Foreign filers (20-F/40-F) have no quarterly XBRL at SEC, and SEC's feed sometimes lags a whole 10-K.
+    Then the 10-year table and charts would stop a year early. Fill: (1) a trailing-12-month row and (2) missing fiscal
+    years from Yahoo's fundamentals time series (same figures the DCF already uses), converted to USD, marked src=yahoo."""
+    ts = (e or {}).get("ts") or {}
+    if not ts or not rec.get("annual"):
+        return
+    last = rec["annual"][-1]
+    rev0 = last.get("revenue") or 0
+    today = dt.date.today().isoformat()
+    # (2) missing fiscal years
+    ann = ts.get("annualTotalRevenue") or []
+    added = 0
+    for i, (d, v, cur) in enumerate(ann):
+        if not d or d <= last["fy_end"] or d > today or days(last["fy_end"], d) < 300:
+            continue
+        end, row = _yrow(ts, "annual", i, FX_LATEST)
+        if not row.get("revenue") or row["revenue"] <= 0 or (rev0 and not 0.5 < row["revenue"] / rev0 < 2.0):
+            continue
+        new = {k: None for k in last}
+        new.update({"fy_end": d, "fy": int(d[:4]), "filed": None, "src": "yahoo"})
+        for k in ("assets", "liabilities", "equity", "cash", "debt", "net_debt", "goodwill", "intangibles", "current_assets", "current_liabilities"):
+            new[k] = last.get(k)   # balance sheet carried forward; the latest one is in rec["bs"]
+        new.update(row)
+        r = new["revenue"]
+        new["net_margin"] = safe_div(new.get("net_income"), r)
+        new["fcf_margin"] = safe_div(new.get("fcf"), r)
+        new["revenue_growth"] = (r / last["revenue"] - 1) if last.get("revenue") else None
+        new["net_income_growth"] = (new["net_income"] / last["net_income"] - 1) if (new.get("net_income") and last.get("net_income") and last["net_income"] > 0) else None
+        new["payout"] = safe_div(new.get("dividends"), new.get("net_income")) if (new.get("net_income") or 0) > 0 else None
+        new["div_per_share"] = safe_div(new.get("dividends"), new.get("shares_diluted"))
+        new["fcf_per_share"] = safe_div(new.get("fcf"), new.get("shares_diluted"))
+        new["revenue_per_share"] = safe_div(r, new.get("shares_diluted"))
+        rec["annual"].append(new)
+        last = new; rev0 = r; added += 1
+    if added:
+        rec["latest"] = {k: last.get(k) for k in rec["latest"]}
+        rec["fx_approx"] = True
+    # (1) trailing twelve months
+    if not rec.get("ttm"):
+        end, row = _yrow(ts, "trailing", -1, FX_LATEST)
+        if end and row.get("revenue") and row["revenue"] > 0 and days(last["fy_end"], end) >= 45 and end <= today \
+                and (not rev0 or 0.5 < row["revenue"] / rev0 < 2.0):
+            t = {"end": end, "revenue": row.get("revenue"), "net_income": row.get("net_income"), "cfo": row.get("cfo"),
+                 "capex": row.get("capex"), "op_income": None, "da": None, "dividends": row.get("dividends"),
+                 "eps": row.get("eps_diluted"), "dps": safe_div(row.get("dividends"), row.get("shares_diluted")),
+                 "gross_profit": None, "rnd": None, "sbc": None, "buybacks": None, "interest_exp": None, "pretax_income": None,
+                 "tax": None, "shares_diluted": row.get("shares_diluted"), "fcf": row.get("fcf"), "ebitda": None, "src": "yahoo"}
+            rec["ttm"] = t
+    # latest balance sheet
+    if not rec.get("bs"):
+        dc, cash = _yv(ts, "quarterlyCashCashEquivalentsAndShortTermInvestments", FX_LATEST)
+        dd, debt = _yv(ts, "quarterlyTotalDebt", FX_LATEST)
+        de, eq = _yv(ts, "quarterlyStockholdersEquity", FX_LATEST)
+        d0 = max([x for x in (dc, dd, de) if x] or [None])
+        if d0 and d0 > last["fy_end"]:
+            rec["bs"] = {"end": d0, "cash": cash, "debt": debt, "equity": eq, "src": "yahoo"}
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
+    fill_from_yahoo(rec, EST.get(rec["ticker"]))
     a, s = rec["annual"], rec["summary"]
     last = a[-1]
     prev3 = a[-4] if len(a) >= 4 else None

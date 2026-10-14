@@ -742,6 +742,13 @@ def build_company(cik, entry, facts):
                               ((dt_ or 0) if near(e_dt) else 0)) if (near(e_dl) or near(e_dt)) else None}
             if not near(e_c):
                 bs["cash"] = None
+            for bk in ("assets", "liabilities", "goodwill", "intangibles", "current_assets", "current_liabilities", "shares_out", "ppe"):
+                bv, e_bv = latest_inst(facts, CONCEPTS[bk][1], last["fy_end"])
+                bs[bk] = bv if near(e_bv) else None
+            if bs.get("liabilities") is None:
+                le, e_le = latest_inst(facts, CONCEPTS["liab_eq"][1], last["fy_end"])
+                if near(e_le) and le is not None and eq is not None:
+                    bs["liabilities"] = le - eq
             if bs["debt"] is not None and near(e_ls) and ls:
                 bs["debt"] += ls
         qr = quarterly(facts, CONCEPTS["revenue"][1])
@@ -806,6 +813,17 @@ def build_company(cik, entry, facts):
                        "dividends": abs(t_div) if same(e_div) else None,
                        "eps": t_eps if same(e_eps) else None,
                        "dps": t_dps}
+            # the rest of the income statement / cash flow on a trailing basis (for the TTM column of the 10-year table)
+            for tk in ("gross_profit", "cogs", "rnd", "sbc", "buybacks", "interest_exp", "pretax_income", "tax"):
+                tv, te = ttm_tags(facts, CONCEPTS[tk][1])
+                ttm_rec[tk] = (abs(tv) if tk in ("buybacks",) else tv) if (tv is not None and same(te)) else None
+            if ttm_rec["gross_profit"] is None and ttm_rec["cogs"] is not None and ttm_rec["revenue"] is not None:
+                ttm_rec["gross_profit"] = ttm_rec["revenue"] - ttm_rec["cogs"]
+            ttm_rec.pop("cogs", None)
+            # diluted shares: average of the last four quarters
+            qs_sh = quarterly(facts, CONCEPTS["shares_diluted"][1], unit="shares")
+            v4 = [v for k, v in sorted(qs_sh.items())[-4:] if v]
+            ttm_rec["shares_diluted"] = sum(v4) / len(v4) if len(v4) == 4 and same(max(qs_sh)) else None
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None

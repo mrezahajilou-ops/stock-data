@@ -72,6 +72,8 @@
 #rzs svg{width:100%;height:auto;display:block}
 #rzs .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
 #rzs table{width:100%;border-collapse:collapse;font-size:13.5px;direction:rtl}
+#rzs th.ttm{color:var(--lime);background:rgba(181,227,107,.08)}#rzs th.ttm small{display:block;font-size:10px;font-weight:600;opacity:.8}
+#rzs td.ttm{background:rgba(181,227,107,.06);font-weight:800;color:#fff}#rzs td.ttm.neg{color:var(--red)}
 #rzs th{background:var(--card2);color:var(--lime);padding:8px 8px;white-space:nowrap;font-weight:800}
 #rzs td{padding:7px 8px;border-top:1px solid var(--line);white-space:nowrap;direction:ltr;text-align:center}
 #rzs td.n{direction:rtl;text-align:right;font-weight:800;color:#fff;position:sticky;right:0;background:var(--card)}
@@ -364,9 +366,43 @@ function fillSector(){
   });
 }
 
+/* ---- last twelve months as one more "year" (table column + chart bar), from the last four quarters and the
+   latest balance sheet. Growth = vs the same four quarters a year earlier when we have 8 quarters, else vs the
+   last fiscal year. Only when the TTM period ends after the last fiscal year. ---- */
+function ttmRow(d){
+  var T=d.ttm||{},B=d.bs||{},a=d.annual||[],L=a[a.length-1];if(!T.end||!L||!(T.end>L.fy_end)||T.revenue==null)return null;
+  var mk=d.market||{},shM=(mk.price&&mk.mcap)?mk.mcap/mk.price:null;
+  var r={fy:'TTM',fy_end:T.end,ttm:1,label:'۱۲ ماه اخیر',
+    revenue:T.revenue,gross_profit:T.gross_profit,rnd:T.rnd,op_income:T.op_income,ebitda:T.ebitda,net_income:T.net_income,
+    eps_diluted:T.eps,cfo:T.cfo,capex:T.capex,fcf:T.fcf,sbc:T.sbc,dividends:T.dividends,buybacks:T.buybacks,da:T.da,interest_exp:T.interest_exp,
+    cash:B.cash!=null?B.cash:null,debt:B.debt!=null?B.debt:null,assets:B.assets,liabilities:B.liabilities,equity:B.equity,goodwill:B.goodwill,intangibles:B.intangibles,
+    current_assets:B.current_assets,current_liabilities:B.current_liabilities,
+    shares_diluted:T.shares_diluted||shM||L.shares_diluted,shares_out:B.shares_out||shM||L.shares_out};
+  if(r.eps_diluted==null&&r.net_income!=null&&r.shares_diluted)r.eps_diluted=r.net_income/r.shares_diluted;
+  var rv=r.revenue,dv=function(x,y){return x!=null&&y?x/y:null};
+  r.net_debt=(r.debt!=null&&r.cash!=null)?r.debt-r.cash:null;
+  r.gross_margin=dv(r.gross_profit,rv);r.op_margin=dv(r.op_income,rv);r.net_margin=dv(r.net_income,rv);r.fcf_margin=dv(r.fcf,rv);r.ebitda_margin=dv(r.ebitda,rv);
+  r.roe=dv(r.net_income,r.equity);r.roa=dv(r.net_income,r.assets);
+  var ic=(r.equity||0)+(r.debt||0)-(r.cash||0);r.roic=(r.op_income!=null&&ic>0)?r.op_income*(1-(L.tax_rate!=null?L.tax_rate:0.21))/ic:(L.roic!=null&&r.op_income!=null&&L.op_income?L.roic*r.op_income/L.op_income:null);
+  r.debt_to_equity=dv(r.debt,r.equity);r.current_ratio=dv(r.current_assets,r.current_liabilities);r.interest_cov=(r.op_income!=null&&r.interest_exp>0)?r.op_income/r.interest_exp:null;
+  r.nd_ebitda=(r.net_debt!=null&&r.ebitda>0)?r.net_debt/r.ebitda:null;r.fcf_conv=dv(r.fcf,r.net_income);r.sbc_pct=dv(r.sbc,rv);
+  r.payout=(r.fcf>0)?((r.dividends||0)+(r.buybacks||0))/r.fcf:null;
+  r.fcf_per_share=dv(r.fcf,r.shares_diluted);r.revenue_per_share=dv(rv,r.shares_diluted);r.book_value_per_share=dv(r.equity,r.shares_diluted);
+  r.div_per_share=T.dps!=null?T.dps:dv(r.dividends,r.shares_diluted);
+  /* growth: same four quarters a year earlier when available (quarterly rows), else the last fiscal year */
+  var Q=d.quarterly||[],g=function(cur,prev){return (cur!=null&&prev>0)?cur/prev-1:null};
+  if(Q.length>=8&&Q.slice(-8).every(function(q){return q[1]!=null})){var p4=Q.slice(-8,-4),c4=Q.slice(-4),sm=function(A,i){return A.reduce(function(s,q){return s+(q[i]||0)},0)};
+    r.revenue_growth=g(sm(c4,1),sm(p4,1));r.net_income_growth=g(sm(c4,2),sm(p4,2));r.growth_basis='yoy'}
+  else{r.revenue_growth=g(rv,L.revenue);r.net_income_growth=g(r.net_income,L.net_income);r.growth_basis='fy'}
+  /* EPS and FCF growth: quarterly history only has revenue and profit, so these compare with the last fiscal year */
+  r.eps_diluted_growth=g(r.eps_diluted,L.eps_diluted);r.fcf_growth=g(r.fcf,L.fcf);
+  return r;
+}
+
 /* ---- render ---- */
 function render(d){
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
+  var TT=ttmRow(d), aT=TT?a.concat([TT]):a;   /* annual rows + the last twelve months, for charts and the table */
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
   var inW=false;try{inW=JSON.parse(localStorage.getItem('rz_watch')||'[]').indexOf(d.ticker)>=0}catch(e){}
   var h='<div class="card"><div class="head"><div><div class="co">'+esc(d.name)+'<small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'⭐ در واچ‌لیست':'☆ واچ‌لیست')+'</button></div>'+
@@ -390,19 +426,20 @@ function render(d){
      '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/pages/dcf#'+esc(d.ticker)+'">محاسبه‌ی ارزش ذاتی (DCF) ←</a><a class="btn ghost" href="/pages/screener">سهم‌های مشابه در غربالگر</a></div></div></div>';
   h+=statCards(d);
   h+='<p class="xnote" style="margin:-6px 0 12px">P/E، P/S، P/FCF و EV/EBITDA بر اساس ۱۲ ماه اخیر (TTM، جمع ۴ فصل آخر) حساب میشن. «—» یعنی شرکت این عدد رو در گزارش رسمیش به SEC اعلام نکرده یا برای نوع کسب‌وکارش معنی نداره (مثلاً حاشیه‌ی سود ناخالص برای بانک‌ها و بیمه‌ها).</p>';
-  h+='<div class="charts"><div class="card"><h3>درآمد و سود خالص (میلیارد دلار)</h3>'+bars(a,['revenue','net_income'],['#2ec4b6','#b5e36b'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>درآمد</span><span><i style="background:#b5e36b"></i>سود خالص</span></div></div>'+
-     '<div class="card"><h3>جریان نقد آزاد (میلیارد دلار)</h3>'+bars(a,['fcf'],['#f5b700'])+'</div>'+
-     '<div class="card"><h3>حاشیه‌های سود (٪)</h3>'+lines(a,['gross_margin','op_margin','net_margin'],['#2ec4b6','#b5e36b','#f5b700'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>ناخالص</span><span><i style="background:#b5e36b"></i>عملیاتی</span><span><i style="background:#f5b700"></i>خالص</span></div></div>'+
-     '<div class="card"><h3>تعداد سهام (میلیون) — کم‌شدن = بازخرید</h3>'+bars(a,['shares_diluted'],['#8fb3ff'],1e6)+'</div></div>';
+  h+='<div class="charts"><div class="card"><h3>درآمد و سود خالص (میلیارد دلار)</h3>'+bars(aT,['revenue','net_income'],['#2ec4b6','#b5e36b'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>درآمد</span><span><i style="background:#b5e36b"></i>سود خالص</span></div></div>'+
+     '<div class="card"><h3>جریان نقد آزاد (میلیارد دلار)</h3>'+bars(aT,['fcf'],['#f5b700'])+'</div>'+
+     '<div class="card"><h3>حاشیه‌های سود (٪)</h3>'+lines(aT,['gross_margin','op_margin','net_margin'],['#2ec4b6','#b5e36b','#f5b700'])+'<div class="legend"><span><i style="background:#2ec4b6"></i>ناخالص</span><span><i style="background:#b5e36b"></i>عملیاتی</span><span><i style="background:#f5b700"></i>خالص</span></div></div>'+
+     '<div class="card"><h3>تعداد سهام (میلیون) — کم‌شدن = بازخرید</h3>'+bars(aT,['shares_diluted'],['#8fb3ff'],1e6)+'</div></div>'+
+     (TT?'<p class="xnote" style="margin:-4px 0 10px">ستون/میله‌ی <b style="color:var(--lime)">TTM</b> = ۱۲ ماه اخیر (چهار فصل آخر تا '+esc(TT.fy_end)+')؛ ترازنامه = آخرین گزارش فصلی. رشدها'+(TT.growth_basis==='yoy'?' (درآمد و سود) نسبت به همین چهار فصل در سال قبل؛ رشد EPS و FCF نسبت به آخرین سال مالی.':' نسبت به آخرین سال مالی.')+'</p>':'');
   var money=function(v){return big(v)}, ps=function(v){return v==null?'—':'$'+v.toFixed(2)}, pc=function(v){return pct(v)}, xx=function(v){return x(v,2)};
   var sections=[
     ['صورت سود و زیان',[['درآمد','revenue',money],['رشد درآمد','revenue_growth',pc],['سود ناخالص','gross_profit',money],['هزینه R&D','rnd',money],['سود عملیاتی','op_income',money],['EBITDA','ebitda',money],['سود خالص','net_income',money],['رشد سود خالص','net_income_growth',pc],['سود هر سهم (EPS)','eps_diluted',ps],['رشد EPS','eps_diluted_growth',pc]]],
     ['جریان نقد',[['جریان نقد عملیاتی','cfo',money],['هزینه‌ی سرمایه‌ای','capex',money],['جریان نقد آزاد','fcf',money],['رشد جریان نقد آزاد','fcf_growth',pc],['پاداش سهامی (SBC)','sbc',money],['سود نقدی پرداختی','dividends',money],['بازخرید سهام','buybacks',money]]],
     ['ترازنامه',[['نقد و سرمایه‌گذاری کوتاه‌مدت','cash',money],['بدهی','debt',money],['بدهی خالص','net_debt',money],['کل دارایی‌ها','assets',money],['کل بدهی‌ها','liabilities',money],['حقوق صاحبان سهام','equity',money],['سرقفلی','goodwill',money],['تعداد سهام (میلیون)','shares_diluted',function(v){return v==null?'—':(v/1e6).toFixed(0)}]]],
     ['نسبت‌ها',[['حاشیه سود ناخالص','gross_margin',pc],['حاشیه سود عملیاتی','op_margin',pc],['حاشیه سود خالص','net_margin',pc],['حاشیه جریان نقد آزاد','fcf_margin',pc],['ROIC','roic',pc],['ROE','roe',pc],['بدهی به حقوق صاحبان سهام','debt_to_equity',xx],['پوشش بهره','interest_cov',function(v){return x(v,1)}],['سود نقدی هر سهم','div_per_share',ps],['ارزش دفتری هر سهم','book_value_per_share',ps]]]];
-  var yrs=a.slice(-10);
-  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrs.map(function(y){return '<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
-    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrs.map(function(y){var v=y[R[1]];return '<td'+(v<0?' class="neg"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
+  var yrs=a.slice(-10).concat(TT?[TT]:[]);
+  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrs.map(function(y){return y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
+    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrs.map(function(y){var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
   $('rzs-main').innerHTML=h;
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
@@ -711,7 +748,7 @@ function bars(a,keys,cols,div){
   ys.forEach(function(y,i){var x0=PL+i*bw+bw*0.125;
     keys.forEach(function(k,j){var v=(y[k]||0)/div,yy=Y(Math.max(v,0)),hh=Math.abs(Y(v)-z);s+='<rect x="'+(x0+j*sub).toFixed(1)+'" y="'+yy.toFixed(1)+'" width="'+(sub-2).toFixed(1)+'" height="'+Math.max(hh,0.5).toFixed(1)+'" rx="2" fill="'+(v<0?'#ff5a5f':cols[j])+'"><title>'+y.fy+': '+(div===1e9?'$'+v.toFixed(2)+'B':v.toFixed(0)+'M')+'</title></rect>';
       if(y[k]!=null)s+='<text x="'+(x0+j*sub+(sub-2)/2).toFixed(1)+'" y="'+(v>=0?yy-3:Y(v)+10).toFixed(1)+'" text-anchor="middle" fill="'+(v<0?'#ff8a8e':'#e2ebf5')+'" font-size="'+fs+'" font-weight="700" font-family="Vazirmatn,Tahoma">'+lab(v)+'</text>'});
-    s+='<text x="'+(x0+bw*0.375).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
+    s+='<text x="'+(x0+bw*0.375).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="'+(y.ttm?'#b5e36b':'#93a7bf')+'" font-size="'+(y.ttm?'10':'11')+'" font-weight="'+(y.ttm?'800':'400')+'">'+(y.ttm?'TTM':String(y.fy).slice(2))+'</text>'});
   return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
 }
 function lines(a,keys,cols){
@@ -727,7 +764,7 @@ function lines(a,keys,cols){
       var top=keys.every(function(k2){return k2===k||y[k2]==null||y[k2]<=v}),ly=top?Y(v*100)-6:Y(v*100)+13;
       var clash=keys.some(function(k2){return k2!==k&&y[k2]!=null&&Math.abs(Y(y[k2]*100)-ly)<8});
       if(!clash||i===ys.length-1)s+='<text x="'+X(i).toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" fill="'+cols[j]+'" font-size="10.5" font-weight="700" font-family="Vazirmatn,Tahoma">'+Math.round(v*100)+'</text>'})});
-  ys.forEach(function(y,i){s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
+  ys.forEach(function(y,i){s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="'+(y.ttm?'#b5e36b':'#93a7bf')+'" font-size="'+(y.ttm?'10':'11')+'" font-weight="'+(y.ttm?'800':'400')+'">'+(y.ttm?'TTM':String(y.fy).slice(2))+'</text>'});
   return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
 }
 

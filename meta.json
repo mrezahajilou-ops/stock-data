@@ -1,0 +1,1 @@
+{"as_of": "2026-10-14", "ok": {"stooq": 0, "nasdaq": 0, "yahoo": 3}, "fail": 0, "tickers": 3, "log": ["MFC MFC rows 0", "BRK-B BRK-B rows 0", "MFC MFC?etf rows 0", "MFC yahoo rows 2513", "RY RY rows 0", "BRK-B BRK.B rows 0", "RY RY?etf rows 0", "RY yahoo rows 2513", "BRK-B BRK%2FB http 404", "BRK-B BRK-B?etf rows 0", "BRK-B yahoo rows 2513"]}

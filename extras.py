@@ -224,8 +224,25 @@ def _x(el, path):
     return (e.text or '').strip() if e is not None and e.text else ''
 
 
+SEC_TICKERS = {}
+
+
+def sec_cik_for(t):
+    """CIK the SEC itself maps the ticker to (can differ from the XBRL filer after a re-incorporation, e.g. XOM)."""
+    if not SEC_TICKERS:
+        try:
+            j = json.loads(get('https://www.sec.gov/files/company_tickers.json', SEC_HDR, timeout=30, tries=2) or b'{}')
+            for v in j.values():
+                SEC_TICKERS[str(v.get('ticker') or '').upper().replace('.', '-')] = int(v.get('cik_str'))
+        except Exception:
+            SEC_TICKERS['_'] = 0
+    return SEC_TICKERS.get(t.upper())
+
+
 def sec_form4(cik, max_docs=40):
-    """Latest Form 4 filings for a CIK, parsed from the XML on EDGAR. Returns the same shape as insider_one()."""
+    """Latest Form 4 filings for a CIK, parsed from the XML on EDGAR. Returns the same shape as insider_one().
+    Only filings where this CIK is the *issuer* count (a company that is itself a 10% owner of others, like Berkshire,
+    also files Form 4s about other companies' shares - those are skipped)."""
     try:
         sub = json.loads(get('https://data.sec.gov/submissions/CIK%010d.json' % int(cik), SEC_HDR, timeout=30, tries=2) or b'null')
     except Exception:
@@ -239,6 +256,7 @@ def sec_form4(cik, max_docs=40):
     cut12 = (today - dt.timedelta(days=365)).isoformat()
     f4 = [(dates[i], accs[i], docs[i]) for i in range(len(forms)) if forms[i] in ('4', '4/A') and dates[i] >= cut12]
     if not f4:
+        LOG.append('sec: no Form 4 in 12 months for cik %s' % cik)
         return None
     rows, nb3 = [], 0
     cut3 = (today - dt.timedelta(days=91)).isoformat()
@@ -256,6 +274,8 @@ def sec_form4(cik, max_docs=40):
         try:
             root = ET.fromstring(raw)
         except Exception:
+            continue
+        if _x(root, 'issuer/issuerCik').lstrip('0') != str(int(cik)):
             continue
         owner = root.find('reportingOwner')
         name = _x(owner, 'reportingOwnerId/rptOwnerName') if owner is not None else ''
@@ -330,6 +350,10 @@ def insider_fill(ts, got):
         elif c and m >= 2e8 and sec_tries < 400:
             sec_tries += 1
             d = sec_form4(c)
+            if not d:
+                c2 = sec_cik_for(t)
+                if c2 and c2 != c:
+                    d = sec_form4(c2)
             if d:
                 out[t] = d
                 by_cik.setdefault(c, []).append((m, t)); got[t] = d

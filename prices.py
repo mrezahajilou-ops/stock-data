@@ -97,17 +97,26 @@ def nasdaq(t, assetclass='stocks'):
     return rows
 
 
+LOG = []
+
+
 def nasdaq_etf(t):
     return nasdaq(t, 'etf')
 
 
 def nasdaq_one(t):
     # share classes: our BRK-B is BRK.B at Nasdaq; a few NYSE names answer only with assetclass=etf
-    variants = [t] + ([t.replace('-', '.')] if '-' in t else []) + [t + '?etf']
+    variants = [t] + ([t.replace('-', '.'), t.replace('-', '%2F')] if '-' in t else []) + [t + '?etf']
     for attempt in range(3):
         try:
             for v in variants:
-                rows = nasdaq_etf(v[:-4]) if v.endswith('?etf') else nasdaq(v)
+                try:
+                    rows = nasdaq_etf(v[:-4]) if v.endswith('?etf') else nasdaq(v)
+                except urllib.error.HTTPError as e:
+                    LOG.append('%s %s http %s' % (t, v, e.code)); continue
+                except Exception as e:
+                    LOG.append('%s %s %s' % (t, v, repr(e)[:80])); continue
+                LOG.append('%s %s rows %d' % (t, v, len(rows)))
                 if len(rows) >= 4:
                     return t, rows
             return t, None
@@ -147,7 +156,7 @@ def main():
                 fail += 1
             if i % 100 == 0:
                 print('%d/%d ok=%s fail=%d %.0fs' % (i, len(missing), ok, fail, time.time() - t0), flush=True)
-    json.dump({'as_of': TODAY.isoformat(), 'ok': ok, 'fail': fail, 'tickers': len(tickers)},
+    json.dump({'as_of': TODAY.isoformat(), 'ok': ok, 'fail': fail, 'tickers': len(tickers), 'log': LOG[-60:]},
               open(os.path.join(OUT, 'meta.json'), 'w'))
     print('done', ok, 'fail', fail)
 

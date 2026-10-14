@@ -2,14 +2,14 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
 #rzs{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
-  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1040px;margin:0 auto;padding:18px 16px 40px;border-radius:22px;line-height:1.7;box-sizing:border-box}
+  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #rzs *{box-sizing:border-box;font-family:inherit}
 #rzs .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 #rzs .nav a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--mut)!important;text-decoration:none!important;font-weight:800;font-size:14px}
 #rzs .nav a.on{background:var(--lime);color:#0b1726!important;border-color:var(--lime)}
 #rzs h1{font-size:26px;font-weight:900;margin:0 0 2px;color:#fff}
 #rzs .sub{color:var(--mut);margin:0 0 14px;font-size:14.5px}
-#rzs .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+#rzs .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:12px}
 #rzs .search{position:relative}
 #rzs .search input{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;color:#fff;font-size:17px;padding:11px 14px;outline:none;direction:ltr;text-align:right}
 #rzs .search input:focus{border-color:var(--ac)}
@@ -56,15 +56,19 @@
 #rzs .verdict h4{margin:0 0 6px;font-size:14px}
 #rzs .verdict .pl h4{color:var(--ac)}#rzs .verdict .mi h4{color:var(--red)}
 #rzs .vtag{display:inline-block;padding:2px 12px;border-radius:999px;font-size:13px;font-weight:900;margin-right:8px}
-#rzs .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-#rzs .st{background:var(--card2);border-radius:12px;padding:10px 12px;position:relative}
+#rzs .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (min-width:1200px){#rzs .stats{grid-template-columns:repeat(6,1fr)}}
+#rzs .st{background:var(--card2);border-radius:12px;padding:8px 10px;position:relative}
 #rzs .st .k{font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:4px}
 #rzs .st .k i{font-style:normal;color:#6f86a3;cursor:help;font-size:11px;border:1px solid #2f4a6b;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
 #rzs .st .v{font-size:18px;font-weight:900;direction:ltr;text-align:right}
 #rzs .st .s{font-size:11px;color:var(--mut);direction:rtl}
 #rzs .st .s b{direction:ltr;display:inline-block}
 #rzs h3{font-size:17px;margin:0 0 10px;color:#fff}
-#rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (min-width:1450px){#rzs .charts{grid-template-columns:repeat(4,1fr)}#rzs .charts .card h3{font-size:14px}}
+#rzs .wide2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}#rzs .wide2>*{min-width:0}
+@media (max-width:1199px){#rzs .wide2{grid-template-columns:1fr}}
 #rzs svg{width:100%;height:auto;display:block}
 #rzs .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
 #rzs table{width:100%;border-collapse:collapse;font-size:13.5px;direction:rtl}
@@ -374,10 +378,10 @@ function render(d){
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
   h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   h+=verdict(d);
-  h+='<div class="card" id="rzs-rn"></div>';
-  h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div>';
-  h+='<div class="card" id="rzs-val" style="display:none"></div>';
-  h+='<div class="card" id="rzs-an" style="display:none"></div>';
+  h+='<div class="wide2"><div class="card" id="rzs-rn"></div>';
+  h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
+  h+='<div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
+  h+='<div class="card" id="rzs-an" style="display:none"></div></div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>📰 آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>👔 معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-si" style="display:none"></div>';
@@ -697,10 +701,10 @@ function radar(s){
 }
 function bars(a,keys,cols,div){
   div=div||1e9;
-  var ys=a.slice(-10),W=480,H=228,PL=8,PB=26,PT=22,max=0,min=0;
+  var ys=a.slice(-10),W=480,H=232,PL=8,PB=26,PT=26,max=0,min=0;
   ys.forEach(function(y){keys.forEach(function(k){var v=(y[k]||0)/div;max=Math.max(max,v);min=Math.min(min,v)})}); if(max<=0)max=1;
   var lab=function(v){var a2=Math.abs(v);if(div===1e9)return (v<0?'-':'')+(a2>=100?a2.toFixed(0):a2>=10?a2.toFixed(1):a2.toFixed(2));return a2>=1000?Math.round(a2).toLocaleString('en-US'):a2>=100?a2.toFixed(0):a2.toFixed(1)};
-  var fs=keys.length>1?8.5:9.5;
+  var fs=keys.length>1?10:11;
   var span=max-min, bw=(W-PL*2)/ys.length, sub=(bw*0.75)/keys.length, s='';
   var Y=function(v){return PT+(H-PT-PB)*(max-v)/span}, z=Y(0);
   s+='<line x1="0" x2="'+W+'" y1="'+z+'" y2="'+z+'" stroke="#25405f"/>';
@@ -722,7 +726,7 @@ function lines(a,keys,cols){
       /* label: above the line for the top series, below for the others; skip a label that would sit on another series' point */
       var top=keys.every(function(k2){return k2===k||y[k2]==null||y[k2]<=v}),ly=top?Y(v*100)-6:Y(v*100)+13;
       var clash=keys.some(function(k2){return k2!==k&&y[k2]!=null&&Math.abs(Y(y[k2]*100)-ly)<8});
-      if(!clash||i===ys.length-1)s+='<text x="'+X(i).toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" fill="'+cols[j]+'" font-size="9" font-weight="700" font-family="Vazirmatn,Tahoma">'+Math.round(v*100)+'</text>'})});
+      if(!clash||i===ys.length-1)s+='<text x="'+X(i).toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" fill="'+cols[j]+'" font-size="10.5" font-weight="700" font-family="Vazirmatn,Tahoma">'+Math.round(v*100)+'</text>'})});
   ys.forEach(function(y,i){s+='<text x="'+X(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="#93a7bf" font-size="11">'+String(y.fy).slice(2)+'</text>'});
   return '<svg viewBox="0 0 '+W+' '+H+'" style="direction:ltr">'+s+'</svg>';
 }

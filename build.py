@@ -1234,6 +1234,9 @@ def reconcile_per_share(rec, mk, ref):
             bs["shares_out"] = bs["shares_out"] * F
         rec["split_adj"] = F
         sh_now = sh_now * F
+    # a trailing share count the market does not confirm is dropped (the page falls back to market cap / price)
+    if t.get("shares_diluted") and not 0.75 < implied / t["shares_diluted"] < 1.33:
+        t["shares_diluted"] = None
     # 2) trailing EPS vs net income / shares
     ni = t.get("net_income")
     sh = t.get("shares_diluted") or sh_now

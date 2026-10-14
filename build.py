@@ -820,10 +820,16 @@ def build_company(cik, entry, facts):
             if ttm_rec["gross_profit"] is None and ttm_rec["cogs"] is not None and ttm_rec["revenue"] is not None:
                 ttm_rec["gross_profit"] = ttm_rec["revenue"] - ttm_rec["cogs"]
             ttm_rec.pop("cogs", None)
-            # diluted shares: average of the last four quarters
-            qs_sh = quarterly(facts, CONCEPTS["shares_diluted"][1], unit="shares")
-            v4 = [v for k, v in sorted(qs_sh.items())[-4:] if v]
-            ttm_rec["shares_diluted"] = sum(v4) / len(v4) if len(v4) == 4 and same(max(qs_sh)) else None
+            # diluted shares: latest quarter's weighted average (the quarterly() YTD-differencing is wrong for share
+            # counts, which are averages, not flows); sanity-checked against the last annual figure
+            sh_q, e_sh = None, ""
+            for tag in CONCEPTS["shares_diluted"][1]:
+                ns_, nm_ = tag.split(":")
+                for f in ((facts.get(ns_, {}).get(nm_) or {}).get("units", {}) or {}).get("shares") or []:
+                    if f.get("form") in QFORMS and f.get("start") and 80 <= days(f["start"], f.get("end", "")) <= 100 and f.get("end", "") > e_sh:
+                        sh_q, e_sh = f["val"], f["end"]
+            ok_sh = sh_q and same(e_sh) and last.get("shares_diluted") and 0.5 < sh_q / last["shares_diluted"] < 2
+            ttm_rec["shares_diluted"] = sh_q if ok_sh else None
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None

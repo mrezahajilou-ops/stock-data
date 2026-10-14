@@ -1,0 +1,114 @@
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #ID is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#ID{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#ID *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#ID .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#ID .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#ID .nav a:hover{color:var(--ink)!important}
+#ID .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#ID h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#ID .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#ID h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#ID b,#ID strong{font-weight:600}
+#ID .co,#ID .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#ID .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#ID .px .p,#ID .sc .v,#ID .vbig b,#ID .rev .bx .big,#ID .snap b,#ID .stats b,#ID .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#ID .px .p{font-size:30px}
+#ID .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#ID .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#ID .card .card{background:var(--card2)}
+#ID .st,#ID .snap div,#ID .vbig div,#ID .ist4 div,#ID .ab-grid>div,#ID .vcol,#ID .sc,#ID .rev .bx,#ID .perf div,#ID .relc,#ID .stats div{background:var(--card2);border:0}
+#ID .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#ID .wide2 .card,#ID .charts .card,#ID .two .card{background:var(--card)}
+#ID .tblwrap,#ID .tw{border:0;border-radius:10px}
+#ID .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#ID .tbl th,#ID th,#ID .proj th,#ID .sens th,#ID .antbl th,#ID table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#ID .tbl th.grp{border-bottom:0;color:var(--mut)}
+#ID td{border-bottom:1px solid #1A1E26}
+#ID .tbl td.sep{border-left-color:var(--line)}
+#ID tr.sec td,#ID .sec td{color:var(--ac);font-weight:600;background:transparent}
+#ID th.ttm,#ID td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#ID th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#ID .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#ID .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#ID .btn.ghost:hover{border-color:var(--ac)}
+#ID .lnk{color:var(--ac)}
+#ID .chip,#ID .rng button,#ID .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#ID .chip:hover,#ID .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#ID .rng button.on,#ID .tabs button.on,#ID .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#ID input,#ID select,#ID .pin,#ID .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#ID input:focus,#ID select:focus,#ID .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#ID .search input{font-size:17px;padding:12px 16px}
+#ID .sugg{background:var(--card2);border:1px solid var(--line)}
+#ID .sugg div:hover{background:#242934}
+#ID .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#ID .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#ID .up{color:var(--up)}#ID .dn{color:var(--red)}
+#ID .vrow.ok b{background:var(--up)}#ID .vrow.no b{background:var(--red)}
+#ID .vrow.ok em{color:var(--up)}#ID .vrow.no em{color:var(--red)}
+#ID .good{background:rgba(79,163,122,.16);color:var(--up)}
+#ID .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#ID .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#ID .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#ID .meta,#ID .xnote,#ID .note,#ID .mut2,#ID .st .k,#ID .st .s{color:var(--mut);font-weight:400}
+#ID .stats small,#ID .snap small,#ID .vbig small{font-weight:500}
+#ID .quota{color:var(--mut)}
+#ID .tk{color:var(--ac);font-weight:600}
+#ID .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #ID .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#ID :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #ID{padding:12px 14px 40px}
+  #ID .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #ID .nav::-webkit-scrollbar{display:none}
+  #ID .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #ID h1{font-size:23px}
+  #ID .sub{font-size:13.5px;margin-bottom:12px}
+  #ID .co{font-size:21px}
+  #ID .px .p{font-size:26px}
+  #ID .card{padding:14px;border-radius:12px}
+  #ID .search input{font-size:16px;padding:11px 14px}
+}

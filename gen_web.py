@@ -11,17 +11,19 @@ WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
-        ('watchlist', '/pages/watchlist', '⭐ واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('superinvestors', '/pages/superinvestors', '🦈 سوپر سرمایه‌گذارها'),
-        ('myportfolio', '/pages/my-portfolio', '📒 دفترچه سهام من'), ('calc', '/pages/return-calculator', '📈 ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', '💼 پورتفوی رضا')]
+        ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'),
+        ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا')]
 
 
 def nav(on):
     return '<div class="nav">' + ''.join('<a%s href="%s">%s</a>' % (' class="on"' if k == on else '', u, l) for k, u, l in TABS) + '</div>'
 
 
+THEME = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_src", "theme.css"), encoding="utf-8").read()
+
 CSS = r"""
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-#ID{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+#ID{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
   font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #ID *{box-sizing:border-box;font-family:inherit}
 #ID a{color:var(--ac)}
@@ -56,7 +58,7 @@ CSS = r"""
 #ID .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 #ID .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #ID .chip:hover{color:#fff;border-color:var(--ac)}
-"""
+""" + "\n" + THEME
 
 JS = r"""
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
@@ -66,7 +68,7 @@ function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
-function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
 /* live quotes */
 var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
@@ -182,7 +184,7 @@ function draw(){var W=wlGet(),m=$('rzw-main');
       '<td style="text-align:center">'+sc(g(r,'s_total'))+'</td><td style="text-align:center">'+sc(g(r,'s_value'))+'</td>'+
       '<td class="num '+((g(r,'fair_up')||0)>=0?'up':'dn')+'">'+(g(r,'fair_up')==null?'—':pct(g(r,'fair_up'),0))+'</td><td class="num">'+x1(g(r,'pe'))+'</td>'+
       '<td class="num">'+(n?n.d.slice(5).replace('-','/'):'—')+'</td>'+
-      '<td><button class="btn '+(on?'':'ghost ')+'sm" data-al="'+esc(t)+'">'+(on?'🔔 فعال':'🔕 تنظیم')+'</button></td><td><button class="btn ghost sm" data-rm="'+esc(t)+'">✕</button></td></tr>'});
+      '<td><button class="btn '+(on?'':'ghost ')+'sm" data-al="'+esc(t)+'">'+(on?'فعال':'تنظیم')+'</button></td><td><button class="btn ghost sm" data-rm="'+esc(t)+'">✕</button></td></tr>'});
   m.innerHTML=h+'</tbody></table></div><div class="chips"><a class="btn ghost sm" href="/pages/compare#'+W.slice(0,4).join(',')+'">مقایسه‌ی '+Math.min(4,W.length)+' سهم اول</a></div></div>';
   var H=hits();$('rzw-hit').innerHTML=H.length?'<div class="card" style="border-color:var(--gold)"><h3>🔔 هشدارهای فعال‌شده</h3>'+H.map(function(x){return '<div style="padding:4px 0"><b class="tk">'+x[0]+'</b> · '+esc(x[1])+'</div>'}).join('')+'</div>':''}
 function dlg(t){var A=alGet(),a=A[t]||{},r=BY[t],p=r?g(r,'price'):0,d=$('rzw-dlg');d.style.display='block';
@@ -215,7 +217,7 @@ CAL_BODY = r"""
 """
 CAL_JS = r"""
 var CAL=null,F='all',WD=['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
-var TM={pre:'☀️ قبل از بازار',after:'🌙 بعد از بازار',na:'—'};
+var TM={pre:'قبل از بازار',after:'بعد از بازار',na:'—'};
 function eps(v){return v==null?'—':'<span class="num">$'+v.toFixed(2)+'</span>'}
 function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقویم هنوز آماده نیست؛ کمی بعد دوباره سر بزن.</div>';return}
   var W=wlGet(),today=new Date().toISOString().slice(0,10),ds=Object.keys(CAL.days).sort(),h='',any=0;
@@ -267,16 +269,21 @@ def main():
         'superinvestors.html': superinvestors_page(),
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
-        'watchlist.html': page('watchlist', 'rzw', '⭐ واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),
+        'watchlist.html': page('watchlist', 'rzw', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),
         'calendar.html': page('calendar', 'rze', 'تقویم گزارش‌های مالی', 'کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.', CAL_BODY, CAL_JS),
     }
     for f, html in pages.items():
         open(os.path.join(WEB, f), 'w', encoding='utf-8').write(html)
     # same tab bar on the existing tools
-    for f, pid in (('stock.html', 'stock'), ('screener.html', 'screener'), ('dcf.html', 'dcf')):
+    for f, pid, root in (('stock.html', 'stock', 'rzs'), ('screener.html', 'screener', 'rzc2'), ('dcf.html', 'dcf', 'rzd')):
         p = os.path.join(WEB, f)
         s = open(p, encoding='utf-8').read()
         s2 = re.sub(r'<div class="nav">.*?</div>', lambda m: nav(pid), s, count=1, flags=re.S)
+        block = '\n/* THEME:START */\n' + THEME.replace('#ID', '#' + root) + '\n/* THEME:END */\n'
+        if '/* THEME:START */' in s2:
+            s2 = re.sub(r'\n/\* THEME:START \*/.*?/\* THEME:END \*/\n', lambda m: block, s2, count=1, flags=re.S)
+        else:
+            s2 = s2.replace('</style>', block + '</style>', 1)
         open(p, 'w', encoding='utf-8').write(s2)
     print('ok')
 

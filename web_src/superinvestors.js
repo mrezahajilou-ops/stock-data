@@ -3,7 +3,7 @@ var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',F
 var D=null,M={},BYID={},OWN=null,TAB='mgr',STY='all',SORT='fame',Q='',HF='all',HS='w',BS='buys';
 var SI=RAW+'/superinvestors/';
 var STYLES=[['all','همه'],['ارزشی','ارزشی'],['کیفیت','کیفیت'],['رشد','رشد و تکنولوژی'],['فعال','اکتیویست'],['کلان','کلان']];
-var COL=['#2ec4b6','#b5e36b','#f5b700','#7ab8ff','#ff9f6b','#c9a7ff','#5ef0d2','#ffd36b','#9fe39a','#ff8fb1'];
+var COL=['#4FA37A','#8FB07A','#C9A961','#7ab8ff','#ff9f6b','#c9a7ff','#5ef0d2','#ffd36b','#9fe39a','#ff8fb1'];
 function nz(s){return String(s||'').toLowerCase().replace(/[\u200c\s\-_.]+/g,'').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/[ًٌٍَُِّ]/g,'')}
 function hc(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return COL[h%COL.length]}
 function ini(m){var p=String(m.who||m.firm).replace(/[^A-Za-z ]/g,' ').trim().split(/\s+/);return ((p[0]||'?')[0]+(p.length>1?p[p.length-1][0]:'')).toUpperCase()}
@@ -18,7 +18,7 @@ function tkl(t,u){if(!t)return '<span class="mut">—</span>';return u?'<a class
 function bigv(v){return v!=null&&Math.abs(v)<1e6?'$'+(v/1e3).toFixed(0)+'K':big(v)}
 function live(t){var q=RZQ&&RZQ.q&&t?RZQ.q[t]:null;return q&&q[0]>0?q[0]:null}
 function can(id){return ACC||FREE[id]}
-function cta(t){return '<div class="cta-box"><h3>🔒 '+(t||'این بخش مخصوص مشترکین Stock Pro است')+'</h3><p>پورتفوی کامل و خرید و فروش هر فصل بیش از ۵۰ سرمایه‌گذار افسانه‌ای، پرطرفدارترین سهم‌هاشون و اینکه چه کسی چه سهمی رو داره.</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div>'+(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fsuperinvestors">وارد حسابت شو</a></p>')+'</div>'}
+function cta(t){return '<div class="cta-box"><h3>🔒 '+(t||'این بخش مخصوص مشترکین Stock Pro است')+'</h3><p>پورتفوی کامل و خرید و فروش هر فصل بیش از ۵۰ سرمایه‌گذار افسانه‌ای، پرطرفدارترین سهم‌هاشون و اینکه چه کسی چه سهمی رو داره.</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#C9A961" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div>'+(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fsuperinvestors">وارد حسابت شو</a></p>')+'</div>'}
 function locked(inner,t){return '<div class="lockw"><div class="blur">'+inner+'</div><div class="cta">'+cta(t)+'</div></div>'}
 function mlink(id){var m=BYID[id];return m?'<span data-m="'+id+'">'+av(m)+esc(m.fa)+'</span>':''}
 
@@ -30,7 +30,7 @@ function mgrList(){var L=D.managers.filter(function(m){if(STY!=='all'&&String(m.
     '<div class="chips" style="margin:0 0 12px">'+STYLES.map(function(s){return '<span class="chip'+(STY===s[0]?' on':'')+'" data-sty="'+s[0]+'" style="direction:rtl">'+s[1]+'</span>'}).join('')+'</div>';
   if(!L.length)return h+'<div class="card empty">موردی پیدا نشد.</div>';
   return h+'<div class="mgrs">'+L.map(function(m){return '<a class="mg" href="#m='+m.id+'" data-m="'+m.id+'"><div class="hd">'+av(m)+'<div class="who"><b>'+esc(m.fa)+'</b><span>'+esc(m.ffa)+' · <span dir="ltr">'+esc(m.who)+'</span></span></div></div>'+
-    '<div><span class="tag">'+esc(m.style)+'</span> '+(m.stale?'<span class="tag old">گزارش قدیمی</span>':'')+(FREE[m.id]&&!ACC?' <span class="tag" style="background:#2a4a1a;color:#b5e36b">رایگان</span>':'')+'</div>'+
+    '<div><span class="tag">'+esc(m.style)+'</span> '+(m.stale?'<span class="tag old">گزارش قدیمی</span>':'')+(FREE[m.id]&&!ACC?' <span class="tag" style="background:#2a4a1a;color:#8FB07A">رایگان</span>':'')+'</div>'+
     '<div class="kv"><span>ارزش پورتفوی</span><b>'+big(m.value)+'</b></div><div class="kv"><span>تعداد سهم</span><b>'+m.n+'</b></div><div class="kv"><span>آخرین گزارش</span><b>'+qn(m.period)+'</b></div>'+
     '<div class="tops">'+m.top.slice(0,4).map(function(t){return '<span class="tp">'+esc(t[0]||t[1].slice(0,10))+'<i>'+w(t[2],0)+'</i></span>'}).join('')+'</div>'+
     '<div class="acts">'+(m.nnew?'<span class="b new">'+m.nnew+' جدید</span>':'')+(m.nadd?'<span class="b add">'+m.nadd+' افزایش</span>':'')+(m.ncut?'<span class="b cut">'+m.ncut+' کاهش</span>':'')+(m.nsold?'<span class="b sold">'+m.nsold+' فروش کامل</span>':'')+'</div></a>'}).join('')+'</div>'}
@@ -59,7 +59,7 @@ function feedView(){var L=D.managers.slice().sort(function(a,b){return b.filed>a
 /* ------------------------------------------------------------- one manager */
 function spark(h){var v=h.slice().reverse(),mx=Math.max.apply(null,v)||1,W=74,H=22,n=v.length;if(n<2)return '';
   var pts=v.map(function(x,i){return (i*(W-2)/(n-1)+1).toFixed(1)+','+(H-2-(x/mx)*(H-4)).toFixed(1)}).join(' ');
-  return '<svg class="sp" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'"><polyline points="'+pts+'" fill="none" stroke="#2ec4b6" stroke-width="1.6"/></svg>'}
+  return '<svg class="sp" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'"><polyline points="'+pts+'" fill="none" stroke="#4FA37A" stroke-width="1.6"/></svg>'}
 function mgrView(id){var m=M[id],s=BYID[id];
   if(!m){$('rzi-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';fetch(SI+'m/'+id+'.json?v='+encodeURIComponent(D.as_of)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){M[id]=j;mgrView(id)}).catch(function(){$('rzi-main').innerHTML='<div class="card empty">بارگذاری ناموفق بود.</div>'});return}
   var head='<button class="back" data-back="1">→ بازگشت به همه‌ی سرمایه‌گذارها</button><div class="card"><div class="mh">'+av(m,'lg')+'<div class="who"><b>'+esc(m.fa)+'</b><span class="mut">'+esc(m.ffa)+' · <span dir="ltr">'+esc(m.who)+(m.who!==m.firm?' — '+esc(m.firm):'')+'</span></span><div style="margin-top:6px"><span class="tag">'+esc(m.style)+'</span> '+(m.stale?'<span class="tag old">آخرین گزارش قدیمیه</span>':'')+'</div><p>'+esc(m.bio)+'</p></div></div>'+

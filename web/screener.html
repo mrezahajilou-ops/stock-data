@@ -30,10 +30,10 @@
 #rzc2 .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
 #rzc2 table{width:max-content!important;min-width:100%;table-layout:auto!important;border-collapse:collapse;font-size:13.5px;margin:0}
 #rzc2 th,#rzc2 td{overflow:visible;box-sizing:content-box}
-#rzc2 th{background:var(--lime);color:#0b1726;padding:8px 6px;white-space:nowrap;cursor:pointer;font-weight:800;user-select:none;position:sticky;top:0}
+#rzc2 th{background:var(--card);color:var(--mut);padding:8px 6px;white-space:nowrap;cursor:pointer;font-weight:800;user-select:none;position:sticky;top:0}
 #rzc2 th.s:after{content:' ▾'}#rzc2 th.s.asc:after{content:' ▴'}
 #rzc2 td{padding:7px 6px;border-top:1px solid var(--line);white-space:nowrap;text-align:center;direction:ltr}
-#rzc2 td.nm{text-align:right;direction:rtl;width:240px;max-width:240px;min-width:240px;overflow:hidden;box-sizing:border-box;position:sticky;right:0;background:var(--card)}
+#rzc2 td.nm{text-align:right;direction:rtl;width:240px;max-width:240px;min-width:240px;overflow:hidden;box-sizing:border-box;position:sticky;right:0;background:var(--bg)}
 #rzc2 th.nm{position:sticky;right:0;z-index:2}
 #rzc2 td.nm a{color:#fff!important;text-decoration:none!important;font-weight:800;display:flex;align-items:center;gap:8px;direction:rtl}
 #rzc2 td.nm small{color:var(--ac);direction:ltr;display:inline-block;flex:0 0 auto;min-width:46px;text-align:left;font-size:12.5px}
@@ -41,7 +41,7 @@
 #rzc2 td.sec{width:150px;max-width:150px;overflow:hidden;text-overflow:ellipsis;text-align:left;box-sizing:border-box}
 #rzc2 tr:hover td{background:rgba(46,196,182,.06)}
 #rzc2 .sc{display:inline-block;min-width:30px;border-radius:7px;padding:1px 6px;font-weight:900;color:#0b1726}
-#rzc2 .neg{color:#ff8a8e}#rzc2 .pos{color:#5fe0d3}
+#rzc2 .neg{color:#C8534F}#rzc2 .pos{color:#4FA37A}
 #rzc2 .lock td{filter:blur(4px);user-select:none;pointer-events:none}
 #rzc2 .wall{text-align:center;padding:22px 12px;background:linear-gradient(180deg,rgba(11,23,38,0),#0b1726 30%)}
 #rzc2 .btn{display:inline-block;background:var(--ac);color:#06201d!important;text-decoration:none!important;font-weight:900;padding:10px 20px;border-radius:999px;border:0;cursor:pointer;font-family:inherit}
@@ -52,9 +52,127 @@
 #rzc2 .cmp.on{display:flex}
 #rzc2 td input[type=checkbox]{width:auto}
 @media (max-width:760px){#rzc2 .filters{grid-template-columns:repeat(2,1fr)}#rzc2 h1{font-size:22px}#rzc2 .hm{display:none}#rzc2 td.nm{width:170px;min-width:170px;max-width:170px}}
+
+/* THEME:START */
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzc2 is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzc2{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzc2 *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzc2 .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzc2 .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzc2 .nav a:hover{color:var(--ink)!important}
+#rzc2 .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzc2 h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzc2 .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzc2 h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzc2 b,#rzc2 strong{font-weight:600}
+#rzc2 .co,#rzc2 .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzc2 .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzc2 .px .p,#rzc2 .sc .v,#rzc2 .vbig b,#rzc2 .rev .bx .big,#rzc2 .snap b,#rzc2 .stats b,#rzc2 .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzc2 .px .p{font-size:30px}
+#rzc2 .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzc2 .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzc2 .card .card{background:var(--card2)}
+#rzc2 .st,#rzc2 .snap div,#rzc2 .vbig div,#rzc2 .ist4 div,#rzc2 .ab-grid>div,#rzc2 .vcol,#rzc2 .sc,#rzc2 .rev .bx,#rzc2 .perf div,#rzc2 .relc,#rzc2 .stats div{background:var(--card2);border:0}
+#rzc2 .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzc2 .wide2 .card,#rzc2 .charts .card,#rzc2 .two .card{background:var(--card)}
+#rzc2 .tblwrap,#rzc2 .tw{border:0;border-radius:10px}
+#rzc2 .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzc2 .tbl th,#rzc2 th,#rzc2 .proj th,#rzc2 .sens th,#rzc2 .antbl th,#rzc2 table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzc2 .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzc2 td{border-bottom:1px solid #1A1E26}
+#rzc2 .tbl td.sep{border-left-color:var(--line)}
+#rzc2 tr.sec td,#rzc2 .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzc2 th.ttm,#rzc2 td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzc2 th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzc2 .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzc2 .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzc2 .btn.ghost:hover{border-color:var(--ac)}
+#rzc2 .lnk{color:var(--ac)}
+#rzc2 .chip,#rzc2 .rng button,#rzc2 .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzc2 .chip:hover,#rzc2 .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzc2 .rng button.on,#rzc2 .tabs button.on,#rzc2 .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzc2 input,#rzc2 select,#rzc2 .pin,#rzc2 .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzc2 input:focus,#rzc2 select:focus,#rzc2 .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzc2 .search input{font-size:17px;padding:12px 16px}
+#rzc2 .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzc2 .sugg div:hover{background:#242934}
+#rzc2 .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzc2 .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzc2 .up{color:var(--up)}#rzc2 .dn{color:var(--red)}
+#rzc2 .vrow.ok b{background:var(--up)}#rzc2 .vrow.no b{background:var(--red)}
+#rzc2 .vrow.ok em{color:var(--up)}#rzc2 .vrow.no em{color:var(--red)}
+#rzc2 .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzc2 .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzc2 .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzc2 .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzc2 .meta,#rzc2 .xnote,#rzc2 .note,#rzc2 .mut2,#rzc2 .st .k,#rzc2 .st .s{color:var(--mut);font-weight:400}
+#rzc2 .stats small,#rzc2 .snap small,#rzc2 .vbig small{font-weight:500}
+#rzc2 .quota{color:var(--mut)}
+#rzc2 .tk{color:var(--ac);font-weight:600}
+#rzc2 .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzc2 .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzc2 :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzc2{padding:12px 14px 40px}
+  #rzc2 .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzc2 .nav::-webkit-scrollbar{display:none}
+  #rzc2 .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzc2 h1{font-size:23px}
+  #rzc2 .sub{font-size:13.5px;margin-bottom:12px}
+  #rzc2 .co{font-size:21px}
+  #rzc2 .px .p{font-size:26px}
+  #rzc2 .card{padding:14px;border-radius:12px}
+  #rzc2 .search input{font-size:16px;padding:11px 14px}
+}
+
+/* THEME:END */
 </style>
 
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>غربالگر سهام آمریکا</h1>
 <p class="sub">بین بیش از ۶٬۸۰۰ سهم، اونایی رو پیدا کن که با معیارهای تو جور درمیان. فیلتر آماده انتخاب کن یا خودت بساز؛ روی هر ستون بزنی مرتب میشه.</p>
 
@@ -206,7 +324,7 @@ function pct(v){return v==null||!isFinite(v)?'—':'<span class="'+(v<0?'neg':''
 function pcts(v){return v==null||!isFinite(v)?'—':'<span class="'+(v<0?'neg':'pos')+'">'+(v>0?'+':'')+(v*100).toFixed(1)+'%</span>'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
 function x2(v){return v==null||!isFinite(v)?'—':v.toFixed(2)}
-function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff8a8e'}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
 var GROUPS={
   basic:['اصلی',[['price','قیمت',function(v){return v==null?'—':'$'+v.toFixed(2)}],['mcap','ارزش بازار',big],['pe','P/E',x1],['revg1','رشد درآمد',pct],['nm','حاشیه سود',pct],['roic','ROIC',pct],['divy','سود نقدی',pct],['s_total','امتیاز کلی',sc]]],
@@ -272,7 +390,7 @@ function draw(){
   [].forEach.call(document.querySelectorAll('#rzc2-head th'),function(th){th.classList.toggle('s',th.dataset.k===sortKey);th.classList.toggle('asc',th.dataset.k===sortKey&&asc)});
   if(!ACCESS&&view.length>FREE_ROWS){
     var login=LOGGED?'':' <a class="btn ghost" href="/account/login?return_url='+encodeURIComponent(location.pathname)+'">قبلاً خریدی؟ وارد شو</a>';
-    $('rzc2-more').innerHTML='<div class="wall"><div style="font-size:28px">🔒</div><b>'+(view.length-FREE_ROWS).toLocaleString('en-US')+' سهم دیگه هم با این فیلترها پیدا شد</b><p style="color:#93a7bf;margin:4px 0 12px">با اشتراک Stock Pro کل نتایج غربالگر، ۴۰+ ستون داده، خروجی CSV، ذخیره‌ی فیلترها و تحلیل نامحدود سهم‌ها رو داری.</p><a class="btn" href="'+SUB_URL+'">ماهانه ۷٫۹۹ یورو</a> '+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>';
+    $('rzc2-more').innerHTML='<div class="wall"><b>'+(view.length-FREE_ROWS).toLocaleString('en-US')+' سهم دیگه هم با این فیلترها پیدا شد</b><p style="color:#93a7bf;margin:4px 0 12px">با اشتراک Stock Pro کل نتایج غربالگر، ۴۰+ ستون داده، خروجی CSV، ذخیره‌ی فیلترها و تحلیل نامحدود سهم‌ها رو داری.</p><a class="btn" href="'+SUB_URL+'">ماهانه ۷٫۹۹ یورو</a> '+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>';
   } else if(ACCESS&&view.length>shown){ $('rzc2-more').innerHTML='<button class="btn ghost" id="rzc2-mb">نمایش بیشتر ('+(view.length-shown).toLocaleString('en-US')+' سهم دیگه)</button>'; $('rzc2-mb').onclick=function(){shown+=PAGE;draw()} }
   else $('rzc2-more').innerHTML='';
 }

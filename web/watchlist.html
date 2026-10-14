@@ -1,7 +1,7 @@
 <div id="rzw" dir="rtl">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-#rzw{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+#rzw{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
   font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #rzw *{box-sizing:border-box;font-family:inherit}
 #rzw a{color:var(--ac)}
@@ -36,9 +36,124 @@
 #rzw .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 #rzw .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #rzw .chip:hover{color:#fff;border-color:var(--ac)}
+
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzw is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzw{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzw *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzw .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzw .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzw .nav a:hover{color:var(--ink)!important}
+#rzw .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzw h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzw .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzw h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzw b,#rzw strong{font-weight:600}
+#rzw .co,#rzw .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzw .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzw .px .p,#rzw .sc .v,#rzw .vbig b,#rzw .rev .bx .big,#rzw .snap b,#rzw .stats b,#rzw .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzw .px .p{font-size:30px}
+#rzw .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzw .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzw .card .card{background:var(--card2)}
+#rzw .st,#rzw .snap div,#rzw .vbig div,#rzw .ist4 div,#rzw .ab-grid>div,#rzw .vcol,#rzw .sc,#rzw .rev .bx,#rzw .perf div,#rzw .relc,#rzw .stats div{background:var(--card2);border:0}
+#rzw .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzw .wide2 .card,#rzw .charts .card,#rzw .two .card{background:var(--card)}
+#rzw .tblwrap,#rzw .tw{border:0;border-radius:10px}
+#rzw .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzw .tbl th,#rzw th,#rzw .proj th,#rzw .sens th,#rzw .antbl th,#rzw table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzw .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzw td{border-bottom:1px solid #1A1E26}
+#rzw .tbl td.sep{border-left-color:var(--line)}
+#rzw tr.sec td,#rzw .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzw th.ttm,#rzw td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzw th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzw .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzw .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzw .btn.ghost:hover{border-color:var(--ac)}
+#rzw .lnk{color:var(--ac)}
+#rzw .chip,#rzw .rng button,#rzw .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzw .chip:hover,#rzw .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzw .rng button.on,#rzw .tabs button.on,#rzw .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzw input,#rzw select,#rzw .pin,#rzw .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzw input:focus,#rzw select:focus,#rzw .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzw .search input{font-size:17px;padding:12px 16px}
+#rzw .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzw .sugg div:hover{background:#242934}
+#rzw .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzw .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzw .up{color:var(--up)}#rzw .dn{color:var(--red)}
+#rzw .vrow.ok b{background:var(--up)}#rzw .vrow.no b{background:var(--red)}
+#rzw .vrow.ok em{color:var(--up)}#rzw .vrow.no em{color:var(--red)}
+#rzw .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzw .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzw .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzw .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzw .meta,#rzw .xnote,#rzw .note,#rzw .mut2,#rzw .st .k,#rzw .st .s{color:var(--mut);font-weight:400}
+#rzw .stats small,#rzw .snap small,#rzw .vbig small{font-weight:500}
+#rzw .quota{color:var(--mut)}
+#rzw .tk{color:var(--ac);font-weight:600}
+#rzw .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzw .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzw :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzw{padding:12px 14px 40px}
+  #rzw .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzw .nav::-webkit-scrollbar{display:none}
+  #rzw .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzw h1{font-size:23px}
+  #rzw .sub{font-size:13.5px;margin-bottom:12px}
+  #rzw .co{font-size:21px}
+  #rzw .px .p{font-size:26px}
+  #rzw .card{padding:14px;border-radius:12px}
+  #rzw .search input{font-size:16px;padding:11px 14px}
+}
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
-<h1>⭐ واچ‌لیست و هشدار قیمت</h1>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<h1>واچ‌لیست و هشدار قیمت</h1>
 <p class="sub">سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.</p>
 
 <div class="card"><div class="search"><input id="rzw-q" placeholder="نماد یا اسم شرکت رو بنویس تا به واچ‌لیست اضافه بشه…" autocomplete="off" style="width:100%"><div class="sugg" id="rzw-s"></div></div>
@@ -59,7 +174,7 @@ function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
-function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
 /* live quotes */
 var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
@@ -120,7 +235,7 @@ function draw(){var W=wlGet(),m=$('rzw-main');
       '<td style="text-align:center">'+sc(g(r,'s_total'))+'</td><td style="text-align:center">'+sc(g(r,'s_value'))+'</td>'+
       '<td class="num '+((g(r,'fair_up')||0)>=0?'up':'dn')+'">'+(g(r,'fair_up')==null?'—':pct(g(r,'fair_up'),0))+'</td><td class="num">'+x1(g(r,'pe'))+'</td>'+
       '<td class="num">'+(n?n.d.slice(5).replace('-','/'):'—')+'</td>'+
-      '<td><button class="btn '+(on?'':'ghost ')+'sm" data-al="'+esc(t)+'">'+(on?'🔔 فعال':'🔕 تنظیم')+'</button></td><td><button class="btn ghost sm" data-rm="'+esc(t)+'">✕</button></td></tr>'});
+      '<td><button class="btn '+(on?'':'ghost ')+'sm" data-al="'+esc(t)+'">'+(on?'فعال':'تنظیم')+'</button></td><td><button class="btn ghost sm" data-rm="'+esc(t)+'">✕</button></td></tr>'});
   m.innerHTML=h+'</tbody></table></div><div class="chips"><a class="btn ghost sm" href="/pages/compare#'+W.slice(0,4).join(',')+'">مقایسه‌ی '+Math.min(4,W.length)+' سهم اول</a></div></div>';
   var H=hits();$('rzw-hit').innerHTML=H.length?'<div class="card" style="border-color:var(--gold)"><h3>🔔 هشدارهای فعال‌شده</h3>'+H.map(function(x){return '<div style="padding:4px 0"><b class="tk">'+x[0]+'</b> · '+esc(x[1])+'</div>'}).join('')+'</div>':''}
 function dlg(t){var A=alGet(),a=A[t]||{},r=BY[t],p=r?g(r,'price'):0,d=$('rzw-dlg');d.style.display='block';

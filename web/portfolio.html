@@ -1,7 +1,7 @@
 <div id="rzp" dir="rtl">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-#rzp{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+#rzp{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
   font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #rzp *{box-sizing:border-box;font-family:inherit}
 #rzp a{color:var(--ac)}
@@ -36,6 +36,121 @@
 #rzp .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 #rzp .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #rzp .chip:hover{color:#fff;border-color:var(--ac)}
+
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzp is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzp{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzp *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzp .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzp .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzp .nav a:hover{color:var(--ink)!important}
+#rzp .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzp h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzp .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzp h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzp b,#rzp strong{font-weight:600}
+#rzp .co,#rzp .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzp .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzp .px .p,#rzp .sc .v,#rzp .vbig b,#rzp .rev .bx .big,#rzp .snap b,#rzp .stats b,#rzp .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzp .px .p{font-size:30px}
+#rzp .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzp .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzp .card .card{background:var(--card2)}
+#rzp .st,#rzp .snap div,#rzp .vbig div,#rzp .ist4 div,#rzp .ab-grid>div,#rzp .vcol,#rzp .sc,#rzp .rev .bx,#rzp .perf div,#rzp .relc,#rzp .stats div{background:var(--card2);border:0}
+#rzp .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzp .wide2 .card,#rzp .charts .card,#rzp .two .card{background:var(--card)}
+#rzp .tblwrap,#rzp .tw{border:0;border-radius:10px}
+#rzp .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzp .tbl th,#rzp th,#rzp .proj th,#rzp .sens th,#rzp .antbl th,#rzp table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzp .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzp td{border-bottom:1px solid #1A1E26}
+#rzp .tbl td.sep{border-left-color:var(--line)}
+#rzp tr.sec td,#rzp .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzp th.ttm,#rzp td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzp th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzp .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzp .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzp .btn.ghost:hover{border-color:var(--ac)}
+#rzp .lnk{color:var(--ac)}
+#rzp .chip,#rzp .rng button,#rzp .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzp .chip:hover,#rzp .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzp .rng button.on,#rzp .tabs button.on,#rzp .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzp input,#rzp select,#rzp .pin,#rzp .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzp input:focus,#rzp select:focus,#rzp .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzp .search input{font-size:17px;padding:12px 16px}
+#rzp .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzp .sugg div:hover{background:#242934}
+#rzp .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzp .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzp .up{color:var(--up)}#rzp .dn{color:var(--red)}
+#rzp .vrow.ok b{background:var(--up)}#rzp .vrow.no b{background:var(--red)}
+#rzp .vrow.ok em{color:var(--up)}#rzp .vrow.no em{color:var(--red)}
+#rzp .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzp .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzp .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzp .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzp .meta,#rzp .xnote,#rzp .note,#rzp .mut2,#rzp .st .k,#rzp .st .s{color:var(--mut);font-weight:400}
+#rzp .stats small,#rzp .snap small,#rzp .vbig small{font-weight:500}
+#rzp .quota{color:var(--mut)}
+#rzp .tk{color:var(--ac);font-weight:600}
+#rzp .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzp .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzp :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzp{padding:12px 14px 40px}
+  #rzp .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzp .nav::-webkit-scrollbar{display:none}
+  #rzp .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzp h1{font-size:23px}
+  #rzp .sub{font-size:13.5px;margin-bottom:12px}
+  #rzp .co{font-size:21px}
+  #rzp .px .p{font-size:26px}
+  #rzp .card{padding:14px;border-radius:12px}
+  #rzp .search input{font-size:16px;padding:11px 14px}
+}
 #rzp .ph{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 #rzp .ph .av{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#2ec4b6,#b5e36b);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:#0b1726;flex:none;overflow:hidden}
 #rzp .ph .av img{width:100%;height:100%;object-fit:cover}
@@ -100,7 +215,7 @@
   #rzp .tm{height:280px}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a class="on" href="/pages/portfolio">💼 پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a class="on" href="/pages/portfolio">پورتفوی رضا</a></div>
 <div class="card" id="rzp-head"></div>
 <div id="rzp-main"></div>
 <script>
@@ -113,7 +228,7 @@ function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
-function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
 /* live quotes */
 var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
@@ -223,13 +338,13 @@ function drawChart(){var el=$('rzp-ch');if(!el)return;var s=series();if(s.length
   var W=640,Ht=250,pl=44,pr=26,pt=10,pb=24,all=A.concat(useB?Bm:[]),mn=Math.min.apply(null,all.concat([0])),mx=Math.max.apply(null,all.concat([0])),pad=(mx-mn)*0.08||0.01;mn-=pad;mx+=pad;
   var X=function(i){return pl+(W-pl-pr)*i/(pts.length-1)},Y=function(v){return pt+(Ht-pt-pb)*(mx-v)/(mx-mn)};
   var path=function(arr){return arr.map(function(v,i){return (i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)}).join('')};
-  var up=A[A.length-1]>=0,col=up?'#2ec4b6':'#ff5a5f',grid='',step=(mx-mn)>0.6?0.25:(mx-mn)>0.25?0.1:(mx-mn)>0.1?0.05:0.02;
+  var up=A[A.length-1]>=0,col=up?'#4FA37A':'#C8534F',grid='',step=(mx-mn)>0.6?0.25:(mx-mn)>0.25?0.1:(mx-mn)>0.1?0.05:0.02;
   for(var g=Math.ceil(mn/step)*step;g<=mx;g+=step){grid+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(g)+'" y2="'+Y(g)+'" stroke="'+(Math.abs(g)<1e-9?'#3c5a7d':'#1c3150')+'"/><text x="'+(pl-6)+'" y="'+(Y(g)+4)+'" fill="#93a7bf" font-size="11" text-anchor="end">'+Math.round(g*100)+'%</text>'}
   var lab='',nL=Math.min(5,pts.length);for(var j=0;j<nL;j++){var ii=Math.round((pts.length-1)*j/(nL-1||1));lab+='<text x="'+X(ii)+'" y="'+(Ht-6)+'" fill="#93a7bf" font-size="11" text-anchor="'+(j===0?'start':j===nL-1?'end':'middle')+'">'+new Date(pts[ii][0]).toLocaleDateString('en-US',{month:'short',year:'2-digit'})+'</text>'}
   el.innerHTML='<div class="chart"><svg viewBox="0 0 '+W+' '+Ht+'" width="100%" style="display:block;touch-action:pan-y"><defs><linearGradient id="rzpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+col+'" stop-opacity=".35"/><stop offset="1" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs>'+grid+lab+
-    '<path d="'+path(A)+'L'+X(A.length-1)+' '+Y(mn)+'L'+X(0)+' '+Y(mn)+'Z" fill="url(#rzpg)"/>'+(useB?'<path d="'+path(Bm)+'" fill="none" stroke="#f5b700" stroke-width="1.6" stroke-dasharray="4 3"/>':'')+
+    '<path d="'+path(A)+'L'+X(A.length-1)+' '+Y(mn)+'L'+X(0)+' '+Y(mn)+'Z" fill="url(#rzpg)"/>'+(useB?'<path d="'+path(Bm)+'" fill="none" stroke="#C9A961" stroke-width="1.6" stroke-dasharray="4 3"/>':'')+
     '<path d="'+path(A)+'" fill="none" stroke="'+col+'" stroke-width="2.2"/><line id="rzp-cx" y1="'+pt+'" y2="'+(Ht-pb)+'" stroke="#93a7bf" stroke-dasharray="3 3" style="display:none"/></svg><div class="tip" id="rzp-tip"></div></div>'+
-    '<div class="leg"><span><i style="background:'+col+'"></i>پورتفوی رضا <b class="'+cls(A[A.length-1])+'" style="direction:ltr;display:inline-block">'+sg(A[A.length-1])+'</b></span>'+(useB?'<span><i style="background:#f5b700"></i>S&amp;P 500 (SPY) <b style="direction:ltr;display:inline-block">'+sg(Bm[Bm.length-1])+'</b></span>':'')+'</div>';
+    '<div class="leg"><span><i style="background:'+col+'"></i>پورتفوی رضا <b class="'+cls(A[A.length-1])+'" style="direction:ltr;display:inline-block">'+sg(A[A.length-1])+'</b></span>'+(useB?'<span><i style="background:#C9A961"></i>S&amp;P 500 (SPY) <b style="direction:ltr;display:inline-block">'+sg(Bm[Bm.length-1])+'</b></span>':'')+'</div>';
   var svg=el.querySelector('svg'),tip=$('rzp-tip'),cx=$('rzp-cx');
   var mv=function(e){var r=svg.getBoundingClientRect(),xx=((e.touches?e.touches[0].clientX:e.clientX)-r.left)*W/r.width,i=Math.max(0,Math.min(pts.length-1,Math.round((xx-pl)/(W-pl-pr)*(pts.length-1))));
     cx.setAttribute('x1',X(i));cx.setAttribute('x2',X(i));cx.style.display='';tip.style.display='block';tip.innerHTML=fdate(pts[i][0])+'<br>پورتفوی: <b class="'+cls(A[i])+'" style="direction:ltr;display:inline-block">'+sg(A[i])+'</b>'+(useB?'<br>S&amp;P 500: <b style="direction:ltr;display:inline-block">'+sg(Bm[i])+'</b>':'');

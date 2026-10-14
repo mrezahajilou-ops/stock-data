@@ -3,7 +3,7 @@ var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',S
 var KEY='rz_myport',TAB='h',SORT='val',CAL=null,OWN=null,SIX=null;
 var DEMO={h:[{t:'MSFT',n:12,p:310},{t:'GOOGL',n:30,p:120},{t:'AMZN',n:25,p:135},{t:'V',n:15,p:220},{t:'COST',n:5,p:540},{t:'KO',n:40,p:58},{t:'ASML',n:4,p:650},{t:'NVO',n:20,p:95}],cash:1500};
 var SEC_FA={'Technology':'تکنولوژی','Consumer Discretionary':'کالای غیرضروری','Industrials':'صنعتی','Health Care':'سلامت','Finance':'مالی','Telecommunications':'ارتباطات','Energy':'انرژی','Consumer Staples':'کالای اساسی','Basic Materials':'مواد اولیه','Utilities':'خدمات عمومی','Real Estate':'املاک','Miscellaneous':'سایر'};
-var PAL=['#2ec4b6','#b5e36b','#f5b700','#7ab8ff','#ff9f6b','#c9a7ff','#5ef0d2','#ffd36b','#9fe39a','#ff8fb1','#8fb3ff','#d6e1ee'];
+var PAL=['#4FA37A','#8FB07A','#C9A961','#7ab8ff','#ff9f6b','#c9a7ff','#5ef0d2','#ffd36b','#9fe39a','#ff8fb1','#8fb3ff','#d6e1ee'];
 function load(){if(!ACC)return JSON.parse(JSON.stringify(DEMO));try{var o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.h)return o}catch(e){}return {h:[],cash:0}}
 function save(){if(!ACC)return;try{localStorage.setItem(KEY,JSON.stringify({h:P.h,cash:P.cash||0}))}catch(e){}}
 var P=load();
@@ -86,7 +86,7 @@ function io(){if(!ACC)return '<div class="card empty">این بخش برای م�
     '<hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><button class="btn ghost sm" id="rzm-clear" style="color:var(--red)!important">پاک کردن کل پورتفو</button></div></div>'}
 function draw(){var R=rows(),o=totals(R),b='';
   if(TAB==='h')b=addForm()+table(R);else if(TAB==='mix')b=mix(R);else if(TAB==='health')b=health(R,o);else if(TAB==='div')b=divs(R,o);else b=io();
-  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه دفترچه‌ی نمونه‌ست</b><p>با اشتراک Stock Pro سهم‌های خودت رو اینجا دنبال کن: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#f5b700" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
+  $('rzm-main').innerHTML=(ACC?'':'<div class="demo"><div><b>👀 این یه دفترچه‌ی نمونه‌ست</b><p>با اشتراک Stock Pro سهم‌های خودت رو اینجا دنبال کن: سود و زیان لحظه‌ای، چکاپ پورتفو، درآمد سود نقدی، و اینکه کدوم سوپرسرمایه‌گذارها همون سهم‌ها رو دارن.</p></div><div class="bar"><a class="btn" href="'+esc(SUB)+'">ماهانه ۷٫۹۹ یورو</a><a class="btn" style="background:#C9A961" href="'+esc(SUBY)+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a></div></div>')+
     head(R,o)+tabs()+b;
   if(TAB==='h'&&ACC){picker($('rzm-q'),$('rzm-s'),function(t){$('rzm-q').value=t;var r=BY[t];$('rzm-p').placeholder=r&&g(r,'price')?g(r,'price').toFixed(2):'';$('rzm-n').focus()})}}
 function addH(t,n,p,rep){t=String(t||'').trim().toUpperCase().replace('.','-');n=parseFloat(String(n).replace(',','.'));p=parseFloat(String(p||'').replace(',','.'));

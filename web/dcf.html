@@ -1,7 +1,7 @@
 <div id="rzd" dir="rtl">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-#rzd{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+#rzd{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:'+C.good+';--lime:'+C.ok+';--red:'+C.bad+';--gold:'+C.mid+';
   font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #rzd *{box-sizing:border-box;font-family:inherit}
 #rzd .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
@@ -95,9 +95,127 @@
   #rzd .tbl .h,#rzd .tbl .hh{display:none}#rzd .hm{display:block}#rzd .tbl td.n span{display:none}
   #rzd .tbl input{width:54px;font-size:14px;padding:5px 2px}#rzd .tbl td{padding:8px 3px}#rzd .tbl td.n{padding-right:8px;white-space:normal;font-size:13.5px}
   #rzd .bar{display:none}#rzd .pin{width:100px}}
+
+/* THEME:START */
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzd is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzd{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzd *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzd .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzd .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzd .nav a:hover{color:var(--ink)!important}
+#rzd .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzd h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzd .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzd h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzd b,#rzd strong{font-weight:600}
+#rzd .co,#rzd .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzd .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzd .px .p,#rzd .sc .v,#rzd .vbig b,#rzd .rev .bx .big,#rzd .snap b,#rzd .stats b,#rzd .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzd .px .p{font-size:30px}
+#rzd .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzd .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzd .card .card{background:var(--card2)}
+#rzd .st,#rzd .snap div,#rzd .vbig div,#rzd .ist4 div,#rzd .ab-grid>div,#rzd .vcol,#rzd .sc,#rzd .rev .bx,#rzd .perf div,#rzd .relc,#rzd .stats div{background:var(--card2);border:0}
+#rzd .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzd .wide2 .card,#rzd .charts .card,#rzd .two .card{background:var(--card)}
+#rzd .tblwrap,#rzd .tw{border:0;border-radius:10px}
+#rzd .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzd .tbl th,#rzd th,#rzd .proj th,#rzd .sens th,#rzd .antbl th,#rzd table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzd .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzd td{border-bottom:1px solid #1A1E26}
+#rzd .tbl td.sep{border-left-color:var(--line)}
+#rzd tr.sec td,#rzd .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzd th.ttm,#rzd td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzd th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzd .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzd .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzd .btn.ghost:hover{border-color:var(--ac)}
+#rzd .lnk{color:var(--ac)}
+#rzd .chip,#rzd .rng button,#rzd .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzd .chip:hover,#rzd .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzd .rng button.on,#rzd .tabs button.on,#rzd .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzd input,#rzd select,#rzd .pin,#rzd .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzd input:focus,#rzd select:focus,#rzd .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzd .search input{font-size:17px;padding:12px 16px}
+#rzd .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzd .sugg div:hover{background:#242934}
+#rzd .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzd .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzd .up{color:var(--up)}#rzd .dn{color:var(--red)}
+#rzd .vrow.ok b{background:var(--up)}#rzd .vrow.no b{background:var(--red)}
+#rzd .vrow.ok em{color:var(--up)}#rzd .vrow.no em{color:var(--red)}
+#rzd .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzd .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzd .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzd .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzd .meta,#rzd .xnote,#rzd .note,#rzd .mut2,#rzd .st .k,#rzd .st .s{color:var(--mut);font-weight:400}
+#rzd .stats small,#rzd .snap small,#rzd .vbig small{font-weight:500}
+#rzd .quota{color:var(--mut)}
+#rzd .tk{color:var(--ac);font-weight:600}
+#rzd .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzd .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzd :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzd{padding:12px 14px 40px}
+  #rzd .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzd .nav::-webkit-scrollbar{display:none}
+  #rzd .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzd h1{font-size:23px}
+  #rzd .sub{font-size:13.5px;margin-bottom:12px}
+  #rzd .co{font-size:21px}
+  #rzd .px .p{font-size:26px}
+  #rzd .card{padding:14px;border-radius:12px}
+  #rzd .search input{font-size:16px;padding:11px 14px}
+}
+
+/* THEME:END */
 </style>
 
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>ماشین‌حساب ارزش ذاتی سهام (DCF)</h1>
 <p class="sub">نماد شرکت رو بنویس، ببین با فرض‌های خودت سهم الان چقدر می‌ارزه، بازار چه رشدی رو قیمت‌گذاری کرده و جواب چقدر به فرض‌هات حساسه. همه‌چیز بر پایه‌ی ۱۲ ماه اخیر گزارش‌های رسمی شرکت‌ها و پیش‌بینی تحلیلگرهاست و هر شب به‌روز میشه.</p>
 
@@ -135,6 +253,7 @@
 
 <script>
 (function(){
+var C={good:'#4FA37A',ok:'#8FB07A',mid:'#C9A961',bad:'#C8534F',blue:'#7A8FB0',ink:'#E8E4DA',mut:'#8A8F99',line:'#262B36',rev:'#C9A961',ni:'#8FB07A',fcf:'#C9A961',price:'#C9A961'};
 var API = window.RZD_API || null;
 var ACCESS = window.RZD_ACCESS !== false;
 var LOGGED = !!window.RZD_LOGGED;
@@ -313,7 +432,7 @@ function calc(){
     if(fair===0)mos=null;
     if(mos!=null){var cls=mos>0.15?'good':(mos>-0.1?'mid':'bad');var txt=mos>0.15?'ارزون':(mos>-0.1?'نزدیک ارزش منصفانه':'گرون');tag='<div class="tag '+cls+'">'+txt+' · '+spct(mos,0)+'</div>'}
     var parts=[]; if(V){if(V.pe!=null)parts.push('P/E: <b>'+usd(V.pe)+'</b>');if(V.pf!=null)parts.push('P/FCF: <b>'+usd(V.pf)+'</b>');if(V.dcf!=null)parts.push('DCF کلاسیک: <b>'+usd(V.dcf)+'</b>')}
-    html+='<div class="sc"><div class="t">سناریوی '+names[i]+'</div><div class="v" style="color:'+(i==0?'#ff8a8e':i==1?'#f5d36b':'#5fe0d3')+'">'+(fair==null||fair===0?'—':usd(fair))+'</div>'+
+    html+='<div class="sc"><div class="t">سناریوی '+names[i]+'</div><div class="v" style="color:'+(i==0?C.bad:i==1?C.mid:C.good)+'">'+(fair==null||fair===0?'—':usd(fair))+'</div>'+
       '<div class="r">'+(fair===0?'زیان و مصرف نقدینگی بیشتر از ارزش کسب‌وکاره؛ با این فرض‌ها DCF ارزشی نشون نمیده.':(parts.join(' · ')||'با این فرض‌ها سود یا جریان نقد سال آخر منفیه'))+'</div>'+
       (R!=null?'<div class="r">اگه امروز بخری و سال '+N+' بفروشی: سالانه <b>'+irrTxt(R)+'</b></div>':'')+
       (mos!=null&&i==1?'<div class="r">قیمت خرید با 25% حاشیه امنیت: <b>'+usd(fair*0.75)+'</b></div>':'')+tag+'</div>';
@@ -347,13 +466,13 @@ function reverse(b,N,price){
   if(f(lo)>0) g=lo; else if(f(hi)<0) g=hi; else {for(var k=0;k<60;k++){var m=(lo+hi)/2;if(f(m)>0)hi=m;else lo=m}g=(lo+hi)/2}
   var an=cur.b.an&&cur.b.an.g, h5=cur.b.hist.g[2];
   var cmp=[]; if(an!=null)cmp.push('تحلیلگرها: '+spct(an)); if(h5!=null)cmp.push('۵ سال گذشته: '+spct(h5));
-  var tone=g>0.3?'#ff8a8e':g>0.15?'#f5d36b':'#5fe0d3';
+  var tone=g>0.3?C.bad:g>0.15?C.mid:C.good;
   var R=irr(b,N,P,price);
   var say=g>=HI?'حتی با رشد بیش از ۲۰۰٪ هم این قیمت توجیه نمیشه.':g<=LO?'قیمت حتی با کوچیک‌شدن شدید درآمد هم توجیه میشه.':
     (an!=null&&g>an+0.05?'بازار بیشتر از تحلیلگرها رشد می‌خواد؛ قیمت جای خطای کمی داره.':an!=null&&g<an-0.05?'بازار کمتر از تحلیلگرها رشد فرض کرده؛ اگه پیش‌بینی‌ها درست باشن، سهم ارزونه.':'نزدیک به پیش‌بینی تحلیلگرهاست.');
   box.innerHTML='<div class="bx"><div class="t">رشد سالانه‌ی درآمد در سال ۱ و ۲ که قیمت '+usd(price)+' فرض می‌کنه</div><div class="big" style="color:'+tone+'">'+spct(g,1)+'</div>'+
     '<div class="d">با بقیه‌ی فرض‌های سناریوی متوسط. '+cmp.join(' · ')+'. '+say+'</div></div>'+
-    '<div class="bx"><div class="t">بازده سالانه‌ی تو اگه امروز بخری (سناریوی متوسط)</div><div class="big" style="color:'+(R==null?'#fff':R>=P.ret?'#5fe0d3':R>=0?'#f5d36b':'#ff8a8e')+'">'+(R==null?'—':irrTxt(R))+'</div>'+
+    '<div class="bx"><div class="t">بازده سالانه‌ی تو اگه امروز بخری (سناریوی متوسط)</div><div class="big" style="color:'+(R==null?'#fff':R>=P.ret?C.good:R>=0?C.mid:C.bad)+'">'+(R==null?'—':irrTxt(R))+'</div>'+
     '<div class="d">خرید امروز، دریافت سود نقدی و فروش در سال '+N+' با ضریب‌های خروج. '+(R==null?'':R>=P.ret?'بیشتر از بازده مورد انتظارته ('+pct(P.ret,1)+')؛ با این فرض‌ها سهم ارزونه.':R>=0?'کمتر از '+pct(P.ret,1)+' که می‌خوای؛ یا رشد بیشتری لازمه یا قیمت پایین‌تر.':'با این فرض‌ها از خرید امروز ضرر می‌کنی.')+'</div></div>';
 }
 function sens(b,N,price){
@@ -369,7 +488,7 @@ function sens(b,N,price){
 }
 function bars(out,price){
   var W=800,max=Math.max.apply(null,out.map(function(o){return o.fair||0}).concat([price||0]))*1.12; if(!(max>0)) max=1;
-  var cols=['#ff8a8e','#f5d36b','#5fe0d3'],s='';
+  var cols=[C.bad,C.mid,C.good],s='';
   out.forEach(function(o,i){var w=Math.max(0,o.fair||0)/max*(W-110),y=12+i*42;
     s+='<rect x="'+(W-20-w)+'" y="'+y+'" width="'+w+'" height="28" rx="7" fill="'+cols[i]+'" opacity=".9"/>';
     s+='<text x="'+(W-28-w)+'" y="'+(y+19)+'" text-anchor="end" fill="#fff" font-size="14" font-weight="800" font-family="Vazirmatn,Tahoma">'+usd(o.fair)+'</text>';});
@@ -381,7 +500,7 @@ function paywall(t){
   $('rzd-main').innerHTML='<div class="card" style="text-align:center;padding:30px 18px"><div style="font-size:34px">🔒</div>'+
    '<div class="co" style="margin:6px 0">تحلیل '+esc(t)+' مخصوص اعضاست</div>'+
    '<p class="sub" style="margin:0 auto 16px;max-width:520px">ماشین‌حساب DCF بخشی از اشتراک Stock Pro است: ارزش ذاتی با سه روش، پیش‌بینی سال‌به‌سال، DCF معکوس و جدول حساسیتِ بیش از ۶٬۰۰۰ سهم آمریکایی، بر پایه‌ی آخرین ۱۲ ماه گزارش‌های رسمی و پیش‌بینی تحلیلگرها؛ به‌علاوه‌ی تحلیل نامحدود سهم‌ها، غربالگر و سوپر سرمایه‌گذارها. سهم‌های AAPL، MSFT و NVDA رایگانن، امتحانشون کن.</p>'+
-   '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">ماهانه ۷٫۹۹ یورو</a>'+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:#f5b700">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>'+
+   '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+SUB_URL+'?rz='+encodeURIComponent(t)+'">ماهانه ۷٫۹۹ یورو</a>'+'<a class="btn" href="'+(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'" style="background:'+C.mid+'">سالانه ۴۷٫۹۴ یورو · ۵۰٪ تخفیف</a>'+login+'</div>'+
    '<p class="sub" style="margin:14px auto 0;font-size:13px">بعد از پرداخت، همین سهم ('+esc(t)+') خودکار برات باز میشه.</p></div>';
 }
 

@@ -1,7 +1,7 @@
 <div id="rze" dir="rtl">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
-#rze{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#2ec4b6;--lime:#b5e36b;--red:#ff5a5f;--gold:#f5b700;
+#rze{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
   font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
 #rze *{box-sizing:border-box;font-family:inherit}
 #rze a{color:var(--ac)}
@@ -36,8 +36,123 @@
 #rze .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 #rze .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #rze .chip:hover{color:#fff;border-color:var(--ac)}
+
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rze is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rze{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rze *{font-family:inherit}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rze .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rze .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rze .nav a:hover{color:var(--ink)!important}
+#rze .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rze h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rze .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rze h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rze b,#rze strong{font-weight:600}
+#rze .co,#rze .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rze .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rze .px .p,#rze .sc .v,#rze .vbig b,#rze .rev .bx .big,#rze .snap b,#rze .stats b,#rze .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rze .px .p{font-size:30px}
+#rze .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rze .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rze .card .card{background:var(--card2)}
+#rze .st,#rze .snap div,#rze .vbig div,#rze .ist4 div,#rze .ab-grid>div,#rze .vcol,#rze .sc,#rze .rev .bx,#rze .perf div,#rze .relc,#rze .stats div{background:var(--card2);border:0}
+#rze .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rze .wide2 .card,#rze .charts .card,#rze .two .card{background:var(--card)}
+#rze .tblwrap,#rze .tw{border:0;border-radius:10px}
+#rze .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rze .tbl th,#rze th,#rze .proj th,#rze .sens th,#rze .antbl th,#rze table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rze .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rze td{border-bottom:1px solid #1A1E26}
+#rze .tbl td.sep{border-left-color:var(--line)}
+#rze tr.sec td,#rze .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rze th.ttm,#rze td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rze th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rze .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rze .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rze .btn.ghost:hover{border-color:var(--ac)}
+#rze .lnk{color:var(--ac)}
+#rze .chip,#rze .rng button,#rze .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rze .chip:hover,#rze .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rze .rng button.on,#rze .tabs button.on,#rze .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rze input,#rze select,#rze .pin,#rze .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rze input:focus,#rze select:focus,#rze .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rze .search input{font-size:17px;padding:12px 16px}
+#rze .sugg{background:var(--card2);border:1px solid var(--line)}
+#rze .sugg div:hover{background:#242934}
+#rze .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rze .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rze .up{color:var(--up)}#rze .dn{color:var(--red)}
+#rze .vrow.ok b{background:var(--up)}#rze .vrow.no b{background:var(--red)}
+#rze .vrow.ok em{color:var(--up)}#rze .vrow.no em{color:var(--red)}
+#rze .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rze .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rze .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rze .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rze .meta,#rze .xnote,#rze .note,#rze .mut2,#rze .st .k,#rze .st .s{color:var(--mut);font-weight:400}
+#rze .stats small,#rze .snap small,#rze .vbig small{font-weight:500}
+#rze .quota{color:var(--mut)}
+#rze .tk{color:var(--ac);font-weight:600}
+#rze .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rze .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rze :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rze{padding:12px 14px 40px}
+  #rze .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rze .nav::-webkit-scrollbar{display:none}
+  #rze .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rze h1{font-size:23px}
+  #rze .sub{font-size:13.5px;margin-bottom:12px}
+  #rze .co{font-size:21px}
+  #rze .px .p{font-size:26px}
+  #rze .card{padding:14px;border-radius:12px}
+  #rze .search input{font-size:16px;padding:11px 14px}
+}
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">⭐ واچ‌لیست</a><a class="on" href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">🦈 سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">📒 دفترچه سهام من</a><a href="/pages/return-calculator">📈 ماشین‌حساب بازده</a><a href="/pages/portfolio">💼 پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a class="on" href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>تقویم گزارش‌های مالی</h1>
 <p class="sub">کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.</p>
 
@@ -57,7 +172,7 @@ function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
-function scol(v){return v>=4?'#2ec4b6':v>=3?'#b5e36b':v>=2?'#f5b700':'#ff5a5f'}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
 /* live quotes */
 var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
@@ -101,7 +216,7 @@ function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(
 
 
 var CAL=null,F='all',WD=['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
-var TM={pre:'☀️ قبل از بازار',after:'🌙 بعد از بازار',na:'—'};
+var TM={pre:'قبل از بازار',after:'بعد از بازار',na:'—'};
 function eps(v){return v==null?'—':'<span class="num">$'+v.toFixed(2)+'</span>'}
 function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقویم هنوز آماده نیست؛ کمی بعد دوباره سر بزن.</div>';return}
   var W=wlGet(),today=new Date().toISOString().slice(0,10),ds=Object.keys(CAL.days).sort(),h='',any=0;

@@ -153,7 +153,7 @@ function arrow(c,p,ct){if(ct&&c-ct<3)return '';if(!p)return '<span class="mut" s
 function row(x,i){var r=BY[x.t]||null,n=r?String(g(r,'n')).slice(0,28):'',tot=x.bull+x.bear,pb=tot?Math.round(x.bull/tot*100):null,net=x.watch_add-x.watch_remove;
   return '<tr><td class="num mut">'+(i+1)+'</td><td><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a> <bdi dir="ltr" class="mut hm" style="font-size:12.5px">'+esc(n)+'</bdi>'+(x.ct?' <a href="/pages/contest" class="ctm" title="'+x.ct+' نفر در مسابقه‌ی نوامبر این سهم رو انتخاب کردن (میانگین پیش‌بینی '+(x.avg>=0?'+':'')+x.avg.toFixed(1)+'٪)">🏆'+x.ct+'</a>':'')+'</td>'+
     '<td class="num"><b>'+x.uniq+'</b> <span class="mut" style="font-size:12px">نفر</span> '+arrow(x.uniq,x.prev_uniq,x.ct)+'</td>'+
-    '<td class="num '+(net>0?'up':net<0?'dn':'mut')+'">'+(net>0?'+':'')+net+'</td>'+
+    '<td class="num '+(net>0?'up':net<0?'dn':'mut')+'">'+((x.watch_add||x.watch_remove)?(net>0?'+':'')+net:'—')+'</td>'+
     '<td>'+(tot>=5?'<span class="vb"><b style="width:'+pb+'%"></b></span> <span class="num" style="font-size:12.5px">'+pb+'٪</span>':'<span class="mut" style="font-size:12px">—</span>')+'</td>'+
     '<td class="hm" style="text-align:center">'+(r?sc(g(r,'s_total')):'—')+'</td><td class="hm num">'+(r&&g(r,'pe')?x1(g(r,'pe')):'—')+'</td>'+
     (x.pw?'<td class="hm mut num" style="font-size:12px">'+x.pw+'</td>':'<td class="hm"></td>')+'</tr>'}

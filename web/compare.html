@@ -29,7 +29,7 @@
 #rzk .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #rzk table{border-collapse:collapse;width:100%;font-size:14px}
 #rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
-#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq-contest .bw{width:34%}#rzq .cb{display:block;width:100%;min-width:90px;height:8px;border-radius:99px;background:var(--line);overflow:hidden}#rzq .cb b{display:block;height:100%;background:var(--ac);border-radius:99px}@media(max-width:640px){#rzq-contest .hm{display:none}#rzq .cb{min-width:40px;width:40px}#rzq-contest .bw{width:auto}#rzq-contest .tw table{width:100%}#rzq-contest td,#rzq-contest th{padding-left:5px;padding-right:5px;font-size:13.5px}}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
 @media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #rzk th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -177,6 +177,18 @@ window.RZ_EVENTS=window.RZ_EVENTS||'https://rz-events.mreza-hajilou.workers.dev'
 window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
 window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
   if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+window.rzContest=function(){if(window._rzC)return window._rzC;var P=location.hostname.indexOf('rezahajiloubooks')>=0||location.hostname.indexOf('myshopify')>=0;
+  var gj=function(h,id){try{var el=new DOMParser().parseFromString(h,'text/html').getElementById(id);return el?JSON.parse(el.textContent):null}catch(e){return null}};
+  var tx=function(u){return fetch(u,{credentials:'same-origin'}).then(function(r){return r.ok?r.text():''})};
+  var U='/blogs/contest-entries/picks?view=contest&page=',TRE=/^[A-Z][A-Z0-9.\-]{0,8}$/,DL=Date.parse('2026-10-29T22:59:59Z');
+  window._rzC=(!P?Promise.resolve(null):Promise.all([tx(U+1).then(function(h){var j=gj(h,'rzk-c');if(!j)return [];var all=j.c||[],n=parseInt(j.p,10)||1,ps=[];for(var i=2;i<=n&&i<=40;i++)ps.push(tx(U+i).then(function(h){var k=gj(h,'rzk-c');return k&&k.c?k.c:[]}));return Promise.all(ps).then(function(L){L.forEach(function(x){all=all.concat(x)});return all})}).catch(function(){return []}),
+    tx('/pages/contest-data').then(function(h){return gj(h,'rzk-data')||{}}).catch(function(){return {}})]).then(function(R){var X=R[1]||{},ex={};(X.x||[]).forEach(function(n){ex[String(n).toLowerCase()]=1});
+    var raw=R[0].map(function(c){var m=String(c.b||'').split('|');return {n:String(c.a||'').trim().slice(0,24),t:String(m[0]||'').trim().toUpperCase(),p:parseFloat(m[1]),ts:(+c.t)*1000,h:String(c.h||'')}}).concat((X.e||[]).map(function(e){return {n:String(e.n||''),t:String(e.t||'').toUpperCase(),p:+e.p,ts:Date.parse(e.ts),h:String(e.h||'')}}));
+    raw=raw.filter(function(e){return e.n.length>=2&&TRE.test(e.t)&&isFinite(e.p)&&e.p>=-100&&e.p<=1000&&!(e.ts>DL+120000)&&!ex[e.n.toLowerCase()]&&!(e.h&&ex[e.h])}).sort(function(a,b){return a.ts-b.ts});
+    var sh={},sn={},E=raw.filter(function(e){var k=e.n.toLowerCase();if(sn[k]||(e.h&&sh[e.h]))return false;sn[k]=1;if(e.h)sh[e.h]=1;return true});
+    if(!E.length)return null;var by={};E.forEach(function(e){var b=by[e.t]||(by[e.t]={t:e.t,n:0,sum:0});b.n++;b.sum+=e.p});
+    var L=Object.keys(by).map(function(t){var b=by[t];b.avg=b.sum/b.n;return b}).sort(function(a,b){return b.n-a.n||a.avg-b.avg});
+    return {entries:E,by:by,list:L,total:E.length}}).catch(function(){return null}));return window._rzC};
 /* EVENTS:END */
 
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';

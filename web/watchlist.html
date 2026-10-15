@@ -28,6 +28,8 @@
 #rzw .sugg b{direction:ltr;color:var(--ac)}
 #rzw .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #rzw table{border-collapse:collapse;width:100%;font-size:14px}
+#rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
+@media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #rzw th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
 #rzw td{padding:8px;border-bottom:1px solid #1c3150;white-space:nowrap}
 #rzw .sc{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;color:#0b1726;font-weight:900;direction:ltr}
@@ -175,7 +177,7 @@ var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
 var $=function(i){return document.getElementById(i)};
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
-function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
+function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return (v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
 function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}

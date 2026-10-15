@@ -50,6 +50,8 @@ CSS = r"""
 #ID .sugg b{direction:ltr;color:var(--ac)}
 #ID .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #ID table{border-collapse:collapse;width:100%;font-size:14px}
+#rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
+@media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #ID th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
 #ID td{padding:8px;border-bottom:1px solid #1c3150;white-space:nowrap}
 #ID .sc{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;color:#0b1726;font-weight:900;direction:ltr}
@@ -66,7 +68,7 @@ var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
 var $=function(i){return document.getElementById(i)};
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
-function pct(v,d){return v==null||!isFinite(v)?'—':(v*100).toFixed(d==null?1:d)+'%'}
+function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return (v*100).toFixed(d==null?1:d)+'%'}
 function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
 function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
 function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
@@ -220,15 +222,18 @@ var CAL=null,F='all',WD=['یکشنبه','دوشنبه','سه‌شنبه','چها
 var TM={pre:'قبل از بازار',after:'بعد از بازار',na:'—'};
 function eps(v){return v==null?'—':'<span class="num">$'+v.toFixed(2)+'</span>'}
 function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقویم هنوز آماده نیست؛ کمی بعد دوباره سر بزن.</div>';return}
-  var W=wlGet(),today=new Date().toISOString().slice(0,10),ds=Object.keys(CAL.days).sort(),h='',any=0;
-  ds.forEach(function(d){var rows=CAL.days[d].filter(function(e){return F==='big'?e.mcap>=1e10:F==='watch'?W.indexOf(e.t)>=0:true});if(!rows.length)return;any=1;
-    var dt=new Date(d+'T12:00:00Z'),past=d<today,lbl=WD[dt.getUTCDay()]+' '+dt.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',timeZone:'UTC'});
+  var W=wlGet(),today=new Date().toISOString().slice(0,10),ds0=Object.keys(CAL.days).sort(),h='',any=0;
+  /* upcoming first (today at the top), then the recent results newest-first, so nobody has to scroll past a week of history */
+  var ds=ds0.filter(function(d){return d>=today}).concat(ds0.filter(function(d){return d<today}).reverse()),pastHead=0;
+  ds.forEach(function(d){
+    if(d<today&&!pastHead){pastHead=1;h+='<h2 style="font-size:19px;margin:26px 0 10px;color:var(--mut);font-weight:500">نتیجه‌ی گزارش‌های اخیر</h2>'}var rows=CAL.days[d].filter(function(e){return F==='big'?e.mcap>=1e10:F==='watch'?W.indexOf(e.t)>=0:true});if(!rows.length)return;any=1;
+    var dt=new Date(d+'T12:00:00Z'),past=d<today||rows.some(function(e){return e.act!=null}),lbl=WD[dt.getUTCDay()]+' '+dt.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',timeZone:'UTC'});
     h+='<div class="card"'+(d===today?' style="border-color:var(--lime)"':'')+(past?' data-past="1"':'')+'><h3>'+lbl+(d===today?' · امروز':'')+' <span class="mut" style="font-size:13px;font-weight:600">('+rows.length+' شرکت)</span></h3><div class="tw"><table><thead><tr><th style="text-align:right">شرکت</th><th>زمان</th><th>ارزش بازار</th><th>'+(past?'EPS واقعی':'پیش‌بینی EPS')+'</th><th>'+(past?'پیش‌بینی':'EPS سال قبل')+'</th>'+(past?'<th>غافلگیری</th>':'')+'<th>امتیاز ما</th><th></th></tr></thead><tbody>'+
-      rows.slice(0,60).map(function(e){var inW=W.indexOf(e.t)>=0;return '<tr><td><a class="tk" href="/pages/stock#'+esc(e.t)+'">'+esc(e.t)+'</a> <span class="mut" style="font-size:12.5px">'+esc(e.n).slice(0,34)+'</span></td><td>'+TM[e.time]+'</td><td class="num">'+big(e.mcap)+'</td>'+
+      rows.slice(0,60).map(function(e){var inW=W.indexOf(e.t)>=0;return '<tr><td><a class="tk" href="/pages/stock#'+esc(e.t)+'">'+esc(e.t)+'</a> <bdi dir="ltr" class="mut" style="font-size:12.5px">'+esc(e.n).slice(0,34)+'</bdi></td><td>'+TM[e.time]+'</td><td class="num">'+big(e.mcap)+'</td>'+
         (past?'<td>'+eps(e.act)+'</td><td>'+eps(e.f)+'</td><td class="num '+((e.sur||0)>=0?'up':'dn')+'">'+(e.sur==null?'—':(e.sur>=0?'+':'')+e.sur.toFixed(1)+'%')+'</td>':'<td>'+eps(e.f)+'</td><td>'+eps(e.ly)+'</td>')+
         '<td style="text-align:center">'+sc(e.s)+'</td><td><button class="btn '+(inW?'':'ghost ')+'sm" data-w="'+esc(e.t)+'">'+(inW?'⭐':'☆')+'</button></td></tr>'}).join('')+'</tbody></table></div>'+(rows.length>60?'<div class="note">'+(rows.length-60)+' شرکت کوچک‌تر دیگه هم گزارش میدن.</div>':'')+'</div>'});
   $('rze-main').innerHTML=any?h:'<div class="card empty">'+(F==='watch'?'هیچ‌کدوم از سهم‌های واچ‌لیستت در این بازه گزارش نمیدن.':'موردی نیست.')+'</div>';
-  var t=$('rze-main').querySelector('.card:not([data-past])');if(t&&!draw.done){draw.done=1;setTimeout(function(){t.scrollIntoView({block:'start'})},50)}}
+}
 document.addEventListener('click',function(e){var f=e.target.closest('#rze-f .chip');if(f){F=f.dataset.f;[].forEach.call(document.querySelectorAll('#rze-f .chip'),function(c){c.style.color=c===f?'#fff':'';c.style.borderColor=c===f?'var(--ac)':''});draw();return}
   var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);draw()}});
 fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/1800000)).then(function(r){return r.ok?r.json():null}).then(function(j){CAL=j;if(j)$('rze-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){draw()});

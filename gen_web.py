@@ -65,7 +65,7 @@ CSS = r"""
 """ + "\n" + THEME
 
 # ---------------------------------------------------------------- anonymous usage events (events/worker.js)
-EVENTS_URL = ''   # workers.dev URL after `events/deploy.sh`; empty = the beacon is a no-op
+EVENTS_URL = 'https://rz-events.mreza-hajilou.workers.dev'   # workers.dev URL after `events/deploy.sh`; empty = the beacon is a no-op
 EVENTS_JS = (r"""
 /* EVENTS:START */
 window.RZ_EVENTS=window.RZ_EVENTS||'%s';

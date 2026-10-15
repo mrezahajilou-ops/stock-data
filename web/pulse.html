@@ -252,8 +252,8 @@ function row(x,i){var r=BY[x.t]||null,n=r?String(g(r,'n')).slice(0,28):'',tot=x.
     (x.pw?'<td class="hm mut num" style="font-size:12px">'+x.pw+'</td>':'<td class="hm"></td>')+'</tr>'}
 function merged(){var S=ST?JSON.parse(JSON.stringify(ST)):{as_of:'',days:DAYS,totals:{events:0,uniq:0,tickers:0},top:[],searches:[],compares:[],watch_in:[],watch_out:[]};if(!CT)return S;
   var by={},sb={},wb={};S.top.forEach(function(r){by[r.t]=r});S.searches.forEach(function(r){sb[r.t]=r});S.watch_in.forEach(function(r){wb[r.t]=r});
-  CT.list.forEach(function(c){var r=by[c.t]||(by[c.t]={t:c.t,views:0,uniq:0,prev_uniq:0,pw:0,watch_add:0,watch_remove:0,bull:0,bear:0});r.uniq+=c.n;r.views+=c.n;r.prev_uniq+=c.n;r.watch_add+=c.n;r.bull+=c.n;r.ct=c.n;r.avg=c.avg;
-    var q=sb[c.t]||(sb[c.t]={t:c.t,n:0});q.n+=c.n;var w=wb[c.t]||(wb[c.t]={t:c.t,net:0,n:0});w.net+=c.n;w.n+=c.n});
+  CT.list.forEach(function(c){var r=by[c.t]||(by[c.t]={t:c.t,views:0,uniq:0,prev_uniq:0,pw:0,watch_add:0,watch_remove:0,bull:0,bear:0});r.uniq+=c.n;r.views+=c.n;r.prev_uniq+=c.n;r.ct=c.n;r.avg=c.avg;
+    var q=sb[c.t]||(sb[c.t]={t:c.t,n:0});q.n+=c.n});
   S.top=Object.keys(by).map(function(t){return by[t]}).sort(function(a,b){return b.uniq-a.uniq||b.views-a.views}).map(function(r,i){r.rank=i+1;return r});
   S.searches=Object.keys(sb).map(function(t){return sb[t]}).sort(function(a,b){return b.n-a.n});
   S.watch_in=Object.keys(wb).map(function(t){return wb[t]}).filter(function(r){return r.net>0}).sort(function(a,b){return b.net-a.net});
@@ -273,7 +273,7 @@ function draw2(){var box=$('rzq-main');
   var t=ST.totals||{};
   h+=two+'<p class="note">در این بازه '+(t.uniq||0)+' بازدیدکننده‌ی یکتا، '+(t.tickers||0)+' سهم مختلف را دیده‌اند.</p>';
   h+=ctNote();box.innerHTML=h}
-function ctNote(){return (CT&&ST&&ST._ct)?'<p class="note">🏆 انتخاب‌های '+faN(CT.total)+' شرکت‌کننده‌ی <a href="/pages/contest">مسابقه‌ی سهام برتر نوامبر</a> هم در این آمار حساب شده (هر انتخاب = یک جستجو، یک بازدیدکننده و یک رأی خوش‌بین).</p>':''}
+function ctNote(){return (CT&&ST&&ST._ct)?'<p class="note">🏆 انتخاب‌های '+faN(CT.total)+' شرکت‌کننده‌ی <a href="/pages/contest">مسابقه‌ی سهام برتر نوامبر</a> هم در این آمار حساب شده (هر انتخاب = یک بازدیدکننده و یک جستجو؛ واچ‌لیست و رأی‌ها فقط از رفتار واقعی کاربران).</p>':''}
 function load(){if(!window.RZ_EVENTS){ST=null;draw();return}fetch(RZ_EVENTS+'/stats?days='+DAYS).then(function(r){return r.ok?r.json():null}).then(function(j){ST=j&&j.top?j:null;if(j&&j.as_of)$('rzq-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){ST=null;draw()})}
 document.addEventListener('click',function(e){var c=e.target.closest('#rzq-head .chip');if(c){DAYS=+c.dataset.d;[].forEach.call(document.querySelectorAll('#rzq-head .chip'),function(x){x.classList.toggle('on',x===c)});load()}});
 loadAll().then(load).catch(load);

@@ -1,0 +1,257 @@
+<div id="rzq" dir="rtl">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
+#rzq{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
+  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
+#rzq *{box-sizing:border-box;font-family:inherit}
+#rzq a{color:var(--ac)}
+#rzq .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#rzq .nav a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--mut)!important;text-decoration:none!important;font-weight:800;font-size:14px}
+#rzq .nav a.on{background:var(--lime);color:#0b1726!important;border-color:var(--lime)}
+#rzq h1{font-size:26px;font-weight:900;margin:0 0 2px;color:#fff}
+#rzq h3{font-size:17px;font-weight:900;margin:0 0 10px;color:#fff}
+#rzq .sub{color:var(--mut);margin:0 0 14px;font-size:14.5px}
+#rzq .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+#rzq .mut{color:var(--mut)}
+#rzq .up{color:var(--ac)}#rzq .dn{color:var(--red)}
+#rzq .tk{direction:ltr;unicode-bidi:isolate;font-weight:900;color:var(--ac)}
+#rzq .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+#rzq .btn{display:inline-block;background:var(--lime);color:#0b1726!important;font-weight:900;padding:9px 16px;border-radius:12px;text-decoration:none!important;border:0;cursor:pointer;font-size:14px}
+#rzq .btn.ghost{background:transparent;color:#fff!important;border:1.5px solid var(--line)}
+#rzq .btn.sm{padding:5px 10px;font-size:12.5px;border-radius:9px}
+#rzq input,#rzq select{background:var(--bg);border:1.5px solid var(--line);border-radius:10px;color:#fff;font-size:15px;padding:8px 10px;outline:none}
+#rzq input:focus{border-color:var(--ac)}
+#rzq .search{position:relative}
+#rzq .sugg{position:absolute;top:100%;right:0;left:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-top:6px;z-index:20;max-height:280px;overflow:auto;display:none}
+#rzq .sugg div{padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line)}
+#rzq .sugg div:hover{background:#21395a}
+#rzq .sugg b{direction:ltr;color:var(--ac)}
+#rzq .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#rzq table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
+@media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
+#rzq th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+#rzq td{padding:8px;border-bottom:1px solid #1c3150;white-space:nowrap}
+#rzq .sc{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;color:#0b1726;font-weight:900;direction:ltr}
+#rzq .empty{color:var(--mut);text-align:center;padding:22px}
+#rzq .note{color:var(--mut);font-size:12px;margin-top:10px}
+#rzq .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#rzq .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
+#rzq .chip:hover{color:#fff;border-color:var(--ac)}
+
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzq is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzq{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzq *{font-family:inherit}
+#rzq a{color:var(--ac);text-decoration-color:rgba(201,169,97,.5)}
+#rzq a:hover{color:var(--ink)}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzq .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzq .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzq .nav a:hover{color:var(--ink)!important}
+#rzq .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzq h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzq .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzq h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzq b,#rzq strong{font-weight:600}
+#rzq .co,#rzq .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzq .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzq .px .p,#rzq .sc .v,#rzq .vbig b,#rzq .rev .bx .big,#rzq .snap b,#rzq .stats b,#rzq .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzq .px .p{font-size:30px}
+#rzq .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzq .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzq .card .card{background:var(--card2)}
+#rzq .st,#rzq .snap div,#rzq .vbig div,#rzq .ist4 div,#rzq .ab-grid>div,#rzq .vcol,#rzq .sc,#rzq .rev .bx,#rzq .perf div,#rzq .relc,#rzq .stats div{background:var(--card2);border:0}
+#rzq .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzq .wide2 .card,#rzq .charts .card,#rzq .two .card{background:var(--card)}
+#rzq .tblwrap,#rzq .tw{border:0;border-radius:10px}
+#rzq .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzq .tbl th,#rzq th,#rzq .proj th,#rzq .sens th,#rzq .antbl th,#rzq table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzq .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzq td{border-bottom:1px solid #1A1E26}
+#rzq .tbl td.sep{border-left-color:var(--line)}
+#rzq tr.sec td,#rzq .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzq th.ttm,#rzq td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzq th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzq .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzq .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzq .btn.ghost:hover{border-color:var(--ac)}
+#rzq .lnk{color:var(--ac)}
+#rzq .chip,#rzq .rng button,#rzq .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzq .chip:hover,#rzq .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzq .rng button.on,#rzq .tabs button.on,#rzq .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzq input,#rzq select,#rzq .pin,#rzq .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzq input:focus,#rzq select:focus,#rzq .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzq .search input{font-size:17px;padding:12px 16px}
+#rzq .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzq .sugg div:hover{background:#242934}
+#rzq .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzq .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzq .up{color:var(--up)}#rzq .dn{color:var(--red)}
+#rzq .vrow.ok b{background:var(--up)}#rzq .vrow.no b{background:var(--red)}
+#rzq .vrow.ok em{color:var(--up)}#rzq .vrow.no em{color:var(--red)}
+#rzq .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzq .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzq .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzq .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzq .meta,#rzq .xnote,#rzq .note,#rzq .mut2,#rzq .st .k,#rzq .st .s{color:var(--mut);font-weight:400}
+#rzq .stats small,#rzq .snap small,#rzq .vbig small{font-weight:500}
+#rzq .quota{color:var(--mut)}
+#rzq .tk{color:var(--ac);font-weight:600}
+#rzq .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzq .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzq :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzq{padding:12px 14px 40px}
+  #rzq .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzq .nav::-webkit-scrollbar{display:none}
+  #rzq .nav{-webkit-mask-image:linear-gradient(to left,#000 88%,transparent);mask-image:linear-gradient(to left,#000 88%,transparent)}  /* hint: the row scrolls */
+  #rzq .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzq h1{font-size:23px}
+  #rzq .sub{font-size:13.5px;margin-bottom:12px}
+  #rzq .co{font-size:21px}
+  #rzq .px .p{font-size:26px}
+  #rzq .card{padding:14px;border-radius:12px}
+  #rzq .search input{font-size:16px;padding:11px 14px}
+}
+</style>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a class="on" href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<h1>نبض جامعه</h1>
+<p class="sub">این هفته ایرانی‌ها بیشتر از همه کدوم سهم‌ها رو زیر نظر داشتن؟ پربازدیدترین‌ها، جستجوها، ورود و خروج از واچ‌لیست‌ها و نظر بازدیدکننده‌ها؛ از رفتار واقعی کاربران همین سایت.</p>
+
+<div class="card" id="rzq-head"><div class="chips"><span class="chip on" data-d="7">۷ روز</span><span class="chip" data-d="30">۳۰ روز</span><span class="mut" id="rzq-asof" style="font-size:13px;margin-right:auto"></span></div></div>
+<div id="rzq-main"><div class="card empty">در حال بارگذاری…</div></div>
+<p class="note">این آمار از رفتار بازدیدکننده‌های همین سایت ساخته میشه (بدون نام، ایمیل یا آی‌پی)؛ فقط یک شناسه‌ی تصادفی در مرورگر تا هر نفر یک بار شمرده بشه. سهمی که کمتر از ۳ نفر دیده باشن نشون داده نمیشه. آموزشی است و توصیه‌ی خرید یا فروش نیست.</p>
+
+<script>
+(function(){
+
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
+
+var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
+var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
+var $=function(i){return document.getElementById(i)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
+function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return (v*100).toFixed(d==null?1:d)+'%'}
+function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
+function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
+/* live quotes */
+var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveQuotes(){if(!RZQ_P){var p=fetch(RAW+'/quotes/quotes.json?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+  RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3500)})]);p.then(function(){RZQ_P=Promise.resolve(RZQ)})}return RZQ_P}
+function liveWhen(iso){try{var d=new Date(iso);if(isNaN(d))return '';return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}}
+/* compact screener rows (+ browser cache), rescaled to live prices */
+function decodeMin(m){var cols=m.cols,D=m.dict||{},S=m.scale||{},idx=cols.map(function(c){return D[c]?['d',D[c]]:S[c]?['s',S[c]]:null});
+  return {cols:cols,as_of:m.as_of,rows:m.rows.map(function(r){return r.map(function(v,i){var x=idx[i];if(!x||v==null)return v;return x[0]==='d'?x[1][v]:v*x[1]})})}}
+function loadScreener(){var full=function(){return fetch(API+'/screener.json').then(function(r){return r.json()})};
+  return fetch(API+'/meta.json?v='+Math.floor(Date.now()/600000)).then(function(r){return r.json()}).catch(function(){return {}}).then(function(meta){var key=meta&&meta.built||'';
+    try{var c=JSON.parse(localStorage.getItem('rzc2_data')||'null');if(c&&key&&c.k===key&&c.m)return decodeMin(c.m)}catch(e){}
+    return fetch(API+'/screener.min.json?v='+encodeURIComponent(key)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(m){try{localStorage.removeItem('rzc2_data');if(key)localStorage.setItem('rzc2_data',JSON.stringify({k:key,m:m}))}catch(e){}return decodeMin(m)}).catch(full)}).catch(full)}
+var C={},ROWS=[],BY={},SPE={};
+function liveRow(r){var I=function(k){return C[k]},Q=RZQ&&RZQ.q[r[I('t')]],p0=r[I('price')];if(!Q||!(Q[0]>0)||!p0)return;var f=Q[0]/p0;
+  var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:r[I('fair_up')],sv:r[I('s_value')]};
+  r[I('price')]=Q[0];r.chg=Q[1];if(r[I('mcap')]!=null)r[I('mcap')]*=f;
+  ['pe','pfcf','ps','pb','peg','fwd_pe','fwd_ps','fwd_pfcf'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+  ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
+  if(r[I('ev_ebitda')]!=null){var nd=r[I('nd_ebitda')];r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
+  if(r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;
+  if(o.sv!=null){var c4=function(pe,pf,pg,fu){return (pe!=null&&pe<25?1:0)+(pf!=null&&pf<20?1:0)+(fu!=null&&fu>0?1:0)+(pg!=null&&pg<1.5?1:0)},spe=SPE[r[I('sector')]];
+    var cs=Math.max(0,Math.min(1,o.sv-c4(o.pe,o.pf,o.pg,o.fu))),pe=r[I('pe')];if(spe!=null&&pe!=null&&o.pe!=null&&((o.pe<spe)!==(pe<spe)))cs=pe<spe?1:0;
+    r[I('s_value')]=c4(pe,r[I('pfcf')],r[I('peg')],r[I('fair_up')])+cs;
+    var parts=['s_value','s_future','s_past','s_health','s_capital'].map(function(k){return r[I(k)]}).filter(function(x){return x!=null});if(parts.length)r[I('s_total')]=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10}}
+function loadAll(){return Promise.all([loadScreener(),liveQuotes(),fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).catch(function(){return {}})]).then(function(x){
+  var j=x[0];j.cols.forEach(function(c,i){C[c]=i});Object.keys(x[2]||{}).forEach(function(k){if(x[2][k]&&x[2][k].pe)SPE[k]=x[2][k].pe});
+  ROWS=j.rows;ROWS.forEach(function(r){liveRow(r);BY[r[C.t]]=r});return j})}
+function g(r,k){return r&&C[k]!=null?r[C[k]]:null}
+/* ticker search box */
+function picker(inp,box,onPick){inp.addEventListener('input',function(){var q=inp.value.trim().toUpperCase();if(!q){box.style.display='none';return}
+  var res=ROWS.filter(function(r){return r[C.t].indexOf(q)===0}).slice(0,6).concat(ROWS.filter(function(r){return r[C.t].indexOf(q)!==0&&String(r[C.n]).toUpperCase().indexOf(q)>=0}).slice(0,4));
+  box.innerHTML=res.map(function(r){return '<div data-t="'+esc(r[C.t])+'"><span>'+esc(r[C.n])+'</span><b>'+esc(r[C.t])+'</b></div>'}).join('');box.style.display=res.length?'block':'none'});
+  box.addEventListener('click',function(e){var d=e.target.closest('div[data-t]');if(!d)return;box.style.display='none';inp.value='';onPick(d.dataset.t)});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){var t=inp.value.trim().toUpperCase();if(BY[t]){box.style.display='none';inp.value='';onPick(t)}}})}
+/* watchlist storage (this device) */
+function wlGet(){try{return JSON.parse(localStorage.getItem('rz_watch')||'[]')}catch(e){return []}}
+function wlSet(a){try{localStorage.setItem('rz_watch',JSON.stringify(a))}catch(e){}}
+function alGet(){try{return JSON.parse(localStorage.getItem('rz_alerts')||'{}')}catch(e){return {}}}
+function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(e){}}
+
+
+var DAYS=7,ST=null;
+function arrow(c,p){if(!p)return '<span class="mut" style="font-size:12px">جدید</span>';var d=c/p-1;if(Math.abs(d)<0.1)return '<span class="mut">≈</span>';return '<span class="'+(d>0?'up':'dn')+'" style="font-size:12.5px">'+(d>0?'▲':'▼')+' '+Math.round(Math.abs(d)*100)+'%</span>'}
+function row(x,i){var r=BY[x.t]||null,n=r?String(g(r,'n')).slice(0,28):'',tot=x.bull+x.bear,pb=tot?Math.round(x.bull/tot*100):null,net=x.watch_add-x.watch_remove;
+  return '<tr><td class="num mut">'+(i+1)+'</td><td><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a> <bdi dir="ltr" class="mut" style="font-size:12.5px">'+esc(n)+'</bdi></td>'+
+    '<td class="num"><b>'+x.uniq+'</b> <span class="mut" style="font-size:12px">نفر</span> '+arrow(x.uniq,x.prev_uniq)+'</td>'+
+    '<td class="num '+(net>0?'up':net<0?'dn':'mut')+'">'+(net>0?'+':'')+net+'</td>'+
+    '<td>'+(tot>=5?'<span class="vb"><b style="width:'+pb+'%"></b></span> <span class="num" style="font-size:12.5px">'+pb+'٪</span>':'<span class="mut" style="font-size:12px">—</span>')+'</td>'+
+    '<td style="text-align:center">'+(r?sc(g(r,'s_total')):'—')+'</td><td class="num">'+(r&&g(r,'pe')?x1(g(r,'pe')):'—')+'</td>'+
+    (x.pw?'<td class="mut num" style="font-size:12px">'+x.pw+'</td>':'<td></td>')+'</tr>'}
+function draw(){var box=$('rzq-main');if(!ST){box.innerHTML='<div class="card empty">'+(window.RZ_EVENTS?'هنوز داده‌ای جمع نشده؛ چند روز دیگه سر بزن.':'جمع‌آوری آمار هنوز فعال نشده.')+'</div>';return}
+  var h='';
+  h+='<div class="card"><h3>پربازدیدترین سهم‌ها در '+(DAYS===7?'۷ روز':'۳۰ روز')+' گذشته</h3>'+(ST.top.length?'<div class="tw"><table><thead><tr><th></th><th style="text-align:right">سهم</th><th>بازدیدکننده</th><th>واچ‌لیست ±</th><th>خوش‌بین‌ها</th><th>امتیاز ما</th><th>P/E</th><th title="بازدیدهایی که به دیوار اشتراک خوردن">🔒</th></tr></thead><tbody>'+ST.top.slice(0,30).map(row).join('')+'</tbody></table></div>':'<p class="mut">هنوز سهمی به حد نصاب ۳ بازدیدکننده نرسیده.</p>')+'</div>';
+  var two='<div class="grid2">';
+  two+='<div class="card"><h3>بیشترین جستجو</h3>'+(ST.searches.length?'<ol class="pl">'+ST.searches.slice(0,12).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num mut">'+x.n+' نفر</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+'</div>';
+  two+='<div class="card"><h3>ورود به واچ‌لیست‌ها</h3>'+(ST.watch_in.length?'<ol class="pl">'+ST.watch_in.slice(0,8).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num up">+'+x.net+'</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+
+    (ST.watch_out.length?'<h3 style="margin-top:12px">خروج از واچ‌لیست‌ها</h3><ol class="pl">'+ST.watch_out.slice(0,6).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num dn">'+x.net+'</span></li>'}).join('')+'</ol>':'')+'</div>';
+  two+='<div class="card"><h3>مقایسه‌های محبوب</h3>'+(ST.compares.length?'<ol class="pl">'+ST.compares.slice(0,10).map(function(x){return '<li><a class="tk" href="/pages/compare#'+esc(x.pair)+'">'+esc(x.pair.replace(/,/g,' vs '))+'</a><span class="num mut">'+x.n+'</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+'</div>';
+  two+='</div>';
+  var t=ST.totals||{};
+  h+=two+'<p class="note">در این بازه '+(t.uniq||0)+' بازدیدکننده‌ی یکتا، '+(t.tickers||0)+' سهم مختلف را دیده‌اند.</p>';
+  box.innerHTML=h}
+function load(){if(!window.RZ_EVENTS){ST=null;draw();return}fetch(RZ_EVENTS+'/stats?days='+DAYS).then(function(r){return r.ok?r.json():null}).then(function(j){ST=j&&j.top?j:null;if(j&&j.as_of)$('rzq-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){ST=null;draw()})}
+document.addEventListener('click',function(e){var c=e.target.closest('#rzq-head .chip');if(c){DAYS=+c.dataset.d;[].forEach.call(document.querySelectorAll('#rzq-head .chip'),function(x){x.classList.toggle('on',x===c)});load()}});
+loadAll().then(load).catch(load);
+
+})();
+</script>
+</div>

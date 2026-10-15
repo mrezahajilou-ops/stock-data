@@ -28,6 +28,8 @@
 #rzk .sugg b{direction:ltr;color:var(--ac)}
 #rzk .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #rzk table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
 @media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #rzk th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -157,7 +159,7 @@
   #rzk .search input{font-size:16px;padding:11px 14px}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a class="on" href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a class="on" href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>مقایسه‌ی سهم‌ها کنار هم</h1>
 <p class="sub">دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.</p>
 
@@ -169,6 +171,13 @@
 
 <script>
 (function(){
+
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
 
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
 var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
@@ -229,7 +238,7 @@ var ROWDEF=[['امتیازها',[['s_total','امتیاز کلی',1,'sc'],['s_va
  ['بازگشت به سهامدار',[['divy','بازده سود نقدی',1,'pct'],['shy','بازده کل سهامدار',1,'pct'],['sh_chg3','تغییر تعداد سهام ۳ ساله',-1,'pct'],['div_yrs','سال‌های سود نقدی',1,'n']]]];
 function fmt(v,f,r){if(v==null||!isFinite(v))return '—';if(f==='sc')return sc(v);if(f==='px')return '<span class="num">$'+v.toFixed(2)+'</span>'+(r&&r.chg!=null?' <small class="'+(r.chg>=0?'up':'dn')+'">'+(r.chg>=0?'+':'')+r.chg.toFixed(2)+'%</small>':'');
   if(f==='big')return '<span class="num">'+big(v)+'</span>';if(f==='pct')return '<span class="num">'+pct(v)+'</span>';if(f==='n')return v;return '<span class="num">'+x1(v)+'</span>'}
-function sync(){try{history.replaceState(null,'','#'+SEL.join(','))}catch(e){}
+function sync(){try{history.replaceState(null,'','#'+SEL.join(','))}catch(e){}if(SEL.length>=2)rzE('compare',SEL[0],SEL.slice().sort().join(',').slice(0,24));
   $('rzk-ch').innerHTML=SEL.map(function(t){return '<span class="chip" data-x="'+t+'">✕ '+t+'</span>'}).join('');draw()}
 function add(t){t=t.toUpperCase();if(!BY[t]||SEL.indexOf(t)>=0)return;if(SEL.length>=4)SEL.shift();SEL.push(t);sync()}
 function draw(){var m=$('rzk-main');if(!SEL.length){m.innerHTML='<div class="card empty">دو تا چهار سهم انتخاب کن تا کنار هم مقایسه بشن.</div>';return}

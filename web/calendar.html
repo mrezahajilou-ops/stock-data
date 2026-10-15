@@ -28,6 +28,8 @@
 #rze .sugg b{direction:ltr;color:var(--ac)}
 #rze .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #rze table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
 @media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #rze th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -157,7 +159,7 @@
   #rze .search input{font-size:16px;padding:11px 14px}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a class="on" href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a class="on" href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>تقویم گزارش‌های مالی</h1>
 <p class="sub">کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.</p>
 
@@ -169,6 +171,13 @@
 
 <script>
 (function(){
+
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
 
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
 var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
@@ -237,7 +246,7 @@ function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقو
   $('rze-main').innerHTML=any?h:'<div class="card empty">'+(F==='watch'?'هیچ‌کدوم از سهم‌های واچ‌لیستت در این بازه گزارش نمیدن.':'موردی نیست.')+'</div>';
 }
 document.addEventListener('click',function(e){var f=e.target.closest('#rze-f .chip');if(f){F=f.dataset.f;[].forEach.call(document.querySelectorAll('#rze-f .chip'),function(c){c.style.color=c===f?'#fff':'';c.style.borderColor=c===f?'var(--ac)':''});draw();return}
-  var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);draw()}});
+  var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);rzE(i>=0?'watch_remove':'watch_add',t);draw()}});
 fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/1800000)).then(function(r){return r.ok?r.json():null}).then(function(j){CAL=j;if(j)$('rze-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){draw()});
 
 })();

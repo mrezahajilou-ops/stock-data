@@ -28,6 +28,8 @@
 #rzw .sugg b{direction:ltr;color:var(--ac)}
 #rzw .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #rzw table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
 @media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #rzw th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -157,7 +159,7 @@
   #rzw .search input{font-size:16px;padding:11px 14px}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>واچ‌لیست و هشدار قیمت</h1>
 <p class="sub">سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.</p>
 
@@ -171,6 +173,13 @@
 
 <script>
 (function(){
+
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
 
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
 var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
@@ -257,9 +266,9 @@ function askNotify(){if(!('Notification' in window)||Notification.permission!=='
 function notify(){if(!('Notification' in window)||Notification.permission!=='granted')return;var seen={};try{seen=JSON.parse(sessionStorage.getItem('rzw_seen')||'{}')}catch(e){}
   hits().forEach(function(x){var k=x[0]+x[1];if(seen[k])return;seen[k]=1;try{new Notification('هشدار '+x[0],{body:x[1]})}catch(e){}});try{sessionStorage.setItem('rzw_seen',JSON.stringify(seen))}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest('#rzw [data-rm],#rzw [data-al],#rzw [data-add]');if(!b)return;
-  if(b.dataset.rm){wlSet(wlGet().filter(function(t){return t!==b.dataset.rm}));draw()}else if(b.dataset.al)dlg(b.dataset.al);else if(b.dataset.add){var W=wlGet();if(W.indexOf(b.dataset.add)<0)W.push(b.dataset.add);wlSet(W);draw()}});
+  if(b.dataset.rm){wlSet(wlGet().filter(function(t){return t!==b.dataset.rm}));rzE('watch_remove',b.dataset.rm);draw()}else if(b.dataset.al)dlg(b.dataset.al);else if(b.dataset.add){var W=wlGet();if(W.indexOf(b.dataset.add)<0){W.push(b.dataset.add);rzE('watch_add',b.dataset.add)}wlSet(W);draw()}});
 Promise.all([loadAll(),fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(x){CAL=x[1];
-  picker($('rzw-q'),$('rzw-s'),function(t){var W=wlGet();if(W.indexOf(t)<0){W.push(t);wlSet(W)}draw()});draw();if(Object.keys(alGet()).length)askNotify();notify()})
+  picker($('rzw-q'),$('rzw-s'),function(t){var W=wlGet();if(W.indexOf(t)<0){W.push(t);wlSet(W);rzE('watch_add',t)}draw()});draw();if(Object.keys(alGet()).length)askNotify();notify()})
   .catch(function(){$('rzw-main').innerHTML='<div class="card empty">بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.</div>'});
 
 })();

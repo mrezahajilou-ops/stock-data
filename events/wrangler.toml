@@ -1,0 +1,14 @@
+name = "rz-events"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+ORIGINS = "https://rezahajiloubooks.com,https://www.rezahajiloubooks.com,https://jev8ju-dh.myshopify.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rz-events"
+database_id = "REPLACE_AFTER_D1_CREATE"
+
+[triggers]
+crons = ["17 3 * * *"]

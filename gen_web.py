@@ -11,7 +11,7 @@ WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
-        ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'),
+        ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'),
         ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا')]
 
 
@@ -50,6 +50,8 @@ CSS = r"""
 #ID .sugg b{direction:ltr;color:var(--ac)}
 #ID .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 #ID table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
 @media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
 #ID th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -61,6 +63,17 @@ CSS = r"""
 #ID .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
 #ID .chip:hover{color:#fff;border-color:var(--ac)}
 """ + "\n" + THEME
+
+# ---------------------------------------------------------------- anonymous usage events (events/worker.js)
+EVENTS_URL = ''   # workers.dev URL after `events/deploy.sh`; empty = the beacon is a no-op
+EVENTS_JS = (r"""
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'%s';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
+""" % EVENTS_URL)
 
 JS = r"""
 var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
@@ -114,10 +127,43 @@ function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(
 """
 
 
+# ---------------------------------------------------------------- community pulse (events worker aggregates)
+PULSE_BODY = r"""
+<div class="card" id="rzq-head"><div class="chips"><span class="chip on" data-d="7">۷ روز</span><span class="chip" data-d="30">۳۰ روز</span><span class="mut" id="rzq-asof" style="font-size:13px;margin-right:auto"></span></div></div>
+<div id="rzq-main"><div class="card empty">در حال بارگذاری…</div></div>
+<p class="note">این آمار از رفتار بازدیدکننده‌های همین سایت ساخته میشه (بدون نام، ایمیل یا آی‌پی)؛ فقط یک شناسه‌ی تصادفی در مرورگر تا هر نفر یک بار شمرده بشه. سهمی که کمتر از ۳ نفر دیده باشن نشون داده نمیشه. آموزشی است و توصیه‌ی خرید یا فروش نیست.</p>
+"""
+PULSE_JS = r"""
+var DAYS=7,ST=null;
+function arrow(c,p){if(!p)return '<span class="mut" style="font-size:12px">جدید</span>';var d=c/p-1;if(Math.abs(d)<0.1)return '<span class="mut">≈</span>';return '<span class="'+(d>0?'up':'dn')+'" style="font-size:12.5px">'+(d>0?'▲':'▼')+' '+Math.round(Math.abs(d)*100)+'%</span>'}
+function row(x,i){var r=BY[x.t]||null,n=r?String(g(r,'n')).slice(0,28):'',tot=x.bull+x.bear,pb=tot?Math.round(x.bull/tot*100):null,net=x.watch_add-x.watch_remove;
+  return '<tr><td class="num mut">'+(i+1)+'</td><td><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a> <bdi dir="ltr" class="mut" style="font-size:12.5px">'+esc(n)+'</bdi></td>'+
+    '<td class="num"><b>'+x.uniq+'</b> <span class="mut" style="font-size:12px">نفر</span> '+arrow(x.uniq,x.prev_uniq)+'</td>'+
+    '<td class="num '+(net>0?'up':net<0?'dn':'mut')+'">'+(net>0?'+':'')+net+'</td>'+
+    '<td>'+(tot>=5?'<span class="vb"><b style="width:'+pb+'%"></b></span> <span class="num" style="font-size:12.5px">'+pb+'٪</span>':'<span class="mut" style="font-size:12px">—</span>')+'</td>'+
+    '<td style="text-align:center">'+(r?sc(g(r,'s_total')):'—')+'</td><td class="num">'+(r&&g(r,'pe')?x1(g(r,'pe')):'—')+'</td>'+
+    (x.pw?'<td class="mut num" style="font-size:12px">'+x.pw+'</td>':'<td></td>')+'</tr>'}
+function draw(){var box=$('rzq-main');if(!ST){box.innerHTML='<div class="card empty">'+(window.RZ_EVENTS?'هنوز داده‌ای جمع نشده؛ چند روز دیگه سر بزن.':'جمع‌آوری آمار هنوز فعال نشده.')+'</div>';return}
+  var h='';
+  h+='<div class="card"><h3>پربازدیدترین سهم‌ها در '+(DAYS===7?'۷ روز':'۳۰ روز')+' گذشته</h3>'+(ST.top.length?'<div class="tw"><table><thead><tr><th></th><th style="text-align:right">سهم</th><th>بازدیدکننده</th><th>واچ‌لیست ±</th><th>خوش‌بین‌ها</th><th>امتیاز ما</th><th>P/E</th><th title="بازدیدهایی که به دیوار اشتراک خوردن">🔒</th></tr></thead><tbody>'+ST.top.slice(0,30).map(row).join('')+'</tbody></table></div>':'<p class="mut">هنوز سهمی به حد نصاب ۳ بازدیدکننده نرسیده.</p>')+'</div>';
+  var two='<div class="grid2">';
+  two+='<div class="card"><h3>بیشترین جستجو</h3>'+(ST.searches.length?'<ol class="pl">'+ST.searches.slice(0,12).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num mut">'+x.n+' نفر</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+'</div>';
+  two+='<div class="card"><h3>ورود به واچ‌لیست‌ها</h3>'+(ST.watch_in.length?'<ol class="pl">'+ST.watch_in.slice(0,8).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num up">+'+x.net+'</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+
+    (ST.watch_out.length?'<h3 style="margin-top:12px">خروج از واچ‌لیست‌ها</h3><ol class="pl">'+ST.watch_out.slice(0,6).map(function(x){return '<li><a class="tk" href="/pages/stock#'+esc(x.t)+'">'+esc(x.t)+'</a><span class="num dn">'+x.net+'</span></li>'}).join('')+'</ol>':'')+'</div>';
+  two+='<div class="card"><h3>مقایسه‌های محبوب</h3>'+(ST.compares.length?'<ol class="pl">'+ST.compares.slice(0,10).map(function(x){return '<li><a class="tk" href="/pages/compare#'+esc(x.pair)+'">'+esc(x.pair.replace(/,/g,' vs '))+'</a><span class="num mut">'+x.n+'</span></li>'}).join('')+'</ol>':'<p class="mut">—</p>')+'</div>';
+  two+='</div>';
+  var t=ST.totals||{};
+  h+=two+'<p class="note">در این بازه '+(t.uniq||0)+' بازدیدکننده‌ی یکتا، '+(t.tickers||0)+' سهم مختلف را دیده‌اند.</p>';
+  box.innerHTML=h}
+function load(){if(!window.RZ_EVENTS){ST=null;draw();return}fetch(RZ_EVENTS+'/stats?days='+DAYS).then(function(r){return r.ok?r.json():null}).then(function(j){ST=j&&j.top?j:null;if(j&&j.as_of)$('rzq-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){ST=null;draw()})}
+document.addEventListener('click',function(e){var c=e.target.closest('#rzq-head .chip');if(c){DAYS=+c.dataset.d;[].forEach.call(document.querySelectorAll('#rzq-head .chip'),function(x){x.classList.toggle('on',x===c)});load()}});
+loadAll().then(load).catch(load);
+"""
+
 def page(pid, rid, title, sub, body, js):
     return ('<div id="%s" dir="rtl">\n<style>%s</style>\n%s\n<h1>%s</h1>\n<p class="sub">%s</p>\n%s\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (
-        rid, CSS.replace('#ID', '#' + rid), nav(pid), title, sub, body, JS, js)
+        rid, CSS.replace('#ID', '#' + rid), nav(pid), title, sub, body, EVENTS_JS + JS, js)
 
 
 # ---------------------------------------------------------------- compare
@@ -138,7 +184,7 @@ var ROWDEF=[['امتیازها',[['s_total','امتیاز کلی',1,'sc'],['s_va
  ['بازگشت به سهامدار',[['divy','بازده سود نقدی',1,'pct'],['shy','بازده کل سهامدار',1,'pct'],['sh_chg3','تغییر تعداد سهام ۳ ساله',-1,'pct'],['div_yrs','سال‌های سود نقدی',1,'n']]]];
 function fmt(v,f,r){if(v==null||!isFinite(v))return '—';if(f==='sc')return sc(v);if(f==='px')return '<span class="num">$'+v.toFixed(2)+'</span>'+(r&&r.chg!=null?' <small class="'+(r.chg>=0?'up':'dn')+'">'+(r.chg>=0?'+':'')+r.chg.toFixed(2)+'%</small>':'');
   if(f==='big')return '<span class="num">'+big(v)+'</span>';if(f==='pct')return '<span class="num">'+pct(v)+'</span>';if(f==='n')return v;return '<span class="num">'+x1(v)+'</span>'}
-function sync(){try{history.replaceState(null,'','#'+SEL.join(','))}catch(e){}
+function sync(){try{history.replaceState(null,'','#'+SEL.join(','))}catch(e){}if(SEL.length>=2)rzE('compare',SEL[0],SEL.slice().sort().join(',').slice(0,24));
   $('rzk-ch').innerHTML=SEL.map(function(t){return '<span class="chip" data-x="'+t+'">✕ '+t+'</span>'}).join('');draw()}
 function add(t){t=t.toUpperCase();if(!BY[t]||SEL.indexOf(t)>=0)return;if(SEL.length>=4)SEL.shift();SEL.push(t);sync()}
 function draw(){var m=$('rzk-main');if(!SEL.length){m.innerHTML='<div class="card empty">دو تا چهار سهم انتخاب کن تا کنار هم مقایسه بشن.</div>';return}
@@ -203,9 +249,9 @@ function askNotify(){if(!('Notification' in window)||Notification.permission!=='
 function notify(){if(!('Notification' in window)||Notification.permission!=='granted')return;var seen={};try{seen=JSON.parse(sessionStorage.getItem('rzw_seen')||'{}')}catch(e){}
   hits().forEach(function(x){var k=x[0]+x[1];if(seen[k])return;seen[k]=1;try{new Notification('هشدار '+x[0],{body:x[1]})}catch(e){}});try{sessionStorage.setItem('rzw_seen',JSON.stringify(seen))}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest('#rzw [data-rm],#rzw [data-al],#rzw [data-add]');if(!b)return;
-  if(b.dataset.rm){wlSet(wlGet().filter(function(t){return t!==b.dataset.rm}));draw()}else if(b.dataset.al)dlg(b.dataset.al);else if(b.dataset.add){var W=wlGet();if(W.indexOf(b.dataset.add)<0)W.push(b.dataset.add);wlSet(W);draw()}});
+  if(b.dataset.rm){wlSet(wlGet().filter(function(t){return t!==b.dataset.rm}));rzE('watch_remove',b.dataset.rm);draw()}else if(b.dataset.al)dlg(b.dataset.al);else if(b.dataset.add){var W=wlGet();if(W.indexOf(b.dataset.add)<0){W.push(b.dataset.add);rzE('watch_add',b.dataset.add)}wlSet(W);draw()}});
 Promise.all([loadAll(),fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(x){CAL=x[1];
-  picker($('rzw-q'),$('rzw-s'),function(t){var W=wlGet();if(W.indexOf(t)<0){W.push(t);wlSet(W)}draw()});draw();if(Object.keys(alGet()).length)askNotify();notify()})
+  picker($('rzw-q'),$('rzw-s'),function(t){var W=wlGet();if(W.indexOf(t)<0){W.push(t);wlSet(W);rzE('watch_add',t)}draw()});draw();if(Object.keys(alGet()).length)askNotify();notify()})
   .catch(function(){$('rzw-main').innerHTML='<div class="card empty">بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.</div>'});
 """
 
@@ -235,7 +281,7 @@ function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقو
   $('rze-main').innerHTML=any?h:'<div class="card empty">'+(F==='watch'?'هیچ‌کدوم از سهم‌های واچ‌لیستت در این بازه گزارش نمیدن.':'موردی نیست.')+'</div>';
 }
 document.addEventListener('click',function(e){var f=e.target.closest('#rze-f .chip');if(f){F=f.dataset.f;[].forEach.call(document.querySelectorAll('#rze-f .chip'),function(c){c.style.color=c===f?'#fff':'';c.style.borderColor=c===f?'var(--ac)':''});draw();return}
-  var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);draw()}});
+  var w=e.target.closest('#rze [data-w]');if(w){var W=wlGet(),t=w.dataset.w,i=W.indexOf(t);if(i>=0)W.splice(i,1);else W.push(t);wlSet(W);rzE(i>=0?'watch_remove':'watch_add',t);draw()}});
 fetch(RAW+'/calendar/earnings.json?v='+Math.floor(Date.now()/1800000)).then(function(r){return r.ok?r.json():null}).then(function(j){CAL=j;if(j)$('rze-asof').textContent='به‌روزرسانی: '+liveWhen(j.as_of.replace('Z',':00Z'));draw()}).catch(function(){draw()});
 """
 
@@ -275,6 +321,7 @@ def main():
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),
+        'pulse.html': page('pulse', 'rzq', 'نبض جامعه', 'این هفته ایرانی‌ها بیشتر از همه کدوم سهم‌ها رو زیر نظر داشتن؟ پربازدیدترین‌ها، جستجوها، ورود و خروج از واچ‌لیست‌ها و نظر بازدیدکننده‌ها؛ از رفتار واقعی کاربران همین سایت.', PULSE_BODY, PULSE_JS),
         'calendar.html': page('calendar', 'rze', 'تقویم گزارش‌های مالی', 'کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.', CAL_BODY, CAL_JS),
     }
     for f, html in pages.items():
@@ -289,6 +336,10 @@ def main():
             s2 = re.sub(r'\n/\* THEME:START \*/.*?/\* THEME:END \*/\n', lambda m: block, s2, count=1, flags=re.S)
         else:
             s2 = s2.replace('</style>', block + '</style>', 1)
+        if '/* EVENTS:START */' in s2:
+            s2 = re.sub(r'\n/\* EVENTS:START \*/.*?/\* EVENTS:END \*/\n', lambda m: EVENTS_JS, s2, count=1, flags=re.S)
+        else:
+            s2 = s2.replace('<script>', '<script>' + EVENTS_JS, 1)
         open(p, 'w', encoding='utf-8').write(s2)
     print('ok')
 

@@ -218,7 +218,7 @@
 /* THEME:END */
 </style>
 
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
 <h1>ماشین‌حساب ارزش ذاتی سهام (DCF)</h1>
 <p class="sub">نماد شرکت رو بنویس، ببین با فرض‌های خودت سهم الان چقدر می‌ارزه، بازار چه رشدی رو قیمت‌گذاری کرده و جواب چقدر به فرض‌هات حساسه. همه‌چیز بر پایه‌ی ۱۲ ماه اخیر گزارش‌های رسمی شرکت‌ها و پیش‌بینی تحلیلگرهاست و هر شب به‌روز میشه.</p>
 
@@ -255,6 +255,13 @@
 <p class="note">داده‌ها: SEC EDGAR، گزارش‌های شرکت‌ها و پیش‌بینی تحلیلگرها (Yahoo Finance) · ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 
 <script>
+/* EVENTS:START */
+window.RZ_EVENTS=window.RZ_EVENTS||'';
+window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
+window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
+  if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
+/* EVENTS:END */
+
 (function(){
 var C={good:'#4FA37A',ok:'#8FB07A',mid:'#C9A961',bad:'#C8534F',blue:'#7A8FB0',ink:'#E8E4DA',mut:'#8A8F99',line:'#262B36',rev:'#C9A961',ni:'#8FB07A',fcf:'#C9A961',price:'#C9A961'};
 var API = window.RZD_API || null;

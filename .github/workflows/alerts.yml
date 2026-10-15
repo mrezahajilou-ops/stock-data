@@ -1,0 +1,51 @@
+name: Portfolio alerts (email subscribers on new trades)
+
+on:
+  schedule:
+    - cron: '7,27,47 * * * *'      # every 20 min, all day (trades can be entered outside market hours)
+  workflow_dispatch:
+    inputs:
+      subject:
+        description: 'Manual message: subject (leave empty for the normal trade check)'
+        required: false
+        default: ''
+      body:
+        description: 'Manual message: text (Farsi, line breaks ok)'
+        required: false
+        default: ''
+      test:
+        description: 'Send only to the Gmail sender address (nothing to subscribers)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alerts
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            alerts.py
+            sync_shopify.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check trades and email subscribers (nothing private is printed)
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_SUBJECT: ${{ github.event.inputs.subject }}
+          ALERT_BODY: ${{ github.event.inputs.body }}
+          TEST: ${{ github.event.inputs.test == 'true' && '1' || '' }}
+        run: python alerts.py

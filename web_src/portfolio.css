@@ -61,3 +61,11 @@
   #ID .pos{grid-template-columns:1fr}
   #ID .tm{height:280px}
 }
+
+#ID .al{display:flex;flex-direction:column;gap:10px;border-color:rgba(201,169,97,.45)}
+#ID .al.on{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 14px;padding:12px 16px;font-size:13.5px;color:var(--mut)}
+#ID .al.on b,#ID .al.on bdi{color:var(--ink)}
+#ID .al-act{display:flex;gap:6px}#ID .al-act button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 11px;font-size:12.5px;cursor:pointer;font-family:inherit}
+#ID .al-h b{display:block;font-size:16px;margin-bottom:4px}#ID .al-h span{font-size:13.5px;color:var(--mut);line-height:1.8}
+#ID .al-f{display:flex;gap:8px;flex-wrap:wrap}#ID .al-f input{flex:1 1 220px;min-width:0;background:var(--bg2,rgba(255,255,255,.04));border:1px solid var(--line);color:var(--ink);border-radius:12px;padding:10px 12px;font-size:15px;font-family:inherit}
+#ID .al-f .btn{padding:10px 18px}#ID .al-e{color:#E06C6C;font-size:13px;min-height:1px}

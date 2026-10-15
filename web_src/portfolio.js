@@ -144,8 +144,28 @@ function render(){header();var m=$('rzp-main');
     else body=perf+'<div class="lock card"><div class="blur">'+fakePos()+'</div><div class="cta">'+cta()+'</div></div>'}
   else if(TAB==='hist')body=ACC?'<div class="card feed" id="rzp-feed"></div>':'<div class="lock card" style="min-height:420px"><div class="blur">'+fakeFeed()+'</div><div class="cta">'+cta()+'</div></div>';
   else body='<div class="card posts" id="rzp-posts"></div>'+(ACC?'':'<div class="card" style="text-align:center">'+cta()+'</div>');
-  m.innerHTML=tabs+body+'<p class="note">این پورتفوی واقعی رضاست و فقط برای آموزش و شفافیت منتشر میشه؛ پیشنهاد خرید یا فروش نیست. قیمت‌ها حدود ۱۵ دقیقه تأخیر دارن.</p>';
+  m.innerHTML=tabs+(ACC?alertsBox():'')+body+'<p class="note">این پورتفوی واقعی رضاست و فقط برای آموزش و شفافیت منتشر میشه؛ پیشنهاد خرید یا فروش نیست. قیمت‌ها حدود ۱۵ دقیقه تأخیر دارن.</p>';
   if(TAB==='port'){drawChart();if(ACC){drawTree();drawPos()}}else if(TAB==='hist'&&ACC)drawFeed();else if(TAB==='comm')drawPosts()}
+/* ---- instant trade alerts by email: the subscriber registers an address (tags on the Shopify customer:
+   portfolio-alerts + alert-to:<unix>:<email>; alert-off:<unix> switches off). Sent by .github/workflows/alerts.yml ---- */
+var AL=P.alerts||{},AL_OPEN=false;
+function alertsBox(){var posted=/customer_posted=true/.test(location.search),pend=null;try{pend=JSON.parse(localStorage.getItem('rzp_al')||'null')}catch(e){}
+  if(posted&&pend&&Date.now()-pend.ts<600000){AL={on:pend.on,to:pend.to};}
+  var on=!!AL.on,to=AL.to||P.email||'';
+  if(on&&!AL_OPEN)return '<div class="card al on"><span>🔔 هشدار فوری معاملات فعاله · ارسال به <bdi dir="ltr">'+esc(to)+'</bdi></span><span class="al-act"><button type="button" data-al="edit">تغییر ایمیل</button><button type="button" data-al="off">خاموش</button></span></div>';
+  return '<div class="card al" id="alerts"><div class="al-h"><b>🔔 هشدار فوری هر خرید و فروش، به ایمیلت</b><span>به‌محض اینکه رضا معامله‌ای ثبت کنه (معمولاً در کمتر از ۲۰ دقیقه) یه ایمیل کوتاه با دلیلش برات میاد. '+(P.email?'ایمیل حسابت پر شده؛ اگه ایمیل دیگه‌ای می‌خوای عوضش کن.':'')+'</span></div>'+
+    '<form class="al-f" id="rzp-alf"><input type="email" id="rzp-ale" value="'+esc(to)+'" placeholder="ایمیل برای هشدارها" required dir="ltr"><button type="submit" class="btn">'+(on?'ذخیره':'فعال کن')+'</button>'+(on?'<button type="button" class="btn ghost" data-al="cancel">انصراف</button>':'')+'</form><div class="al-e" id="rzp-alerr"></div></div>'}
+function alertsPost(tags,state){var f=document.createElement('form');f.method='post';f.action='/contact#alerts';f.setAttribute('accept-charset','UTF-8');f.style.display='none';
+  [['form_type','customer'],['utf8','✓'],['contact[email]',P.email||''],['contact[tags]',tags]].forEach(function(p){var i=document.createElement('input');i.type='hidden';i.name=p[0];i.value=p[1];f.appendChild(i)});
+  try{localStorage.setItem('rzp_al',JSON.stringify({on:state.on,to:state.to,ts:Date.now()}))}catch(e){}document.body.appendChild(f);HTMLFormElement.prototype.submit.call(f)}
+document.getElementById('rzp').addEventListener('submit',function(e){if(e.target.id!=='rzp-alf')return;e.preventDefault();var em=($('rzp-ale').value||'').trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){$('rzp-alerr').textContent='یه ایمیل درست بنویس.';return}
+  if(!P.email){$('rzp-alerr').textContent='اول وارد حسابت شو.';return}
+  var ts=Math.floor(Date.now()/1000);alertsPost('portfolio-alerts,alert-to:'+ts+':'+em,{on:true,to:em})});
+document.getElementById('rzp').addEventListener('click',function(e){var b=e.target.closest('[data-al]');if(!b)return;
+  if(b.dataset.al==='edit'){AL_OPEN=true;render();var i=$('rzp-ale');if(i){i.focus();i.select()}}
+  else if(b.dataset.al==='cancel'){AL_OPEN=false;render()}
+  else if(b.dataset.al==='off'){if(confirm('هشدار ایمیلی معاملات خاموش بشه؟'))alertsPost('portfolio-alerts,alert-off:'+Math.floor(Date.now()/1000),{on:false,to:AL.to})}});
 function fakePos(){var t=['SE','MELI','META','NU','KSPI','BRK-B','PODD','HCA','DLO'],h='<div class="pos">';for(var i=0;i<9;i++)h+='<div class="pc"><span class="rk">#'+(i+1)+'</span><span class="lg">???</span><span class="nm"><b>●●●●</b><span>●●%</span></span><span class="vl"><b>$●●●</b><small>●●●</small></span></div>';return h+'</div>'}
 function fakeFeed(){var h='';for(var i=0;i<4;i++)h+='<div class="feed"><div class="ev"><b>●●●● — خرید ●● سهم به قیمت $●●●</b><p>دلیل این تصمیم ●●●● ●●●●● ●●● ●●●●●●● ●●●● ●●●●</p></div></div>';return h}
 document.getElementById('rzp').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(b){TAB=b.dataset.tab;try{history.replaceState(null,'','#'+TAB)}catch(x){}render();return}

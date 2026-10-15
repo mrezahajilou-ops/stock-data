@@ -6,10 +6,19 @@
 {%- capture rzp_acc -%}{%- render 'rz-portfolio-access' -%}{%- endcapture -%}
 {%- assign rzp_access = false -%}{%- if rzp_acc contains '1' -%}{%- assign rzp_access = true -%}{%- endif -%}
 {%- assign pm = metaobjects.rz_portfolio.main -%}
+{%- comment -%} trade-alert email status from customer tags: alert-to:<unix>:<email> (on) / alert-off:<unix> (off); newest wins {%- endcomment -%}
+{%- assign al_on_ts = 0 -%}{%- assign al_off_ts = 0 -%}{%- assign al_to = '' -%}
+{%- if customer -%}{%- for t in customer.tags -%}
+  {%- if t contains 'alert-to:' -%}{%- assign tp = t | split: ':' -%}{%- assign tts = tp[1] | plus: 0 -%}{%- if tts > al_on_ts -%}{%- assign al_on_ts = tts -%}{%- assign al_to = tp[2] -%}{%- endif -%}
+  {%- elsif t contains 'alert-off:' -%}{%- assign tp = t | split: ':' -%}{%- assign tts = tp[1] | plus: 0 -%}{%- if tts > al_off_ts -%}{%- assign al_off_ts = tts -%}{%- endif -%}{%- endif -%}
+{%- endfor -%}{%- endif -%}
+{%- assign al_on = false -%}{%- if al_on_ts > 0 and al_on_ts > al_off_ts -%}{%- assign al_on = true -%}{%- endif -%}
 <script>
 window.RZP = {
   access: {{ rzp_access | json }},
   logged: {% if customer %}true{% else %}false{% endif %},
+  email: {{ customer.email | json }},
+  alerts: { on: {{ al_on | json }}, to: {{ al_to | json }} },
   sub: '/products/portfolio-pro',
   login: '/account/login?return_url=%2Fpages%2Fportfolio',
   meta: {{ pm.meta.value | json }},

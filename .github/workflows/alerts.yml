@@ -39,7 +39,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Skip quietly until the Gmail secrets are set up
+        id: ready
+        env:
+          GU: ${{ secrets.GMAIL_USER }}
+          GP: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          if [ -z "$GU" ] || [ -z "$GP" ]; then echo "ok=no" >> "$GITHUB_OUTPUT"; echo "alerts not set up yet (GMAIL_USER / GMAIL_APP_PASSWORD missing) - nothing to do"; else echo "ok=yes" >> "$GITHUB_OUTPUT"; fi
       - name: Check trades and email subscribers (nothing private is printed)
+        if: steps.ready.outputs.ok == 'yes'
         env:
           SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
           SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}

@@ -1,0 +1,42 @@
+name: Portfolio - add a trade
+
+on:
+  workflow_dispatch:
+    inputs:
+      action: {description: 'BUY | SELL | DIVIDEND | DEPOSIT | WITHDRAW', required: true, default: 'BUY'}
+      ticker: {description: 'Ticker (empty for DEPOSIT/WITHDRAW)', required: false, default: ''}
+      shares: {description: 'Shares', required: false, default: ''}
+      price: {description: 'Price per share (USD)', required: false, default: ''}
+      amount: {description: 'Amount (USD) for dividend/deposit/withdraw', required: false, default: ''}
+      date: {description: 'ISO UTC, e.g. 2026-10-20T13:39:00Z (empty = now)', required: false, default: ''}
+      note: {description: 'Reason (Farsi), shown to subscribers', required: false, default: ''}
+
+permissions:
+  contents: read
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            trade_add.py
+            sync_shopify.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Add the trade (nothing private is printed)
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+          TR_ACTION: ${{ github.event.inputs.action }}
+          TR_TICKER: ${{ github.event.inputs.ticker }}
+          TR_SHARES: ${{ github.event.inputs.shares }}
+          TR_PRICE: ${{ github.event.inputs.price }}
+          TR_AMOUNT: ${{ github.event.inputs.amount }}
+          TR_DATE: ${{ github.event.inputs.date }}
+          TR_NOTE: ${{ github.event.inputs.note }}
+        run: python trade_add.py

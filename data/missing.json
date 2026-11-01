@@ -120,12 +120,6 @@
 "cik": 66901
 },
 {
-"t": "MSGK",
-"mcap": 7481237003,
-"why": "not in SEC ticker map",
-"cik": null
-},
-{
 "t": "AUGO",
 "mcap": 6560696161,
 "why": "no usable annual data",

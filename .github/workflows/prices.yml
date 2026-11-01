@@ -31,3 +31,26 @@ jobs:
           git add -A
           git commit -qm "prices $(date -u +%F)"
           git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $B:$B
+      - name: Official closes into the live quotes (fixes stale evening quotes)
+        if: ${{ inputs.limit == '' }}
+        run: |
+          git fetch -q origin quotes bench
+          mkdir -p qfix
+          git show origin/quotes:quotes.json > qfix/quotes.json
+          git show origin/bench:bench.json > qfix/bench.json || rm -f qfix/bench.json
+          python close_fix.py prices qfix
+          rm -f qfix/bench.json
+          cd qfix
+          git init -q -b quotes
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "quotes: official closes $(date -u +%F)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" quotes:quotes
+      - name: Portfolio point with the official closes
+        if: ${{ inputs.limit == '' }}
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+          QUOTES_FILE: qfix/quotes.json
+        run: python portfolio.py

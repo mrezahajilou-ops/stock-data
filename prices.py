@@ -154,7 +154,9 @@ def nasdaq_one(t):
 
 
 def write(t, rows, src):
-    json.dump({'t': t, 'as_of': TODAY.isoformat(), 'src': src, 'w': weekly(rows)},
+    # 'd' = the last 40 daily closes: official closes for the live-quote fix (close_fix.py), the portfolio
+    # history and the stock contest; 'w' = weekly closes for the long charts
+    json.dump({'t': t, 'as_of': TODAY.isoformat(), 'src': src, 'w': weekly(rows), 'd': rows[-40:]},
               open(os.path.join(OUT, t + '.json'), 'w'), separators=(',', ':'))
 
 

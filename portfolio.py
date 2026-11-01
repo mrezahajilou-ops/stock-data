@@ -91,8 +91,11 @@ def flows(trades, day):
 
 
 def main():
-    with urllib.request.urlopen(RAW + '/quotes/quotes.json', timeout=60) as r:
-        Q = json.loads(r.read())
+    if os.environ.get('QUOTES_FILE'):
+        Q = json.load(open(os.environ['QUOTES_FILE']))
+    else:
+        with urllib.request.urlopen(RAW + '/quotes/quotes.json', timeout=60) as r:
+            Q = json.loads(r.read())
     q = Q.get('q') or {}
     tok = token()
     trades = load_trades(tok)
@@ -115,7 +118,12 @@ def main():
             days[str(v[3])[:10]] = days.get(str(v[3])[:10], 0) + 1
     if not days:
         print('no quote dates'); return
-    d = max(days, key=days.get)
+    # newest trading day that a meaningful share of quotes belongs to (a minority of stale quotes from the
+    # previous day must not pull the date back - that created duplicate, out-of-order history points)
+    tot = sum(days.values())
+    d = max(k for k, c in days.items() if c >= 0.05 * tot)
+    if hist and d < hist[-1][0]:
+        print('quotes are from %s, history is already at %s - nothing to do' % (d, hist[-1][0])); return
     today = dt.date.fromisoformat(d)
     lock = (meta.get('savvy') or {}).get('as_of') or ''
     if d <= lock:
@@ -157,6 +165,8 @@ def main():
     vals.append([d, round(V, 2)])
     live = {'as_of': Q.get('as_of'), 'status': Q.get('status'), 'date': d, 'idx': hist[-1][1], 'spy': spy_idx,
             'day': round(r - 1, 6), 'n': len(hold)}
+    hist = sorted({h[0]: h for h in hist}.values())   # one point per day, in order
+    vals = sorted({v[0]: v for v in vals}.values())
     fields = [{'key': 'history', 'value': json.dumps(hist, separators=(',', ':'))},
               {'key': 'values', 'value': json.dumps(vals, separators=(',', ':'))},
               {'key': 'live', 'value': json.dumps(live, separators=(',', ':'))},

@@ -1,0 +1,31 @@
+name: Portfolio history repair (one-off, official closes)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Daily closes
+        run: |
+          git fetch -q origin prices bench
+          mkdir -p pr && git archive origin/prices | tar -x -C pr
+          git show origin/bench:bench.json > bench.json
+      - name: Rebuild history after the Savvy lock date (nothing private is printed)
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+        run: python portfolio_repair.py pr bench.json

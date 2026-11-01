@@ -163,7 +163,9 @@ def render(title, inner, name=''):
 
 
 def send_all(subs, subject, html_for):
-    user, pw = os.environ.get('GMAIL_USER', '').strip(), os.environ.get('GMAIL_APP_PASSWORD', '').strip()
+    user = re.sub(r'\s+', '', os.environ.get('GMAIL_USER', ''))
+    pw = re.sub(r'\s+', '', os.environ.get('GMAIL_APP_PASSWORD', ''))  # Google shows the code in 4 groups with (sometimes non-breaking) spaces
+    print('gmail check: user looks like an address=%s, code length=%d, letters only=%s' % ('@' in user, len(pw), pw.isascii() and pw.isalpha()))
     if not user or not pw:
         sys.exit('GMAIL_USER / GMAIL_APP_PASSWORD missing')
     if TEST:

@@ -12,8 +12,8 @@ function series(t){return getJ(RAW+'/prices/'+encodeURIComponent(t)+'.json'+bust
 function quotes(){return getJ(RAW+'/quotes/quotes.json'+bust())}
 function closeOn(j,day,exact){var a=(j&&j.d&&j.d.length)?j.d:((j&&j.w)||[]),r=null;for(var i=0;i<a.length;i++){if(a[i][0]<=day)r=a[i]}if(exact&&r&&r[0]!==day)return null;return r}
 function nyDate(iso){try{return new Date(iso).toLocaleDateString('en-CA',{timeZone:'America/New_York'})}catch(e){return String(iso).slice(0,10)}}
-function faDate(d){try{return new Date(d+'T12:00:00Z').toLocaleDateString('fa-IR',{day:'numeric',month:'long'})}catch(e){return d}}
-function faTime(iso){try{return new Date(iso).toLocaleString('fa-IR',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Berlin'})+' به وقت آلمان'}catch(e){return iso}}
+function faDate(d){try{return new Date(d+'T12:00:00Z').toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long'})}catch(e){return d}}
+function faTime(iso){try{return new Date(iso).toLocaleString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Berlin'})+' به وقت آلمان'}catch(e){return iso}}
 var ROWS=[],SHOW=30,LAST='',MODE='',STOCKS=[];
 function renderRank(E){var box=$('rzk-b-rank');
   if(Date.now()<STARTMS){box.innerHTML='<div class="empty">رتبه‌بندی بعد از بسته‌شدن بازار در روز جمعه ۳۰ اکتبر شروع میشه. ⏳</div>';return}

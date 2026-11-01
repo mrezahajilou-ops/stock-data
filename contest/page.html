@@ -1,0 +1,1328 @@
+<!doctype html>
+<html class="js" lang="en">
+  <head><script data-source-attribution="shopify.exit_interstitial">(()=>{var s=Function.prototype.bind.bind(Function.prototype.call),yt=(c,r)=>{for(let d=c;d;d=Object.getPrototypeOf(d)){let g=Object.getOwnPropertyDescriptor(d,r);if(g)return g}throw new TypeError(`${r} is not defined`)},u=(c,r)=>s(yt(c,r).get),B=(c,r)=>s(yt(c,r).set);var Et=s(String.prototype.endsWith),Pe=s(String.prototype.slice),_=s(RegExp.prototype.exec),Ae=/^_(self|top|parent)$/i,Le=/(^|\s)noreferrer(\s|$)/i,mt=/^(no-referrer(-when-downgrade)?|same-origin|(strict-)?origin(-when-cross-origin)?|unsafe-url)$/i,We=/^(never|default|always|origin-when-crossorigin)$/i,wt=/^(no-referrer|same-origin|never)$/i,Ie=/\s(musical_ly|trill)_|\sBytedanceWebview\//,ht=c=>Et(c,".")?Pe(c,0,-1):c,_t=c=>{let r=ht(c),d=`.${r}`;return g=>{let m=ht(g);return m===r||Et(m,d)}},bt=(c,r,d)=>c!==void 0&&(c.protocol==="https:"||c.protocol==="http:")&&c.origin!==r&&!d(c.hostname),kt=(c,r,d)=>c!==null&&_(Le,c)!==null?!0:r!==null&&_(mt,r)!==null?_(wt,r)!==null:d,vt=(c,r)=>_(mt,c)!==null||_(We,c)!==null?_(wt,c)!==null:r,L=(c,{metaKey:r,ctrlKey:d,shiftKey:g,button:m})=>c&&_(Ae,c)===null?c:r||d||g||m===1?"_blank":"",Nt=c=>_(Ie,c)!==null;var Te="http://www.w3.org/2000/svg",Me="http://www.w3.org/1999/xlink",G=["rel","referrerpolicy","download","ping","hreflang","type"];function St(c){let r=window;if(r.top!==r)return;let d=document,g=r.navigation,m=location.origin,N=URL,q=u(N.prototype,"href"),Rt=u(N.prototype,"origin"),xt=u(N.prototype,"protocol"),Ot=u(N.prototype,"hostname"),Y=s(Event.prototype.preventDefault),Pt=s(Event.prototype.stopPropagation),j=s(Event.prototype.stopImmediatePropagation),V=s(Event.prototype.composedPath),At=u(Event.prototype,"type"),Lt=u(Event.prototype,"cancelable"),X=u(Event.prototype,"defaultPrevented"),Wt=u(Event.prototype,"bubbles"),It=u(Event.prototype,"currentTarget"),Tt=u(Event.prototype,"eventPhase"),{CAPTURING_PHASE:Mt}=Event,z=u(Event.prototype,"cancelBubble"),Ct=B(Event.prototype,"cancelBubble"),Dt=u(MouseEvent.prototype,"button"),Ft=u(MouseEvent.prototype,"metaKey"),Ht=u(MouseEvent.prototype,"ctrlKey"),$t=u(MouseEvent.prototype,"shiftKey"),Kt=g&&u(NavigateEvent.prototype,"destination"),Ut=g&&u(NavigationDestination.prototype,"url"),J=g&&u(NavigateEvent.prototype,"navigationType"),Bt=g&&u(NavigateEvent.prototype,"formData"),Q=g&&"sourceElement"in NavigateEvent.prototype?u(NavigateEvent.prototype,"sourceElement"):void 0,w=s(Element.prototype.getAttribute),Gt=s(Element.prototype.getAttributeNS),W=s(Element.prototype.setAttribute),qt=u(Element.prototype,"localName"),Yt=u(Element.prototype,"namespaceURI"),jt=s(Document.prototype.querySelector),Vt=s(Document.prototype.querySelectorAll),Xt=u(NodeList.prototype,"length"),zt=s(NodeList.prototype.item),I=u(Node.prototype,"baseURI"),Jt=s(Document.prototype.createElement),Qt=s(HTMLElement.prototype.click),Zt=s(r.open),te=s(location.assign),ee=s(location.replace),ne=encodeURIComponent,oe=s(String.prototype.startsWith),Z=s(r.setTimeout),re=s(r.addEventListener),se=s(r.removeEventListener),tt=s(EventTarget.prototype.addEventListener),et=s(EventTarget.prototype.removeEventListener),nt=Object.defineProperties,ot=t=>{let e=[],n=[HTMLElement.prototype,SVGElement.prototype,Document.prototype,r];for(let o=0;o<n.length;o+=1)try{e[e.length]={get:u(n[o],t),set:B(n[o],t)}}catch{}return e},ce={click:ot("onclick"),auxclick:ot("onauxclick")},rt=WeakMap,ie=WeakSet,st=s(WeakMap.prototype.get),ae=s(WeakMap.prototype.set),le=s(WeakMap.prototype.delete),ue=s(WeakSet.prototype.add),pe=s(WeakSet.prototype.has),fe=_t(c.site),de=Nt(navigator.userAgent),ct=q(new N(c.exitPath,m)),ge=`${ct}?`,O=(t,e)=>{try{let n=new N(t,e);return{href:q(n),origin:Rt(n),protocol:xt(n),hostname:Ot(n)}}catch{return}},ye=(t,e,n)=>{let o=n?"&noreferrer=1":"";return`${ct}?q=${ne(t.href)}&trigger=${e}${o}`},it=()=>{let t=Vt(d,'meta[name="referrer" i][content]'),e=!1;for(let n=0;n<Xt(t);n+=1)e=vt(w(zt(t,n),"content"),e);return e},at=(t,e,{target:n,noReferrer:o,replaces:a})=>{let f=ye(t,e,o);if(n){Zt(r,f,n,"noopener");return}(a?ee:te)(location,f)},T=t=>bt(t,m,fe),P=0,M,C=!1,he=t=>{if(P>0){M=t;return}t()},Ee=t=>{if(P-=1,t&&(C=!0),P>0)return;let e=C?void 0:M;M=void 0,C=!1,e&&e()},me=t=>t!==void 0&&oe(t.href,ge),lt=t=>{try{return qt(t)}catch{return}},ut=t=>kt(w(t,"rel"),w(t,"referrerpolicy"),it()),we=t=>{let e=Q?Q(t):null,n=e===null?void 0:lt(e);return n==="a"||n==="area"?ut(e):it()},_e=t=>{let e=O(Ut(Kt(t)));if(me(e)){j(t);return}if(!Lt(t)||J(t)==="traverse"||!T(e)||Bt(t)!==null)return;Y(t);let n={target:"",noReferrer:we(t),replaces:J(t)==="replace"};he(()=>at(e,"navigate",n))},R=t=>{let e=w(t,"href");return e===null&&Yt(t)===Te?Gt(t,Me,"href"):e},be=t=>{let e=V(t);for(let n=0;n<e.length;n+=1){let o=e[n],a=lt(o);if(a==="a"||a==="area"){let f=R(o);if(f!==null)return{node:o,href:f}}}},D=t=>{let e=w(t,"target");if(e!==null)return e;let n=jt(d,"base[target]");return n?w(n,"target"):""},ke=t=>{try{return{metaKey:Ft(t),ctrlKey:Ht(t),shiftKey:$t(t),button:Dt(t)}}catch{return}},pt=new ie,ve=t=>{let e=!1,n=()=>{e=!0},o=()=>e||pe(pt,t);return nt(t,{__proto__:null,preventDefault:{__proto__:null,configurable:!0,value:n},defaultPrevented:{__proto__:null,configurable:!0,get:o},returnValue:{__proto__:null,configurable:!0,get:()=>!o(),set:a=>{a||n()}}}),o},Ne={click:new rt,auxclick:new rt},Se=(t,e)=>{let n=ce[t],o=Ne[t],a=[],f=p=>{for(let l=0;l<a.length;l+=1)if(a[l]===p)return!0;return!1},b=(p,l,E)=>{let y=s(E);function A(v){let x=y(this,v);return x===!1&&typeof v=="object"&&v!==null&&ue(pt,v),x}return{target:p,accessor:l,handler:E,wrapper:A,inFlight:0}},k=()=>{for(let p=0;p<e.length;p+=1)for(let l=0;l<n.length;l+=1){let E;try{E=n[l].get(e[p])}catch{continue}if(typeof E=="function"){let y=st(o,e[p]);(!y||y.wrapper!==E)&&(y=b(e[p],n[l],E),n[l].set(e[p],y.wrapper),ae(o,e[p],y)),f(y)||(y.inFlight+=1,a[a.length]=y)}break}};return k(),{wrap:k,unwrap:()=>{for(let p=0;p<a.length;p+=1){let l=a[p];l.inFlight-=1,!(l.inFlight>0)&&(st(o,l.target)===l&&le(o,l.target),l.accessor.get(l.target)===l.wrapper&&l.accessor.set(l.target,l.handler))}}}},ft=(t,e,n)=>{let o=R(t),a=o===null?void 0:O(o,I(d));if(!T(a))return;let f={target:de?"":L(D(t),n),noReferrer:ut(t),replaces:!1};return{inWindow:f.target==="",go:()=>at(a,e,f)}},dt=t=>{let e=R(t);if(e===null||w(t,"download")===null)return!1;let n=O(e,I(d));return n!==void 0&&(n.origin===m||n.protocol==="blob:"||n.protocol==="data:")},Re=(t,e)=>R(t)!==null&&!dt(t)&&L(D(t),e)==="",xe=(t,e)=>{let n=R(t);if(n===null)return!1;let o=Jt(d,"a"),a=L(D(t),e);W(o,"href",n),W(o,"target",a||"_self");for(let f=0;f<G.length;f+=1){let b=w(t,G[f]);b!==null&&W(o,G[f],b)}return Qt(o),a===""&&!dt(t)},Oe=(t,e,n,o)=>{P+=1;let a=V(t),f=a.length-1,b=0,k=!1,F=!1,p=i=>{F||(F=!0,Ee(i))},l=i=>{if(k)return;k=!0;let S=X(t),h=S?void 0:ft(n,e,o),U;!S&&(h||i)&&(Y(t),U=ve(t)),Z(r,()=>{if(!U){p(!X(t)&&Re(n,o));return}if(U()){p(!1);return}if(i&&(h=ft(n,e,o),!h)){p(xe(n,o));return}h.go(),p(h.inWindow)},0)},E=(i,S)=>{for(let h=0;h<a.length;h+=1)if(a[h]===i)return S===Mt?f-h:a.length+h;return-1},y=()=>{E(It(t),Tt(t))<=b&&l(!0)},A=i=>{i===t&&l(!1)},v=Se(e,a),x=i=>S=>{if(S===t){if(b=i,z(t)){l(!1);return}v.wrap()}},H=[],$=[],K=Wt(t);if(K){for(let i=0;i<f;i+=1)H[i]=x(f-i),$[i]=x(a.length+i),tt(a[i],e,H[i],!0),tt(a[i],e,$[i],!1);re(r,e,A,!1)}if(Z(r,()=>{if(k||p(!1),k=!0,v.unwrap(),!!K){for(let i=0;i<f;i+=1)et(a[i],e,H[i],!0),et(a[i],e,$[i],!1);se(r,e,A,!1)}},0),!K){l(!0);return}nt(t,{__proto__:null,stopPropagation:{__proto__:null,configurable:!0,value:()=>{y(),Pt(t)}},stopImmediatePropagation:{__proto__:null,configurable:!0,value:()=>{l(!0),j(t)}},cancelBubble:{__proto__:null,configurable:!0,get:()=>z(t),set:i=>{i&&y(),Ct(t,i)}}})},gt=t=>{let e=At(t),n=ke(t);if(!n||e==="auxclick"&&n.button!==1)return;let o=be(t);!o||!T(O(o.href,I(d)))||Oe(t,e,o.node,n)};g?.addEventListener("navigate",_e,!0),r.addEventListener("click",gt,!0),r.addEventListener("auxclick",gt,!0)}St({"site":"rezahajiloubooks.com","exitPath":"\/url"});})();
+//# sourceURL=exit-interstitial.js
+</script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="canonical" href="https://rezahajiloubooks.com/pages/contest"><link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin><title>
+      مسابقه‌ی سهام برتر نوامبر
+ &ndash; کتاب آموزش بورس فارسی</title>
+
+    
+      <meta name="description" content="🏆 کدوم سهم تو نوامبر بیشترین بازده رو میده؟ یه سهم از بین ۵۰۰ شرکت شاخص S&amp;amp;P 500 انتخاب کن. لازم نیست بهترین سهم کل بازار رو پیدا کنی؛ کافیه سهمت از سهم بقیه‌ی شرکت‌کننده‌ها بهتر عمل کنه. شرکت کاملاً رایگانه. جایزه‌ی نفر اول: ۱۰۰ یورو ۰روز ۰ساعت ۰دقیقه ۰ثانیه تا پایان مهلت ثبت‌نام (پنج‌شنبه ۲۹ اکتبر، ساعت ۲۳:۵۹ به و">
+    
+
+    
+
+<meta property="og:site_name" content="کتاب آموزش بورس فارسی">
+<meta property="og:url" content="https://rezahajiloubooks.com/pages/contest">
+<meta property="og:title" content="مسابقه‌ی سهام برتر نوامبر">
+<meta property="og:type" content="website">
+<meta property="og:description" content="🏆 کدوم سهم تو نوامبر بیشترین بازده رو میده؟ یه سهم از بین ۵۰۰ شرکت شاخص S&amp;amp;P 500 انتخاب کن. لازم نیست بهترین سهم کل بازار رو پیدا کنی؛ کافیه سهمت از سهم بقیه‌ی شرکت‌کننده‌ها بهتر عمل کنه. شرکت کاملاً رایگانه. جایزه‌ی نفر اول: ۱۰۰ یورو ۰روز ۰ساعت ۰دقیقه ۰ثانیه تا پایان مهلت ثبت‌نام (پنج‌شنبه ۲۹ اکتبر، ساعت ۲۳:۵۹ به و"><meta property="og:image" content="//rezahajiloubooks.com/cdn/shop/t/20/assets/reza-192.jpg?v=28044130779958601681791474072"><meta name="twitter:site" content="@https://x.com/Rezahajilo97838"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مسابقه‌ی سهام برتر نوامبر">
+<meta name="twitter:description" content="🏆 کدوم سهم تو نوامبر بیشترین بازده رو میده؟ یه سهم از بین ۵۰۰ شرکت شاخص S&amp;amp;P 500 انتخاب کن. لازم نیست بهترین سهم کل بازار رو پیدا کنی؛ کافیه سهمت از سهم بقیه‌ی شرکت‌کننده‌ها بهتر عمل کنه. شرکت کاملاً رایگانه. جایزه‌ی نفر اول: ۱۰۰ یورو ۰روز ۰ساعت ۰دقیقه ۰ثانیه تا پایان مهلت ثبت‌نام (پنج‌شنبه ۲۹ اکتبر، ساعت ۲۳:۵۹ به و"><link rel="icon" type="image/png" sizes="48x48" href="//rezahajiloubooks.com/cdn/shop/t/20/assets/reza-48.png?v=117363905813728847051791474072">
+<link rel="icon" type="image/jpeg" sizes="192x192" href="//rezahajiloubooks.com/cdn/shop/t/20/assets/reza-192.jpg?v=28044130779958601681791474072">
+<link rel="apple-touch-icon" sizes="192x192" href="//rezahajiloubooks.com/cdn/shop/t/20/assets/reza-192.jpg?v=28044130779958601681791474072">
+<meta name="theme-color" content="#0b1422">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://rezahajiloubooks.com/#reza",
+      "name": "رضا حاجیلو",
+      "alternateName": "Reza Hajiloo",
+      "url": "https://rezahajiloubooks.com",
+      "image": "//rezahajiloubooks.com/cdn/shop/t/20/assets/reza-192.jpg?v=28044130779958601681791474072",
+      "jobTitle": "Investor & Author",
+      "sameAs": ["https://www.instagram.com/rezahajilou", "https://x.com/Rezahajilo97838", "https://www.youtube.com/@rezahajilou"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rezahajiloubooks.com/#website",
+      "url": "https://rezahajiloubooks.com",
+      "name": "کتاب آموزش بورس فارسی",
+      "inLanguage": "fa",
+      "publisher": { "@id": "https://rezahajiloubooks.com/#reza" }
+    }
+  ]
+}
+</script>
+
+
+    <script type="module">
+      import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
+
+      window.StandardEvents = StandardEvents;
+
+      customElements.define('collection-component', StandardEvents.createViewEventElement());
+      customElements.define(
+        'product-component',
+        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' }),
+      );
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const template = document.querySelector('main[data-template]')?.dataset.template || '';
+        document.dispatchEvent(
+          new StandardEvents.PageViewEvent({
+            page: { template, title: document.title, url: window.location.href },
+          })
+        );
+      }, { once: true });
+    </script>
+
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/constants.js?v=132983761750457495441791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/pubsub.js?v=25310214064522200911791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/global.js?v=120629414044750144071791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/cart-disclosure-modal.js?v=154804774285276548271791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/cart-disclosure-tooltip.js?v=71764992101190568491791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/details-disclosure.js?v=13653116266235556501791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/details-modal.js?v=25581673532751508451791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/search-form.js?v=133129549252120666541791474072" defer="defer"></script>
+    <script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/standard-actions-override.js?v=179748164002689766821791474072" defer="defer"></script><script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta name="google-site-verification" content="Gh6B4izvjlwITog6DbE0mktS52xbsKRFOAwU7d-b_mw">
+<meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/106724753750/digital_wallets/dialog">
+<meta id="in-context-paypal-metadata" data-shop-id="106724753750" data-venmo-supported="false" data-environment="production" data-locale="en_US" data-paypal-v4="true" data-currency="EUR">
+<link rel="ucp" href="/.well-known/ucp" version="2026-08-25"><script async="async" src="/checkouts/internal/preloads.js?locale=en-DE"></script>
+<link rel="preconnect" href="https://shop.app" crossorigin="anonymous">
+<script async="async" src="https://shop.app/checkouts/internal/preloads.js?locale=en-DE&shop_id=106724753750" crossorigin="anonymous"></script>
+<script id="apple-pay-shop-capabilities" type="application/json">{"shopId":106724753750,"countryCode":"DE","currencyCode":"EUR","merchantCapabilities":["supports3DS"],"merchantId":"gid:\/\/shopify\/Shop\/106724753750","merchantName":"کتاب آموزش بورس فارسی","requiredBillingContactFields":["postalAddress","email"],"requiredShippingContactFields":["postalAddress","email"],"shippingType":"shipping","supportedNetworks":["visa","maestro","masterCard","amex"],"total":{"type":"pending","label":"کتاب آموزش بورس فارسی","amount":"1.00"},"shopifyPaymentsEnabled":true,"supportsSubscriptions":true}</script>
+<script id="shopify-features" type="application/json">{"accessToken":"d1a1178978a4739a0012b92ef1765a70","betas":["rich-media-storefront-analytics"],"domain":"rezahajiloubooks.com","predictiveSearch":true,"shopId":106724753750,"locale":"en"}</script>
+<script>var Shopify = Shopify || {};
+Shopify.shop = "jev8ju-dh.myshopify.com";
+Shopify.locale = "en";
+Shopify.currency = {"active":"EUR","rate":"1.0"};
+Shopify.country = "DE";
+Shopify.theme = {"name":"Reza – trade alerts (draft by Claude)","id":208549478742,"schema_name":"Origin","schema_version":"16.0.0","theme_store_id":1841,"role":"main"};
+Shopify.theme.handle = "null";
+Shopify.theme.style = {"id":null,"handle":null};
+Shopify.cdnHost = "rezahajiloubooks.com/cdn";
+Shopify.routes = Shopify.routes || {};
+Shopify.routes.root = "/";
+Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";
+Shopify.SignInWithShop = Shopify.SignInWithShop || {};
+Shopify.SignInWithShop.User = Shopify.SignInWithShop.User || {};
+Shopify.SignInWithShop.User.recognized = false;</script>
+<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
+<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
+<script>
+  window.ShopifyPay = window.ShopifyPay || {};
+  window.ShopifyPay.apiHost = "shop.app\/pay";
+  window.ShopifyPay.redirectState = null;
+</script>
+<script>
+  window.Shopify = window.Shopify || {};
+  window.Shopify.SignInWithShop = window.Shopify.SignInWithShop || {};
+  window.Shopify.SignInWithShop.assetMetrics = { sampleRate: 0.25 };
+  window.Shopify.SignInWithShop.eligible = true;
+</script>
+<script id="shop-js-analytics" type="application/json">{"pageType":"page"}</script>
+<script defer="defer" async type="module" src="https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js"></script>
+<script type="module">
+  await import("https://cdn.shopify.com/shopifycloud/shop-js/modules/v2/loader.init-shop-cart-sync.en.esm.js");
+
+  window.Shopify.SignInWithShop?.initShopCartSync?.({"fedCMEnabled":true,"windoidEnabled":true,"backendHost":"cmV6YWhhamlsb3Vib29rcy5jb20="});
+
+</script>
+<script>
+  window.Shopify = window.Shopify || {};
+  if (!window.Shopify.featureAssets) window.Shopify.featureAssets = {};
+  window.Shopify.featureAssets['shop-js'] = {"avatar":["modules/v2/loader.avatar.en.esm.js"],"checkout-modal":["modules/v2/loader.checkout-modal.en.esm.js"],"init-customer-accounts-sign-up":["modules/v2/loader.init-customer-accounts-sign-up.en.esm.js"],"init-customer-accounts":["modules/v2/loader.init-customer-accounts.en.esm.js"],"init-fed-cm":["modules/v2/loader.init-fed-cm.en.esm.js"],"init-shop-cart-sync":["modules/v2/loader.init-shop-cart-sync.en.esm.js"],"init-shop-email-lookup-coordinator":["modules/v2/loader.init-shop-email-lookup-coordinator.en.esm.js"],"init-shop-for-new-customer-accounts":["modules/v2/loader.init-shop-for-new-customer-accounts.en.esm.js"],"init-shop-user-recognition":["modules/v2/loader.init-shop-user-recognition.en.esm.js"],"init-windoid":["modules/v2/loader.init-windoid.en.esm.js"],"lead-capture":["modules/v2/loader.lead-capture.en.esm.js"],"listener":["modules/v2/loader.listener.en.esm.js"],"pay-button":["modules/v2/loader.pay-button.en.esm.js"],"payment-terms":["modules/v2/loader.payment-terms.en.esm.js"],"shop-button":["modules/v2/loader.shop-button.en.esm.js"],"shop-cart-sync":["modules/v2/loader.shop-cart-sync.en.esm.js"],"shop-cash-offers":["modules/v2/loader.shop-cash-offers.en.esm.js"],"shop-follow-button":["modules/v2/loader.shop-follow-button.en.esm.js"],"shop-login-button":["modules/v2/loader.shop-login-button.en.esm.js"],"shop-login":["modules/v2/loader.shop-login.en.esm.js"],"shop-toast-manager":["modules/v2/loader.shop-toast-manager.en.esm.js"],"shop-user-recognition":["modules/v2/loader.shop-user-recognition.en.esm.js"]};
+</script>
+<script>(function() {
+  var isLoaded = false;
+  function asyncLoad() {
+    if (isLoaded) return;
+    isLoaded = true;
+    var urls = ["https:\/\/delivery.shopifyapps.com\/assets\/checkout\/script.js?shop=jev8ju-dh.myshopify.com"];
+    for (var i = 0; i < urls.length; i++) {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = urls[i];
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  };
+  if(window.attachEvent) {
+    window.attachEvent('onload', asyncLoad);
+  } else {
+    window.addEventListener('load', asyncLoad, false);
+  }
+})();</script>
+<script id="__st">var __st={"a":106724753750,"offset":3600,"reqid":"0edf3c17-aa47-452c-91ad-9750cafd8288-1793494680","pageurl":"rezahajiloubooks.com\/pages\/contest","s":"pages-198092980566","u":"fb4f3862addf","p":"page","rtyp":"page","rid":198092980566};</script>
+<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
+<script id="form-persister">!function(){'use strict';const t='contact',e='new_comment',n=[[t,t],['blogs',e],['comments',e],[t,'customer']],o='password',r='form_key',c=['recaptcha-v3-token','g-recaptcha-response','h-captcha-response',o],s=()=>{try{return window.sessionStorage}catch{return}},i='__shopify_v',u=t=>t.elements[r],a=function(){const t=[...n].map((([t,e])=>`form[action*='/${t}']:not([data-nocaptcha='true']) input[name='form_type'][value='${e}']`)).join(',');var e;return e=t,()=>e?[...document.querySelectorAll(e)].map((t=>t.form)):[]}();function m(t){const e=u(t);a().includes(t)&&(!e||!e.value)&&function(t){try{if(!s())return;!function(t){const e=s();if(!e)return;const n=u(t);if(!n)return;const o=n.value;o&&e.removeItem(o)}(t);const e=Array.from(Array(32),(()=>Math.random().toString(36)[2])).join('');!function(t,e){u(t)||t.append(Object.assign(document.createElement('input'),{type:'hidden',name:r})),t.elements[r].value=e}(t,e),function(t,e){const n=s();if(!n)return;const r=[...t.querySelectorAll(`input[type='${o}']`)].map((({name:t})=>t)),u=[...c,...r],a={};for(const[o,c]of new FormData(t).entries())u.includes(o)||(a[o]=c);n.setItem(e,JSON.stringify({[i]:1,action:t.action,data:a}))}(t,e)}catch(e){console.error('failed to persist form',e)}}(t)}const f=t=>{if('true'===t.dataset.persistBound)return;const e=function(t,e){const n=function(t){return'function'==typeof t.submit?t.submit:HTMLFormElement.prototype.submit}(t).bind(t);return function(){let t;return()=>{t||(t=!0,(()=>{try{e(),n()}catch(t){(t=>{console.error('form submit failed',t)})(t)}})(),setTimeout((()=>t=!1),250))}}()}(t,(()=>{m(t)}));!function(t,e){if('function'==typeof t.submit&&'function'==typeof e)try{t.submit=e}catch{}}(t,e),t.addEventListener('submit',(t=>{t.preventDefault(),e()})),t.dataset.persistBound='true'};!function(){function t(t){const e=(t=>{const e=t.target;return e instanceof HTMLFormElement?e:e&&e.form})(t);e&&m(e)}document.addEventListener('submit',t),document.addEventListener('DOMContentLoaded',(()=>{const e=a();for(const t of e)f(t);var n;n=document.body,new window.MutationObserver((t=>{for(const e of t)if('childList'===e.type&&e.addedNodes.length)for(const t of e.addedNodes)1===t.nodeType&&'FORM'===t.tagName&&a().includes(t)&&f(t)})).observe(n,{childList:!0,subtree:!0,attributes:!1}),document.removeEventListener('submit',t)}))}()}();</script>
+<script integrity="sha256-FYHzja/5XSmzkjz6zHj7s4rACJGFuVoYZdumgoO2Ecs=" data-source-attribution="shopify.loadfeatures" defer="defer" src="//rezahajiloubooks.com/cdn/shopifycloud/storefront/assets/storefront/load_feature-ed94c51f.js" crossorigin="anonymous"></script>
+<script>(function () {var userAgent = navigator.userAgent;var platform = navigator.platform;var maxTouchPoints = navigator.maxTouchPoints || 0;var isIOS = /iPad|iPhone|iPod/.test(platform) || (platform === 'MacIntel' && maxTouchPoints > 1);var isMacSafari = platform.indexOf('Mac') === 0 && /Safari/.test(userAgent) && !/Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android/.test(userAgent);var isAppleSafari = isIOS || isMacSafari;if (isAppleSafari) {fetch('/sf_private_access_tokens' + location.search).catch(function () {});}function browserMajorVersion(pattern) {var match = userAgent.match(pattern);return match ? parseInt(match[1], 10) : null;}function shouldLoadAutosizesPolyfill() {if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {return false;}var chromeVersion = browserMajorVersion(/Chrome\/(\d+)/);if (chromeVersion !== null) {return chromeVersion < 126;}var firefoxVersion = browserMajorVersion(/Firefox\/(\d+)/);if (firefoxVersion !== null) {return firefoxVersion < 150;}var safariVersion = isAppleSafari ? browserMajorVersion(/Version\/(\d+).*Safari\//) : null;if (safariVersion !== null) {return safariVersion < 27;}return true;}if (shouldLoadAutosizesPolyfill()) {var autosizesScript = document.createElement('script');autosizesScript.async = true;autosizesScript.crossOrigin = 'anonymous';autosizesScript.src = "//rezahajiloubooks.com/cdn/shopifycloud/storefront/assets/storefront/autosizes-84416378.js";(document.head || document.documentElement).appendChild(autosizesScript);}window.ShopifyAnalytics = window.ShopifyAnalytics || {};window.ShopifyAnalytics.performance = window.ShopifyAnalytics.performance || {};(function () {var LONG_FRAME_THRESHOLD = 50;var longAnimationFrames = [];var activeRafId = null;function collectLongFrames() {var previousTime = null;function rafMonitor(now) {if (activeRafId === null) {return;}var delta = now - previousTime;if (delta > LONG_FRAME_THRESHOLD) {longAnimationFrames.push({startTime: previousTime,endTime: now,});}previousTime = now;activeRafId = requestAnimationFrame(rafMonitor);}previousTime = performance.now();activeRafId = requestAnimationFrame(rafMonitor);}if (!window.PerformanceObserver?.supportedEntryTypes?.includes('long-animation-frame')) {collectLongFrames();var timeoutId = setTimeout(function () {cancelAnimationFrame(activeRafId);}, 10000);window.ShopifyAnalytics.performance.getLongAnimationFrames = function (stopCollection) {if (stopCollection === undefined) {stopCollection = false;}if (stopCollection) {clearTimeout(timeoutId);cancelAnimationFrame(activeRafId);}return longAnimationFrames;};}})();})();</script><script crossorigin="anonymous" defer="defer" src="//rezahajiloubooks.com/cdn/shopifycloud/storefront/assets/shopify_pay/storefront-f0e26bdf.js?v=20250812"></script>
+<script id="shopify-origin-trials" async="async" integrity="sha256-qJbe/jEZBHtr5W/BlA2cKAz3vkXu6vJQyLjgvgCC86g=" src="//cdn.shopify.com/shopifycloud/storefront/assets/storefront/origin_trials-318ab40a.js" crossorigin="anonymous" onload="window.__shopifyOriginTrialsDone = true" onerror="window.__shopifyOriginTrialsDone = true"></script>
+<script>(()=>{var d="shopify:webmcp_adapter_loaded",n=Symbol.for("shopify.webmcp_adapter_loading");function s(c,a,{win:r=window,doc:o=document}={}){function p(){try{return r.localStorage.getItem(d)==="true"}catch{return!1}}function l(){try{r.localStorage.setItem(d,"true")}catch{}}function u(){return typeof(o.modelContext||r.navigator?.modelContext)?.registerTool=="function"}function f(){if(r[n]||!u())return;let t=o.head||o.getElementsByTagName("head")[0];if(!t)return;let e=o.createElement("script");e.type="module",e.crossOrigin="anonymous",a&&(e.integrity=a),e.src=c,e.addEventListener("load",l,{once:!0}),e.addEventListener("error",()=>{r[n]=!1},{once:!0}),t.appendChild(e),r[n]=!0}function _(t){let e=o.getElementById("shopify-origin-trials");if(!e||r.__shopifyOriginTrialsDone){t();return}e.addEventListener("load",t,{once:!0}),e.addEventListener("error",t,{once:!0})}function i(){_(()=>r.setTimeout(f,0))}function m(){o.addEventListener("DOMContentLoaded",i,{once:!0})}p()?i():m()}s("\/\/rezahajiloubooks.com\/cdn\/shopifycloud\/storefront\/assets\/storefront\/webmcp-23c12384.js","sha256-r8Pww6V2udgtSdaVbcRtdZ4Kg+gXP7aLPZOtQSJPrbM=");})();
+</script>
+<script data-source-attribution="shopify.dynamic_checkout.dynamic.init">var Shopify=Shopify||{};Shopify.PaymentButton=Shopify.PaymentButton||{isStorefrontPortableWallets:!0,init:function(){window.Shopify.PaymentButton.init=function(){};var t=document.createElement("script");t.src="https://rezahajiloubooks.com/cdn/shopifycloud/portable-wallets/latest/portable-wallets.en.js",t.type="module",document.head.appendChild(t)}};
+</script>
+<script data-source-attribution="shopify.dynamic_checkout.buyer_consent">
+  function portableWalletsHideBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.add("hidden"),t.setAttribute("aria-hidden","true"),n.removeEventListener("click",e))}function portableWalletsShowBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.remove("hidden"),t.removeAttribute("aria-hidden"),n.addEventListener("click",e))}window.Shopify?.PaymentButton&&(window.Shopify.PaymentButton.hideBuyerConsent=portableWalletsHideBuyerConsent,window.Shopify.PaymentButton.showBuyerConsent=portableWalletsShowBuyerConsent);
+</script>
+<script data-source-attribution="shopify.dynamic_checkout.cart.bootstrap">document.addEventListener("DOMContentLoaded",(function(){function t(){return document.querySelector("shopify-accelerated-checkout-cart, shopify-accelerated-checkout")}if(t())Shopify.PaymentButton.init();else{new MutationObserver((function(e,n){t()&&(Shopify.PaymentButton.init(),n.disconnect())})).observe(document.body,{childList:!0,subtree:!0})}}));
+</script>
+<script id='scb4127' type='text/javascript' async='' src='https://rezahajiloubooks.com/cdn/shopifycloud/privacy-banner/privacy-banner.js'></script><link id="shopify-accelerated-checkout-styles" rel="stylesheet" media="screen" href="https://rezahajiloubooks.com/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css" crossorigin="anonymous">
+<style id="shopify-accelerated-checkout-cart">
+        #shopify-buyer-consent {
+  margin-top: 1em;
+  display: inline-block;
+  width: 100%;
+}
+
+#shopify-buyer-consent.hidden {
+  display: none;
+}
+
+#shopify-subscription-policy-button {
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+#shopify-subscription-policy-button::before {
+  box-shadow: none;
+}
+
+      </style>
+
+<script id="shopify-cfh-end">window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
+
+
+    <style data-shopify>
+      
+      
+      
+      
+      @font-face {
+  font-family: Platypi;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("//rezahajiloubooks.com/cdn/fonts/platypi/platypi_n5.eceb4a4de281a6ef42e6897768a01dc7adcffdb3.woff2") format("woff2"),
+       url("//rezahajiloubooks.com/cdn/fonts/platypi/platypi_n5.4c88ab31789f4cb5f3b3d72d22ca9d0ab2570110.woff") format("woff");
+}
+
+
+      
+        :root,
+        .color-scheme-1 {
+          --color-background: 12,14,18;
+        
+          --gradient-background: #0c0e12;
+        
+
+        
+
+        --color-foreground: 232,228,218;
+        --color-background-contrast: 120,135,165;
+        --color-shadow: 0,0,0;
+        --color-button: 201,169,97;
+        --color-button-text: 21,18,10;
+        --color-secondary-button: 12,14,18;
+        --color-secondary-button-text: 201,169,97;
+        --color-link: 201,169,97;
+        --color-badge-foreground: 232,228,218;
+        --color-badge-background: 12,14,18;
+        --color-badge-border: 232,228,218;
+        --payment-terms-background-color: rgb(12 14 18);
+      }
+      
+        
+        .color-scheme-2 {
+          --color-background: 21,24,31;
+        
+          --gradient-background: #15181f;
+        
+
+        
+
+        --color-foreground: 232,228,218;
+        --color-background-contrast: 134,146,173;
+        --color-shadow: 0,0,0;
+        --color-button: 201,169,97;
+        --color-button-text: 21,18,10;
+        --color-secondary-button: 21,24,31;
+        --color-secondary-button-text: 201,169,97;
+        --color-link: 201,169,97;
+        --color-badge-foreground: 232,228,218;
+        --color-badge-background: 21,24,31;
+        --color-badge-border: 232,228,218;
+        --payment-terms-background-color: rgb(21 24 31);
+      }
+      
+        
+        .color-scheme-3 {
+          --color-background: 28,32,41;
+        
+          --gradient-background: #1c2029;
+        
+
+        
+
+        --color-foreground: 232,228,218;
+        --color-background-contrast: 38,44,56;
+        --color-shadow: 0,0,0;
+        --color-button: 201,169,97;
+        --color-button-text: 21,18,10;
+        --color-secondary-button: 28,32,41;
+        --color-secondary-button-text: 232,228,218;
+        --color-link: 232,228,218;
+        --color-badge-foreground: 232,228,218;
+        --color-badge-background: 28,32,41;
+        --color-badge-border: 232,228,218;
+        --payment-terms-background-color: rgb(28 32 41);
+      }
+      
+        
+        .color-scheme-4 {
+          --color-background: 201,169,97;
+        
+          --gradient-background: #c9a961;
+        
+
+        
+
+        --color-foreground: 21,18,10;
+        --color-background-contrast: 127,101,43;
+        --color-shadow: 0,0,0;
+        --color-button: 21,18,10;
+        --color-button-text: 232,228,218;
+        --color-secondary-button: 201,169,97;
+        --color-secondary-button-text: 21,18,10;
+        --color-link: 21,18,10;
+        --color-badge-foreground: 21,18,10;
+        --color-badge-background: 201,169,97;
+        --color-badge-border: 21,18,10;
+        --payment-terms-background-color: rgb(201 169 97);
+      }
+      
+        
+        .color-scheme-5 {
+          --color-background: 79,163,122;
+        
+          --gradient-background: #4fa37a;
+        
+
+        
+
+        --color-foreground: 12,14,18;
+        --color-background-contrast: 37,77,58;
+        --color-shadow: 0,0,0;
+        --color-button: 12,14,18;
+        --color-button-text: 232,228,218;
+        --color-secondary-button: 79,163,122;
+        --color-secondary-button-text: 12,14,18;
+        --color-link: 12,14,18;
+        --color-badge-foreground: 12,14,18;
+        --color-badge-background: 79,163,122;
+        --color-badge-border: 12,14,18;
+        --payment-terms-background-color: rgb(79 163 122);
+      }
+      
+
+      body, .color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5 {
+        color: rgba(var(--color-foreground), 0.75);
+        background-color: rgb(var(--color-background));
+      }
+
+      :root {
+        --font-body-family: "system_ui", -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        --font-body-style: normal;
+        --font-body-weight: 400;
+        --font-body-weight-bold: 700;
+
+        --font-heading-family: Platypi, serif;
+        --font-heading-style: normal;
+        --font-heading-weight: 500;
+
+        --font-body-scale: 1.0;
+        --font-heading-scale: 1.1;
+
+        --media-padding: px;
+        --media-border-opacity: 0.0;
+        --media-border-width: 0px;
+        --media-radius: 14px;
+        --media-shadow-opacity: 0.0;
+        --media-shadow-horizontal-offset: 0px;
+        --media-shadow-vertical-offset: 4px;
+        --media-shadow-blur-radius: 5px;
+        --media-shadow-visible: 0;
+
+        --page-width: 120rem;
+        --page-width-margin: 0rem;
+
+        --product-card-image-padding: 0.0rem;
+        --product-card-corner-radius: 1.4rem;
+        --product-card-text-alignment: left;
+        --product-card-border-width: 0.0rem;
+        --product-card-border-opacity: 0.0;
+        --product-card-shadow-opacity: 0.0;
+        --product-card-shadow-visible: 0;
+        --product-card-shadow-horizontal-offset: 0.0rem;
+        --product-card-shadow-vertical-offset: 0.4rem;
+        --product-card-shadow-blur-radius: 0.5rem;
+
+        --collection-card-image-padding: 0.0rem;
+        --collection-card-corner-radius: 1.4rem;
+        --collection-card-text-alignment: left;
+        --collection-card-border-width: 0.0rem;
+        --collection-card-border-opacity: 0.0;
+        --collection-card-shadow-opacity: 0.0;
+        --collection-card-shadow-visible: 0;
+        --collection-card-shadow-horizontal-offset: 0.0rem;
+        --collection-card-shadow-vertical-offset: 0.4rem;
+        --collection-card-shadow-blur-radius: 0.5rem;
+
+        --blog-card-image-padding: 0.0rem;
+        --blog-card-corner-radius: 1.4rem;
+        --blog-card-text-alignment: left;
+        --blog-card-border-width: 0.0rem;
+        --blog-card-border-opacity: 0.0;
+        --blog-card-shadow-opacity: 0.0;
+        --blog-card-shadow-visible: 0;
+        --blog-card-shadow-horizontal-offset: 0.0rem;
+        --blog-card-shadow-vertical-offset: 0.4rem;
+        --blog-card-shadow-blur-radius: 0.5rem;
+
+        --badge-corner-radius: 0.6rem;
+
+        --popup-border-width: 1px;
+        --popup-border-opacity: 0.4;
+        --popup-corner-radius: 14px;
+        --popup-shadow-opacity: 0.2;
+        --popup-shadow-horizontal-offset: 0px;
+        --popup-shadow-vertical-offset: 8px;
+        --popup-shadow-blur-radius: 25px;
+
+        --drawer-border-width: 1px;
+        --drawer-border-opacity: 0.4;
+        --drawer-shadow-opacity: 0.3;
+        --drawer-shadow-horizontal-offset: 0px;
+        --drawer-shadow-vertical-offset: 4px;
+        --drawer-shadow-blur-radius: 25px;
+
+        --spacing-sections-desktop: 0px;
+        --spacing-sections-mobile: 0px;
+
+        --grid-desktop-vertical-spacing: 32px;
+        --grid-desktop-horizontal-spacing: 32px;
+        --grid-mobile-vertical-spacing: 16px;
+        --grid-mobile-horizontal-spacing: 16px;
+
+        --text-boxes-border-opacity: 0.0;
+        --text-boxes-border-width: 0px;
+        --text-boxes-radius: 14px;
+        --text-boxes-shadow-opacity: 0.0;
+        --text-boxes-shadow-visible: 0;
+        --text-boxes-shadow-horizontal-offset: 0px;
+        --text-boxes-shadow-vertical-offset: 4px;
+        --text-boxes-shadow-blur-radius: 5px;
+
+        --buttons-radius: 10px;
+        --buttons-radius-outset: 10px;
+        --buttons-border-width: 0px;
+        --buttons-border-opacity: 0.0;
+        --buttons-shadow-opacity: 0.0;
+        --buttons-shadow-visible: 0;
+        --buttons-shadow-horizontal-offset: 0px;
+        --buttons-shadow-vertical-offset: 4px;
+        --buttons-shadow-blur-radius: 5px;
+        --buttons-border-offset: 0.3px;
+
+        --inputs-radius: 10px;
+        --inputs-border-width: 1px;
+        --inputs-border-opacity: 0.4;
+        --inputs-shadow-opacity: 0.0;
+        --inputs-shadow-horizontal-offset: 0px;
+        --inputs-margin-offset: 0px;
+        --inputs-shadow-vertical-offset: 4px;
+        --inputs-shadow-blur-radius: 5px;
+        --inputs-radius-outset: 11px;
+
+        --variant-pills-radius: 40px;
+        --variant-pills-border-width: 1px;
+        --variant-pills-border-opacity: 1.0;
+        --variant-pills-shadow-opacity: 0.0;
+        --variant-pills-shadow-horizontal-offset: 0px;
+        --variant-pills-shadow-vertical-offset: 4px;
+        --variant-pills-shadow-blur-radius: 5px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      html {
+        box-sizing: border-box;
+        font-size: calc(var(--font-body-scale) * 62.5%);
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        margin: 0;
+        font-size: 1.5rem;
+        letter-spacing: 0.06rem;
+        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        font-family: var(--font-body-family);
+        font-style: var(--font-body-style);
+        font-weight: var(--font-body-weight);
+      }
+
+      @media screen and (min-width: 750px) {
+        body {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+
+    <link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/base.css?v=177946997503462741151791474072" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-cart-items.css?v=21057267699993713401791474072" media="print" onload="this.media='all'"><link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-cart-drawer.css?v=39223250576183958541791474072" rel="stylesheet" type="text/css" media="all" />
+      <link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-cart.css?v=164708765130180853531791474072" rel="stylesheet" type="text/css" media="all" />
+      <link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-totals.css?v=15906652033866631521791474072" rel="stylesheet" type="text/css" media="all" />
+      <link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-price.css?v=47596247576480123001791474072" rel="stylesheet" type="text/css" media="all" />
+      <link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-discounts.css?v=152760482443307489271791474072" rel="stylesheet" type="text/css" media="all" />
+
+      <link rel="preload" as="font" href="//rezahajiloubooks.com/cdn/fonts/platypi/platypi_n5.eceb4a4de281a6ef42e6897768a01dc7adcffdb3.woff2" type="font/woff2" crossorigin>
+      
+<link
+        rel="stylesheet"
+        href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-predictive-search.css?v=118923337488134913561791474072"
+        media="print"
+        onload="this.media='all'"
+      ><script>
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+  <!-- BEGIN app block: shopify://apps/terms-and-conditions/blocks/star_rating/8fb80138-d282-4b95-baf0-f2e16c12fcbb --><link
+rel="preload"
+href="https://cdn.shopify.com/extensions/01a19107-dccc-76ce-8a0a-559f4e07cbd8/terms-and-conditions-15-185/assets/front-style.css"
+as="style"
+onload="this.onload=null;this.rel='stylesheet'"
+>
+<noscript>
+<link rel="stylesheet" href="https://cdn.shopify.com/extensions/01a19107-dccc-76ce-8a0a-559f4e07cbd8/terms-and-conditions-15-185/assets/front-style.css">
+</noscript>
+
+<script type="text/javascript">
+  
+     window.tac_base_url = "https://tac.gminfotech.net/";
+    window.allProductIdsHere = [];
+    window.newProductId = '';
+    
+
+           window.gmtncappmeta = "";
+    
+      window.gmtncappmeta = {"default_data":"DE-EN","is_charge_approve":"0","charge_slab":"2","partnerDevelopment":"0","data":{"DE-EN":{"id":"5760","country_code":"DE","language_code":"EN","store_user_id":"7487","primary_check":"1","tncElement":"<div class=\"gm_tncContainer\" style=\"--tncfield-align-style: flex-end; --tnccontainer-margin-top: 0px; --tnccontainer-margin-right: 0px; --tnccontainer-margin-bottom: 5px; --tnccontainer-margin-left: 0px;\">\n            <div class=\"sweetAlertTop\" style=\"--gm-alert-text-font-size: 16px; display: none;\">\n                <svg fill=\"#ff0000\" class=\"alertIcon\" width=\"14px\" height=\"14px\" viewBox=\"0 -0.14 9.24 9.24\" xmlns=\"http://www.w3.org/2000/svg\" style=\"--alert-text-style: #ff0000;\">\n                    <title>Kindly agree</title>\n                    <path d=\"M4.62 0.98q0.945 0 1.75 0.473t1.278 1.278 0.473 1.75 -0.473 1.75 -1.278 1.278 -1.75 0.473 -1.75 -0.473 -1.278 -1.278 -0.473 -1.75 0.473 -1.75 1.278 -1.278 1.75 -0.473m-0.56 1.54v2.24h1.12V2.52zm0 2.8v1.12h1.12v-1.12z\"></path>\n                </svg>\n                <div class=\"sweetAlertText\" style=\"--alert-text-style: #ff0000; --alert-fontsize-style: 16px; --alert-font-family-style: inherit;\">Kindly agree with our TnC to proceed.</div>\n            </div>\n            <div class=\"fields\">\n                <div class=\"jscheckbox\" style=\"--gm-agree-fontsize-checkbox-style: 16px; --gm-checkbox-radius-style: 4px;\">\n                    <div class=\"checkbox-wrapper-46\">\n                        <input type=\"checkbox\" id=\"jsBox1\" data-tncbox=\"tncBox\" class=\"inp-cbx\" required=\"true\">\n                        <label for=\"jsBox1\" class=\"cbx\" style=\"--switch-color-off: #000000; --custom-before-style: #9098a9; transform-origin: right center;\">\n                            <span>\n                                <svg viewBox=\"0 0 12 10\" height=\"10px\" width=\"12px\">\n                                    <polyline points=\"1.5 6 4.5 9 10.5 1\"></polyline>\n                                </svg>\n                            </span>\n                        </label>\n                    </div>\n                </div>\n                <div id=\"tncText\" style=\"--agree-text-style: #303030; --agree-fontsize-style: 16px; --agree-font-family-style: inherit;\">I agree that the delivery of the digital content begins immediately upon purchase, and I hereby waive my right of withdrawal.\"\n\nIch stimme zu, dass mit der Bereitstellung des digitalen Inhalts sofort begonnen wird und ich damit mein Widerrufsrecht verliere.\"</div>\n            </div>\n            <div class=\"sweetAlertBottom\" style=\"--gm-alert-text-font-size: 16px; display: none;\">\n                <svg fill=\"#ff0000\" class=\"alertIcon\" width=\"14px\" height=\"14px\" viewBox=\"0 -0.14 9.24 9.24\" xmlns=\"http://www.w3.org/2000/svg\" style=\"--alert-text-style: #ff0000;\">\n                    <title>Kindly agree</title>\n                    <path d=\"M4.62 0.98q0.945 0 1.75 0.473t1.278 1.278 0.473 1.75 -0.473 1.75 -1.278 1.278 -1.75 0.473 -1.75 -0.473 -1.278 -1.278 -0.473 -1.75 0.473 -1.75 1.278 -1.278 1.75 -0.473m-0.56 1.54v2.24h1.12V2.52zm0 2.8v1.12h1.12v-1.12z\"></path>\n                </svg>\n                <div class=\"sweetAlertText\" style=\"--alert-text-style: #ff0000; --alert-fontsize-style: 16px; --alert-font-family-style: inherit;\">Kindly agree with our TnC to proceed.</div>\n            </div>\n        </div>","setRequire":"1","alertViewOption":"box","alertText":"Kindly agree with our TnC to proceed.","tnc_product_class":"[\"shopify-accelerated-checkout\",\"shopify-accelerated-checkout\",\"shopify-accelerated-checkout\"]","productCheck":"0","product_ids":"","tnc_cart_class":"[\"button[name='checkout']\",\"button[name='checkout']\",\"button[name='checkout']\"],[\"button[name='checkout']\",\"button[name='checkout'],.dynamic-checkout__content\",\"button[name='checkout'],.dynamic-checkout__content\"]","cartCheck":"1","productCheckBox":"0","tnc_contact_class":"[\"form[action*='/contact#ContactForm'] button\", \"form[action*='/contact#ContactForm'] button\", \"form[action*='/contact#ContactForm'] button\"]","contactCheck":"0","tnc_newsletter_class":"[\"form[action*='/contact#ContactFooter']\", \"form[action*='/contact#ContactFooter'] button\", \"form[action*='/contact#ContactFooter'] button\"],[\"form[action*='/contact#contact_form']#contact_form\", \"form[action*='/contact#contact_form']#contact_form button\", \"form[action*='/contact#contact_form']#contact_form button\"]","newsletterCheck":"0","custom_css":"I agree that the delivery of the digital content begins immediately upon purchase, and I hereby waive my right of withdrawal.\"","custom_js":"I agree that the delivery of the digital content begins immediately upon purchase, and I hereby waive my right of withdrawal.\"","customBox":"option1","is_without_time":"0","alertTextFontSize":"16","agreeTextFontSize":"16","tncFieldSpacingTop":"0","tncFieldSpacingRight":"0","tncFieldSpacingBottom":"5","tncFieldSpacingLeft":"0","defaultCheck":"0","store_id":7487,"settings_id":"5760","iana_timezone":"Europe/Berlin"}}};
+    
+
+   const gmtncspecialLocales=["PT-BR","PT-PT","ZH-CN","ZH-TW"],gmtnclocale=window.Shopify?.locale||"",gmtnc_language_code=gmtncspecialLocales.includes(gmtnclocale.toUpperCase())?gmtnclocale.replace("-","_"):gmtnclocale.split("-")[0];window.gmTncKeyformetadata=`${(window.Shopify?.country||"").toUpperCase()}-${gmtnc_language_code.toUpperCase()}`,window.gmnewdata="",window.GM_tnc_APP_PLAN_STATUS=0,window.gmtncPlanActivateStatus=!1,""!==window.gmtncappmeta&&(window.gm_tnc_is_charge_approve=window.gmtncappmeta.is_charge_approve,window.gm_tnc_charge_slab=window.gmtncappmeta.charge_slab,window.gm_tnc_partnerDevelopment=window.gmtncappmeta.partnerDevelopment,"1"===window.gm_tnc_is_charge_approve||0===window.GM_tnc_APP_PLAN_STATUS||"1"===window.gm_tnc_partnerDevelopment?(window.gmtncPlanActivateStatus=!0,window.gmtncappmeta.data[window.gmTncKeyformetadata]?window.gmnewdata=window.gmtncappmeta.data[window.gmTncKeyformetadata]:window.gmnewdata=window.gmtncappmeta.data[window.gmtncappmeta.default_data]):(window.gmtncPlanActivateStatus=!1,console.log("App Charge Not Approve"))),function(){if(!window.gmnewdata||""===window.gmnewdata)return;const e={"Nanum Brush Script":"NanumBrushScript-Regular","Cedarville Cursive":"Cedarville-Cursive",Lumanosimo:"Lumanosimo-Regular","EB Garamond":"EBGaramond","Courier Prime":"CourierPrime-Regular",Pangolin:"Pangolin-Regular",Rubik:"Rubik",Tahoma:"tahoma"};if(!window.gmnewdata.tncElement)return;const a=(new DOMParser).parseFromString(window.gmnewdata.tncElement,"text/html"),t=[];a.querySelectorAll("[style]").forEach(e=>{const a=e.getAttribute("style")||"",n=a.match(/--agree-font-family-style\s*:\s*([^;]+)/i);n&&t.push(n[1].split(",")[0].replace(/['"]/g,"").trim());const o=a.match(/--alert-font-family-style\s*:\s*([^;]+)/i);o&&t.push(o[1].split(",")[0].replace(/['"]/g,"").trim())});[...new Set(t)].filter(a=>e[a]).forEach(a=>{const t=window.tac_base_url+"assets/font/"+e[a]+".woff2";if(document.querySelector(`link[rel="preload"][href="${t}"]`))return;const n=document.createElement("link");n.rel="preload",n.as="font",n.type="font/woff2",n.crossOrigin="anonymous",n.href=t,document.head.appendChild(n)})}();
+
+  console.log(
+          '%c%s',
+          'background: #ff0000; color: #fff; font-size: 10px; font-weight:bold; padding: 5px 10px; border-radius: 3px',
+          'Terms And Condition - Gm Infotech INC'
+  );
+
+  
+</script>
+
+
+<!-- END app block --><script src="https://cdn.shopify.com/extensions/01a19107-dccc-76ce-8a0a-559f4e07cbd8/terms-and-conditions-15-185/assets/front-tac.min.js" type="text/javascript" defer="defer"></script>
+<link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
+<script>
+  window.__TREKKIE_SHIM_QUEUE = window.__TREKKIE_SHIM_QUEUE || [];
+</script>
+<script>(function(){var wpmLoader=function(){"use strict";var e=/Googlebot|Storebot-Google|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|facebookexternalhit|Twitterbot|LinkedInBot|Applebot|AdsBot-Google|Mediapartners-Google|APIs-Google|PetalBot|SemrushBot|AhrefsBot|MJ12bot|DotBot|Acunetix|PerplexityBot|Perplexity-User/i,t=/bytedance/i;function i(){try{var e=document.cookie;if(!e||"string"!=typeof e)return;for(var t=0,i=e.split(";");t<i.length;t++){var n=i[t],r=n.indexOf("=");if(-1!==r){var o=n.slice(0,r).trim();if(o){var a=void 0;try{a=decodeURIComponent(o)}catch(e){a=o}if("_shopify_s"===a){var d=n.slice(r+1).trim();try{return decodeURIComponent(d)}catch(e){return d}}}}}return}catch(e){return}}function n(e){try{"undefined"!=typeof console&&"function"==typeof console.warn&&console.warn(e)}catch(e){}}function r(e,t){return"string"==typeof e&&e.length>0&&e.length<=t?e:void 0}function o(e){var t;switch(null==(t=null==e?void 0:e.navigation)?void 0:t.type){case 0:return"navigate";case 1:return"reload";case 2:return"back_forward";default:return}}function a(){var e,t,i;try{var n=null==(i=null==(t=null==(e=self.ShopifyAnalytics)?void 0:e.lib)?void 0:t.trekkie)?void 0:i.state;return"awaiting-consent"===n||"initialized"===n?n:void 0}catch(e){return}}return function(d,s,u,l){var c=arguments.length>4&&void 0!==arguments[4]?arguments[4]:{};try{var p=c.trekkieShim;!0!==p&&"true"!==p||null!=window.__TREKKIE_SHIM_QUEUE||(window.__TREKKIE_SHIM_QUEUE=[])}catch(e){}var f,v,h,y,g=(v=(f={modern:/Edge?\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Firefox\/(1{2}[4-9]|1[2-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Chrom(ium|e)\/(9{2}|\d{3,})\.\d+(\.\d+|)|(Maci|X1{2}).+ Version\/(15\.\d+|(1[6-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(9{2}|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(15[._]\d+|(1[6-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|SamsungBrowser\/([2-9]\d|\d{3,})\.\d+/,legacy:/Edge?\/(1[6-9]|[2-9]\d|\d{3,})\.\d+(\.\d+|)|Firefox\/(5[4-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)|Chrom(ium|e)\/(5[1-9]|[6-9]\d|\d{3,})\.\d+(\.\d+|)([\d.]+$|.*Safari\/(?![\d.]+ Edge\/[\d.]+$))|(Maci|X1{2}).+ Version\/(10\.\d+|(1[1-9]|[2-9]\d|\d{3,})\.\d+)([,.]\d+|)( \(\w+\)|)( Mobile\/\w+|) Safari\/|Chrome.+OPR\/(3[89]|[4-9]\d|\d{3,})\.\d+\.\d+|(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone|CPU IPhone OS|CPU iPad OS)[ +]+(10[._]\d+|(1[1-9]|[2-9]\d|\d{3,})[._]\d+)([._]\d+|)|Android:?[ /-](14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})(\.\d+|)(\.\d+|)|Mobile Safari.+OPR\/([89]\d|\d{3,})\.\d+\.\d+|Android.+Firefox\/(15\d|1[6-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+Chrom(ium|e)\/(14[89]|1[5-9]\d|[2-9]\d{2}|\d{4,})\.\d+(\.\d+|)|Android.+(UC? ?Browser|UCWEB|U3)[ /]?(15\.([5-9]|\d{2,})|(1[6-9]|[2-9]\d|\d{3,})\.\d+)\.\d+|SamsungBrowser\/(5\.\d+|([6-9]|\d{2,})\.\d+)|Android.+MQ{2}Browser\/(14(\.(9|\d{2,})|)|(1[5-9]|[2-9]\d|\d{3,})(\.\d+|))(\.\d+|)|K[Aa][Ii]OS\/(3\.\d+|([4-9]|\d{2,})\.\d+)(\.\d+|)/}).modern,h=f.legacy,(y=navigator.userAgent).match(e)?"bot":y.match(v)?"modern":y.match(h)?"legacy":y.match(t)?"bot":"unknown"),m=function(e){var t,i,n=r(e,128);try{var a=window.performance,d=null==(t=null==a?void 0:a.getEntriesByType)?void 0:t.call(a,"navigation")[0];if(!d)return{requestId:n,navigationType:o(a)};var s="type"in d?r(d.type,64):void 0,u="serverTiming"in d&&Array.isArray(d.serverTiming)?d.serverTiming:[];return{requestId:null!=n?n:r(null==(i=u.find(function(e){return"requestID"===e.name}))?void 0:i.description,128),navigationType:s}}catch(e){return{requestId:n}}}(c.requestId),w=function(e){var t=e.version,r=e.browserTarget,o=e.surface,a=e.shopId,d=e.monorailEndpoint,s=window.location.href;return{emit:function(e){var u=e.status,l=e.errorMsg,c=e.failureReason,p=e.useKeepaliveFallback,f=void 0!==p&&p,v=e.navigationType,h=e.pagehidePersisted,y=e.requestId,g=e.trekkieState;if(d){var m,w;try{var b=(new Date).getTime();m=JSON.stringify({metadata:{event_sent_at_ms:b},events:[{schema_id:"web_pixels_manager_load/3.3",payload:{version:t,bundle_target:r,page_url:s,status:u,surface:o,error_msg:l,failure_reason:c,navigation_type:v,pagehide_persisted:h,request_id:y,trekkie_state:g,shop_id:a,visit_token:i()},metadata:{event_created_at_ms:b}}]})}catch(e){return}try{if("function"==typeof window.navigator.sendBeacon&&-1===(w=window.navigator.userAgent).indexOf("iPhone; CPU iPhone OS 12_")&&-1===w.indexOf("iPad; CPU OS 12_")&&-1===w.indexOf("iPod touch; CPU iPhone OS 12_")&&window.navigator.sendBeacon.bind(window.navigator)(d,m))return}catch(e){}if(f)try{"function"==typeof window.fetch&&window.fetch(d,{method:"POST",headers:{"Content-Type":"text/plain"},body:m,keepalive:!0}).catch(function(){})}catch(e){}else try{var _=new XMLHttpRequest;_.open("POST",d,!0),_.setRequestHeader("Content-Type","text/plain"),_.send(m)}catch(e){n("[Web Pixels Manager] Got an unhandled error while logging to Monorail.")}}else n("[Web Pixels Manager] No Monorail endpoint provided, skipping logging.")}}}({version:u,browserTarget:g,surface:d.surface,shopId:d.shopId,monorailEndpoint:d.monorailEndpoint});if(Boolean(null==(_=null==(b=window.Shopify)?void 0:b.analytics)?void 0:_.replayQueue))w.emit({status:"setup-skipped",errorMsg:"replay queue already initialized."});else{var b,_;w.emit({status:"setup-started"}),window.Shopify=window.Shopify||{};var S=window.Shopify;S.analytics=S.analytics||{};var P=S.analytics;P.replayQueue=[],P.publish=function(e,t,i){return P.replayQueue.push([e,t,i]),!0};try{self.performance.mark("wpm:start")}catch(e){}var k,C="modern"===g?"modern":"legacy",E=(null!=l?l:{modern:"",legacy:""})[C],I=[(k={baseUrl:s,hashVersion:u,buildTarget:C}).baseUrl,"/wpm","/b",k.hashVersion,"modern"===k.buildTarget?"m":"l",".js"].join(""),O=!1,T=!1;try{c.browserTarget=g,function(){O=!0;try{window.addEventListener("pagehide",M)}catch(e){O=!1}}(),R(function(){try{R(x)}catch(e){D(e)}}),w.emit({status:"loading",requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()})}catch(e){D(e)}}function U(){var e;if(q(),!function(){var e,t;return Boolean(null==(t=null==(e=window.Shopify)?void 0:e.analytics)?void 0:t.initialized)}()){var t,i,n;try{if("function"!=typeof(null==(e=window.webPixelsManager)?void 0:e.init))return void A();if(!(null!==(n=i=t=window.webPixelsManager.init(d))&&"function"!=typeof n&&Object(n)===n&&"publish"in i&&"function"==typeof i.publish&&"publishCustomEvent"in i&&"function"==typeof i.publishCustomEvent&&"visitor"in i&&"function"==typeof i.visitor))return void A()}catch(e){return void A(e)}var r=window.Shopify.analytics;r.replayQueue.forEach(function(e){var i=e[0],n=e[1],r=e[2];t.publishCustomEvent(i,n,r)}),r.replayQueue=[],r.publish=t.publishCustomEvent,r.visitor=t.visitor,r.initialized=!0}}function A(e){B("manager_api_unavailable",void 0===e?void 0:Q(e))}function x(){B("script_load_failed","".concat(I," has failed to load"))}function B(e,t){T||(T=!0,q(),w.emit({status:"failed",errorMsg:t,failureReason:e,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function M(e){O&&(q(),w.emit({status:"pagehide-while-loading",useKeepaliveFallback:!0,pagehidePersisted:e.persisted,requestId:m.requestId,navigationType:m.navigationType,trekkieState:a()}))}function q(){O=!1;try{window.removeEventListener("pagehide",M)}catch(e){}}function R(e){var t;!function(e){var t=e.src,i=e.async,n=void 0===i||i,r=e.onload,o=e.onerror,a=e.sri,d=e.scriptDataAttributes,s=void 0===d?{}:d,u=document.createElement("script"),l=document.querySelector("head"),c=document.querySelector("body");if(u.async=n,u.src=t,a&&(u.integrity=a,u.crossOrigin="anonymous"),s)for(var p in s)if(Object.prototype.hasOwnProperty.call(s,p))try{u.dataset[p]=String(s[p])}catch(e){}if(r&&u.addEventListener("load",r),o&&u.addEventListener("error",o),l)l.appendChild(u);else{if(!c)throw new Error("Did not find a head or body element to append the script");c.appendChild(u)}}({src:I,async:!0,onload:U,onerror:e,sri:(t=E,"string"==typeof t&&/^sha384-[A-Za-z0-9+/=]+$/.test(t)?E:""),scriptDataAttributes:c})}function D(e){B("script_append_failed",Q(e))}function Q(e){return e instanceof Error?e.message:"Unknown error"}}}();wpmLoader({shopId: 106724753750,storefrontBaseUrl: "https://rezahajiloubooks.com",extensionsBaseUrl: "https://extensions.shopifycdn.com/cdn/shopifycloud/web-pixels-manager",monorailEndpoint: "https://rezahajiloubooks.com/.well-known/shopify/monorail/unstable/produce_batch",surface: "storefront-renderer",enabledBetaFlags: ["7b21cf0b","b13923a8","4c64608a"],webPixelsConfigList: [{"id":"shopify-app-pixel","configuration":"{}","eventPayloadVersion":"v1","runtimeContext":"STRICT","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"APP","privacyPurposes":["ANALYTICS","MARKETING"]},{"id":"shopify-custom-pixel","eventPayloadVersion":"v1","runtimeContext":"LAX","scriptVersion":"0530","apiClientId":"shopify-pixel","type":"CUSTOM","privacyPurposes":["ANALYTICS","MARKETING"]}],isMerchantRequest: false,initData: {"shop":{"name":"کتاب آموزش بورس فارسی","paymentSettings":{"currencyCode":"EUR"},"myshopifyDomain":"jev8ju-dh.myshopify.com","countryCode":"DE","storefrontUrl":"https:\/\/rezahajiloubooks.com"},"customer":null,"cart":null,"checkout":null,"productVariants":[],"products":[],"purchasingCompany":null},},"https://rezahajiloubooks.com/cdn","610a19cewf693d529pf324840bm6169d9b4",{"modern":"","legacy":""},{"trekkieShim":true,"agentContext":true,"apiClientId":"580111","facebookCapiEnabled":"false","themeId":"208549478742","themeStoreId":"1841","themePublished":"true","eventMetadataId":"1fd68623-1997-4b03-aeb0-058495926b5b","pageType":"page","resourceId":"198092980566","shopId":"106724753750","storefrontBaseUrl":"https:\/\/rezahajiloubooks.com","extensionBaseUrl":"https:\/\/extensions.shopifycdn.com\/cdn\/shopifycloud\/web-pixels-manager","surface":"storefront-renderer","enabledBetaFlags":"[\"7b21cf0b\", \"b13923a8\", \"4c64608a\"]","isMerchantRequest":"false","hashVersion":"610a19cewf693d529pf324840bm6169d9b4","publish":"custom","events":"[[\"page_viewed\",{}]]"});})();</script><script>
+  window.ShopifyAnalytics = window.ShopifyAnalytics || {};
+  window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
+  window.ShopifyAnalytics.meta.currency = 'EUR';
+  var meta = {"page":{"pageType":"page","resourceType":"page","resourceId":198092980566,"requestId":"0edf3c17-aa47-452c-91ad-9750cafd8288-1793494680"}};
+  for (var attr in meta) {
+    window.ShopifyAnalytics.meta[attr] = meta[attr];
+  }
+</script>
+<script class="analytics">
+  (function () {
+    var customDocumentWrite = function(content) {
+      var jquery = null;
+
+      if (window.jQuery) {
+        jquery = window.jQuery;
+      } else if (window.Checkout && window.Checkout.$) {
+        jquery = window.Checkout.$;
+      }
+
+      if (jquery) {
+        jquery('body').append(content);
+      }
+    };
+
+    var hasLoggedConversion = function(token) {
+      if (token) {
+        return document.cookie.indexOf('loggedConversion=' + token) !== -1;
+      }
+      return false;
+    }
+
+    var setCookieIfConversion = function(token) {
+      if (token) {
+        var twoMonthsFromNow = new Date(Date.now());
+        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
+
+        document.cookie = 'loggedConversion=' + token + '; expires=' + twoMonthsFromNow;
+      }
+    }
+
+    var trekkie = window.ShopifyAnalytics.lib = window.trekkie = window.trekkie || [];
+    window.ShopifyAnalytics.lib.trekkie = window.trekkie;
+    if (trekkie.integrations) {
+      return;
+    }
+    trekkie.methods = [
+      'identify',
+      'page',
+      'ready',
+      'track',
+      'trackForm',
+      'trackLink'
+    ];
+    trekkie.factory = function(method) {
+      return function() {
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(method);
+        trekkie.push(args);
+        if (method == 'track' || method == 'page') {
+          var pageUrl;
+          try {
+            pageUrl = window.location.href;
+          } catch (e) {}
+          var pageReferrer;
+          try {
+            pageReferrer = document.referrer;
+          } catch (e) {}
+          try {
+            if (window.__TREKKIE_SHIM_QUEUE == null) {
+              window.__TREKKIE_SHIM_QUEUE = [];
+            }
+            window.__TREKKIE_SHIM_QUEUE.push({
+              from: 'trekkie-stub',
+              method: method,
+              args: args.slice(1),
+              pageContext: {
+                url: pageUrl,
+                referrer: pageReferrer
+              }
+            });
+          } catch (e) {
+            // no-op
+          }
+        }
+        return trekkie;
+      };
+    };
+    for (var i = 0; i < trekkie.methods.length; i++) {
+      var key = trekkie.methods[i];
+      trekkie[key] = trekkie.factory(key);
+    }
+    trekkie.load = function(config) {
+      trekkie.config = config || {};
+      trekkie.config.initialDocumentCookie = document.cookie;
+      
+    };
+    trekkie.load(
+      {"Trekkie":{"appName":"storefront","development":false,"defaultAttributes":{"shopId":106724753750,"isMerchantRequest":null,"themeId":208549478742,"themeCityHash":"17988267278804722515","contentLanguage":"en","currency":"EUR","eventMetadataId":"1fd68623-1997-4b03-aeb0-058495926b5b"},"isServerSideCookieWritingEnabled":true,"monorailRegion":"shop_domain","enabledBetaFlags":["7b21cf0b","b13923a8","4c64608a"]},"Session Attribution":{},"S2S":{"facebookCapiEnabled":false,"source":"trekkie-storefront-renderer","apiClientId":580111}}
+    );
+
+    var loaded = false;
+    trekkie.ready(function() {
+      if (loaded) return;
+      loaded = true;
+
+      window.ShopifyAnalytics.lib = window.trekkie;
+
+      var originalDocumentWrite = document.write;
+      document.write = customDocumentWrite;
+      try { window.ShopifyAnalytics.merchantGoogleAnalytics.call(this); } catch(error) {};
+      document.write = originalDocumentWrite;
+
+      var match = window.location.pathname.match(/checkouts\/(.+)\/(thank_you|post_purchase)/)
+      var token = match? match[1]: undefined;
+      if (!hasLoggedConversion(token)) {
+        setCookieIfConversion(token);
+        
+      }
+    });
+
+    window.ShopifyAnalytics.lib.page(null,{"pageType":"page","resourceType":"page","resourceId":198092980566,"requestId":"0edf3c17-aa47-452c-91ad-9750cafd8288-1793494680","shopifyEmitted":true});
+
+    var eventsListenerScript = document.createElement('script');
+    eventsListenerScript.async = true;
+    eventsListenerScript.src = "//rezahajiloubooks.com/cdn/shopifycloud/storefront/assets/shop_events_listener-819172a8.js";
+    document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+})();</script>
+<script
+  defer
+  src="https://rezahajiloubooks.com/cdn/shopifycloud/perf-kit/shopify-perf-kit-3.14.0.min.js"
+  data-application="storefront-renderer"
+  data-shop-id="106724753750"
+  data-render-region="gcp-us-west1"
+  data-page-type="page"
+  data-theme-instance-id="208549478742"
+  data-theme-name="Origin"
+  data-theme-version="16.0.0"
+  data-monorail-region="shop_domain"
+  data-resource-timing-sampling-rate="10"
+  data-shs="true"
+  data-shs-beacon="true"
+  data-shs-export-with-fetch="true"
+  data-shs-logs-sample-rate="1"
+  data-shs-beacon-endpoint="https://rezahajiloubooks.com/api/collect"
+></script>
+<meta name="shopify-y" content="ead6db6f-413f-4ea7-a175-07cdd589b07d" data-expiration="1825052281000"><meta name="shopify-s" content="7a4ab52c-5617-4474-b0d5-c4a9c36a2854" data-expiration="1793496481000"><meta name="request-id" content="0edf3c17-aa47-452c-91ad-9750cafd8288-1793494680"        >
+</head>
+
+  <body class="gradient">
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      Skip to content
+    </a>
+
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/quantity-popover.css?v=160630540099520878331791474072" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-card.css?v=120341546515895839841791474072" rel="stylesheet" type="text/css" media="all" />
+
+<script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/cart.js?v=55895714950147091831791474072" defer="defer"></script>
+<script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/quantity-popover.js?v=987015268078116491791474072" defer="defer"></script>
+
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+</style>
+
+<cart-drawer class="drawer is-empty">
+  <div id="CartDrawer" class="cart-drawer">
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div
+      class="drawer__inner gradient color-scheme-2"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Your cart"
+      tabindex="-1"
+    ><div class="drawer__inner-empty">
+          <div class="cart-drawer__warnings center">
+            <div class="cart-drawer__empty-content">
+              <h2 class="cart__empty-text">Your cart is empty</h2>
+              <button
+                class="drawer__close"
+                type="button"
+                onclick="this.closest('cart-drawer').close()"
+                aria-label="Close"
+              >
+                <span class="svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-close" viewBox="0 0 18 17"><path fill="currentColor" d="M.865 15.978a.5.5 0 0 0 .707.707l7.433-7.431 7.579 7.282a.501.501 0 0 0 .846-.37.5.5 0 0 0-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 1 0-.707-.708L8.991 7.853 1.413.573a.5.5 0 1 0-.693.72l7.563 7.268z"/></svg>
+</span>
+              </button>
+              <a href="/collections/all" class="button">
+                Continue shopping
+              </a><p class="cart__login-title h3">Have an account?</p>
+                <p class="cart__login-paragraph">
+                  <a href="https://rezahajiloubooks.com/customer_authentication/redirect?locale=en&region_country=DE" class="link underlined-link">Log in</a> to check out faster.
+                </p></div>
+          </div></div><div class="drawer__header">
+        <h2 class="drawer__heading">Your cart</h2>
+        <button
+          class="drawer__close"
+          type="button"
+          onclick="this.closest('cart-drawer').close()"
+          aria-label="Close"
+        >
+          <span class="svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-close" viewBox="0 0 18 17"><path fill="currentColor" d="M.865 15.978a.5.5 0 0 0 .707.707l7.433-7.431 7.579 7.282a.501.501 0 0 0 .846-.37.5.5 0 0 0-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 1 0-.707-.708L8.991 7.853 1.413.573a.5.5 0 1 0-.693.72l7.563 7.268z"/></svg>
+</span>
+        </button>
+      </div>
+      <cart-drawer-items
+        view-event-payload="{&quot;context&quot;:&quot;dialog&quot;,&quot;cart&quot;:null}"
+        view-event-trigger="manual"
+        
+          class=" is-empty"
+        
+      >
+        <form
+          action="/cart"
+          id="CartDrawer-Form"
+          class="cart__contents cart-drawer__form"
+          method="post"
+        >
+          <div id="CartDrawer-CartItems" class="drawer__contents js-contents"><p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
+            <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+              Loading...
+            </p>
+          </div>
+          <div id="CartDrawer-CartErrors" role="alert"></div>
+        </form>
+      </cart-drawer-items>
+      <div class="drawer__footer"><details id="Details-CartDrawer">
+            <summary>
+              <span class="summary__title">
+                Order special instructions
+<svg class="icon icon-caret" viewBox="0 0 10 6"><path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/></svg>
+</span>
+            </summary>
+            <cart-note class="cart__note field">
+              <label class="visually-hidden" for="CartDrawer-Note">Order special instructions</label>
+              <textarea
+                id="CartDrawer-Note"
+                class="text-area text-area--resize-vertical field__input"
+                name="note"
+                placeholder="Order special instructions"
+              ></textarea>
+            </cart-note>
+          </details><!-- Start blocks -->
+        <!-- Subtotals -->
+
+        <div class="cart-drawer__footer" >
+          <div></div>
+
+          <div class="totals" role="status">
+            <h2 class="totals__total">Estimated total</h2>
+            <p class="totals__total-value">€0,00 EUR</p>
+          </div>
+
+          <small class="tax-note caption-large rte">Taxes included. Discounts and shipping calculated at checkout.
+</small>
+        </div>
+
+        <!-- CTAs -->
+
+        <div class="cart__ctas" >
+          <button
+            type="submit"
+            id="CartDrawer-Checkout"
+            class="cart__checkout-button button"
+            name="checkout"
+            form="CartDrawer-Form"
+            
+              disabled
+            
+          >
+            Check out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</cart-drawer>
+<!-- BEGIN sections: header-group -->
+<div id="shopify-section-sections--32598917185878__persian-fix" class="shopify-section shopify-section-group-header-group rz-persian-fix"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/rz-theme.css?v=62313013614902170961792079476" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/rz-theme-fix.css?v=75686403438909929711791982286" rel="stylesheet" type="text/css" media="all" />
+<style id="rz-persian-text-fix">
+  body,
+  body *,
+  body *::before,
+  body *::after {
+    letter-spacing: 0 !important;
+  }
+  .rzpwa{position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:80;display:none;align-items:center;gap:10px;
+    background:#15181F;border:1px solid #262B36;border-radius:16px;padding:10px 12px;box-shadow:0 12px 34px rgba(0,0,0,.45);direction:rtl;
+    font-family:'Vazirmatn',Tahoma,sans-serif;color:#E8E4DA}
+  .rzpwa img{width:42px;height:42px;border-radius:10px;flex:none}
+  .rzpwa b{display:block;font-size:14px;font-weight:600}
+  .rzpwa small{display:block;color:#8A8F99;font-size:12px;line-height:1.6}
+  .rzpwa .go{margin-right:auto;background:#C9A961;color:#15120A;font-weight:600;border:0;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap}
+  .rzpwa .x{background:transparent;border:0;color:#8A8F99;font-size:20px;padding:0 4px}
+  @media (min-width:821px){.rzpwa{display:none!important}}
+</style>
+<script>
+(function(){
+  var h=document.head; if(!h) return;
+  function add(tag,attrs){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);h.appendChild(e)}
+  add('link',{rel:'manifest',href:'/pages/manifest'});
+  add('meta',{name:'theme-color',content:'#0C0E12'});
+  add('meta',{name:'apple-mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'mobile-web-app-capable',content:'yes'});
+  add('meta',{name:'apple-mobile-web-app-title',content:'تحلیل سهام'});
+  add('meta',{name:'apple-mobile-web-app-status-bar-style',content:'black-translucent'});
+  add('link',{rel:'apple-touch-icon',sizes:'512x512',href:"\/\/rezahajiloubooks.com\/cdn\/shop\/t\/20\/assets\/rz-app-512.png?v=102737946664519090901791474072"});
+})();
+</script>
+<div class="rzpwa" id="rzpwa" role="dialog" aria-label="نصب روی گوشی">
+  <img src="//rezahajiloubooks.com/cdn/shop/t/20/assets/rz-app-192.png?v=112498283566632444241791474072" alt="" width="42" height="42">
+  <div><b>سایت رو مثل اپ روی گوشیت نصب کن</b><small id="rzpwa-t">با یک لمس به تحلیل سهام، واچ‌لیست و تقویم گزارش‌ها برسی.</small></div>
+  <button class="go" id="rzpwa-go">نصب</button><button class="x" id="rzpwa-x" aria-label="بستن">×</button>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('rzpwa'); if(!box) return;
+  var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone;
+  if(standalone) return;
+  try{ if(localStorage.getItem('rz_pwa_x')) return;
+       var n=+(localStorage.getItem('rz_pv')||0)+1; localStorage.setItem('rz_pv',n); if(n<3) return; }catch(e){ return; }
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent), deferred=null;
+  function show(){ box.style.display='flex'; }
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferred=e; show(); });
+  if(ios){ document.getElementById('rzpwa-t').textContent='در Safari دکمه‌ی اشتراک‌گذاری (مربع با فلش ⬆️) رو بزن و بعد «Add to Home Screen».'; document.getElementById('rzpwa-go').textContent='فهمیدم'; setTimeout(show,2500); }
+  document.getElementById('rzpwa-go').onclick=function(){
+    if(deferred){ deferred.prompt(); deferred.userChoice.then(function(){ box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} }); }
+    else { box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} }
+  };
+  document.getElementById('rzpwa-x').onclick=function(){ box.style.display='none'; try{localStorage.setItem('rz_pwa_x','1')}catch(e){} };
+})();
+</script>
+
+
+</div>
+<!-- END sections: header-group -->
+
+    <main
+      id="MainContent"
+      class="content-for-layout focus-none"
+      role="main"
+      tabindex="-1"
+      data-template="page"
+    >
+      <section id="shopify-section-template--32598920659286__main" class="shopify-section section"><link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/section-main-page.css?v=848677459125201531791474072" rel="stylesheet" type="text/css" media="all" />
+<style data-shopify>.section-template--32598920659286__main-padding {
+    padding-top: 27px;
+    padding-bottom: 57px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-template--32598920659286__main-padding {
+      padding-top: 36px;
+      padding-bottom: 76px;
+    }
+  }</style><div class="page-width page-width--narrow section-template--32598920659286__main-padding">
+  <h1 class="main-page-title page-title h0">
+    مسابقه‌ی سهام برتر نوامبر
+  </h1>
+  <div class="rte">
+    <div id="rzk" dir="rtl">
+<style>@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');#rzk{--ac:#ff5a5f;--ac2:#1f9d6b;--gold:#f5b301;--ink:#1d1d1f;--mut:#6b6b73;--line:#ececf0;--bg:#fafafb;--card:#fff;font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);max-width:880px;margin:0 auto;padding:8px 14px 40px;line-height:1.85;box-sizing:border-box}#rzk *{box-sizing:border-box;font-family:inherit}#rzk .hero{background:linear-gradient(135deg,#1d1d1f 0%,#2b2b31 60%,#3a2a12 100%);color:#fff;border-radius:22px;padding:28px 22px;text-align:center;margin-bottom:16px}#rzk .hero .trophy{font-size:54px;line-height:1}#rzk .hero h2{font-size:28px;font-weight:900;margin:8px 0 4px;color:#fff;line-height:1.5}#rzk .hero p{color:#d6d6dc;margin:0 0 14px;font-size:15.5px}#rzk .hero .hl{color:var(--gold);font-weight:800}#rzk .prize{display:inline-block;background:var(--gold);color:#1d1d1f;font-weight:900;font-size:22px;padding:8px 22px;border-radius:999px;box-shadow:0 8px 24px rgba(245,179,1,.35)}#rzk .cd{display:flex;justify-content:center;gap:10px;margin-top:18px;direction:rtl}#rzk .cd div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:8px 12px;min-width:68px}#rzk .cd b{display:block;font-size:24px;font-weight:900;color:#fff}#rzk .cd span{font-size:12px;color:#c9c9d1}#rzk .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 4px 18px rgba(0,0,0,.04)}#rzk h3{font-size:20px;font-weight:900;margin:0 0 10px}#rzk .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}#rzk .step{background:var(--bg);border-radius:14px;padding:14px;text-align:center}#rzk .step .n{display:inline-block;width:30px;height:30px;line-height:30px;border-radius:50%;background:var(--ac);color:#fff;font-weight:900;margin-bottom:6px}#rzk .step p{margin:0;font-size:14.5px}#rzk .prizes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}#rzk .pz{border-radius:14px;padding:14px;text-align:center;background:var(--bg)}#rzk .pz.first{background:#fff8e1;border:1.5px solid var(--gold)}#rzk .pz .m{font-size:30px}#rzk .pz b{display:block;font-size:17px;font-weight:900}#rzk .pz span{font-size:13.5px;color:var(--mut)}#rzk .tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}#rzk .tabs button{border:1.5px solid var(--line);background:var(--bg);border-radius:999px;padding:7px 16px;font-weight:800;font-size:14.5px;cursor:pointer;color:var(--mut)}#rzk .tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}#rzk .pop{display:grid;gap:8px}#rzk .pr{display:grid;grid-template-columns:28px 150px 1fr 64px;gap:8px;align-items:center;font-size:14.5px}#rzk .pr .i{color:var(--mut);font-weight:800;text-align:center}#rzk .pr .t{direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#rzk .pr .t b{font-weight:900}#rzk .pr .t small{color:var(--mut);margin-left:5px}#rzk .pr .bar{height:12px;background:var(--bg);border-radius:6px;overflow:hidden}#rzk .pr .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),#ffcf4d);border-radius:6px}#rzk .pr .c{font-weight:800;text-align:left;font-size:13.5px}#rzk .meta{font-size:12.5px;color:var(--mut);margin-top:10px}#rzk .empty{color:var(--mut);text-align:center;padding:18px 8px;font-weight:600}#rzk .tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px}#rzk table{width:100%;border-collapse:collapse;font-size:14px}#rzk th{background:var(--bg);padding:8px;font-weight:800;color:var(--mut);white-space:nowrap;text-align:right}#rzk td{padding:8px;border-top:1px solid var(--line);white-space:nowrap}#rzk td.l{direction:ltr;text-align:right;font-weight:800}#rzk tr.me td{background:#fff8e1}#rzk tr.you td{background:#eef9f3}#rzk .up{color:var(--ac2)}#rzk .dn{color:#d93025}#rzk .find{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 12px;font-size:15px;margin-bottom:10px;outline:none}#rzk label{display:block;font-weight:800;font-size:15px;margin:12px 0 6px}#rzk label small{font-weight:400;color:var(--mut)}#rzk input[type=text],#rzk input[type=email],#rzk input[type=number],#rzk select{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 13px;font-size:16px;color:var(--ink);outline:none}#rzk input[readonly]{color:var(--mut)}#rzk input:focus,#rzk select:focus{border-color:var(--ac)}#rzk .ltr{direction:ltr;text-align:left}#rzk .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}#rzk .cb{position:relative}#rzk .sg{display:none;position:absolute;top:100%;right:0;left:0;z-index:30;background:#fff;border:1.5px solid var(--line);border-radius:12px;margin-top:4px;max-height:300px;overflow:auto;box-shadow:0 12px 30px rgba(0,0,0,.12)}#rzk .sg div{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--line);direction:ltr}#rzk .sg div:hover,#rzk .sg div.on{background:#fff8e1}#rzk .sg b{font-weight:900}#rzk .sg span{color:var(--mut);font-size:13.5px;text-align:right}#rzk .sg .no{direction:rtl;color:#d93025;cursor:default}#rzk .chosen{font-size:13px;color:var(--ac2);font-weight:800;margin-top:4px;min-height:1px}#rzk .chk{display:flex;gap:9px;align-items:flex-start;font-weight:600;font-size:14.5px;margin:10px 0}#rzk .chk input{margin-top:6px;width:18px;height:18px;accent-color:var(--ac);flex:none}#rzk .btn{display:inline-block;background:var(--ac);color:#fff!important;text-decoration:none!important;font-weight:900;padding:13px 26px;border-radius:999px;font-size:17px;box-shadow:0 8px 22px rgba(255,90,95,.4);border:0;cursor:pointer;width:100%;margin-top:10px;text-align:center}#rzk .btn:disabled{opacity:.5;cursor:not-allowed}#rzk .btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)!important;box-shadow:none;font-size:14.5px;padding:8px 18px;width:auto}#rzk .err{color:#d93025;font-size:14px;font-weight:700;margin-top:8px}#rzk .ok{display:none;background:#f2fbf7;border:1.5px solid var(--ac2);border-radius:18px;padding:22px;text-align:center;margin-bottom:16px}#rzk .ok b{font-size:20px;font-weight:900;color:var(--ac2)}#rzk .box{display:none;border-radius:14px;padding:16px;text-align:center;font-weight:700}#rzk .closed{background:#fff3f3;border:1.5px solid var(--ac)}#rzk .gate{background:#fff8e1;border:1.5px solid var(--gold)}#rzk .done{background:#f2fbf7;border:1.5px solid var(--ac2)}#rzk .wait{display:block;color:var(--mut);font-weight:600}#rzk details{border-top:1px solid var(--line);padding:10px 0}#rzk details:first-of-type{border-top:0}#rzk summary{font-weight:800;cursor:pointer;font-size:15.5px}#rzk ol{padding-right:20px;margin:8px 0 0;font-size:14.5px}#rzk ol li{margin-bottom:8px}#rzk .book{display:flex;gap:18px;align-items:center;background:var(--ink);color:#fff;border-radius:20px;padding:22px}#rzk .book h3{margin:0 0 4px;font-size:20px;color:#fff}#rzk .book p{margin:0 0 12px;color:#d6d6dc;font-size:15px}#rzk .book .btn{width:auto}#rzk .share{text-align:center;margin:18px 0 6px}#rzk .note{font-size:12.5px;color:var(--mut);text-align:center;margin-top:10px}@media (max-width:700px){#rzk .hero h2{font-size:23px}#rzk .steps,#rzk .prizes,#rzk .row{grid-template-columns:1fr}#rzk .cd div{min-width:58px;padding:7px 8px}#rzk .book{flex-direction:column;text-align:center}#rzk .pr{grid-template-columns:22px 110px 1fr 56px}}</style>
+<div class="hero">
+<div class="trophy">🏆</div>
+<h2>کدوم سهم تو نوامبر بیشترین بازده رو میده؟</h2>
+<p>یه سهم از بین ۵۰۰ شرکت شاخص S&amp;P 500 انتخاب کن. <span class="hl">لازم نیست بهترین سهم کل بازار رو پیدا کنی؛ کافیه سهمت از سهم بقیه‌ی شرکت‌کننده‌ها بهتر عمل کنه.</span> شرکت کاملاً رایگانه.</p>
+<div class="prize">جایزه‌ی نفر اول: ۱۰۰ یورو</div>
+<div class="cd" id="rzk-cd">
+<div>
+<b id="rzk-d">۰</b><span>روز</span>
+</div>
+<div>
+<b id="rzk-h">۰</b><span>ساعت</span>
+</div>
+<div>
+<b id="rzk-m">۰</b><span>دقیقه</span>
+</div>
+<div>
+<b id="rzk-s">۰</b><span>ثانیه</span>
+</div>
+</div>
+<p style="margin:10px 0 0;font-size:13.5px">تا پایان مهلت ثبت‌نام (پنج‌شنبه ۲۹ اکتبر، ساعت ۲۳:۵۹ به وقت آلمان)</p>
+</div>
+<div class="ok" id="rzk-ok">
+<div style="font-size:44px">✅</div>
+<b>انتخابت ثبت شد!</b><p style="margin:6px 0 0">انتخابت به جدول «محبوب‌ترین انتخاب‌ها» اضافه شد. از ۳۰ اکتبر هم می‌تونی رتبه‌ات رو توی جدول رتبه‌بندی دنبال کنی. حالا لینک مسابقه رو برای دوستات بفرست 👇</p>
+</div>
+<div class="card">
+<h3>چطور شرکت کنم؟</h3>
+<div class="steps">
+<div class="step">
+<div class="n">۱</div>
+<p>با ایمیلت وارد سایت شو (یه کد تأیید برات میاد)</p>
+</div>
+<div class="step">
+<div class="n">۲</div>
+<p>یه سهم از فهرست S&amp;P 500 انتخاب کن و بازده‌ش رو حدس بزن</p>
+</div>
+<div class="step">
+<div class="n">۳</div>
+<p>رتبه‌ات رو هر روز توی جدول دنبال کن</p>
+</div>
+</div>
+</div>
+<div class="card">
+<h3>جایزه</h3>
+<div class="prizes" style="grid-template-columns:1fr">
+<div class="pz first">
+<div class="m">🥇</div>
+<b>۱۰۰ یورو نقد</b><span>فقط یک برنده داریم: نفر اول</span>
+</div>
+</div>
+</div>
+<div class="card" id="rzk-boards">
+<div class="tabs">
+<button type="button" class="on" data-b="pop">🔥 محبوب‌ترین انتخاب‌ها</button><button type="button" data-b="rank">🏁 رتبه‌بندی شرکت‌کننده‌ها</button>
+</div>
+<div id="rzk-b-pop"><div class="empty">در حال بارگذاری…</div></div>
+<div id="rzk-b-rank" style="display:none"><div class="empty">در حال بارگذاری…</div></div>
+</div>
+<div class="card" id="rzk-formcard">
+<h3>ثبت انتخاب</h3>
+<div class="box wait" id="rzk-wait">در حال بارگذاری…</div>
+<div class="box closed" id="rzk-closed">مهلت ثبت‌نام تموم شده. رتبه‌ات رو توی جدول بالا دنبال کن؛ نتیجه‌ی نهایی تا ۷ دسامبر اعلام میشه.</div>
+<div class="box gate" id="rzk-gate">
+<div style="font-size:30px">🔐</div>
+<p style="margin:4px 0 0">برای اینکه هر نفر فقط یک بار شرکت کنه و مسابقه منصفانه باشه، اول با ایمیلت وارد سایت شو. رمز لازم نیست؛ یه کد تأیید به ایمیلت فرستاده میشه.</p>
+<a class="btn" href="/account/login?return_url=%2Fpages%2Fcontest%23rzk-formcard">ورود با ایمیل و شرکت در مسابقه</a>
+</div>
+<div class="box done" id="rzk-done"></div>
+<form id="rzk-form" accept-charset="UTF-8" novalidate onsubmit="return false" style="display:none">
+<input type="hidden" name="form_type" value="contact"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="contact[مسابقه]" value="سهام برتر نوامبر ۲۰۲۶"><input type="hidden" name="contact[زمان ثبت]" id="rzk-time" value=""><input type="hidden" name="contact[نماد سهم]" id="rzk-ticker" value=""><div class="row">
+<div>
+<label for="rzk-name">نام و نام خانوادگی <small>(عمومی نمیشه)</small></label><input type="text" id="rzk-name" name="contact[name]" autocomplete="name" required>
+</div>
+<div>
+<label for="rzk-email">ایمیل حساب شما <small>(عمومی نمیشه)</small></label><input type="email" id="rzk-email" name="contact[email]" class="ltr" readonly>
+</div>
+</div>
+<div class="row">
+<div>
+<label for="rzk-nick">اسم نمایشی در جدول <small>(مثلاً آیدی اینستاگرام یا یه اسم مستعار)</small></label><input type="text" id="rzk-nick" name="contact[اسم نمایشی]" maxlength="24" autocomplete="off" required>
+</div>
+<div>
+<label for="rzk-country">کشور محل زندگی</label><select id="rzk-country" name="contact[کشور]" required><option value="">انتخاب کن</option>
+<option>آلمان</option>
+<option>آمریکا</option>
+<option>کانادا</option>
+<option>انگلستان</option>
+<option>استرالیا</option>
+<option>اتریش</option>
+<option>سوئیس</option>
+<option>هلند</option>
+<option>سوئد</option>
+<option>ترکیه</option>
+<option>امارات</option>
+<option>ایران</option>
+<option>کشور دیگر</option></select>
+</div>
+</div>
+<div class="row">
+<div class="cb">
+<label for="rzk-tq">سهم انتخابی <small>(نماد یا اسم شرکت، مثلاً NVDA یا Apple)</small></label><input type="text" id="rzk-tq" class="ltr" autocomplete="off" spellcheck="false" placeholder="جستجو بین ۵۰۳ سهم S&amp;P 500…"><div class="sg" id="rzk-sg"></div>
+<div class="chosen" id="rzk-chosen"></div>
+</div>
+<div>
+<label for="rzk-pred">پیش‌بینی بازده نوامبر <small>(درصد، مثلاً ۱۲ یا ۵-)</small></label><input type="number" id="rzk-pred" name="contact[پیش‌بینی بازده درصد]" class="ltr" step="0.1" min="-100" max="1000" inputmode="decimal" required>
+</div>
+</div>
+<label class="chk"><input type="checkbox" id="rzk-age" required> بالای ۱۸ سال دارم و <a href="#rzk-rules">قوانین مسابقه</a> و <a href="/policies/privacy-policy">سیاست حریم خصوصی</a> رو قبول دارم.</label><label class="chk"><input type="checkbox" id="rzk-news"> (اختیاری) می‌خوام خبرنامه‌ی سایت و مطالب آموزشی جدید رو با ایمیل دریافت کنم. هر وقت بخوام می‌تونم لغوش کنم.</label><input type="hidden" name="contact[خبرنامه]" id="rzk-newsval" value="خیر"><div class="err" id="rzk-err"></div>
+<button type="submit" class="btn" id="rzk-btn">ثبت انتخاب من 🚀</button><p class="note">بعد از ثبت، انتخاب قابل تغییر نیست. شرکت رایگانه و نیازی به خرید هیچ چیزی نیست.</p>
+</form>
+</div>
+<div class="card" id="rzk-rules">
+<h3>قوانین کامل مسابقه</h3>
+<details open><summary>برگزارکننده و زمان‌بندی</summary><ol>
+<li>برگزارکننده: رضا حاجیلو، آلمان (مشخصات کامل در صفحه‌ی اطلاعات حقوقی سایت). راه تماس: mreza.hajilou@gmail.com</li>
+<li>مهلت ثبت‌نام: تا پنج‌شنبه ۲۹ اکتبر ۲۰۲۶، ساعت ۲۳:۵۹ به وقت آلمان. زمان ثبت توسط سرور سایت ثبت میشه و ثبت‌نام‌های بعد از این زمان پذیرفته نمیشه.</li>
+<li>دوره‌ی مسابقه: از قیمت پایانی جمعه ۳۰ اکتبر ۲۰۲۶ تا قیمت پایانی دوشنبه ۳۰ نوامبر ۲۰۲۶ در بازار آمریکا.</li>
+<li>اعلام نتیجه: حداکثر تا ۷ دسامبر ۲۰۲۶ در همین صفحه و صفحه‌ی اینستاگرام برگزارکننده.</li>
+</ol></details><details><summary>سهام مجاز و نحوه‌ی محاسبه‌ی بازده</summary><ol>
+<li>فقط سهام فهرست داخل فرم (۵۰۳ سهم عضو شاخص S&amp;P 500) قابل انتخابه.</li>
+<li>بازده = (قیمت پایانی ۳۰ نوامبر ÷ قیمت پایانی ۳۰ اکتبر) منهای ۱. سود نقدی حساب نمیشه و قیمت‌ها برای تقسیم سهام (اسپلیت) تعدیل میشن.</li>
+<li>اگه سهمی در طول دوره از بورس خارج یا خریداری بشه، آخرین قیمت معاملاتی یا قیمت خرید ملاک محاسبه‌ست.</li>
+<li>قیمت‌ها از داده‌های رسمی پایانی بازار گرفته میشه.</li>
+</ol></details><details><summary>تعیین برنده</summary><ol>
+<li>برنده کسیه که سهمش <b>بین سهم‌های انتخاب‌شده‌ی شرکت‌کننده‌ها</b> بیشترین بازده رو داشته باشه. لازم نیست سهمش بهترین سهم کل شاخص باشه.</li>
+<li>اگه چند نفر یک سهم رو انتخاب کرده باشن، کسی بالاتره که پیش‌بینی درصد بازده‌ش به عدد واقعی نزدیک‌تر باشه.</li>
+<li>اگه باز هم مساوی باشن، کسی که زودتر ثبت‌نام کرده بالاتره.</li>
+<li>فقط یک برنده داریم: نفر اولِ همین رتبه‌بندی. بقیه‌ی نفرات جایزه‌ای نمی‌گیرن.</li>
+<li>جدول‌های این صفحه خودکار به‌روز میشن و فقط برای دنبال کردن مسابقه‌ان. نتیجه‌ی رسمی بعد از بررسی ثبت‌نام‌ها و با قیمت‌های پایانی رسمی ۳۰ نوامبر محاسبه میشه.</li>
+</ol></details><details><summary>شرایط شرکت و جلوگیری از تقلب</summary><ol>
+<li>شرکت رایگانه و به خرید هیچ محصولی وابسته نیست. حداقل سن: ۱۸ سال.</li>
+<li>برای شرکت باید با حساب کاربری سایت وارد بشی (ورود با ایمیل و کد تأیید). هر ایمیل فقط یک بار می‌تونه شرکت کنه و انتخاب بعد از ثبت قابل تغییر نیست.</li>
+<li>هر نفر فقط یک بار می‌تونه شرکت کنه. ساختن چند حساب یا استفاده از چند ایمیل برای یه نفر تقلبه و باعث حذف همه‌ی ثبت‌نام‌های اون شخص میشه.</li>
+<li>قبل از اعلام نتیجه، ثبت‌نام نفرات برتر بررسی میشه و برگزارکننده می‌تونه برای پرداخت جایزه هویت برنده رو تأیید کنه. ثبت‌نام‌های مشکوک حذف میشن.</li>
+<li>اسم نمایشی نباید توهین‌آمیز یا گمراه‌کننده باشه؛ در غیر این صورت برگزارکننده می‌تونه اون رو حذف یا تغییر بده.</li>
+</ol></details><details><summary>جایزه و پرداخت</summary><ol>
+<li>فقط نفر اول جایزه می‌گیره: ۱۰۰ یورو، از طریق انتقال بانکی یا پی‌پال.</li>
+<li>با برنده از طریق ایمیل حساب کاربریش تماس گرفته میشه. اگه برنده ظرف ۱۴ روز جواب نده، جایزه به نفر بعدی جدول می‌رسه.</li>
+<li>جایزه قابل انتقال به شخص دیگه نیست.</li>
+</ol></details><details><summary>حریم خصوصی، سلب مسئولیت و موارد دیگر</summary><ol>
+<li>اسم نمایشی، نماد سهم و پیش‌بینی بازده هر شرکت‌کننده در جدول‌های این صفحه به‌صورت عمومی نمایش داده میشه. نام واقعی و ایمیل هیچ‌وقت منتشر نمیشه.</li>
+<li>اطلاعات شرکت‌کننده‌ها فقط برای برگزاری این مسابقه استفاده میشه و حداکثر سه ماه بعد از اعلام نتیجه پاک میشه. فقط کسانی که گزینه‌ی خبرنامه رو تیک بزنن، خبرنامه دریافت می‌کنن. برای پاک کردن اطلاعات می‌تونید به ایمیل برگزارکننده پیام بدید.</li>
+<li>این مسابقه هیچ ارتباطی با اینستاگرام یا شرکت متا نداره و توسط اون‌ها حمایت یا برگزار نمیشه.</li>
+<li>این مسابقه آموزشی و سرگرمیه و پیشنهاد خرید یا فروش هیچ سهمی نیست. برای شرکت لازم نیست هیچ سهمی بخری.</li>
+<li>برگزارکننده در صورت وجود دلیل مهم (مثل تقلب یا مشکل فنی) می‌تونه مسابقه رو تغییر بده یا لغو کنه.</li>
+</ol></details>
+</div>
+<div class="book"><div>
+<h3>می‌خوای سهم برنده رو خودت پیدا کنی؟</h3>
+<p>اینکه چطور یه شرکت عالی رو از یه شرکت معمولی تشخیص بدی، چطور ارزش‌گذاری کنی و کجا بقیه اشتباه می‌کنن، همه رو با داستان‌های واقعی تو کتابم به فارسی نوشتم.</p>
+<a class="btn" href="/products/%D8%A7%D8%B2-%D8%A7%D9%88%D9%84%DB%8C%D9%86-%D8%B3%D9%87%D9%85-%D8%AA%D8%A7-%D8%A7%D9%86%D8%AA%D8%AE%D8%A7%D8%A8-%D8%AD%D8%B1%D9%81%D9%87%E2%80%8C%D8%A7%DB%8C%E2%80%8C%D9%87%D8%A7-%D9%85%D8%B1%D8%AC%D8%B9-%DA%A9%D8%A7%D9%85%D9%84-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C-%D8%A8%D8%B1%D8%A7%DB%8C-%DB%8C%D8%A7%D8%AF%DA%AF%D8%B1%D9%81%D8%AA%D9%86-%D8%B3%D8%B1%D9%85%D8%A7%DB%8C%D9%87%E2%80%8C%DA%AF%D8%B0%D8%A7%D8%B1%DB%8C-%D8%AF%D8%B1-%D8%A8%D9%88%D8%B1%D8%B3">مشاهده‌ی کتاب ←</a>
+</div></div>
+<div class="share"><button class="btn ghost" id="rzk-share" type="button">🔗 این مسابقه رو برای دوستت بفرست</button></div>
+<p class="note">این مسابقه آموزشیه و پیشنهاد سرمایه‌گذاری نیست.</p>
+<script>(function(){var $=function(id){return document.getElementById(id)};var DEADLINE=Date.parse('2026-10-29T22:59:59Z');var START='2026-10-30', END='2026-11-30', STARTMS=Date.parse('2026-10-30T20:00:00Z');var ENTRY_URL='/blogs/contest-entries/picks', DATA_URL='/pages/contest-data';var PRICES='https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-data@prices';var SPRAW="MMM|3M;AOS|A. O. Smith;ABT|Abbott Laboratories;ABBV|AbbVie;ACN|Accenture;ADBE|Adobe;AMD|Advanced Micro Devices;AES|AES Corporation;AFL|Aflac;A|Agilent Technologies;APD|Air Products;ABNB|Airbnb;AKAM|Akamai Technologies;ALB|Albemarle;ARE|Alexandria Real Estate;ALGN|Align Technology;ALLE|Allegion;LNT|Alliant Energy;ALL|Allstate;GOOGL|Alphabet (Class A);GOOG|Alphabet (Class C);MO|Altria;AMZN|Amazon;AMCR|Amcor;AEE|Ameren;AEP|American Electric Power;AXP|American Express;AIG|American International Group;AMT|American Tower;AWK|American Water Works;AMP|Ameriprise Financial;AME|Ametek;AMGN|Amgen;APH|Amphenol;ADI|Analog Devices;AON|Aon;APA|APA Corporation;APO|Apollo Global Management;AAPL|Apple;AMAT|Applied Materials;APP|AppLovin;APTV|Aptiv;ACGL|Arch Capital Group;ADM|Archer Daniels Midland;ARES|Ares Management;ANET|Arista Networks;AJG|Arthur J. Gallagher;AIZ|Assurant;T|AT&T;ATO|Atmos Energy;ADSK|Autodesk;ADP|Automatic Data Processing;AZO|AutoZone;AVY|Avery Dennison;AXON|Axon Enterprise;BKR|Baker Hughes;BALL|Ball Corporation;BAC|Bank of America;BAX|Baxter International;BDX|Becton Dickinson;BRK.B|Berkshire Hathaway;BBY|Best Buy;TECH|Bio-Techne;BIIB|Biogen;BLK|BlackRock;BX|Blackstone;XYZ|Block;BNY|BNY Mellon;BA|Boeing;BKNG|Booking Holdings;BSX|Boston Scientific;BMY|Bristol Myers Squibb;AVGO|Broadcom;BR|Broadridge Financial;BRO|Brown & Brown;BF.B|Brown-Forman;BLDR|Builders FirstSource;BG|Bunge Global;BXP|BXP;CHRW|C.H. Robinson;CDNS|Cadence Design Systems;CPT|Camden Property Trust;COF|Capital One;CAH|Cardinal Health;CCL|Carnival;CARR|Carrier Global;CVNA|Carvana;CASY|Casey's;CAT|Caterpillar;CBOE|Cboe Global Markets;CBRE|CBRE Group;CDW|CDW;COR|Cencora;CNC|Centene;CNP|CenterPoint Energy;CF|CF Industries;CRL|Charles River Laboratories;SCHW|Charles Schwab;CHTR|Charter Communications;CVX|Chevron;CMG|Chipotle Mexican Grill;CB|Chubb;CHD|Church & Dwight;CIEN|Ciena;CI|Cigna;CINF|Cincinnati Financial;CTAS|Cintas;CSCO|Cisco;C|Citigroup;CFG|Citizens Financial Group;CLX|Clorox;CME|CME Group;CMS|CMS Energy;KO|Coca-Cola;CTSH|Cognizant;COHR|Coherent;COIN|Coinbase;CL|Colgate-Palmolive;CMCSA|Comcast;FIX|Comfort Systems USA;COP|ConocoPhillips;ED|Consolidated Edison;STZ|Constellation Brands;CEG|Constellation Energy;COO|Cooper Companies;CPRT|Copart;GLW|Corning;CPAY|Corpay;CTVA|Corteva;CSGP|CoStar Group;COST|Costco;CRH|CRH;CRWD|CrowdStrike;CCI|Crown Castle;CSX|CSX;CMI|Cummins;CVS|CVS Health;DHR|Danaher;DRI|Darden Restaurants;DDOG|Datadog;DVA|DaVita;DECK|Deckers Brands;DE|Deere & Company;DELL|Dell Technologies;DAL|Delta Air Lines;DVN|Devon Energy;DXCM|Dexcom;FANG|Diamondback Energy;DLR|Digital Realty;DG|Dollar General;DLTR|Dollar Tree;D|Dominion Energy;DPZ|Domino's;DASH|DoorDash;DOV|Dover;DOW|Dow;DHI|D. R. Horton;DTE|DTE Energy;DUK|Duke Energy;DD|DuPont;ETN|Eaton;EBAY|eBay;ECHO|EchoStar;ECL|Ecolab;EIX|Edison International;EW|Edwards Lifesciences;ELV|Elevance Health;EME|Emcor;EMR|Emerson Electric;ETR|Entergy;EOG|EOG Resources;EQT|EQT;EFX|Equifax;EQIX|Equinix;ERIE|Erie Indemnity;ESS|Essex Property Trust;EL|Estee Lauder;EG|Everest Group;EVRG|Evergy;ES|Eversource Energy;EXC|Exelon;EXE|Expand Energy;EXPE|Expedia Group;EXPD|Expeditors International;EXR|Extra Space Storage;XOM|ExxonMobil;FFIV|F5;FDS|FactSet;FICO|Fair Isaac;FAST|Fastenal;FRT|Federal Realty;FDX|FedEx;FDXF|FedEx Freight;FERG|Ferguson Enterprises;FIS|Fidelity National Information Services;FITB|Fifth Third Bancorp;FSLR|First Solar;FE|FirstEnergy;FISV|Fiserv;FLEX|Flex;F|Ford Motor;FTNT|Fortinet;FTV|Fortive;FOXA|Fox Corporation (Class A);FOX|Fox Corporation (Class B);BEN|Franklin Resources;FCX|Freeport-McMoRan;GRMN|Garmin;IT|Gartner;GE|GE Aerospace;GEHC|GE HealthCare;GEV|GE Vernova;GEN|Gen Digital;GNRC|Generac;GD|General Dynamics;GIS|General Mills;GM|General Motors;GPC|Genuine Parts;GILD|Gilead Sciences;GPN|Global Payments;GL|Globe Life;GDDY|GoDaddy;GS|Goldman Sachs;HAL|Halliburton;HIG|Hartford;HAS|Hasbro;HCA|HCA Healthcare;DOC|Healthpeak Properties;HSIC|Henry Schein;HSY|Hershey;HPE|Hewlett Packard Enterprise;HLT|Hilton Worldwide;HD|Home Depot;HONA|Honeywell Aerospace;HON|Honeywell Technologies;HRL|Hormel Foods;HST|Host Hotels & Resorts;HWM|Howmet Aerospace;HPQ|HP Inc.;HUBB|Hubbell;HUM|Humana;HBAN|Huntington Bancshares;HII|Huntington Ingalls Industries;IBM|IBM;IEX|IDEX;IDXX|Idexx Laboratories;ITW|Illinois Tool Works;INCY|Incyte;IR|Ingersoll Rand;PODD|Insulet;INTC|Intel;IBKR|Interactive Brokers;ICE|Intercontinental Exchange;IFF|International Flavors & Fragrances;IP|International Paper;INTU|Intuit;ISRG|Intuitive Surgical;IVZ|Invesco;INVH|Invitation Homes;IQV|IQVIA;IRM|Iron Mountain;JBHT|J.B. Hunt;JBL|Jabil;JKHY|Jack Henry & Associates;J|Jacobs Solutions;JNJ|Johnson & Johnson;JCI|Johnson Controls;JPM|JPMorgan Chase;KVUE|Kenvue;KDP|Keurig Dr Pepper;KEY|KeyCorp;KEYS|Keysight Technologies;KMB|Kimberly-Clark;KIM|Kimco Realty;KMI|Kinder Morgan;KKR|KKR;KLAC|KLA;KHC|Kraft Heinz;KR|Kroger;LHX|L3Harris;LH|Labcorp;LRCX|Lam Research;LVS|Las Vegas Sands;LDOS|Leidos;LEN|Lennar;LII|Lennox International;LLY|Eli Lilly;LIN|Linde;LYV|Live Nation Entertainment;LMT|Lockheed Martin;L|Loews;LOW|Lowe's;LULU|Lululemon Athletica;LITE|Lumentum;LYB|LyondellBasell;MTB|M&T Bank;MPC|Marathon Petroleum;MAR|Marriott International;MRSH|Marsh McLennan;MLM|Martin Marietta Materials;MRVL|Marvell Technology;MAS|Masco;MA|Mastercard;MKC|McCormick;MCD|McDonald's;MCK|McKesson;MDT|Medtronic;MRK|Merck;META|Meta Platforms;MET|MetLife;MTD|Mettler Toledo;MGM|MGM Resorts;MCHP|Microchip Technology;MU|Micron Technology;MSFT|Microsoft;MAA|Mid-America Apartment;MRNA|Moderna;TAP|Molson Coors;MDLZ|Mondelez International;MPWR|Monolithic Power Systems;MNST|Monster Beverage;MCO|Moody's;MS|Morgan Stanley;MOS|Mosaic;MSI|Motorola Solutions;MSCI|MSCI;NDAQ|Nasdaq;NTAP|NetApp;NFLX|Netflix;NEM|Newmont;NWSA|News Corp (Class A);NWS|News Corp (Class B);NEE|NextEra Energy;NKE|Nike;NI|NiSource;NDSN|Nordson;NSC|Norfolk Southern;NTRS|Northern Trust;NOC|Northrop Grumman;NCLH|Norwegian Cruise Line;NRG|NRG Energy;NUE|Nucor;NVDA|Nvidia;NVR|NVR;NXPI|NXP Semiconductors;ORLY|O'Reilly Automotive;OXY|Occidental Petroleum;ODFL|Old Dominion;OMC|Omnicom Group;ON|ON Semiconductor;OKE|Oneok;ORCL|Oracle;OTIS|Otis Worldwide;PCAR|Paccar;PKG|Packaging Corporation of America;PLTR|Palantir Technologies;PANW|Palo Alto Networks;PSKY|Paramount Skydance;PH|Parker Hannifin;PAYX|Paychex;PYPL|PayPal;PNR|Pentair;PEP|PepsiCo;PFE|Pfizer;PCG|PG&E;PM|Philip Morris International;PSX|Phillips 66;PNW|Pinnacle West Capital;PNC|PNC Financial Services;PPG|PPG Industries;PPL|PPL Corporation;PFG|Principal Financial Group;PG|Procter & Gamble;PGR|Progressive;PLD|Prologis;PRU|Prudential Financial;PEG|Public Service Enterprise Group;PTC|PTC;PSA|Public Storage;PHM|PulteGroup;PWR|Quanta Services;QCOM|Qualcomm;DGX|Quest Diagnostics;Q|Qnity Electronics;RL|Ralph Lauren;RJF|Raymond James Financial;RDDT|Reddit;RTX|RTX;O|Realty Income;REG|Regency Centers;REGN|Regeneron Pharmaceuticals;RF|Regions Financial;RSG|Republic Services;RMD|ResMed;RVTY|Revvity;HOOD|Robinhood Markets;ROK|Rockwell Automation;ROL|Rollins;ROP|Roper Technologies;ROST|Ross Stores;RCL|Royal Caribbean Group;SPGI|S&P Global;CRM|Salesforce;SNDK|Sandisk;SBAC|SBA Communications;SLB|Schlumberger;STX|Seagate Technology;SRE|Sempra;NOW|ServiceNow;SHW|Sherwin-Williams;SPG|Simon Property Group;SWKS|Skyworks Solutions;SJM|J.M. Smucker;SW|Smurfit Westrock;SNA|Snap-on;SOLV|Solventum;SO|Southern Company;LUV|Southwest Airlines;SWK|Stanley Black & Decker;SBUX|Starbucks;STT|State Street;STLD|Steel Dynamics;STE|Steris;SYK|Stryker;SMCI|Supermicro;SYF|Synchrony Financial;SNPS|Synopsys;SYY|Sysco;TMUS|T-Mobile US;TROW|T. Rowe Price;TTWO|Take-Two Interactive;TPR|Tapestry;TRGP|Targa Resources;TGT|Target;TEL|TE Connectivity;TDY|Teledyne Technologies;TER|Teradyne;TSLA|Tesla;TXN|Texas Instruments;TPL|Texas Pacific Land;TXT|Textron;TMO|Thermo Fisher Scientific;TJX|TJX Companies;TKO|TKO Group Holdings;TTD|The Trade Desk;TSCO|Tractor Supply;TT|Trane Technologies;TDG|TransDigm Group;TRV|Travelers Companies;TRMB|Trimble;TFC|Truist Financial;TYL|Tyler Technologies;TSN|Tyson Foods;USB|U.S. Bancorp;UBER|Uber;UDR|UDR;ULTA|Ulta Beauty;UNP|Union Pacific;UAL|United Airlines;UPS|United Parcel Service;URI|United Rentals;UNH|UnitedHealth Group;UHS|Universal Health Services;VLO|Valero Energy;VEEV|Veeva Systems;VTR|Ventas;VLTO|Veralto;VRSN|Verisign;VRSK|Verisk Analytics;VZ|Verizon;VRTX|Vertex Pharmaceuticals;VRT|Vertiv;VTRS|Viatris;VICI|Vici Properties;V|Visa;VST|Vistra;VMRK|Vivmark Residential;VMC|Vulcan Materials;WRB|W. R. Berkley;GWW|W. W. Grainger;WAB|Wabtec;WMT|Walmart;DIS|Walt Disney;WBD|Warner Bros. Discovery;WM|Waste Management;WAT|Waters;WEC|WEC Energy Group;WFC|Wells Fargo;WELL|Welltower;WST|West Pharmaceutical Services;WDC|Western Digital;WY|Weyerhaeuser;WSM|Williams-Sonoma;WMB|Williams Companies;WTW|Willis Towers Watson;WDAY|Workday;WYNN|Wynn Resorts;XEL|Xcel Energy;XYL|Xylem;YUM|Yum! Brands;ZBRA|Zebra Technologies;ZBH|Zimmer Biomet;ZTS|Zoetis";var SP={},SPL=[];SPRAW.split(';').forEach(function(x){var p=x.split('|');SP[p[0]]=p[1];SPL.push(p)});var fa=function(n){return Number(n).toLocaleString('fa-IR')};var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};var pct=function(v){return (v>=0?'+':'')+(v*100).toFixed(2)+'%'};var form=$('rzk-form'),btn=$('rzk-btn'),err=$('rzk-err'),ENT=[],ME=null,LOADED=false;function show(id,on){$(id).style.display=on?'block':'none'}if(/contact_posted=true|rzk_posted=1/.test(location.search)){$('rzk-ok').style.display='block';setTimeout(function(){$('rzk-ok').scrollIntoView({behavior:'smooth',block:'center'})},300);}function closed(){return Date.now()>DEADLINE}function tick(){if(closed()){$('rzk-cd').style.display='none';show('rzk-closed',1);show('rzk-wait',0);show('rzk-gate',0);form.style.display='none';return false;}var s=Math.floor((DEADLINE-Date.now())/1000);$('rzk-d').textContent=fa(Math.floor(s/86400));$('rzk-h').textContent=fa(Math.floor(s%86400/3600));$('rzk-m').textContent=fa(Math.floor(s%3600/60));$('rzk-s').textContent=fa(s%60);return true;}if(tick()){var iv=setInterval(function(){if(!tick())clearInterval(iv)},1000);}function getJSON(html,id){try{var el=new DOMParser().parseFromString(html,'text/html').getElementById(id);return el?JSON.parse(el.textContent):null}catch(e){return null}}function txt(u){return fetch(u,{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.text()})}function loadComments(){var U=ENTRY_URL+'?view=contest&page=';return txt(U+1).then(function(h){var j=getJSON(h,'rzk-c'); if(!j) return {c:[],me:null};var all=j.c||[], pages=parseInt(j.p,10)||1, ps=[];for(var i=2;i<=pages&&i<=40;i++) ps.push(txt(U+i).then(function(h){var k=getJSON(h,'rzk-c');return k&&k.c?k.c:[]}));return Promise.all(ps).then(function(L){L.forEach(function(x){all=all.concat(x)});return {c:all,me:j.me||null}});}).catch(function(){return {c:[],me:null}});}function loadExtra(){return txt(DATA_URL).then(function(h){return getJSON(h,'rzk-data')||{}}).catch(function(){return {}})}function loadEntries(){return Promise.all([loadComments(),loadExtra()]).then(function(R){var X=R[1]||{}, ex={}; ME=R[0].me; LOADED=!!ME;(X.x||[]).forEach(function(n){ex[String(n).toLowerCase()]=1});var raw=R[0].c.map(function(c){var m=String(c.b||'').split('|');return {n:String(c.a||'').trim().slice(0,24),t:String(m[0]||'').trim().toUpperCase(),p:parseFloat(m[1]),ts:(+c.t)*1000,h:String(c.h||'')}}).concat((X.e||[]).map(function(e){return {n:String(e.n||''),t:String(e.t||'').toUpperCase(),p:+e.p,ts:Date.parse(e.ts),h:String(e.h||'')}}));raw=raw.filter(function(e){return e.n.length>=2&&SP[e.t]&&isFinite(e.p)&&e.p>=-100&&e.p<=1000&&e.ts<=DEADLINE+120000&&!ex[e.n.toLowerCase()]&&!(e.h&&ex[e.h])}).sort(function(a,b){return a.ts-b.ts});var sh={},sn={}; ENT=raw.filter(function(e){var k=e.n.toLowerCase();if(sn[k]||(e.h&&sh[e.h]))return false;sn[k]=1;if(e.h)sh[e.h]=1;return true});return ENT;});}[].forEach.call(document.querySelectorAll('#rzk .tabs button'),function(b){b.addEventListener('click',function(){[].forEach.call(document.querySelectorAll('#rzk .tabs button'),function(x){x.classList.toggle('on',x===b)});$('rzk-b-pop').style.display=b.dataset.b==='pop'?'':'none';$('rzk-b-rank').style.display=b.dataset.b==='rank'?'':'none';})});function renderPop(E){var box=$('rzk-b-pop');if(!E.length){box.innerHTML='<div class="empty">هنوز انتخابی ثبت نشده. اولین نفر باش! 🚀</div>';return}var c={};E.forEach(function(x){c[x.t]=(c[x.t]||0)+1});var L=Object.keys(c).map(function(t){return [t,c[t]]}).sort(function(a,b){return b[1]-a[1]||(a[0]<b[0]?-1:1)}).slice(0,15), mx=L[0][1];box.innerHTML='<div class="pop">'+L.map(function(r,i){return '<div class="pr"><span class="i">'+fa(i+1)+'</span><span class="t" title="'+esc(SP[r[0]])+'"><b>'+esc(r[0])+'</b><small>'+esc(SP[r[0]])+'</small></span><div class="bar"><i style="width:'+Math.max(4,r[1]/mx*100)+'%"></i></div><span class="c">'+fa(r[1])+' نفر</span></div>'}).join('')+'</div>'+'<div class="meta">'+fa(E.length)+' شرکت‌کننده · '+fa(Object.keys(c).length)+' سهم مختلف · به‌روزرسانی خودکار و زنده</div>';}function px(t){return fetch(PRICES+'/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).catch(function(){return null})}function pick(w,day){var r=null;for(var i=0;i<w.length;i++){if(w[i][0]<=day)r=w[i];}return r}var ROWS=[],SHOW=30,LAST='';function renderRank(E){var box=$('rzk-b-rank');if(Date.now()<STARTMS){box.innerHTML='<div class="empty">رتبه‌بندی بعد از بسته‌شدن بازار در روز جمعه ۳۰ اکتبر شروع میشه. از اون روز، اینجا می‌بینی هر کس با سهمش چند درصد سود یا ضرر کرده و چقدر به برد نزدیکه. ⏳</div>';return}if(!E.length){box.innerHTML='<div class="empty">شرکت‌کننده‌ای وجود نداره.</div>';return}var T={};E.forEach(function(x){T[x.t]=1});var P={},last='';Promise.all(Object.keys(T).map(function(t){return px(t).then(function(j){if(!j||!j.w)return;var s=pick(j.w,START),c=pick(j.w,END);if(s&&c&&s[1]>0&&c[0]>s[0]){P[t]=c[1]/s[1]-1;if(c[0]>last)last=c[0]}})})).then(function(){if(!Object.keys(P).length){box.innerHTML='<div class="empty">قیمت‌های بعد از ۳۰ اکتبر هنوز در دسترس نیست؛ به‌زودی جدول پر میشه.</div>';return}ROWS=E.map(function(x){var r=P[x.t];return {n:x.n,t:x.t,p:x.p,ts:x.ts,h:x.h,r:r==null?null:r,d:r==null?1e9:Math.abs(x.p-r*100)}}).sort(function(a,b){if(a.r==null&&b.r==null)return a.ts-b.ts;if(a.r==null)return 1;if(b.r==null)return -1;return b.r-a.r||a.d-b.d||a.ts-b.ts});LAST=last;drawRank('');});}function drawRank(q){var box=$('rzk-b-rank'),Q=q.trim().toLowerCase(),lead=ROWS[0]&&ROWS[0].r,mh=ME&&ME.h;var list=ROWS.map(function(r,i){r.i=i;return r}).filter(function(r){return !Q||String(r.n).toLowerCase().indexOf(Q)>=0||r.t.toLowerCase()===Q});var shown=Q?list:list.slice(0,SHOW), med=['🥇'];var mine=mh?ROWS.filter(function(r){return r.h===mh})[0]:null;box.innerHTML=(mine?'<div class="meta" style="font-size:14.5px;font-weight:800;color:var(--ink);margin:0 0 10px">📍 رتبه‌ی تو: '+fa(mine.i+1)+' از '+fa(ROWS.length)+' · '+esc(mine.t)+' · '+(mine.r==null?'—':pct(mine.r))+'</div>':'')+'<input class="find" id="rzk-find" placeholder="اسم نمایشی یا نماد سهم رو جستجو کن…" value="'+esc(q)+'">'+'<div class="tw"><table><thead><tr><th>رتبه</th><th>شرکت‌کننده</th><th>سهم</th><th>بازده تا الان</th><th>پیش‌بینی</th><th>فاصله تا نفر اول</th></tr></thead><tbody>'+(shown.length?shown.map(function(r){var g=r.r==null?'—':(r.i===0?'نفر اول 👑':(((lead-r.r)*100).toFixed(2)+'٪'));return '<tr class="'+(mh&&r.h===mh?'you':(r.i<1?'me':''))+'"><td>'+(med[r.i]||fa(r.i+1))+'</td><td>'+esc(r.n)+'</td><td class="l">'+esc(r.t)+'</td><td class="l '+(r.r>=0?'up':'dn')+'">'+(r.r==null?'—':pct(r.r))+'</td><td class="l">'+(r.p>=0?'+':'')+esc(r.p)+'%</td><td>'+g+'</td></tr>'}).join(''):'<tr><td colspan="6" style="text-align:center">پیدا نشد</td></tr>')+'</tbody></table></div>'+(!Q&&list.length>SHOW?'<div style="text-align:center;margin-top:10px"><button type="button" class="btn ghost" id="rzk-more">نمایش بیشتر</button></div>':'')+'<div class="meta">'+fa(ROWS.length)+' شرکت‌کننده · قیمت‌ها تا '+esc(LAST)+' · به‌روزرسانی خودکار؛ نتیجه‌ی رسمی با قیمت‌های پایانی ۳۰ نوامبر محاسبه میشه.</div>';var f=$('rzk-find');f.addEventListener('input',function(){var v=f.value;drawRank(v);var g=$('rzk-find');g.focus();g.setSelectionRange(v.length,v.length)});var m=$('rzk-more');if(m)m.addEventListener('click',function(){SHOW+=50;drawRank('')});}function setupForm(){show('rzk-wait',0);if(closed())return;if(!LOADED){$('rzk-wait').textContent='فرم ثبت‌نام به‌زودی فعال میشه.';show('rzk-wait',1);return}if(!ME.in){show('rzk-gate',1);return}var mine=ENT.filter(function(e){return e.h&&e.h===ME.h})[0];if(mine){$('rzk-done').innerHTML='<div style="font-size:30px">✅</div>تو در مسابقه شرکت کردی: <b class="ltr" style="display:inline-block">'+esc(mine.t)+'</b> ('+esc(SP[mine.t])+') با پیش‌بینی '+(mine.p>=0?'+':'')+esc(mine.p)+'٪<br><span style="font-weight:600;color:var(--mut)">اسم نمایشی: '+esc(mine.n)+' · هر حساب فقط یک بار می‌تونه شرکت کنه.</span>';show('rzk-done',1);return}var lock=null;try{lock=JSON.parse(localStorage.getItem('rzk_lock')||'null')}catch(e){}if(lock&&lock.h===ME.h&&lock.ts&&(Date.now()-lock.ts)<600000){$('rzk-done').innerHTML='<div style="font-size:30px">⏳</div>انتخابت ('+esc(lock.t)+') در حال ثبته و تا چند دقیقه‌ی دیگه توی جدول دیده میشه. اگه بعد از ۱۰ دقیقه هنوز نبود، صفحه رو دوباره باز کن و دوباره ثبت کن.';show('rzk-done',1);return}$('rzk-email').value=ME.e||'';if(ME.n)$('rzk-name').value=ME.n;form.style.display='block';}loadEntries().then(function(E){renderPop(E);renderRank(E);setupForm()}).catch(function(){$('rzk-b-pop').innerHTML='<div class="empty">بارگذاری جدول ممکن نشد. صفحه رو دوباره باز کن.</div>';$('rzk-b-rank').innerHTML=$('rzk-b-pop').innerHTML;setupForm()});var tq=$('rzk-tq'),sg=$('rzk-sg'),th=$('rzk-ticker'),SEL=-1;function choose(t){th.value=t;tq.value=t+' — '+SP[t];$('rzk-chosen').textContent='✓ انتخاب شد: '+SP[t];sg.style.display='none'}function suggest(){var v=tq.value.trim().toUpperCase();th.value='';$('rzk-chosen').textContent='';SEL=-1;if(!v){sg.style.display='none';return}var ex=SP[v]?[[v,SP[v]]]:[];var a=SPL.filter(function(p){return p[0]!==v&&p[0].indexOf(v)===0}).sort(function(x,y){return x[0].length-y[0].length||(x[0]<y[0]?-1:1)});var b=SPL.filter(function(p){return p[0].indexOf(v)!==0&&p[1].toUpperCase().indexOf(v)>=0});var L=ex.concat(a,b).slice(0,8);sg.innerHTML=L.length?L.map(function(p){return '<div data-t="'+esc(p[0])+'"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+'</span></div>'}).join(''):'<div class="no">این سهم توی فهرست S&amp;P 500 نیست.</div>';sg.style.display='block';}tq.addEventListener('input',suggest);tq.addEventListener('focus',function(){if(!th.value&&tq.value)suggest()});tq.addEventListener('keydown',function(e){var items=sg.querySelectorAll('[data-t]');if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!items.length)return;SEL=(SEL+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;[].forEach.call(items,function(x,i){x.classList.toggle('on',i===SEL)})}else if(e.key==='Enter'){e.preventDefault();var it=items[SEL>=0?SEL:0];if(it)choose(it.dataset.t)}});sg.addEventListener('mousedown',function(e){var d=e.target.closest('[data-t]');if(d){e.preventDefault();choose(d.dataset.t)}});tq.addEventListener('blur',function(){setTimeout(function(){sg.style.display='none';var v=tq.value.trim().toUpperCase();if(!th.value&&SP[v])choose(v)},150)});function toLatin(v){return String(v).replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)}).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d)})}function post(url,fd,ms){return new Promise(function(res){var done=false,f=function(){if(!done){done=true;res()}};fetch(url,{method:'POST',body:fd,credentials:'same-origin'}).then(f,f);setTimeout(f,ms||12000)})}var SENDING=false;form.addEventListener('submit',function(e){e.preventDefault();err.textContent='';if(SENDING)return;if(closed()){err.textContent='مهلت ثبت‌نام تموم شده.';return;}if(!ME||!ME.in){err.textContent='اول باید وارد حسابت بشی.';return;}var name=$('rzk-name').value.trim(),email=ME.e,nick=$('rzk-nick').value.trim().replace(/[|<>]/g,''),tk=th.value;var pred=parseFloat(toLatin($('rzk-pred').value).replace('٫','.'));if(name.length<2){err.textContent='لطفاً اسمت رو بنویس.';return;}if(nick.length<2){err.textContent='یه اسم نمایشی برای جدول رتبه‌بندی بنویس.';return;}if(ENT.some(function(x){return x.n.toLowerCase()===nick.toLowerCase()})){err.textContent='این اسم نمایشی قبلاً ثبت شده؛ یه اسم دیگه انتخاب کن.';return;}if(!$('rzk-country').value){err.textContent='کشور محل زندگی رو انتخاب کن.';return;}if(!SP[tk]){err.textContent='یه سهم از فهرست پیشنهادی انتخاب کن (نماد یا اسم شرکت رو تایپ کن و از لیست بزن).';tq.focus();return;}if(isNaN(pred)||pred<-100||pred>1000){err.textContent='پیش‌بینی بازده باید عددی بین ۱۰۰- و ۱۰۰۰ باشه.';return;}if(!$('rzk-age').checked){err.textContent='برای شرکت باید شرایط و قوانین رو قبول کنی.';return;}if(!confirm('انتخاب نهایی تو: '+tk+' ('+SP[tk]+') با پیش‌بینی '+pred+'%\nبعد از ثبت قابل تغییر نیست. مطمئنی؟'))return;SENDING=true;$('rzk-email').value=email;$('rzk-nick').value=nick;$('rzk-pred').value=pred;$('rzk-time').value=new Date().toISOString();$('rzk-newsval').value=$('rzk-news').checked?'بله':'خیر';btn.disabled=true;btn.textContent='در حال ثبت...';try{localStorage.setItem('rzk_lock',JSON.stringify({h:ME.h,t:tk,ts:Date.now()}))}catch(x){}var jobs=[post('/contact',new FormData(form))];if($('rzk-news').checked){var nf=new FormData();nf.append('form_type','customer');nf.append('utf8','✓');nf.append('contact[email]',email);nf.append('contact[tags]','newsletter,contest-nov-2026');jobs.push(post('/contact',nf));}Promise.all(jobs).then(function(){var c=document.createElement('form');c.method='post';c.action=ENTRY_URL+'/comments';c.setAttribute('accept-charset','UTF-8');c.style.display='none';[['form_type','new_comment'],['utf8','✓'],['comment[author]',nick],['comment[email]',email],['comment[body]',tk+'|'+pred]].forEach(function(p){var i=document.createElement('input');i.type='hidden';i.name=p[0];i.value=p[1];c.appendChild(i)});document.body.appendChild(c);HTMLFormElement.prototype.submit.call(c);});});$('rzk-share').addEventListener('click',function(){var u=location.origin+location.pathname,t='🏆 مسابقه‌ی سهام: یه سهم از S&P 500 انتخاب کن، اگه بین همه‌ی شرکت‌کننده‌ها بهترین بازده نوامبر رو داشت ۱۰۰ یورو می‌بری. شرکت رایگانه 👇';if(navigator.share){navigator.share({title:'مسابقه‌ی سهام برتر نوامبر',text:t,url:u}).catch(function(){});}else if(navigator.clipboard){navigator.clipboard.writeText(t+' '+u).then(function(){$('rzk-share').textContent='✅ لینک کپی شد'});}});})();</script>
+</div>
+  </div>
+</div>
+
+
+</section>
+    </main>
+
+    <!-- BEGIN sections: footer-group -->
+<div id="shopify-section-sections--32598917120342__footer" class="shopify-section shopify-section-group-footer-group">
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/section-footer.css?v=60318643098753476351791474072" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-newsletter.css?v=4727253280200485261791474072" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-list-menu.css?v=151968516119678728991791474072" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-list-payment.css?v=69253961410771838501791474072" rel="stylesheet" type="text/css" media="all" />
+<link href="//rezahajiloubooks.com/cdn/shop/t/20/assets/component-list-social.css?v=35792976012981934991791474072" rel="stylesheet" type="text/css" media="all" />
+<style data-shopify>.footer {
+    margin-top: 0px;
+  }
+
+  .section-sections--32598917120342__footer-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: 0px;
+    }
+
+    .section-sections--32598917120342__footer-padding {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+  }</style><footer class="footer color-scheme-1 gradient section-sections--32598917120342__footer-padding"><div class="footer__content-top page-width"><div
+          class="footer-block--newsletter"
+          
+        ><div class="footer-block__newsletter"><h2 class="footer-block__heading inline-richtext">خبرنامه: هفته‌ای یک ایمیل، فقط نکته‌های مهم بازار</h2><form method="post" action="/contact#ContactFooter" id="ContactFooter" accept-charset="UTF-8" class="footer__newsletter newsletter-form"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" /><input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--sections--32598917120342__footer"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value=""
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      
+                      placeholder="Email"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--sections--32598917120342__footer">
+                      Email
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="Subscribe"
+                    >
+                      <span class="svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10"><path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/></svg>
+</span>
+                    </button>
+                  </div></div></form></div>
+
+<ul class="list-unstyled list-social footer__list-social" role="list"><li class="list-social__item">
+      <a href="https://www.instagram.com/rezahajilou" class="link list-social__link">
+        <span class="svg-wrapper"><svg class="icon icon-instagram" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M13.23 3.492c-.84-.037-1.096-.046-3.23-.046-2.144 0-2.39.01-3.238.055-.776.027-1.195.164-1.487.273a2.4 2.4 0 0 0-.912.593 2.5 2.5 0 0 0-.602.922c-.11.282-.238.702-.274 1.486-.046.84-.046 1.095-.046 3.23s.01 2.39.046 3.229c.004.51.097 1.016.274 1.495.145.365.319.639.602.913.282.282.538.456.92.602.474.176.974.268 1.479.273.848.046 1.103.046 3.238.046s2.39-.01 3.23-.046c.784-.036 1.203-.164 1.486-.273.374-.146.648-.329.921-.602.283-.283.447-.548.602-.922.177-.476.27-.979.274-1.486.037-.84.046-1.095.046-3.23s-.01-2.39-.055-3.229c-.027-.784-.164-1.204-.274-1.495a2.4 2.4 0 0 0-.593-.913 2.6 2.6 0 0 0-.92-.602c-.284-.11-.703-.237-1.488-.273ZM6.697 2.05c.857-.036 1.131-.045 3.302-.045a63 63 0 0 1 3.302.045c.664.014 1.321.14 1.943.374a4 4 0 0 1 1.414.922c.41.397.728.88.93 1.414.23.622.354 1.279.365 1.942C18 7.56 18 7.824 18 10.005c0 2.17-.01 2.444-.046 3.292-.036.858-.173 1.442-.374 1.943-.2.53-.474.976-.92 1.423a3.9 3.9 0 0 1-1.415.922c-.51.191-1.095.337-1.943.374-.857.036-1.122.045-3.302.045-2.171 0-2.445-.009-3.302-.055-.849-.027-1.432-.164-1.943-.364a4.15 4.15 0 0 1-1.414-.922 4.1 4.1 0 0 1-.93-1.423c-.183-.51-.329-1.085-.365-1.943C2.009 12.45 2 12.167 2 10.004c0-2.161 0-2.435.055-3.302.027-.848.164-1.432.365-1.942a4.4 4.4 0 0 1 .92-1.414 4.2 4.2 0 0 1 1.415-.93c.51-.183 1.094-.33 1.943-.366Zm.427 4.806a4.105 4.105 0 1 1 5.805 5.805 4.105 4.105 0 0 1-5.805-5.805m1.882 5.371a2.668 2.668 0 1 0 2.042-4.93 2.668 2.668 0 0 0-2.042 4.93m5.922-5.942a.958.958 0 1 1-1.355-1.355.958.958 0 0 1 1.355 1.355" clip-rule="evenodd"/></svg>
+</span>
+        <span class="visually-hidden">Instagram</span>
+      </a>
+    </li><li class="list-social__item">
+      <a href="https://www.youtube.com/@rezahajilou" class="link list-social__link">
+        <span class="svg-wrapper"><svg class="icon icon-youtube" viewBox="0 0 20 20"><path fill="currentColor" d="M18.16 5.87c.34 1.309.34 4.08.34 4.08s0 2.771-.34 4.08a2.13 2.13 0 0 1-1.53 1.53c-1.309.34-6.63.34-6.63.34s-5.321 0-6.63-.34a2.13 2.13 0 0 1-1.53-1.53c-.34-1.309-.34-4.08-.34-4.08s0-2.771.34-4.08a2.17 2.17 0 0 1 1.53-1.53C4.679 4 10 4 10 4s5.321 0 6.63.34a2.17 2.17 0 0 1 1.53 1.53M8.3 12.5l4.42-2.55L8.3 7.4z"/></svg>
+</span>
+        <span class="visually-hidden">YouTube</span>
+      </a>
+    </li><li class="list-social__item">
+      <a href="https://x.com/Rezahajilo97838" class="link list-social__link">
+        <span class="svg-wrapper"><svg class="icon icon-twitter" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M7.273 2.8 10.8 7.822 15.218 2.8h1.768l-5.4 6.139 5.799 8.254h-4.658l-3.73-5.31-4.671 5.31H2.558l5.654-6.427L2.615 2.8zm6.242 13.125L5.07 4.109h1.405l8.446 11.816z" clip-rule="evenodd"/></svg>
+</span>
+        <span class="visually-hidden">X (Twitter)</span>
+      </a>
+    </li></ul>
+</div>
+      </div><div
+    class="footer__content-bottom"
+    
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate"></div>
+      <div class="footer__column footer__column--info"><div class="footer__payment">
+            <span class="visually-hidden">Payment methods</span>
+            <ul class="list list-payment" role="list"><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-american_express"><title id="pi-american_express">American Express</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#0071CE" style="fill:#0071CE;fill:color(display-p3 0.0000 0.4431 0.8078);fill-opacity:1;"/><path d="M3 0.5H35C36.3348 0.5 37.5 1.58692 37.5 3V21C37.5 22.4239 36.4239 23.5 35 23.5H3C1.66524 23.5 0.5 22.4131 0.5 21V3C0.5 1.57614 1.57614 0.5 3 0.5Z" stroke="black" stroke-opacity="0.07" style="stroke:black;stroke-opacity:0.07;"/><path d="M25.8662 6.33203V3H31L31.8662 5.5332L32.7334 3H37V14.2002H36.7998L34.8672 16.2656L36.7998 18.3594H37V21.2666H33.5996L31.9336 19.3994L30.2002 21.2666H19.4668V12.666H16L20.2666 3H24.4004L25.8662 6.33203ZM20.5996 20.2656H27V18.5322H22.666V17.3994H26.8662V15.666H22.666V14.5322H27V12.7988H20.5996V20.2656ZM30.5332 16.5322L27 20.2656H29.5996L31.8662 17.8662L34.0664 20.2656H36.7324L33.1992 16.4658L36.7324 12.7988H34.1328L31.8662 15.1992L29.7324 12.7988H27L30.5332 16.5322ZM17.666 11.7324H19.9326L20.5332 10.1992H23.999L24.666 11.7324H26.999L23.666 4.19922H20.999L17.666 11.7324ZM33.5996 4.19922L31.9326 8.86621L30.1992 4.19922H27V11.666H29.0664V6.39941L31 11.666H32.7998L34.7324 6.39941V11.666H36.7324V4.13281L33.5996 4.19922ZM23.2656 8.46582H21.2656L22.2656 5.99902L23.2656 8.46582Z" fill="white" style="fill:white;fill-opacity:1;"/></svg>
+
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" x="0" y="0" width="38" height="24" viewBox="0 0 165.521 105.965" xml:space="preserve" aria-labelledby="pi-apple_pay"><title id="pi-apple_pay">Apple Pay</title><path fill="#000" d="M150.698 0H14.823c-.566 0-1.133 0-1.698.003-.477.004-.953.009-1.43.022-1.039.028-2.087.09-3.113.274a10.51 10.51 0 0 0-2.958.975 9.932 9.932 0 0 0-4.35 4.35 10.463 10.463 0 0 0-.975 2.96C.113 9.611.052 10.658.024 11.696a70.22 70.22 0 0 0-.022 1.43C0 13.69 0 14.256 0 14.823v76.318c0 .567 0 1.132.002 1.699.003.476.009.953.022 1.43.028 1.036.09 2.084.275 3.11a10.46 10.46 0 0 0 .974 2.96 9.897 9.897 0 0 0 1.83 2.52 9.874 9.874 0 0 0 2.52 1.83c.947.483 1.917.79 2.96.977 1.025.183 2.073.245 3.112.273.477.011.953.017 1.43.02.565.004 1.132.004 1.698.004h135.875c.565 0 1.132 0 1.697-.004.476-.002.952-.009 1.431-.02 1.037-.028 2.085-.09 3.113-.273a10.478 10.478 0 0 0 2.958-.977 9.955 9.955 0 0 0 4.35-4.35c.483-.947.789-1.917.974-2.96.186-1.026.246-2.074.274-3.11.013-.477.02-.954.022-1.43.004-.567.004-1.132.004-1.699V14.824c0-.567 0-1.133-.004-1.699a63.067 63.067 0 0 0-.022-1.429c-.028-1.038-.088-2.085-.274-3.112a10.4 10.4 0 0 0-.974-2.96 9.94 9.94 0 0 0-4.35-4.35A10.52 10.52 0 0 0 156.939.3c-1.028-.185-2.076-.246-3.113-.274a71.417 71.417 0 0 0-1.431-.022C151.83 0 151.263 0 150.698 0z" /><path fill="#FFF" d="M150.698 3.532l1.672.003c.452.003.905.008 1.36.02.793.022 1.719.065 2.583.22.75.135 1.38.34 1.984.648a6.392 6.392 0 0 1 2.804 2.807c.306.6.51 1.226.645 1.983.154.854.197 1.783.218 2.58.013.45.019.9.02 1.36.005.557.005 1.113.005 1.671v76.318c0 .558 0 1.114-.004 1.682-.002.45-.008.9-.02 1.35-.022.796-.065 1.725-.221 2.589a6.855 6.855 0 0 1-.645 1.975 6.397 6.397 0 0 1-2.808 2.807c-.6.306-1.228.511-1.971.645-.881.157-1.847.2-2.574.22-.457.01-.912.017-1.379.019-.555.004-1.113.004-1.669.004H14.801c-.55 0-1.1 0-1.66-.004a74.993 74.993 0 0 1-1.35-.018c-.744-.02-1.71-.064-2.584-.22a6.938 6.938 0 0 1-1.986-.65 6.337 6.337 0 0 1-1.622-1.18 6.355 6.355 0 0 1-1.178-1.623 6.935 6.935 0 0 1-.646-1.985c-.156-.863-.2-1.788-.22-2.578a66.088 66.088 0 0 1-.02-1.355l-.003-1.327V14.474l.002-1.325a66.7 66.7 0 0 1 .02-1.357c.022-.792.065-1.717.222-2.587a6.924 6.924 0 0 1 .646-1.981c.304-.598.7-1.144 1.18-1.623a6.386 6.386 0 0 1 1.624-1.18 6.96 6.96 0 0 1 1.98-.646c.865-.155 1.792-.198 2.586-.22.452-.012.905-.017 1.354-.02l1.677-.003h135.875" /><g><g><path fill="#000" d="M43.508 35.77c1.404-1.755 2.356-4.112 2.105-6.52-2.054.102-4.56 1.355-6.012 3.112-1.303 1.504-2.456 3.959-2.156 6.266 2.306.2 4.61-1.152 6.063-2.858" /><path fill="#000" d="M45.587 39.079c-3.35-.2-6.196 1.9-7.795 1.9-1.6 0-4.049-1.8-6.698-1.751-3.447.05-6.645 2-8.395 5.1-3.598 6.2-.95 15.4 2.55 20.45 1.699 2.5 3.747 5.25 6.445 5.151 2.55-.1 3.549-1.65 6.647-1.65 3.097 0 3.997 1.65 6.696 1.6 2.798-.05 4.548-2.5 6.247-5 1.95-2.85 2.747-5.6 2.797-5.75-.05-.05-5.396-2.101-5.446-8.251-.05-5.15 4.198-7.6 4.398-7.751-2.399-3.548-6.147-3.948-7.447-4.048" /></g><g><path fill="#000" d="M78.973 32.11c7.278 0 12.347 5.017 12.347 12.321 0 7.33-5.173 12.373-12.529 12.373h-8.058V69.62h-5.822V32.11h14.062zm-8.24 19.807h6.68c5.07 0 7.954-2.729 7.954-7.46 0-4.73-2.885-7.434-7.928-7.434h-6.706v14.894z" /><path fill="#000" d="M92.764 61.847c0-4.809 3.665-7.564 10.423-7.98l7.252-.442v-2.08c0-3.04-2.001-4.704-5.562-4.704-2.938 0-5.07 1.507-5.51 3.82h-5.252c.157-4.86 4.731-8.395 10.918-8.395 6.654 0 10.995 3.483 10.995 8.89v18.663h-5.38v-4.497h-.13c-1.534 2.937-4.914 4.782-8.579 4.782-5.406 0-9.175-3.222-9.175-8.057zm17.675-2.417v-2.106l-6.472.416c-3.64.234-5.536 1.585-5.536 3.95 0 2.288 1.975 3.77 5.068 3.77 3.95 0 6.94-2.522 6.94-6.03z" /><path fill="#000" d="M120.975 79.652v-4.496c.364.051 1.247.103 1.715.103 2.573 0 4.029-1.09 4.913-3.899l.52-1.663-9.852-27.293h6.082l6.863 22.146h.13l6.862-22.146h5.927l-10.216 28.67c-2.34 6.577-5.017 8.735-10.683 8.735-.442 0-1.872-.052-2.261-.157z" /></g></g></svg>
+
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-google_pay"><title id="pi-google_pay">Google Pay</title><path d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000" opacity=".07"/><path d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32" fill="#FFF"/><path d="M18.093 11.976v3.2h-1.018v-7.9h2.691a2.447 2.447 0 0 1 1.747.692 2.28 2.28 0 0 1 .11 3.224l-.11.116c-.47.447-1.098.69-1.747.674l-1.673-.006zm0-3.732v2.788h1.698c.377.012.741-.135 1.005-.404a1.391 1.391 0 0 0-1.005-2.354l-1.698-.03zm6.484 1.348c.65-.03 1.286.188 1.778.613.445.43.682 1.03.65 1.649v3.334h-.969v-.766h-.049a1.93 1.93 0 0 1-1.673.931 2.17 2.17 0 0 1-1.496-.533 1.667 1.667 0 0 1-.613-1.324 1.606 1.606 0 0 1 .613-1.336 2.746 2.746 0 0 1 1.698-.515c.517-.02 1.03.093 1.49.331v-.208a1.134 1.134 0 0 0-.417-.901 1.416 1.416 0 0 0-.98-.368 1.545 1.545 0 0 0-1.319.717l-.895-.564a2.488 2.488 0 0 1 2.182-1.06zM23.29 13.52a.79.79 0 0 0 .337.662c.223.176.5.269.785.263.429-.001.84-.17 1.146-.472.305-.286.478-.685.478-1.103a2.047 2.047 0 0 0-1.324-.374 1.716 1.716 0 0 0-1.03.294.883.883 0 0 0-.392.73zm9.286-3.75l-3.39 7.79h-1.048l1.281-2.728-2.224-5.062h1.103l1.612 3.885 1.569-3.885h1.097z" fill="#5F6368"/><path d="M13.986 11.284c0-.308-.024-.616-.073-.92h-4.29v1.747h2.451a2.096 2.096 0 0 1-.9 1.373v1.134h1.464a4.433 4.433 0 0 0 1.348-3.334z" fill="#4285F4"/><path d="M9.629 15.721a4.352 4.352 0 0 0 3.01-1.097l-1.466-1.14a2.752 2.752 0 0 1-4.094-1.44H5.577v1.17a4.53 4.53 0 0 0 4.052 2.507z" fill="#34A853"/><path d="M7.079 12.05a2.709 2.709 0 0 1 0-1.735v-1.17H5.577a4.505 4.505 0 0 0 0 4.075l1.502-1.17z" fill="#FBBC04"/><path d="M9.629 8.44a2.452 2.452 0 0 1 1.74.68l1.3-1.293a4.37 4.37 0 0 0-3.065-1.183 4.53 4.53 0 0 0-4.027 2.5l1.502 1.171a2.715 2.715 0 0 1 2.55-1.875z" fill="#EA4335"/></svg>
+
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" viewBox="0 0 38 24" aria-labelledby="pi-klarna" fill="none"><title id="pi-klarna">Klarna</title><rect width="38" height="24" rx="2" fill="#FFA8CD"/><rect x=".5" y=".5" width="37" height="23" rx="1.5" stroke="#000" stroke-opacity=".07"/><path d="M30.62 14.755c-.662 0-1.179-.554-1.179-1.226 0-.673.517-1.226 1.18-1.226.663 0 1.18.553 1.18 1.226 0 .672-.517 1.226-1.18 1.226zm-.33 1.295c.565 0 1.286-.217 1.686-1.068l.04.02c-.176.465-.176.742-.176.81v.11h1.423v-4.786H31.84v.109c0 .069 0 .346.175.81l-.039.02c-.4-.85-1.121-1.068-1.687-1.068-1.355 0-2.31 1.088-2.31 2.522 0 1.433.955 2.521 2.31 2.521zm-4.788-5.043c-.643 0-1.15.228-1.56 1.068l-.039-.02c.175-.464.175-.741.175-.81v-.11h-1.423v4.787h1.462V13.4c0-.662.38-1.078.995-1.078.614 0 .917.356.917 1.068v2.532h1.462v-3.046c0-1.088-.838-1.869-1.989-1.869zm-4.963 1.068l-.039-.02c.176-.464.176-.741.176-.81v-.11h-1.424v4.787h1.463l.01-2.304c0-.673.35-1.078.926-1.078.156 0 .282.02.429.06v-1.464c-.644-.139-1.22.109-1.54.94zm-4.65 2.68c-.664 0-1.18-.554-1.18-1.226 0-.673.516-1.226 1.18-1.226.662 0 1.179.553 1.179 1.226 0 .672-.517 1.226-1.18 1.226zm-.332 1.295c.565 0 1.287-.217 1.687-1.068l.038.02c-.175.465-.175.742-.175.81v.11h1.424v-4.786h-1.424v.109c0 .069 0 .346.175.81l-.038.02c-.4-.85-1.122-1.068-1.687-1.068-1.356 0-2.311 1.088-2.311 2.522 0 1.433.955 2.521 2.31 2.521zm-4.349-.128h1.463V9h-1.463v6.922zM10.136 9H8.644c0 1.236-.751 2.343-1.892 3.134l-.448.317V9h-1.55v6.922h1.55V12.49l2.564 3.43h1.892L8.293 12.64c1.121-.82 1.852-2.096 1.843-3.639z" fill="#0B051D"/></svg>
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-maestro"><title id="pi-maestro">Maestro</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><circle fill="#EB001B" cx="15" cy="12" r="7"/><circle fill="#00A2E5" cx="23" cy="12" r="7"/><path fill="#7375CF" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"/></svg>
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-master"><title id="pi-master">Mastercard</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#1C1C1C" style="fill:#1C1C1C;fill:color(display-p3 0.1098 0.1098 0.1098);fill-opacity:1;"/><path d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z" fill="#232323" style="fill:#232323;fill:color(display-p3 0.1373 0.1373 0.1373);fill-opacity:1;"/><path d="M14.6364 19.2727C18.8538 19.2727 22.2727 15.8538 22.2727 11.6364C22.2727 7.41892 18.8538 4 14.6364 4C10.4189 4 7 7.41892 7 11.6364C7 15.8538 10.4189 19.2727 14.6364 19.2727Z" fill="#EB001B" style="fill:#EB001B;fill:color(display-p3 0.9216 0.0000 0.1059);fill-opacity:1;"/><path d="M23.3637 19.2727C27.5811 19.2727 31 15.8538 31 11.6364C31 7.41892 27.5811 4 23.3637 4C19.1462 4 15.7273 7.41892 15.7273 11.6364C15.7273 15.8538 19.1462 19.2727 23.3637 19.2727Z" fill="#F79E1B" style="fill:#F79E1B;fill:color(display-p3 0.9686 0.6196 0.1059);fill-opacity:1;"/><path d="M22.2727 11.6362C22.2727 9.01797 20.9637 6.72706 19 5.41797C17.0364 6.83615 15.7273 9.12706 15.7273 11.6362C15.7273 14.1452 17.0364 16.5452 19 17.8543C20.9637 16.5452 22.2727 14.2543 22.2727 11.6362Z" fill="#FF5F00" style="fill:#FF5F00;fill:color(display-p3 1.0000 0.3725 0.0000);fill-opacity:1;"/></svg>
+
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-paypal"><title id="pi-paypal">PayPal</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg>
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" aria-labelledby="pi-shopify_pay"><title id="pi-shopify_pay">Shop Pay</title><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z" fill="#000"/><path d="M35.889 0C37.05 0 38 .982 38 2.182v19.636c0 1.2-.95 2.182-2.111 2.182H2.11C.95 24 0 23.018 0 21.818V2.182C0 .982.95 0 2.111 0H35.89z" fill="#5A31F4"/><path d="M9.35 11.368c-1.017-.223-1.47-.31-1.47-.705 0-.372.306-.558.92-.558.54 0 .934.238 1.225.704a.079.079 0 00.104.03l1.146-.584a.082.082 0 00.032-.114c-.475-.831-1.353-1.286-2.51-1.286-1.52 0-2.464.755-2.464 1.956 0 1.275 1.15 1.597 2.17 1.82 1.02.222 1.474.31 1.474.705 0 .396-.332.582-.993.582-.612 0-1.065-.282-1.34-.83a.08.08 0 00-.107-.035l-1.143.57a.083.083 0 00-.036.111c.454.92 1.384 1.437 2.627 1.437 1.583 0 2.539-.742 2.539-1.98s-1.155-1.598-2.173-1.82v-.003zM15.49 8.855c-.65 0-1.224.232-1.636.646a.04.04 0 01-.069-.03v-2.64a.08.08 0 00-.08-.081H12.27a.08.08 0 00-.08.082v8.194a.08.08 0 00.08.082h1.433a.08.08 0 00.081-.082v-3.594c0-.695.528-1.227 1.239-1.227.71 0 1.226.521 1.226 1.227v3.594a.08.08 0 00.081.082h1.433a.08.08 0 00.081-.082v-3.594c0-1.51-.981-2.577-2.355-2.577zM20.753 8.62c-.778 0-1.507.24-2.03.588a.082.082 0 00-.027.109l.632 1.088a.08.08 0 00.11.03 2.5 2.5 0 011.318-.366c1.25 0 2.17.891 2.17 2.068 0 1.003-.736 1.745-1.669 1.745-.76 0-1.288-.446-1.288-1.077 0-.361.152-.657.548-.866a.08.08 0 00.032-.113l-.596-1.018a.08.08 0 00-.098-.035c-.799.299-1.359 1.018-1.359 1.984 0 1.46 1.152 2.55 2.76 2.55 1.877 0 3.227-1.313 3.227-3.195 0-2.018-1.57-3.492-3.73-3.492zM28.675 8.843c-.724 0-1.373.27-1.845.746-.026.027-.069.007-.069-.029v-.572a.08.08 0 00-.08-.082h-1.397a.08.08 0 00-.08.082v8.182a.08.08 0 00.08.081h1.433a.08.08 0 00.081-.081v-2.683c0-.036.043-.054.069-.03a2.6 2.6 0 001.808.7c1.682 0 2.993-1.373 2.993-3.157s-1.313-3.157-2.993-3.157zm-.271 4.929c-.956 0-1.681-.768-1.681-1.783s.723-1.783 1.681-1.783c.958 0 1.68.755 1.68 1.783 0 1.027-.713 1.783-1.681 1.783h.001z" fill="#fff"/></svg>
+
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" viewBox="-36 25 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img" aria-labelledby="pi-unionpay"><title id="pi-unionpay">Union Pay</title><path fill="#005B9A" d="M-36 46.8v.7-.7zM-18.3 25v24h-7.2c-1.3 0-2.1-1-1.8-2.3l4.4-19.4c.3-1.3 1.9-2.3 3.2-2.3h1.4zm12.6 0c-1.3 0-2.9 1-3.2 2.3l-4.5 19.4c-.3 1.3.5 2.3 1.8 2.3h-4.9V25h10.8z"/><path fill="#E9292D" d="M-19.7 25c-1.3 0-2.9 1.1-3.2 2.3l-4.4 19.4c-.3 1.3.5 2.3 1.8 2.3h-8.9c-.8 0-1.5-.6-1.5-1.4v-21c0-.8.7-1.6 1.5-1.6h14.7z"/><path fill="#0E73B9" d="M-5.7 25c-1.3 0-2.9 1.1-3.2 2.3l-4.4 19.4c-.3 1.3.5 2.3 1.8 2.3H-26h.5c-1.3 0-2.1-1-1.8-2.3l4.4-19.4c.3-1.3 1.9-2.3 3.2-2.3h14z"/><path fill="#059DA4" d="M2 26.6v21c0 .8-.6 1.4-1.5 1.4h-12.1c-1.3 0-2.1-1.1-1.8-2.3l4.5-19.4C-8.6 26-7 25-5.7 25H.5c.9 0 1.5.7 1.5 1.6z"/><path fill="#fff" d="M-21.122 38.645h.14c.14 0 .28-.07.28-.14l.42-.63h1.19l-.21.35h1.4l-.21.63h-1.68c-.21.28-.42.42-.7.42h-.84l.21-.63m-.21.91h3.01l-.21.7h-1.19l-.21.7h1.19l-.21.7h-1.19l-.28 1.05c-.07.14 0 .28.28.21h.98l-.21.7h-1.89c-.35 0-.49-.21-.35-.63l.35-1.33h-.77l.21-.7h.77l.21-.7h-.7l.21-.7zm4.83-1.75v.42s.56-.42 1.12-.42h1.96l-.77 2.66c-.07.28-.35.49-.77.49h-2.24l-.49 1.89c0 .07 0 .14.14.14h.42l-.14.56h-1.12c-.42 0-.56-.14-.49-.35l1.47-5.39h.91zm1.68.77h-1.75l-.21.7s.28-.21.77-.21h1.05l.14-.49zm-.63 1.68c.14 0 .21 0 .21-.14l.14-.35h-1.75l-.14.56 1.54-.07zm-1.19.84h.98v.42h.28c.14 0 .21-.07.21-.14l.07-.28h.84l-.14.49c-.07.35-.35.49-.77.56h-.56v.77c0 .14.07.21.35.21h.49l-.14.56h-1.19c-.35 0-.49-.14-.49-.49l.07-2.1zm4.2-2.45l.21-.84h1.19l-.07.28s.56-.28 1.05-.28h1.47l-.21.84h-.21l-1.12 3.85h.21l-.21.77h-.21l-.07.35h-1.19l.07-.35h-2.17l.21-.77h.21l1.12-3.85h-.28m1.26 0l-.28 1.05s.49-.21.91-.28c.07-.35.21-.77.21-.77h-.84zm-.49 1.54l-.28 1.12s.56-.28.98-.28c.14-.42.21-.77.21-.77l-.91-.07zm.21 2.31l.21-.77h-.84l-.21.77h.84zm2.87-4.69h1.12l.07.42c0 .07.07.14.21.14h.21l-.21.7h-.77c-.28 0-.49-.07-.49-.35l-.14-.91zm-.35 1.47h3.57l-.21.77h-1.19l-.21.7h1.12l-.21.77h-1.26l-.28.42h.63l.14.84c0 .07.07.14.21.14h.21l-.21.7h-.7c-.35 0-.56-.07-.56-.35l-.14-.77-.56.84c-.14.21-.35.35-.63.35h-1.05l.21-.7h.35c.14 0 .21-.07.35-.21l.84-1.26h-1.05l.21-.77h1.19l.21-.7h-1.19l.21-.77zm-19.74-5.04c-.14.7-.42 1.19-.91 1.54-.49.35-1.12.56-1.89.56-.7 0-1.26-.21-1.54-.56-.21-.28-.35-.56-.35-.98 0-.14 0-.35.07-.56l.84-3.92h1.19l-.77 3.92v.28c0 .21.07.35.14.49.14.21.35.28.7.28s.7-.07.91-.28c.21-.21.42-.42.49-.77l.77-3.92h1.19l-.84 3.92m1.12-1.54h.84l-.07.49.14-.14c.28-.28.63-.42 1.05-.42.35 0 .63.14.77.35.14.21.21.49.14.91l-.49 2.38h-.91l.42-2.17c.07-.28.07-.49 0-.56-.07-.14-.21-.14-.35-.14-.21 0-.42.07-.56.21-.14.14-.28.35-.28.63l-.42 2.03h-.91l.63-3.57m9.8 0h.84l-.07.49.14-.14c.28-.28.63-.42 1.05-.42.35 0 .63.14.77.35s.21.49.14.91l-.49 2.38h-.91l.42-2.24c.07-.21 0-.42-.07-.49-.07-.14-.21-.14-.35-.14-.21 0-.42.07-.56.21-.14.14-.28.35-.28.63l-.42 2.03h-.91l.7-3.57m-5.81 0h.98l-.77 3.5h-.98l.77-3.5m.35-1.33h.98l-.21.84h-.98l.21-.84zm1.4 4.55c-.21-.21-.35-.56-.35-.98v-.21c0-.07 0-.21.07-.28.14-.56.35-1.05.7-1.33.35-.35.84-.49 1.33-.49.42 0 .77.14 1.05.35.21.21.35.56.35.98v.21c0 .07 0 .21-.07.28-.14.56-.35.98-.7 1.33-.35.35-.84.49-1.33.49-.35 0-.7-.14-1.05-.35m1.89-.7c.14-.21.28-.49.35-.84v-.35c0-.21-.07-.35-.14-.49a.635.635 0 0 0-.49-.21c-.28 0-.49.07-.63.28-.14.21-.28.49-.35.84v.28c0 .21.07.35.14.49.14.14.28.21.49.21.28.07.42 0 .63-.21m6.51-4.69h2.52c.49 0 .84.14 1.12.35.28.21.35.56.35.91v.28c0 .07 0 .21-.07.28-.07.49-.35.98-.7 1.26-.42.35-.84.49-1.4.49h-1.4l-.42 2.03h-1.19l1.19-5.6m.56 2.59h1.12c.28 0 .49-.07.7-.21.14-.14.28-.35.35-.63v-.28c0-.21-.07-.35-.21-.42-.14-.07-.35-.14-.7-.14h-.91l-.35 1.68zm8.68 3.71c-.35.77-.7 1.26-.91 1.47-.21.21-.63.7-1.61.7l.07-.63c.84-.28 1.26-1.4 1.54-1.96l-.28-3.78h1.19l.07 2.38.91-2.31h1.05l-2.03 4.13m-2.94-3.85l-.42.28c-.42-.35-.84-.56-1.54-.21-.98.49-1.89 4.13.91 2.94l.14.21h1.12l.7-3.29-.91.07m-.56 1.82c-.21.56-.56.84-.91.77-.28-.14-.35-.63-.21-1.19.21-.56.56-.84.91-.77.28.14.35.63.21 1.19"/></svg>
+                </li><li class="list-payment__item">
+                  <svg class="icon icon--full-color" xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" fill="none" aria-labelledby="pi-visa"><title id="pi-visa">Visa</title><rect x=".5" y=".5" width="37" height="23" rx="2.5" stroke="#000" stroke-opacity=".07" fill="none"/><path d="M35 0H3C1.3 0 0 1.3 0 3V21C0 22.7 1.4 24 3 24H35C36.7 24 38 22.7 38 21V3C38 1.3 36.6 0 35 0Z" fill="#142FBD" style="fill:#142FBD;fill:color(display-p3 0.0784 0.1843 0.7412);fill-opacity:1;"/><path d="M35 1C36.1 1 37 1.9 37 3V21C37 22.1 36.1 23 35 23H3C1.9 23 1 22.1 1 21V3C1 1.9 1.9 1 3 1H35Z" fill="#1532CB" style="fill:#1532CB;fill:color(display-p3 0.0824 0.1961 0.7961);fill-opacity:1;"/><path d="M29.5944 10.2167H29.2778C28.8556 11.2722 28.5389 11.8 28.2222 13.3833H30.2278C29.9111 11.8 29.9111 11.0611 29.5944 10.2167V10.2167ZM32.6556 16.4444H30.8611C30.7556 16.4444 30.7556 16.4444 30.65 16.3389L30.4389 15.3889L30.3333 15.1778H27.8C27.6944 15.1778 27.5889 15.1778 27.5889 15.3889L27.2722 16.3389C27.2722 16.4444 27.1667 16.4444 27.1667 16.4444H24.95L25.1611 15.9167L28.2222 8.73889C28.2222 8.21111 28.5389 8 29.0667 8H30.65C30.7556 8 30.8611 8 30.8611 8.21111L32.3389 15.0722C32.4444 15.4944 32.55 15.8111 32.55 16.2333C32.6556 16.3389 32.6556 16.3389 32.6556 16.4444V16.4444ZM18.5111 16.1278L18.9333 14.2278C19.0389 14.2278 19.1444 14.3333 19.1444 14.3333C19.8833 14.65 20.6222 14.8611 21.3611 14.7556C21.5722 14.7556 21.8889 14.65 22.1 14.5444C22.6278 14.3333 22.6278 13.8056 22.2056 13.3833C21.9944 13.1722 21.6778 13.0667 21.3611 12.8556C20.9389 12.6444 20.5167 12.4333 20.2 12.1167C18.9333 11.0611 19.3556 9.58333 20.0944 8.84444C20.7278 8.42222 21.0444 8 21.8889 8C23.1556 8 24.5278 8 25.1611 8.21111H25.2667C25.1611 8.84444 25.0556 9.37222 24.8444 10.0056C24.3167 9.79444 23.7889 9.58333 23.2611 9.58333C22.9444 9.58333 22.6278 9.58333 22.3111 9.68889C22.1 9.68889 21.9944 9.79444 21.8889 9.9C21.6778 10.1111 21.6778 10.4278 21.8889 10.6389L22.4167 11.0611C22.8389 11.2722 23.2611 11.4833 23.5778 11.6944C24.1056 12.0111 24.6333 12.5389 24.7389 13.1722C24.95 14.1222 24.6333 14.9667 23.7889 15.6C23.2611 16.0222 23.05 16.2333 22.3111 16.2333C20.8333 16.2333 19.6722 16.3389 18.7222 16.0222C18.6167 16.2333 18.6167 16.2333 18.5111 16.1278V16.1278ZM14.8167 16.4444C14.9222 15.7056 14.9222 15.7056 15.0278 15.3889C15.5556 13.0667 16.0833 10.6389 16.5056 8.31667C16.6111 8.10556 16.6111 8 16.8222 8H18.7222C18.5111 9.26667 18.3 10.2167 17.9833 11.3778C17.6667 12.9611 17.35 14.5444 16.9278 16.1278C16.9278 16.3389 16.8222 16.3389 16.6111 16.3389L14.8167 16.4444ZM5 8.21111C5 8.10556 5.21111 8 5.31667 8H8.90556C9.43333 8 9.85556 8.31667 9.96111 8.84444L10.9111 13.4889C10.9111 13.5944 10.9111 13.5944 11.0167 13.7C11.0167 13.5944 11.1222 13.5944 11.1222 13.5944L13.3389 8.21111C13.2333 8.10556 13.3389 8 13.4444 8H15.6611C15.6611 8.10556 15.6611 8.10556 15.5556 8.21111L12.2833 15.9167C12.1778 16.1278 12.1778 16.2333 12.0722 16.3389C11.9667 16.4444 11.7556 16.3389 11.5444 16.3389H9.96111C9.85556 16.3389 9.75 16.3389 9.75 16.1278L8.06111 9.58333C7.85 9.37222 7.53333 9.05556 7.11111 8.95C6.47778 8.63333 5.31667 8.42222 5.10556 8.42222L5 8.21111Z" fill="white" style="fill:white;fill-opacity:1;"/></svg>
+
+                </li></ul>
+          </div></div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >&copy; 2026, <a href="/" title="">کتاب آموزش بورس فارسی</a></small>
+        <small class="copyright__content"><a target="_blank" rel="nofollow" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></small><ul class="policies list-unstyled"><li>
+                  <small class="copyright__content"
+                    ><a href="/policies/privacy-policy">Privacy policy</a></small
+                  >
+                </li><li>
+                  <small class="copyright__content"
+                    ><a href="/policies/refund-policy">Refund policy</a></small
+                  >
+                </li><li>
+                  <small class="copyright__content"
+                    ><a href="/policies/terms-of-service">Terms of service</a></small
+                  >
+                </li><li>
+                  <small class="copyright__content"
+                    ><a href="/policies/legal-notice">Legal notice</a></small
+                  >
+                </li><li>
+                  <small class="copyright__content"
+                    ><a href="/policies/contact-information">Contact information</a></small
+                  >
+                </li></ul></div>
+    </div>
+  </div>
+</footer>
+
+
+</div><div id="shopify-section-sections--32598917120342__reza-mobile-nav" class="shopify-section shopify-section-group-footer-group"><style>
+  /* Mobile bottom navigation – replaces the floating pills on phones; desktop keeps the pills. */
+  .rzmn{display:none}
+  @media (max-width:820px){
+    .rzcb,.rzkb,.rznb,.rzsb{display:none!important}
+    body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))!important}
+    #rzb-btn{bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+    /* homepage: sticky buy bar sits above the nav, hero is more compact */
+    .rz-sticky{bottom:calc(68px + env(safe-area-inset-bottom,0px))!important;padding:7px 14px!important}
+    .rz-sticky .rz-btn{font-size:15px!important;padding:9px 18px!important}
+    .rz-cover img{max-width:170px!important}
+    .rz-hero{padding:28px 0 36px!important}
+    .rz-hero .rz-hero-grid{gap:22px!important}
+    .rz-disc{padding-bottom:40px!important}
+    .rzmn{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+      padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));
+      background:rgba(11,20,34,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+      border-top:1px solid rgba(255,255,255,.10);box-shadow:0 -8px 30px rgba(0,0,0,.35);direction:rtl;
+      font-family:'Vazirmatn',Tahoma,sans-serif}
+    .rzmn a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;
+      border-radius:14px;text-decoration:none!important;color:#dfe7f3!important;font-weight:800;font-size:11.5px;line-height:1.2;
+      position:relative;-webkit-tap-highlight-color:transparent;transition:background .15s}
+    .rzmn a:active{background:rgba(255,255,255,.08)}
+    .rzmn .ic{font-size:22px;line-height:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+    .rzmn a.on{color:#fff!important;background:rgba(31,157,107,.18)}
+    .rzmn .dot{position:absolute;top:5px;right:calc(50% - 17px);width:8px;height:8px;border-radius:50%;background:#ff5a5f;
+      box-shadow:0 0 0 2px rgba(11,20,34,1);animation:rzmnP 1.6s infinite}
+    .rzmn .badge{position:absolute;top:2px;right:calc(50% - 34px);background:#f5b301;color:#1d1d1f;font-size:9.5px;font-weight:900;
+      padding:1px 6px;border-radius:999px;box-shadow:0 0 0 2px rgba(11,20,34,1)}
+    @keyframes rzmnP{0%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 0 rgba(255,90,95,.8)}70%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 8px rgba(255,90,95,0)}100%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 0 rgba(255,90,95,0)}}
+  }
+</style>
+<nav class="rzmn" aria-label="منوی ابزارها">
+  <a href="/pages/stock">
+    <span class="ic">📊</span><span>تحلیل سهام</span>
+  </a>
+  <a href="/pages/return-calculator">
+    <span class="ic">📈</span><span>ماشین‌حساب</span>
+  </a>
+  <a href="/blogs/news">
+    <span class="dot"></span><span class="ic">📰</span><span>اخبار و مقالات</span>
+  </a>
+  <a href="/pages/contest" class="on">
+    <span class="badge">۱۰۰€</span><span class="ic">🏆</span><span>مسابقه</span>
+  </a>
+</nav>
+
+</div>
+<!-- END sections: footer-group -->
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
+      <li id="a11y-new-window-message">Opens in a new window.</li>
+    </ul>
+
+    <script>
+      window.shopUrl = 'https://rezahajiloubooks.com';
+      window.routes = {
+        cart_add_url: '/cart/add',
+        cart_change_url: '/cart/change',
+        cart_update_url: '/cart/update',
+        cart_url: '/cart',
+        predictive_search_url: '/search/suggest',
+      };
+
+      window.cartStrings = {
+        error: `There was an error while updating your cart. Please try again.`,
+        quantityError: `You can only add [quantity] of this item to your cart.`,
+      };
+
+      window.variantStrings = {
+        addToCart: `Add to cart`,
+        soldOut: `Sold out`,
+        unavailable: `Unavailable`,
+        unavailable_with_option: `[value] - Unavailable`,
+      };
+
+      window.quickOrderListStrings = {
+        itemsAdded: `[quantity] items added`,
+        itemAdded: `[quantity] item added`,
+        itemsRemoved: `[quantity] items removed`,
+        itemRemoved: `[quantity] item removed`,
+        viewCart: `View cart`,
+        each: `[money]/ea`,
+        min_error: `This item has a minimum of [min]`,
+        max_error: `This item has a maximum of [max]`,
+        step_error: `You can only add this item in increments of [step]`,
+      };
+
+      window.accessibilityStrings = {
+        imageAvailable: `Image [index] is now available in gallery view`,
+        shareSuccess: `Link copied to clipboard`,
+        pauseSlideshow: `Pause slideshow`,
+        playSlideshow: `Play slideshow`,
+        recipientFormExpanded: `Gift card recipient form expanded`,
+        recipientFormCollapsed: `Gift card recipient form collapsed`,
+        countrySelectorSearchCount: `[count] countries/regions found`,
+      };
+    </script><script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/predictive-search.js?v=35771933781168458101791474072" defer="defer"></script><script src="//rezahajiloubooks.com/cdn/shop/t/20/assets/cart-drawer.js?v=141283134586783120501791474072" defer="defer"></script><script src="https://cdn.shopify.com/storefront/standard-actions.js" type="module" data-source-attribution="shopify.standard_actions"></script>
+</body>
+</html>

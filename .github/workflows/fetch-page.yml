@@ -1,0 +1,25 @@
+name: Snapshot a public store page into the repo
+
+on:
+  workflow_dispatch:
+    inputs:
+      path: {description: 'page path, e.g. /pages/contest', required: true}
+      out: {description: 'repo file to write, e.g. contest/page.html', required: true}
+
+permissions:
+  contents: write
+
+jobs:
+  snap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch
+        run: |
+          mkdir -p "$(dirname '${{ inputs.out }}')"
+          curl -sSL -A 'Mozilla/5.0 (X11; Linux x86_64) Chrome/124 Safari/537.36' "https://rezahajiloubooks.com${{ inputs.path }}" -o '${{ inputs.out }}'
+          wc -c '${{ inputs.out }}'
+          git config user.name github-actions; git config user.email actions@github.com
+          git add '${{ inputs.out }}'
+          git diff --cached --quiet || (git commit -qm "snapshot ${{ inputs.path }}" && git pull -q --rebase && git push -q)

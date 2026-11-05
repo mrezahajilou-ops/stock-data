@@ -115,3 +115,8 @@
   #ID .card{padding:14px;border-radius:12px}
   #ID .search input{font-size:16px;padding:11px 14px}
 }
+
+/* subscriber login / account button (the theme header is off, so this is the only way in) */
+#ID .acctbar{display:flex;justify-content:flex-end;margin:0 0 8px}
+#ID .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
+#ID .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}

@@ -172,10 +172,15 @@
   #rzc2 .search input{font-size:16px;padding:11px 14px}
 }
 
+/* subscriber login / account button (the theme header is off, so this is the only way in) */
+#rzc2 .acctbar{display:flex;justify-content:flex-end;margin:0 0 8px}
+#rzc2 .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
+#rzc2 .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
+
 /* THEME:END */
 </style>
 
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
+<div class="acctbar"><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a class="on" href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
 <h1>غربالگر سهام آمریکا</h1>
 <p class="sub">بین بیش از ۶٬۸۰۰ سهم، اونایی رو پیدا کن که با معیارهای تو جور درمیان. فیلتر آماده انتخاب کن یا خودت بساز؛ روی هر ستون بزنی مرتب میشه.</p>
 

@@ -11,10 +11,18 @@ function day(s){try{var d=new Date(s);if(isNaN(d))return '';return d.toLocaleDat
 function cta(){return '<div class="cta-box"><h3>🔒 اسم این ۳۰ سهم مخصوص مشترکین Stock Pro است</h3><p>رتبه و درصد رشد تا قیمت هدف رو همه می‌بینن؛ اسم سهم، قیمت فعلی، قیمت هدف و بازه‌ی نظر تحلیلگرها فقط برای مشترکین باز است. لیست هر روز به‌روز می‌شه.</p>'
   +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a></div>'
   +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Ftop-30">وارد حسابت شو</a></p>')+'</div>'}
-function rng(r){var lo=Math.min(r.tlo||r.px,r.px),hi=Math.max(r.thi||r.tgt,r.tgt);if(!(hi>lo))return '';
-  var p=function(x){return ((x-lo)/(hi-lo)*100).toFixed(1)+'%'},a=r.tlo||r.tgt,b=r.thi||r.tgt;
-  return '<div class="rng" dir="ltr"><span class="bar" style="left:'+p(a)+';width:calc('+p(b)+' - '+p(a)+')"></span><i class="px" style="left:'+p(r.px)+'"></i><i class="tg" style="left:'+p(r.tgt)+'"></i></div>'
-    +'<div class="rngl"><span dir="rtl">کمترین هدف <span class="num">$'+n2(r.tlo)+'</span></span><span dir="rtl">بیشترین هدف <span class="num">$'+n2(r.thi)+'</span></span></div>'}
+function rng(r){var lo0=r.tlo||r.tgt,hi0=r.thi||r.tgt,lo=Math.min(lo0,r.px,r.tgt),hi=Math.max(hi0,r.px,r.tgt);if(!(hi>lo))return '';
+  var pad=(hi-lo)*0.04;lo-=pad;hi+=pad;
+  var P=function(x){return (x-lo)/(hi-lo)*100},S=function(x){return P(x).toFixed(1)+'%'},
+      side=function(x){var v=P(x);return v<14?' l':v>86?' r':''};
+  var gap=r.px<lo0?'<span class="gap" style="left:'+S(r.px)+';width:'+(P(lo0)-P(r.px)).toFixed(1)+'%"></span>':
+          r.px>hi0?'<span class="gap" style="left:'+S(hi0)+';width:'+(P(r.px)-P(hi0)).toFixed(1)+'%"></span>':'';
+  return '<div class="rg2" dir="ltr"><div class="trk">'+gap+
+    '<span class="band" style="left:'+S(lo0)+';width:'+(P(hi0)-P(lo0)).toFixed(1)+'%"></span>'+
+    '<span class="end" style="left:'+S(lo0)+'"></span><span class="end" style="left:'+S(hi0)+'"></span>'+
+    '<span class="mk px'+side(r.px)+'" style="left:'+S(r.px)+'"><i></i><em dir="rtl">قیمت فعلی <b><bdi dir="ltr">$'+n2(r.px)+'</bdi></b></em></span>'+
+    '<span class="mk tg'+side(r.tgt)+'" style="left:'+S(r.tgt)+'"><i></i><em dir="rtl">میانگین هدف <b><bdi dir="ltr">$'+n2(r.tgt)+'</bdi></b></em></span>'+
+    '</div><div class="ends"><span dir="rtl">کمترین هدف <b><bdi dir="ltr">$'+n2(lo0)+'</bdi></b></span><span dir="rtl">بیشترین هدف <b><bdi dir="ltr">$'+n2(hi0)+'</bdi></b></span></div></div>'}
 function row(r,i){var warn=r.c20!=null&&r.c20<=-0.25?'<span class="warn">⚠️ افت <span class="num">'+Math.round(-r.c20*100)+'%</span> در یک ماه اخیر؛ ممکنه قیمت هدف‌ها هنوز به‌روز نشده باشن</span>':'';
   var sec=SEC[r.sec]||r.sec||'';
   var who=ACC?'<a class="tk" href="/pages/stock#'+esc(r.t)+'">'+esc(r.t)+'</a> <span class="nm">'+esc(r.n)+'</span>'

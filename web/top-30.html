@@ -180,12 +180,6 @@
 #rzt .upb{text-align:center;min-width:92px}
 #rzt .upb .v{display:block;font-family:var(--serif);font-size:24px;line-height:1.1;color:var(--up);direction:ltr}
 #rzt .upb .l{font-size:11.5px;color:var(--mut)}
-#rzt .rng{position:relative;height:6px;border-radius:99px;background:var(--line);margin:10px 0 2px}
-#rzt .rng i{position:absolute;top:-3px;width:2px;height:12px;border-radius:2px}
-#rzt .rng .px{background:var(--ink)}
-#rzt .rng .tg{background:var(--up)}
-#rzt .rng .bar{position:absolute;top:0;height:100%;border-radius:99px;background:rgba(79,163,122,.35)}
-#rzt .rngl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);direction:ltr}
 #rzt .warn{display:inline-block;background:rgba(201,169,97,.14);color:var(--gold);border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600}
 #rzt .rec{display:inline-block;border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600;background:rgba(79,163,122,.15);color:var(--up)}
 #rzt .lockname{display:inline-block;height:14px;width:120px;border-radius:6px;background:linear-gradient(90deg,var(--card2),var(--line));vertical-align:middle}
@@ -201,6 +195,25 @@
   #rzt .upb .v{font-size:20px}
   #rzt .lockname{width:80px}
 }
+
+/* range: current price vs analysts' targets (lowest .. highest, average) */
+#rzt .rg2{margin:30px 2px 4px}
+#rzt .rg2 .trk{position:relative;height:8px;border-radius:99px;background:var(--line)}
+#rzt .rg2 .band{position:absolute;top:0;height:100%;border-radius:99px;background:rgba(79,163,122,.45)}
+#rzt .rg2 .gap{position:absolute;top:3px;height:2px;background:repeating-linear-gradient(90deg,var(--mut) 0 5px,transparent 5px 9px)}
+#rzt .rg2 .end{position:absolute;top:-3px;width:2px;height:14px;background:var(--up);transform:translateX(-1px);border-radius:2px}
+#rzt .rg2 .mk{position:absolute;top:50%}
+#rzt .rg2 .mk i{position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;transform:translate(-50%,-50%);border:2px solid var(--card)}
+#rzt .rg2 .mk.px i{background:var(--ink)}
+#rzt .rg2 .mk.tg i{background:var(--up)}
+#rzt .rg2 .mk em{position:absolute;bottom:12px;left:0;transform:translateX(-50%);white-space:nowrap;font-style:normal;font-size:11.5px;color:var(--mut)}
+#rzt .rg2 .mk em b{color:var(--ink);font-weight:700}
+#rzt .rg2 .mk.tg em b{color:var(--up)}
+#rzt .rg2 .mk.px em{bottom:auto;top:12px}   /* price label under the bar, target label above: they never collide */
+#rzt .rg2 .mk.l em{transform:translateX(-12px)}
+#rzt .rg2 .mk.r em{transform:translateX(calc(-100% + 12px))}
+#rzt .rg2 .ends{display:flex;justify-content:space-between;margin-top:32px;font-size:11px;color:var(--mut)}
+#rzt .rg2 .ends b{color:var(--ink);font-weight:600}
 </style>
 <div class="acctbar"><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a class="on" href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
 <h1>🎯 ۳۰ سهم برتر</h1>
@@ -271,10 +284,18 @@ function day(s){try{var d=new Date(s);if(isNaN(d))return '';return d.toLocaleDat
 function cta(){return '<div class="cta-box"><h3>🔒 اسم این ۳۰ سهم مخصوص مشترکین Stock Pro است</h3><p>رتبه و درصد رشد تا قیمت هدف رو همه می‌بینن؛ اسم سهم، قیمت فعلی، قیمت هدف و بازه‌ی نظر تحلیلگرها فقط برای مشترکین باز است. لیست هر روز به‌روز می‌شه.</p>'
   +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a></div>'
   +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Ftop-30">وارد حسابت شو</a></p>')+'</div>'}
-function rng(r){var lo=Math.min(r.tlo||r.px,r.px),hi=Math.max(r.thi||r.tgt,r.tgt);if(!(hi>lo))return '';
-  var p=function(x){return ((x-lo)/(hi-lo)*100).toFixed(1)+'%'},a=r.tlo||r.tgt,b=r.thi||r.tgt;
-  return '<div class="rng" dir="ltr"><span class="bar" style="left:'+p(a)+';width:calc('+p(b)+' - '+p(a)+')"></span><i class="px" style="left:'+p(r.px)+'"></i><i class="tg" style="left:'+p(r.tgt)+'"></i></div>'
-    +'<div class="rngl"><span dir="rtl">کمترین هدف <span class="num">$'+n2(r.tlo)+'</span></span><span dir="rtl">بیشترین هدف <span class="num">$'+n2(r.thi)+'</span></span></div>'}
+function rng(r){var lo0=r.tlo||r.tgt,hi0=r.thi||r.tgt,lo=Math.min(lo0,r.px,r.tgt),hi=Math.max(hi0,r.px,r.tgt);if(!(hi>lo))return '';
+  var pad=(hi-lo)*0.04;lo-=pad;hi+=pad;
+  var P=function(x){return (x-lo)/(hi-lo)*100},S=function(x){return P(x).toFixed(1)+'%'},
+      side=function(x){var v=P(x);return v<14?' l':v>86?' r':''};
+  var gap=r.px<lo0?'<span class="gap" style="left:'+S(r.px)+';width:'+(P(lo0)-P(r.px)).toFixed(1)+'%"></span>':
+          r.px>hi0?'<span class="gap" style="left:'+S(hi0)+';width:'+(P(r.px)-P(hi0)).toFixed(1)+'%"></span>':'';
+  return '<div class="rg2" dir="ltr"><div class="trk">'+gap+
+    '<span class="band" style="left:'+S(lo0)+';width:'+(P(hi0)-P(lo0)).toFixed(1)+'%"></span>'+
+    '<span class="end" style="left:'+S(lo0)+'"></span><span class="end" style="left:'+S(hi0)+'"></span>'+
+    '<span class="mk px'+side(r.px)+'" style="left:'+S(r.px)+'"><i></i><em dir="rtl">قیمت فعلی <b><bdi dir="ltr">$'+n2(r.px)+'</bdi></b></em></span>'+
+    '<span class="mk tg'+side(r.tgt)+'" style="left:'+S(r.tgt)+'"><i></i><em dir="rtl">میانگین هدف <b><bdi dir="ltr">$'+n2(r.tgt)+'</bdi></b></em></span>'+
+    '</div><div class="ends"><span dir="rtl">کمترین هدف <b><bdi dir="ltr">$'+n2(lo0)+'</bdi></b></span><span dir="rtl">بیشترین هدف <b><bdi dir="ltr">$'+n2(hi0)+'</bdi></b></span></div></div>'}
 function row(r,i){var warn=r.c20!=null&&r.c20<=-0.25?'<span class="warn">⚠️ افت <span class="num">'+Math.round(-r.c20*100)+'%</span> در یک ماه اخیر؛ ممکنه قیمت هدف‌ها هنوز به‌روز نشده باشن</span>':'';
   var sec=SEC[r.sec]||r.sec||'';
   var who=ACC?'<a class="tk" href="/pages/stock#'+esc(r.t)+'">'+esc(r.t)+'</a> <span class="nm">'+esc(r.n)+'</span>'

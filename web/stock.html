@@ -1178,12 +1178,12 @@ window.addEventListener('hashchange',function(){var t=(location.hash||'').slice(
 showQuota(); recent(); loadSectors();
 
 /* ---- hover-to-enlarge: rest the mouse on any chart card for 1s and it zooms over the page; leave it and it drops back.
-   Works for every .card that contains an <svg> (small history charts, revenue/profit, price, valuation history), including
+   Only the 4 small history charts (.charts: revenue/net income, free cash flow, margins, share count), including
    charts redrawn later, because it listens on the whole page. Desktop only (mouse); touch devices keep the normal layout. ---- */
 (function(){
   if(!window.matchMedia||!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
   var root=$('rzs'),timer=null,big=null,ph=null;
-  function cardOf(el){var c=el&&el.closest?el.closest('#rzs .card'):null;return c&&c.querySelector('svg')&&!c.classList.contains('score')&&!c.closest('.rz-zoom')?c:null}
+  function cardOf(el){var c=el&&el.closest?el.closest('#rzs .charts > .card'):null;return c&&c.querySelector('svg')&&!c.closest('.rz-zoom')?c:null}   /* only the 4 small history charts; the other charts are big enough */
   function open(c){
     if(big)close();
     var r=c.getBoundingClientRect();

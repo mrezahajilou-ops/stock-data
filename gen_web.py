@@ -12,7 +12,7 @@ WEB = os.path.join(ROOT, 'web')
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
         ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'), ('top30', '/pages/top-30', '۳۰ سهم برتر'),
-        ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا')]
+        ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا'), ('book', '/pages/book', 'کتاب')]
 
 
 def nav(on):
@@ -340,6 +340,50 @@ def top30_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzt'), nav('top30'), JS, js)
 
 
+HOME_TOOLS = [
+    ('🔍', '/pages/stock', 'تحلیل سهم', 'امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.'),
+    ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.'),
+    ('🧮', '/pages/screener', 'غربالگر سهام', 'بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.'),
+    ('📐', '/pages/dcf', 'ماشین‌حساب DCF', 'ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.'),
+    ('🦈', '/pages/superinvestors', 'سوپر سرمایه‌گذارها', 'پورتفوی بافت، اکمن، بری و بیش از ۵۰ مدیر افسانه‌ای.'),
+    ('📅', '/pages/earnings', 'تقویم گزارش‌ها', 'کی کدوم شرکت گزارش میده و نتیجه‌ی گزارش‌های اخیر.'),
+    ('⚖️', '/pages/compare', 'مقایسه', 'دو تا چهار سهم رو کنار هم ببین.'),
+    ('👀', '/pages/watchlist', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با هشدار قیمت.'),
+    ('📒', '/pages/my-portfolio', 'دفترچه سهام من', 'پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.'),
+    ('📡', '/pages/pulse', 'نبض جامعه', 'ایرانی‌ها این هفته کدوم سهم‌ها رو زیر نظر داشتن.'),
+    ('📈', '/pages/return-calculator', 'ماشین‌حساب بازده', 'اگه X سال پیش سرمایه‌گذاری کرده بودی، الان چقدر بود؟'),
+    ('📰', '/blogs/news', 'اخبار و مقالات', 'خبرهای مهم بازار با توضیح ساده.'),
+]
+
+
+def home_page():
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'home.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'home.js'), encoding='utf-8').read()
+    tools = ''.join('<a class="tool" href="%s"><span class="i">%s</span><span><b>%s</b><small>%s</small></span></a>' % (u, i, t, d) for i, u, t, d in HOME_TOOLS)
+    body = (
+        '<div class="top"><section class="hero"><p class="brand">sahamanaliz.com</p>'
+        '<h1>سهام آنالیز<small>تحلیل سهام آمریکا به فارسی</small></h1>'
+        '<p class="sub">هر سهم آمریکایی رو جستجو کن: امتیاز، ارزش ذاتی، نظر تحلیلگرها و اینکه سوپرسرمایه‌گذارها کدوم رو دارن؛ همه به زبون ساده.</p>'
+        '<div class="sbox search"><input id="rzh-q" type="search" autocomplete="off" placeholder="نماد یا اسم سهم، مثلاً NVDA" aria-label="جستجوی سهم">'
+        '<button class="go" id="rzh-go" aria-label="جستجو">←</button><div class="sugg" id="rzh-sg"></div></div>'
+        '<div class="pop">' + ''.join('<a href="/pages/stock#%s">%s</a>' % (t, t) for t in ('NVDA', 'AAPL', 'MSFT', 'AMZN', 'TSLA', 'META', 'SE', 'MELI')) + '</div>'
+        '<div class="mkt" id="rzh-mkt"></div></section>'
+        '<section class="t30box" id="rzh-t30s"><h2>🎯 ۳۰ سهم برتر امروز</h2><p class="sub">بر اساس میانگین قیمت هدف تحلیلگران</p>'
+        '<div class="t30" id="rzh-t30"><div class="empty">در حال بارگذاری…</div></div><a class="more" href="/pages/top-30">دیدن هر ۳۰ سهم ←</a></section></div>'
+        '<h2>ابزارهای تحلیل</h2><div class="tools">' + tools + '</div>'
+        '<div class="bottom"><div class="pro"><h3>Stock Pro: همه‌ی ابزارها، بدون قفل</h3>'
+        '<p>تحلیل کامل همه‌ی سهم‌ها، غربالگر کامل، DCF، سوپرسرمایه‌گذارها و اسم «۳۰ سهم برتر».</p>'
+        '<div class="btns"><a class="btn" href="/products/stock-data-pro-yearly">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a>'
+        '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div></div>'
+        '<a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a>'
+        '<a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب آموزش بورس</b><small>«از مبتدی تا یک سرمایه‌گذار حرفه‌ای»، مرجع کامل فارسی.</small></span></a>'
+        '<a class="tool" href="/pages/contest"><span class="i">🏆</span><span><b>مسابقه</b><small>پیش‌بینی کن و با بقیه رقابت کن.</small></span></a></div>'
+    )
+    return ('<div id="rzh" dir="rtl">\n<style>%s</style>\n%s\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzh'), body, EVENTS_JS + JS, js)
+
+
 def myportfolio_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'myportfolio.css'), encoding='utf-8').read()
@@ -355,6 +399,7 @@ def main():
         'my-portfolio.html': myportfolio_page(),
         'superinvestors.html': superinvestors_page(),
         'top-30.html': top30_page(),
+        'home.html': home_page(),
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),

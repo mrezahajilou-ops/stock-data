@@ -197,7 +197,7 @@
   #rzt .lockname{width:80px}
 }
 </style>
-<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a class="on" href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a class="on" href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
 <h1>🎯 ۳۰ سهم برتر</h1>
 <p class="sub">بر اساس میانگین قیمت هدف تحلیلگران: ۳۰ سهمی که بیشترین فاصله رو بین قیمت فعلی و میانگین قیمت هدف تحلیلگرهای وال‌استریت دارن.</p>
 <div id="rzt-main"><div class="card empty">در حال بارگذاری…</div></div>
@@ -264,7 +264,7 @@ function usd(v){return '<span class="num">$'+n2(v)+'</span>'}
 function upv(v){return '+'+(v*100).toFixed(1)+'%'}
 function day(s){try{var d=new Date(s);if(isNaN(d))return '';return d.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}}
 function cta(){return '<div class="cta-box"><h3>🔒 اسم این ۳۰ سهم مخصوص مشترکین Stock Pro است</h3><p>رتبه و درصد رشد تا قیمت هدف رو همه می‌بینن؛ اسم سهم، قیمت فعلی، قیمت هدف و بازه‌ی نظر تحلیلگرها فقط برای مشترکین باز است. لیست هر روز به‌روز می‌شه.</p>'
-  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span> · ۵۰٪ تخفیف</a></div>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a></div>'
   +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Ftop-30">وارد حسابت شو</a></p>')+'</div>'}
 function rng(r){var lo=Math.min(r.tlo||r.px,r.px),hi=Math.max(r.thi||r.tgt,r.tgt);if(!(hi>lo))return '';
   var p=function(x){return ((x-lo)/(hi-lo)*100).toFixed(1)+'%'},a=r.tlo||r.tgt,b=r.thi||r.tgt;
@@ -283,7 +283,7 @@ function render(D){var L=D.rows.map(function(r){var q=RZQ&&RZQ.q&&RZQ.q[r.t],px=
     .filter(function(r){return r.up>0}).sort(function(a,b){return b.up-a.up}).slice(0,30);
   var R=D.rules||{};
   var h='<div class="lead"><span class="rule">ارزش بازار بالای <b class="num">$'+(R.mcap/1e9||2)+'B</b></span><span class="rule">حداقل <b class="num">'+(R.analysts||8)+'</b> تحلیلگر</span><span class="rule">قیمت سهم بالای <b class="num">$'+(R.price||5)+'</b></span><span class="rule">به‌روزرسانی روزانه</span></div>'
-    +'<p class="stamp">قیمت هدف تحلیلگرها: '+esc(day(D.est_as_of||D.as_of))+' · قیمت‌ها: '+(RZQ&&RZQ.as_of?esc(liveWhen(RZQ.as_of)):'آخرین قیمت پایانی')+'</p>';
+    +'<p class="stamp">قیمت هدف تحلیلگرها: '+esc(day(D.est_as_of||D.as_of))+' &nbsp;|&nbsp; قیمت‌ها: '+(RZQ&&RZQ.as_of?esc(liveWhen(RZQ.as_of)):'آخرین قیمت پایانی')+'</p>';
   if(!ACC)h+=cta();
   h+='<div class="list">'+L.map(row).join('')+'</div>';
   h+='<p class="disc">«درصد رشد» فاصله‌ی قیمت فعلی تا <b>میانگین قیمت هدف تحلیلگرهای وال‌استریت</b> برای ۱۲ ماه آینده است. قیمت هدف پیش‌بینی تحلیلگرهاست و اغلب اشتباه از آب درمیاد؛ سهم‌هایی که سقوط تند داشتن معمولاً بالای این لیست میان چون تحلیلگرها دیرتر هدفشون رو پایین میارن. این لیست نقطه‌ی شروع تحقیقه، نه توصیه‌ی خرید.</p>';

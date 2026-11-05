@@ -378,9 +378,15 @@
 #rzs .comm .vote button.on{border-color:var(--ac);color:var(--ac)}
 #rzs .comm .vb{display:inline-block;width:90px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}
 #rzs .comm .vb b{display:block;height:100%;background:var(--up)}
+
+/* FOCUS:START  once a stock is open, the numbers start right under the search box */
+#rzs.has-t>h1,#rzs.has-t>p.sub{display:none}
+#rzs.has-t>.card:first-of-type{padding:10px 12px;margin-bottom:10px}
+@media(max-width:640px){#rzs.has-t #rzs-pop,#rzs.has-t .quota{display:none}#rzs.has-t>.nav{margin-bottom:8px}}
+/* FOCUS:END */
 </style>
 
-<div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
 <h1>تحلیل سهام آمریکا به فارسی</h1>
 <p class="sub">امتیاز ۰ تا ۵ در پنج بخش با توضیح دلیل هر امتیاز، صورت‌های مالی ۱۰ ساله، نسبت‌های ارزش‌گذاری و مقایسه با میانگین صنعت؛ مستقیم از گزارش‌های رسمی شرکت‌ها به SEC.</p>
 
@@ -1167,5 +1173,10 @@ showQuota(); recent(); loadSectors();
 
 var h0=(location.hash||'').slice(1).toUpperCase(); if(h0&&/^[A-Z.-]{1,7}$/.test(h0)) open(h0);
 })();
+</script>
+<script>
+/* FOCUS:START */
+(function(){var r=document.getElementById('rzs');if(!r)return;function u(){var t=decodeURIComponent((location.hash||'').slice(1)).trim();r.classList.toggle('has-t',/^[A-Za-z][A-Za-z0-9.\-]{0,9}$/.test(t))}u();window.addEventListener('hashchange',function(){u();var y=r.getBoundingClientRect().top+window.scrollY-8;if(window.scrollY>y)window.scrollTo(0,y)})})();
+/* FOCUS:END */
 </script>
 </div>

@@ -158,51 +158,80 @@
   #rzh .card{padding:14px;border-radius:12px}
   #rzh .search input{font-size:16px;padding:11px 14px}
 }
-/* Home (sahamanaliz.com): stock analysis first, book/contest/portfolio as side doors. */
-#rzh .hero{padding:34px 0 26px;text-align:center}
-#rzh .brand{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.02em;margin:0 0 10px}
-#rzh .hero h1{font-size:clamp(28px,6vw,46px);line-height:1.35;margin:0 0 10px;font-weight:800}
-#rzh .hero .sub{max-width:620px;margin:0 auto 22px;font-size:16px}
-#rzh .sbox{position:relative;max-width:620px;margin:0 auto}
-#rzh .sbox input{width:100%;font-size:18px;padding:16px 20px 16px 56px;border-radius:16px;border:1.5px solid var(--line);background:var(--card)}
+/* Home (sahamanaliz.com): stock analysis first, book/contest/portfolio as side doors.
+   Desktop fills the width (two-column hero, wide tool grid, one bottom row); mobile is compact tiles, no sideways scroll. */
+#rzh{max-width:none}
+#rzh .top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;align-items:stretch;padding:22px 0 8px}
+#rzh .hero{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 30px 24px;display:flex;flex-direction:column;justify-content:center}
+#rzh .brand{font-family:var(--serif);font-size:15px;color:var(--gold);margin:0 0 6px;direction:ltr;text-align:right}
+#rzh .hero h1{font-size:clamp(28px,3.2vw,44px);line-height:1.35;margin:0 0 8px;font-weight:800}
+#rzh .hero h1 small{display:block;font-size:.55em;font-weight:600;color:var(--mut);margin-top:2px}
+#rzh .hero .sub{max-width:640px;margin:0 0 18px;font-size:15.5px}
+#rzh .sbox{position:relative}
+#rzh .sbox input{width:100%;font-size:18px;padding:15px 20px 15px 58px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg)}
 #rzh .sbox input:focus{border-color:var(--gold)}
-#rzh .sbox .go{position:absolute;left:8px;top:8px;bottom:8px;width:44px;border-radius:12px;border:0;background:var(--gold);color:#15120a;font-size:18px;cursor:pointer}
-#rzh .sbox .sugg{text-align:right}
-#rzh .pop{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+#rzh .sbox .go{position:absolute;left:7px;top:7px;bottom:7px;width:46px;border-radius:10px;border:0;background:var(--gold);color:#15120a;font-size:18px;cursor:pointer}
+#rzh .pop{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 #rzh .pop a{direction:ltr;font-size:13px;color:var(--mut)!important;text-decoration:none!important;border:1px solid var(--line);border-radius:999px;padding:2px 12px}
 #rzh .pop a:hover{color:var(--ink)!important;border-color:var(--gold)}
-#rzh .mkt{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-size:13.5px;color:var(--mut)}
-#rzh .mkt b{font-weight:600}
-#rzh h2{font-size:20px;font-weight:800;margin:30px 0 12px;color:var(--ink)}
-#rzh .t30{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-#rzh .t30 a{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-decoration:none!important;color:var(--ink)!important}
-#rzh .t30 .r{font-family:var(--serif);color:var(--gold);font-size:14px}
-#rzh .t30 .u{display:block;font-family:var(--serif);font-size:28px;color:var(--up);direction:ltr;text-align:right;line-height:1.2}
-#rzh .t30 .k{font-size:13px;color:var(--mut)}
+#rzh .mkt{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:13.5px;color:var(--mut)}
+#rzh .t30box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 20px 14px;display:flex;flex-direction:column}
+#rzh .t30box h2{margin:0;font-size:19px}
+#rzh .t30box .sub{margin:0 0 10px;font-size:13px}
+#rzh .t30{display:flex;flex-direction:column;gap:6px;flex:1}
+#rzh .t30 a{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 14px;text-decoration:none!important;color:var(--ink)!important}
+#rzh .t30 a:hover{border-color:var(--gold)}
+#rzh .t30 .r{font-family:var(--serif);color:var(--gold);font-size:15px;margin-left:8px}
+#rzh .t30 .u{font-family:var(--serif);font-size:22px;color:var(--up);direction:ltr}
+#rzh .t30 .k{font-size:12.5px;color:var(--mut)}
 #rzh .more{display:inline-block;margin-top:10px;font-size:14px;font-weight:700;color:var(--gold)!important}
-#rzh .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:10px}
+#rzh h2{font-size:19px;font-weight:800;margin:22px 0 10px;color:var(--ink)}
+#rzh .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
 #rzh .tool{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-decoration:none!important;color:var(--ink)!important}
 #rzh .tool:hover{border-color:var(--gold)}
-#rzh .tool .i{font-size:22px;line-height:1}
+#rzh .tool .i{font-size:22px;line-height:1.2}
 #rzh .tool b{display:block;font-size:15.5px;font-weight:700}
 #rzh .tool small{display:block;color:var(--mut);font-size:13px;line-height:1.7;margin-top:2px}
-#rzh .pro{background:var(--card);border:1.5px solid var(--gold);border-radius:20px;padding:22px;margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center}
-#rzh .pro h3{font-size:20px;margin:0 0 6px}
-#rzh .pro p{margin:0;color:var(--mut);font-size:14.5px}
-#rzh .pro .btns{display:flex;flex-direction:column;gap:8px}
-#rzh .side{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-#rzh .who{display:flex;gap:14px;align-items:center;margin-top:30px;padding:18px;border-top:1px solid var(--line)}
-#rzh .who img{width:56px;height:56px;border-radius:50%;object-fit:cover}
-#rzh .who p{margin:0;color:var(--mut);font-size:14px}
+#rzh .bottom{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+#rzh .pro{background:var(--card);border:1.5px solid var(--gold);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+#rzh .pro h3{font-size:18px;margin:0}
+#rzh .pro p{margin:0;color:var(--mut);font-size:14px}
+#rzh .pro .btns{display:flex;gap:8px;flex-wrap:wrap}
+#rzh .bottom .tool{flex-direction:column;gap:6px}
+#rzh .side-l{display:none}
+@media(max-width:1000px){
+  #rzh .top{grid-template-columns:1fr}
+  #rzh .bottom{grid-template-columns:1fr 1fr}
+  #rzh .pro{grid-column:1/-1}
+}
 @media(max-width:640px){
-  #rzh .hero{padding:18px 0 14px}
-  #rzh .t30{grid-template-columns:1fr}
-  #rzh .t30 a{display:flex;justify-content:space-between;align-items:center}
-  #rzh .pro{grid-template-columns:1fr}
-  #rzh .side{grid-template-columns:1fr}
+  #rzh .top{padding:6px 0 0;gap:12px}
+  #rzh .hero{padding:18px 16px 16px;border-radius:16px}
+  #rzh .brand{font-size:13px}
+  #rzh .hero h1{font-size:26px;margin:0 0 4px}
+  #rzh .hero .sub{font-size:14px;margin-bottom:12px;line-height:1.8}
+  #rzh .sbox input{font-size:16px;padding:13px 14px 13px 54px}
+  #rzh .pop a:nth-child(n+7){display:none}
+  #rzh .mkt{gap:12px;font-size:12.5px;margin-top:10px}
+  #rzh .t30box{padding:14px 12px 10px;border-radius:16px}
+  #rzh .t30 a:nth-child(n+4){display:none}
+  #rzh .t30 .u{font-size:19px}
+  #rzh h2{font-size:17px;margin:16px 0 8px}
+  #rzh .tools{grid-template-columns:1fr 1fr;gap:8px}
+  #rzh .tool{flex-direction:row;align-items:center;gap:8px;padding:11px 10px;border-radius:14px}
+  #rzh .tool .i{font-size:19px}
+  #rzh .tool b{font-size:14px;line-height:1.5}
+  #rzh .tools .tool small{display:none}
+  #rzh .bottom{grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px}
+  #rzh .bottom .tool small{display:none}
+  #rzh .bottom .tool b{font-size:13px}
+  #rzh .pro{padding:14px}
+  #rzh .pro .btns{flex-direction:column}
+  #rzh .pro .btns .btn{text-align:center}
+  #rzh .bottom .tool{flex-direction:column;align-items:center;text-align:center;gap:4px}
 }
 </style>
-<section class="hero"><p class="brand">sahamanaliz.com</p><h1>سهام آنالیز<br>تحلیل سهام آمریکا به فارسی</h1><p class="sub">هر سهم آمریکایی رو جستجو کن: امتیاز، ارزش ذاتی، نظر تحلیلگرها و اینکه سوپرسرمایه‌گذارها کدوم رو دارن؛ همه به زبون ساده.</p><div class="sbox search"><input id="rzh-q" type="search" autocomplete="off" placeholder="اسم یا نماد سهم، مثلاً NVDA یا Apple" aria-label="جستجوی سهم"><button class="go" id="rzh-go" aria-label="جستجو">←</button><div class="sugg" id="rzh-sg"></div></div><div class="pop"><a href="/pages/stock#NVDA">NVDA</a><a href="/pages/stock#AAPL">AAPL</a><a href="/pages/stock#MSFT">MSFT</a><a href="/pages/stock#AMZN">AMZN</a><a href="/pages/stock#TSLA">TSLA</a><a href="/pages/stock#META">META</a><a href="/pages/stock#SE">SE</a><a href="/pages/stock#MELI">MELI</a></div><div class="mkt" id="rzh-mkt"></div></section><div id="rzh-t30s"><h2>🎯 ۳۰ سهم برتر امروز</h2><p class="sub" style="margin-top:-6px">بر اساس میانگین قیمت هدف تحلیلگران</p><div class="t30" id="rzh-t30"><div class="card empty">در حال بارگذاری…</div></div><a class="more" href="/pages/top-30">دیدن هر ۳۰ سهم ←</a></div><h2>ابزارهای تحلیل</h2><div class="tools"><a class="tool" href="/pages/stock"><span class="i">🔍</span><span><b>تحلیل سهم</b><small>امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.</small></span></a><a class="tool" href="/pages/top-30"><span class="i">🎯</span><span><b>۳۰ سهم برتر</b><small>بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.</small></span></a><a class="tool" href="/pages/screener"><span class="i">🧮</span><span><b>غربالگر سهام</b><small>بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.</small></span></a><a class="tool" href="/pages/dcf"><span class="i">📐</span><span><b>ماشین‌حساب DCF</b><small>ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.</small></span></a><a class="tool" href="/pages/superinvestors"><span class="i">🦈</span><span><b>سوپر سرمایه‌گذارها</b><small>پورتفوی بافت، اکمن، بری و بیش از ۵۰ مدیر افسانه‌ای.</small></span></a><a class="tool" href="/pages/earnings"><span class="i">📅</span><span><b>تقویم گزارش‌ها</b><small>کی کدوم شرکت گزارش میده و نتیجه‌ی گزارش‌های اخیر.</small></span></a><a class="tool" href="/pages/compare"><span class="i">⚖️</span><span><b>مقایسه</b><small>دو تا چهار سهم رو کنار هم ببین.</small></span></a><a class="tool" href="/pages/watchlist"><span class="i">👀</span><span><b>واچ‌لیست و هشدار قیمت</b><small>سهم‌هایی که دنبال می‌کنی، با هشدار قیمت.</small></span></a><a class="tool" href="/pages/my-portfolio"><span class="i">📒</span><span><b>دفترچه سهام من</b><small>پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.</small></span></a><a class="tool" href="/pages/pulse"><span class="i">📡</span><span><b>نبض جامعه</b><small>ایرانی‌ها این هفته کدوم سهم‌ها رو زیر نظر داشتن.</small></span></a><a class="tool" href="/pages/return-calculator"><span class="i">📈</span><span><b>ماشین‌حساب بازده</b><small>اگه X سال پیش سرمایه‌گذاری کرده بودی، الان چقدر بود؟</small></span></a><a class="tool" href="/blogs/news"><span class="i">📰</span><span><b>اخبار و مقالات</b><small>خبرهای مهم بازار با توضیح ساده.</small></span></a></div><div class="pro"><div><h3>Stock Pro: همه‌ی ابزارها، بدون قفل</h3><p>تحلیل کامل همه‌ی سهم‌ها، غربالگر کامل، DCF، سوپرسرمایه‌گذارها و اسم «۳۰ سهم برتر».</p></div><div class="btns"><a class="btn" href="/products/stock-data-pro-yearly">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div></div><h2>از رضا حاجیلو</h2><div class="side"><a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ اشتراک سالانه با یک سال Stock Pro هدیه.</small></span></a><a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب «از مبتدی تا یک سرمایه‌گذار حرفه‌ای»</b><small>مرجع کامل فارسی برای یاد گرفتن سرمایه‌گذاری در بورس آمریکا.</small></span></a><a class="tool" href="/pages/contest"><span class="i">🏆</span><span><b>مسابقه</b><small>پیش‌بینی کن و با بقیه رقابت کن.</small></span></a></div>
+<div class="top"><section class="hero"><p class="brand">sahamanaliz.com</p><h1>سهام آنالیز<small>تحلیل سهام آمریکا به فارسی</small></h1><p class="sub">هر سهم آمریکایی رو جستجو کن: امتیاز، ارزش ذاتی، نظر تحلیلگرها و اینکه سوپرسرمایه‌گذارها کدوم رو دارن؛ همه به زبون ساده.</p><div class="sbox search"><input id="rzh-q" type="search" autocomplete="off" placeholder="نماد یا اسم سهم، مثلاً NVDA" aria-label="جستجوی سهم"><button class="go" id="rzh-go" aria-label="جستجو">←</button><div class="sugg" id="rzh-sg"></div></div><div class="pop"><a href="/pages/stock#NVDA">NVDA</a><a href="/pages/stock#AAPL">AAPL</a><a href="/pages/stock#MSFT">MSFT</a><a href="/pages/stock#AMZN">AMZN</a><a href="/pages/stock#TSLA">TSLA</a><a href="/pages/stock#META">META</a><a href="/pages/stock#SE">SE</a><a href="/pages/stock#MELI">MELI</a></div><div class="mkt" id="rzh-mkt"></div></section><section class="t30box" id="rzh-t30s"><h2>🎯 ۳۰ سهم برتر امروز</h2><p class="sub">بر اساس میانگین قیمت هدف تحلیلگران</p><div class="t30" id="rzh-t30"><div class="empty">در حال بارگذاری…</div></div><a class="more" href="/pages/top-30">دیدن هر ۳۰ سهم ←</a></section></div><h2>ابزارهای تحلیل</h2><div class="tools"><a class="tool" href="/pages/stock"><span class="i">🔍</span><span><b>تحلیل سهم</b><small>امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.</small></span></a><a class="tool" href="/pages/top-30"><span class="i">🎯</span><span><b>۳۰ سهم برتر</b><small>بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.</small></span></a><a class="tool" href="/pages/screener"><span class="i">🧮</span><span><b>غربالگر سهام</b><small>بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.</small></span></a><a class="tool" href="/pages/dcf"><span class="i">📐</span><span><b>ماشین‌حساب DCF</b><small>ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.</small></span></a><a class="tool" href="/pages/superinvestors"><span class="i">🦈</span><span><b>سوپر سرمایه‌گذارها</b><small>پورتفوی بافت، اکمن، بری و بیش از ۵۰ مدیر افسانه‌ای.</small></span></a><a class="tool" href="/pages/earnings"><span class="i">📅</span><span><b>تقویم گزارش‌ها</b><small>کی کدوم شرکت گزارش میده و نتیجه‌ی گزارش‌های اخیر.</small></span></a><a class="tool" href="/pages/compare"><span class="i">⚖️</span><span><b>مقایسه</b><small>دو تا چهار سهم رو کنار هم ببین.</small></span></a><a class="tool" href="/pages/watchlist"><span class="i">👀</span><span><b>واچ‌لیست و هشدار قیمت</b><small>سهم‌هایی که دنبال می‌کنی، با هشدار قیمت.</small></span></a><a class="tool" href="/pages/my-portfolio"><span class="i">📒</span><span><b>دفترچه سهام من</b><small>پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.</small></span></a><a class="tool" href="/pages/pulse"><span class="i">📡</span><span><b>نبض جامعه</b><small>ایرانی‌ها این هفته کدوم سهم‌ها رو زیر نظر داشتن.</small></span></a><a class="tool" href="/pages/return-calculator"><span class="i">📈</span><span><b>ماشین‌حساب بازده</b><small>اگه X سال پیش سرمایه‌گذاری کرده بودی، الان چقدر بود؟</small></span></a><a class="tool" href="/blogs/news"><span class="i">📰</span><span><b>اخبار و مقالات</b><small>خبرهای مهم بازار با توضیح ساده.</small></span></a></div><div class="bottom"><div class="pro"><h3>Stock Pro: همه‌ی ابزارها، بدون قفل</h3><p>تحلیل کامل همه‌ی سهم‌ها، غربالگر کامل، DCF، سوپرسرمایه‌گذارها و اسم «۳۰ سهم برتر».</p><div class="btns"><a class="btn" href="/products/stock-data-pro-yearly">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div></div><a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a><a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب آموزش بورس</b><small>«از مبتدی تا یک سرمایه‌گذار حرفه‌ای»، مرجع کامل فارسی.</small></span></a><a class="tool" href="/pages/contest"><span class="i">🏆</span><span><b>مسابقه</b><small>پیش‌بینی کن و با بقیه رقابت کن.</small></span></a></div>
 <script>
 (function(){
 
@@ -281,8 +310,8 @@ function chg(v){return v==null||!isFinite(v)?'—':'<span class="num '+(v>=0?'up
 function market(){var q=RZQ&&RZQ.q;if(!q)return;var L=[['SPY','S&P 500'],['QQQ','Nasdaq 100'],['DIA','Dow Jones']].filter(function(x){return q[x[0]]});
   if(!L.length)return;$('rzh-mkt').innerHTML=L.map(function(x){return '<span><span class="num">'+x[1]+'</span> '+chg(q[x[0]][1])+'</span>'}).join('')+'<span>'+esc(RZQ_ST[RZQ.status]||'')+'</span>'}
 function top3(){fetch(RAW+'/top30/top30.json?v='+Math.floor(Date.now()/1800000)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(D){
-  var L=D.rows.map(function(r){var q=RZQ&&RZQ.q&&RZQ.q[r.t],px=q&&q[0]>0?q[0]:r.px;return {t:r.t,up:r.tgt/px-1,na:r.na}}).sort(function(a,b){return b.up-a.up}).slice(0,3);
-  $('rzh-t30').innerHTML=L.map(function(r,i){return '<a href="/pages/top-30"><span><span class="r">#'+(i+1)+'</span> '+(ACC?'<span class="tk">'+esc(r.t)+'</span>':'🔒 <span class="k">مخصوص مشترکین</span>')+'<br><span class="k"><span class="num">'+r.na+'</span> تحلیلگر</span></span><span class="u">+'+(r.up*100).toFixed(0)+'%</span></a>'}).join('')}).catch(function(){var s=$('rzh-t30s');if(s)s.style.display='none'})}
+  var L=D.rows.map(function(r){var q=RZQ&&RZQ.q&&RZQ.q[r.t],px=q&&q[0]>0?q[0]:r.px;return {t:r.t,up:r.tgt/px-1,na:r.na}}).sort(function(a,b){return b.up-a.up}).slice(0,5);
+  $('rzh-t30').innerHTML=L.map(function(r,i){return '<a href="/pages/top-30"><span><span class="r">'+(i+1)+'</span>'+(ACC?'<span class="tk">'+esc(r.t)+'</span>':'🔒 <span class="k">مخصوص مشترکین</span>')+' <span class="k">&nbsp;<span class="num">'+r.na+'</span> تحلیلگر</span></span><span class="u">+'+(r.up*100).toFixed(0)+'%</span></a>'}).join('')}).catch(function(){var s=$('rzh-t30s');if(s)s.style.display='none'})}
 liveQuotes().then(market);
 liveQuotes().then(top3);
 loadAll().then(function(){picker($('rzh-q'),$('rzh-sg'),go)});

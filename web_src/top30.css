@@ -1,0 +1,38 @@
+/* ۳۰ سهم برتر — analyst-target upside list (Stock Pro). Data: branch "top30" (top30.py, daily). */
+#ID .lead{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+#ID .rule{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12.5px;color:var(--mut)}
+#ID .rule b{color:var(--ink);font-weight:700}
+#ID .stamp{font-size:12.5px;color:var(--mut);margin:-6px 0 14px}
+#ID .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:10px}
+#ID .row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:4px 12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+#ID .rk{font-family:var(--serif);font-size:22px;color:var(--gold);text-align:center;direction:ltr}
+#ID .who{min-width:0}
+#ID .who .tk{font-size:17px;text-decoration:none!important}
+#ID .who .nm{display:block;margin-top:-2px;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:right}
+#ID .det{grid-column:1/-1;border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
+#ID .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--mut)}
+#ID .meta b{color:var(--ink);font-weight:600}
+#ID .upb{text-align:center;min-width:92px}
+#ID .upb .v{display:block;font-family:var(--serif);font-size:24px;line-height:1.1;color:var(--up);direction:ltr}
+#ID .upb .l{font-size:11.5px;color:var(--mut)}
+#ID .rng{position:relative;height:6px;border-radius:99px;background:var(--line);margin:10px 0 2px}
+#ID .rng i{position:absolute;top:-3px;width:2px;height:12px;border-radius:2px}
+#ID .rng .px{background:var(--ink)}
+#ID .rng .tg{background:var(--up)}
+#ID .rng .bar{position:absolute;top:0;height:100%;border-radius:99px;background:rgba(79,163,122,.35)}
+#ID .rngl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);direction:ltr}
+#ID .warn{display:inline-block;background:rgba(201,169,97,.14);color:var(--gold);border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600}
+#ID .rec{display:inline-block;border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600;background:rgba(79,163,122,.15);color:var(--up)}
+#ID .lockname{display:inline-block;height:14px;width:120px;border-radius:6px;background:linear-gradient(90deg,var(--card2),var(--line));vertical-align:middle}
+#ID .locktk{display:inline-flex;align-items:center;gap:6px;color:var(--mut);font-weight:700}
+#ID .cta-box{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:20px;text-align:center;margin:4px 0 16px}
+#ID .cta-box h3{font-size:18px;margin:0 0 6px}
+#ID .cta-box p{color:var(--mut);font-size:14px;margin:0 0 14px}
+#ID .disc{color:var(--mut);font-size:12px;margin-top:16px;line-height:1.9}
+@media(max-width:640px){
+  #ID .row{grid-template-columns:30px minmax(0,1fr) auto;gap:8px;padding:11px 10px}
+  #ID .rk{font-size:18px}
+  #ID .upb{min-width:74px}
+  #ID .upb .v{font-size:20px}
+  #ID .lockname{width:80px}
+}

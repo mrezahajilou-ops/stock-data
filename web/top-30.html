@@ -1,0 +1,296 @@
+<div id="rzt" dir="rtl">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap');
+#rzt{--bg:#0b1726;--card:#13233a;--card2:#182c47;--line:#25405f;--ink:#eef3f9;--mut:#93a7bf;--ac:#4FA37A;--lime:#8FB07A;--red:#C8534F;--gold:#C9A961;
+  font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--ink);background:var(--bg);max-width:1500px;margin:0 auto;padding:16px 18px 36px;border-radius:22px;line-height:1.7;box-sizing:border-box}
+#rzt *{box-sizing:border-box;font-family:inherit}
+#rzt a{color:var(--ac)}
+#rzt .nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#rzt .nav a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);color:var(--mut)!important;text-decoration:none!important;font-weight:800;font-size:14px}
+#rzt .nav a.on{background:var(--lime);color:#0b1726!important;border-color:var(--lime)}
+#rzt h1{font-size:26px;font-weight:900;margin:0 0 2px;color:#fff}
+#rzt h3{font-size:17px;font-weight:900;margin:0 0 10px;color:#fff}
+#rzt .sub{color:var(--mut);margin:0 0 14px;font-size:14.5px}
+#rzt .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px}
+#rzt .mut{color:var(--mut)}
+#rzt .up{color:var(--ac)}#rzt .dn{color:var(--red)}
+#rzt .tk{direction:ltr;unicode-bidi:isolate;font-weight:900;color:var(--ac)}
+#rzt .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+#rzt .btn{display:inline-block;background:var(--lime);color:#0b1726!important;font-weight:900;padding:9px 16px;border-radius:12px;text-decoration:none!important;border:0;cursor:pointer;font-size:14px}
+#rzt .btn.ghost{background:transparent;color:#fff!important;border:1.5px solid var(--line)}
+#rzt .btn.sm{padding:5px 10px;font-size:12.5px;border-radius:9px}
+#rzt input,#rzt select{background:var(--bg);border:1.5px solid var(--line);border-radius:10px;color:#fff;font-size:15px;padding:8px 10px;outline:none}
+#rzt input:focus{border-color:var(--ac)}
+#rzt .search{position:relative}
+#rzt .sugg{position:absolute;top:100%;right:0;left:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;margin-top:6px;z-index:20;max-height:280px;overflow:auto;display:none}
+#rzt .sugg div{padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line)}
+#rzt .sugg div:hover{background:#21395a}
+#rzt .sugg b{direction:ltr;color:var(--ac)}
+#rzt .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#rzt table{border-collapse:collapse;width:100%;font-size:14px}
+#rzq .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}#rzq .pl{margin:0;padding:0 18px 0 0}#rzq .pl li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #1A1E26}
+#rzq .vb{display:inline-block;width:70px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}#rzq .vb b{display:block;height:100%;background:#4FA37A}#rzq .ctm{font-size:11.5px;color:var(--ac);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:0 6px;margin-right:4px;white-space:nowrap}#rzq-contest .bw{width:34%}#rzq .cb{display:block;width:100%;min-width:90px;height:8px;border-radius:99px;background:var(--line);overflow:hidden}#rzq .cb b{display:block;height:100%;background:var(--ac);border-radius:99px}@media(max-width:640px){#rzq .hm{display:none}#rzq .tw td,#rzq .tw th{padding-left:5px;padding-right:5px}#rzq .vb{width:44px}#rzq .cb{min-width:40px;width:40px}#rzq-contest .bw{width:auto}#rzq-contest .tw table{width:100%}#rzq-contest td,#rzq-contest th{padding-left:5px;padding-right:5px;font-size:13.5px}}#rzq .chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#rzk table{table-layout:fixed}#rzk th:first-child,#rzk td:first-child{width:200px}
+@media (max-width:760px){#rzk th:first-child,#rzk td:first-child{width:120px;white-space:normal}}
+#rzt th{color:var(--mut);font-size:12.5px;font-weight:800;padding:8px;border-bottom:1px solid var(--line);white-space:nowrap}
+#rzt td{padding:8px;border-bottom:1px solid #1c3150;white-space:nowrap}
+#rzt .sc{display:inline-block;min-width:34px;text-align:center;border-radius:8px;padding:1px 6px;color:#0b1726;font-weight:900;direction:ltr}
+#rzt .empty{color:var(--mut);text-align:center;padding:22px}
+#rzt .note{color:var(--mut);font-size:12px;margin-top:10px}
+#rzt .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+#rzt .chip{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;cursor:pointer;direction:ltr;color:var(--mut)}
+#rzt .chip:hover{color:#fff;border-color:var(--ac)}
+
+/* ============================================================================
+   rezahajiloubooks.com — shared visual identity for every tool page.
+   Appended after each page's own CSS (gen_web.py), so it only needs to (1) redefine the colour tokens the
+   pages already use, (2) restyle the few structural pieces that carried the old look: nav pills, filled
+   header bands, bordered cards, 900-weight headings, lime buttons.  #rzt is replaced per page.
+   Direction: a private study — near-black warm ground, antique-gold accent used sparingly, serif numerals.
+   ============================================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+#rzt{
+  --bg:#0C0E12;        /* page ground */
+  --card:#15181F;      /* raised surface */
+  --card2:#1C2029;     /* second level (tiles inside cards) */
+  --line:#262B36;      /* hairlines; used far less than before */
+  --ink:#E8E4DA;       /* primary text: warm paper */
+  --mut:#8A8F99;       /* secondary text */
+  --ac:#C9A961;        /* the one accent: antique gold */
+  --lime:#C9A961;      /* legacy token name -> gold, so old "active" states pick up the accent */
+  --gold:#C9A961;
+  --red:#C8534F;       /* loss */
+  --up:#4FA37A;        /* gain */
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  background:var(--bg);color:var(--ink);border-radius:0;padding:18px 22px 48px;line-height:1.75;
+  font-feature-settings:'tnum' 1,'lnum' 1;
+}
+#rzt *{font-family:inherit}
+#rzt a{color:var(--ac);text-decoration-color:rgba(201,169,97,.5)}
+#rzt a:hover{color:var(--ink)}
+
+/* ---------- navigation: a quiet text row, gold underline on the current page ---------- */
+#rzt .nav{gap:2px 22px;border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:0}
+#rzt .nav a{padding:10px 2px 12px;border:0;border-radius:0;background:none;color:var(--mut)!important;font-weight:500;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+#rzt .nav a:hover{color:var(--ink)!important}
+#rzt .nav a.on{background:none;color:var(--ink)!important;border-bottom-color:var(--ac)}
+
+/* ---------- type ---------- */
+#rzt h1{font-family:var(--serif);font-weight:500;font-size:30px;letter-spacing:-.01em;color:var(--ink);margin:0 0 4px;font-variation-settings:'opsz' 72}
+#rzt .sub{font-size:14px;color:var(--mut);max-width:72ch;margin-bottom:18px}
+#rzt h3{font-weight:600;font-size:15.5px;color:var(--ink);letter-spacing:0}
+#rzt b,#rzt strong{font-weight:600}
+#rzt .co,#rzt .rzd .co{font-family:var(--serif);font-weight:500;font-size:26px;letter-spacing:-.01em}
+#rzt .co small{color:var(--ac);font-family:'Vazirmatn',sans-serif;font-weight:500}
+#rzt .px .p,#rzt .sc .v,#rzt .vbig b,#rzt .rev .bx .big,#rzt .snap b,#rzt .stats b,#rzt .st .v{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;font-variation-settings:'opsz' 36}
+#rzt .px .p{font-size:30px}
+#rzt .st .v{font-size:19px}
+
+/* ---------- surfaces: tone instead of borders ---------- */
+#rzt .card{background:var(--card);border:0;border-radius:14px;padding:16px 18px;margin-bottom:12px}
+#rzt .card .card{background:var(--card2)}
+#rzt .st,#rzt .snap div,#rzt .vbig div,#rzt .ist4 div,#rzt .ab-grid>div,#rzt .vcol,#rzt .sc,#rzt .rev .bx,#rzt .perf div,#rzt .relc,#rzt .stats div{background:var(--card2);border:0}
+#rzt .relc:hover{border:0;box-shadow:inset 0 0 0 1px var(--ac);transform:none}
+#rzt .wide2 .card,#rzt .charts .card,#rzt .two .card{background:var(--card)}
+#rzt .tblwrap,#rzt .tw{border:0;border-radius:10px}
+#rzt .charts .card{cursor:zoom-in}
+
+/* ---------- table heads: hairline, no filled band ---------- */
+#rzt .tbl th,#rzt th,#rzt .proj th,#rzt .sens th,#rzt .antbl th,#rzt table.itb th{background:transparent;color:var(--mut);font-weight:500;font-size:12.5px;border-bottom:1px solid var(--ac);padding:8px 8px}
+#rzt .tbl th.grp{border-bottom:0;color:var(--mut)}
+#rzt td{border-bottom:1px solid #1A1E26}
+#rzt .tbl td.sep{border-left-color:var(--line)}
+#rzt tr.sec td,#rzt .sec td{color:var(--ac);font-weight:600;background:transparent}
+#rzt th.ttm,#rzt td.ttm{background:rgba(201,169,97,.07);color:var(--ink)}
+#rzt th.ttm{color:var(--ac)}
+
+/* ---------- buttons, chips, inputs ---------- */
+#rzt .btn{background:var(--ac);color:#15120A!important;font-weight:600;border-radius:10px;padding:9px 18px}
+#rzt .btn.ghost{background:transparent;color:var(--ink)!important;border:1px solid var(--line)}
+#rzt .btn.ghost:hover{border-color:var(--ac)}
+#rzt .lnk{color:var(--ac)}
+#rzt .chip,#rzt .rng button,#rzt .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);font-weight:500;border-radius:999px}
+#rzt .chip:hover,#rzt .rng button:hover{border-color:var(--ac);color:var(--ink)}
+#rzt .rng button.on,#rzt .tabs button.on,#rzt .chip.on{background:transparent;border-color:var(--ac);color:var(--ac);font-weight:600}
+#rzt input,#rzt select,#rzt .pin,#rzt .tbl input{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;font-weight:500}
+#rzt input:focus,#rzt select:focus,#rzt .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
+#rzt .search input{font-size:17px;padding:12px 16px}
+#rzt .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzt .sugg div:hover{background:#242934}
+#rzt .badge{background:rgba(201,169,97,.12);color:var(--ac)}
+#rzt .vtag{font-weight:600;border-radius:8px}
+
+/* ---------- semantic colours: muted gain / loss; gold is never "good", it is "important" ---------- */
+#rzt .up{color:var(--up)}#rzt .dn{color:var(--red)}
+#rzt .vrow.ok b{background:var(--up)}#rzt .vrow.no b{background:var(--red)}
+#rzt .vrow.ok em{color:var(--up)}#rzt .vrow.no em{color:var(--red)}
+#rzt .good{background:rgba(79,163,122,.16);color:var(--up)}
+#rzt .bad{background:rgba(200,83,79,.16);color:#E2807C}
+#rzt .mid{background:rgba(201,169,97,.14);color:var(--ac)}
+#rzt .vsum .up{color:var(--up)}
+
+/* ---------- quieter secondary text, no 900 weights left ---------- */
+#rzt .meta,#rzt .xnote,#rzt .note,#rzt .mut2,#rzt .st .k,#rzt .st .s{color:var(--mut);font-weight:400}
+#rzt .stats small,#rzt .snap small,#rzt .vbig small{font-weight:500}
+#rzt .quota{color:var(--mut)}
+#rzt .tk{color:var(--ac);font-weight:600}
+#rzt .sc{color:#15120A;font-weight:600}
+
+/* ---------- the one motion: hero fades in on first paint ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #rzt .card:first-of-type .head{animation:rz-in .45s ease-out both}
+  @keyframes rz-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+}
+#rzt :focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+
+/* ---------- phones: nav becomes one scrollable row; smaller display sizes ---------- */
+@media (max-width:760px){
+  #rzt{padding:12px 14px 40px}
+  #rzt .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0 18px;scrollbar-width:none;margin-bottom:14px;padding-bottom:0}
+  #rzt .nav::-webkit-scrollbar{display:none}
+  #rzt .nav{-webkit-mask-image:linear-gradient(to left,#000 88%,transparent);mask-image:linear-gradient(to left,#000 88%,transparent)}  /* hint: the row scrolls */
+  #rzt .nav a{white-space:nowrap;font-size:13.5px;padding:8px 2px 10px;flex:none}
+  #rzt h1{font-size:23px}
+  #rzt .sub{font-size:13.5px;margin-bottom:12px}
+  #rzt .co{font-size:21px}
+  #rzt .px .p{font-size:26px}
+  #rzt .card{padding:14px;border-radius:12px}
+  #rzt .search input{font-size:16px;padding:11px 14px}
+}
+/* ۳۰ سهم برتر — analyst-target upside list (Stock Pro). Data: branch "top30" (top30.py, daily). */
+#rzt .lead{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+#rzt .rule{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:12.5px;color:var(--mut)}
+#rzt .rule b{color:var(--ink);font-weight:700}
+#rzt .stamp{font-size:12.5px;color:var(--mut);margin:-6px 0 14px}
+#rzt .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:10px}
+#rzt .row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:4px 12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+#rzt .rk{font-family:var(--serif);font-size:22px;color:var(--gold);text-align:center;direction:ltr}
+#rzt .who{min-width:0}
+#rzt .who .tk{font-size:17px;text-decoration:none!important}
+#rzt .who .nm{display:block;margin-top:-2px;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:right}
+#rzt .det{grid-column:1/-1;border-top:1px solid var(--line);padding-top:8px;margin-top:6px}
+#rzt .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--mut)}
+#rzt .meta b{color:var(--ink);font-weight:600}
+#rzt .upb{text-align:center;min-width:92px}
+#rzt .upb .v{display:block;font-family:var(--serif);font-size:24px;line-height:1.1;color:var(--up);direction:ltr}
+#rzt .upb .l{font-size:11.5px;color:var(--mut)}
+#rzt .rng{position:relative;height:6px;border-radius:99px;background:var(--line);margin:10px 0 2px}
+#rzt .rng i{position:absolute;top:-3px;width:2px;height:12px;border-radius:2px}
+#rzt .rng .px{background:var(--ink)}
+#rzt .rng .tg{background:var(--up)}
+#rzt .rng .bar{position:absolute;top:0;height:100%;border-radius:99px;background:rgba(79,163,122,.35)}
+#rzt .rngl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);direction:ltr}
+#rzt .warn{display:inline-block;background:rgba(201,169,97,.14);color:var(--gold);border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600}
+#rzt .rec{display:inline-block;border-radius:8px;padding:0 7px;font-size:11.5px;font-weight:600;background:rgba(79,163,122,.15);color:var(--up)}
+#rzt .lockname{display:inline-block;height:14px;width:120px;border-radius:6px;background:linear-gradient(90deg,var(--card2),var(--line));vertical-align:middle}
+#rzt .locktk{display:inline-flex;align-items:center;gap:6px;color:var(--mut);font-weight:700}
+#rzt .cta-box{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:20px;text-align:center;margin:4px 0 16px}
+#rzt .cta-box h3{font-size:18px;margin:0 0 6px}
+#rzt .cta-box p{color:var(--mut);font-size:14px;margin:0 0 14px}
+#rzt .disc{color:var(--mut);font-size:12px;margin-top:16px;line-height:1.9}
+@media(max-width:640px){
+  #rzt .row{grid-template-columns:30px minmax(0,1fr) auto;gap:8px;padding:11px 10px}
+  #rzt .rk{font-size:18px}
+  #rzt .upb{min-width:74px}
+  #rzt .upb .v{font-size:20px}
+  #rzt .lockname{width:80px}
+}
+</style>
+<div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a class="on" href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a></div>
+<h1>🎯 ۳۰ سهم برتر</h1>
+<p class="sub">بر اساس میانگین قیمت هدف تحلیلگران: ۳۰ سهمی که بیشترین فاصله رو بین قیمت فعلی و میانگین قیمت هدف تحلیلگرهای وال‌استریت دارن.</p>
+<div id="rzt-main"><div class="card empty">در حال بارگذاری…</div></div>
+<script>
+(function(){
+
+var API=window.RZS_API||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data';
+var RAW='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
+var $=function(i){return document.getElementById(i)};
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function big(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
+function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return 'n/m';return (v*100).toFixed(d==null?1:d)+'%'}
+function x1(v){return v==null||!isFinite(v)?'—':v.toFixed(1)}
+function scol(v){return v>=4?'#4FA37A':v>=3?'#8FB07A':v>=2?'#C9A961':'#C8534F'}
+function sc(v){return v==null?'—':'<span class="sc" style="background:'+scol(v)+'">'+(Math.round(v*10)/10)+'</span>'}
+/* live quotes */
+var RZQ=null,RZQ_P=null,RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
+function liveQuotes(){if(!RZQ_P){var p=fetch(RAW+'/quotes/quotes.json?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+  RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3500)})]);p.then(function(){RZQ_P=Promise.resolve(RZQ)})}return RZQ_P}
+function liveWhen(iso){try{var d=new Date(iso);if(isNaN(d))return '';return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}}
+/* compact screener rows (+ browser cache), rescaled to live prices */
+function decodeMin(m){var cols=m.cols,D=m.dict||{},S=m.scale||{},idx=cols.map(function(c){return D[c]?['d',D[c]]:S[c]?['s',S[c]]:null});
+  return {cols:cols,as_of:m.as_of,rows:m.rows.map(function(r){return r.map(function(v,i){var x=idx[i];if(!x||v==null)return v;return x[0]==='d'?x[1][v]:v*x[1]})})}}
+function loadScreener(){var full=function(){return fetch(API+'/screener.json').then(function(r){return r.json()})};
+  return fetch(API+'/meta.json?v='+Math.floor(Date.now()/600000)).then(function(r){return r.json()}).catch(function(){return {}}).then(function(meta){var key=meta&&meta.built||'';
+    try{var c=JSON.parse(localStorage.getItem('rzc2_data')||'null');if(c&&key&&c.k===key&&c.m)return decodeMin(c.m)}catch(e){}
+    return fetch(API+'/screener.min.json?v='+encodeURIComponent(key)).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(m){try{localStorage.removeItem('rzc2_data');if(key)localStorage.setItem('rzc2_data',JSON.stringify({k:key,m:m}))}catch(e){}return decodeMin(m)}).catch(full)}).catch(full)}
+var C={},ROWS=[],BY={},SPE={};
+function liveRow(r){var I=function(k){return C[k]},Q=RZQ&&RZQ.q[r[I('t')]],p0=r[I('price')];if(!Q||!(Q[0]>0)||!p0)return;var f=Q[0]/p0;
+  var o={pe:r[I('pe')],pf:r[I('pfcf')],pg:r[I('peg')],fu:r[I('fair_up')],sv:r[I('s_value')]};
+  r[I('price')]=Q[0];r.chg=Q[1];if(r[I('mcap')]!=null)r[I('mcap')]*=f;
+  ['pe','pfcf','ps','pb','peg','fwd_pe','fwd_ps','fwd_pfcf'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]*=f});
+  ['divy','fcf_yield','shy'].forEach(function(k){if(I(k)!=null&&r[I(k)]!=null)r[I(k)]/=f});
+  if(r[I('ev_ebitda')]!=null){var nd=r[I('nd_ebitda')];r[I('ev_ebitda')]=nd!=null?(r[I('ev_ebitda')]-nd)*f+nd:r[I('ev_ebitda')]*f}
+  if(r[I('fair_up')]!=null)r[I('fair_up')]=(1+r[I('fair_up')])/f-1;
+  if(o.sv!=null){var c4=function(pe,pf,pg,fu){return (pe!=null&&pe<25?1:0)+(pf!=null&&pf<20?1:0)+(fu!=null&&fu>0?1:0)+(pg!=null&&pg<1.5?1:0)},spe=SPE[r[I('sector')]];
+    var cs=Math.max(0,Math.min(1,o.sv-c4(o.pe,o.pf,o.pg,o.fu))),pe=r[I('pe')];if(spe!=null&&pe!=null&&o.pe!=null&&((o.pe<spe)!==(pe<spe)))cs=pe<spe?1:0;
+    r[I('s_value')]=c4(pe,r[I('pfcf')],r[I('peg')],r[I('fair_up')])+cs;
+    var parts=['s_value','s_future','s_past','s_health','s_capital'].map(function(k){return r[I(k)]}).filter(function(x){return x!=null});if(parts.length)r[I('s_total')]=Math.round(parts.reduce(function(a,b){return a+b},0)/parts.length*10)/10}}
+function loadAll(){return Promise.all([loadScreener(),liveQuotes(),fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).catch(function(){return {}})]).then(function(x){
+  var j=x[0];j.cols.forEach(function(c,i){C[c]=i});Object.keys(x[2]||{}).forEach(function(k){if(x[2][k]&&x[2][k].pe)SPE[k]=x[2][k].pe});
+  ROWS=j.rows;ROWS.forEach(function(r){liveRow(r);BY[r[C.t]]=r});return j})}
+function g(r,k){return r&&C[k]!=null?r[C[k]]:null}
+/* ticker search box */
+function picker(inp,box,onPick){inp.addEventListener('input',function(){var q=inp.value.trim().toUpperCase();if(!q){box.style.display='none';return}
+  var res=ROWS.filter(function(r){return r[C.t].indexOf(q)===0}).slice(0,6).concat(ROWS.filter(function(r){return r[C.t].indexOf(q)!==0&&String(r[C.n]).toUpperCase().indexOf(q)>=0}).slice(0,4));
+  box.innerHTML=res.map(function(r){return '<div data-t="'+esc(r[C.t])+'"><span>'+esc(r[C.n])+'</span><b>'+esc(r[C.t])+'</b></div>'}).join('');box.style.display=res.length?'block':'none'});
+  box.addEventListener('click',function(e){var d=e.target.closest('div[data-t]');if(!d)return;box.style.display='none';inp.value='';onPick(d.dataset.t)});
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter'){var t=inp.value.trim().toUpperCase();if(BY[t]){box.style.display='none';inp.value='';onPick(t)}}})}
+/* watchlist storage (this device) */
+function wlGet(){try{return JSON.parse(localStorage.getItem('rz_watch')||'[]')}catch(e){return []}}
+function wlSet(a){try{localStorage.setItem('rz_watch',JSON.stringify(a))}catch(e){}}
+function alGet(){try{return JSON.parse(localStorage.getItem('rz_alerts')||'{}')}catch(e){return {}}}
+function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(e){}}
+
+/* ۳۰ سهم برتر — biggest upside to the analysts' average price target. Data: RAW/top30/top30.json (top30.py).
+   Candidates are re-ranked with live prices, so the 30 shown are always against the current price.
+   Visitors see rank, upside and analyst count; tickers, names and prices are for Stock Pro only. */
+var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',SUBY=window.RZS_SUB_Y||'/products/stock-data-pro-yearly';
+var REC={strong_buy:'خرید قوی',buy:'خرید',hold:'نگه‌داشتن',underperform:'ضعیف',sell:'فروش'};
+var SEC={'Technology':'تکنولوژی','Health Care':'سلامت','Healthcare':'سلامت','Finance':'مالی','Financial Services':'مالی','Industrials':'صنعتی','Energy':'انرژی','Utilities':'خدمات عمومی','Consumer Discretionary':'کالاهای غیرضروری','Consumer Staples':'کالاهای ضروری','Real Estate':'املاک','Basic Materials':'مواد اولیه','Telecommunications':'مخابرات','Communication Services':'ارتباطات','Miscellaneous':'سایر'};
+function n2(v){return v==null||!isFinite(v)?'—':v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function usd(v){return '<span class="num">$'+n2(v)+'</span>'}
+function upv(v){return '+'+(v*100).toFixed(1)+'%'}
+function day(s){try{var d=new Date(s);if(isNaN(d))return '';return d.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}}
+function cta(){return '<div class="cta-box"><h3>🔒 اسم این ۳۰ سهم مخصوص مشترکین Stock Pro است</h3><p>رتبه و درصد رشد تا قیمت هدف رو همه می‌بینن؛ اسم سهم، قیمت فعلی، قیمت هدف و بازه‌ی نظر تحلیلگرها فقط برای مشترکین باز است. لیست هر روز به‌روز می‌شه.</p>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span> · ۵۰٪ تخفیف</a></div>'
+  +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Ftop-30">وارد حسابت شو</a></p>')+'</div>'}
+function rng(r){var lo=Math.min(r.tlo||r.px,r.px),hi=Math.max(r.thi||r.tgt,r.tgt);if(!(hi>lo))return '';
+  var p=function(x){return ((x-lo)/(hi-lo)*100).toFixed(1)+'%'},a=r.tlo||r.tgt,b=r.thi||r.tgt;
+  return '<div class="rng" dir="ltr"><span class="bar" style="left:'+p(a)+';width:calc('+p(b)+' - '+p(a)+')"></span><i class="px" style="left:'+p(r.px)+'"></i><i class="tg" style="left:'+p(r.tgt)+'"></i></div>'
+    +'<div class="rngl"><span dir="rtl">کمترین هدف <span class="num">$'+n2(r.tlo)+'</span></span><span dir="rtl">بیشترین هدف <span class="num">$'+n2(r.thi)+'</span></span></div>'}
+function row(r,i){var warn=r.c20!=null&&r.c20<=-0.25?'<span class="warn">⚠️ افت <span class="num">'+Math.round(-r.c20*100)+'%</span> در یک ماه اخیر؛ ممکنه قیمت هدف‌ها هنوز به‌روز نشده باشن</span>':'';
+  var sec=SEC[r.sec]||r.sec||'';
+  var who=ACC?'<a class="tk" href="/pages/stock#'+esc(r.t)+'">'+esc(r.t)+'</a> <span class="nm">'+esc(r.n)+'</span>'
+               :'<span class="locktk">🔒 <span class="lockname"></span></span>';
+  var meta='<div class="meta">'+(ACC?'<span>قیمت فعلی '+usd(r.px)+'</span><span>میانگین هدف <b>'+usd(r.tgt)+'</b></span>':'')
+    +'<span><b class="num">'+r.na+'</b> تحلیلگر</span>'+(sec?'<span>'+esc(sec)+'</span>':'')+(r.rec&&REC[r.rec]?'<span class="rec">'+REC[r.rec]+'</span>':'')+'</div>';
+  return '<div class="row"><div class="rk">'+(i+1)+'</div><div class="who">'+who+'</div>'
+    +'<div class="upb"><span class="v">'+upv(r.up)+'</span><span class="l">تا قیمت هدف</span></div>'
+    +'<div class="det">'+meta+(ACC?rng(r):'')+(warn?'<div style="margin-top:8px">'+warn+'</div>':'')+'</div></div>'}
+function render(D){var L=D.rows.map(function(r){var q=RZQ&&RZQ.q&&RZQ.q[r.t],px=q&&q[0]>0?q[0]:r.px;var o={};for(var k in r)o[k]=r[k];o.px=px;o.up=r.tgt/px-1;return o})
+    .filter(function(r){return r.up>0}).sort(function(a,b){return b.up-a.up}).slice(0,30);
+  var R=D.rules||{};
+  var h='<div class="lead"><span class="rule">ارزش بازار بالای <b class="num">$'+(R.mcap/1e9||2)+'B</b></span><span class="rule">حداقل <b class="num">'+(R.analysts||8)+'</b> تحلیلگر</span><span class="rule">قیمت سهم بالای <b class="num">$'+(R.price||5)+'</b></span><span class="rule">به‌روزرسانی روزانه</span></div>'
+    +'<p class="stamp">قیمت هدف تحلیلگرها: '+esc(day(D.est_as_of||D.as_of))+' · قیمت‌ها: '+(RZQ&&RZQ.as_of?esc(liveWhen(RZQ.as_of)):'آخرین قیمت پایانی')+'</p>';
+  if(!ACC)h+=cta();
+  h+='<div class="list">'+L.map(row).join('')+'</div>';
+  h+='<p class="disc">«درصد رشد» فاصله‌ی قیمت فعلی تا <b>میانگین قیمت هدف تحلیلگرهای وال‌استریت</b> برای ۱۲ ماه آینده است. قیمت هدف پیش‌بینی تحلیلگرهاست و اغلب اشتباه از آب درمیاد؛ سهم‌هایی که سقوط تند داشتن معمولاً بالای این لیست میان چون تحلیلگرها دیرتر هدفشون رو پایین میارن. این لیست نقطه‌ی شروع تحقیقه، نه توصیه‌ی خرید.</p>';
+  $('rzt-main').innerHTML=h}
+Promise.all([fetch(RAW+'/top30/top30.json?v='+Math.floor(Date.now()/1800000)).then(function(r){if(!r.ok)throw 0;return r.json()}),liveQuotes()])
+  .then(function(x){render(x[0])}).catch(function(){$('rzt-main').innerHTML='<div class="card empty">بارگذاری لیست ناموفق بود؛ چند لحظه بعد دوباره امتحان کن.</div>'});
+
+})();
+</script>
+</div>

@@ -36,7 +36,7 @@ UPDATE = '''mutation($id: ID!, $f: [MetaobjectFieldInput!]!) { metaobjectUpdate(
 SUBS = '''query($c: String) { customers(first: 100, after: $c, query: "tag:portfolio-alerts") {
   nodes { id email firstName tags
           orders(first: 25, reverse: true, query: "financial_status:paid OR financial_status:partially_refunded") {
-            nodes { createdAt lineItems(first: 10) { nodes { product { handle } } } } } }
+            nodes { createdAt lineItems(first: 10) { nodes { sku title } } } } }
   pageInfo { hasNextPage endCursor } } }'''
 
 FA = str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹')
@@ -74,6 +74,12 @@ def load_trades(tok):
     return out
 
 
+def is_portfolio_item(li):
+    """Order line of the paid portfolio (product portfolio-pro, SKU PORTFOLIO-1Y). Uses only order fields, so no read_products scope."""
+    sku = (li.get('sku') or '').strip().upper()
+    return sku.startswith('PORTFOLIO') or 'پورتفوی رضا' in (li.get('title') or '')
+
+
 def load_subs(tok):
     """[(email, first_name)] of verified, opted-in subscribers. Never printed."""
     out, cur, now = {}, None, dt.datetime.now(dt.timezone.utc)
@@ -100,7 +106,7 @@ def load_subs(tok):
             if not ok:
                 for o in ((c.get('orders') or {}).get('nodes') or []):
                     age = now - dt.datetime.fromisoformat(o['createdAt'].replace('Z', '+00:00'))
-                    if age.days <= 380 and any(((li.get('product') or {}).get('handle')) == 'portfolio-pro'
+                    if age.days <= 380 and any(is_portfolio_item(li)
                                                for li in ((o.get('lineItems') or {}).get('nodes') or [])):
                         ok = True; break
             if not ok:

@@ -72,7 +72,7 @@ window.RZ_EVENTS=window.RZ_EVENTS||'%s';
 window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
 window.rzE=function(k,t,v){try{var U=window.RZ_EVENTS;if(!U||!t)return;var u=rzUid();if(!u)return;var b=JSON.stringify({k:k,t:String(t).toUpperCase(),v:v||'',u:u});
   if(navigator.sendBeacon)navigator.sendBeacon(U+'/e',new Blob([b],{type:'text/plain'}));else fetch(U+'/e',{method:'POST',body:b,keepalive:true,mode:'cors'}).catch(function(){})}catch(e){}};
-window.rzContest=function(){if(window._rzC)return window._rzC;var P=location.hostname.indexOf('rezahajiloubooks')>=0||location.hostname.indexOf('myshopify')>=0;
+window.rzContest=function(){if(window._rzC)return window._rzC;var P=/rezahajiloubooks|sahamanaliz|myshopify/.test(location.hostname);
   var gj=function(h,id){try{var el=new DOMParser().parseFromString(h,'text/html').getElementById(id);return el?JSON.parse(el.textContent):null}catch(e){return null}};
   var tx=function(u){return fetch(u,{credentials:'same-origin'}).then(function(r){return r.ok?r.text():''})};
   var U='/blogs/contest-entries/picks?view=contest&page=',TRE=/^[A-Z][A-Z0-9.\-]{0,8}$/,DL=Date.parse('2026-10-29T22:59:59Z');

@@ -23,7 +23,7 @@ from email.utils import formataddr, formatdate, make_msgid
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sync_shopify import token, gql  # noqa: E402
 
-SITE = 'https://rezahajiloubooks.com'
+SITE = 'https://sahamanaliz.com'
 PAGE = SITE + '/pages/portfolio'
 TEST = os.environ.get('TEST', '') not in ('', '0', 'false')
 RECENT_DAYS = 7
@@ -185,7 +185,7 @@ def send_all(subs, subject, html_for):
             msg['From'] = formataddr(('رضا حاجیلو – پورتفوی', user))
             msg['To'] = to
             msg['Date'] = formatdate(localtime=True)
-            msg['Message-ID'] = make_msgid(domain='rezahajiloubooks.com')
+            msg['Message-ID'] = make_msgid(domain='sahamanaliz.com')
             msg['List-Unsubscribe'] = '<%s#alerts>' % PAGE
             body = html_for(name)
             msg.attach(MIMEText(re.sub(r'<[^>]+>', '', body.replace('<br>', '\n').replace('</li>', '\n')), 'plain', 'utf-8'))

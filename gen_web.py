@@ -197,6 +197,7 @@ COMPARE_BODY = r"""
 <div class="card"><div class="search"><input id="rzk-q" placeholder="نماد یا اسم شرکت رو بنویس و اضافه کن (تا ۴ سهم)…" autocomplete="off" style="width:100%"><div class="sugg" id="rzk-s"></div></div>
 <div class="chips" id="rzk-ch"></div>
 <div class="chips"><span class="mut" style="font-size:13px">مقایسه‌های محبوب:</span><span class="chip" data-p="AAPL,MSFT">AAPL vs MSFT</span><span class="chip" data-p="NVDA,AMD">NVDA vs AMD</span><span class="chip" data-p="GOOGL,META">GOOGL vs META</span><span class="chip" data-p="KO,PEP">KO vs PEP</span><span class="chip" data-p="V,MA">V vs MA</span><span class="chip" data-p="AMZN,MELI,SE">AMZN vs MELI vs SE</span></div></div>
+<style>#rzk .plk{position:relative;border-radius:16px;overflow:hidden;min-height:420px}#rzk .plk-b{filter:blur(6px);opacity:.45;pointer-events:none;user-select:none}#rzk .plk-c{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:40px 14px}#rzk .plk-box{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:20px;max-width:480px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}#rzk .plk-box h3{font-size:18px}#rzk .plk-box p{color:var(--mut);font-size:14px;margin:6px 0 14px}</style>
 <div id="rzk-main"><div class="card empty">در حال بارگذاری…</div></div>
 <p class="note">قیمت‌ها حدود ۱۵ تا ۳۰ دقیقه تأخیر دارن و نسبت‌ها با قیمت فعلی دوباره حساب میشن. سبز = بهترین مقدار در هر ردیف. ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 """
@@ -224,8 +225,14 @@ function draw(){var m=$('rzk-main');if(!SEL.length){m.innerHTML='<div class="car
   var tots=rs.map(function(r){return [g(r,'t'),g(r,'s_total')]}).filter(function(x){return x[1]!=null}).sort(function(a,b){return b[1]-a[1]});
   if(tots.length>1)h+='<div class="card"><h3>جمع‌بندی</h3><p style="margin:0">در امتیاز کلی <b class="tk">'+tots[0][0]+'</b> با '+tots[0][1]+' از ۵ جلوتره'+(tots[1]?' و <b class="tk">'+tots[1][0]+'</b> با '+tots[1][1]+' بعدیه':'')+'. امتیاز بالاتر یعنی معیارهای بیشتری رو پاس کرده، نه اینکه حتماً خرید بهتریه؛ ردیف‌های بالا رو با هم ببین.</p></div>';
   m.innerHTML=h}
-document.addEventListener('click',function(e){var c=e.target.closest('#rzk .chip');if(!c)return;if(c.dataset.x){SEL=SEL.filter(function(t){return t!==c.dataset.x});sync()}else if(c.dataset.p){SEL=[];c.dataset.p.split(',').forEach(add);sync()}});
-loadAll().then(function(){picker($('rzk-q'),$('rzk-s'),add);var h=decodeURIComponent((location.hash||'').slice(1));(h?h.split(','):['AAPL','MSFT']).forEach(add);sync()})
+var PRO=!!window.RZS_ACCESS;
+function proLock(){var m=$('rzk-main'),q=$('rzk-q');if(q){q.disabled=true;q.placeholder='مخصوص مشترکین Stock Pro';}
+  m.innerHTML='<div class="plk"><div class="plk-b">'+m.innerHTML+'</div><div class="plk-c"><div class="plk-box"><h3>🔒 مقایسه‌ی سهم‌ها مخصوص مشترکین Stock Pro است</h3>'
+  +'<p>دو تا چهار سهم رو کنار هم ببین: امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی، با جمع‌بندی اینکه کدوم جلوتره.</p>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="'+esc(window.RZS_SUB_URL||'/products/stock-data-pro')+'">ماهانه <span class="num">€7.99</span></a></div>'
+  +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fcompare">وارد حسابت شو</a></p>')+'</div></div></div>'}
+document.addEventListener('click',function(e){var c=e.target.closest('#rzk .chip');if(!c||!PRO)return;if(c.dataset.x){SEL=SEL.filter(function(t){return t!==c.dataset.x});sync()}else if(c.dataset.p){SEL=[];c.dataset.p.split(',').forEach(add);sync()}});
+loadAll().then(function(){if(!PRO){['AAPL','MSFT'].forEach(add);sync();proLock();return}picker($('rzk-q'),$('rzk-s'),add);var h=decodeURIComponent((location.hash||'').slice(1));(h?h.split(','):['AAPL','MSFT']).forEach(add);sync()})
   .catch(function(){$('rzk-main').innerHTML='<div class="card empty">بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.</div>'});
 """
 
@@ -340,27 +347,36 @@ def top30_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzt'), nav('top30'), JS, js)
 
 
-HOME_TOOLS = [
-    ('🔍', '/pages/stock', 'تحلیل سهم', 'امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.'),
-    ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.'),
-    ('🧮', '/pages/screener', 'غربالگر سهام', 'بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.'),
-    ('📐', '/pages/dcf', 'ماشین‌حساب DCF', 'ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.'),
-    ('🦈', '/pages/superinvestors', 'سوپر سرمایه‌گذارها', 'پورتفوی بافت، اکمن، بری و بیش از ۵۰ مدیر افسانه‌ای.'),
-    ('📅', '/pages/earnings', 'تقویم گزارش‌ها', 'کی کدوم شرکت گزارش میده و نتیجه‌ی گزارش‌های اخیر.'),
-    ('⚖️', '/pages/compare', 'مقایسه', 'دو تا چهار سهم رو کنار هم ببین.'),
-    ('👀', '/pages/watchlist', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با هشدار قیمت.'),
-    ('📒', '/pages/my-portfolio', 'دفترچه سهام من', 'پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.'),
-    ('📡', '/pages/pulse', 'نبض جامعه', 'ایرانی‌ها این هفته کدوم سهم‌ها رو زیر نظر داشتن.'),
-    ('📈', '/pages/return-calculator', 'ماشین‌حساب بازده', 'اگه X سال پیش سرمایه‌گذاری کرده بودی، الان چقدر بود؟'),
-    ('📰', '/blogs/news', 'اخبار و مقالات', 'خبرهای مهم بازار با توضیح ساده.'),
+HOME_TOOLS = [   # (icon, url, title, description, tier)  tier: '' = free, 'pro' = Stock Pro only, other text = what is free
+    ('🔍', '/pages/stock', 'تحلیل سهم', 'امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.', '۱۰ سهم رایگان در هفته'),
+    ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.', 'اسم سهم‌ها قفل'),
+    ('🧮', '/pages/screener', 'غربالگر سهام', 'بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.', '۱۰ ردیف رایگان'),
+    ('📐', '/pages/dcf', 'ماشین‌حساب DCF', 'ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.', '۳ سهم رایگان'),
+    ('🦈', '/pages/superinvestors', 'سوپر سرمایه‌گذارها', 'پورتفوی بافت، اکمن، بری و بیش از ۵۰ مدیر افسانه‌ای.', 'بافت رایگان'),
+    ('⚖️', '/pages/compare', 'مقایسه', 'دو تا چهار سهم رو کنار هم ببین.', 'pro'),
+    ('📒', '/pages/my-portfolio', 'دفترچه سهام من', 'پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.', 'pro'),
+    ('📅', '/pages/earnings', 'تقویم گزارش‌ها', 'کی کدوم شرکت گزارش میده و نتیجه‌ی گزارش‌های اخیر.', ''),
+    ('👀', '/pages/watchlist', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با هشدار قیمت.', ''),
+    ('📡', '/pages/pulse', 'نبض جامعه', 'ایرانی‌ها این هفته کدوم سهم‌ها رو زیر نظر داشتن.', ''),
+    ('📈', '/pages/return-calculator', 'ماشین‌حساب بازده', 'اگه X سال پیش سرمایه‌گذاری کرده بودی، الان چقدر بود؟', ''),
+    ('📰', '/blogs/news', 'اخبار و مقالات', 'خبرهای مهم بازار با توضیح ساده.', ''),
 ]
+
+
+def tool_tag(tier):
+    if tier == 'pro':
+        return '<span class="tag pro">فقط Pro</span>'
+    if tier:
+        return '<span class="tag part">' + tier + '</span>'
+    return '<span class="tag free">رایگان</span>'
+
 
 
 def home_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'home.css'), encoding='utf-8').read()
     js = open(os.path.join(src, 'home.js'), encoding='utf-8').read()
-    tools = ''.join('<a class="tool" href="%s"><span class="i">%s</span><span><b>%s</b><small>%s</small></span></a>' % (u, i, t, d) for i, u, t, d in HOME_TOOLS)
+    tools = ''.join('<a class="tool" href="%s"><span class="i">%s</span><span><b>%s%s</b><small>%s</small>%s</span></a>' % (u, i, t, ' <span class="lk" title="Stock Pro">🔒</span>' if tier else '', d, tool_tag(tier)) for i, u, t, d, tier in HOME_TOOLS)
     body = (
         '<div class="top"><section class="hero"><p class="brand">sahamanaliz.com</p>'
         '<h1>سهام آنالیز<small>تحلیل سهام آمریکا به فارسی</small></h1>'
@@ -368,12 +384,13 @@ def home_page():
         '<div class="sbox search"><input id="rzh-q" type="search" autocomplete="off" placeholder="نماد یا اسم سهم، مثلاً NVDA" aria-label="جستجوی سهم">'
         '<button class="go" id="rzh-go" aria-label="جستجو">←</button><div class="sugg" id="rzh-sg"></div></div>'
         '<div class="pop">' + ''.join('<a href="/pages/stock#%s">%s</a>' % (t, t) for t in ('NVDA', 'AAPL', 'MSFT', 'AMZN', 'TSLA', 'META', 'SE', 'MELI')) + '</div>'
+        '<p class="quota"><span class="q-free">هر هفته <b>۱۰ تحلیل سهم رایگان</b>؛ برای تحلیل نامحدود و همه‌ی ابزارها <a href="/products/stock-data-pro-yearly">Stock Pro</a></span><span class="q-pro">✓ عضو ویژه: همه‌ی ابزارها برات باز است</span></p>'
         '<div class="mkt" id="rzh-mkt"></div></section>'
         '<section class="t30box" id="rzh-t30s"><h2>🎯 ۳۰ سهم برتر امروز</h2><p class="sub">بر اساس میانگین قیمت هدف تحلیلگران</p>'
         '<div class="t30" id="rzh-t30"><div class="empty">در حال بارگذاری…</div></div><a class="more" href="/pages/top-30">دیدن هر ۳۰ سهم ←</a></section></div>'
         '<h2>ابزارهای تحلیل</h2><div class="tools">' + tools + '</div>'
         '<div class="bottom"><div class="pro"><h3>Stock Pro: همه‌ی ابزارها، بدون قفل</h3>'
-        '<p>تحلیل کامل همه‌ی سهم‌ها، غربالگر کامل، DCF، سوپرسرمایه‌گذارها و اسم «۳۰ سهم برتر».</p>'
+        '<p>تحلیل نامحدود سهم‌ها، غربالگر کامل، DCF همه‌ی سهم‌ها، همه‌ی سوپرسرمایه‌گذارها، مقایسه، دفترچه سهام من و اسم «۳۰ سهم برتر».</p>'
         '<div class="btns"><a class="btn" href="/products/stock-data-pro-yearly">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a>'
         '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div></div>'
         '<a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a>'

@@ -1,5 +1,5 @@
 /* Home page: search any US stock, today's market, top-30 teaser, all tools, Stock Pro, then book/contest/portfolio. */
-var ACC=!!window.RZS_ACCESS;
+var ACC=!!window.RZS_ACCESS;if(ACC){var _r=$('rzh');if(_r)_r.classList.add('acc')}
 function go(t){location.href='/pages/stock#'+encodeURIComponent(t)}
 function chg(v){return v==null||!isFinite(v)?'—':'<span class="num '+(v>=0?'up':'dn')+'">'+(v>=0?'+':'')+v.toFixed(2)+'%</span>'}
 function market(){var q=RZQ&&RZQ.q;if(!q)return;var L=[['SPY','S&P 500'],['QQQ','Nasdaq 100'],['DIA','Dow Jones']].filter(function(x){return q[x[0]]});

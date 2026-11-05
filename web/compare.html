@@ -166,6 +166,7 @@
 <div class="card"><div class="search"><input id="rzk-q" placeholder="نماد یا اسم شرکت رو بنویس و اضافه کن (تا ۴ سهم)…" autocomplete="off" style="width:100%"><div class="sugg" id="rzk-s"></div></div>
 <div class="chips" id="rzk-ch"></div>
 <div class="chips"><span class="mut" style="font-size:13px">مقایسه‌های محبوب:</span><span class="chip" data-p="AAPL,MSFT">AAPL vs MSFT</span><span class="chip" data-p="NVDA,AMD">NVDA vs AMD</span><span class="chip" data-p="GOOGL,META">GOOGL vs META</span><span class="chip" data-p="KO,PEP">KO vs PEP</span><span class="chip" data-p="V,MA">V vs MA</span><span class="chip" data-p="AMZN,MELI,SE">AMZN vs MELI vs SE</span></div></div>
+<style>#rzk .plk{position:relative;border-radius:16px;overflow:hidden;min-height:420px}#rzk .plk-b{filter:blur(6px);opacity:.45;pointer-events:none;user-select:none}#rzk .plk-c{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:40px 14px}#rzk .plk-box{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:20px;max-width:480px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}#rzk .plk-box h3{font-size:18px}#rzk .plk-box p{color:var(--mut);font-size:14px;margin:6px 0 14px}</style>
 <div id="rzk-main"><div class="card empty">در حال بارگذاری…</div></div>
 <p class="note">قیمت‌ها حدود ۱۵ تا ۳۰ دقیقه تأخیر دارن و نسبت‌ها با قیمت فعلی دوباره حساب میشن. سبز = بهترین مقدار در هر ردیف. ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 
@@ -264,8 +265,14 @@ function draw(){var m=$('rzk-main');if(!SEL.length){m.innerHTML='<div class="car
   var tots=rs.map(function(r){return [g(r,'t'),g(r,'s_total')]}).filter(function(x){return x[1]!=null}).sort(function(a,b){return b[1]-a[1]});
   if(tots.length>1)h+='<div class="card"><h3>جمع‌بندی</h3><p style="margin:0">در امتیاز کلی <b class="tk">'+tots[0][0]+'</b> با '+tots[0][1]+' از ۵ جلوتره'+(tots[1]?' و <b class="tk">'+tots[1][0]+'</b> با '+tots[1][1]+' بعدیه':'')+'. امتیاز بالاتر یعنی معیارهای بیشتری رو پاس کرده، نه اینکه حتماً خرید بهتریه؛ ردیف‌های بالا رو با هم ببین.</p></div>';
   m.innerHTML=h}
-document.addEventListener('click',function(e){var c=e.target.closest('#rzk .chip');if(!c)return;if(c.dataset.x){SEL=SEL.filter(function(t){return t!==c.dataset.x});sync()}else if(c.dataset.p){SEL=[];c.dataset.p.split(',').forEach(add);sync()}});
-loadAll().then(function(){picker($('rzk-q'),$('rzk-s'),add);var h=decodeURIComponent((location.hash||'').slice(1));(h?h.split(','):['AAPL','MSFT']).forEach(add);sync()})
+var PRO=!!window.RZS_ACCESS;
+function proLock(){var m=$('rzk-main'),q=$('rzk-q');if(q){q.disabled=true;q.placeholder='مخصوص مشترکین Stock Pro';}
+  m.innerHTML='<div class="plk"><div class="plk-b">'+m.innerHTML+'</div><div class="plk-c"><div class="plk-box"><h3>🔒 مقایسه‌ی سهم‌ها مخصوص مشترکین Stock Pro است</h3>'
+  +'<p>دو تا چهار سهم رو کنار هم ببین: امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی، با جمع‌بندی اینکه کدوم جلوتره.</p>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="'+esc(window.RZS_SUB_URL||'/products/stock-data-pro')+'">ماهانه <span class="num">€7.99</span></a></div>'
+  +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fcompare">وارد حسابت شو</a></p>')+'</div></div></div>'}
+document.addEventListener('click',function(e){var c=e.target.closest('#rzk .chip');if(!c||!PRO)return;if(c.dataset.x){SEL=SEL.filter(function(t){return t!==c.dataset.x});sync()}else if(c.dataset.p){SEL=[];c.dataset.p.split(',').forEach(add);sync()}});
+loadAll().then(function(){if(!PRO){['AAPL','MSFT'].forEach(add);sync();proLock();return}picker($('rzk-q'),$('rzk-s'),add);var h=decodeURIComponent((location.hash||'').slice(1));(h?h.split(','):['AAPL','MSFT']).forEach(add);sync()})
   .catch(function(){$('rzk-main').innerHTML='<div class="card empty">بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.</div>'});
 
 })();

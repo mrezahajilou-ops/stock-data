@@ -70,3 +70,15 @@
   #ID .pro .btns .btn{text-align:center}
   #ID .bottom .tool{flex-direction:column;align-items:center;text-align:center;gap:4px}
 }
+
+#ID .lk{font-size:11px;vertical-align:2px;opacity:.85}
+#ID .tag{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;border-radius:7px;padding:0 7px;line-height:1.8}
+#ID .tag.free{background:rgba(79,163,122,.15);color:var(--up)}
+#ID .tag.part{background:rgba(201,169,97,.12);color:var(--gold)}
+#ID .tag.pro{background:rgba(201,169,97,.22);color:var(--gold)}
+#ID .quota{margin:12px 0 0;font-size:13.5px;color:var(--mut)}
+#ID .quota a{color:var(--gold)!important;font-weight:700}
+#ID .quota .q-pro{display:none;color:var(--up)}
+#ID.acc .quota .q-free,#ID.acc .lk,#ID.acc .tag{display:none}
+#ID.acc .quota .q-pro{display:inline}
+@media(max-width:640px){#ID .tools .tag{margin-top:2px;font-size:10.5px}#ID .tools .tool{align-items:flex-start}#ID .quota{font-size:12.5px}}

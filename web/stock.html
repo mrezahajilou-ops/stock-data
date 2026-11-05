@@ -379,6 +379,21 @@
 #rzs .comm .vb{display:inline-block;width:90px;height:6px;border-radius:99px;background:rgba(200,83,79,.35);overflow:hidden;vertical-align:middle}
 #rzs .comm .vb b{display:block;height:100%;background:var(--up)}
 
+
+/* forecast columns + compact target range */
+#rzs th.fc,#rzs td.fc{background:rgba(201,169,97,.07);color:var(--gold)}
+#rzs th.fc small{display:block;font-weight:600}
+#rzs th.fc.last,#rzs td.fc.last{border-left:2px dashed rgba(201,169,97,.55)}
+#rzs td.fc .fcl{font-size:12px;opacity:.8}
+#rzs .tgx{margin:4px 0 2px;font-size:12.5px;color:var(--mut);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;justify-content:flex-end}
+#rzs .tgx a{color:var(--gold)!important;text-decoration:none!important}
+#rzs .tgx b{color:var(--ink)}
+#rzs .tgb{display:inline-flex;align-items:center;gap:5px}
+#rzs .tgb .tr{position:relative;display:inline-block;width:110px;height:4px;border-radius:9px;background:var(--line)}
+#rzs .tgb .rg{position:absolute;top:0;bottom:0;border-radius:9px;background:rgba(79,163,122,.45)}
+#rzs .tgb .pv,#rzs .tgb .tv{position:absolute;top:-4px;width:2px;height:12px;border-radius:2px;transform:translateX(-1px)}
+#rzs .tgb .pv{background:var(--ink)}
+#rzs .tgb .tv{background:var(--up)}
 /* FOCUS:START  once a stock is open, the numbers start right under the search box */
 #rzs.has-t>h1,#rzs.has-t>p.sub{display:none}
 #rzs.has-t>.card:first-of-type{padding:10px 12px;margin-bottom:10px}
@@ -683,6 +698,26 @@ function ttmRow(d){
 }
 
 /* ---- render ---- */
+/* ---- analysts' forecasts (only when enough analysts cover the stock) ---- */
+var FC_MIN=8, FC_KEYS=['revenue','revenue_growth','eps_diluted','eps_diluted_growth'];
+function fcN(A){return A?(A.nt||A.n||0):0}
+function fcCols(d,a){var A=d.analyst;if(!A||Math.max(A.n||0,A.nt||0)<FC_MIN)return [];
+  var usd=(A.cur||'USD')==='USD',ads=usd?1:(A.ads||null),fx=A.fx||1,L=a[a.length-1]||{};
+  var e$=function(v){return v==null?null:(usd?v:(ads?v*ads:null))},r$=function(v){return v==null?null:v/fx};
+  var R0=r$(A.r0),R1=r$(A.r1),E0=e$(A.e0),E1=e$(A.e1),out=[];
+  var newer=function(fy){return fy&&(!L.fy_end||String(fy)>String(L.fy_end))};
+  if(A.fy0&&newer(A.fy0)&&(R0||E0!=null))out.push({fc:1,fy:'FY'+String(A.fy0).slice(0,4),revenue:R0,revenue_growth:(R0&&L.revenue>0)?R0/L.revenue-1:null,eps_diluted:E0,eps_diluted_growth:A.ge0!=null?A.ge0:null});
+  if(A.fy1&&newer(A.fy1)&&(R1||E1!=null))out.push({fc:1,fy:'FY'+String(A.fy1).slice(0,4),revenue:R1,revenue_growth:(R1&&R0)?R1/R0-1:null,eps_diluted:E1,eps_diluted_growth:A.ge1!=null?A.ge1:null});
+  out.reverse();   /* newest first, like the rest of the table */
+  if(out.length)out[out.length-1].last=1;
+  out.forEach(function(c){c.na=Math.max(A.n||0,A.nt||0)});
+  return out}
+function drawTarget(d){var box=$('rzs-tg'),A=d.analyst,px=(d.market||{}).price;if(!box||!A||!A.tgt||!A.tlo||!A.thi||!px||Math.max(A.n||0,A.nt||0)<FC_MIN)return;
+  if(!ACCESS){box.innerHTML='<a href="'+esc(SUB_URL)+'">🎯 قیمت هدف تحلیلگرها 🔒</a>';return}
+  var lo=Math.min(A.tlo,px),hi=Math.max(A.thi,px),p=function(v){return ((v-lo)/(hi-lo)*100).toFixed(1)+'%'},up=A.tgt/px-1;
+  box.innerHTML='<span class="tgl">🎯 هدف تحلیلگرها <b class="ltr">$'+A.tgt.toFixed(0)+'</b> <small class="'+(up>=0?'up':'dn')+' ltr">'+(up>=0?'+':'')+(up*100).toFixed(0)+'%</small></span>'+
+    '<span class="tgb" dir="ltr" title="بازه‌ی قیمت هدف '+fcN(A)+' تحلیلگر"><small>$'+A.tlo.toFixed(0)+'</small><span class="tr"><i class="rg" style="left:'+p(A.tlo)+';right:calc(100% - '+p(A.thi)+')"></i><i class="pv" style="left:'+p(px)+'"></i><i class="tv" style="left:'+p(A.tgt)+'"></i></span><small>$'+A.thi.toFixed(0)+'</small></span>'}
+
 function render(d){
   d.name=niceName(d.name);
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
@@ -694,10 +729,8 @@ function render(d){
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
     '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+
-    '<div class="d">ارزش بازار <b>'+big(m.mcap)+'</b> · EV <b>'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
+    '<div class="tgx" id="rzs-tg"></div><div class="d">ارزش بازار <b>'+big(m.mcap)+'</b> · EV <b>'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
     '<div class="comm" id="rzs-comm"></div><div class="rel" id="rzs-rel"></div></div>';
-  h+='<div class="card" id="rzs-about" style="display:none"></div>';
-  h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   h+=verdict(d);
   h+='<div class="wide2"><div class="card" id="rzs-rn"></div>';
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
@@ -721,11 +754,15 @@ function render(d){
     ['ترازنامه',[['نقد و سرمایه‌گذاری کوتاه‌مدت','cash',money],['بدهی','debt',money],['بدهی خالص','net_debt',money],['کل دارایی‌ها','assets',money],['کل بدهی‌ها','liabilities',money],['حقوق صاحبان سهام','equity',money],['سرقفلی','goodwill',money],['تعداد سهام (میلیون)','shares_diluted',function(v){return v==null?'—':(v/1e6).toFixed(0)}]]],
     ['نسبت‌ها',[['حاشیه سود ناخالص','gross_margin',pc],['حاشیه سود عملیاتی','op_margin',pc],['حاشیه سود خالص','net_margin',pc],['حاشیه جریان نقد آزاد','fcf_margin',pc],['ROIC','roic',pc],['ROE','roe',pc],['بدهی به حقوق صاحبان سهام','debt_to_equity',xx],['پوشش بهره','interest_cov',function(v){return x(v,1)}],['سود نقدی هر سهم','div_per_share',ps],['ارزش دفتری هر سهم','book_value_per_share',ps]]]];
   var yrs=a.slice(-10).concat(TT?[TT]:[]);
-  var yrsR=yrs.slice().reverse();   /* newest first, next to the row label (natural reading order in RTL, and what phones see first) */
-  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrsR.map(function(y){return y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
-    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrs.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrsR.map(function(y){var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div></div>';
+  var yrsR=yrs.slice().reverse();
+  var FC=fcCols(d,a);   /* analysts' forecast for this + next fiscal year: shown before TTM (newest first), Stock Pro only */
+  yrsR=FC.concat(yrsR);   /* newest first, next to the row label (natural reading order in RTL, and what phones see first) */
+  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrsR.map(function(y){return y.fc?'<th class="fc'+(y.last?' last':'')+'" title="میانگین پیش‌بینی تحلیلگرها">پیش‌بینی<small>'+esc(y.fy)+'</small></th>':y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
+    sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrsR.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrsR.map(function(y){if(y.fc){var fk=FC_KEYS.indexOf(R[1])>=0,fv=y[R[1]];return '<td class="fc'+(y.last?' last':'')+(fk&&fv<0?' neg':'')+'">'+(!fk?'':(!ACCESS?'<span class="fcl" title="مخصوص مشترکین Stock Pro">🔒</span>':R[2](fv)))+'</td>'}var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div>'+(FC.length?'<p class="xnote" style="margin:6px 0 0">ستون‌های «پیش‌بینی» = میانگین پیش‌بینی '+FC[0].na+' تحلیلگر وال‌استریت'+(ACCESS?'':' (🔒 مخصوص مشترکین <a href="'+esc(SUB_URL)+'">Stock Pro</a>)')+'. EPS پیش‌بینی بر اساس سود تعدیل‌شده (non-GAAP) است و ممکنه با EPS گزارش‌شده فرق داشته باشه.</p>':'')+'</div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
+  h+='<div class="card" id="rzs-about" style="display:none"></div>';
+  h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   $('rzs-main').innerHTML=h;
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
@@ -739,6 +776,7 @@ function render(d){
   loadVal(d);
   drawRN(d);
   drawAnalyst(d);
+  drawTarget(d);
 }
 
 /* ---- analyst consensus: rating, price target, EPS / revenue estimates (branch `estimates`) ---- */

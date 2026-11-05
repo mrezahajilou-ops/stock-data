@@ -11,7 +11,7 @@ WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
-        ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'),
+        ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'), ('top30', '/pages/top-30', '۳۰ سهم برتر'),
         ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا')]
 
 
@@ -330,6 +330,16 @@ def superinvestors_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzi'), nav('superinvestors'), JS, js)
 
 
+def top30_page():
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'top30.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'top30.js'), encoding='utf-8').read()
+    return ('<div id="rzt" dir="rtl">\n<style>%s</style>\n%s\n<h1>🎯 ۳۰ سهم برتر</h1>\n'
+            '<p class="sub">بر اساس میانگین قیمت هدف تحلیلگران: ۳۰ سهمی که بیشترین فاصله رو بین قیمت فعلی و میانگین قیمت هدف تحلیلگرهای وال‌استریت دارن.</p>\n'
+            '<div id="rzt-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzt'), nav('top30'), JS, js)
+
+
 def myportfolio_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'myportfolio.css'), encoding='utf-8').read()
@@ -344,6 +354,7 @@ def main():
     pages = {
         'my-portfolio.html': myportfolio_page(),
         'superinvestors.html': superinvestors_page(),
+        'top-30.html': top30_page(),
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),

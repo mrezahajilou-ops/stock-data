@@ -1,0 +1,43 @@
+name: Top 30 upside list (analyst price targets)
+
+on:
+  schedule:
+    - cron: '20 0 * * 2-6'     # after the nightly analyst estimates (23:50) and closing quotes (23:30)
+    - cron: '45 14 * * 1-5'    # midday refresh of prices/drop warnings
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: top30
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            top30.py
+            data/screener.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch estimates and quotes
+        run: |
+          git fetch -q --depth 1 origin +refs/heads/estimates:refs/remotes/origin/estimates +refs/heads/quotes:refs/remotes/origin/quotes
+          git show origin/estimates:est.json > est.json
+          git show origin/quotes:quotes.json > quotes.json
+      - name: Build list
+        run: python top30.py est.json data/screener.json quotes.json web top30.json
+      - name: Publish to branch "top30"
+        run: |
+          mkdir out && cp top30.json out/ && cd out
+          git init -q && git checkout -q -b top30
+          git -c user.name=github-actions -c user.email=actions@github.com add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm "top30 $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" top30:top30

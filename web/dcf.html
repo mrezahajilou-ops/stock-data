@@ -403,7 +403,7 @@ function render(s){
   var mk=s.mk||{};
   var html='<div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(niceName(s.n))+'</bdi><small>'+esc(s.t)+'</small></div>'+
     '<div class="meta">'+(ALIAS&&ALIAS.to===s.t?esc(ALIAS.from)+' ← کلاس دیگری از همین شرکت · ':'')+(mk.sector?esc(mk.sector)+' · ':'')+(s.sc&&s.sc.total!=null?'امتیاز کلی <b style="color:#fff">⁦'+s.sc.total.toFixed(1)+'/5⁩</b> · ':'')+'<a href="/pages/stock#'+esc(s.t)+'" style="color:var(--ac)">تحلیل کامل ←</a></div>'+
-    '<div class="fresh">📅 پایه‌ی محاسبه: <b>۱۲ ماه اخیر تا '+esc(bb.end)+'</b> · منبع: '+esc(SRC[bb.src]||bb.src)+' · ترازنامه: '+esc(B.bs_end)+'</div></div>'+
+    '<div class="fresh">📅 پایه‌ی محاسبه: <b>۱۲ ماه اخیر تا <bdi dir="ltr">'+esc(bb.end)+'</bdi></b> | منبع: '+esc(SRC[bb.src]||bb.src)+' | ترازنامه: <bdi dir="ltr">'+esc(B.bs_end)+'</bdi></div></div>'+
     '<div class="ctrl"><label class="f">قیمت فعلی سهم ($)'+(s.live?' · '+esc(liveLabel(s.t)):'')+'<input class="pin" id="rzd-price" inputmode="decimal" value="'+(s.price?s.price.toFixed(2):'')+'"></label>'+
     '<label class="f">سال‌های تحلیل<select id="rzd-years"><option value="5">5 سال</option><option value="10" selected>10 سال</option></select></label></div></div>';
   html+='<div class="snap">'+

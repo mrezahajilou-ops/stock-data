@@ -74,6 +74,8 @@
 #ID input:focus,#ID select:focus,#ID .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
 #ID .search input{font-size:17px;padding:12px 16px}
 #ID .sugg{background:var(--card2);border:1px solid var(--line)}
+#ID .card:has(.sugg){overflow:visible}  /* the shop theme clips .card (overflow:hidden); search suggestions must hang out of the card */
+#ID .sugg{max-height:min(430px,62vh)!important}
 #ID .sugg div:hover{background:#242934}
 #ID .badge{background:rgba(201,169,97,.12);color:var(--ac)}
 #ID .vtag{font-weight:600;border-radius:8px}

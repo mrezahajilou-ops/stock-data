@@ -134,8 +134,9 @@ function loadAll(){return Promise.all([loadScreener(),liveQuotes(),fetch(API+'/s
   ROWS=j.rows;ROWS.forEach(function(r){liveRow(r);BY[r[C.t]]=r});return j})}
 function g(r,k){return r&&C[k]!=null?r[C[k]]:null}
 /* ticker search box */
+function rzRank(L,v,gt,gn,k){var o=[];L.forEach(function(x,i){var t=gt(x),n=String(gn(x)||'').toUpperCase(),s;if(t===v)s=0;else if(t.indexOf(v)===0)s=1;else if(n.indexOf(v)===0||n.indexOf(' '+v)>=0)s=2;else if(n.indexOf(v)>=0)s=3;else return;o.push([s,i,x])});o.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});return o.slice(0,k||10).map(function(a){return a[2]})}
 function picker(inp,box,onPick){inp.addEventListener('input',function(){var q=inp.value.trim().toUpperCase();if(!q){box.style.display='none';return}
-  var res=ROWS.filter(function(r){return r[C.t].indexOf(q)===0}).slice(0,6).concat(ROWS.filter(function(r){return r[C.t].indexOf(q)!==0&&String(r[C.n]).toUpperCase().indexOf(q)>=0}).slice(0,4));
+  var res=rzRank(ROWS,q,function(r){return r[C.t]},function(r){return r[C.n]});
   box.innerHTML=res.map(function(r){return '<div data-t="'+esc(r[C.t])+'"><span>'+esc(r[C.n])+'</span><b>'+esc(r[C.t])+'</b></div>'}).join('');box.style.display=res.length?'block':'none'});
   box.addEventListener('click',function(e){var d=e.target.closest('div[data-t]');if(!d)return;box.style.display='none';inp.value='';onPick(d.dataset.t)});
   inp.addEventListener('keydown',function(e){if(e.key==='Enter'){var t=inp.value.trim().toUpperCase();if(BY[t]){box.style.display='none';inp.value='';onPick(t)}}})}

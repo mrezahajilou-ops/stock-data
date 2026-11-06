@@ -327,6 +327,8 @@
 #rzs input:focus,#rzs select:focus,#rzs .tbl input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(201,169,97,.15)}
 #rzs .search input{font-size:17px;padding:12px 16px}
 #rzs .sugg{background:var(--card2);border:1px solid var(--line)}
+#rzs .card:has(.sugg){overflow:visible}  /* the shop theme clips .card (overflow:hidden); search suggestions must hang out of the card */
+#rzs .sugg{max-height:min(430px,62vh)!important}
 #rzs .sugg div:hover{background:#242934}
 #rzs .badge{background:rgba(201,169,97,.12);color:var(--ac)}
 #rzs .vtag{font-weight:600;border-radius:8px}
@@ -1108,8 +1110,8 @@ function drawPrice(){
   var svg='<svg viewBox="0 0 '+W+' '+H+'" id="rzs-pxsvg" style="width:100%;height:auto;display:block;direction:ltr"><defs><linearGradient id="rzs-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="'+colr+'" stop-opacity=".35"/><stop offset="1" stop-color="'+colr+'" stop-opacity="0"/></linearGradient></defs>'+grid+
     '<path d="'+area+'" fill="url(#rzs-g)"/><path d="'+path+'" fill="none" stroke="'+colr+'" stroke-width="2.2" stroke-linejoin="round"/>'+xl+
     '<g id="rzs-hov" style="display:none"><line id="rzs-hl" y1="'+PT+'" y2="'+(H-PB)+'" stroke="#fff" stroke-opacity=".5"/><circle id="rzs-hc" r="4" fill="#fff"/><rect id="rzs-hb" height="22" rx="6" fill="#15181F" stroke="#262B36"/><text id="rzs-ht" fill="#fff" font-size="12" font-weight="700" font-family="Vazirmatn,Tahoma" text-anchor="middle"></text></g></svg>';
-  box.innerHTML='<div class="pr"><div><h3 style="margin:0">عملکرد قیمت سهم</h3><div class="pxl">قیمت بسته‌شدن هفتگی · تا '+esc(last[0])+(dd!=null?' · فاصله از سقف ۱۰ ساله <b style="color:'+(dd<-0.3?C.bad:'#fff')+'">'+(dd>=0?'0%':pct(dd,0))+'</b>':'')+'</div></div>'+
-    '<div class="pxl"><b>$'+last[1].toFixed(2)+'</b> <span class="'+(up?'up':'dn')+'" style="font-weight:900">'+(up?'+':'')+pct(ch,1)+'</span> <span style="color:var(--mut)">در '+cur[1]+'</span></div></div>'+
+  box.innerHTML='<div class="pr"><div><h3 style="margin:0">عملکرد قیمت سهم</h3><div class="pxl" dir="rtl" style="direction:rtl;text-align:right">قیمت بسته‌شدن هفتگی، تا <bdi dir="ltr">'+esc(last[0])+'</bdi>'+(dd!=null?' &nbsp;|&nbsp; فاصله از سقف ۱۰ ساله: <b style="color:'+(dd<-0.3?C.bad:'#fff')+'"><bdi dir="ltr">'+(dd>=0?'0%':pct(dd,0))+'</bdi></b>':'')+'</div></div>'+
+    '<div class="pxl"><b>$'+last[1].toFixed(2)+'</b> <span class="'+(up?'up':'dn')+'" style="font-weight:900">'+(up?'+':'')+pct(ch,1)+'</span> <bdi dir="rtl" style="color:var(--mut)">در '+cur[1]+'</bdi></div></div>'+
     '<div class="rng">'+RANGES.map(function(R){return '<button data-r="'+R[0]+'"'+(R[0]===PXR?' class="on"':'')+'>'+R[1]+'</button>'}).join('')+'</div>'+svg+
     '<div class="perf">'+perf.map(function(p){return '<div><div class="k">'+p[0]+'</div><div class="v '+(p[1]>=0?'up':'dn')+'">'+(p[1]==null?'—':(p[1]>=0?'+':'')+pct(p[1],0))+'</div></div>'}).join('')+'</div>';
   [].forEach.call(box.querySelectorAll('.rng button'),function(b){b.addEventListener('click',function(){PXR=b.dataset.r;drawPrice()})});
@@ -1163,10 +1165,11 @@ function lines(a,keys,cols){
 }
 
 /* ---- search ---- */
+function rzRank(L,v,gt,gn,k){var o=[];L.forEach(function(x,i){var t=gt(x),n=String(gn(x)||'').toUpperCase(),s;if(t===v)s=0;else if(t.indexOf(v)===0)s=1;else if(n.indexOf(v)===0||n.indexOf(' '+v)>=0)s=2;else if(n.indexOf(v)>=0)s=3;else return;o.push([s,i,x])});o.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});return o.slice(0,k||10).map(function(a){return a[2]})}
 var q=$('rzs-q'), sg=$('rzs-sugg');
 q.addEventListener('focus',loadIndex);
 q.addEventListener('input',function(){loadIndex();var v=q.value.trim().toUpperCase();if(!v||!INDEX||!INDEX.length){sg.style.display='none';return}
-  var L=INDEX.filter(function(x){return x.t.indexOf(v)===0}).slice(0,6).concat(INDEX.filter(function(x){return x.t.indexOf(v)!==0&&x.n.toUpperCase().indexOf(v)>=0}).slice(0,4));
+  var L=rzRank(INDEX,v,function(x){return x.t},function(x){return x.n});
   sg.innerHTML=L.map(function(x){return '<div data-t="'+esc(x.t)+'"><span>'+esc(x.n)+'</span><b>'+esc(x.t)+(x.a?' → '+esc(x.a):'')+'</b></div>'}).join('')||'<div>پیدا نشد</div>';sg.style.display='block'});
 q.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=sg.querySelector('[data-t]');SRC='search';open(f?f.dataset.t:q.value.trim())}});
 sg.addEventListener('click',function(e){var d=e.target.closest('[data-t]');if(d){SRC='search';open(d.dataset.t)}});

@@ -237,7 +237,7 @@ var PRO=!!window.RZS_ACCESS;
 function proLock(){var m=$('rzk-main'),q=$('rzk-q');if(q){q.disabled=true;q.placeholder='مخصوص مشترکین Stock Pro';}
   m.innerHTML='<div class="plk"><div class="plk-b">'+m.innerHTML+'</div><div class="plk-c"><div class="plk-box"><h3>🔒 مقایسه‌ی سهم‌ها مخصوص مشترکین Stock Pro است</h3>'
   +'<p>دو تا چهار سهم رو کنار هم ببین: امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی، با جمع‌بندی اینکه کدوم جلوتره.</p>'
-  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="'+esc(window.RZS_SUB_URL||'/products/stock-data-pro')+'">ماهانه <span class="num">€7.99</span></a></div>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(window.RZS_SUB_Y||'/products/stock-data-pro-yearly')+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a><a class="btn ghost" href="'+esc(window.RZS_SUB_URL||'/products/stock-data-pro')+'">ماهانه <span class="num">€7.99</span></a></div>'+'<p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p>'
   +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fcompare">وارد حسابت شو</a></p>')+'</div></div></div>'}
 document.addEventListener('click',function(e){var c=e.target.closest('#rzk .chip');if(!c||!PRO)return;if(c.dataset.x){SEL=SEL.filter(function(t){return t!==c.dataset.x});sync()}else if(c.dataset.p){SEL=[];c.dataset.p.split(',').forEach(add);sync()}});
 loadAll().then(function(){if(!PRO){['AAPL','MSFT'].forEach(add);sync();proLock();return}picker($('rzk-q'),$('rzk-s'),add);var h=decodeURIComponent((location.hash||'').slice(1));(h?h.split(','):['AAPL','MSFT']).forEach(add);sync()})
@@ -400,7 +400,7 @@ def home_page():
         '<div class="bottom"><div class="pro"><h3>Stock Pro: همه‌ی ابزارها، بدون قفل</h3>'
         '<p>تحلیل نامحدود سهم‌ها، غربالگر کامل، DCF همه‌ی سهم‌ها، همه‌ی سوپرسرمایه‌گذارها، مقایسه، دفترچه سهام من و اسم «۳۰ سهم برتر».</p>'
         '<div class="btns"><a class="btn" href="/products/stock-data-pro-yearly">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a>'
-        '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div></div>'
+        '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div><p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p></div>'
         '<a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a>'
         '<a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب آموزش بورس</b><small>«از مبتدی تا یک سرمایه‌گذار حرفه‌ای»، مرجع کامل فارسی.</small></span></a>'
         '<a class="tool" href="/pages/contest"><span class="i">🏆</span><span><b>مسابقه</b><small>پیش‌بینی کن و با بقیه رقابت کن.</small></span></a></div>'

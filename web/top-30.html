@@ -282,7 +282,7 @@ function usd(v){return '<span class="num">$'+n2(v)+'</span>'}
 function upv(v){return '+'+(v*100).toFixed(1)+'%'}
 function day(s){try{var d=new Date(s);if(isNaN(d))return '';return d.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}}
 function cta(){return '<div class="cta-box"><h3>🔒 اسم این ۳۰ سهم مخصوص مشترکین Stock Pro است</h3><p>رتبه و درصد رشد تا قیمت هدف رو همه می‌بینن؛ اسم سهم، قیمت فعلی، قیمت هدف و بازه‌ی نظر تحلیلگرها فقط برای مشترکین باز است. لیست هر روز به‌روز می‌شه.</p>'
-  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a></div>'
+  +'<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><a class="btn" href="'+esc(SUB)+'">ماهانه <span class="num">€7.99</span></a><a class="btn" href="'+esc(SUBY)+'">سالانه <span class="num">€47.94</span>، ۵۰٪ تخفیف</a></div>'+'<p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p>'
   +(window.RZS_LOGGED?'':'<p style="margin:12px 0 0;font-size:13px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Ftop-30">وارد حسابت شو</a></p>')+'</div>'}
 function rng(r){var lo0=r.tlo||r.tgt,hi0=r.thi||r.tgt,lo=Math.min(lo0,r.px,r.tgt),hi=Math.max(hi0,r.px,r.tgt);if(!(hi>lo))return '';
   var pad=(hi-lo)*0.04;lo-=pad;hi+=pad;

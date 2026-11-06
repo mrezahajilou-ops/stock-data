@@ -125,7 +125,7 @@ function drawPosts(){var el=$('rzp-posts');if(!el)return;var ps=P.posts||[];
 function cta(){var login=P.logged?'':'<p class="note" style="margin-top:12px">قبلاً مشترک شدی؟ <a href="'+esc(P.login||'/account/login?return_url=/pages/portfolio')+'">وارد حسابت شو</a></p>';
   return '<div class="cta-box"><h3>🔒 پورتفوی کامل رضا، فقط برای مشترکین</h3><ul><li>بازده واقعی پورتفوی و نمودار عملکرد از آوریل ۲۰۲۵</li><li>همه‌ی سهم‌ها با وزن، قیمت خرید و سود و زیان دقیق</li><li>هر خرید و فروش، همون روز، با دلیلش</li><li>جامعه‌ی مشترکین: زیر هر تصمیم نظر و سؤالت رو بنویس</li><li>ایمیل فوری هر معامله و یادداشت جدید</li></ul>'+
     '<div class="pr">€250</div> <span class="mut">/ سال</span><br><a class="btn" style="margin-top:12px;font-size:16px;padding:11px 26px" href="'+esc(P.sub||'/products/portfolio-pro')+'">عضویت سالانه</a>'+
-    '<p class="gift">🎁 با اشتراک پورتفوی، یک سال دسترسی کامل به <span class="num">Stock Pro</span> هم هدیه می‌گیری</p>'+login+'</div>'}
+    '<p class="gift">🎁 با اشتراک پورتفوی، یک سال دسترسی کامل به <span class="num">Stock Pro</span> هم هدیه می‌گیری</p>'+'<p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p>'+login+'</div>'}
 function header(){var s=series(),o=stats(s),cell=function(l,v){return '<div><small>'+l+'</small><b class="'+cls(v)+'">'+sg(v)+'</b></div>'};
   $('rzp-head').innerHTML='<div class="ph"><div class="av">'+(P.avatar?'<img src="'+esc(P.avatar)+'" alt="">':'ر')+'</div><div class="who"><b>پورتفوی رضا حاجیلو</b><span>سرمایه‌گذاری بلندمدت در سهام آمریکا · از آوریل ۲۰۲۵</span></div></div>'+
     '<div class="stats">'+cell('۱ روز',o.d1)+cell('۱ ماه',o.m1)+cell('از ابتدای سال',o.ytd)+cell('۱ سال',o.y1)+cell('کل',o.tot)+cell('رشد سالانه (CAGR)',o.cagr)+

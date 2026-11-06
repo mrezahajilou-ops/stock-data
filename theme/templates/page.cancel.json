@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "rz-cancel", "settings": {} } },
+  "order": ["main"]
+}

@@ -1,0 +1,50 @@
+name: Subscription emails (cancel confirmations, renewal reminders)
+
+on:
+  schedule:
+    - cron: '4,19,34,49 * * * *'   # cancellation confirmations within 15 minutes
+    - cron: '11 8 * * *'           # yearly renewal reminders, 30 days ahead
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'cancel or remind'
+        default: 'cancel'
+      test:
+        description: 'Send only to the Gmail sender address'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: subs-mail
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            subs_mail.py
+            sync_shopify.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run (nothing private is printed)
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TEST: ${{ github.event.inputs.test == 'true' && '1' || '' }}
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ -z "$MODE" ]; then
+            if [ "${{ github.event.schedule }}" = "11 8 * * *" ]; then MODE=remind; else MODE=cancel; fi
+          fi
+          python subs_mail.py "$MODE"

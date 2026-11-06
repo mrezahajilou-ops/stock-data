@@ -1,0 +1,11 @@
+{%- comment -%} Kündigungsbutton (§312k BGB): always visible in the footer of every page, leads to /pages/cancel. {%- endcomment -%}
+<div class="rz-kb" dir="rtl"><a href="/pages/cancel">لغو اشتراک | Verträge hier kündigen</a></div>
+<style>
+  .rz-kb{text-align:center;padding:10px 16px 18px;font-family:'Vazirmatn',Tahoma,sans-serif}
+  .rz-kb a{display:inline-block;font-size:13.5px;font-weight:700;border:1.5px solid currentColor;border-radius:10px;padding:6px 16px;text-decoration:none;opacity:.85}
+  .rz-kb a:hover{opacity:1}
+  @media(max-width:749px){.rz-kb{padding-bottom:84px}}
+</style>
+{% schema %}
+{"name":"Kündigungsbutton","settings":[],"enabled_on":{"groups":["footer"]}}
+{% endschema %}

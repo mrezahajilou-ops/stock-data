@@ -1,0 +1,53 @@
+{%- comment -%} Purchase options (subscription plans) for the product form. Renders nothing for products without selling plans.
+  Monthly and yearly plans both renew automatically; the yearly text states the renewal, the reminder and the cancel/refund rule. {%- endcomment -%}
+{%- if product.selling_plan_groups.size > 0 -%}
+  {%- assign variant = product.selected_or_first_available_variant -%}
+  <style>
+    .rz-plans{margin:14px 0 6px;display:grid;gap:8px;direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif}
+    .rz-plans label{display:flex;align-items:center;gap:10px;border:1.5px solid rgba(128,128,128,.35);border-radius:12px;padding:10px 14px;cursor:pointer}
+    .rz-plans label:has(input:checked){border-color:#2ec4b6;background:rgba(46,196,182,.08)}
+    .rz-plans input{accent-color:#2ec4b6;width:18px;height:18px;margin:0;flex:none}
+    .rz-plans b{font-weight:800}
+    .rz-plans small{display:block;opacity:.75;font-size:12px;line-height:1.8}
+    .rz-plans .pr{margin-right:auto;font-weight:800;white-space:nowrap}
+    .rz-back{margin:0 0 10px;font-size:13.5px;direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif;background:rgba(46,196,182,.1);border:1px solid rgba(46,196,182,.4);border-radius:10px;padding:8px 12px;display:none}
+  </style>
+  <div class="rz-back" id="rz-back"></div>
+  <div class="rz-plans">
+    {%- unless product.requires_selling_plan -%}
+      <label><input type="radio" name="selling_plan" value="" {% unless variant.selected_selling_plan_allocation %}checked{% endunless %}>
+        <span><b>خرید یک‌باره</b></span><span class="pr">{{ variant.price | money }}</span></label>
+    {%- endunless -%}
+    {%- for group in product.selling_plan_groups -%}
+      {%- for plan in group.selling_plans -%}
+        {%- assign alloc = variant.selling_plan_allocations | where: 'selling_plan_id', plan.id | first -%}
+        {%- assign pn = plan.name | downcase -%}
+        {%- assign yearly = false -%}
+        {%- if pn contains 'year' or pn contains 'jahr' or group.name contains 'سالانه' -%}{%- assign yearly = true -%}{%- endif -%}
+        <label><input type="radio" name="selling_plan" value="{{ plan.id }}" {% if product.requires_selling_plan and forloop.first and forloop.parentloop.first %}checked{% elsif variant.selected_selling_plan_allocation.selling_plan.id == plan.id %}checked{% endif %}>
+          {%- if yearly -%}
+          <span><b>اشتراک سالانه</b><small>هر سال خودکار تمدید می‌شه و ۳۰ روز قبلش ایمیل یادآوری می‌گیری. بعد از سال اول هر وقت خواستی لغو کن؛ پول ماه‌های باقی‌مونده برمی‌گرده.</small></span>
+          <span class="pr">{% if alloc %}{{ alloc.price | money }}{% else %}{{ variant.price | money }}{% endif %} / سال</span>
+          {%- else -%}
+          <span><b>اشتراک ماهانه</b><small>هر ماه خودکار تمدید می‌شه، هر وقت خواستی لغو کن</small></span>
+          <span class="pr">{% if alloc %}{{ alloc.price | money }}{% else %}{{ variant.price | money }}{% endif %} / ماه</span>
+          {%- endif -%}
+        </label>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+  <script>
+    (function(){
+      try{
+        var t=(new URLSearchParams(location.search).get('rz')||'').toUpperCase();
+        var tool = {{ product.handle | json }} === 'dcf-subscription' ? 'dcf' : 'stock';
+        if(!t){ t = localStorage.getItem('rz_last_ticker') || ''; }
+        if(/^[A-Z.-]{1,7}$/.test(t)){
+          localStorage.setItem('rz_last_ticker', t);
+          localStorage.setItem('rz_after_pay', JSON.stringify({t:t, tool:tool, ts:Date.now()}));
+          var b=document.getElementById('rz-back'); if(b){ b.style.display='block'; b.textContent='بعد از پرداخت، تحلیل '+t+' خودکار برات باز میشه.'; }
+        }
+      }catch(e){}
+    })();
+  </script>
+{%- endif -%}

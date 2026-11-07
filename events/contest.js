@@ -429,6 +429,6 @@ async function cWinners(env) {
 
 async function contestCron(env, cron) {
   await cSchema(env);
-  if (cron === '45 23 * * 1-5') { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
+  if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
   return cFill(env);
 }

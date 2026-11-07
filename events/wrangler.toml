@@ -11,4 +11,4 @@ database_name = "rz-events"
 database_id = "74878c69-13e3-4c52-8353-326cf598efc8"
 
 [triggers]
-crons = ["17 3 * * *", "*/5 * * * *", "45 23 * * 1-5"]
+crons = ["17 3 * * *", "*/5 * * * *", "45 23 * * MON-FRI"]

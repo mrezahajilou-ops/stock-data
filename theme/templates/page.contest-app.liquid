@@ -1,0 +1,23 @@
+{%- comment -%}
+  Portfolio contest (web/contest-portfolio.html via rz-app loader; API = Cloudflare worker rz-events /c/*).
+  The logged-in customer is signed for the worker: token = "id|email|pro|ts|sig", sig = HMAC-SHA256(secret, "id|email|pro|ts").
+  The secret lives in the shop metafield rzc.contest_secret (never in the public repo) and equals the worker's CONTEST_SECRET.
+{%- endcomment -%}
+{%- capture rz_acc -%}{%- render 'rz-pro-access' -%}{%- endcapture -%}
+{%- assign rz_pro = '0' -%}{%- if rz_acc contains '1' -%}{%- assign rz_pro = '1' -%}{%- endif -%}
+{%- assign rz_tok = '' -%}
+{%- if customer and shop.metafields.rzc.contest_secret != blank -%}
+  {%- assign rz_ts = 'now' | date: '%s' -%}
+  {%- capture rz_msg -%}{{ customer.id }}|{{ customer.email }}|{{ rz_pro }}|{{ rz_ts }}{%- endcapture -%}
+  {%- assign rz_sig = rz_msg | hmac_sha256: shop.metafields.rzc.contest_secret.value -%}
+  {%- capture rz_tok -%}{{ rz_msg }}|{{ rz_sig }}{%- endcapture -%}
+{%- endif -%}
+<script>
+  window.RZC_TOKEN = {{ rz_tok | json }};
+  window.RZS_LOGGED = {% if customer %}true{% else %}false{% endif %};
+  window.RZS_ACCESS = {% if rz_pro == '1' %}true{% else %}false{% endif %};
+  window.RZS_SUB_URL = '/products/stock-data-pro';
+</script>
+<div style="padding:12px 0 48px">
+  {% render 'rz-app', app: 'contest-portfolio' %}
+</div>

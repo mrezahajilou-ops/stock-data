@@ -41,9 +41,10 @@ function list(){hof();
       '<div class="meta"><span>'+FA(r.n_pos)+' سهم</span><span>'+FA(r.n_trades)+' ترید</span><span>ارزش '+D(r.value,0)+'</span>'+(r.vs_spy!=null?'<span>در برابر S&amp;P 500: '+P(r.vs_spy)+'</span>':'')+(y2027&&!r.prize_y?'<span class="tag">فقط رقابت فصلی</span>':'')+'</div></div>'+
       '<div class="mini">'+[['m','ماه'],['q','فصل'],['ytd','از اول سال'],['total','کل']].filter(function(x){return x[0]!==key}).map(function(x){return '<span><small>'+x[1]+'</small>'+P(r[x[0]])+'</span>'}).join('')+'</div>'+
       '<div class="ret"><span class="v">'+(v==null?'<small>کمتر از ۱ سال</small>':P(v))+'</span><small>'+SORTS.filter(function(s){return s[0]===key})[0][1]+'</small></div></a>'}).join('');
-  if(!R.length)h='<div class="card empty">هنوز پورتفویی با حداقل ۳ سهم ثبت نشده. <a href="#/new">اولین نفر باش!</a></div>';
+  var ALL=(BOARD.rows||[]).length;
+  if(!R.length)h='<div class="card empty"><b class="cnt">'+FA(ALL)+'</b> نفر تا الان پورتفوی خودشون رو ثبت کردن.<br><small>رده‌بندی از وقتی نشون داده می‌شه که هر پورتفو حداقل ۳ سهم بخره (سفارش‌ها با باز شدن بازار آمریکا انجام می‌شن).</small><br><a href="#/new">تو هم پورتفوت رو بساز</a></div>';
   if(R.length>SHOW)h+='<button class="more" id="rzc-more">نمایش بیشتر</button>';
-  h+='<p class="note">'+FA(R.length)+' پورتفو در رده‌بندی'+(waiting?'؛ '+FA(waiting)+' پورتفوی دیگه هنوز کمتر از ۳ سهم دارن':'')+'. به‌روزرسانی هر ۵ دقیقه.</p>';
+  h+='<p class="note">'+FA(ALL)+' پورتفوی ثبت‌شده، '+FA(R.length)+' تا در رده‌بندی'+(waiting?' ('+FA(waiting)+' تا هنوز کمتر از ۳ سهم دارن)':'')+'. به‌روزرسانی هر ۵ دقیقه.</p>';
   $('rzc-list').innerHTML=h;var m=$('rzc-more');if(m)m.onclick=function(){SHOW+=10;list()}}
 
 /* ---------- rules ---------- */

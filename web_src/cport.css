@@ -144,3 +144,5 @@
 #ID .prevban small{display:block;color:var(--mut);font-size:13px;margin-top:2px}
 #ID .prevban .go{margin-right:auto;color:var(--gold);font-weight:800;font-size:14px;white-space:nowrap}
 @media(max-width:560px){#ID .prevban{flex-wrap:wrap;padding:11px 13px}#ID .prevban>span:nth-child(2){flex:1 1 0;min-width:0}#ID .prevban .go{flex-basis:100%;text-align:left;margin:0}}
+#ID .card.empty .cnt{color:var(--gold);font-size:22px;margin-left:4px}
+#ID .card.empty small{display:inline-block;color:var(--mut);font-size:12.5px;margin:4px 0 6px;line-height:1.8}

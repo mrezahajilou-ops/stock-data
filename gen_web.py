@@ -356,6 +356,15 @@ def top30_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzt'), nav('top30'), JS, js)
 
 
+def cport_page():
+    """مسابقه‌ی پورتفو ($10,000 virtual portfolios); server = events/contest.js, page template page.contest-app."""
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'cport.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'cport.js'), encoding='utf-8').read()
+    return ('<div id="rzc" dir="rtl">\n<style>%s</style>\n<div id="rzc-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzc'), JS, js)
+
+
 HOME_TOOLS = [   # (icon, url, title, description, tier)  tier: '' = free, 'pro' = Stock Pro only, other text = what is free
     ('🔍', '/pages/stock', 'تحلیل سهم', 'امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.', '۱۰ سهم رایگان در هفته'),
     ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.', 'اسم سهم‌ها قفل'),
@@ -425,6 +434,7 @@ def main():
         'my-portfolio.html': myportfolio_page(),
         'superinvestors.html': superinvestors_page(),
         'top-30.html': top30_page(),
+        'contest-portfolio.html': cport_page(),
         'home.html': home_page(),
         'portfolio.html': portfolio_page(),
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),

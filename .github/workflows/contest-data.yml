@@ -1,0 +1,38 @@
+name: Contest data (allowed tickers, dividends and splits)
+
+on:
+  schedule:
+    - cron: '10 22 * * 1-5'   # before the worker's nightly snapshot (23:45 UTC)
+    - cron: '10 12 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: contest-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            contest_data.py
+            data/screener.json
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build
+        run: python contest_data.py data/screener.json out https://rz-events.mreza-hajilou.workers.dev
+      - name: Publish to branch "contest-data"
+        run: |
+          cd out
+          git init -q && git checkout -q -b contest-data
+          git -c user.name=github-actions -c user.email=actions@github.com add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm "contest data $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" contest-data:contest-data

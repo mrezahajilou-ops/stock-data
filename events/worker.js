@@ -27,7 +27,7 @@ function cors(req, env) {
   return {
     'Access-Control-Allow-Origin': ok ? (o || '*') : 'null',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, X-RZ-Token',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin',
   };
@@ -40,6 +40,10 @@ export default {
     const url = new URL(req.url);
     const h = cors(req, env);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
+    if (url.pathname.startsWith('/c/')) {
+      try { return await contest(req, env, url, h); }
+      catch (e) { return json({ error: 'server', detail: String(e && e.message || e).slice(0, 200) }, 500, h); }
+    }
 
     if (req.method === 'POST' && url.pathname === '/e') {
       let b;
@@ -72,6 +76,7 @@ export default {
   },
 
   async scheduled(ev, env) {
+    if (ev.cron !== '17 3 * * *') { await contestCron(env, ev.cron); return; }
     const cut = Math.floor(Date.now() / 1000) - RETAIN_DAYS * 86400;
     await env.DB.prepare('DELETE FROM events WHERE ts < ?1').bind(cut).run();
   },

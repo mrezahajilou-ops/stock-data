@@ -1,0 +1,104 @@
+/* مسابقه‌ی پورتفو — leaderboard sized so about five portfolios fill one screen (desktop and phone). */
+#ID{max-width:1100px}
+#ID .cbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 14px}
+#ID .cbar a{border:1px solid var(--line);background:var(--card);color:var(--ink)!important;text-decoration:none!important;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+#ID .cbar a.on{border-color:var(--gold);color:var(--gold)!important}
+#ID .cbar a.back{margin-right:auto;color:var(--mut)!important;font-weight:500}
+#ID .hero h1{font-size:clamp(24px,3vw,34px);margin:6px 0 4px}
+#ID .hero p{color:var(--mut);margin:0 0 12px}
+#ID .ltr{direction:ltr;unicode-bidi:isolate}
+#ID .sorts{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;scrollbar-width:none}
+#ID .sorts::-webkit-scrollbar{display:none}
+#ID .sorts button{flex:none;border:1px solid var(--line);background:var(--card2);color:var(--mut);border-radius:999px;padding:6px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+#ID .sorts button.on{background:var(--gold);border-color:var(--gold);color:#15120a;font-weight:700}
+#ID .pcard{display:grid;grid-template-columns:52px minmax(0,1fr) auto auto;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:12px 16px;margin-bottom:10px;min-height:clamp(96px,calc((100vh - 230px)/5),132px);text-decoration:none!important;color:var(--ink)!important}
+#ID .pcard:hover{border-color:var(--gold)}
+#ID .pcard .rk{font-family:var(--serif);font-size:28px;color:var(--gold);text-align:center}
+#ID .pcard:nth-child(1) .rk::after{content:'🥇';display:block;font-size:18px}
+#ID .pcard:nth-child(2) .rk::after{content:'🥈';display:block;font-size:18px}
+#ID .pcard:nth-child(3) .rk::after{content:'🥉';display:block;font-size:18px}
+#ID .who{min-width:0}
+#ID .who b{font-size:17px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ID .who small{display:block;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ID .meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:6px;font-size:12.5px;color:var(--mut)}
+#ID .tag{background:rgba(201,169,97,.14);color:var(--gold);border-radius:7px;padding:0 7px;font-size:11.5px}
+#ID .mini{display:flex;gap:18px}
+#ID .mini span{text-align:center;font-size:15px}
+#ID .mini small{display:block;color:var(--mut);font-size:11.5px}
+#ID .ret{text-align:center;min-width:96px;border-right:1px solid var(--line);padding-right:16px}
+#ID .ret .v{display:block;font-family:var(--serif);font-size:26px;line-height:1.2}
+#ID .ret small{font-size:11.5px;color:var(--mut)}
+#ID .up{color:var(--up)}#ID .dn{color:var(--dn,#C8534F)}
+#ID .more{display:block;margin:6px auto 0;border:1px solid var(--line);background:var(--card2);color:var(--ink);border-radius:999px;padding:8px 22px;font:inherit;cursor:pointer}
+#ID .note{color:var(--mut);font-size:12.5px;margin:10px 0 0}
+#ID .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:12px}
+#ID .card.center{text-align:center;padding:30px 18px}
+#ID .card h2{margin:0 0 6px;font-size:21px}#ID .card h3{margin:0 0 10px;font-size:17px}
+#ID .btn{display:inline-block;background:var(--gold);color:#15120a!important;border:0;border-radius:12px;padding:11px 20px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none!important}
+#ID .btn.alt{background:transparent;border:1.5px solid var(--gold);color:var(--gold)!important}
+#ID .btn:disabled{opacity:.5}
+#ID .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+#ID label{display:block;margin:12px 0 0;font-weight:600;font-size:14px}
+#ID label small{font-weight:400;color:var(--mut);margin-right:6px}
+#ID input:not([type=checkbox]),#ID select,#ID textarea{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:10px 12px;font:inherit;font-size:16px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+#ID label.chk{display:flex;gap:8px;align-items:center;font-weight:600}
+#ID .err{color:#e07a72;font-size:13.5px;min-height:1em}
+#ID .warn{background:rgba(201,169,97,.12);color:var(--gold);border-radius:10px;padding:8px 12px;font-size:13.5px}
+#ID .rules{margin:6px 0 4px;padding-right:20px;line-height:2;font-size:14px;color:var(--ink)}
+#ID .rules li{margin-bottom:4px}
+#ID .phead{display:flex;justify-content:space-between;gap:10px}
+#ID .phead small{color:var(--mut)}
+#ID .strat{margin:0 0 2px;color:var(--mut)}
+#ID .sum{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0}
+#ID .sum div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+#ID .sum small{display:block;color:var(--mut);font-size:12px}
+#ID .sum b{font-family:var(--serif);font-size:20px}
+#ID .ch{width:100%;height:auto;display:block}
+#ID .ch .base{stroke:var(--mut);stroke-dasharray:4 4;stroke-width:1}
+#ID .chl{display:flex;justify-content:space-between;color:var(--mut);font-size:11.5px}
+#ID .alloc{display:flex;height:10px;border-radius:99px;overflow:hidden;margin-bottom:12px;background:var(--line)}
+#ID .tw{overflow-x:auto}
+#ID .ht{width:100%;border-collapse:collapse;font-size:14px}
+#ID .ht th{color:var(--mut);font-weight:500;font-size:12.5px;text-align:right;padding:6px;border-bottom:1px solid var(--line);white-space:nowrap}
+#ID .ht td{padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+#ID .ht td small{display:block;color:var(--mut);font-size:11.5px;max-width:160px;overflow:hidden;text-overflow:ellipsis}
+#ID .ht tr.cash td{color:var(--mut)}
+#ID .tk{font-weight:800;color:var(--gold)!important;text-decoration:none!important;direction:ltr;unicode-bidi:isolate}
+#ID .lnk{background:none;border:0;color:var(--gold);font:inherit;cursor:pointer;text-decoration:underline;padding:0}
+#ID .tr{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:10px 0}
+#ID .tr .l{min-width:0}
+#ID .tr small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+#ID .tr q{display:block;margin-top:6px;background:var(--bg);border-radius:10px;padding:8px 10px;font-size:13.5px;quotes:none;border-right:3px solid var(--gold)}
+#ID .tr.buy b{color:var(--up)}#ID .tr.sell b{color:#e07a72}#ID .tr.inc b{color:var(--gold)}
+#ID .tr.cancelled,#ID .tr.rejected{opacity:.55}
+#ID .side{display:flex;gap:6px}
+#ID .side button{flex:1;border:1.5px solid var(--line);background:var(--bg);color:var(--mut);border-radius:10px;padding:9px;font:inherit;font-weight:700;cursor:pointer}
+#ID .side button.on[data-side=buy]{border-color:var(--up);color:var(--up)}
+#ID .side button.on[data-side=sell]{border-color:#e07a72;color:#e07a72}
+#ID .quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+#ID .quick button{border:1px solid var(--line);background:var(--bg);color:var(--mut);border-radius:999px;padding:4px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+#ID .est{color:var(--mut);font-size:13.5px;margin:10px 0 6px;min-height:1.2em}
+#ID .pick{position:relative}
+#ID .sugg{display:none;position:absolute;left:0;right:0;top:100%;z-index:30;background:var(--card);border:1px solid var(--line);border-radius:10px;max-height:300px;overflow:auto;margin-top:4px}
+#ID .sugg div{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;cursor:pointer;font-weight:400;font-size:13.5px}
+#ID .sugg div:hover{background:var(--card2)}
+#ID .sugg b{direction:ltr;color:var(--gold)}
+#ID .card:has(.sugg){overflow:visible}
+#ID .lock{background:var(--bg);border:1px dashed var(--gold);border-radius:12px;padding:16px;text-align:center;line-height:2}
+@media(max-width:900px){#ID .mini span:nth-child(n+3){display:none}}
+@media(max-width:640px){
+  #ID .cbar a{padding:6px 11px;font-size:13px}
+  #ID .cbar a.back{margin-right:0}
+  #ID .mini{display:none}
+  #ID .ret{border:0;padding:0}
+  #ID .pcard{grid-template-columns:34px minmax(0,1fr) auto;padding:10px 12px;gap:4px 10px;min-height:clamp(92px,calc((100vh - 250px)/5),120px)}
+  #ID .pcard .rk{font-size:21px}
+  #ID .ret{min-width:76px}#ID .ret .v{font-size:21px}
+  #ID .sum{grid-template-columns:1fr 1fr}
+  #ID .sum div:first-child{grid-column:1/-1}
+  #ID .ht .mh{display:none}
+  #ID .ht td,#ID .ht th{padding:8px 4px;font-size:13px}
+  #ID .sum b{font-size:17px}
+  #ID .card{padding:14px 12px}
+}

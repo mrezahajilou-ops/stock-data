@@ -413,7 +413,7 @@ def home_page():
         '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div><p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p></div>'
         '<a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a>'
         '<a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب آموزش بورس</b><small>«از مبتدی تا یک سرمایه‌گذار حرفه‌ای»، مرجع کامل فارسی.</small></span></a>'
-        '<a class="tool cport" href="/pages/contest-portfolio"><span class="i">🏆</span><span><b>مسابقه‌ی پورتفو <span class="prize">۱۰۰۰ یورو جایزه</span></b><small>با <bdi dir="ltr">$10,000</bdi> مجازی پورتفوی خودت رو بساز و با بقیه رقابت کن؛ ۱۰۰ یورو برترین هر فصل، ۶۰۰ یورو برترین سال.</small></span></a></div>'
+        '<a class="tool cport" href="/pages/contest-portfolio"><span class="i">🏆</span><span><b>مسابقه‌ی پورتفو <span class="prize">۵۰۰ یورو جایزه</span></b><small>با <bdi dir="ltr">$10,000</bdi> مجازی پورتفوی خودت رو بساز و با بقیه رقابت کن؛ ۵۰ یورو برترین هر فصل، ۳۰۰ یورو برترین سال.</small></span></a></div>'
     )
     return ('<div id="rzh" dir="rtl">\n<style>%s</style>\n%s\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzh'), body, EVENTS_JS + JS, js)

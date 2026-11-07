@@ -32,7 +32,8 @@ const C_TOKEN_TTL = 12 * 3600;
 
 const C_SCHEMA = [
   `CREATE TABLE IF NOT EXISTS c_profiles (id INTEGER PRIMARY KEY AUTOINCREMENT, cid TEXT NOT NULL, email TEXT, name TEXT NOT NULL,
-     strategy TEXT, created INTEGER NOT NULL, cash REAL NOT NULL, status TEXT NOT NULL DEFAULT 'active', last_trade INTEGER)`,
+     strategy TEXT, created INTEGER NOT NULL, cash REAL NOT NULL, status TEXT NOT NULL DEFAULT 'active', last_trade INTEGER,
+     house INTEGER NOT NULL DEFAULT 0)`,
   `CREATE INDEX IF NOT EXISTS c_prof_cid ON c_profiles (cid)`,
   `CREATE TABLE IF NOT EXISTS c_pos (pid INTEGER NOT NULL, t TEXT NOT NULL, qty REAL NOT NULL, cost REAL NOT NULL, PRIMARY KEY (pid, t))`,
   `CREATE TABLE IF NOT EXISTS c_orders (id INTEGER PRIMARY KEY AUTOINCREMENT, pid INTEGER NOT NULL, ts INTEGER NOT NULL, side TEXT NOT NULL,
@@ -56,6 +57,7 @@ async function cSchema(env) {
   if (env.RAW_BASE) C_RAW = env.RAW_BASE;
   if (C_SCHEMA_OK) return;
   await env.DB.batch(C_SCHEMA.map(s => env.DB.prepare(s)));
+  try { await env.DB.prepare('ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0').run(); } catch (e) { /* already there */ }
   C_SCHEMA_OK = true;
 }
 
@@ -66,6 +68,8 @@ async function cHmac(secret, msg) {
 }
 /** token = "c|e|p|ts|sig", sig = hex HMAC-SHA256 of "c|e|p|ts"; built by the theme (Liquid hmac_sha256). */
 async function cAuth(req, env) {
+  const hk = (req.headers.get('X-RZ-House') || '').trim();
+  if (hk && env.HOUSE_KEY && hk.length >= 32 && hk === env.HOUSE_KEY) return { cid: 'house', email: C_ADMIN[0], pro: true, admin: true, house: true };
   const tok = (req.headers.get('X-RZ-Token') || '').trim();
   if (!tok || !env.CONTEST_SECRET) return null;
   const [c, e, p, ts, sig] = tok.split('|');
@@ -103,7 +107,7 @@ function cValue(prof, pos, Q) {
 /* ---------- order validation + fills ---------- */
 async function cPlace(env, me, b) {
   const pid = parseInt(b.pid, 10);
-  const prof = await c1(env, 'SELECT * FROM c_profiles WHERE id=?1 AND cid=?2', pid, me.cid);
+  const prof = await c1(env, 'SELECT * FROM c_profiles WHERE id=?1 AND (cid=?2 OR (house=1 AND ?3=1))', pid, me.cid, me.admin ? 1 : 0);
   if (!prof) return [403, { error: 'پروفایل پیدا نشد' }];
   if (prof.status !== 'active') return [403, { error: 'این پروفایل غیرفعاله' }];
   const side = b.side === 'sell' ? 'sell' : b.side === 'buy' ? 'buy' : null;
@@ -237,7 +241,7 @@ function cPeriodStart(kind, now) {
 
 async function cBoard(env) {
   const Q = await cQuotes();
-  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade FROM c_profiles WHERE status='active'");
+  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade, house FROM c_profiles WHERE status='active'");
   const posAll = await cq(env, 'SELECT pid, t, qty, cost FROM c_pos WHERE qty>0.0000001');
   const trades = await cq(env, "SELECT pid, COUNT(*) n FROM c_orders WHERE status='filled' GROUP BY pid");
   const tn = Object.fromEntries(trades.map(r => [r.pid, r.n]));
@@ -252,15 +256,15 @@ async function cBoard(env) {
   const out = profs.map(p => {
     const pos = posAll.filter(x => x.pid === p.id);
     const v = cValue(p, pos, Q), days = Math.max(1, (now - p.created) / 86400);
-    const r = { id: p.id, name: p.name, strategy: p.strategy, created: cday(p.created), value: Math.round(v * 100) / 100,
+    const r = { id: p.id, house: !!p.house, name: p.name, strategy: p.strategy, created: cday(p.created), value: Math.round(v * 100) / 100,
       n_pos: pos.length, n_trades: tn[p.id] || 0, total: v / C_START - 1,
       cagr: days >= 365 ? Math.pow(v / C_START, 365 / days) - 1 : null, last_trade: p.last_trade ? cday(p.last_trade) : null };
     for (const k of Object.keys(starts)) { const b = base[k][p.id] || C_START; r[k] = v / b - 1; }
     r.eligible = pos.length >= C_MIN_STOCKS;
     // prize eligibility: the yearly prize only for profiles created before 1 Jan of that year,
     // a quarterly prize only for profiles created before that quarter started
-    r.prize_y = r.eligible && r.created < starts.ytd;
-    r.prize_q = r.eligible && r.created < starts.q;
+    r.prize_y = !p.house && r.eligible && r.created < starts.ytd;
+    r.prize_q = !p.house && r.eligible && r.created < starts.q;
     return r;
   });
   return { as_of: new Date().toISOString().slice(0, 16) + 'Z', contest_start: C_CONTEST_START, starts, rows: out };
@@ -269,6 +273,7 @@ async function cBoard(env) {
 /* ---------- visibility ---------- */
 function cCanSee(me, prof) {
   if (me && (me.admin || me.cid === prof.cid)) return true;
+  if (prof.house) return !!(me && me.pro);
   return !!(me && me.pro && cnow() >= C_DETAIL_FROM);
 }
 async function cDetail(env, prof, Q) {
@@ -298,14 +303,14 @@ async function contest(req, env, url, h) {
   const me = await cAuth(req, env);
   if (req.method === 'GET' && path === '/me') {
     if (!me) return J({ error: 'login' }, 401);
-    const profs = await cq(env, "SELECT * FROM c_profiles WHERE cid=?1 AND status!='removed' ORDER BY created", me.cid);
+    const profs = await cq(env, "SELECT * FROM c_profiles WHERE (cid=?1 OR (house=1 AND ?2=1)) AND status!='removed' ORDER BY house, created", me.cid, me.admin ? 1 : 0);
     for (const p of profs) await cFill(env, p.id);
     const Q = await cQuotes();
     const out = [];
     for (const p0 of profs) {
       const p = await c1(env, 'SELECT * FROM c_profiles WHERE id=?1', p0.id);
       const d = await cDetail(env, p, Q);
-      out.push({ id: p.id, name: p.name, strategy: p.strategy, created: cday(p.created), status: p.status, value: cValue(p, d.positions.map(x => ({ t: x.t, qty: x.qty, cost: x.cost })), Q), ...d });
+      out.push({ id: p.id, house: !!p.house, name: p.name, strategy: p.strategy, created: cday(p.created), status: p.status, value: cValue(p, d.positions.map(x => ({ t: x.t, qty: x.qty, cost: x.cost })), Q), ...d });
     }
     const last = profs.length ? Math.max(...profs.map(p => p.created)) : 0;
     return J({ me: { email: me.email, pro: me.pro, admin: me.admin }, profiles: out, next_new: last ? cday(last + C_NEW_EVERY) : null, can_new: !last || cnow() - last >= C_NEW_EVERY });
@@ -316,11 +321,13 @@ async function contest(req, env, url, h) {
     if (!b.accept) return J({ error: 'قوانین رو باید قبول کنی' }, 400);
     const name = cclean(b.name, 40), strategy = cclean(b.strategy, 200);
     if (name.length < 2) return J({ error: 'اسم پروفایل حداقل ۲ حرف' }, 400);
-    const last = await c1(env, 'SELECT MAX(created) c FROM c_profiles WHERE cid=?1', me.cid);
+    const house = me.admin && b.house ? 1 : 0;
+    if (house) { const n = await c1(env, "SELECT COUNT(*) n FROM c_profiles WHERE house=1 AND status!='removed'"); if (n && n.n >= 20) return J({ error: 'حداکثر ۲۰ حساب رسمی' }, 400); }
+    const last = house ? null : await c1(env, 'SELECT MAX(created) c FROM c_profiles WHERE cid=?1 AND house=0', me.cid);
     if (last && last.c && cnow() - last.c < C_NEW_EVERY && !me.admin) return J({ error: 'هر ۶ ماه فقط یک پروفایل جدید', next: cday(last.c + C_NEW_EVERY) }, 400);
     const dup = await c1(env, "SELECT id FROM c_profiles WHERE lower(name)=lower(?1) AND status!='removed'", name);
     if (dup) return J({ error: 'این اسم قبلاً گرفته شده' }, 400);
-    const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash) VALUES (?1, ?2, ?3, ?4, ?5, ?6)').bind(me.cid, me.email, name, strategy, cnow(), C_START).run();
+    const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)').bind(house ? 'house' : me.cid, me.email, name, strategy, cnow(), C_START, house).run();
     await env.DB.prepare('INSERT OR IGNORE INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3)').bind(r.meta.last_row_id, cday(cnow() - 86400), C_START).run();
     return J({ ok: true, id: r.meta.last_row_id });
   }
@@ -333,7 +340,7 @@ async function contest(req, env, url, h) {
     if (!me) return J({ error: 'login' }, 401);
     const b = await body();
     const r = await env.DB.prepare(`UPDATE c_orders SET status='cancelled' WHERE id=?1 AND status='pending'
-                                    AND pid IN (SELECT id FROM c_profiles WHERE id=?2 AND cid=?3)`).bind(parseInt(b.oid, 10), parseInt(b.pid, 10), me.cid).run();
+                                    AND pid IN (SELECT id FROM c_profiles WHERE id=?2 AND (cid=?3 OR (house=1 AND ?4=1)))`).bind(parseInt(b.oid, 10), parseInt(b.pid, 10), me.cid, me.admin ? 1 : 0).run();
     return J({ ok: !!r.meta.changes });
   }
   if (req.method === 'POST' && path === '/admin') {
@@ -356,9 +363,9 @@ async function contest(req, env, url, h) {
     const Q = await cQuotes();
     const pos = await cPositions(env, prof.id);
     const n = await c1(env, "SELECT COUNT(*) n FROM c_orders WHERE pid=?1 AND status='filled'", prof.id);
-    const out = { id: prof.id, name: prof.name, strategy: prof.strategy, created: cday(prof.created), value: cValue(prof, pos, Q),
+    const out = { id: prof.id, house: !!prof.house, name: prof.name, strategy: prof.strategy, created: cday(prof.created), value: cValue(prof, pos, Q),
       n_pos: pos.length, n_trades: n ? n.n : 0, mine: !!(me && me.cid === prof.cid), locked: !see,
-      unlock: cnow() < C_DETAIL_FROM ? 'feb' : 'pro' };
+      unlock: prof.house || cnow() >= C_DETAIL_FROM ? 'pro' : 'feb' };
     if (see) Object.assign(out, await cDetail(env, prof, Q));
     return J(out);
   }

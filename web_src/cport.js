@@ -3,6 +3,7 @@
 var API_C=(window.RZC_API||'https://rz-events.mreza-hajilou.workers.dev')+'/c',TOK=window.RZC_TOKEN||'',LOGGED=!!window.RZS_LOGGED;
 var LOGIN='/account/login?return_url='+encodeURIComponent(location.pathname+'#/me');
 var SORTS=[['total','بازده کل'],['cagr','بازده سالانه‌شده (CAGR)'],['y1','یک سال اخیر'],['ytd','از اول سال'],['q','این فصل'],['m','این ماه']];
+var BADGE='<span class="house">🏛 حساب رسمی سهام آنالیز</span>';
 var SORT='total',SHOW=10,BOARD=null,UNI=null,NAMES={},ME=null;
 var D=function(v,d){if(v==null||!isFinite(v))return '—';return '<bdi dir="ltr">$'+Number(v).toLocaleString('en-US',{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d})+'</bdi>'};
 var P=function(v,d){if(v==null||!isFinite(v))return '—';return '<bdi dir="ltr" class="'+(v>=0?'up':'dn')+'">'+(v>=0?'+':'')+(v*100).toFixed(d==null?1:d)+'%</bdi>'};
@@ -29,7 +30,7 @@ function list(){
   var key=SORT;R.sort(function(a,b){var x=a[key],y=b[key];if(x==null&&y==null)return b.total-a.total;if(x==null)return 1;if(y==null)return -1;return y-x});
   var y2027=new Date()>=new Date('2027-01-01');
   var h=R.slice(0,SHOW).map(function(r,i){var v=r[key];
-    return '<a class="pcard" href="#/p/'+r.id+'"><div class="rk">'+FA(i+1)+'</div><div class="who"><b>'+esc(r.name)+'</b>'+(r.strategy?'<small>'+esc(r.strategy)+'</small>':'')+
+    return '<a class="pcard" href="#/p/'+r.id+'"><div class="rk">'+FA(i+1)+'</div><div class="who"><b>'+esc(r.name)+'</b>'+(r.house?BADGE:'')+(r.strategy?'<small>'+esc(r.strategy)+'</small>':'')+
       '<div class="meta"><span>'+FA(r.n_pos)+' سهم</span><span>'+FA(r.n_trades)+' ترید</span><span>ارزش '+D(r.value,0)+'</span>'+(y2027&&!r.prize_y?'<span class="tag">فقط رقابت فصلی</span>':'')+'</div></div>'+
       '<div class="mini">'+[['m','ماه'],['q','فصل'],['ytd','از اول سال'],['total','کل']].filter(function(x){return x[0]!==key}).map(function(x){return '<span><small>'+x[1]+'</small>'+P(r[x[0]])+'</span>'}).join('')+'</div>'+
       '<div class="ret"><span class="v">'+(v==null?'<small>کمتر از ۱ سال</small>':P(v))+'</span><small>'+SORTS.filter(function(s){return s[0]===key})[0][1]+'</small></div></a>'}).join('');
@@ -62,8 +63,9 @@ function create(){
     '<label>اسم پروفایل (عمومی دیده می‌شه)<input id="rzc-n" maxlength="40" placeholder="مثلاً سرمایه‌گذار صبور"></label>'+
     '<label>استراتژی‌ات در یک جمله (اختیاری)<input id="rzc-s" maxlength="200" placeholder="مثلاً سهام باکیفیت با رشد پایدار، نگه‌داری بلندمدت"></label>'+
     '<label class="chk"><input type="checkbox" id="rzc-a"> قوانین بالا رو خوندم و قبول دارم</label>'+
+    (ME&&ME.me&&ME.me.admin?'<label class="chk"><input type="checkbox" id="rzc-h"> حساب رسمی (استراتژی سهام آنالیز؛ بدون محدودیت ۶ ماه، بدون جایزه)</label>':'')+
     '<button class="btn" id="rzc-go">ساخت پروفایل و دریافت <bdi dir="ltr">$10,000</bdi></button><p class="err" id="rzc-e"></p></div>');
-  $('rzc-go').onclick=function(){var b=this;b.disabled=true;api('/profile',{method:'POST',body:{name:$('rzc-n').value,strategy:$('rzc-s').value,accept:$('rzc-a').checked}}).then(function(j){
+  $('rzc-go').onclick=function(){var b=this;b.disabled=true;api('/profile',{method:'POST',body:{name:$('rzc-n').value,strategy:$('rzc-s').value,accept:$('rzc-a').checked,house:!!($('rzc-h')&&$('rzc-h').checked)}}).then(function(j){
     if(j.ok){BOARD=null;location.hash='#/me'}else{b.disabled=false;$('rzc-e').textContent=(j.error||'خطا')+(j.next?' (از '+day(j.next)+')':'')}}).catch(function(){b.disabled=false;$('rzc-e').textContent='ارتباط برقرار نشد'})}}
 
 /* ---------- portfolio view (shared by my dashboard and public profile) ---------- */
@@ -104,8 +106,8 @@ function me(){
     ME=j;if(!j.profiles||!j.profiles.length){location.hash='#/new';return}
     if(!j.profiles.some(function(p){return p.id===CUR}))CUR=j.profiles[j.profiles.length-1].id;
     var p=j.profiles.filter(function(x){return x.id===CUR})[0];
-    var tabs=j.profiles.length>1?'<div class="sorts">'+j.profiles.map(function(x){return '<button data-p="'+x.id+'" class="'+(x.id===CUR?'on':'')+'">'+esc(x.name)+'</button>'}).join('')+'</div>':'';
-    main(bar('me')+tabs+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+' | <a href="#/p/'+p.id+'">صفحه‌ی عمومی</a> | <a href="#/rules">قوانین</a></small></div></div>'+summary(p,p.value)+
+    var tabs=j.profiles.length>1?'<div class="sorts">'+j.profiles.map(function(x){return '<button data-p="'+x.id+'" class="'+(x.id===CUR?'on':'')+'">'+(x.house?'🏛 ':'')+esc(x.name)+'</button>'}).join('')+'</div>':'';
+    main(bar('me')+tabs+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+'</h2>'+(p.house?BADGE:'')+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+' | <a href="#/p/'+p.id+'">صفحه‌ی عمومی</a> | <a href="#/rules">قوانین</a></small></div></div>'+summary(p,p.value)+
       ((p.positions||[]).length<3?'<p class="warn">برای حضور در رده‌بندی حداقل ۳ سهم لازمه (الان '+FA((p.positions||[]).length)+').</p>':'')+'<div id="rzc-ch"></div></div>'+
       '<div class="card" id="rzc-trade"><h3>خرید و فروش</h3>'+tradeForm(p)+'</div>'+
       '<div class="card"><h3>دارایی‌ها</h3>'+holdings(p,true)+'</div><div class="card"><h3>تاریخچه‌ی تریدها</h3>'+history(p,true)+'</div>'+
@@ -152,7 +154,7 @@ function prof(id){
   main(bar('')+'<div class="card empty">در حال بارگذاری…</div>');
   api('/p/'+id).then(function(p){
     if(p._s!==200){main(bar('')+'<div class="card empty">این پروفایل پیدا نشد.</div>');return}
-    var h=bar('')+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+'</small></div></div>'+
+    var h=bar('')+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+'</h2>'+(p.house?BADGE:'')+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+'</small></div></div>'+
       '<div class="sum"><div><small>ارزش پورتفو</small><b>'+D(p.value)+'</b></div><div><small>بازده کل</small><b>'+P(p.value/10000-1)+'</b></div><div><small>سهم‌ها</small><b>'+FA(p.n_pos)+'</b></div><div><small>تریدها</small><b>'+FA(p.n_trades)+'</b></div></div>';
     if(p.locked){
       h+='<div class="lock">🔒 '+(p.unlock==='feb'?'برای عادلانه بودن مسابقه، سهم‌ها و تریدهای پروفایل‌ها تا <b>۱ فوریه ۲۰۲۷</b> نمایش داده نمی‌شه. از اون تاریخ برای مشترکین Stock Pro باز می‌شه.':

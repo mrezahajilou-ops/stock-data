@@ -123,7 +123,7 @@ function drawPosts(){var el=$('rzp-posts');if(!el)return;var ps=P.posts||[];
 
 /* ---- page ---- */
 function cta(){var login=P.logged?'':'<p class="note" style="margin-top:12px">قبلاً مشترک شدی؟ <a href="'+esc(P.login||'/account/login?return_url=/pages/portfolio')+'">وارد حسابت شو</a></p>';
-  return '<div class="cta-box"><h3>🔒 پورتفوی کامل رضا، فقط برای مشترکین</h3><ul><li>بازده واقعی پورتفوی و نمودار عملکرد از آوریل ۲۰۲۵</li><li>همه‌ی سهم‌ها با وزن، قیمت خرید و سود و زیان دقیق</li><li>هر خرید و فروش، همون روز، با دلیلش</li><li>جامعه‌ی مشترکین: زیر هر تصمیم نظر و سؤالت رو بنویس</li><li>ایمیل فوری هر معامله و یادداشت جدید</li></ul>'+
+  return '<div class="cta-box"><h3>🔒 پورتفوی کامل رضا، فقط برای مشترکین</h3><ul><li>بازده واقعی پورتفوی و نمودار عملکرد</li><li>همه‌ی سهم‌ها با وزن، قیمت خرید و سود و زیان دقیق</li><li>هر خرید و فروش، همون روز، با دلیلش</li><li>جامعه‌ی مشترکین: زیر هر تصمیم نظر و سؤالت رو بنویس</li><li>ایمیل فوری هر معامله و یادداشت جدید</li></ul>'+
     '<div class="pr">€250</div> <span class="mut">/ سال</span><br><a class="btn" style="margin-top:12px;font-size:16px;padding:11px 26px" href="'+esc(P.sub||'/products/portfolio-pro')+'">عضویت سالانه</a>'+
     '<p class="gift">🎁 با اشتراک پورتفوی، یک سال دسترسی کامل به <span class="num">Stock Pro</span> هم هدیه می‌گیری</p>'+'<p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p>'+login+'</div>'}
 function header(){var s=series(),o=stats(s),cell=function(l,v){return '<div><small>'+l+'</small><b class="'+cls(v)+'">'+sg(v)+'</b></div>'};
@@ -135,7 +135,9 @@ function locked(){$('rzp-head').innerHTML='<div class="ph"><div class="av">'+(P.
     '<div class="stats">'+['۱ روز','۱ ماه','از ابتدای سال','۱ سال','کل','رشد سالانه (CAGR)','ارزش پورتفوی'].map(function(l){return '<div><small>'+l+'</small><b>🔒</b></div>'}).join('')+'</div>';
   $('rzp-main').innerHTML='<div class="lock card" style="min-height:560px;margin-top:14px"><div class="blur">'+fakePos()+fakeFeed()+'</div><div class="cta">'+cta()+'</div></div>'+
     '<p class="note">این پورتفوی واقعی رضاست و فقط برای آموزش و شفافیت منتشر میشه؛ پیشنهاد خرید یا فروش نیست.</p>'}
-function render(){header();var m=$('rzp-main');
+function paywall(){$('rzp-head').innerHTML='<div class="ph"><div class="av">'+(P.avatar?'<img src="'+esc(P.avatar)+'" alt="">':'ر')+'</div><div class="who"><b>پورتفوی رضا حاجیلو</b><span>سرمایه‌گذاری بلندمدت در سهام آمریکا</span></div></div>';
+  $('rzp-main').innerHTML='<div class="card" style="text-align:center;margin-top:14px">'+cta()+'</div><p class="note">این پورتفوی واقعی رضاست و فقط برای آموزش و شفافیت منتشر میشه؛ پیشنهاد خرید یا فروش نیست.</p>'}
+function render(){if(!ACC){paywall();return}header();var m=$('rzp-main');
   var tabs='<div class="tabs"><button data-tab="port"'+(TAB==='port'?' class="on"':'')+'>پورتفوی</button><button data-tab="hist"'+(TAB==='hist'?' class="on"':'')+'>تاریخچه‌ی معاملات</button><button data-tab="comm"'+(TAB==='comm'?' class="on"':'')+'>جامعه</button></div>';
   var perf='<div class="card"><div class="chd"><h3>عملکرد</h3><div class="seg" id="rzp-rg">'+['1M','3M','6M','YTD','1Y','MAX'].map(function(r){return '<button data-r="'+r+'"'+(r===RANGE?' class="on"':'')+'>'+r+'</button>'}).join('')+'</div></div><div id="rzp-ch"></div>'+'</div>';
   var body='';
@@ -167,7 +169,7 @@ document.getElementById('rzp').addEventListener('click',function(e){var b=e.targ
   if(b.dataset.al==='edit'){AL_OPEN=true;render();var i=$('rzp-ale');if(i){i.focus();i.select()}}
   else if(b.dataset.al==='cancel'){AL_OPEN=false;render()}
   else if(b.dataset.al==='off'){if(confirm('هشدار ایمیلی معاملات خاموش بشه؟'))alertsPost('portfolio-alerts,alert-off:'+Math.floor(Date.now()/1000),{on:false,to:AL.to})}});
-function fakePos(){var t=['SE','MELI','META','NU','KSPI','BRK-B','PODD','HCA','DLO'],h='<div class="pos">';for(var i=0;i<9;i++)h+='<div class="pc"><span class="rk">#'+(i+1)+'</span><span class="lg">???</span><span class="nm"><b>●●●●</b><span>●●%</span></span><span class="vl"><b>$●●●</b><small>●●●</small></span></div>';return h+'</div>'}
+function fakePos(){var h='<div class="pos">';for(var i=0;i<9;i++)h+='<div class="pc"><span class="rk">#'+(i+1)+'</span><span class="lg">???</span><span class="nm"><b>●●●●</b><span>●●%</span></span><span class="vl"><b>$●●●</b><small>●●●</small></span></div>';return h+'</div>'}
 function fakeFeed(){var h='';for(var i=0;i<4;i++)h+='<div class="feed"><div class="ev"><b>●●●● — خرید ●● سهم به قیمت $●●●</b><p>دلیل این تصمیم ●●●● ●●●●● ●●● ●●●●●●● ●●●● ●●●●</p></div></div>';return h}
 document.getElementById('rzp').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(b){TAB=b.dataset.tab;try{history.replaceState(null,'','#'+TAB)}catch(x){}render();return}
   b=e.target.closest('[data-r]');if(b){RANGE=b.dataset.r;[].forEach.call($('rzp-rg').children,function(c){c.classList.toggle('on',c.dataset.r===RANGE)});drawChart();return}

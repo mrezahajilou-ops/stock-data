@@ -1,0 +1,17 @@
+name: contest-board
+# Manual check of the public contest leaderboard (same data anyone can see at /c/board).
+on: workflow_dispatch
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -s https://rz-events.mreza-hajilou.workers.dev/c/board > b.json
+          python3 - <<'PY'
+          import json
+          b = json.load(open('b.json'))
+          rows = b.get('rows', [])
+          print('PROFILES', len(rows), 'as_of', b.get('as_of'))
+          for r in sorted(rows, key=lambda r: r['id']):
+              print('ROW', r['id'], r['created'], 'stocks=%d trades=%d value=%.0f' % (r['n_pos'], r['n_trades'], r['value']), '|', r['name'], '|', (r.get('strategy') or '')[:80])
+          PY

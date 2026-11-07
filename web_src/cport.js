@@ -19,11 +19,11 @@ function api(path,opt){opt=opt||{};var h={'Content-Type':'application/json'};if(
   return fetch(API_C+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined}).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function main(h){$('rzc-main').innerHTML=h}
 function bar(active){var a=function(k,href,txt){return '<a href="'+href+'" class="'+(active===k?'on':'')+'">'+txt+'</a>'};
-  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/" class="back">بازگشت به سهام آنالیز</a></div>'}
+  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/pages/contest" class="prev">🗓 مسابقه قبلی</a><a href="/" class="back">بازگشت به سهام آنالیز</a></div>'}
 
 /* ---------- leaderboard ---------- */
 function board(){
-  main(bar('board')+'<div class="hero"><h1>مسابقه‌ی پورتفو <span class="ltr">$10,000</span></h1><p>با ۱۰ هزار دلار فرضی پورتفوی خودت رو بساز؛ قیمت‌ها رو بازار تعیین می‌کنه.</p></div><div id="rzc-hof"></div>'+
+  main(bar('board')+'<div class="hero"><h1>مسابقه‌ی پورتفو <span class="ltr">$10,000</span></h1><p>با ۱۰ هزار دلار فرضی پورتفوی خودت رو بساز؛ قیمت‌ها رو بازار تعیین می‌کنه.</p></div>'+(Date.now()<Date.parse('2026-12-16T00:00:00Z')?'<a class="prevban" href="/pages/contest"><span class="i">🗓</span><span><b>مسابقه قبلی: سهام برتر نوامبر</b><small>'+(Date.now()<Date.parse('2026-12-01T00:00:00Z')?'هنوز در جریانه؛ رتبه‌بندی زنده و اینکه تا پایان ماه چی می‌شه رو ببین.':'تموم شد؛ نتیجه‌ی نهایی و برنده‌ها رو ببین.')+'</small></span><span class="go">دیدن نتایج ←</span></a>':'')+'<div id="rzc-hof"></div>'+
     '<div class="sorts" id="rzc-sorts">'+SORTS.map(function(s){return '<button data-s="'+s[0]+'" class="'+(s[0]===SORT?'on':'')+'">'+s[1]+'</button>'}).join('')+'</div><div id="rzc-list"><div class="card empty">در حال بارگذاری…</div></div>');
   $('rzc-sorts').onclick=function(e){var b=e.target.closest('button');if(!b)return;SORT=b.getAttribute('data-s');SHOW=10;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});list()};
   (BOARD?Promise.resolve(BOARD):api('/board')).then(function(j){BOARD=j;list()}).catch(function(){$('rzc-list').innerHTML='<div class="card empty">بارگذاری ناموفق بود؛ چند لحظه بعد دوباره امتحان کن.</div>'})}

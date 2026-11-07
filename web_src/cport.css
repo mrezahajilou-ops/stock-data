@@ -137,3 +137,10 @@
 #ID .hof.empty{flex-wrap:wrap;overflow:visible}
 #ID .hof.empty span{flex:1 1 auto;font-size:12.5px;padding:6px 10px}
 @media(max-width:560px){#ID .hof.empty>b{flex-basis:100%}}
+#ID .cbar a.prev{border-color:rgba(201,169,97,.55);color:var(--gold)!important}
+#ID .prevban{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(201,169,97,.55);border-radius:14px;padding:12px 16px;margin:0 0 14px;text-decoration:none!important;color:var(--ink)!important}
+#ID .prevban .i{font-size:24px;line-height:1}
+#ID .prevban b{display:block;font-size:15px}
+#ID .prevban small{display:block;color:var(--mut);font-size:13px;margin-top:2px}
+#ID .prevban .go{margin-right:auto;color:var(--gold);font-weight:800;font-size:14px;white-space:nowrap}
+@media(max-width:560px){#ID .prevban{flex-wrap:wrap;padding:11px 13px}#ID .prevban>span:nth-child(2){flex:1 1 0;min-width:0}#ID .prevban .go{flex-basis:100%;text-align:left;margin:0}}

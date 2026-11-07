@@ -109,3 +109,28 @@
 #ID .rulesfull li{margin-bottom:6px}
 #ID .toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
 #ID .toc a{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--mut)!important;text-decoration:none!important}
+#ID .stars{font-size:12px;margin-right:6px;letter-spacing:-2px}
+#ID .hof{display:flex;gap:8px;overflow-x:auto;align-items:stretch;margin:0 0 12px;padding-bottom:4px;scrollbar-width:none}
+#ID .hof::-webkit-scrollbar{display:none}
+#ID .hof>b{flex:none;align-self:center;color:var(--gold);font-size:14px}
+#ID .hof a,#ID .hof.empty span{flex:none;background:var(--card);border:1px solid rgba(201,169,97,.35);border-radius:12px;padding:7px 12px;font-size:13.5px;color:var(--ink)!important;text-decoration:none!important}
+#ID .hof a small{display:block;color:var(--mut);font-size:11.5px}
+#ID .hof.empty span{color:var(--mut);border-style:dashed}
+#ID .ht td small{white-space:nowrap}
+#ID .lg{display:inline-block;width:10px;height:3px;border-radius:2px;vertical-align:middle;margin:0 4px}
+#ID h4{margin:16px 0 8px;font-size:15px}
+#ID .mts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#ID .mt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+#ID .mt small{display:block;color:var(--mut);font-size:12px}
+#ID .mt b{display:block;font-size:19px;margin:2px 0}
+#ID .mt i{display:block;font-style:normal;color:var(--mut);font-size:11.5px;line-height:1.6}
+#ID .lv{white-space:nowrap;display:inline-block;font-size:11.5px;border-radius:7px;padding:0 6px;margin-right:4px;vertical-align:3px}
+#ID .lv.up{background:rgba(79,163,122,.15);color:var(--up)}#ID .lv.gold{background:rgba(201,169,97,.15);color:var(--gold)}#ID .lv.dn{background:rgba(200,83,79,.15);color:#e07a72}
+#ID .secs{display:grid;gap:6px}
+#ID .sb{display:grid;grid-template-columns:130px 1fr 52px;gap:8px;align-items:center;font-size:13.5px}
+#ID .sb i{height:8px;border-radius:99px;background:var(--gold);display:block;min-width:2px}
+#ID .sb b{text-align:left;font-weight:600}
+#ID .ev{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:8px 0;text-decoration:none!important;color:var(--ink)!important}
+#ID .ev small{color:var(--mut)}
+@media(max-width:900px){#ID .mts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){#ID .sb{grid-template-columns:96px 1fr 44px;font-size:12.5px}#ID .mt b{font-size:17px}#ID .sum div:first-child{grid-column:auto}}

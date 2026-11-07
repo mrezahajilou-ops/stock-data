@@ -44,7 +44,11 @@ const C_SCHEMA = [
   `CREATE TABLE IF NOT EXISTS c_cash (id INTEGER PRIMARY KEY AUTOINCREMENT, pid INTEGER NOT NULL, ts INTEGER NOT NULL, kind TEXT NOT NULL,
      t TEXT, amount REAL NOT NULL, note TEXT, ref TEXT, UNIQUE(pid, ref))`,
   `CREATE TABLE IF NOT EXISTS c_snap (pid INTEGER NOT NULL, d TEXT NOT NULL, v REAL NOT NULL, PRIMARY KEY (pid, d))`,
+  `CREATE TABLE IF NOT EXISTS c_wins (period TEXT PRIMARY KEY, kind TEXT NOT NULL, pid INTEGER NOT NULL, ret REAL, decided INTEGER NOT NULL)`,
 ];
+/* migrations for tables created by an earlier version */
+const C_MIGRATE = ['ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0',
+  'ALTER TABLE c_profiles ADD COLUMN spy0 REAL', 'ALTER TABLE c_snap ADD COLUMN n INTEGER'];
 
 /* ---------- helpers ---------- */
 const cq = async (env, sql, ...a) => (await env.DB.prepare(sql).bind(...a).all()).results || [];
@@ -57,7 +61,7 @@ async function cSchema(env) {
   if (env.RAW_BASE) C_RAW = env.RAW_BASE;
   if (C_SCHEMA_OK) return;
   await env.DB.batch(C_SCHEMA.map(s => env.DB.prepare(s)));
-  try { await env.DB.prepare('ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0').run(); } catch (e) { /* already there */ }
+  for (const m of C_MIGRATE) { try { await env.DB.prepare(m).run(); } catch (e) { /* already there */ } }
   C_SCHEMA_OK = true;
 }
 
@@ -225,8 +229,9 @@ async function cSnapshot(env) {
   const d = cday(cnow()), stmts = [];
   for (const p of profs) {
     const pos = await cPositions(env, p.id);
-    stmts.push(env.DB.prepare('INSERT INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3) ON CONFLICT(pid, d) DO UPDATE SET v=?3').bind(p.id, d, Math.round(cValue(p, pos, Q) * 100) / 100));
+    stmts.push(env.DB.prepare('INSERT INTO c_snap (pid, d, v, n) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(pid, d) DO UPDATE SET v=?3, n=?4').bind(p.id, d, Math.round(cValue(p, pos, Q) * 100) / 100, pos.length));
   }
+  if (Q.SPY) stmts.push(env.DB.prepare('INSERT INTO c_snap (pid, d, v) VALUES (0, ?1, ?2) ON CONFLICT(pid, d) DO UPDATE SET v=?2').bind(d, Q.SPY[0]));
   for (let i = 0; i < stmts.length; i += 50) await env.DB.batch(stmts.slice(i, i + 50));
   return stmts.length;
 }
@@ -241,10 +246,11 @@ function cPeriodStart(kind, now) {
 
 async function cBoard(env) {
   const Q = await cQuotes();
-  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade, house FROM c_profiles WHERE status='active'");
+  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade, house, spy0 FROM c_profiles WHERE status='active'");
   const posAll = await cq(env, 'SELECT pid, t, qty, cost FROM c_pos WHERE qty>0.0000001');
   const trades = await cq(env, "SELECT pid, COUNT(*) n FROM c_orders WHERE status='filled' GROUP BY pid");
   const tn = Object.fromEntries(trades.map(r => [r.pid, r.n]));
+  const wins = await cq(env, 'SELECT w.period, w.kind, w.pid, w.ret, p.name FROM c_wins w JOIN c_profiles p ON p.id=w.pid ORDER BY w.period DESC');
   const now = cnow(), starts = {};
   for (const k of ['ytd', 'q', 'm', 'y1']) starts[k] = cPeriodStart(k, now);
   // value at the start of each period = last snapshot before that day (or $10,000 if the profile is younger)
@@ -260,6 +266,9 @@ async function cBoard(env) {
       n_pos: pos.length, n_trades: tn[p.id] || 0, total: v / C_START - 1,
       cagr: days >= 365 ? Math.pow(v / C_START, 365 / days) - 1 : null, last_trade: p.last_trade ? cday(p.last_trade) : null };
     for (const k of Object.keys(starts)) { const b = base[k][p.id] || C_START; r[k] = v / b - 1; }
+    r.stars = wins.filter(w => w.pid === p.id && w.kind === 'q').length;
+    r.crowns = wins.filter(w => w.pid === p.id && w.kind === 'y').length;
+    if (p.spy0 && Q.SPY) r.vs_spy = (v / C_START) / (Q.SPY[0] / p.spy0) - 1;
     r.eligible = pos.length >= C_MIN_STOCKS;
     // prize eligibility: the yearly prize only for profiles created before 1 Jan of that year,
     // a quarterly prize only for profiles created before that quarter started
@@ -267,7 +276,8 @@ async function cBoard(env) {
     r.prize_q = !p.house && r.eligible && r.created < starts.q;
     return r;
   });
-  return { as_of: new Date().toISOString().slice(0, 16) + 'Z', contest_start: C_CONTEST_START, starts, rows: out };
+  return { as_of: new Date().toISOString().slice(0, 16) + 'Z', contest_start: C_CONTEST_START, starts, rows: out,
+    winners: wins.map(w => ({ period: w.period, kind: w.kind, id: w.pid, name: w.name, ret: w.ret })) };
 }
 
 /* ---------- visibility ---------- */
@@ -310,7 +320,7 @@ async function contest(req, env, url, h) {
     for (const p0 of profs) {
       const p = await c1(env, 'SELECT * FROM c_profiles WHERE id=?1', p0.id);
       const d = await cDetail(env, p, Q);
-      out.push({ id: p.id, house: !!p.house, name: p.name, strategy: p.strategy, created: cday(p.created), status: p.status, value: cValue(p, d.positions.map(x => ({ t: x.t, qty: x.qty, cost: x.cost })), Q), ...d });
+      out.push({ id: p.id, house: !!p.house, spy0: p.spy0 || null, wins: await cq(env, 'SELECT period, kind, ret FROM c_wins WHERE pid=?1 ORDER BY period', p.id), name: p.name, strategy: p.strategy, created: cday(p.created), status: p.status, value: cValue(p, d.positions.map(x => ({ t: x.t, qty: x.qty, cost: x.cost })), Q), ...d });
     }
     const last = profs.length ? Math.max(...profs.map(p => p.created)) : 0;
     return J({ me: { email: me.email, pro: me.pro, admin: me.admin }, profiles: out, next_new: last ? cday(last + C_NEW_EVERY) : null, can_new: !last || cnow() - last >= C_NEW_EVERY });
@@ -329,6 +339,7 @@ async function contest(req, env, url, h) {
     if (dup) return J({ error: 'این اسم قبلاً گرفته شده' }, 400);
     const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)').bind(house ? 'house' : me.cid, me.email, name, strategy, cnow(), C_START, house).run();
     await env.DB.prepare('INSERT OR IGNORE INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3)').bind(r.meta.last_row_id, cday(cnow() - 86400), C_START).run();
+    try { const Q = await cQuotes(); if (Q.SPY) await env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1').bind(r.meta.last_row_id, Q.SPY[0]).run(); } catch (e) {}
     return J({ ok: true, id: r.meta.last_row_id });
   }
   if (req.method === 'POST' && path === '/order') {
@@ -346,6 +357,13 @@ async function contest(req, env, url, h) {
   if (req.method === 'POST' && path === '/admin') {
     if (!me || !me.admin) return J({ error: 'forbidden' }, 403);
     const b = await body();
+    if (b.win_period) {
+      if (b.clear) await env.DB.prepare('DELETE FROM c_wins WHERE period=?1').bind(String(b.win_period)).run();
+      else await env.DB.prepare('INSERT INTO c_wins (period, kind, pid, ret, decided) VALUES (?1, ?2, ?3, NULL, ?4) ON CONFLICT(period) DO UPDATE SET pid=?3, decided=?4')
+        .bind(String(b.win_period), /Q/.test(b.win_period) ? 'q' : 'y', parseInt(b.pid, 10), cnow()).run();
+      await caches.default.delete(new Request(url.origin + '/c/board'));
+      return J({ ok: true });
+    }
     if (!['active', 'hidden', 'removed'].includes(b.status)) return J({ error: 'bad status' }, 400);
     await env.DB.prepare('UPDATE c_profiles SET status=?2 WHERE id=?1').bind(parseInt(b.pid, 10), b.status).run();
     await caches.default.delete(new Request(url.origin + '/c/board'));
@@ -358,13 +376,16 @@ async function contest(req, env, url, h) {
     const see = cCanSee(me, prof);
     if (m[1] === 'hist') {
       if (!see) return J({ locked: true });
-      return J({ v: (await cq(env, 'SELECT d, v FROM c_snap WHERE pid=?1 ORDER BY d', prof.id)).map(r => [r.d, r.v]) });
+      const v = (await cq(env, 'SELECT d, v FROM c_snap WHERE pid=?1 ORDER BY d', prof.id)).map(r => [r.d, r.v]);
+      const spy = v.length ? (await cq(env, 'SELECT d, v FROM c_snap WHERE pid=0 AND d>=?1 ORDER BY d', v[0][0])).map(r => [r.d, r.v]) : [];
+      return J({ v, spy, spy0: prof.spy0 || null });
     }
     const Q = await cQuotes();
     const pos = await cPositions(env, prof.id);
     const n = await c1(env, "SELECT COUNT(*) n FROM c_orders WHERE pid=?1 AND status='filled'", prof.id);
     const out = { id: prof.id, house: !!prof.house, name: prof.name, strategy: prof.strategy, created: cday(prof.created), value: cValue(prof, pos, Q),
-      n_pos: pos.length, n_trades: n ? n.n : 0, mine: !!(me && me.cid === prof.cid), locked: !see,
+      n_pos: pos.length, n_trades: n ? n.n : 0, spy0: prof.spy0 || null,
+      wins: (await cq(env, 'SELECT period, kind, ret FROM c_wins WHERE pid=?1 ORDER BY period', prof.id)), mine: !!(me && me.cid === prof.cid), locked: !see,
       unlock: prof.house || cnow() >= C_DETAIL_FROM ? 'pro' : 'feb' };
     if (see) Object.assign(out, await cDetail(env, prof, Q));
     return J(out);
@@ -372,8 +393,42 @@ async function contest(req, env, url, h) {
   return J({ error: 'not found' }, 404);
 }
 
+/* ---------- winners: each finished quarter / year gets one winner (best eligible participant, never a site portfolio) ---------- */
+function cPeriods(now) {
+  const out = [], start = new Date(C_CONTEST_START + 'T00:00:00Z'), today = cday(now);
+  for (let y = start.getUTCFullYear(); y <= new Date(now * 1000).getUTCFullYear(); y++) {
+    for (let q = 0; q < 4; q++) {
+      const a = `${y}-${String(q * 3 + 1).padStart(2, '0')}-01`, b = q === 3 ? `${y + 1}-01-01` : `${y}-${String(q * 3 + 4).padStart(2, '0')}-01`;
+      if (a >= C_CONTEST_START && b <= today) out.push({ period: `${y}-Q${q + 1}`, kind: 'q', a, b });
+    }
+    if (`${y + 1}-01-01` <= today && `${y}-01-01` >= C_CONTEST_START) out.push({ period: `${y}`, kind: 'y', a: `${y}-01-01`, b: `${y + 1}-01-01` });
+  }
+  return out;
+}
+async function cWinners(env) {
+  const done = new Set((await cq(env, 'SELECT period FROM c_wins')).map(r => r.period));
+  let n = 0;
+  for (const P of cPeriods(cnow())) {
+    if (done.has(P.period)) continue;
+    const startTs = Date.parse(P.a + 'T00:00:00Z') / 1000, endTs = Date.parse(P.b + 'T00:00:00Z') / 1000;
+    const rows = await cq(env, `SELECT p.id, p.cid,
+        (SELECT v FROM c_snap s WHERE s.pid=p.id AND s.d<?1 ORDER BY d DESC LIMIT 1) v0,
+        (SELECT v FROM c_snap s WHERE s.pid=p.id AND s.d<?2 ORDER BY d DESC LIMIT 1) v1,
+        (SELECT n FROM c_snap s WHERE s.pid=p.id AND s.d<?2 ORDER BY d DESC LIMIT 1) n1,
+        (SELECT COUNT(*) FROM c_orders o WHERE o.pid=p.id AND o.status='filled' AND o.fill_ts>=?3 AND o.fill_ts<?4) tr
+      FROM c_profiles p WHERE p.house=0 AND p.status='active' AND p.created<?3`, P.a, P.b, startTs, endTs);
+    const ok = rows.filter(r => r.v0 && r.v1 && (r.n1 == null || r.n1 >= C_MIN_STOCKS) && r.tr > 0)
+      .map(r => ({ ...r, ret: r.v1 / r.v0 - 1 })).sort((x, y) => y.ret - x.ret);
+    if (!ok.length) continue;
+    await env.DB.prepare('INSERT OR IGNORE INTO c_wins (period, kind, pid, ret, decided) VALUES (?1, ?2, ?3, ?4, ?5)').bind(P.period, P.kind, ok[0].id, ok[0].ret, cnow()).run();
+    await caches.default.delete(new Request('https://rz-events.mreza-hajilou.workers.dev/c/board'));
+    n++;
+  }
+  return n;
+}
+
 async function contestCron(env, cron) {
   await cSchema(env);
-  if (cron === '45 23 * * 1-5') { await cCorpApply(env); await cFill(env); return cSnapshot(env); }
+  if (cron === '45 23 * * 1-5') { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
   return cFill(env);
 }

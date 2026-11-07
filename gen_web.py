@@ -395,7 +395,7 @@ def home_page():
     css = CSS + open(os.path.join(src, 'home.css'), encoding='utf-8').read()
     js = open(os.path.join(src, 'home.js'), encoding='utf-8').read()
     tools = ''.join('<a class="tool" href="%s"><span class="i">%s</span><span><b>%s%s</b><small>%s</small>%s</span></a>' % (u, i, t, ' <span class="lk" title="Stock Pro">🔒</span>' if tier else '', d, tool_tag(tier)) for i, u, t, d, tier in HOME_TOOLS)
-    body = ACCT + (
+    body = ACCT.replace('<div class="acctbar">', '<div class="acctbar"><a class="prevc" href="/pages/contest" title="مسابقه‌ی سهام برتر نوامبر">🏆 مسابقه قبلی</a>', 1) + (
         '<div class="top"><section class="hero"><p class="brand">sahamanaliz.com</p>'
         '<h1>سهام آنالیز<small>تحلیل سهام آمریکا به فارسی</small></h1>'
         '<p class="sub">هر سهم آمریکایی رو جستجو کن: امتیاز، ارزش ذاتی، نظر تحلیلگرها و اینکه سوپرسرمایه‌گذارها کدوم رو دارن؛ همه به زبون ساده.</p>'
@@ -413,7 +413,7 @@ def home_page():
         '<a class="btn ghost" href="/products/stock-data-pro">ماهانه <span class="num">€7.99</span></a></div><p style="margin:8px 0 0;font-size:12px;opacity:.75">🔄 تمدید خودکار؛ هر وقت خواستی با یک کلیک لغو کن</p></div>'
         '<a class="tool" href="/pages/portfolio"><span class="i">💼</span><span><b>پورتفوی رضا</b><small>پورتفوی واقعی من با هر خرید و فروش و دلیلش؛ با یک سال Stock Pro هدیه.</small></span></a>'
         '<a class="tool" href="/pages/book"><span class="i">📘</span><span><b>کتاب آموزش بورس</b><small>«از مبتدی تا یک سرمایه‌گذار حرفه‌ای»، مرجع کامل فارسی.</small></span></a>'
-        '<a class="tool" href="/pages/contest"><span class="i">🏆</span><span><b>مسابقه</b><small>پیش‌بینی کن و با بقیه رقابت کن.</small></span></a></div>'
+        '<a class="tool cport" href="/pages/contest-portfolio"><span class="i">🏆</span><span><b>مسابقه‌ی پورتفو <span class="prize">۱۰۰۰ یورو جایزه</span></b><small>با <bdi dir="ltr">$10,000</bdi> مجازی پورتفوی خودت رو بساز و با بقیه رقابت کن؛ ۱۰۰ یورو برترین هر فصل، ۶۰۰ یورو برترین سال.</small></span></a></div>'
     )
     return ('<div id="rzh" dir="rtl">\n<style>%s</style>\n%s\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzh'), body, EVENTS_JS + JS, js)

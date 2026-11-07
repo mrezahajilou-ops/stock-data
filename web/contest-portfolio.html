@@ -530,7 +530,7 @@ function holdings(p,mine){
   var alloc=pos.map(function(x,i){return '<span style="width:'+(x.val/tot*100).toFixed(2)+'%;background:hsl('+(i*47%360)+',45%,52%)" title="'+esc(x.t)+'"></span>'}).join('')+'<span style="width:'+(p.cash/tot*100).toFixed(2)+'%;background:#556"></span>';
   return '<div class="alloc">'+alloc+'</div><div class="tw"><table class="ht"><thead><tr><th>سهم</th><th>تعداد</th><th class="mh">میانگین خرید</th><th class="mh">قیمت</th><th>ارزش</th><th class="mh">وزن</th><th>سود/زیان</th>'+(mine?'<th></th>':'')+'</tr></thead><tbody>'+rows+'</tbody></table></div><p class="note">سود/زیان کل: '+P(plT/Math.max(1,tot-p.cash-plT))+' ('+D(plT)+') | تغییر امروز: '+D(dayT)+'. روی هر نماد بزن تا تحلیل کاملش رو ببینی.</p>'}
 function history(p,mine){
-  var O=(p.orders||[]),I=(p.income||[]).filter(function(x){return x.kind==='div'||x.kind==='split'});
+  var O=(p.orders||[]).filter(function(o){return mine||o.status==='filled'||o.status==='pending'}),I=(p.income||[]).filter(function(x){return x.kind==='div'||x.kind==='split'});
   var ST={pending:'در انتظار قیمت بعدی',filled:'انجام شد',cancelled:'لغو شد',rejected:'رد شد'};
   var ev=O.map(function(o){return {ts:o.ts,h:'<div class="tr '+o.side+' '+o.status+'"><div class="l"><b>'+(o.side==='buy'?'خرید':'فروش')+' <a href="/pages/stock#'+esc(o.t)+'" class="tk">'+esc(o.t)+'</a></b> '+
       (o.status==='filled'?N(o.fill_qty,4)+' سهم × '+D(o.price)+' = '+D(o.fill_amt):(o.side==='buy'?D(o.amount):N(o.qty,4)+' سهم'))+

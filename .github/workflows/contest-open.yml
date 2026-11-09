@@ -15,20 +15,14 @@ jobs:
               return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=30).read())
           held = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers', {'User-Agent': 'rz-contest'}).get('t') or []
           ETF = {'SPY','QQQ','VOO','DIA','IWM','VTI','VT','VXUS','EFA','EEM','GLD','IAU','SLV','GDX','IBIT','FBTC','ETHA','TLT','IEF','SHY','BND','AGG','LQD','HYG','VNQ','XLK','XLF','XLE','XLV','XLY','XLP','XLI','XLU','XLB','XLC','XLRE','SMH','SOXX','ARKK','SCHD','VIG','VYM','JEPI','USO','UNG','DBC'}
-          D = '2026-11-09'
-          for u in ['https://api.nasdaq.com/api/quote/SPY/historical?assetclass=etf&fromdate=2026-11-05&todate=2026-11-09&limit=5',
-                    'https://api.nasdaq.com/api/quote/PG/summary?assetclass=stocks',
-                    'https://api.nasdaq.com/api/quote/PG/chart?assetclass=stocks']:
-              try: print('DBG', u, json.dumps(get(u))[:1500])
-              except Exception as e: print('DBG', u, e)
+          OPEN_MS = 1794234600000  # 2026-11-09 09:30 ET
           out = {}
           for t in sorted(set(held + ['SPY'])):
               for a in range(3):
                   try:
-                      j = get('https://api.nasdaq.com/api/quote/%s/historical?assetclass=%s&fromdate=%s&todate=%s&limit=5' % (urllib.parse.quote(t.replace('-', '.')), 'etf' if t in ETF else 'stocks', D, D))
-                      rows = ((j.get('data') or {}).get('tradesTable') or {}).get('rows') or []
-                      r = [x for x in rows if x.get('date') == '11/09/2026']
-                      out[t] = float(r[0]['open'].replace('$', '').replace(',', '')) if r else 'NOROW'
+                      j = get('https://api.nasdaq.com/api/quote/%s/chart?assetclass=%s' % (urllib.parse.quote(t.replace('-', '.')), 'etf' if t in ETF else 'stocks'))
+                      pts = [p for p in ((j.get('data') or {}).get('chart') or []) if p.get('x', 0) >= OPEN_MS]
+                      out[t] = [pts[0]['y'], pts[0]['z']['dateTime']] if pts else 'NOPTS'
                       break
                   except Exception as e:
                       out[t] = 'ERR ' + str(e)[:40]; time.sleep(2)

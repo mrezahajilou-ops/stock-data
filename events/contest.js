@@ -382,6 +382,23 @@ async function contest(req, env, url, h) {
       await caches.default.delete(new Request(url.origin + '/c/board'));
       return J({ ok: true, spy: Q.SPY[0], n: r1.meta.changes });
     }
+    if (b.reprice) {
+      // one-off: orders placed before a session's open but filled late (stale price file) -> refill at that session's open price
+      const R = b.reprice, px = R.px || {};
+      const rows = await cq(env, "SELECT * FROM c_orders WHERE status='filled' AND side='buy' AND fill_ts>=?1 AND ts<?2", R.day_start, R.open_ts);
+      let n = 0;
+      for (const o of rows) {
+        const p = Number(px[o.t]);
+        if (!(p > 0)) continue;
+        const nq = o.fill_amt / p;
+        await env.DB.batch([env.DB.prepare('UPDATE c_pos SET qty=qty+?3 WHERE pid=?1 AND t=?2').bind(o.pid, o.t, nq - o.fill_qty),
+          env.DB.prepare('UPDATE c_orders SET price=?2, fill_qty=?3, fill_ts=?4 WHERE id=?1').bind(o.id, p, nq, R.open_ts)]);
+        n++;
+      }
+      if (R.spy > 0) await env.DB.prepare("UPDATE c_profiles SET spy0=?1 WHERE id IN (SELECT DISTINCT pid FROM c_orders WHERE status='filled' AND fill_ts=?2)").bind(R.spy, R.open_ts).run();
+      await caches.default.delete(new Request(url.origin + '/c/board'));
+      return J({ ok: true, n });
+    }
     if (b.win_period) {
       if (b.clear) await env.DB.prepare('DELETE FROM c_wins WHERE period=?1').bind(String(b.win_period)).run();
       else await env.DB.prepare('INSERT INTO c_wins (period, kind, pid, ret, decided) VALUES (?1, ?2, ?3, NULL, ?4) ON CONFLICT(period) DO UPDATE SET pid=?3, decided=?4')

@@ -45,6 +45,7 @@ const C_SCHEMA = [
      t TEXT, amount REAL NOT NULL, note TEXT, ref TEXT, UNIQUE(pid, ref))`,
   `CREATE TABLE IF NOT EXISTS c_snap (pid INTEGER NOT NULL, d TEXT NOT NULL, v REAL NOT NULL, PRIMARY KEY (pid, d))`,
   `CREATE TABLE IF NOT EXISTS c_wins (period TEXT PRIMARY KEY, kind TEXT NOT NULL, pid INTEGER NOT NULL, ret REAL, decided INTEGER NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS c_quotes (t TEXT PRIMARY KEY, p REAL NOT NULL, chg REAL, prev REAL, ts TEXT NOT NULL)`,
 ];
 /* migrations for tables created by an earlier version */
 const C_MIGRATE = ['ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0',
@@ -57,7 +58,9 @@ const cnow = () => Math.floor(Date.now() / 1000);
 const cday = (ts) => new Date(ts * 1000).toISOString().slice(0, 10);
 const cclean = (s, n) => String(s || '').replace(/[\u0000-\u001f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
 let C_SCHEMA_OK = false;
+let C_ENV = null;
 async function cSchema(env) {
+  C_ENV = env;
   if (env.RAW_BASE) C_RAW = env.RAW_BASE;
   if (C_SCHEMA_OK) return;
   await env.DB.batch(C_SCHEMA.map(s => env.DB.prepare(s)));
@@ -96,14 +99,26 @@ async function cFetchJSON(url, ttl) {
   await cache.put(key, new Response(txt, { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'max-age=' + ttl } }));
   return JSON.parse(txt);
 }
-const cQuotes = () => cFetchJSON(C_RAW + '/quotes/quotes.json', 60).then(j => j.q || {});
+// quotes = GitHub file (whole market, can lag) overlaid with the contest's own live quotes (c_quotes, refreshed every 5 min by cron)
+const cQuotes = async () => {
+  const q = await cFetchJSON(C_RAW + '/quotes/quotes.json', 60).then(j => j.q || {});
+  if (!C_ENV) return q;
+  try {
+    for (const r of (await C_ENV.DB.prepare('SELECT t, p, chg, prev, ts FROM c_quotes').all()).results || []) {
+      const f = q[r.t], ft = f && f[3] ? Date.parse(f[3]) : 0;
+      if (!(ft >= Date.parse(r.ts))) q[r.t] = [r.p, r.chg, r.prev, r.ts];
+    }
+  } catch (e) { /* table not ready */ }
+  return q;
+};
 const cUniverse = () => cFetchJSON(C_RAW + '/contest-data/universe.json', 3600);
 const cCorp = () => cFetchJSON(C_RAW + '/contest-data/corp.json', 3600).catch(() => ({ events: [] }));
 const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isNaN(t) ? null : Math.floor(t / 1000); };
 
 async function cLive(tickers) {
   // live last-sale price from Nasdaq's watchlist API (same source as quotes.py), 20 symbols per call
-  const out = {}, T = [...new Set(tickers)].slice(0, 60);
+  const out = {}, T = [...new Set(tickers)].slice(0, 160);
+  const nm = (x) => { const v = parseFloat(String(x == null ? '' : x).replace(/[$,%+]/g, '')); return isNaN(v) ? null : v; };
   let etf = {};
   try { etf = (await cUniverse()).etf || {}; } catch (e) {}
   const H = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
@@ -116,7 +131,7 @@ async function cLive(tickers) {
       for (const d of ((await r.json()).data || [])) {
         const t = String(d.symbol || '').toUpperCase().replace('.', '-'), p = parseFloat(String(d.lastSalePrice || '').replace(/[$,]/g, ''));
         const ts = d.lastTradeTimestampDateTime || d.lastTradeTimestamp;
-        if (t && p > 0 && ts && !isNaN(Date.parse(ts))) out[t] = [p, null, null, ts];
+        if (t && p > 0 && ts && !isNaN(Date.parse(ts))) out[t] = [p, nm(d.percentageChange), nm(d.previousClosePrice), ts];
       }
     } catch (e) { /* keep the file quote */ }
   }
@@ -476,8 +491,16 @@ async function cWinners(env) {
   return n;
 }
 
+async function cRefreshQuotes(env) {
+  const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status='pending'")).map(r => r.t).concat(['SPY']);
+  const L = await cLive(T);
+  const st = Object.entries(L).map(([t, q]) => env.DB.prepare('INSERT INTO c_quotes (t, p, chg, prev, ts) VALUES (?1, ?2, ?3, ?4, ?5) ON CONFLICT(t) DO UPDATE SET p=?2, chg=?3, prev=?4, ts=?5').bind(t, q[0], q[1], q[2], q[3]));
+  for (let i = 0; i < st.length; i += 50) await env.DB.batch(st.slice(i, i + 50));
+  return st.length;
+}
 async function contestCron(env, cron) {
   await cSchema(env);
+  try { await cRefreshQuotes(env); } catch (e) { /* keep file quotes */ }
   if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
   return cFill(env);
 }

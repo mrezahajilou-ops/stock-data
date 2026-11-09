@@ -8,18 +8,25 @@ jobs:
       - run: |
           python3 - <<'PY'
           import json, urllib.request, time
-          UA = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'}
-          def get(u):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read())
-          held = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers').get('t') or []
+          import urllib.parse
+          H = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
+               'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/'}
+          def get(u, h=H):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=30).read())
+          held = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers', {'User-Agent': 'rz-contest'}).get('t') or []
+          ETF = {'SPY','QQQ','VOO','DIA','IWM','VTI','VT','VXUS','EFA','EEM','GLD','IAU','SLV','GDX','IBIT','FBTC','ETHA','TLT','IEF','SHY','BND','AGG','LQD','HYG','VNQ','XLK','XLF','XLE','XLV','XLY','XLP','XLI','XLU','XLB','XLC','XLRE','SMH','SOXX','ARKK','SCHD','VIG','VYM','JEPI','USO','UNG','DBC'}
+          D = '2026-11-09'
           out = {}
           for t in sorted(set(held + ['SPY'])):
-              try:
-                  r = get('https://query2.finance.yahoo.com/v8/finance/chart/%s?interval=1d&range=5d' % t.replace('.', '-'))['chart']['result'][0]
-                  ts, o = r['timestamp'], r['indicators']['quote'][0]['open']
-                  out[t] = [time.strftime('%Y-%m-%d', time.gmtime(ts[-1])), round(o[-1], 4)]
-              except Exception as e:
-                  out[t] = ['ERR', str(e)[:60]]
-              time.sleep(0.2)
+              for a in range(3):
+                  try:
+                      j = get('https://api.nasdaq.com/api/quote/%s/historical?assetclass=%s&fromdate=%s&todate=%s&limit=5' % (urllib.parse.quote(t.replace('-', '.')), 'etf' if t in ETF else 'stocks', D, D))
+                      rows = ((j.get('data') or {}).get('tradesTable') or {}).get('rows') or []
+                      r = [x for x in rows if x.get('date') == '11/09/2026']
+                      out[t] = float(r[0]['open'].replace('$', '').replace(',', '')) if r else 'NOROW'
+                      break
+                  except Exception as e:
+                      out[t] = 'ERR ' + str(e)[:40]; time.sleep(2)
+              time.sleep(0.3)
           print('OPENJSON', json.dumps(out, separators=(',', ':')))
           PY

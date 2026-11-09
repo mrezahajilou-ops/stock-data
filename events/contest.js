@@ -101,6 +101,20 @@ const cUniverse = () => cFetchJSON(C_RAW + '/contest-data/universe.json', 3600);
 const cCorp = () => cFetchJSON(C_RAW + '/contest-data/corp.json', 3600).catch(() => ({ events: [] }));
 const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isNaN(t) ? null : Math.floor(t / 1000); };
 
+async function cLive(tickers) {
+  const out = {};
+  await Promise.all([...new Set(tickers)].slice(0, 40).map(async (t) => {
+    try {
+      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(t.replace('.', '-')) + '?interval=1m&range=1d',
+        { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; rz-contest)' } });
+      if (!r.ok) return;
+      const m = (((await r.json()).chart || {}).result || [])[0];
+      const meta = m && m.meta;
+      if (meta && meta.regularMarketPrice > 0 && meta.regularMarketTime) out[t] = [meta.regularMarketPrice, null, null, new Date(meta.regularMarketTime * 1000).toISOString()];
+    } catch (e) { /* keep the file quote */ }
+  }));
+  return out;
+}
 async function cPositions(env, pid) { return cq(env, 'SELECT t, qty, cost FROM c_pos WHERE pid=?1 AND qty>0.0000001 ORDER BY t', pid); }
 function cValue(prof, pos, Q) {
   let v = prof.cash;
@@ -150,7 +164,10 @@ async function cFill(env, onlyPid) {
   const pend = onlyPid ? await cq(env, "SELECT * FROM c_orders WHERE status='pending' AND pid=?1 ORDER BY ts", onlyPid)
                        : await cq(env, "SELECT * FROM c_orders WHERE status='pending' ORDER BY ts LIMIT 500");
   if (!pend.length) return 0;
-  const Q = await cQuotes();
+  const Q0 = await cQuotes();
+  // the GitHub quotes file can lag by hours: fetch a live price for every ticker whose file quote is older than its order (+ SPY for the benchmark)
+  const stale = [...new Set(pend.filter(o => { const t = cQtime(Q0[o.t]); return !t || t <= o.ts; }).map(o => o.t))];
+  const Q = stale.length ? Object.assign({}, Q0, await cLive(stale.concat(['SPY']))) : Q0;
   let n = 0;
   for (const o of pend) {
     const q = Q[o.t], qt = cQtime(q);
@@ -172,6 +189,8 @@ async function cFill(env, onlyPid) {
       if (amt < 1) { await env.DB.prepare("UPDATE c_orders SET status='rejected', reason=?2 WHERE id=?1").bind(o.id, amt <= 0 && room <= 0 ? '70% cap' : 'cash').run(); continue; }
       const qty = amt / price;
       stmts.push(env.DB.prepare('INSERT INTO c_pos (pid, t, qty, cost) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(pid, t) DO UPDATE SET qty=qty+?3, cost=cost+?4').bind(o.pid, o.t, qty, amt));
+      // S&P 500 benchmark starts at the portfolio's first fill (not at profile creation)
+      if (Q.SPY && Q.SPY[0] > 0) stmts.push(env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1 AND last_trade IS NULL').bind(o.pid, Q.SPY[0]));
       stmts.push(env.DB.prepare('UPDATE c_profiles SET cash=cash-?2, last_trade=?3 WHERE id=?1').bind(o.pid, amt, ts));
       stmts.push(env.DB.prepare("UPDATE c_orders SET status='filled', fill_ts=?2, price=?3, fill_qty=?4, fill_amt=?5 WHERE id=?1").bind(o.id, ts, price, qty, amt));
     } else {
@@ -283,8 +302,7 @@ async function cBoard(env) {
 /* ---------- visibility ---------- */
 function cCanSee(me, prof) {
   if (me && (me.admin || me.cid === prof.cid)) return true;
-  if (prof.house) return !!(me && me.pro);
-  return !!(me && me.pro && cnow() >= C_DETAIL_FROM);
+    return !!(me && me.pro && cnow() >= C_DETAIL_FROM);
 }
 async function cDetail(env, prof, Q) {
   const pos = await cPositions(env, prof.id);
@@ -339,8 +357,7 @@ async function contest(req, env, url, h) {
     if (dup) return J({ error: 'این اسم قبلاً گرفته شده' }, 400);
     const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)').bind(house ? 'house' : me.cid, me.email, name, strategy, cnow(), C_START, house).run();
     await env.DB.prepare('INSERT OR IGNORE INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3)').bind(r.meta.last_row_id, cday(cnow() - 86400), C_START).run();
-    try { const Q = await cQuotes(); if (Q.SPY) await env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1').bind(r.meta.last_row_id, Q.SPY[0]).run(); } catch (e) {}
-    return J({ ok: true, id: r.meta.last_row_id });
+      return J({ ok: true, id: r.meta.last_row_id });
   }
   if (req.method === 'POST' && path === '/order') {
     if (!me) return J({ error: 'login' }, 401);
@@ -357,6 +374,14 @@ async function contest(req, env, url, h) {
   if (req.method === 'POST' && path === '/admin') {
     if (!me || !me.admin) return J({ error: 'forbidden' }, 403);
     const b = await body();
+    if (b.reset_spy0) {
+      const Q = await cQuotes();
+      if (!Q.SPY) return J({ error: 'no SPY' }, 500);
+      const r1 = await env.DB.prepare('UPDATE c_profiles SET spy0=?1 WHERE last_trade IS NOT NULL').bind(Q.SPY[0]).run();
+      await env.DB.prepare('UPDATE c_profiles SET spy0=NULL WHERE last_trade IS NULL').run();
+      await caches.default.delete(new Request(url.origin + '/c/board'));
+      return J({ ok: true, spy: Q.SPY[0], n: r1.meta.changes });
+    }
     if (b.win_period) {
       if (b.clear) await env.DB.prepare('DELETE FROM c_wins WHERE period=?1').bind(String(b.win_period)).run();
       else await env.DB.prepare('INSERT INTO c_wins (period, kind, pid, ret, decided) VALUES (?1, ?2, ?3, NULL, ?4) ON CONFLICT(period) DO UPDATE SET pid=?3, decided=?4')
@@ -386,7 +411,7 @@ async function contest(req, env, url, h) {
     const out = { id: prof.id, house: !!prof.house, name: prof.name, strategy: prof.strategy, created: cday(prof.created), value: cValue(prof, pos, Q),
       n_pos: pos.length, n_trades: n ? n.n : 0, spy0: prof.spy0 || null,
       wins: (await cq(env, 'SELECT period, kind, ret FROM c_wins WHERE pid=?1 ORDER BY period', prof.id)), mine: !!(me && me.cid === prof.cid), locked: !see,
-      unlock: prof.house || cnow() >= C_DETAIL_FROM ? 'pro' : 'feb' };
+      unlock: cnow() >= C_DETAIL_FROM ? 'pro' : 'feb' };
     if (see) Object.assign(out, await cDetail(env, prof, Q));
     return J(out);
   }

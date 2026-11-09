@@ -15,7 +15,7 @@ jobs:
               return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=30).read())
           held = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers', {'User-Agent': 'rz-contest'}).get('t') or []
           ETF = {'SPY','QQQ','VOO','DIA','IWM','VTI','VT','VXUS','EFA','EEM','GLD','IAU','SLV','GDX','IBIT','FBTC','ETHA','TLT','IEF','SHY','BND','AGG','LQD','HYG','VNQ','XLK','XLF','XLE','XLV','XLY','XLP','XLI','XLU','XLB','XLC','XLRE','SMH','SOXX','ARKK','SCHD','VIG','VYM','JEPI','USO','UNG','DBC'}
-          OPEN_MS = 1794234600000  # 2026-11-09 09:30 ET
+          OPEN_MS = 1794216600000  # 2026-11-09 09:30 ET (Nasdaq chart x = ET wall clock as UTC)
           out = {}
           for t in sorted(set(held + ['SPY'])):
               for a in range(3):

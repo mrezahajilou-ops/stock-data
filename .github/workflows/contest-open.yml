@@ -1,0 +1,25 @@
+name: contest-open
+# Manual: today's regular-session open price (Yahoo) for every ticker held in the contest + SPY. Public market data only.
+on: workflow_dispatch
+jobs:
+  open:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json, urllib.request, time
+          UA = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'}
+          def get(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30).read())
+          held = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers').get('t') or []
+          out = {}
+          for t in sorted(set(held + ['SPY'])):
+              try:
+                  r = get('https://query2.finance.yahoo.com/v8/finance/chart/%s?interval=1d&range=5d' % t.replace('.', '-'))['chart']['result'][0]
+                  ts, o = r['timestamp'], r['indicators']['quote'][0]['open']
+                  out[t] = [time.strftime('%Y-%m-%d', time.gmtime(ts[-1])), round(o[-1], 4)]
+              except Exception as e:
+                  out[t] = ['ERR', str(e)[:60]]
+              time.sleep(0.2)
+          print('OPENJSON', json.dumps(out, separators=(',', ':')))
+          PY

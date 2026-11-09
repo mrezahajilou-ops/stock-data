@@ -102,17 +102,24 @@ const cCorp = () => cFetchJSON(C_RAW + '/contest-data/corp.json', 3600).catch(()
 const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isNaN(t) ? null : Math.floor(t / 1000); };
 
 async function cLive(tickers) {
-  const out = {};
-  await Promise.all([...new Set(tickers)].slice(0, 40).map(async (t) => {
+  // live last-sale price from Nasdaq's watchlist API (same source as quotes.py), 20 symbols per call
+  const out = {}, T = [...new Set(tickers)].slice(0, 60);
+  let etf = {};
+  try { etf = (await cUniverse()).etf || {}; } catch (e) {}
+  const H = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/' };
+  for (let i = 0; i < T.length; i += 20) {
+    const qs = T.slice(i, i + 20).map(t => 'symbol=' + encodeURIComponent(t.replace('-', '.').toLowerCase() + (etf[t] ? '|etf' : '|stocks'))).join('&');
     try {
-      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(t.replace('.', '-')) + '?interval=1m&range=1d',
-        { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; rz-contest)' } });
-      if (!r.ok) return;
-      const m = (((await r.json()).chart || {}).result || [])[0];
-      const meta = m && m.meta;
-      if (meta && meta.regularMarketPrice > 0 && meta.regularMarketTime) out[t] = [meta.regularMarketPrice, null, null, new Date(meta.regularMarketTime * 1000).toISOString()];
+      const r = await fetch('https://api.nasdaq.com/api/quote/watchlist?' + qs, { headers: H });
+      if (!r.ok) continue;
+      for (const d of ((await r.json()).data || [])) {
+        const t = String(d.symbol || '').toUpperCase().replace('.', '-'), p = parseFloat(String(d.lastSalePrice || '').replace(/[$,]/g, ''));
+        const ts = d.lastTradeTimestampDateTime || d.lastTradeTimestamp;
+        if (t && p > 0 && ts && !isNaN(Date.parse(ts))) out[t] = [p, null, null, ts];
+      }
     } catch (e) { /* keep the file quote */ }
-  }));
+  }
   return out;
 }
 async function cPositions(env, pid) { return cq(env, 'SELECT t, qty, cost FROM c_pos WHERE pid=?1 AND qty>0.0000001 ORDER BY t', pid); }

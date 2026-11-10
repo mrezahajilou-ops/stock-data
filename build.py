@@ -1158,6 +1158,23 @@ def fill_from_yahoo(rec, e):
                     t.setdefault("filled", []).append(k)
             if t.get("fcf") is None and t.get("cfo") is not None and t.get("capex") is not None:
                 t["fcf"] = t["cfo"] - t["capex"]
+    # quarterly table (revenue, net income) when SEC has no quarterly XBRL (foreign 20-F filers report quarters only as 6-K press releases)
+    if not rec.get("quarterly"):
+        qr = {d: (v, cur) for d, v, cur in (ts.get("quarterlyTotalRevenue") or []) if d and v}
+        qn = {d: (v, cur) for d, v, cur in (ts.get("quarterlyNetIncomeCommonStockholders") or []) if d and v is not None}
+        rows = []
+        for d in sorted(qr):
+            if d > today:
+                continue
+            v, cur = qr[d]
+            rate = 1.0 if (cur or "USD") == "USD" else FX_LATEST.get((cur or "").upper())
+            if not rate or (rev0 and not 0.05 < v / rate / rev0 < 2.0):
+                continue
+            n = qn.get(d)
+            rows.append([d, v / rate, (n[0] / rate) if n else None])
+        if rows:
+            rec["quarterly"] = rows[-8:]
+            rec["quarterly_src"] = "yahoo"
     # EBITDA: Yahoo's trailing figure when the filings give none (IFRS filers without an operating-income tag, D&A only yearly)
     t = rec.get("ttm")
     ref = (e or {}).get("ref") or {}

@@ -47,13 +47,14 @@ def raw(x):
 TS_TYPES = ['TotalRevenue', 'NetIncomeCommonStockholders', 'NetIncome', 'OperatingCashFlow', 'CapitalExpenditure',
             'FreeCashFlow', 'CashDividendsPaid', 'DilutedAverageShares']
 TS_BAL = ['CashCashEquivalentsAndShortTermInvestments', 'TotalDebt', 'StockholdersEquity']
+TS_QFLOW = ['TotalRevenue', 'NetIncomeCommonStockholders']   # quarterly table for foreign filers (no quarterly XBRL at SEC)
 
 
 def series(t):
     """Fundamentals time series (Yahoo): trailing twelve months, the last annual reports and the latest balance
     sheet. Used for the DCF when SEC's XBRL feed lags (foreign 20-F filers: SEC has not loaded their 2026 filings)."""
     sym = t.replace('.', '-')
-    types = ['trailing' + x for x in TS_TYPES] + ['annual' + x for x in TS_TYPES] + ['quarterly' + x for x in TS_BAL]
+    types = ['trailing' + x for x in TS_TYPES] + ['annual' + x for x in TS_TYPES] + ['quarterly' + x for x in TS_BAL] + ['quarterly' + x for x in TS_QFLOW]
     url = ('https://query2.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/%s?symbol=%s&type=%s&period1=%d&period2=%d&crumb=%s'
            % (urllib.parse.quote(sym), urllib.parse.quote(sym), ','.join(types), int(time.time()) - 7 * 365 * 86400,
               int(time.time()) + 86400, urllib.parse.quote(CRUMB[0] or '')))
@@ -67,7 +68,7 @@ def series(t):
                 if not ty or not pts:
                     continue
                 pts.sort(key=lambda p: p.get('asOfDate') or '')
-                keep = 6 if ty.startswith('annual') else 1
+                keep = 6 if ty.startswith('annual') else 8 if ty in ('quarterly' + x for x in TS_QFLOW) else 1
                 out[ty] = [[p.get('asOfDate'), p['reportedValue'].get('raw'), p.get('currencyCode')] for p in pts[-keep:]]
             return out or None
         except urllib.error.HTTPError as e:

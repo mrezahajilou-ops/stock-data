@@ -1,0 +1,26 @@
+name: contest-pricecheck
+# Manual: compare Nasdaq live prices (same call as the contest worker) with the GitHub quotes file for every contest ticker.
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json, urllib.request, urllib.parse
+          H = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
+               'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/'}
+          get = lambda u, h=H: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers=h), timeout=30).read())
+          T = get('https://rz-events.mreza-hajilou.workers.dev/c/tickers', {'User-Agent': 'rz'}).get('t') or []
+          Q = get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes/quotes.json', {'User-Agent': 'rz'})
+          etf = get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/contest-data/universe.json', {'User-Agent': 'rz'}).get('etf') or {}
+          print('FILE as_of', Q.get('as_of'), 'tickers', len(T))
+          for i in range(0, len(T), 20):
+              qs = '&'.join('symbol=' + urllib.parse.quote(t.replace('-', '.').lower() + ('|etf' if t in etf else '|stocks')) for t in T[i:i+20])
+              for d in get('https://api.nasdaq.com/api/quote/watchlist?' + qs).get('data') or []:
+                  t = str(d.get('symbol', '')).upper().replace('.', '-')
+                  p = float(str(d.get('lastSalePrice') or '0').replace('$', '').replace(',', '') or 0)
+                  f = (Q['q'].get(t) or [None])[0]
+                  flag = '!!' if f and p and abs(p / f - 1) > 0.08 else ''
+                  print('PX', t, p, f, d.get('percentageChange'), d.get('lastTradeTimestampDateTime') or d.get('lastTradeTimestamp'), flag)
+          PY

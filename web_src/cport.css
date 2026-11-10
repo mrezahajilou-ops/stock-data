@@ -160,3 +160,7 @@
 #ID table.cmp td .lv{display:block;width:max-content;margin-top:4px}
 #ID table.cmp tbody th{width:46%}
 #ID .chl span{white-space:nowrap}
+#ID .chlg{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;color:var(--mut);font-size:11.5px;margin-top:6px}
+#ID .chlg span{white-space:nowrap}
+@media(max-width:430px){#ID .cbar{gap:6px}#ID .cbar a{padding:5px 9px;font-size:12px}}
+@media(max-width:360px){#ID .cbar{gap:4px}#ID .cbar a{padding:4px 7px;font-size:11px}}

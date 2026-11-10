@@ -333,6 +333,10 @@
 #rzc table.cmp td .lv{display:block;width:max-content;margin-top:4px}
 #rzc table.cmp tbody th{width:46%}
 #rzc .chl span{white-space:nowrap}
+#rzc .chlg{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;color:var(--mut);font-size:11.5px;margin-top:6px}
+#rzc .chlg span{white-space:nowrap}
+@media(max-width:430px){#rzc .cbar{gap:6px}#rzc .cbar a{padding:5px 9px;font-size:12px}}
+@media(max-width:360px){#rzc .cbar{gap:4px}#rzc .cbar a{padding:4px 7px;font-size:11px}}
 </style>
 <div id="rzc-main"><div class="card empty">در حال بارگذاری…</div></div>
 <script>
@@ -545,10 +549,13 @@ function history(p,mine){
     .concat(I.map(function(x){return {ts:x.ts,h:'<div class="tr inc"><div class="l"><b>'+(x.kind==='div'?'💰 سود نقدی ':'✂️ اسپلیت ')+esc(x.t)+'</b> '+(x.kind==='div'?D(x.amount):'')+'<small>'+when(x.ts)+'</small></div></div>'}}))
     .sort(function(a,b){return b.ts-a.ts});
   return ev.length?ev.map(function(e){return e.h}).join(''):'<p class="note">هنوز تریدی ثبت نشده.</p>'}
-function vsSpy(p,value){var q=RZQ&&RZQ.q&&RZQ.q.SPY;return p.spy0&&q?(value/10000)/(q[0]/p.spy0)-1:null}
+function vsSpy(p,value){var r=BOARD&&BOARD.rows&&BOARD.rows.filter(function(x){return x.id===p.id})[0];if(r&&r.vs_spy!=null&&r.value>0)return (1+r.vs_spy)*(value/r.value)-1;var q=RZQ&&RZQ.q&&RZQ.q.SPY;return p.spy0&&q?(value/10000)/(q[0]/p.spy0)-1:null}
 function summary(p,value){var r=value/10000-1,vs=vsSpy(p,value);
   return '<div class="sum">'+(vs!=null?'<div><small>در برابر S&amp;P 500</small><b>'+P(vs)+'</b></div>':'')+'<div><small>ارزش پورتفو</small><b>'+D(value)+'</b></div><div><small>بازده کل</small><b>'+P(r)+'</b></div><div><small>نقد</small><b>'+D(p.cash)+'</b></div><div><small>سهم‌ها</small><b>'+FA((p.positions||[]).length)+'</b></div><div><small>تریدها</small><b>'+FA((p.orders||[]).filter(function(o){return o.status==='filled'}).length)+'</b></div></div>'}
-function chart(id,box){api('/hist/'+id).then(function(j){if(!j.v||j.v.length<2){$(box).innerHTML='<div class="chh"><span>شروع: <b><bdi dir="ltr">$10,000</bdi></b></span></div><p class="note">نمودار عملکرد از اولین روز معاملاتی بعد از ساخت پروفایل کشیده می‌شه.</p>';return}
+function chart(id,box,live,lvs){api('/hist/'+id).then(function(j){var V0=(j.v||[]).slice(),SP0=(j.spy||[]).slice(),td=new Date().toISOString().slice(0,10);
+  // today's point = the live value shown in the summary above, so chart and summary always agree
+  if(live&&V0.length){if(V0[V0.length-1][0]===td)V0[V0.length-1]=[td,live];else V0.push([td,live]);if(lvs!=null){var s00=j.spy0||(SP0[0]&&SP0[0][1]);if(s00){SP0=SP0.filter(function(x){return x[0]!==td});SP0.push([td,s00*(live/10000)/(1+lvs)])}}}
+  j.v=V0;j.spy=SP0;if(!j.v||j.v.length<2){$(box).innerHTML='<div class="chh"><span>شروع: <b><bdi dir="ltr">$10,000</bdi></b></span></div><p class="note">نمودار عملکرد از اولین روز معاملاتی بعد از ساخت پروفایل کشیده می‌شه.</p>';return}
   var V=j.v,W=600,H=150,mn=Math.min.apply(null,V.map(function(x){return x[1]}).concat([10000])),mx=Math.max.apply(null,V.map(function(x){return x[1]}).concat([10000]));if(mx===mn)mx=mn+1;
   var X=function(i){return 10+i/(V.length-1)*(W-20)},Y=function(v){return H-10-(v-mn)/(mx-mn)*(H-30)};
   var SP=j.spy||[],s0=j.spy0||(SP[0]&&SP[0][1]),sm={};SP.forEach(function(x){sm[x[0]]=x[1]/s0*10000});
@@ -561,7 +568,7 @@ function chart(id,box){api('/hist/'+id).then(function(j){if(!j.v||j.v.length<2){
   var yl='<text x="'+(W-12)+'" y="'+(Y(mx)+4)+'" class="yl">'+'$'+Math.round(mx).toLocaleString('en-US')+'</text><text x="'+(W-12)+'" y="'+(Y(mn)-3)+'" class="yl">'+'$'+Math.round(mn).toLocaleString('en-US')+'</text>';
   var dot='<circle cx="'+X(V.length-1).toFixed(1)+'" cy="'+Y(last).toFixed(1)+'" r="3.5" fill="'+col+'"/>';
   $(box).innerHTML=head+'<svg viewBox="0 0 '+W+' '+H+'" class="ch">'+yl+dot+'<line x1="10" x2="'+(W-10)+'" y1="'+Y(10000)+'" y2="'+Y(10000)+'" class="base"/>'+(spts?'<polyline points="'+spts+'" fill="none" stroke="#8a8f99" stroke-width="1.6"/>':'')+'<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="2.5"/></svg>'+
-    '<div class="chl"><span><bdi dir="ltr">'+esc(V[0][0])+'</bdi></span><span>'+(spts?'<i class="lg" style="background:'+col+'"></i>پورتفو <i class="lg" style="background:#8a8f99"></i>S&amp;P 500 | ':'')+'خط‌چین = <bdi dir="ltr">$10,000</bdi></span><span><bdi dir="ltr">'+esc(V[V.length-1][0])+'</bdi></span></div>'}).catch(function(){})}
+    '<div class="chl"><span><bdi dir="ltr">'+esc(V[0][0])+'</bdi></span><span><bdi dir="ltr">'+(V[V.length-1][0]===new Date().toISOString().slice(0,10)?'امروز':esc(V[V.length-1][0]))+'</bdi></span></div><div class="chlg">'+(spts?'<span><i class="lg" style="background:'+col+'"></i>پورتفو</span><span><i class="lg" style="background:#8a8f99"></i>S&amp;P 500</span>':'')+'<span>خط‌چین = <bdi dir="ltr">$10,000</bdi></span></div>'}).catch(function(){})}
 
 function MKT(){if(MKT.v)return MKT.v;var L=(ROWS||[]).filter(function(r){var m=g(r,'mcap');return m&&isFinite(m)&&!ETFS[g(r,'t')]}).sort(function(a,b){return g(b,'mcap')-g(a,'mcap')}).slice(0,500);
   var cap=0,e=0,fe=0,fcap=0,d=0;L.forEach(function(r){var m=g(r,'mcap'),pe=g(r,'pe'),fp=g(r,'fwd_pe'),dy=g(r,'divy');cap+=m;if(pe&&isFinite(pe))e+=m/pe;if(fp&&isFinite(fp)){fe+=m/fp;fcap+=m}if(dy&&isFinite(dy))d+=m*dy});
@@ -622,7 +629,7 @@ var CUR=0;
 function me(){
   if(!LOGGED||!TOK){main(bar('me')+'<div class="card center"><h2>ورود به مسابقه</h2><p>با ایمیلت وارد شو تا پروفایل و داشبوردت رو ببینی. اگه هنوز پروفایل نداری، بعد از ورود می‌سازیش.</p><a class="btn" href="'+LOGIN+'">ورود با ایمیل</a></div>');return}
   main(bar('me')+'<div class="card empty">در حال بارگذاری…</div>');
-  api('/me').then(function(j){
+  Promise.all([api('/me'),BOARD?BOARD:api('/board').then(function(b){BOARD=b;return b}).catch(function(){})]).then(function(a){var j=a[0];
     if(j._s===401){main(bar('me')+'<div class="card center"><p>نشست منقضی شده؛ صفحه رو دوباره باز کن.</p><a class="btn" href="'+LOGIN+'">ورود دوباره</a></div>');return}
     ME=j;if(!j.profiles||!j.profiles.length){location.hash='#/new';return}
     if(!j.profiles.some(function(p){return p.id===CUR}))CUR=j.profiles[j.profiles.length-1].id;
@@ -633,7 +640,7 @@ function me(){
       '<div class="card" id="rzc-trade"><h3>خرید و فروش</h3>'+tradeForm(p)+'</div>'+
       '<div class="card"><h3>دارایی‌ها</h3>'+holdings(p,true)+'</div><div class="card" id="rzc-an"></div><div class="card"><h3>تاریخچه‌ی تریدها</h3>'+history(p,true)+'</div>'+
       (j.can_new?'':'<p class="note">پروفایل جدید بعدی از '+day(j.next_new)+'.</p>'));
-    chart(p.id,'rzc-ch');bindTrade(p);analyze(p,'rzc-an');
+    chart(p.id,'rzc-ch',p.value,vsSpy(p,p.value));bindTrade(p);analyze(p,'rzc-an');
     document.querySelectorAll('[data-p]').forEach(function(b){b.onclick=function(){CUR=+b.getAttribute('data-p');me()}});
     document.querySelectorAll('[data-cancel]').forEach(function(b){b.onclick=function(){b.disabled=true;api('/cancel',{method:'POST',body:{pid:p.id,oid:+b.getAttribute('data-cancel')}}).then(me)}});
     document.querySelectorAll('[data-sell]').forEach(function(b){b.onclick=function(){setSide('sell',b.getAttribute('data-sell'));$('rzc-trade').scrollIntoView({behavior:'smooth'})}});
@@ -673,7 +680,7 @@ function bindTrade(p){
 /* ---------- public profile ---------- */
 function prof(id){
   main(bar('')+'<div class="card empty">در حال بارگذاری…</div>');
-  api('/p/'+id).then(function(p){
+  Promise.all([api('/p/'+id),BOARD?BOARD:api('/board').then(function(b){BOARD=b;return b}).catch(function(){})]).then(function(a){var p=a[0];
     if(p._s!==200){main(bar('')+'<div class="card empty">این پروفایل پیدا نشد.</div>');return}
     var h=bar('')+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+wstars(p.wins)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+'</small></div></div>'+
       '<div class="sum">'+(vsSpy(p,p.value)!=null?'<div><small>در برابر S&amp;P 500</small><b>'+P(vsSpy(p,p.value))+'</b></div>':'')+'<div><small>ارزش پورتفو</small><b>'+D(p.value)+'</b></div><div><small>بازده کل</small><b>'+P(p.value/10000-1)+'</b></div><div><small>سهم‌ها</small><b>'+FA(p.n_pos)+'</b></div><div><small>تریدها</small><b>'+FA(p.n_trades)+'</b></div></div>';
@@ -683,7 +690,7 @@ function prof(id){
       main(h);return}
     h+='<div id="rzc-ch"></div></div><div class="card"><h3>دارایی‌ها</h3>'+holdings(p,false)+'</div><div class="card" id="rzc-an"></div><div class="card"><h3>تاریخچه‌ی تریدها</h3>'+history(p,false)+'</div>';
     if(ME&&ME.me&&ME.me.admin)h+='<p class="note">مدیر: <button class="lnk" id="rzc-hide">مخفی کردن این پروفایل</button></p>';
-    main(h);chart(p.id,'rzc-ch');analyze(p,'rzc-an');var hb=$('rzc-hide');if(hb)hb.onclick=function(){api('/admin',{method:'POST',body:{pid:p.id,status:'hidden'}}).then(function(){BOARD=null;location.hash='#/'})};
+    main(h);chart(p.id,'rzc-ch',p.value,vsSpy(p,p.value));analyze(p,'rzc-an');var hb=$('rzc-hide');if(hb)hb.onclick=function(){api('/admin',{method:'POST',body:{pid:p.id,status:'hidden'}}).then(function(){BOARD=null;location.hash='#/'})};
   })}
 
 /* ---------- router ---------- */

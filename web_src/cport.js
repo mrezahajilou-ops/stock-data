@@ -19,7 +19,7 @@ function api(path,opt){opt=opt||{};var h={'Content-Type':'application/json'};if(
   return fetch(API_C+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined}).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function main(h){$('rzc-main').innerHTML=h}
 function bar(active){var a=function(k,href,txt){return '<a href="'+href+'" class="'+(active===k?'on':'')+'">'+txt+'</a>'};
-  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/pages/contest" class="prev">🗓 مسابقه قبلی</a><a href="/" class="back">بازگشت به سهام آنالیز</a></div>'}
+  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/pages/contest" class="prev">🗓 مسابقه قبلی</a><a href="/" class="back">🏠 صفحه اصلی</a></div>'}
 
 /* ---------- leaderboard ---------- */
 function board(){

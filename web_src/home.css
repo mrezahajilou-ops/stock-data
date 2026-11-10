@@ -84,7 +84,10 @@
 @media(max-width:640px){#ID .tools .tag{margin-top:2px;font-size:10.5px}#ID .tools .tool{align-items:flex-start}#ID .quota{font-size:12.5px}}
 
 #ID .acctbar{gap:8px;align-items:center}
-#ID .prevc{margin-inline-end:auto;display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:var(--mut)!important;border:1px solid var(--line);border-radius:999px;padding:4px 11px;text-decoration:none!important;white-space:nowrap}
+#ID .prevc{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:var(--mut)!important;border:1px solid var(--line);border-radius:999px;padding:4px 11px;text-decoration:none!important;white-space:nowrap}
 #ID .prevc:hover{color:var(--gold)!important;border-color:var(--gold)}
 #ID .tool.cport{border-color:var(--gold)}
 #ID .tool.cport .prize{display:inline-block;font-size:11.5px;font-weight:800;color:#15120a;background:var(--gold);border-radius:999px;padding:1px 8px;margin-right:4px;vertical-align:middle;white-space:nowrap}
+
+@media(max-width:420px){#ID .prevc{font-size:12px;padding:4px 9px}}
+@media(max-width:360px){#ID .prevc{font-size:11px;padding:3px 7px}}

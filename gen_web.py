@@ -15,7 +15,8 @@ TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/scr
         ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا'), ('book', '/pages/book', 'کتاب')]
 
 
-ACCT = ('<div class="acctbar"><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div>'
+ACCT = ('<div class="acctbar"><a class="qk qhome" href="/">🏠 صفحه اصلی</a><a class="qk qcont" href="/pages/contest-portfolio">🏆 مسابقه</a>'
+        '<a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div>'
         '<script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;'
         'var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);'
         'try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}'
@@ -395,7 +396,7 @@ def home_page():
     css = CSS + open(os.path.join(src, 'home.css'), encoding='utf-8').read()
     js = open(os.path.join(src, 'home.js'), encoding='utf-8').read()
     tools = ''.join('<a class="tool" href="%s"><span class="i">%s</span><span><b>%s%s</b><small>%s</small>%s</span></a>' % (u, i, t, ' <span class="lk" title="Stock Pro">🔒</span>' if tier else '', d, tool_tag(tier)) for i, u, t, d, tier in HOME_TOOLS)
-    body = ACCT.replace('<div class="acctbar">', '<div class="acctbar"><a class="prevc" href="/pages/contest" title="مسابقه‌ی سهام برتر نوامبر">🏆 مسابقه قبلی</a>', 1) + (
+    body = ACCT.replace('<a class="qk qhome" href="/">🏠 صفحه اصلی</a>', '', 1).replace('<a class="acct"', '<a class="prevc" href="/pages/contest" title="مسابقه‌ی سهام برتر نوامبر">🗓 مسابقه قبلی</a><a class="acct"', 1) + (
         '<div class="top"><section class="hero"><p class="brand">sahamanaliz.com</p>'
         '<h1>سهام آنالیز<small>تحلیل سهام آمریکا به فارسی</small></h1>'
         '<p class="sub">هر سهم آمریکایی رو جستجو کن: امتیاز، ارزش ذاتی، نظر تحلیلگرها و اینکه سوپرسرمایه‌گذارها کدوم رو دارن؛ همه به زبون ساده.</p>'

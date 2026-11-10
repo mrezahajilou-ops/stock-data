@@ -162,11 +162,17 @@
 }
 
 /* subscriber login / account button (the theme header is off, so this is the only way in) */
-#rzw .acctbar{display:flex;justify-content:flex-end;margin:0 0 8px}
+#rzw .acctbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+#rzw .acctbar .qk{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--ink)!important;border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none!important;white-space:nowrap}
+#rzw .acctbar .qk:hover{border-color:var(--gold);color:var(--gold)!important}
+#rzw .acctbar .qcont{border-color:rgba(201,169,97,.6);color:var(--gold)!important}
+#rzw .acctbar .acct{margin-inline-start:auto}
+@media(max-width:420px){#rzw .acctbar{gap:5px}#rzw .acctbar .qk,#rzw .acctbar .acct{font-size:12px;padding:4px 9px}}
+@media(max-width:360px){#rzw .acctbar{gap:4px}#rzw .acctbar .qk,#rzw .acctbar .acct{font-size:11px;padding:3px 7px}}
 #rzw .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
 #rzw .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
 </style>
-<div class="acctbar"><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
+<div class="acctbar"><a class="qk qhome" href="/">🏠 صفحه اصلی</a><a class="qk qcont" href="/pages/contest-portfolio">🏆 مسابقه</a><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/compare">مقایسه</a><a class="on" href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
 <h1>واچ‌لیست و هشدار قیمت</h1>
 <p class="sub">سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.</p>
 

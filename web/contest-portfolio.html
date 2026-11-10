@@ -162,7 +162,13 @@
 }
 
 /* subscriber login / account button (the theme header is off, so this is the only way in) */
-#rzc .acctbar{display:flex;justify-content:flex-end;margin:0 0 8px}
+#rzc .acctbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+#rzc .acctbar .qk{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;color:var(--ink)!important;border:1px solid var(--line);border-radius:999px;padding:5px 12px;text-decoration:none!important;white-space:nowrap}
+#rzc .acctbar .qk:hover{border-color:var(--gold);color:var(--gold)!important}
+#rzc .acctbar .qcont{border-color:rgba(201,169,97,.6);color:var(--gold)!important}
+#rzc .acctbar .acct{margin-inline-start:auto}
+@media(max-width:420px){#rzc .acctbar{gap:5px}#rzc .acctbar .qk,#rzc .acctbar .acct{font-size:12px;padding:4px 9px}}
+@media(max-width:360px){#rzc .acctbar{gap:4px}#rzc .acctbar .qk,#rzc .acctbar .acct{font-size:11px;padding:3px 7px}}
 #rzc .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
 #rzc .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
 /* مسابقه‌ی پورتفو — leaderboard sized so about five portfolios fill one screen (desktop and phone). */
@@ -403,7 +409,7 @@ function api(path,opt){opt=opt||{};var h={'Content-Type':'application/json'};if(
   return fetch(API_C+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined}).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function main(h){$('rzc-main').innerHTML=h}
 function bar(active){var a=function(k,href,txt){return '<a href="'+href+'" class="'+(active===k?'on':'')+'">'+txt+'</a>'};
-  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/pages/contest" class="prev">🗓 مسابقه قبلی</a><a href="/" class="back">بازگشت به سهام آنالیز</a></div>'}
+  return '<div class="cbar">'+a('board','#/','🏆 خانه‌ی مسابقه')+a('me','#/me',LOGGED?'👤 پروفایل من':'👤 ورود')+a('new','#/new','➕ ساخت پروفایل')+'<a href="/pages/contest" class="prev">🗓 مسابقه قبلی</a><a href="/" class="back">🏠 صفحه اصلی</a></div>'}
 
 /* ---------- leaderboard ---------- */
 function board(){

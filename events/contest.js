@@ -47,6 +47,8 @@ const C_SCHEMA = [
   `CREATE TABLE IF NOT EXISTS c_wins (period TEXT PRIMARY KEY, kind TEXT NOT NULL, pid INTEGER NOT NULL, ret REAL, decided INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS c_quotes (t TEXT PRIMARY KEY, p REAL NOT NULL, chg REAL, prev REAL, ts TEXT NOT NULL)`,
 `CREATE TABLE IF NOT EXISTS c_hold (t TEXT PRIMARY KEY, ts INTEGER NOT NULL, note TEXT)`,
+`CREATE TABLE IF NOT EXISTS c_corp (t TEXT NOT NULL, type TEXT NOT NULL, d TEXT NOT NULL, v REAL NOT NULL, PRIMARY KEY (t, type, d))`,
+`CREATE TABLE IF NOT EXISTS c_corpchk (t TEXT PRIMARY KEY, ts INTEGER NOT NULL)`,
 ];
 /* migrations for tables created by an earlier version */
 const C_MIGRATE = ['ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0',
@@ -253,8 +255,56 @@ async function cFill(env, onlyPid) {
 }
 
 /* ---------- dividends and splits (contest-data/corp.json: [{t, type:'div'|'split', d:'YYYY-MM-DD', v}]) ---------- */
+// dividends + splits straight from Nasdaq (GitHub runners get 403/429 from Nasdaq and Yahoo): 8 held tickers per cron run,
+// each ticker re-checked every 20 h; the split calendar once a day
+async function cCorpFetch(env) {
+  const now = cnow(), since = cday(now - 21 * 86400);
+  const mdy = (s) => { const m = String(s || '').match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? `${m[3]}-${m[1]}-${m[2]}` : null; };
+  const H = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/' };
+  const ins = (t, type, d, v) => env.DB.prepare('INSERT OR IGNORE INTO c_corp (t, type, d, v) VALUES (?1, ?2, ?3, ?4)').bind(t, type, d, v);
+  let etf = {};
+  try { etf = (await cUniverse()).etf || {}; } catch (e) {}
+  const due = await cq(env, `SELECT p.t FROM (SELECT DISTINCT t FROM c_pos WHERE qty>0) p LEFT JOIN c_corpchk c ON c.t=p.t
+                             WHERE c.ts IS NULL OR c.ts<?1 ORDER BY COALESCE(c.ts, 0) LIMIT 8`, now - 20 * 3600);
+  for (const { t } of due) {
+    try {
+      const r = await fetch(`https://api.nasdaq.com/api/quote/${encodeURIComponent(t.replace('-', '.'))}/dividends?assetclass=${etf[t] ? 'etf' : 'stocks'}`, { headers: H });
+      if (!r.ok) continue;
+      const rows = ((((await r.json()) || {}).data || {}).dividends || {}).rows || [];
+      const st = [];
+      for (const x of rows) {
+        const d = mdy(x.exOrEffDate), v = parseFloat(String(x.amount || '').replace(/[$,]/g, ''));
+        if (d && d >= since && v > 0 && !/stock/i.test(String(x.type || ''))) st.push(ins(t, 'div', d, v));
+      }
+      st.push(env.DB.prepare('INSERT INTO c_corpchk (t, ts) VALUES (?1, ?2) ON CONFLICT(t) DO UPDATE SET ts=?2').bind(t, now));
+      await env.DB.batch(st);
+    } catch (e) { /* try again next run */ }
+  }
+  const sc = await c1(env, "SELECT ts FROM c_corpchk WHERE t='*SPLITS*'");
+  if (!sc || sc.ts < now - 20 * 3600) {
+    try {
+      const r = await fetch('https://api.nasdaq.com/api/calendar/splits', { headers: H });
+      if (r.ok) {
+        const held = new Set((await cq(env, 'SELECT DISTINCT t FROM c_pos WHERE qty>0')).map(x => x.t));
+        const st = [];
+        for (const x of ((((await r.json()) || {}).data || {}).rows || [])) {
+          const t = String(x.symbol || '').toUpperCase().replace('.', '-'), d = mdy(x.executionDate);
+          const m = String(x.ratio || '').match(/([\d.]+)\s*:\s*([\d.]+)/);
+          if (held.has(t) && d && d >= since && m && +m[1] > 0 && +m[2] > 0 && +m[1] !== +m[2]) st.push(ins(t, 'split', d, +m[1] / +m[2]));
+        }
+        st.push(env.DB.prepare("INSERT INTO c_corpchk (t, ts) VALUES ('*SPLITS*', ?1) ON CONFLICT(t) DO UPDATE SET ts=?1").bind(now));
+        await env.DB.batch(st);
+      }
+    } catch (e) { /* next run */ }
+  }
+}
 async function cCorpApply(env) {
-  const { events } = await cCorp();
+  const seen = new Set(), events = [];
+  for (const ev of ((await cCorp()).events || []).concat(await cq(env, 'SELECT t, type, d, v FROM c_corp WHERE d>=?1', cday(cnow() - 30 * 86400)))) {
+    const k = ev && ev.t + ':' + ev.type + ':' + ev.d;
+    if (ev && !seen.has(k)) { seen.add(k); events.push(ev); }
+  }
   let n = 0;
   for (const ev of events || []) {
     if (!ev || !ev.t || !ev.d || !(ev.v > 0)) continue;
@@ -571,6 +621,7 @@ async function cRefreshQuotes(env) {
 async function contestCron(env, cron) {
   await cSchema(env);
   try { await cRefreshQuotes(env); } catch (e) { /* keep file quotes */ }
+  try { await cCorpFetch(env); } catch (e) { /* next run */ }
   if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
   return cFill(env);
 }

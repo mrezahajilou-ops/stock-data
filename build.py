@@ -928,6 +928,18 @@ def load_market():
         log("market rows:", len(out))
     except Exception as e:
         log("market data failed", e)
+    if len(out) < 3000:
+        # GitHub runners are refused by Nasdaq; the Cloudflare worker fetches the same screener every few minutes
+        try:
+            W = "https://rz-events.mreza-hajilou.workers.dev/c/"
+            mk = json.loads(fetch(W + "market.json")).get("m") or {}
+            qq = json.loads(fetch(W + "quotes.json")).get("q") or {}
+            for t, v in mk.items():
+                p = (qq.get(t) or [None])[0]
+                out.setdefault(t, {"price": p, "mcap": v[0], "sector": v[1], "industry": v[2], "country": v[3], "ipo": v[4]})
+            log("market data from the worker:", len(mk))
+        except Exception as e:
+            log("worker market data unavailable", e)
     # Never publish a build without prices: when Nasdaq refuses (403 on 2026-11-11 wiped every price, market cap
     # and sector), fall back to the last good snapshot. A good fetch refreshes the snapshot.
     cache = os.path.join(OUT, "market_cache.json")
@@ -950,9 +962,17 @@ def load_market():
     # The screener's "lastsale" can lag several days. Overlay the near-live prices from the
     # quotes branch (quotes.py, every 15 min in market hours); market cap scales with price.
     try:
-        url = "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "mrezahajilou-ops/stock-data") + "/quotes/quotes.json"
-        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "stock-data-build"}), timeout=60) as r:
-            q = json.loads(r.read()).get("q") or {}
+        q = {}
+        for url in ("https://rz-events.mreza-hajilou.workers.dev/c/quotes.json",
+                    "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "mrezahajilou-ops/stock-data") + "/quotes/quotes.json"):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "stock-data-build"}), timeout=60) as r:
+                    q = json.loads(r.read()).get("q") or {}
+                if len(q) > 3000:
+                    log("live quotes from", url.split("/")[2])
+                    break
+            except Exception as e:
+                log("quotes source failed", url, e)
         n = 0
         for t, v in q.items():
             m, p = out.get(t), (v[0] if v else None)

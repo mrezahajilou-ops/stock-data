@@ -49,6 +49,7 @@ const C_SCHEMA = [
 `CREATE TABLE IF NOT EXISTS c_hold (t TEXT PRIMARY KEY, ts INTEGER NOT NULL, note TEXT)`,
 `CREATE TABLE IF NOT EXISTS c_corp (t TEXT NOT NULL, type TEXT NOT NULL, d TEXT NOT NULL, v REAL NOT NULL, PRIMARY KEY (t, type, d))`,
 `CREATE TABLE IF NOT EXISTS c_corpchk (t TEXT PRIMARY KEY, ts INTEGER NOT NULL)`,
+`CREATE TABLE IF NOT EXISTS c_kv (k TEXT PRIMARY KEY, v TEXT NOT NULL, ts INTEGER NOT NULL)`,
 ];
 /* migrations for tables created by an earlier version */
 const C_MIGRATE = ['ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0',
@@ -103,13 +104,17 @@ async function cFetchJSON(url, ttl) {
   return JSON.parse(txt);
 }
 // quotes = GitHub file (whole market, can lag) overlaid with the contest's own live quotes (c_quotes, refreshed every 5 min by cron)
-const cQuotes = async () => {
-  const q = await cFetchJSON(C_RAW + '/quotes/quotes.json', 60).then(j => j.q || {});
+const cQuotes = async (fill) => {
+  let q = null, kvq = false;
+  // whole-market quotes refreshed by the worker itself (GitHub runners are blocked by Nasdaq); the GitHub file is the fallback
+  // (not for fills: the screener has no trade times, so a fill could use a price from before the order)
+  if (C_ENV && !fill) { try { const kv = await C_ENV.DB.prepare("SELECT v, ts FROM c_kv WHERE k='quotes'").first(); if (kv && cnow() - kv.ts < 6 * 3600) { q = JSON.parse(kv.v).q; kvq = true; } } catch (e) {} }
+  if (!q) q = await cFetchJSON(C_RAW + '/quotes/quotes.json', 60).then(j => j.q || {});
   if (!C_ENV) return q;
   try {
     for (const r of (await C_ENV.DB.prepare('SELECT t, p, chg, prev, ts FROM c_quotes').all()).results || []) {
       const f = q[r.t], ft = f && f[3] ? Date.parse(f[3]) : 0;
-      if (!(ft >= Date.parse(r.ts))) q[r.t] = [r.p, r.chg, r.prev, r.ts];
+      if (kvq ? (!f || Date.now() - Date.parse(r.ts) < 30 * 60000) : !(ft >= Date.parse(r.ts))) q[r.t] = [r.p, r.chg, r.prev, r.ts];   // fresh last-trade quotes of held tickers win
     }
     // a ticker on hold (price jump that looks like an unprocessed split) keeps its last contest price
     for (const r of (await C_ENV.DB.prepare('SELECT q.t, q.p, q.chg, q.prev, q.ts FROM c_hold h JOIN c_quotes q ON q.t=h.t').all()).results || []) q[r.t] = [r.p, r.chg, r.prev, r.ts];
@@ -195,7 +200,7 @@ async function cFill(env, onlyPid) {
   const pend = onlyPid ? await cq(env, "SELECT * FROM c_orders WHERE status='pending' AND pid=?1 ORDER BY ts", onlyPid)
                        : await cq(env, "SELECT * FROM c_orders WHERE status='pending' ORDER BY ts LIMIT 500");
   if (!pend.length) return 0;
-  const Q0 = await cQuotes();
+  const Q0 = await cQuotes(true);
   const hold = new Set((await cq(env, 'SELECT t FROM c_hold')).map(r => r.t));
   // the GitHub quotes file can lag by hours: fetch a live price for every ticker whose file quote is older than its order (+ SPY for the benchmark)
   const stale = [...new Set(pend.filter(o => { const t = cQtime(Q0[o.t]); return !hold.has(o.t) && (!t || t <= o.ts); }).map(o => o.t))];
@@ -431,6 +436,11 @@ async function contest(req, env, url, h) {
     else { data = await cBoard(env); await cache.put(ck, new Response(JSON.stringify(data), { headers: { 'Cache-Control': 'max-age=300' } })); }
     return J(data, 200, { 'Cache-Control': 'public, max-age=60' });
   }
+  if (req.method === 'GET' && (path === '/quotes.json' || path === '/market.json')) {
+    const kv = await c1(env, 'SELECT v FROM c_kv WHERE k=?1', path === '/quotes.json' ? 'quotes' : 'market');
+    if (!kv) return J({ error: 'not ready' }, 503);
+    return new Response(kv.v, { headers: { ...h, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=60' } });
+  }
   if (req.method === 'GET' && path === '/tickers') {
     return J({ t: (await cq(env, 'SELECT DISTINCT t FROM c_pos WHERE qty>0')).map(r => r.t) });
   }
@@ -520,6 +530,7 @@ async function contest(req, env, url, h) {
       return J({ ok: true });
     }
     if (b.holds) return J({ holds: await cq(env, 'SELECT * FROM c_hold') });
+    if (b.market) return J({ n: await cMarketRefresh(env, true) });
     if (b.set_spy0) { for (const [pid, v] of b.set_spy0) await env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1').bind(parseInt(pid, 10), Number(v)).run(); await caches.default.delete(new Request(url.origin + '/c/board')); return J({ ok: true }); }
     if (b.set_fill_ts) { for (const [id, v] of b.set_fill_ts) await env.DB.prepare("UPDATE c_orders SET fill_ts=?2 WHERE id=?1 AND status='filled'").bind(parseInt(id, 10), parseInt(v, 10)).run(); return J({ ok: true }); }
     if (b.snap) { const r = await env.DB.prepare('UPDATE c_snap SET v=?3 WHERE pid=?1 AND d=?2').bind(parseInt(b.snap[0], 10), String(b.snap[1]), Number(b.snap[2])).run(); return J({ ok: true, n: r.meta.changes }); }
@@ -603,6 +614,54 @@ async function cWinners(env) {
   return n;
 }
 
+// ET clock: session ('Open' | 'Pre Market' | 'After Hours' | 'Closed') and the last regular close as an ISO time with offset
+function cET(now) {
+  const d = new Date(now * 1000), f = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hourCycle: 'h23', weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZoneName: 'shortOffset' });
+  const p = Object.fromEntries(f.formatToParts(d).map(x => [x.type, x.value]));
+  const min = +p.hour * 60 + +p.minute, wk = !/Sat|Sun/.test(p.weekday), om = String(p.timeZoneName || 'GMT-5').match(/([+-])(\d+)/);
+  const off = om ? `${om[1]}${String(om[2]).padStart(2, '0')}:00` : '-05:00';
+  const session = !wk ? 'Closed' : min < 240 ? 'Closed' : min < 570 ? 'Pre Market' : min < 960 ? 'Open' : min < 1200 ? 'After Hours' : 'Closed';
+  let back = (wk && min >= 960) ? 0 : 1, day;
+  for (; back < 8; back++) { const x = new Date(Date.UTC(+p.year, +p.month - 1, +p.day) - back * 86400000); if (x.getUTCDay() % 6 !== 0) { day = x.toISOString().slice(0, 10); break; } }
+  const now_et = `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00${off}`;
+  return { session, close: `${day}T16:00:00${off}`, now: now_et };
+}
+// whole US market in one Nasdaq request (screener): price, change, market cap, sector... every 5 minutes while the market is open,
+// hourly otherwise. Served as /c/quotes.json (same format as the old GitHub quotes file) and /c/market.json
+async function cMarketRefresh(env, force) {
+  const now = cnow(), E = cET(now);
+  const last = await c1(env, "SELECT ts FROM c_kv WHERE k='quotes'");
+  if (!force && last && (E.session === 'Closed' ? now - last.ts < 3600 : E.session !== 'Open' ? now - last.ts < 900 : now - last.ts < 240)) return 0;
+  const r = await fetch('https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25000&download=true', { headers: {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/' } });
+  if (!r.ok) return 0;
+  const rows = ((((await r.json()) || {}).data || {}).rows) || [];
+  if (rows.length < 3000) return 0;
+  const nm = (x) => { const v = parseFloat(String(x == null ? '' : x).replace(/[$,%+]/g, '')); return isNaN(v) ? null : v; };
+  const ts = E.session === 'Open' ? E.now : E.close, q = {}, m = {};
+  for (const x of rows) {
+    const t = String(x.symbol || '').trim().replace('/', '-').replace('^', '-P'), p = nm(x.lastsale);
+    if (!t || !(p > 0)) continue;
+    const nc = nm(x.netchange), pc = nm(x.pctchange);
+    q[t] = [p, pc, nc != null ? Math.round((p - nc) * 10000) / 10000 : null, ts];
+    m[t] = [nm(x.marketCap), (x.sector || '').trim() || null, (x.industry || '').trim() || null, (x.country || '').trim() || null, (x.ipoyear || '').trim() || null];
+  }
+  const asof = new Date(now * 1000).toISOString().slice(0, 19) + 'Z';
+  await env.DB.batch([
+    env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('quotes', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify({ as_of: asof, status: E.session, n: Object.keys(q).length, src: 'worker', q }), now),
+    env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('market', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify({ as_of: asof, cols: ['mcap', 'sector', 'industry', 'country', 'ipo'], m }), now)]);
+  return Object.keys(q).length;
+}
+// GitHub runs on its own schedule only a few times a day: when a token is configured (worker secret GH_TOKEN), the worker starts
+// the hourly earnings fast lane and the quotes-file refresh itself
+async function cDispatch(env) {
+  if (!env.GH_TOKEN) return;
+  const mi = new Date().getUTCMinutes(), go = async (wf) => fetch(`https://api.github.com/repos/mrezahajilou-ops/stock-data/actions/workflows/${wf}/dispatches`,
+    { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'rz-events', 'Content-Type': 'application/json' }, body: '{"ref":"main"}' });
+  if (mi < 5) await go('fast.yml');
+  if (mi % 15 < 5) await go('quotes.yml');
+}
 async function cRefreshQuotes(env) {
   const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status IN ('pending','filling')")).map(r => r.t).concat(['SPY']);
   const L = await cLive(T);
@@ -627,6 +686,11 @@ async function contestCron(env, cron) {
   await cSchema(env);
   try { await cRefreshQuotes(env); } catch (e) { /* keep file quotes */ }
   try { await cCorpFetch(env); } catch (e) { /* next run */ }
-  if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); const n = await cSnapshot(env); await cWinners(env); return n; }
-  return cFill(env);
+  let n;
+  if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); n = await cSnapshot(env); await cWinners(env); }
+  else n = await cFill(env);
+  // after the contest work: the whole-market refresh is the heaviest step and must never delay fills
+  try { await cMarketRefresh(env); } catch (e) { /* next run */ }
+  try { await cDispatch(env); } catch (e) { /* next run */ }
+  return n;
 }

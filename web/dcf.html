@@ -314,7 +314,7 @@ var RZQ_URL=(window.RZS_QUOTES||'https://raw.githubusercontent.com/mrezahajilou-
 var RZQ=null, RZQ_P=null;
 function liveQuotes(){
   if(!RZQ_P){
-    var p=fetch(RZQ_URL+'?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
+    var p=fetch('https://rz-events.mreza-hajilou.workers.dev/c/quotes.json?v='+Math.floor(Date.now()/60000)).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return fetch(RZQ_URL+'?v='+Math.floor(Date.now()/120000)).then(function(r){return r.ok?r.json():null})}).then(function(j){RZQ=j&&j.q?j:null;return RZQ}).catch(function(){return null});
     RZQ_P=Promise.race([p,new Promise(function(res){setTimeout(function(){res(null)},3000)})]);
     p.then(function(){RZQ_P=Promise.resolve(RZQ)});
   }

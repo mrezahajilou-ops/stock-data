@@ -50,7 +50,26 @@ def fetch(batch):
     return []
 
 
+def from_worker():
+    """Nasdaq refuses GitHub runners (since 2026-11-10): the Cloudflare worker keeps the whole market's quotes."""
+    try:
+        req = urllib.request.Request('https://rz-events.mreza-hajilou.workers.dev/c/quotes.json', headers={'User-Agent': 'stock-data-quotes'})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            j = json.loads(r.read())
+        if len(j.get('q') or {}) > 3000:
+            return j
+    except Exception as e:
+        print('worker quotes failed', e, flush=True)
+    return None
+
+
 def main():
+    j = from_worker()
+    if j:
+        os.makedirs(OUT, exist_ok=True)
+        json.dump(j, open(os.path.join(OUT, 'quotes.json'), 'w'), separators=(',', ':'))
+        print('quotes from the worker:', len(j['q']), j.get('as_of'), j.get('status'), flush=True)
+        return
     tickers = sorted(f[:-5] for f in os.listdir(STOCKS) if f.endswith('.json'))
     if len(sys.argv) > 1 and sys.argv[1]:
         tickers = tickers[:int(sys.argv[1])]

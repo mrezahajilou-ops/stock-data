@@ -25,6 +25,8 @@ OUT = os.path.join(os.getcwd(), "data")
 YEARS = 12
 ANNUAL_FORMS = {"10-K", "10-K/A", "10-KT", "20-F", "20-F/A", "40-F", "40-F/A"}
 LIMIT = int(os.environ.get("LIMIT", "0"))
+FRESH = {int(x) for x in os.environ.get("FRESH_CIKS", "").split(",") if x.strip().isdigit()}
+FRESH_OK = set()
 # new holding companies that took over a listed company's ticker: CIK -> predecessor CIK with the history
 PREDECESSOR = {2115436: 34088}  # ExxonMobil Holdings Corp (2026) <- Exxon Mobil Corp  # for testing: process only N companies
 
@@ -997,6 +999,12 @@ EST = {}
 
 def load_estimates():
     """Analyst consensus (estimates.py -> branch "estimates")."""
+    loc = os.environ.get("EST_FILE")
+    if loc and os.path.exists(loc):
+        # fast lane: the estimates file it has just refreshed (raw.githubusercontent.com caches for minutes)
+        EST.update(json.load(open(loc)).get("est") or {})
+        log("analyst estimates (local):", len(EST))
+        return
     try:
         url = "https://raw.githubusercontent.com/" + os.environ.get("GITHUB_REPOSITORY", "mrezahajilou-ops/stock-data") + "/estimates/est.json"
         with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "stock-data-build"}), timeout=60) as r:
@@ -1309,10 +1317,82 @@ def reconcile_per_share(rec, mk, ref):
             last["eps_diluted"] = last["eps_diluted"] / Fq
 
 
+def roll_forward(rec, rows, src):
+    """A reported quarter that the filings feed does not have yet (press release, 10-Q not filed / 6-K):
+    append it to the quarterly table and roll the trailing twelve months forward:
+    TTM(new) = TTM(previous) - same quarter a year ago + new quarter, for revenue, net income and EPS.
+    Only the next consecutive quarter is accepted, and only with a year-ago quarter to roll against.
+    Cash-flow and balance-sheet figures stay at the previous period (listed in ttm["rolled_from"])."""
+    q = [list(r[:3]) for r in rec.get("quarterly") or [] if r and r[0]]
+    if not q or not rows:
+        return 0
+    n = 0
+    for end, rev, ni in sorted(rows):
+        if not end or not rev or rev <= 0 or end > dt.date.today().isoformat():
+            continue
+        last = q[-1]
+        gap = days(last[0], end)
+        if gap < 60 or gap > 120:
+            continue
+        if last[1] and not 0.5 < rev / last[1] < 2.0:
+            log("roll skipped (implausible revenue)", rec["ticker"], end, rev, last)
+            continue
+        ya = next((r for r in q if 350 <= days(r[0], end) <= 380), None)
+        t = rec.get("ttm")
+        if t and t.get("end") and abs(days(t["end"], last[0])) <= 10:
+            base = dict(t)
+        elif not t and rec.get("annual") and abs(days(rec["annual"][-1]["fy_end"], last[0])) <= 10:
+            a = rec["annual"][-1]
+            base = {"end": a["fy_end"], "revenue": a.get("revenue"), "net_income": a.get("net_income"), "cfo": a.get("cfo"),
+                    "capex": a.get("capex"), "op_income": a.get("op_income"), "da": a.get("da"), "dividends": a.get("dividends"),
+                    "eps": a.get("eps_diluted"), "dps": a.get("div_per_share"), "gross_profit": a.get("gross_profit"),
+                    "rnd": a.get("rnd"), "sbc": a.get("sbc"), "buybacks": a.get("buybacks"), "interest_exp": a.get("interest_exp"),
+                    "pretax_income": None, "tax": None, "shares_diluted": a.get("shares_diluted"), "fcf": a.get("fcf"),
+                    "ebitda": a.get("ebitda"), "src": "sec"}
+        else:
+            base = None
+        q.append([end, float(rev), float(ni) if ni is not None else None])
+        n += 1
+        if base and ya and ya[1] and base.get("revenue"):
+            nt = dict(base)
+            nt["revenue"] = base["revenue"] - ya[1] + rev
+            if ni is not None and ya[2] is not None and base.get("net_income") is not None:
+                nt["net_income"] = base["net_income"] - ya[2] + ni
+                if nt.get("shares_diluted"):
+                    nt["eps"] = nt["net_income"] / nt["shares_diluted"]
+            nt["end"] = end
+            nt["rolled_from"] = base.get("end")
+            nt["src"] = src
+            rec["ttm"] = nt
+    if n:
+        rec["quarterly"] = q[-max(8, len(rec.get("quarterly") or [])):]
+        rec["fresh"] = {"q": q[-1][0], "src": src}
+        log("rolled forward", rec["ticker"], src, q[-1])
+    return n
+
+
+def roll_from_yahoo(rec, e):
+    """Reported quarters from Yahoo's earnings module (updated hours after a release), converted to USD.
+    Used only when Yahoo's figure for the latest quarter we already have matches ours (same revenue definition)."""
+    fq = (e or {}).get("fq") or []
+    if not fq or not rec.get("quarterly"):
+        return 0
+    cur = ((e or {}).get("cur") or "USD").upper()
+    rate = 1.0 if cur == "USD" else FX_LATEST.get(cur)
+    if not rate:
+        return 0
+    rows = [[d, v / rate, (ni / rate) if ni is not None else None] for d, v, ni, *_ in fq if d and v]
+    last = rec["quarterly"][-1]
+    same = next((r for r in rows if abs(days(r[0], last[0])) <= 10), None)
+    if not same or not last[1] or abs(same[1] / last[1] - 1) > 0.03:
+        return 0
+    return roll_forward(rec, [r for r in rows if days(last[0], r[0]) >= 60], "yahoo-q")
+
+
 _PR = None
 def fill_from_press(rec):
-    """Quarters from company press releases (quarterly_pr.json), for foreign filers whose newest quarter is in no
-    machine-readable feed yet (6-K, Yahoo lags days). Rows: [quarter_end, revenue_usd, net_income_usd, source]."""
+    """Quarters from company press releases (quarterly_pr.json) that no machine-readable feed has yet.
+    Rows: [quarter_end, revenue_usd, net_income_usd, source]."""
     global _PR
     if _PR is None:
         try:
@@ -1323,19 +1403,14 @@ def fill_from_press(rec):
             except Exception:
                 _PR = {}
     rows = _PR.get(rec["ticker"]) or []
-    if not rows or (rec.get("quarterly") and rec.get("quarterly_src") not in ("yahoo", "press")):
-        return
-    q = {r[0]: list(r[:3]) for r in rec.get("quarterly") or []}
-    for d, rv, ni, *_ in rows:
-        if d not in q:
-            q[d] = [d, float(rv), float(ni) if ni is not None else None]
-            rec["quarterly_src"] = "press" if not rec.get("quarterly") else rec.get("quarterly_src") or "press"
-    rec["quarterly"] = [q[d] for d in sorted(q)][-8:]
+    if rows:
+        roll_forward(rec, [[d, rv, ni] for d, rv, ni, *_ in rows], "press")
 
 
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     fill_from_yahoo(rec, EST.get(rec["ticker"]))
+    roll_from_yahoo(rec, EST.get(rec["ticker"]))
     fill_from_press(rec)
     reconcile_per_share(rec, mk, (EST.get(rec["ticker"]) or {}).get("ref") or {})
     a, s = rec["annual"], rec["summary"]
@@ -1857,6 +1932,14 @@ def main():
             log("bad json", name, e)
             continue
         facts = doc.get("facts", {})
+        if cik in FRESH:
+            # filed today: the nightly bulk file does not have it yet, the per-company API does (minutes after filing)
+            try:
+                facts = json.loads(fetch("https://data.sec.gov/api/xbrl/companyfacts/CIK%010d.json" % cik)).get("facts", {}) or facts
+                FRESH_OK.add(cik)
+                time.sleep(0.12)
+            except Exception as e:
+                log("fresh facts failed", cik, e)
         seen_cik.add(cik)
         pred = PREDECESSOR.get(cik)
         if pred:
@@ -1906,7 +1989,7 @@ def main():
     with open(os.path.join(OUT, "meta.json"), "w") as f:
         json.dump({"built": dt.datetime.now(dt.timezone.utc).isoformat(), "stocks": done, "skipped": skipped,
                    "source": "SEC EDGAR", "version": 2}, f)
-    log("done. stocks:", done, "skipped (no usable annual data):", skipped)
+    log("done. stocks:", done, "skipped (no usable annual data):", skipped, "fresh SEC facts:", len(FRESH_OK), "of", len(FRESH))
 
 
 if __name__ == "__main__":

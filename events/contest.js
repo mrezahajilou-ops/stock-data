@@ -127,7 +127,7 @@ const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isN
 
 async function cLive(tickers) {
   // live last-sale price from Nasdaq's watchlist API (same source as quotes.py), 20 symbols per call
-  const out = {}, T = [...new Set(tickers)].slice(0, 160);
+  const out = {}, T = [...new Set(tickers)].slice(0, 400);
   const nm = (x) => { const v = parseFloat(String(x == null ? '' : x).replace(/[$,%+]/g, '')); return isNaN(v) ? null : v; };
   let etf = {};
   try { etf = (await cUniverse()).etf || {}; } catch (e) {}
@@ -274,7 +274,7 @@ async function cCorpFetch(env) {
   let etf = {};
   try { etf = (await cUniverse()).etf || {}; } catch (e) {}
   const due = await cq(env, `SELECT p.t FROM (SELECT DISTINCT t FROM c_pos WHERE qty>0) p LEFT JOIN c_corpchk c ON c.t=p.t
-                             WHERE c.ts IS NULL OR c.ts<?1 ORDER BY COALESCE(c.ts, 0) LIMIT 8`, now - 20 * 3600);
+                             WHERE c.ts IS NULL OR c.ts<?1 ORDER BY COALESCE(c.ts, 0) LIMIT 5`, now - 20 * 3600);
   for (const { t } of due) {
     try {
       const r = await fetch(`https://api.nasdaq.com/api/quote/${encodeURIComponent(t.replace('-', '.'))}/dividends?assetclass=${etf[t] ? 'etf' : 'stocks'}`, { headers: H });
@@ -621,17 +621,18 @@ function cET(now) {
   const min = +p.hour * 60 + +p.minute, wk = !/Sat|Sun/.test(p.weekday), om = String(p.timeZoneName || 'GMT-5').match(/([+-])(\d+)/);
   const off = om ? `${om[1]}${String(om[2]).padStart(2, '0')}:00` : '-05:00';
   const session = !wk ? 'Closed' : min < 240 ? 'Closed' : min < 570 ? 'Pre Market' : min < 960 ? 'Open' : min < 1200 ? 'After Hours' : 'Closed';
-  let back = (wk && min >= 960) ? 0 : 1, day;
-  for (; back < 8; back++) { const x = new Date(Date.UTC(+p.year, +p.month - 1, +p.day) - back * 86400000); if (x.getUTCDay() % 6 !== 0) { day = x.toISOString().slice(0, 10); break; } }
-  const now_et = `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00${off}`;
-  return { session, close: `${day}T16:00:00${off}`, now: now_et };
+  const T = [];   // trading days (weekdays) from the most recent completed session backwards
+  for (let b = (wk && min >= 960) ? 0 : 1; T.length < 2 && b < 10; b++) { const x = new Date(Date.UTC(+p.year, +p.month - 1, +p.day) - b * 86400000); if (x.getUTCDay() % 6 !== 0) T.push(x.toISOString().slice(0, 10)); }
+  // the screener's last sale trails the market: right after the close it still shows the session before
+  const scr = session === 'After Hours' ? T[1] : T[0];
+  return { session, min, close: `${T[0]}T16:00:00${off}`, prevclose: `${scr}T16:00:00${off}`, now: `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}:00${off}` };
 }
 // whole US market in one Nasdaq request (screener): price, change, market cap, sector... every 5 minutes while the market is open,
 // hourly otherwise. Served as /c/quotes.json (same format as the old GitHub quotes file) and /c/market.json
 async function cMarketRefresh(env, force) {
   const now = cnow(), E = cET(now);
   const last = await c1(env, "SELECT ts FROM c_kv WHERE k='quotes'");
-  if (!force && last && (E.session === 'Closed' ? now - last.ts < 3600 : E.session !== 'Open' ? now - last.ts < 900 : now - last.ts < 240)) return 0;
+  if (!force && last && now - last.ts < 3600) return 0;   // market caps / sectors / closes: hourly is enough
   const r = await fetch('https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25000&download=true', { headers: {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36',
     'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/' } });
@@ -639,7 +640,8 @@ async function cMarketRefresh(env, force) {
   const rows = ((((await r.json()) || {}).data || {}).rows) || [];
   if (rows.length < 3000) return 0;
   const nm = (x) => { const v = parseFloat(String(x == null ? '' : x).replace(/[$,%+]/g, '')); return isNaN(v) ? null : v; };
-  const ts = E.session === 'Open' ? E.now : E.close, q = {}, m = {};
+  // the screener's last sale is the previous close (it lags), never a live price: stamp it as such
+  const ts = E.prevclose, q = {}, m = {};
   for (const x of rows) {
     const t = String(x.symbol || '').trim().replace('/', '-').replace('^', '-P'), p = nm(x.lastsale);
     if (!t || !(p > 0)) continue;
@@ -648,6 +650,10 @@ async function cMarketRefresh(env, force) {
     m[t] = [nm(x.marketCap), (x.sector || '').trim() || null, (x.industry || '').trim() || null, (x.country || '').trim() || null, (x.ipoyear || '').trim() || null];
   }
   const asof = new Date(now * 1000).toISOString().slice(0, 19) + 'Z';
+  try {   // keep the live prices the rotation already wrote (newer than the screener's close)
+    const old = await c1(env, "SELECT v FROM c_kv WHERE k='quotes'");
+    if (old) { const oq = JSON.parse(old.v).q || {}; for (const t in oq) if (q[t] && Date.parse(oq[t][3]) > Date.parse(q[t][3])) q[t] = oq[t]; }
+  } catch (e) {}
   await env.DB.batch([
     env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('quotes', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify({ as_of: asof, status: E.session, n: Object.keys(q).length, src: 'worker', q }), now),
     env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('market', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify({ as_of: asof, cols: ['mcap', 'sector', 'industry', 'country', 'ipo'], m }), now)]);
@@ -655,6 +661,28 @@ async function cMarketRefresh(env, force) {
 }
 // GitHub runs on its own schedule only a few times a day: when a token is configured (worker secret GH_TOKEN), the worker starts
 // the hourly earnings fast lane and the quotes-file refresh itself
+// live last-sale prices (Nasdaq watchlist, real trade times) for the 2,000 largest companies, 400 per run while the market is
+// open and in the first hour after the close: every large company is refreshed about every 25 minutes (a viewed stock page: 15 s)
+async function cLiveRotate(env) {
+  const E = cET(cnow());
+  if (!(E.session === 'Open' || (E.session === 'After Hours' && E.min < 1020))) return 0;
+  const mk = await c1(env, "SELECT v FROM c_kv WHERE k='market'"), cur = await c1(env, "SELECT v FROM c_kv WHERE k='quotes'");
+  if (!mk || !cur) return 0;
+  const M = JSON.parse(mk.v).m || {};
+  const top = Object.keys(M).filter(t => M[t][0] > 0).sort((a, b) => M[b][0] - M[a][0]).slice(0, 2000);
+  const rot = await c1(env, "SELECT v FROM c_kv WHERE k='rot'"), i0 = rot ? (parseInt(rot.v, 10) || 0) % top.length : 0;
+  const pick = top.slice(i0, i0 + 400);
+  const L = await cLive(pick);
+  const Q = JSON.parse(cur.v);
+  let n = 0;
+  for (const t in L) if (!Q.q[t] || Date.parse(L[t][3]) >= Date.parse(Q.q[t][3])) { Q.q[t] = L[t]; n++; }
+  Q.live_as_of = new Date().toISOString().slice(0, 19) + 'Z';
+  Q.status = E.session;
+  await env.DB.batch([
+    env.DB.prepare("UPDATE c_kv SET v=?1 WHERE k='quotes'").bind(JSON.stringify(Q)),
+    env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('rot', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(String((i0 + 400) % top.length), cnow())]);
+  return n;
+}
 async function cDispatch(env) {
   if (!env.GH_TOKEN) return;
   const mi = new Date().getUTCMinutes(), go = async (wf) => fetch(`https://api.github.com/repos/mrezahajilou-ops/stock-data/actions/workflows/${wf}/dispatches`,
@@ -691,6 +719,7 @@ async function contestCron(env, cron) {
   else n = await cFill(env);
   // after the contest work: the whole-market refresh is the heaviest step and must never delay fills
   try { await cMarketRefresh(env); } catch (e) { /* next run */ }
+  try { await cLiveRotate(env); } catch (e) { /* next run */ }
   try { await cDispatch(env); } catch (e) { /* next run */ }
   return n;
 }

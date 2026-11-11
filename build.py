@@ -905,8 +905,17 @@ def load_market():
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
             "Accept": "application/json, text/plain, */*", "Accept-Language": "en-US,en;q=0.9",
             "Origin": "https://www.nasdaq.com", "Referer": "https://www.nasdaq.com/"})
-        with urllib.request.urlopen(req, timeout=120) as r:
-            j = json.loads(r.read())
+        j = None
+        for attempt in range(4):
+            try:
+                with urllib.request.urlopen(req, timeout=120) as r:
+                    j = json.loads(r.read())
+                break
+            except Exception as e:
+                log("market data attempt", attempt + 1, e)
+                if attempt == 3:
+                    raise
+                time.sleep(20 * (attempt + 1))
         for row in j["data"]["rows"]:
             t = row["symbol"].strip().replace("/", "-").replace("^", "-P")
             out[t] = {"price": num(row.get("lastsale")), "mcap": num(row.get("marketCap")),
@@ -917,6 +926,25 @@ def load_market():
         log("market rows:", len(out))
     except Exception as e:
         log("market data failed", e)
+    # Never publish a build without prices: when Nasdaq refuses (403 on 2026-11-11 wiped every price, market cap
+    # and sector), fall back to the last good snapshot. A good fetch refreshes the snapshot.
+    cache = os.path.join(OUT, "market_cache.json")
+    if len(out) >= 3000:
+        try:
+            with open(cache, "w") as f:
+                json.dump({"as_of": dt.date.today().isoformat(), "m": out}, f, separators=(",", ":"))
+        except Exception as e:
+            log("market cache not written", e)
+    else:
+        try:
+            c = json.load(open(cache))
+            for t, m in (c.get("m") or {}).items():
+                out.setdefault(t, m)
+            log("market data from cache of", c.get("as_of"), "rows:", len(out))
+        except Exception as e:
+            log("market cache unavailable", e)
+        if len(out) < 3000:
+            sys.exit("no market data (Nasdaq refused and no cache): keeping the previous build")
     # The screener's "lastsale" can lag several days. Overlay the near-live prices from the
     # quotes branch (quotes.py, every 15 min in market hours); market cap scales with price.
     try:
@@ -1281,9 +1309,34 @@ def reconcile_per_share(rec, mk, ref):
             last["eps_diluted"] = last["eps_diluted"] / Fq
 
 
+_PR = None
+def fill_from_press(rec):
+    """Quarters from company press releases (quarterly_pr.json), for foreign filers whose newest quarter is in no
+    machine-readable feed yet (6-K, Yahoo lags days). Rows: [quarter_end, revenue_usd, net_income_usd, source]."""
+    global _PR
+    if _PR is None:
+        try:
+            _PR = json.load(open("quarterly_pr.json"))
+        except Exception:
+            try:
+                _PR = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "quarterly_pr.json")))
+            except Exception:
+                _PR = {}
+    rows = _PR.get(rec["ticker"]) or []
+    if not rows or (rec.get("quarterly") and rec.get("quarterly_src") not in ("yahoo", "press")):
+        return
+    q = {r[0]: list(r[:3]) for r in rec.get("quarterly") or []}
+    for d, rv, ni, *_ in rows:
+        if d not in q:
+            q[d] = [d, float(rv), float(ni) if ni is not None else None]
+            rec["quarterly_src"] = "press" if not rec.get("quarterly") else rec.get("quarterly_src") or "press"
+    rec["quarterly"] = [q[d] for d in sorted(q)][-8:]
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     fill_from_yahoo(rec, EST.get(rec["ticker"]))
+    fill_from_press(rec)
     reconcile_per_share(rec, mk, (EST.get(rec["ticker"]) or {}).get("ref") or {})
     a, s = rec["annual"], rec["summary"]
     last = a[-1]

@@ -467,6 +467,7 @@ async function contest(req, env, url, h) {
       return J({ ok: true });
     }
     if (b.holds) return J({ holds: await cq(env, 'SELECT * FROM c_hold') });
+    if (b.snap) { const r = await env.DB.prepare('UPDATE c_snap SET v=?3 WHERE pid=?1 AND d=?2').bind(parseInt(b.snap[0], 10), String(b.snap[1]), Number(b.snap[2])).run(); return J({ ok: true, n: r.meta.changes }); }
     if (b.fix) {
       // one-off correction of a portfolio: {pid, cash, pos:[[t, dqty, dcost]], order:[id, fill_qty, fill_amt]}
       const F = b.fix, pid = parseInt(F.pid, 10), st = [];

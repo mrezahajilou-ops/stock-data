@@ -23,7 +23,7 @@ function bar(active){var a=function(k,href,txt){return '<a href="'+href+'" class
 
 /* ---------- leaderboard ---------- */
 function board(){
-  main(bar('board')+'<div class="hero"><h1>مسابقه‌ی پورتفو <span class="ltr">$10,000</span></h1><p>با ۱۰ هزار دلار فرضی پورتفوی خودت رو بساز؛ قیمت‌ها رو بازار تعیین می‌کنه.</p></div>'+(Date.now()<Date.parse('2026-12-16T00:00:00Z')?'<a class="prevban" href="/pages/contest"><span class="i">🗓</span><span><b>مسابقه قبلی: سهام برتر نوامبر</b><small>'+(Date.now()<Date.parse('2026-12-01T00:00:00Z')?'هنوز در جریانه؛ رتبه‌بندی زنده و اینکه تا پایان ماه چی می‌شه رو ببین.':'تموم شد؛ نتیجه‌ی نهایی و برنده‌ها رو ببین.')+'</small></span><span class="go">دیدن نتایج ←</span></a>':'')+'<div id="rzc-hof"></div>'+
+  main(bar('board')+'<div class="hero"><h1>مسابقه‌ی پورتفو <span class="ltr">$10,000</span></h1><p>با ۱۰ هزار دلار فرضی پورتفوی خودت رو بساز؛ قیمت‌ها رو بازار تعیین می‌کنه.</p></div>'+(Date.now()<Date.parse('2026-12-16T00:00:00Z')?'<a class="prevban" href="/pages/contest"><span class="i">🗓</span><span><b>مسابقه قبلی: سهام برتر نوامبر</b><small>'+(Date.now()<Date.parse('2026-12-01T00:00:00Z')?'هنوز در جریانه؛ رتبه‌بندی زنده و اینکه تا پایان ماه چی می‌شه رو ببین.':'تموم شد؛ نتیجه‌ی نهایی و برنده‌ها رو ببین.')+'</small></span><span class="go">دیدن نتایج ←</span></a>':'')+NOTICE()+'<div id="rzc-hof"></div>'+
     '<div class="sorts" id="rzc-sorts">'+SORTS.map(function(s){return '<button data-s="'+s[0]+'" class="'+(s[0]===SORT?'on':'')+'">'+s[1]+'</button>'}).join('')+'</div><div id="rzc-list"><div class="card empty">در حال بارگذاری…</div></div>');
   $('rzc-sorts').onclick=function(e){var b=e.target.closest('button');if(!b)return;SORT=b.getAttribute('data-s');SHOW=10;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});list()};
   (BOARD?Promise.resolve(BOARD):api('/board')).then(function(j){BOARD=j;list()}).catch(function(){$('rzc-list').innerHTML='<div class="card empty">بارگذاری ناموفق بود؛ چند لحظه بعد دوباره امتحان کن.</div>'})}
@@ -241,7 +241,7 @@ function me(){
     if(!j.profiles.some(function(p){return p.id===CUR}))CUR=j.profiles[j.profiles.length-1].id;
     var p=j.profiles.filter(function(x){return x.id===CUR})[0];
     var tabs=j.profiles.length>1?'<div class="sorts">'+j.profiles.map(function(x){return '<button data-p="'+x.id+'" class="'+(x.id===CUR?'on':'')+'">'+esc(x.name)+'</button>'}).join('')+'</div>':'';
-    main(bar('me')+tabs+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+wstars(p.wins)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+' | <a href="#/p/'+p.id+'">صفحه‌ی عمومی</a> | <a href="#/rules">قوانین</a></small></div></div>'+summary(p,p.value)+
+    main(bar('me')+tabs+FIXNOTE(p.id)+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+wstars(p.wins)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+' | <a href="#/p/'+p.id+'">صفحه‌ی عمومی</a> | <a href="#/rules">قوانین</a></small></div></div>'+summary(p,p.value)+
       ((p.positions||[]).length<3?'<p class="warn">برای حضور در رده‌بندی حداقل ۳ سهم لازمه (الان '+FA((p.positions||[]).length)+').</p>':'')+'<div id="rzc-ch"></div></div>'+
       '<div class="card" id="rzc-trade"><h3>خرید و فروش</h3>'+tradeForm(p)+'</div>'+
       '<div class="card"><h3>دارایی‌ها</h3>'+holdings(p,true)+'</div><div class="card" id="rzc-an"></div><div class="card"><h3>تاریخچه‌ی تریدها</h3>'+history(p,true)+'</div>'+
@@ -288,7 +288,7 @@ function prof(id){
   main(bar('')+'<div class="card empty">در حال بارگذاری…</div>');
   Promise.all([api('/p/'+id),BOARD?BOARD:api('/board').then(function(b){BOARD=b;return b}).catch(function(){})]).then(function(a){var p=a[0];
     if(p._s!==200){main(bar('')+'<div class="card empty">این پروفایل پیدا نشد.</div>');return}
-    var h=bar('')+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+wstars(p.wins)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+'</small></div></div>'+
+    var h=bar('')+FIXNOTE(p.id)+'<div class="card"><div class="phead"><div><h2>'+esc(p.name)+wstars(p.wins)+'</h2>'+(p.strategy?'<p class="strat">'+esc(p.strategy)+'</p>':'')+'<small>از '+day(p.created)+'</small></div></div>'+
       '<div class="sum">'+(vsSpy(p,p.value)!=null?'<div><small>در برابر S&amp;P 500</small><b>'+P(vsSpy(p,p.value))+'</b></div>':'')+'<div><small>ارزش پورتفو</small><b>'+D(p.value)+'</b></div><div><small>بازده کل</small><b>'+P(p.value/10000-1)+'</b></div><div><small>سهم‌ها</small><b>'+FA(p.n_pos)+'</b></div><div><small>تریدها</small><b>'+FA(p.n_trades)+'</b></div></div>';
     if(p.locked){
       h+='<div class="lock">🔒 '+(p.unlock==='feb'?'برای عادلانه بودن مسابقه، سهم‌ها و تریدهای پروفایل‌ها تا <b>۱ فوریه ۲۰۲۷</b> نمایش داده نمی‌شه. از اون تاریخ برای مشترکین Stock Pro باز می‌شه.':
@@ -298,6 +298,19 @@ function prof(id){
     if(ME&&ME.me&&ME.me.admin)h+='<p class="note">مدیر: <button class="lnk" id="rzc-hide">مخفی کردن این پروفایل</button></p>';
     main(h);chart(p.id,'rzc-ch',p.value,vsSpy(p,p.value));analyze(p,'rzc-an');var hb=$('rzc-hide');if(hb)hb.onclick=function(){api('/admin',{method:'POST',body:{pid:p.id,status:'hidden'}}).then(function(){BOARD=null;location.hash='#/'})};
   })}
+
+/* ---------- correction notice (2026-11-11) ---------- */
+function NOTICE(){if(Date.now()>Date.parse('2026-11-26T00:00:00Z'))return '';
+  return '<div class="fixban"><span class="i">🛠</span><div><b>اطلاعیه: چند خطای فنی روزهای اول پیدا و اصلاح شد (۱۱ نوامبر)</b>'+
+  '<ul><li>دو سفارش هم‌زمان دو بار ثبت شده بود: در یک پورتفو پول یک فروش دو بار واریز شده بود و در یکی دیگه یک خرید دو بار ثبت شده بود.</li>'+
+  '<li>یک خرید قبل از باز شدن بازار با یک قیمت نادرست پیش‌بازار پر شده بود.</li>'+
+  '<li>قیمت همه‌ی سفارش‌هایی که آخر هفته ثبت شده بودن، با قیمت رسمی بازگشایی دوشنبه ۹ نوامبر یکسان شد (تفاوت معمولاً زیر ۱٪).</li></ul>'+
+  '<small>همه‌ی تریدهای همه‌ی پورتفوها با قیمت واقعی بازار در همون لحظه دوباره بررسی و اصلاح شدن و جلوی تکرار این خطاها گرفته شده. بازده‌ها و نمودارها الان درستن. '+
+  'ممنون که زود به مسابقه پیوستید؛ همین به ما فرصت داد قبل از شروع رسمی (۱ ژانویه ۲۰۲۷) همه‌چیز رو دقیق کنیم. 🙏</small></div></div>'}
+var FIXES={24:'فروش QQQ در ۱۰ نوامبر به‌خاطر یک خطای فنی دو بار به حسابت واریز شده بود و با همون پول اضافه KO خریده شده بود. خرید KO به اندازه‌ی پولی که واقعاً داشتی اصلاح شد (۱۳٫۰۸ سهم به جای ۲۶٫۱۵). بازده و نمودار الان درسته.',
+  19:'خرید AMAT در ۱۰ نوامبر به‌خاطر یک خطای فنی دو بار ثبت شده بود (هم سهم دو برابر، هم پول دو بار کم شده بود). سهم اضافه حذف و ۱٬۴۹۲٫۶۲ دلار به نقدت برگشت.',
+  12:'خرید CCEP در ۱۱ نوامبر با یک قیمت نادرست پیش‌بازار (۱۶۴٫۶۰ دلار) پر شده بود؛ قیمت واقعی اولین معامله بعد از سفارشت ۱۱۶٫۳۵ دلار بود. خرید با همین قیمت اصلاح شد.'};
+function FIXNOTE(id){var t=FIXES[id];if(!t||Date.now()>Date.parse('2026-12-31T00:00:00Z'))return '';return '<div class="fixban one"><span class="i">🛠</span><div><b>اصلاح این پورتفو</b><small>'+t+' ممنون از صبرت و اینکه زود شرکت کردی.</small></div></div>'}
 
 /* ---------- router ---------- */
 function route(){var h=location.hash.replace(/^#/,'')||'/';window.scrollTo(0,0);

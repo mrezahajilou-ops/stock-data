@@ -82,7 +82,7 @@ def series(t):
 
 def one(t):
     sym = t.replace('.', '-')
-    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail,earningsHistory,recommendationTrend&crumb=%s'
+    url = ('https://query2.finance.yahoo.com/v10/finance/quoteSummary/%s?modules=earningsTrend,financialData,defaultKeyStatistics,summaryDetail,earningsHistory,recommendationTrend,earnings&crumb=%s'
            % (urllib.parse.quote(sym), urllib.parse.quote(CRUMB[0] or '')))
     for a in range(3):
         try:
@@ -137,6 +137,14 @@ def one(t):
                     eh.append([dt.datetime.utcfromtimestamp(qd).strftime('%Y-%m-%d'), raw(h.get('epsActual')), raw(h.get('epsEstimate'))])
             if eh:
                 o['eh'] = sorted(eh)
+            # revenue + net income of the last reported quarters (earnings module, refreshed with the release):
+            # aligned from the end with earningsHistory, whose 'quarter' is the fiscal quarter's end date
+            fc = (((res.get('earnings') or {}).get('financialsChart') or {}).get('quarterly')) or []
+            fc = [x for x in fc if raw(x.get('revenue')) is not None]
+            if fc and eh:
+                ends = [e[0] for e in sorted(eh)]
+                o['fq'] = [[ends[len(ends) - len(fc) + i], raw(x.get('revenue')), raw(x.get('earnings')), x.get('date')]
+                           for i, x in enumerate(fc) if len(ends) - len(fc) + i >= 0]
             ts = series(t)
             if ts:
                 o['ts'] = ts

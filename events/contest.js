@@ -188,6 +188,7 @@ async function cPlace(env, me, b) {
 }
 
 /** Fill every pending order whose ticker has a quote newer than the order. Runs from cron and on /c/me. */
+const cReg = (ts) => { const m = new Date(ts * 1000).toLocaleString('en-US', { timeZone: 'America/New_York', hourCycle: 'h23', weekday: 'short', hour: '2-digit', minute: '2-digit' }).match(/(\w+),? (\d\d):(\d\d)/); if (!m || /Sat|Sun/.test(m[1])) return false; const x = +m[2] * 60 + +m[3]; return x >= 570 && x < 960; };
 async function cFill(env, onlyPid) {
   // an order claimed by a fill that died before committing goes back to the queue after 10 minutes
   await env.DB.prepare("UPDATE c_orders SET status='pending', fill_ts=NULL WHERE status='filling' AND fill_ts<?1").bind(cnow() - 600).run();
@@ -203,7 +204,9 @@ async function cFill(env, onlyPid) {
   for (const o of pend) {
     if (hold.has(o.t)) continue;                                     // wait until the split is processed
     const q = Q[o.t], qt = cQtime(q);
-    if (!q || !qt || qt <= o.ts || (q[1] != null && Math.abs(q[1]) >= 90)) {   // no newer trade yet, or an absurd tick
+    // no newer trade yet, an absurd tick, or a big jump printed outside regular hours (pre/after-market prints can be bogus:
+    // CCEP 164.60 at 4 am ET on 2026-11-11, real price 116): those wait for the regular session
+    if (!q || !qt || qt <= o.ts || (q[1] != null && Math.abs(q[1]) >= 90) || (q[1] != null && Math.abs(q[1]) >= 20 && !cReg(qt))) {
       if (cnow() - o.ts > 6 * 86400) await env.DB.prepare("UPDATE c_orders SET status='rejected', reason='no price for 6 days' WHERE id=?1 AND status='pending'").bind(o.id).run();
       continue;
     }
@@ -517,6 +520,8 @@ async function contest(req, env, url, h) {
       return J({ ok: true });
     }
     if (b.holds) return J({ holds: await cq(env, 'SELECT * FROM c_hold') });
+    if (b.set_spy0) { for (const [pid, v] of b.set_spy0) await env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1').bind(parseInt(pid, 10), Number(v)).run(); await caches.default.delete(new Request(url.origin + '/c/board')); return J({ ok: true }); }
+    if (b.set_fill_ts) { for (const [id, v] of b.set_fill_ts) await env.DB.prepare("UPDATE c_orders SET fill_ts=?2 WHERE id=?1 AND status='filled'").bind(parseInt(id, 10), parseInt(v, 10)).run(); return J({ ok: true }); }
     if (b.snap) { const r = await env.DB.prepare('UPDATE c_snap SET v=?3 WHERE pid=?1 AND d=?2').bind(parseInt(b.snap[0], 10), String(b.snap[1]), Number(b.snap[2])).run(); return J({ ok: true, n: r.meta.changes }); }
     if (b.fix) {
       // one-off correction of a portfolio: {pid, cash, pos:[[t, dqty, dcost]], order:[id, fill_qty, fill_amt]}

@@ -350,6 +350,13 @@ async function contest(req, env, url, h) {
   if (req.method === 'GET' && path === '/tickers') {
     return J({ t: (await cq(env, 'SELECT DISTINCT t FROM c_pos WHERE qty>0')).map(r => r.t) });
   }
+  if (req.method === 'GET' && path === '/q') {
+    const M = globalThis.C_LQ || (globalThis.C_LQ = new Map()), now = Date.now(), out = {}, need = [];
+    const T = [...new Set(String(url.searchParams.get('t') || '').toUpperCase().split(',').map(s => s.trim()).filter(s => /^[A-Z][A-Z0-9.\-]{0,8}$/.test(s)))].slice(0, 20);
+    for (const t of T) { const c = M.get(t); if (c && now - c[0] < 15000) { if (c[1]) out[t] = c[1]; } else need.push(t); }
+    if (need.length) { const L = await cLive(need); if (M.size > 5000) M.clear(); for (const t of need) { M.set(t, [now, L[t] || null]); if (L[t]) out[t] = L[t]; } }
+    return J({ q: out, at: new Date(now).toISOString() }, 200, { 'Cache-Control': 'public, max-age=10' });
+  }
   const me = await cAuth(req, env);
   if (req.method === 'GET' && path === '/me') {
     if (!me) return J({ error: 'login' }, 401);

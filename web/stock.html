@@ -32,6 +32,7 @@
 #rzs .px .p{font-size:24px;font-weight:900;direction:ltr;line-height:1.2}
 #rzs .px .d{font-size:12px;color:var(--mut)}#rzs .px .d b{color:#dfe8f2;direction:ltr;unicode-bidi:isolate}
 #rzs .px .live{color:var(--mut)}
+#rzs .px .p.fl{animation:rzfl 1.2s ease-out}@keyframes rzfl{0%{background:rgba(201,169,97,.28)}100%{background:transparent}}@media (prefers-reduced-motion:reduce){#rzs .px .p.fl{animation:none}}
 #rzs .px .live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#4FA37A;margin-left:5px;vertical-align:middle;box-shadow:0 0 0 3px rgba(46,196,182,.2)}
 #rzs .grid2{display:grid;grid-template-columns:300px 1fr;gap:14px}
 #rzs .score .big{font-size:44px;font-weight:900;text-align:center;line-height:1.1}
@@ -477,15 +478,43 @@ function liveQuotes(){
   return RZQ_P;
 }
 function liveQ(t){return RZQ&&RZQ.q?RZQ.q[t]||null:null}
+/* second-level prices: the contest worker reads Nasdaq's last sale (15 s server cache) for the open ticker;
+   merged into RZQ when newer than the file quote, and the page header is refreshed every 15 s while visible */
+var RZL_API=window.RZS_LIVE||'https://rz-events.mreza-hajilou.workers.dev/c/q';
+function liveFetch(T){
+  var p=fetch(RZL_API+'?t='+encodeURIComponent(T.join(','))).then(function(r){return r.ok?r.json():null}).then(function(j){
+    if(!j||!j.q)return 0;if(!RZQ)RZQ={q:{},status:''};if(!RZQ.q)RZQ.q={};var n=0;
+    for(var t in j.q){var a=j.q[t],b=RZQ.q[t];if(a&&a[0]>0&&(!b||!b[3]||Date.parse(a[3])>=Date.parse(b[3]))){if(!b||b[0]!==a[0]||b[3]!==a[3])n++;RZQ.q[t]=a}}
+    return n}).catch(function(){return 0});
+  return Promise.race([p,new Promise(function(res){setTimeout(function(){res(0)},2500)})]);
+}
+var RZL_T=null;
+function livePoll(t){
+  clearTimeout(RZL_T);
+  RZL_T=setTimeout(function(){
+    if(!cur||cur.ticker!==t)return;
+    if(document.visibilityState!=='visible'){livePoll(t);return}
+    liveFetch([t]).then(function(n){if(n&&cur&&cur.ticker===t){applyLive(cur);liveHead(cur)}livePoll(t)});
+  },liveFresh(liveQ(t))?15000:60000);
+}
+function liveFresh(Q){var x=Q&&Q[3]?Date.parse(Q[3]):NaN;return !isNaN(x)&&Date.now()-x<20*60000}
+function liveHead(d){
+  var m=d.market||{},r=d.ratios||{},e=document.getElementById('rzs-px');if(!e)return;
+  e.innerHTML='$'+m.price.toFixed(2)+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'');
+  e.classList.remove('fl');void e.offsetWidth;e.classList.add('fl');
+  var mc=document.getElementById('rzs-mc');if(mc)mc.innerHTML=big(m.mcap);var ev=document.getElementById('rzs-ev');if(ev&&r.ev!=null)ev.innerHTML=big(r.ev);
+  var lv=document.getElementById('rzs-lv');if(lv)lv.innerHTML='<i></i>'+esc(liveLabel(d.ticker));
+}
 var RZQ_ST={'Open':'قیمت لحظه‌ای','Pre Market':'پیش‌بازار','After Hours':'پس از بسته‌شدن بازار','Closed':'قیمت پایانی'};
 function liveWhen(iso){
   try{var d=new Date(iso);if(isNaN(d))return '';
     return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
 }
-function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
+function liveLabel(t){var Q=liveQ(t);if(!Q)return '';var w=Q[3]||RZQ.as_of;return (liveFresh(Q)?'قیمت لحظه‌ای':/T16:0\d/.test(w)?'قیمت پایانی':(RZQ_ST[RZQ.status]||'آخرین قیمت'))+' · '+liveWhen(w)}
 function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
 function applyLive(d){
   var Q=d&&liveQ(d.ticker), m=d&&d.market;
+  if(Q&&m&&!m.price&&Q[0]>0){m.price=Q[0];m.chg=Q[1];m.live=Q[3]||RZQ.as_of;return d}   /* build without a price: still show the live one */
   if(!Q||!m||!m.price||!(Q[0]>0))return d;
   var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
   m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
@@ -534,8 +563,8 @@ function open(t,via){
   try{localStorage.setItem('rz_last_ticker',t)}catch(e){}
   showQuota(); $('rzs-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';
   try{history.replaceState(null,'','#'+t)}catch(e){}
-  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes()]).then(function(x){var d=x[0];
-    if(d){applyLive(d);render(d);recent(d.ticker);rzE('view',d.ticker,SRC);if(SRC==='search')rzE('search',d.ticker,'');SRC='link';loadCommunity(d);return}
+  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes().then(function(){return liveFetch([t])})]).then(function(x){var d=x[0];
+    if(d){applyLive(d);render(d);livePoll(d.ticker);recent(d.ticker);rzE('view',d.ticker,SRC);if(SRC==='search')rzE('search',d.ticker,'');SRC='link';loadCommunity(d);return}
     if(via){notFound(t);return}
     fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(p){ALIAS={from:t,to:p};open(p,true)}else notFound(t)}).catch(function(){notFound(t)});
   }).catch(function(){notFound(t)});
@@ -741,8 +770,8 @@ function render(d){
     '<div class="meta facts">'+[esc(m.sector||''),m.industry?esc(m.industry):'',m.country?esc(m.country):'',(TT?'داده‌ها تا \u2066'+esc(TT.fy_end)+'\u2069 (۱۲ ماه اخیر)':'سال مالی '+faN(L.fy)+' تا \u2066'+esc(L.fy_end||'')+'\u2069')].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('')+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
-    '<div class="px"><div class="p">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+
-    '<div class="tgx" id="rzs-tg"></div><div class="d">ارزش بازار <b>'+big(m.mcap)+'</b> · EV <b>'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
+    '<div class="px"><div class="p" id="rzs-px">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+
+    '<div class="tgx" id="rzs-tg"></div><div class="d">ارزش بازار <b id="rzs-mc">'+big(m.mcap)+'</b> · EV <b id="rzs-ev">'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live" id="rzs-lv"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
     '<div class="comm" id="rzs-comm"></div><div class="rel" id="rzs-rel"></div></div>';
   h+=verdict(d);
   h+='<div class="wide2"><div class="card" id="rzs-rn"></div>';

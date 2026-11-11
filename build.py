@@ -1360,6 +1360,11 @@ def roll_forward(rec, rows, src):
                 nt["net_income"] = base["net_income"] - ya[2] + ni
                 if nt.get("shares_diluted"):
                     nt["eps"] = nt["net_income"] / nt["shares_diluted"]
+            # figures not in the release data: leave them empty rather than mix two periods in one column
+            for k in ("cfo", "capex", "fcf", "op_income", "gross_profit", "ebitda", "da", "rnd", "sbc", "dividends", "dps",
+                      "buybacks", "interest_exp", "pretax_income", "tax"):
+                nt[k] = None
+            nt.pop("filled", None)
             nt["end"] = end
             nt["rolled_from"] = base.get("end")
             nt["src"] = src

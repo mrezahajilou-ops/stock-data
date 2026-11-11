@@ -43,10 +43,75 @@ def universe(screener_path):
     return sorted(out)
 
 
+NQ_H = {'User-Agent': UA, 'Accept': 'application/json, text/plain, */*', 'Origin': 'https://www.nasdaq.com', 'Referer': 'https://www.nasdaq.com/'}
+
+
+def nq_json(url, timeout=30):
+    req = urllib.request.Request(url, headers=NQ_H)
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read())
+
+
+def mdy(s):
+    try:
+        return dt.datetime.strptime(str(s).strip(), '%m/%d/%Y').strftime('%Y-%m-%d')
+    except Exception:
+        return None
+
+
+def nasdaq_events(t, start_day):
+    """Dividends from Nasdaq (Yahoo answers GitHub runners with 429)."""
+    ev = []
+    for ac in ('stocks', 'etf'):
+        try:
+            j = nq_json('https://api.nasdaq.com/api/quote/%s/dividends?assetclass=%s' % (t.replace('-', '.'), ac))
+        except Exception as x:
+            print('nasdaq div', t, ac, 'failed', x)
+            continue
+        rows = (((j or {}).get('data') or {}).get('dividends') or {}).get('rows') or []
+        for r in rows:
+            d = mdy(r.get('exOrEffDate'))
+            try:
+                v = float(str(r.get('amount') or '').replace('$', '').replace(',', ''))
+            except ValueError:
+                continue
+            if d and d >= start_day and v > 0 and 'cash' in str(r.get('type') or 'cash').lower():
+                ev.append({'t': t, 'type': 'div', 'd': d, 'v': round(v, 6)})
+        if rows:
+            break
+    return ev
+
+
+def nasdaq_splits(tickers, start_day):
+    """Splits from Nasdaq's split calendar (recent + upcoming)."""
+    ev, want = [], set(tickers)
+    try:
+        j = nq_json('https://api.nasdaq.com/api/calendar/splits')
+    except Exception as x:
+        print('nasdaq splits failed', x)
+        return ev, False
+    rows = ((j or {}).get('data') or {}).get('rows') or []
+    for r in rows:
+        t = str(r.get('symbol') or '').upper().replace('.', '-')
+        d = mdy(r.get('executionDate'))
+        ratio = str(r.get('ratio') or '')
+        if t not in want or not d or d < start_day or ':' not in ratio:
+            continue
+        try:
+            a, b = [float(x) for x in ratio.split(':')[:2]]
+        except ValueError:
+            continue
+        if a > 0 and b > 0 and a != b:
+            ev.append({'t': t, 'type': 'split', 'd': d, 'v': round(a / b, 6)})
+    return ev, True
+
+
 def corp_events(tickers):
-    """Yahoo chart events (dividends, splits) for the last 21 days."""
+    """Dividends and splits of the last 21 days for the held tickers: Yahoo chart events first, Nasdaq for whatever Yahoo refuses."""
     ev, end = [], int(time.time()) + 86400
     start = end - 22 * 86400
+    start_day = dt.datetime.utcfromtimestamp(start).strftime('%Y-%m-%d')
+    failed = []
     for t in tickers:
         url = ('https://query2.finance.yahoo.com/v8/finance/chart/%s?period1=%d&period2=%d&interval=1d&events=div%%7Csplit'
                % (t.replace('.', '-'), start, end))
@@ -54,7 +119,8 @@ def corp_events(tickers):
             j = get_json(url)
             e = ((j.get('chart') or {}).get('result') or [{}])[0].get('events') or {}
         except Exception as x:
-            print('corp', t, 'failed', x)
+            print('corp', t, 'yahoo failed', x)
+            failed.append(t)
             continue
         for d in (e.get('dividends') or {}).values():
             if d.get('amount'):
@@ -64,7 +130,20 @@ def corp_events(tickers):
             if num and den and num != den:
                 ev.append({'t': t, 'type': 'split', 'd': dt.datetime.utcfromtimestamp(s['date']).strftime('%Y-%m-%d'), 'v': round(num / den, 6)})
         time.sleep(0.3)
-    return ev
+    if failed:
+        for t in failed:
+            ev += nasdaq_events(t, start_day)
+            time.sleep(0.3)
+        sp, ok = nasdaq_splits(failed, start_day)
+        ev += sp
+        print('nasdaq fallback for', len(failed), 'tickers; split calendar', 'ok' if ok else 'FAILED')
+    seen, out = set(), []
+    for e in ev:
+        k = (e['t'], e['type'], e['d'])
+        if k not in seen:
+            seen.add(k)
+            out.append(e)
+    return out
 
 
 def main():
@@ -73,6 +152,15 @@ def main():
     os.makedirs(out, exist_ok=True)
     now = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     u = universe(screener)
+    if len(u) < 1000:
+        # a build without prices (2026-11-11) would shrink the list to the ETFs and block every stock buy: keep the last good list
+        try:
+            prev = get_json('https://raw.githubusercontent.com/%s/contest-data/universe.json' % os.environ.get('GITHUB_REPOSITORY', 'mrezahajilou-ops/stock-data'))
+            if len(prev.get('t') or []) > len(u):
+                print('universe too small (%d), keeping previous (%d)' % (len(u), len(prev['t'])))
+                u = prev['t']
+        except Exception as x:
+            print('previous universe unavailable', x)
     json.dump({'as_of': now, 't': u, 'etf': ETFS}, open(os.path.join(out, 'universe.json'), 'w'), separators=(',', ':'))
     held = []
     if worker:

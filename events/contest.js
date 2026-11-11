@@ -46,6 +46,7 @@ const C_SCHEMA = [
   `CREATE TABLE IF NOT EXISTS c_snap (pid INTEGER NOT NULL, d TEXT NOT NULL, v REAL NOT NULL, PRIMARY KEY (pid, d))`,
   `CREATE TABLE IF NOT EXISTS c_wins (period TEXT PRIMARY KEY, kind TEXT NOT NULL, pid INTEGER NOT NULL, ret REAL, decided INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS c_quotes (t TEXT PRIMARY KEY, p REAL NOT NULL, chg REAL, prev REAL, ts TEXT NOT NULL)`,
+`CREATE TABLE IF NOT EXISTS c_hold (t TEXT PRIMARY KEY, ts INTEGER NOT NULL, note TEXT)`,
 ];
 /* migrations for tables created by an earlier version */
 const C_MIGRATE = ['ALTER TABLE c_profiles ADD COLUMN house INTEGER NOT NULL DEFAULT 0',
@@ -108,6 +109,8 @@ const cQuotes = async () => {
       const f = q[r.t], ft = f && f[3] ? Date.parse(f[3]) : 0;
       if (!(ft >= Date.parse(r.ts))) q[r.t] = [r.p, r.chg, r.prev, r.ts];
     }
+    // a ticker on hold (price jump that looks like an unprocessed split) keeps its last contest price
+    for (const r of (await C_ENV.DB.prepare('SELECT q.t, q.p, q.chg, q.prev, q.ts FROM c_hold h JOIN c_quotes q ON q.t=h.t').all()).results || []) q[r.t] = [r.p, r.chg, r.prev, r.ts];
   } catch (e) { /* table not ready */ }
   return q;
 };
@@ -159,8 +162,9 @@ async function cPlace(env, me, b) {
   const [Q, U] = await Promise.all([cQuotes(), cUniverse()]);
   const q = Q[t];
   if (!q) return [400, { error: 'قیمت این نماد در دسترس نیست' }];
+  if (await c1(env, 'SELECT t FROM c_hold WHERE t=?1', t)) return [400, { error: 'معامله‌ی این نماد موقتاً متوقفه (تغییر غیرعادی قیمت، احتمالاً اسپلیت). کمی بعد دوباره امتحان کن.' }];
   const pos = await cPositions(env, pid);
-  const pend = await cq(env, "SELECT side, t, amount, qty FROM c_orders WHERE pid=?1 AND status='pending'", pid);
+  const pend = await cq(env, "SELECT side, t, amount, qty FROM c_orders WHERE pid=?1 AND status IN ('pending','filling')", pid);
   if (pend.length >= 20) return [429, { error: 'حداکثر ۲۰ سفارش باز' }];
   if (side === 'buy') {
     if (!(U.t || []).includes(t)) return [400, { error: 'این نماد در مسابقه مجاز نیست (سهام آمریکا با ارزش بازار بالای ۱ میلیارد دلار و قیمت بالای ۵ دلار، یا ETFهای فهرست)' }];
@@ -183,49 +187,67 @@ async function cPlace(env, me, b) {
 
 /** Fill every pending order whose ticker has a quote newer than the order. Runs from cron and on /c/me. */
 async function cFill(env, onlyPid) {
+  // an order claimed by a fill that died before committing goes back to the queue after 10 minutes
+  await env.DB.prepare("UPDATE c_orders SET status='pending', fill_ts=NULL WHERE status='filling' AND fill_ts<?1").bind(cnow() - 600).run();
   const pend = onlyPid ? await cq(env, "SELECT * FROM c_orders WHERE status='pending' AND pid=?1 ORDER BY ts", onlyPid)
                        : await cq(env, "SELECT * FROM c_orders WHERE status='pending' ORDER BY ts LIMIT 500");
   if (!pend.length) return 0;
   const Q0 = await cQuotes();
+  const hold = new Set((await cq(env, 'SELECT t FROM c_hold')).map(r => r.t));
   // the GitHub quotes file can lag by hours: fetch a live price for every ticker whose file quote is older than its order (+ SPY for the benchmark)
-  const stale = [...new Set(pend.filter(o => { const t = cQtime(Q0[o.t]); return !t || t <= o.ts; }).map(o => o.t))];
+  const stale = [...new Set(pend.filter(o => { const t = cQtime(Q0[o.t]); return !hold.has(o.t) && (!t || t <= o.ts); }).map(o => o.t))];
   const Q = stale.length ? Object.assign({}, Q0, await cLive(stale.concat(['SPY']))) : Q0;
   let n = 0;
   for (const o of pend) {
+    if (hold.has(o.t)) continue;                                     // wait until the split is processed
     const q = Q[o.t], qt = cQtime(q);
-    if (!q || !qt || qt <= o.ts) {
-      if (cnow() - o.ts > 6 * 86400) await env.DB.prepare("UPDATE c_orders SET status='rejected', reason='no price for 6 days' WHERE id=?1").bind(o.id).run();
+    if (!q || !qt || qt <= o.ts || (q[1] != null && Math.abs(q[1]) >= 90)) {   // no newer trade yet, or an absurd tick
+      if (cnow() - o.ts > 6 * 86400) await env.DB.prepare("UPDATE c_orders SET status='rejected', reason='no price for 6 days' WHERE id=?1 AND status='pending'").bind(o.id).run();
       continue;
     }
+    // claim the order: the 5-minute cron and a visitor's request can reach the same order at the same moment
+    // (2026-11-10: a sell was credited twice). Every write below is also guarded inside one transaction.
+    const ts = cnow();
+    if (!(await env.DB.prepare("UPDATE c_orders SET status='filling', fill_ts=?2 WHERE id=?1 AND status='pending'").bind(o.id, ts).run()).meta.changes) continue;
     const price = q[0];
     const prof = await c1(env, 'SELECT * FROM c_profiles WHERE id=?1', o.pid);
-    if (!prof) continue;
     const pos = await c1(env, 'SELECT qty, cost FROM c_pos WHERE pid=?1 AND t=?2', o.pid, o.t) || { qty: 0, cost: 0 };
-    const stmts = [], ts = cnow();
+    const done = "EXISTS (SELECT 1 FROM c_orders WHERE id=?9 AND status='filled' AND fill_ts=?8)";
+    let stmts = null;
+    if (!prof) { await env.DB.prepare("UPDATE c_orders SET status='rejected', reason='profile' WHERE id=?1").bind(o.id).run(); continue; }
     if (o.side === 'buy') {
       // re-check cash and the 70% cap at the fill price; shrink the order if the price moved against it
       const all = await cPositions(env, o.pid);
       const total = cValue(prof, all, Q);
       const room = Math.max(0, C_MAX_W * total - pos.qty * price);
-      const amt = Math.min(o.amount, prof.cash, room);
+      const amt = Math.floor(Math.min(o.amount, prof.cash, room) * 100) / 100;
       if (amt < 1) { await env.DB.prepare("UPDATE c_orders SET status='rejected', reason=?2 WHERE id=?1").bind(o.id, amt <= 0 && room <= 0 ? '70% cap' : 'cash').run(); continue; }
       const qty = amt / price;
-      stmts.push(env.DB.prepare('INSERT INTO c_pos (pid, t, qty, cost) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(pid, t) DO UPDATE SET qty=qty+?3, cost=cost+?4').bind(o.pid, o.t, qty, amt));
-      // S&P 500 benchmark starts at the portfolio's first fill (not at profile creation)
-      if (Q.SPY && Q.SPY[0] > 0) stmts.push(env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1 AND last_trade IS NULL').bind(o.pid, Q.SPY[0]));
-      stmts.push(env.DB.prepare('UPDATE c_profiles SET cash=cash-?2, last_trade=?3 WHERE id=?1').bind(o.pid, amt, ts));
-      stmts.push(env.DB.prepare("UPDATE c_orders SET status='filled', fill_ts=?2, price=?3, fill_qty=?4, fill_amt=?5 WHERE id=?1").bind(o.id, ts, price, qty, amt));
+      stmts = [
+        env.DB.prepare("UPDATE c_orders SET status='filled', price=?3, fill_qty=?4, fill_amt=?5 WHERE id=?9 AND status='filling' AND fill_ts=?8 AND (SELECT cash FROM c_profiles WHERE id=?1) >= ?5 - 0.005")
+          .bind(o.pid, null, price, qty, amt, null, null, ts, o.id),
+        // S&P 500 benchmark starts at the portfolio's first fill (not at profile creation)
+        ...(Q.SPY && Q.SPY[0] > 0 ? [env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1 AND last_trade IS NULL AND ' + done).bind(o.pid, Q.SPY[0], null, null, null, null, null, ts, o.id)] : []),
+        env.DB.prepare('UPDATE c_profiles SET cash=cash-?2, last_trade=?8 WHERE id=?1 AND ' + done).bind(o.pid, amt, null, null, null, null, null, ts, o.id),
+        env.DB.prepare('INSERT INTO c_pos (pid, t, qty, cost) SELECT ?1, ?2, ?3, ?4 WHERE ' + done + ' ON CONFLICT(pid, t) DO UPDATE SET qty=qty+?3, cost=cost+?4')
+          .bind(o.pid, o.t, qty, amt, null, null, null, ts, o.id),
+      ];
     } else {
       const qty = Math.min(o.qty, pos.qty);
       if (!(qty > 0)) { await env.DB.prepare("UPDATE c_orders SET status='rejected', reason='no shares' WHERE id=?1").bind(o.id).run(); continue; }
-      const amt = qty * price, left = pos.qty - qty, costLeft = left > 1e-7 ? pos.cost * left / pos.qty : 0;
-      stmts.push(left > 1e-7 ? env.DB.prepare('UPDATE c_pos SET qty=?3, cost=?4 WHERE pid=?1 AND t=?2').bind(o.pid, o.t, left, costLeft)
-                              : env.DB.prepare('DELETE FROM c_pos WHERE pid=?1 AND t=?2').bind(o.pid, o.t));
-      stmts.push(env.DB.prepare('UPDATE c_profiles SET cash=cash+?2, last_trade=?3 WHERE id=?1').bind(o.pid, amt, ts));
-      stmts.push(env.DB.prepare("UPDATE c_orders SET status='filled', fill_ts=?2, price=?3, fill_qty=?4, fill_amt=?5 WHERE id=?1").bind(o.id, ts, price, qty, amt));
+      const amt = qty * price;
+      stmts = [
+        env.DB.prepare("UPDATE c_orders SET status='filled', price=?3, fill_qty=?4, fill_amt=?5 WHERE id=?9 AND status='filling' AND fill_ts=?8 AND (SELECT qty FROM c_pos WHERE pid=?1 AND t=?2) >= ?4 - 1e-9")
+          .bind(o.pid, o.t, price, qty, amt, null, null, ts, o.id),
+        env.DB.prepare('UPDATE c_pos SET cost=cost*(qty-?3)/qty, qty=qty-?3 WHERE pid=?1 AND t=?2 AND ' + done).bind(o.pid, o.t, qty, null, null, null, null, ts, o.id),
+        env.DB.prepare('DELETE FROM c_pos WHERE pid=?1 AND t=?2 AND qty<=1e-7').bind(o.pid, o.t),
+        env.DB.prepare('UPDATE c_profiles SET cash=cash+?5, last_trade=?8 WHERE id=?1 AND ' + done).bind(o.pid, null, null, null, amt, null, null, ts, o.id),
+      ];
     }
     await env.DB.batch(stmts);
-    n++;
+    const st = await c1(env, 'SELECT status FROM c_orders WHERE id=?1', o.id);
+    if (st && st.status === 'filled') n++;
+    else await env.DB.prepare("UPDATE c_orders SET status='pending', fill_ts=NULL WHERE id=?1 AND status='filling'").bind(o.id).run();   // cash/shares moved meanwhile: retry
   }
   return n;
 }
@@ -249,17 +271,26 @@ async function cCorpApply(env) {
       if (ev.type === 'div') {
         const amt = Math.round(before * ev.v * 100) / 100;
         if (amt <= 0) continue;
-        const r = await env.DB.prepare("INSERT OR IGNORE INTO c_cash (pid, ts, kind, t, amount, note, ref) VALUES (?1, ?2, 'div', ?3, ?4, ?5, ?6)")
-          .bind(h.pid, cnow(), ev.t, amt, ev.v + ' per share × ' + before.toFixed(4), ref).run();
-        if (r.meta.changes) { await env.DB.prepare('UPDATE c_profiles SET cash=cash+?2 WHERE id=?1').bind(h.pid, amt).run(); n++; }
+        // credit + record in one transaction; the credit only happens while the record does not exist yet
+        await env.DB.batch([
+          env.DB.prepare('UPDATE c_profiles SET cash=cash+?2 WHERE id=?1 AND NOT EXISTS (SELECT 1 FROM c_cash WHERE pid=?1 AND ref=?3)').bind(h.pid, amt, ref),
+          env.DB.prepare("INSERT OR IGNORE INTO c_cash (pid, ts, kind, t, amount, note, ref) VALUES (?1, ?2, 'div', ?3, ?4, ?5, ?6)")
+            .bind(h.pid, cnow(), ev.t, amt, ev.v + ' per share × ' + before.toFixed(4), ref)]);
+        n++;
       } else if (ev.type === 'split') {
-        const r = await env.DB.prepare("INSERT OR IGNORE INTO c_cash (pid, ts, kind, t, amount, note, ref) VALUES (?1, ?2, 'split', ?3, 0, ?4, ?5)")
-          .bind(h.pid, cnow(), ev.t, 'split ' + ev.v, ref).run();
         // only shares held before the ex-date are split; shares bought after it were already bought at the new price
-        if (r.meta.changes) { await env.DB.prepare('UPDATE c_pos SET qty=?3 WHERE pid=?1 AND t=?2').bind(h.pid, ev.t, h.qty + before * (ev.v - 1)).run(); n++; }
+        await env.DB.batch([
+          env.DB.prepare('UPDATE c_pos SET qty=qty+?3 WHERE pid=?1 AND t=?2 AND NOT EXISTS (SELECT 1 FROM c_cash WHERE pid=?1 AND ref=?4)').bind(h.pid, ev.t, before * (ev.v - 1), ref),
+          env.DB.prepare("UPDATE c_orders SET qty=qty*?3 WHERE pid=?1 AND t=?2 AND side='sell' AND status='pending' AND ts<?4 AND NOT EXISTS (SELECT 1 FROM c_cash WHERE pid=?1 AND ref=?5)").bind(h.pid, ev.t, ev.v, exTs, ref),
+          env.DB.prepare("INSERT OR IGNORE INTO c_cash (pid, ts, kind, t, amount, note, ref) VALUES (?1, ?2, 'split', ?3, 0, ?4, ?5)")
+            .bind(h.pid, cnow(), ev.t, 'split ' + ev.v, ref)]);
+        n++;
       }
     }
   }
+  // a processed split releases its hold; the next refresh starts a fresh price series
+  for (const ev of events || []) if (ev && ev.type === 'split' && Date.parse(ev.d + 'T13:30:00Z') / 1000 <= cnow())
+    await env.DB.batch([env.DB.prepare('DELETE FROM c_quotes WHERE t=?1 AND t IN (SELECT t FROM c_hold)').bind(ev.t), env.DB.prepare('DELETE FROM c_hold WHERE t=?1').bind(ev.t)]);
   return n;
 }
 
@@ -328,7 +359,7 @@ function cCanSee(me, prof) {
 }
 async function cDetail(env, prof, Q) {
   const pos = await cPositions(env, prof.id);
-  const orders = await cq(env, 'SELECT id, ts, side, t, amount, qty, note, status, fill_ts, price, fill_qty, fill_amt, reason FROM c_orders WHERE pid=?1 ORDER BY ts DESC LIMIT 300', prof.id);
+  const orders = await cq(env, "SELECT id, ts, side, t, amount, qty, note, CASE status WHEN 'filling' THEN 'pending' ELSE status END status, fill_ts, price, fill_qty, fill_amt, reason FROM c_orders WHERE pid=?1 ORDER BY ts DESC LIMIT 300", prof.id);
   const cash = await cq(env, "SELECT ts, kind, t, amount, note FROM c_cash WHERE pid=?1 ORDER BY ts DESC LIMIT 200", prof.id);
   return { cash: prof.cash, positions: pos.map(p => ({ t: p.t, qty: p.qty, cost: p.cost, px: Q[p.t] ? Q[p.t][0] : null, chg: Q[p.t] ? Q[p.t][1] : null })), orders, income: cash };
 }
@@ -354,7 +385,10 @@ async function contest(req, env, url, h) {
     const M = globalThis.C_LQ || (globalThis.C_LQ = new Map()), now = Date.now(), out = {}, need = [];
     const T = [...new Set(String(url.searchParams.get('t') || '').toUpperCase().split(',').map(s => s.trim()).filter(s => /^[A-Z][A-Z0-9.\-]{0,8}$/.test(s)))].slice(0, 20);
     for (const t of T) { const c = M.get(t); if (c && now - c[0] < 15000) { if (c[1]) out[t] = c[1]; } else need.push(t); }
-    if (need.length) { const L = await cLive(need); if (M.size > 5000) M.clear(); for (const t of need) { M.set(t, [now, L[t] || null]); if (L[t]) out[t] = L[t]; } }
+    const B = globalThis.C_LQB || (globalThis.C_LQB = { m: 0, n: 0 }), mi = Math.floor(now / 60000);
+    if (B.m !== mi) { B.m = mi; B.n = 0; }
+    if (need.length && B.n >= 60) need.length = 0;                        // Nasdaq budget per minute: never let the page starve the contest
+    if (need.length) { B.n += Math.ceil(need.length / 20); const L = await cLive(need); if (M.size > 5000) M.clear(); for (const t of need) { M.set(t, [now, L[t] || null]); if (L[t]) out[t] = L[t]; } }
     return J({ q: out, at: new Date(now).toISOString() }, 200, { 'Cache-Control': 'public, max-age=10' });
   }
   const me = await cAuth(req, env);
@@ -428,6 +462,21 @@ async function contest(req, env, url, h) {
       await caches.default.delete(new Request(url.origin + '/c/board'));
       return J({ ok: true, n });
     }
+    if (b.unhold) {
+      await env.DB.batch([env.DB.prepare('DELETE FROM c_hold WHERE t=?1').bind(String(b.unhold)), env.DB.prepare('DELETE FROM c_quotes WHERE t=?1').bind(String(b.unhold))]);
+      return J({ ok: true });
+    }
+    if (b.holds) return J({ holds: await cq(env, 'SELECT * FROM c_hold') });
+    if (b.fix) {
+      // one-off correction of a portfolio: {pid, cash, pos:[[t, dqty, dcost]], order:[id, fill_qty, fill_amt]}
+      const F = b.fix, pid = parseInt(F.pid, 10), st = [];
+      if (F.cash) st.push(env.DB.prepare('UPDATE c_profiles SET cash=cash+?2 WHERE id=?1').bind(pid, Number(F.cash)));
+      for (const [t, dq, dc] of F.pos || []) st.push(env.DB.prepare('UPDATE c_pos SET qty=qty+?3, cost=cost+?4 WHERE pid=?1 AND t=?2').bind(pid, t, Number(dq), Number(dc)));
+      if (F.order) st.push(env.DB.prepare('UPDATE c_orders SET fill_qty=?3, fill_amt=?4 WHERE id=?1 AND pid=?2').bind(F.order[0], pid, Number(F.order[1]), Number(F.order[2])));
+      if (st.length) await env.DB.batch(st);
+      await caches.default.delete(new Request(url.origin + '/c/board'));
+      return J({ ok: true, n: st.length });
+    }
     if (b.win_period) {
       if (b.clear) await env.DB.prepare('DELETE FROM c_wins WHERE period=?1').bind(String(b.win_period)).run();
       else await env.DB.prepare('INSERT INTO c_wins (period, kind, pid, ret, decided) VALUES (?1, ?2, ?3, NULL, ?4) ON CONFLICT(period) DO UPDATE SET pid=?3, decided=?4')
@@ -499,8 +548,21 @@ async function cWinners(env) {
 }
 
 async function cRefreshQuotes(env) {
-  const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status='pending'")).map(r => r.t).concat(['SPY']);
+  const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status IN ('pending','filling')")).map(r => r.t).concat(['SPY']);
   const L = await cLive(T);
+  // price discontinuity without a matching daily change = split / reverse split not yet in corp.json:
+  // freeze the ticker (no fills, valued at the last price) until the split is applied or an admin releases it
+  const old = {};
+  for (const r of await cq(env, 'SELECT t, p FROM c_quotes')) old[r.t] = r.p;
+  const held = new Set((await cq(env, 'SELECT t FROM c_hold')).map(r => r.t));
+  for (const [t, q] of Object.entries(L)) {
+    if (held.has(t)) { delete L[t]; continue; }
+    const r = old[t] > 0 ? q[0] / old[t] : 1;
+    if ((r > 1.8 || r < 0.55) && !(q[1] != null && Math.abs(q[1]) >= 35)) {
+      await env.DB.prepare('INSERT OR IGNORE INTO c_hold (t, ts, note) VALUES (?1, ?2, ?3)').bind(t, cnow(), 'jump ' + old[t] + ' -> ' + q[0]).run();
+      delete L[t];
+    }
+  }
   const st = Object.entries(L).map(([t, q]) => env.DB.prepare('INSERT INTO c_quotes (t, p, chg, prev, ts) VALUES (?1, ?2, ?3, ?4, ?5) ON CONFLICT(t) DO UPDATE SET p=?2, chg=?3, prev=?4, ts=?5').bind(t, q[0], q[1], q[2], q[3]));
   for (let i = 0; i < st.length; i += 50) await env.DB.batch(st.slice(i, i + 50));
   return st.length;

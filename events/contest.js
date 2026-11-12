@@ -125,6 +125,8 @@ const cUniverse = () => cFetchJSON(C_RAW + '/contest-data/universe.json', 3600);
 const cCorp = () => cFetchJSON(C_RAW + '/contest-data/corp.json', 3600).catch(() => ({ events: [] }));
 const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isNaN(t) ? null : Math.floor(t / 1000); };
 
+// a last price more than 3x / less than 0.25x its own previous close is treated as a bad tick and ignored
+const cSaneQuote = (p, prev) => !(prev > 0) || (p / prev <= 3 && p / prev >= 0.25);
 async function cLive(tickers) {
   // live last-sale price from Nasdaq's watchlist API (same source as quotes.py), 20 symbols per call
   const out = {}, T = [...new Set(tickers)].slice(0, 400);
@@ -141,7 +143,10 @@ async function cLive(tickers) {
       for (const d of ((await r.json()).data || [])) {
         const t = String(d.symbol || '').toUpperCase().replace('.', '-'), p = parseFloat(String(d.lastSalePrice || '').replace(/[$,]/g, ''));
         const ts = d.lastTradeTimestampDateTime || d.lastTradeTimestamp;
-        if (t && p > 0 && ts && !isNaN(Date.parse(ts))) out[t] = [p, nm(d.percentageChange), nm(d.previousClosePrice), ts];
+        const prev = nm(d.previousClosePrice);
+        // bad print guard: Nasdaq occasionally returns an erroneous last sale (e.g. KLAC 1804.32 vs a 161 close, "+1020%").
+        // Splits do not trip this: on the split day the previous close is already split-adjusted.
+        if (t && p > 0 && ts && !isNaN(Date.parse(ts)) && cSaneQuote(p, prev)) out[t] = [p, nm(d.percentageChange), prev, ts];
       }
     } catch (e) { /* keep the file quote */ }
   }
@@ -701,7 +706,10 @@ async function cRefreshQuotes(env) {
   for (const [t, q] of Object.entries(L)) {
     if (held.has(t)) { delete L[t]; continue; }
     const r = old[t] > 0 ? q[0] / old[t] : 1;
-    if ((r > 1.8 || r < 0.55) && !(q[1] != null && Math.abs(q[1]) >= 35)) {
+    // the stored price itself was a bad tick (far from this quote's own previous close, while the new price is in line
+    // with it): replace it instead of freezing the ticker on the bad price
+    const oldBad = old[t] > 0 && q[2] > 0 && !cSaneQuote(old[t], q[2]) && Math.abs(q[0] / q[2] - 1) < 0.35;
+    if (!oldBad && (r > 1.8 || r < 0.55) && !(q[1] != null && Math.abs(q[1]) >= 35)) {
       await env.DB.prepare('INSERT OR IGNORE INTO c_hold (t, ts, note) VALUES (?1, ?2, ?3)').bind(t, cnow(), 'jump ' + old[t] + ' -> ' + q[0]).run();
       delete L[t];
     }

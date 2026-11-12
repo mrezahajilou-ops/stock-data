@@ -63,6 +63,9 @@ DELETE = '''mutation($id: ID!) { metaobjectDelete(id: $id) { deletedId userError
 REDIRECT = '''mutation($r: UrlRedirectInput!) { urlRedirectCreate(urlRedirect: $r) {
   urlRedirect { id } userErrors { field message } } }'''
 MAX_PRUNE = 400   # safety: never delete more than this in one run
+GRACE_DAYS = 7    # a ticker must be missing from the build this long before its page is deleted
+                  # (a ticker that drops out of one build and comes back must not flap to 404 - SEO)
+FALLBACK = '/pages/stock'   # where a deleted page with no known successor redirects (never a bare 404)
 
 
 def prune(tok, keep, new):
@@ -77,7 +80,17 @@ def prune(tok, keep, new):
         if not (mo.get('pageInfo') or {}).get('hasNextPage'):
             break
         cur = mo['pageInfo']['endCursor']
-    stale = sorted(h for h in have if h not in keep)
+    missing = new.setdefault('__missing__', {})
+    today = time.strftime('%Y-%m-%d')
+    for h in list(missing):
+        if h in keep or h not in have:
+            missing.pop(h)
+    for h in have:
+        if h not in keep:
+            missing.setdefault(h, today)
+    cutoff = time.strftime('%Y-%m-%d', time.gmtime(time.time() - GRACE_DAYS * 86400))
+    stale = sorted(h for h in have if h not in keep and missing.get(h, today) <= cutoff)
+    print('missing from this build: %d (waiting %d days before deleting)' % (len(missing), GRACE_DAYS), flush=True)
     print('pages in Shopify: %d, current: %d, stale: %d %s' % (len(have), len(keep), len(stale), stale[:30]), flush=True)
     if len(stale) > MAX_PRUNE:
         print('::warning::%d stale pages is more than the safety limit %d - not deleting' % (len(stale), MAX_PRUNE))
@@ -96,9 +109,11 @@ def prune(tok, keep, new):
             continue
         deleted += 1
         new.pop(h, None)
+        missing.pop(h, None)
         target = (aliases.get(h.upper()) or '').lower()
-        if redirects_ok and target and target in keep:
-            j = gql(tok, REDIRECT, {'r': {'path': '/pages/stocks/' + h, 'target': '/pages/stocks/' + target}})
+        dest = '/pages/stocks/' + target if target and target in keep else FALLBACK
+        if redirects_ok:
+            j = gql(tok, REDIRECT, {'r': {'path': '/pages/stocks/' + h, 'target': dest}})
             ue = (((j.get('data') or {}).get('urlRedirectCreate')) or {}).get('userErrors') or j.get('errors')
             if ue and 'access' in json.dumps(ue).lower():
                 redirects_ok = False

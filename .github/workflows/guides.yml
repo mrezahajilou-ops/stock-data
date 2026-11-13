@@ -1,0 +1,64 @@
+name: Guide pages + earnings articles -> Shopify (daily)
+
+# Server-rendered Persian pages Google can read: ranking lists ("بهترین سهام سود نقدی آمریکا"),
+# best stocks per sector, one page per super investor's portfolio, and one blog article per
+# quarterly earnings report. Rebuilt after each data build; only changed pages are sent.
+on:
+  workflow_run:
+    workflows: ["SEC data build (daily, after US close)", "Super investors (13F portfolios, daily)"]
+    types: [completed]
+  schedule:
+    - cron: '40 4 * * *'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Resend every page (ignore the change cache)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: guides
+  cancel-in-progress: false
+
+jobs:
+  guides:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch side data
+        run: |
+          git fetch -q --depth 1 origin superinvestors:refs/remotes/origin/superinvestors || true
+          git fetch -q --depth 1 origin earnings:refs/remotes/origin/earnings || true
+          git fetch -q --depth 1 origin estimates:refs/remotes/origin/estimates || true
+      - name: Build pages
+        run: |
+          python build_guides.py
+          if [ -f build_earnings.py ]; then python build_earnings.py; fi
+      - name: Restore change cache
+        if: ${{ !inputs.full }}
+        uses: actions/cache/restore@v4
+        with:
+          path: pages/guide_hashes.json
+          key: guide-hashes-${{ github.run_id }}
+          restore-keys: guide-hashes-
+      - name: Sync to Shopify
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+        run: python sync_guides.py
+      - name: Save change cache
+        if: ${{ always() && hashFiles('pages/guide_hashes.json') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: pages/guide_hashes.json
+          key: guide-hashes-${{ github.run_id }}

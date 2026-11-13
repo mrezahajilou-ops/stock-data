@@ -771,6 +771,7 @@ async function cDispatch(env) {
   if (mi < 5) await go('fast.yml');
   if (mi % 15 < 5) await go('quotes.yml');
   if (mi >= 30 && mi < 35) await go('watchdog.yml');
+  if (mi % 30 >= 5 && mi % 30 < 10) await go('gold.yml');
   if (mi % 20 < 5) await go('alerts.yml');
 }
 async function cRefreshQuotes(env) {

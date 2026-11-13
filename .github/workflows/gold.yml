@@ -3,9 +3,6 @@ name: Gold & silver page data
 on:
   schedule:
     - cron: '7,37 * * * 0-5'   # backup only; the worker starts this every 30 minutes (GitHub delays schedules)
-  push:
-    branches: [gold-dev]
-    paths: ['gold.py', '.github/workflows/gold.yml']
   workflow_dispatch:
 
 permissions:

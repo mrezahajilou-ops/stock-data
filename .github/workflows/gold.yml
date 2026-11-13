@@ -1,0 +1,38 @@
+name: Gold & silver page data
+
+on:
+  schedule:
+    - cron: '7,37 * * * 0-5'   # backup only; the worker starts this every 30 minutes (GitHub delays schedules)
+  push:
+    branches: [gold-dev]
+    paths: ['gold.py', '.github/workflows/gold.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gold
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: gold.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build gold.json
+        run: python gold.py
+      - name: Publish to branch "gold"
+        run: |
+          mkdir out && cp gold.json out/ && cd out
+          git init -q && git checkout -q -b gold
+          git -c user.name=github-actions -c user.email=actions@github.com add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm "gold $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gold:gold

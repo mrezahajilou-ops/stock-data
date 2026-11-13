@@ -37,7 +37,7 @@
 },
 {
 "t": "OXY.WS",
-"mcap": 35286285551,
+"mcap": 36316177138,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -67,7 +67,7 @@
 },
 {
 "t": "LEN.B",
-"mcap": 20000273093,
+"mcap": 19416228006,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -91,7 +91,7 @@
 },
 {
 "t": "MKC.V",
-"mcap": 12557239235,
+"mcap": 12489973115,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -102,16 +102,16 @@
 "cik": 2109150
 },
 {
-"t": "MOG.B",
-"mcap": 11097260906,
-"why": "not in SEC ticker map",
-"cik": null
-},
-{
 "t": "JAN",
 "mcap": 10946376574,
 "why": "no usable annual data",
 "cik": 2100805
+},
+{
+"t": "MOG.B",
+"mcap": 10820771601,
+"why": "not in SEC ticker map",
+"cik": null
 },
 {
 "t": "QNT",
@@ -120,16 +120,16 @@
 "cik": 2110105
 },
 {
-"t": "UHAL.B",
-"mcap": 9680591467,
-"why": "not in SEC ticker map",
-"cik": null
-},
-{
 "t": "PAYP",
 "mcap": 9628975379,
 "why": "no usable annual data",
 "cik": 2080845
+},
+{
+"t": "UHAL.B",
+"mcap": 9562251571,
+"why": "not in SEC ticker map",
+"cik": null
 },
 {
 "t": "ENJ",
@@ -217,7 +217,7 @@
 },
 {
 "t": "GEF.B",
-"mcap": 4744718349,
+"mcap": 4624219031,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -409,25 +409,25 @@
 },
 {
 "t": "BGR",
-"mcap": 2296830126,
+"mcap": 2346997018,
 "why": "no companyfacts file",
 "cik": 1306550
 },
 {
 "t": "ALMR",
-"mcap": 2196314988,
+"mcap": 2206737236,
 "why": "no usable annual data",
 "cik": 2104204
 },
 {
 "t": "TRAX",
-"mcap": 2123164538,
+"mcap": 2046271779,
 "why": "no usable annual data",
 "cik": 2091349
 },
 {
 "t": "MFP",
-"mcap": 2063413357,
+"mcap": 2042607348,
 "why": "no usable annual data",
 "cik": 2088281
 },
@@ -436,11 +436,5 @@
 "mcap": 2041293850,
 "why": "no usable annual data",
 "cik": 2074973
-},
-{
-"t": "SSMR",
-"mcap": 2033881992,
-"why": "no usable annual data",
-"cik": 2091017
 }
 ]

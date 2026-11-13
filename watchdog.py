@@ -19,7 +19,7 @@ State lives in branch "watchdog" (state.json), so nothing is mailed twice.
 Env: GITHUB_TOKEN, GITHUB_REPOSITORY, GMAIL_USER, GMAIL_APP_PASSWORD, STATE_IN, STATE_OUT, TEST=1 (send a test mail), DRY=1 (no mail).
 Nothing private is printed: the contest output is ids and numbers only, never holdings.
 """
-import json, os, re, sys, math, smtplib, time, urllib.request, datetime as dt
+import json, os, re, sys, math, smtplib, time, urllib.request, urllib.error, datetime as dt
 from email.mime.text import MIMEText
 from email.header import Header
 
@@ -54,7 +54,8 @@ JOBS = {
 
 
 def get(url, gh=False, timeout=30):
-    h = {'User-Agent': 'rz-watchdog', 'Accept': 'application/json'}
+    h = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 rz-watchdog',
+         'Accept': 'application/json' if (gh or '/c/' in url) else 'text/html,*/*'}
     if gh and TOKEN:
         h['Authorization'] = 'Bearer ' + TOKEN
         h['Accept'] = 'application/vnd.github+json'
@@ -113,6 +114,8 @@ def check_site(issues):
             st, body = get(url, timeout=40)
             if st != 200 or len(body) < 2000:
                 issues['site:' + url] = f'{name} درست باز نمی‌شود (کد {st}).'
+        except urllib.error.HTTPError as e:
+            issues['site:' + url] = f'{name} باز نمی‌شود (کد {e.code}).'
         except Exception as e:
             issues['site:' + url] = f'{name} باز نمی‌شود ({type(e).__name__}).'
 
@@ -200,7 +203,7 @@ def main():
     stale_mail = not last or age_h(last) >= 24
     print('issues:', len(issues), '| new:', len(new))
     for k in sorted(issues):
-        print(' -', k)
+        print(' -', k, '|', issues[k])   # texts hold job names and numbers only, nothing private
     mailed = False
     if issues and (new or stale_mail):
         order = sorted(issues, key=lambda k: (k not in new, k))

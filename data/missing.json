@@ -1,13 +1,13 @@
 [
 {
 "t": "SPCX",
-"mcap": 1881248944970,
+"mcap": 1870384094003,
 "why": "no usable annual data",
 "cik": 1181412
 },
 {
 "t": "SKHY",
-"mcap": 954887420415,
+"mcap": 949055767550,
 "why": "no usable annual data",
 "cik": 2120882
 },
@@ -31,7 +31,7 @@
 },
 {
 "t": "VYLR",
-"mcap": 48406161797,
+"mcap": 48052491191,
 "why": "no usable annual data",
 "cik": 2128626
 },
@@ -49,7 +49,7 @@
 },
 {
 "t": "CBRS",
-"mcap": 26188472538,
+"mcap": 26001359948,
 "why": "no usable annual data",
 "cik": 2021728
 },
@@ -79,7 +79,7 @@
 },
 {
 "t": "MAIR",
-"mcap": 14084904566,
+"mcap": 13889527580,
 "why": "no usable annual data",
 "cik": 2098430
 },
@@ -97,7 +97,7 @@
 },
 {
 "t": "INIO",
-"mcap": 10927500000,
+"mcap": 10950525000,
 "why": "no usable annual data",
 "cik": 2109150
 },
@@ -127,7 +127,7 @@
 },
 {
 "t": "QNT",
-"mcap": 9332801761,
+"mcap": 9292929353,
 "why": "no usable annual data",
 "cik": 2110105
 },
@@ -175,7 +175,7 @@
 },
 {
 "t": "JMKE",
-"mcap": 6168547438,
+"mcap": 6124077992,
 "why": "no usable annual data",
 "cik": 2127043
 },
@@ -192,16 +192,16 @@
 "cik": 2083632
 },
 {
+"t": "MWH",
+"mcap": 5748834898,
+"why": "no usable annual data",
+"cik": 2065636
+},
+{
 "t": "OZK",
 "mcap": 5742224379,
 "why": "no companyfacts file",
 "cik": 1569650
-},
-{
-"t": "MWH",
-"mcap": 5637344799,
-"why": "no usable annual data",
-"cik": 2065636
 },
 {
 "t": "DPC",
@@ -211,7 +211,7 @@
 },
 {
 "t": "MDA",
-"mcap": 4711176400,
+"mcap": 4719285138,
 "why": "no usable annual data",
 "cik": 1857047
 },
@@ -223,7 +223,7 @@
 },
 {
 "t": "XE",
-"mcap": 4472328787,
+"mcap": 4468266726,
 "why": "no usable annual data",
 "cik": 2088896
 },
@@ -259,7 +259,7 @@
 },
 {
 "t": "LFTO",
-"mcap": 4106289530,
+"mcap": 4102902899,
 "why": "no usable annual data",
 "cik": 1850351
 },
@@ -289,7 +289,7 @@
 },
 {
 "t": "PDI",
-"mcap": 3447016200,
+"mcap": 3454308900,
 "why": "no usable annual data",
 "cik": 1510599
 },
@@ -301,7 +301,7 @@
 },
 {
 "t": "AYA",
-"mcap": 3288345715,
+"mcap": 3291226438,
 "why": "no companyfacts file",
 "cik": 1826836
 },
@@ -366,16 +366,16 @@
 "cik": 2104882
 },
 {
-"t": "TOWN",
-"mcap": 2775764676,
-"why": "not in SEC ticker map",
-"cik": null
-},
-{
 "t": "XXI",
-"mcap": 2759785442,
+"mcap": 2772495054,
 "why": "no usable annual data",
 "cik": 2070457
+},
+{
+"t": "TOWN",
+"mcap": 2723532545,
+"why": "not in SEC ticker map",
+"cik": null
 },
 {
 "t": "IOND",
@@ -403,7 +403,7 @@
 },
 {
 "t": "PURR",
-"mcap": 2390585219,
+"mcap": 2393355306,
 "why": "no usable annual data",
 "cik": 2078856
 },

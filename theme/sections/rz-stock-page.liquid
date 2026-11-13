@@ -73,6 +73,24 @@
   .rzx .faq details{border-bottom:1px solid #1c3150;padding:10px 0}
   .rzx .faq summary{cursor:pointer;font-weight:800}
   .rzx .faq p{margin:8px 0 0;color:#cfdbe8;font-size:14.5px}
+  .rzx .ab .lead{font-size:16px;color:#fff;margin:0 0 14px}
+  .rzx .ab .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+  @media (max-width:760px){.rzx .ab .g3{grid-template-columns:1fr}}
+  .rzx .ab .g3 div{background:#0f1d31;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .rzx .ab .g3 b,.rzx .ab h3{display:block;color:var(--ac);font-size:13.5px;font-weight:900;margin:0 0 4px}
+  .rzx .ab .g3 p{margin:0;font-size:14px;color:#cfdbe8}
+  .rzx .ab h3{margin:14px 0 8px}
+  .rzx .ab .mn{display:grid;gap:8px}
+  .rzx .ab .mn div{background:#0f1d31;border:1px solid var(--line);border-radius:12px;padding:9px 12px;font-size:14px}
+  .rzx .ab .mn .hd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+  .rzx .ab .mn b{color:#fff}
+  .rzx .ab .mn em{font-style:normal;color:var(--gold);font-size:12.5px;font-weight:800;background:#2a2410;border-radius:999px;padding:1px 10px;white-space:nowrap}
+  .rzx .ab .mn span{display:block;color:#cfdbe8;margin-top:3px}
+  .rzx .ab .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .rzx .ab .chips a,.rzx .ab .chips span{background:#0f1d31;border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13.5px;color:#fff;text-decoration:none}
+  .rzx .ab .chips a b{color:var(--ac);direction:ltr;display:inline-block;margin-right:4px}
+  .rzx .ab ul{margin:0;padding:0 18px 0 0;font-size:14.5px;color:#cfdbe8}
+  .rzx .ab ul li{padding:3px 0}
 </style>
 
 <div class="rzx" id="rzx" data-t="{{ t | escape }}">
@@ -132,6 +150,36 @@
     </div>
   </div>
 
+  {%- if d.about -%}
+  {%- assign ab = d.about -%}
+  <div class="card ab">
+    <h2>{{ label | escape }} چه کار می‌کند؟</h2>
+    <p class="lead">{{ ab.what | escape }}</p>
+    <div class="g3">
+      {%- if ab.problem != blank -%}<div><b>چه مشکلی را حل می‌کند</b><p>{{ ab.problem | escape }}</p></div>{%- endif -%}
+      {%- if ab.customers != blank -%}<div><b>مشتری‌هایش چه کسانی هستند</b><p>{{ ab.customers | escape }}</p></div>{%- endif -%}
+      {%- if ab.moat != blank -%}<div><b>مزیت رقابتی</b><p>{{ ab.moat | escape }}</p></div>{%- endif -%}
+    </div>
+    {%- if ab.money.size > 0 -%}
+    <h3>از کجا پول درمی‌آورد</h3>
+    <div class="mn">
+      {%- for m in ab.money -%}<div><p class="hd" style="margin:0"><b>{{ m.s | escape }}</b>{%- if m.w != blank -%}<em>{{ m.w | escape }}</em>{%- endif -%}</p>{%- if m.h != blank -%}<span>{{ m.h | escape }}</span>{%- endif -%}</div>{%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- if ab.rivals.size > 0 -%}
+    <h3>رقبای اصلی</h3>
+    <div class="chips">
+      {%- for r in ab.rivals -%}{%- if r.t -%}<a href="/pages/stocks/{{ r.t | downcase }}">{{ r.n | escape }}<b>{{ r.t }}</b></a>{%- else -%}<span>{{ r.n | escape }}</span>{%- endif -%}{%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- if ab.risks.size > 0 -%}
+    <h3>ریسک‌های اصلی کسب‌وکار</h3>
+    <ul>{%- for r in ab.risks -%}<li>{{ r | escape }}</li>{%- endfor -%}</ul>
+    {%- endif -%}
+    <p class="meta" style="margin:12px 0 0">بر اساس بخش «Business» گزارش سالانه‌ی رسمی شرکت (10-K){% if ab.updated_fa %} · بازبینی {{ ab.updated_fa }}{% endif %}</p>
+  </div>
+  {%- endif -%}
+
   <div class="two">
     <div class="card"><h2>✅ نقاط قوت</h2>
       {%- if d.strengths.size > 0 -%}<ul class="ck ok">{%- for s in d.strengths -%}<li>{{ s | escape }}</li>{%- endfor -%}</ul>{%- else -%}<p class="meta">موردی پیدا نشد.</p>{%- endif -%}
@@ -175,7 +223,9 @@
 
   <div class="card faq">
     <h2>سؤال‌های رایج درباره‌ی سهم {{ label | escape }}</h2>
-    <details open><summary>آیا سهم {{ label | escape }} ارزان است؟</summary>
+    {%- if d.about -%}<details open><summary>شرکت {{ label | escape }} چه کاری انجام می‌دهد؟</summary>
+      <p>{{ d.about.what | escape }}</p></details>{%- endif -%}
+    <details{% unless d.about %} open{% endunless %}><summary>آیا سهم {{ label | escape }} ارزان است؟</summary>
       <p>{% if d.ratios.pe %}نسبت P/E فعلی حدود {{ d.ratios.pe | round: 1 }} است{% else %}شرکت در سال آخر سود مثبت نداشته و P/E معنادار نیست{% endif %}{% if d.fair_gap != nil %} و بر اساس DCF با فرض‌های متوسط، ارزش ذاتی حدود {{ d.fair_gap | times: 100 | round | abs }}٪ {% if d.fair_gap >= 0 %}بالاتر{% else %}پایین‌تر{% endif %} از قیمت فعلی است{% endif %}. امتیاز «ارزش» این سهم {{ d.scores.value | default: '—' }} از ۵ است.</p></details>
     <details><summary>وضعیت سلامت مالی {{ label | escape }} چطور است؟</summary>
       <p>امتیاز سلامت مالی {{ d.scores.health | default: '—' }} از ۵ است؛ این امتیاز بدهی، نقدینگی، پوشش بهره و جریان نقد آزاد را می‌سنجد.</p></details>
@@ -212,6 +262,10 @@
       {"@type": "ListItem", "position": 2, "name": "تحلیل سهام", "item": "{{ shop.url }}/pages/stock"},
       {"@type": "ListItem", "position": 3, "name": {{ t | json }}, "item": "{{ shop.url }}/pages/stocks/{{ tl }}"}]},
     {"@type": "FAQPage", "mainEntity": [
+      {%- if d.about %}
+      {"@type": "Question", "name": {{ 'شرکت ' | append: label | append: ' چه کاری انجام می‌دهد؟' | json }},
+       "acceptedAnswer": {"@type": "Answer", "text": {{ d.about.what | json }}}},
+      {%- endif %}
       {"@type": "Question", "name": {{ 'آیا سهم ' | append: label | append: ' ارزان است؟' | json }},
        "acceptedAnswer": {"@type": "Answer", "text": {{ 'امتیاز ارزش این سهم ' | append: d.scores.value | append: ' از ۵ و امتیاز کلی آن ' | append: tot | append: ' از ۵ است.' | json }}}}]}
   ]

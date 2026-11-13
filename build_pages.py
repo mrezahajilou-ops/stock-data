@@ -11,6 +11,34 @@ from collections import defaultdict
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 SRC = os.path.join(ROOT, 'data', 'stocks')
+PROF = os.path.join(ROOT, 'content', 'profiles')   # hand-written Persian company intros (content/build_profiles.py)
+
+
+def about(t):
+    """The company intro for the page, or None. Rivals 'Name|TICKER' become {n, t} (t only when the site covers it)."""
+    try:
+        p = json.load(open(os.path.join(PROF, t + '.json'), encoding='utf-8'))
+    except Exception:
+        return None
+    rv = []
+    for r in p.get('rivals') or []:
+        n, _, rt = str(r).partition('|')
+        rv.append({'n': n.strip(), 't': rt.strip() or None})
+    return {'what': p.get('what'), 'problem': p.get('problem'), 'customers': p.get('customers'),
+            'money': [{'s': m[0], 'w': m[1] if len(m) > 1 else '', 'h': m[2] if len(m) > 2 else ''} for m in p.get('money') or []],
+            'moat': p.get('moat'), 'rivals': rv, 'risks': p.get('risks') or [], 'updated_fa': month_fa(p.get('updated'))}
+
+
+MONTHS = ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر']
+
+
+def month_fa(ym):
+    """'2026-10' -> 'اکتبر ۲۰۲۶' (no Latin digits inside Persian text)."""
+    try:
+        y, m = str(ym).split('-')[:2]
+        return MONTHS[int(m) - 1] + ' ' + str(int(y)).translate(str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹'))
+    except Exception:
+        return None
 OUT = os.path.join(ROOT, 'pages')
 
 FA_NAME = {
@@ -137,6 +165,13 @@ def page(d, related):
         'growth': {k: num(s.get(k), 4) for k in ('rev_cagr_1y', 'rev_cagr_5y', 'eps_cagr_5y', 'fcf_cagr_3y', 'roic_avg_5y', 'net_margin_avg_5y')},
         'hist': hist, 'related': related,
     }
+    ab = about(t)
+    if ab:
+        data['about'] = ab
+        # the meta description leads with what the company does (what searchers ask first), then the numbers
+        desc = ab['what'] + ' ' + desc
+        if len(desc) > 300:
+            desc = desc[:300].rsplit(' ', 1)[0] + '…'
     fields = {'ticker': t, 'name': nm_en, 'sector': sector_fa or '', 'seo_title': title[:255], 'seo_description': desc,
               'summary': summary, 'data': json.dumps(data, ensure_ascii=False, separators=(',', ':')),
               'updated': dt.date.today().isoformat()}

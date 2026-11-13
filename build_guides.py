@@ -83,7 +83,9 @@ CSS = '''<style>
 .rzg .upd{color:#8A8F99;font-size:.9em}
 .rzg .box{background:#15181F;border:1px solid #262B36;border-radius:12px;padding:14px 18px;margin:18px 0}
 .rzg .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0;border:1px solid #262B36;border-radius:12px}
-.rzg table{width:100%;border-collapse:collapse;font-size:.92em;min-width:520px}
+.rzg table{width:100%!important;border-collapse:collapse;font-size:.92em;min-width:520px;table-layout:auto!important;margin:0!important}
+.rzg th,.rzg td{width:auto!important}
+.rzg td:nth-child(2){min-width:150px}
 .rzg th{background:#1C2029;color:#C9A961;font-weight:700;text-align:right;padding:9px 10px;white-space:nowrap}
 .rzg td{padding:8px 10px;border-top:1px solid #262B36;vertical-align:middle}
 .rzg td.n{white-space:nowrap}
@@ -93,7 +95,8 @@ CSS = '''<style>
 .rzg .chips a{display:inline-block;margin:4px 0 4px 8px;padding:4px 12px;border:1px solid #262B36;border-radius:999px;text-decoration:none;font-size:.9em}
 .rzg .faq h3{font-size:1.05em;margin:16px 0 4px}
 .rzg .dis{color:#8A8F99;font-size:.85em;margin-top:26px}
-@media(max-width:600px){.rzg table{min-width:0;font-size:.82em}.rzg th,.rzg td{padding:7px 6px}.rzg th{white-space:normal}.rzg td .tk{display:block;margin:0}.rzg .hm{display:none}.rzg td.n{white-space:normal}}
+@media(max-width:700px){.rzg .hm{display:none}}
+@media(max-width:600px){.rzg td:nth-child(2){min-width:0}.rzg table{min-width:0;font-size:.82em}.rzg th,.rzg td{padding:7px 6px}.rzg th{white-space:normal}.rzg td .tk{display:block;margin:0}.rzg .hm{display:none}.rzg td.n{white-space:normal}}
 </style>'''
 
 

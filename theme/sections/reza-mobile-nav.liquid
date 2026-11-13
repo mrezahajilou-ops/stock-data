@@ -1,0 +1,62 @@
+<style>
+  /* Mobile bottom navigation – replaces the floating pills on phones; desktop keeps the pills. */
+  .rzmn{display:none}
+  @media (max-width:820px){
+    .rzcb,.rzkb,.rznb,.rzsb{display:none!important}
+    body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))!important}
+    #rzb-btn{bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+    /* homepage: sticky buy bar sits above the nav, hero is more compact */
+    .rz-sticky{bottom:calc(68px + env(safe-area-inset-bottom,0px))!important;padding:7px 14px!important}
+    .rz-sticky .rz-btn{font-size:15px!important;padding:9px 18px!important}
+    .rz-cover img{max-width:170px!important}
+    .rz-hero{padding:28px 0 36px!important}
+    .rz-hero .rz-hero-grid{gap:22px!important}
+    .rz-disc{padding-bottom:40px!important}
+    .rzmn{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+      padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));
+      background:rgba(11,20,34,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+      border-top:1px solid rgba(255,255,255,.10);box-shadow:0 -8px 30px rgba(0,0,0,.35);direction:rtl;
+      font-family:'Vazirmatn',Tahoma,sans-serif}
+    .rzmn a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;
+      border-radius:14px;text-decoration:none!important;color:#dfe7f3!important;font-weight:800;font-size:11.5px;line-height:1.2;
+      position:relative;-webkit-tap-highlight-color:transparent;transition:background .15s}
+    .rzmn a:active{background:rgba(255,255,255,.08)}
+    .rzmn .ic{font-size:22px;line-height:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+    .rzmn a.on{color:#fff!important;background:rgba(31,157,107,.18)}
+    .rzmn .dot{position:absolute;top:5px;right:calc(50% - 17px);width:8px;height:8px;border-radius:50%;background:#ff5a5f;
+      box-shadow:0 0 0 2px rgba(11,20,34,1);animation:rzmnP 1.6s infinite}
+    .rzmn .badge{position:absolute;top:2px;right:calc(50% - 34px);background:#f5b301;color:#1d1d1f;font-size:9.5px;font-weight:900;
+      padding:1px 6px;border-radius:999px;box-shadow:0 0 0 2px rgba(11,20,34,1)}
+    @keyframes rzmnP{0%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 0 rgba(255,90,95,.8)}70%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 8px rgba(255,90,95,0)}100%{box-shadow:0 0 0 2px rgba(11,20,34,1),0 0 0 0 rgba(255,90,95,0)}}
+  }
+</style>
+<nav class="rzmn" aria-label="منوی ابزارها">
+  <a href="{{ section.settings.link_stock | default: '/pages/stock' }}"{% if request.path contains '/pages/stock' or request.path contains '/pages/screener' or request.path contains '/pages/dcf' or request.path contains '/pages/return-calculator' %} class="on"{% endif %}>
+    <span class="ic">📊</span><span>{{ section.settings.label_stock | default: 'تحلیل سهام' }}</span>
+  </a>
+  {%- comment -%} Nov 2026: the calculator slot became gold & silver; the return calculator stays inside the stock tools. {%- endcomment -%}
+  <a href="/pages/gold"{% if request.path contains '/pages/gold' %} class="on"{% endif %}>
+    <span class="ic">🥇</span><span>طلا و نقره</span>
+  </a>
+  <a href="{{ section.settings.link_news | default: '/blogs/news' }}"{% if request.path contains '/blogs/' %} class="on"{% endif %}>
+    <span class="dot"></span><span class="ic">📰</span><span>{{ section.settings.label_news | default: 'اخبار و مقالات' }}</span>
+  </a>
+  <a href="{{ section.settings.link_contest | default: '/pages/contest' }}"{% if request.path contains '/pages/contest' %} class="on"{% endif %}>
+    <span class="badge">۵۰۰€</span><span class="ic">🏆</span><span>{{ section.settings.label_contest | default: 'مسابقه' }}</span>
+  </a>
+</nav>
+{% schema %}
+{
+  "name": "Reza mobile nav",
+  "settings": [
+    { "type": "text", "id": "label_stock", "label": "Stock label", "default": "تحلیل سهام" },
+    { "type": "url", "id": "link_stock", "label": "Stock link" },
+    { "type": "text", "id": "label_calc", "label": "Calculator label (no longer shown)", "default": "ماشین‌حساب" },
+    { "type": "url", "id": "link_calc", "label": "Calculator link (no longer shown)" },
+    { "type": "text", "id": "label_news", "label": "News label", "default": "اخبار و مقالات" },
+    { "type": "url", "id": "link_news", "label": "News link" },
+    { "type": "text", "id": "label_contest", "label": "Contest label", "default": "مسابقه" },
+    { "type": "url", "id": "link_contest", "label": "Contest link" }
+  ]
+}
+{% endschema %}

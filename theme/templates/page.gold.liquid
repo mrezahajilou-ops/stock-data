@@ -1,0 +1,67 @@
+{%- comment -%}
+  Gold & silver (/pages/gold). Live part: web/gold.html in GitHub (data: branch "gold", gold.py).
+  The text below the tool is rendered here on the server so search engines can read it. Dollars only.
+  Stock Pro unlocks the drivers block (real yield, 10y, dollar, CFTC positioning); see snippets/rz-pro-access.liquid.
+{%- endcomment -%}
+{%- capture rz_acc -%}{%- render 'rz-pro-access' -%}{%- endcapture -%}
+{%- assign rz_access = false -%}{%- if rz_acc contains '1' -%}{%- assign rz_access = true -%}{%- endif -%}
+<script>
+  window.RZS_ACCESS = {{ rz_access | json }};
+  window.RZS_LOGGED = {% if customer %}true{% else %}false{% endif %};
+  window.RZS_SUB_URL = '/products/stock-data-pro';
+  window.RZS_SUB_Y = '/products/stock-data-pro-yearly';
+</script>
+<style>
+  #rz-app-gold table{table-layout:auto!important;margin:0}
+  .rzgs{direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif;max-width:1500px;margin:0 auto;padding:0 22px 48px;color:#E8E4DA;line-height:1.95;box-sizing:border-box}
+  .rzgs h2{font-size:20px;font-weight:800;margin:26px 0 8px;color:#fff}
+  .rzgs h3{font-size:16px;font-weight:800;margin:16px 0 4px;color:#C9A961}
+  .rzgs p{margin:0 0 10px;font-size:15px;color:#cfd3da}
+  .rzgs details{border-bottom:1px solid #262B36;padding:10px 0}
+  .rzgs summary{cursor:pointer;font-weight:800;color:#fff}
+  .rzgs .num{direction:ltr;unicode-bidi:isolate}
+  @media (max-width:600px){.rzgs{padding:0 16px 40px}}
+</style>
+<div style="padding:24px 0 8px">
+  {% render 'rz-app', app: 'gold' %}
+</div>
+<section class="rzgs">
+  <h2>قیمت طلا و نقره چطور تعیین می‌شود؟</h2>
+  <p>قیمت جهانی طلا و نقره به دلار و برای هر اونس (حدود ۳۱٫۱ گرم) اعلام می‌شود و در بازارهای بزرگی مثل بورس کامکس نیویورک و بازار لندن، تقریباً بیست‌وچهار ساعته در روزهای کاری معامله می‌شود. قیمت هر گرم طلای خالص از تقسیم قیمت اونس بر ۳۱٫۱ به دست می‌آید.</p>
+  <h3>بازده واقعی اوراق قرضه: مهم‌ترین عامل</h3>
+  <p>طلا سود یا بهره‌ای پرداخت نمی‌کند. وقتی بازده واقعی اوراق قرضه‌ی آمریکا (نرخ بهره منهای تورم) بالا می‌رود، نگه‌داشتن طلا پرهزینه‌تر می‌شود و معمولاً قیمتش فشار می‌خورد؛ وقتی بازده واقعی پایین می‌آید، طلا جذاب‌تر می‌شود.</p>
+  <h3>دلار آمریکا</h3>
+  <p>چون طلا به دلار قیمت‌گذاری می‌شود، دلار قوی‌تر طلا را برای خریداران خارج از آمریکا گران‌تر می‌کند و معمولاً تقاضا را کم می‌کند.</p>
+  <h3>بانک‌های مرکزی، صندوق‌ها و سفته‌بازها</h3>
+  <p>خرید بانک‌های مرکزی، ورود و خروج پول به صندوق‌های طلا و موقعیت معامله‌گران بزرگ در بازار آتی (گزارش هفتگی کمیسیون معاملات آتی کالای آمریکا) هم روی قیمت اثر دارند.</p>
+  <h3>نقره: هم فلز گران‌بها، هم فلز صنعتی</h3>
+  <p>نقره مثل طلا پناهگاه ارزش است، اما بخش بزرگی از تقاضایش صنعتی است؛ مثلاً در پنل‌های خورشیدی و الکترونیک. برای همین نقره معمولاً از طلا پرنوسان‌تر است.</p>
+
+  <h2>سؤال‌های رایج درباره‌ی قیمت طلا و نقره</h2>
+  <details open><summary>قیمت هر گرم طلا چطور حساب می‌شود؟</summary>
+    <p>قیمت هر اونس را بر ۳۱٫۱ تقسیم کنید تا قیمت هر گرم طلای خالص (۲۴ عیار) به دست بیاید. برای طلای ۱۸ عیار این عدد را در ۰٫۷۵ ضرب کنید و بعد اجرت ساخت و مالیات را اضافه کنید. ماشین‌حساب همین صفحه این کار را خودکار انجام می‌دهد.</p></details>
+  <details><summary>طلای ۱۸ عیار یعنی چه؟</summary>
+    <p>یعنی ۱۸ قسمت از ۲۴ قسمت آن طلای خالص است (۷۵ درصد یا «۷۵۰»). طلای ۲۴ عیار تقریباً خالص است (۹۹۹) و طلای ۲۱ و ۲۲ عیار به ترتیب ۸۷٫۵ و ۹۱٫۶ درصد طلا دارند.</p></details>
+  <details><summary>چرا با بالا رفتن نرخ بهره، طلا معمولاً ارزان می‌شود؟</summary>
+    <p>چون طلا سودی نمی‌دهد. وقتی سپرده و اوراق قرضه بازده واقعی بیشتری می‌دهند، هزینه‌ی فرصت نگه‌داشتن طلا بالا می‌رود. این رابطه همیشگی نیست، اما در بیشتر سال‌ها برقرار بوده است.</p></details>
+  <details><summary>نسبت طلا به نقره چیست؟</summary>
+    <p>نشان می‌دهد با پول یک اونس طلا چند اونس نقره می‌شود خرید. وقتی این نسبت خیلی بالاتر از میانگین بلندمدتش باشد، نقره نسبت به طلا ارزان‌تر از معمول است و برعکس.</p></details>
+  <details><summary>میانگین متحرک ۵۰ و ۲۰۰ روزه یعنی چه؟</summary>
+    <p>میانگین قیمت پایانی در ۵۰ یا ۲۰۰ روز معاملاتی گذشته است و روند کوتاه‌مدت و بلندمدت را نشان می‌دهد. وقتی میانگین ۵۰ روزه از ۲۰۰ روزه بالاتر برود به آن «تقاطع طلایی» و برعکسش را «تقاطع مرگ» می‌گویند. این‌ها توصیف گذشته‌اند، نه پیش‌بینی آینده.</p></details>
+  <p style="font-size:12.5px;color:#8A8F99;margin-top:16px">همه‌ی قیمت‌ها به دلار آمریکا و از منابع بین‌المللی است. این صفحه آموزشی است و توصیه‌ی خرید یا فروش نیست.</p>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "خانه", "item": "{{ shop.url }}/"},
+      {"@type": "ListItem", "position": 2, "name": "قیمت طلا و نقره", "item": "{{ shop.url }}/pages/gold"}]},
+    {"@type": "FAQPage", "mainEntity": [
+      {"@type": "Question", "name": "قیمت هر گرم طلا چطور حساب می‌شود؟", "acceptedAnswer": {"@type": "Answer", "text": "قیمت هر اونس را بر ۳۱٫۱ تقسیم کنید تا قیمت هر گرم طلای خالص (۲۴ عیار) به دست بیاید. برای طلای ۱۸ عیار این عدد را در ۰٫۷۵ ضرب کنید و بعد اجرت ساخت و مالیات را اضافه کنید."}},
+      {"@type": "Question", "name": "طلای ۱۸ عیار یعنی چه؟", "acceptedAnswer": {"@type": "Answer", "text": "یعنی ۱۸ قسمت از ۲۴ قسمت آن طلای خالص است (۷۵ درصد یا ۷۵۰)."}},
+      {"@type": "Question", "name": "چرا با بالا رفتن نرخ بهره، طلا معمولاً ارزان می‌شود؟", "acceptedAnswer": {"@type": "Answer", "text": "چون طلا سودی نمی‌دهد و وقتی اوراق قرضه بازده واقعی بیشتری می‌دهند، هزینه‌ی فرصت نگه‌داشتن طلا بالا می‌رود."}},
+      {"@type": "Question", "name": "نسبت طلا به نقره چیست؟", "acceptedAnswer": {"@type": "Answer", "text": "نشان می‌دهد با پول یک اونس طلا چند اونس نقره می‌شود خرید."}}]}
+  ]
+}
+</script>

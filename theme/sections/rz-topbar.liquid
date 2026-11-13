@@ -1,10 +1,11 @@
 {%- comment -%}
-  Quick links on every page: home, stock analysis, contest, account. Tool pages (rz-app) draw the same bar themselves (gen_web.py ACCT),
+  Quick links on every page: home, stock analysis, gold & silver (desktop only), contest, account. Tool pages (rz-app) draw the same bar themselves (gen_web.py ACCT),
   so this one hides itself when the page contains an rz-app container.
 {%- endcomment -%}
 <div class="rzgt" dir="rtl">
   {%- unless template.name == 'index' -%}<a class="q" href="/">🏠 <span class="lg">صفحه اصلی</span><span class="sm">خانه</span></a>{%- endunless -%}
   {%- unless request.path == '/pages/stock' -%}<a class="q" href="/pages/stock">📊 تحلیل سهام</a>{%- endunless -%}
+  {%- unless request.path == '/pages/gold' -%}<a class="q g" href="/pages/gold">🥇 طلا و نقره</a>{%- endunless -%}
   <a class="q c" href="/pages/contest-portfolio">🏆 مسابقه</a>
   {%- if customer -%}<a class="a in" href="{{ routes.account_url }}">👤 حساب من</a>
   {%- else -%}<a class="a" href="{{ routes.account_login_url }}?return_url={{ request.path | url_encode }}">👤 <span class="lg">ورود مشترکین</span><span class="sm">ورود</span></a>{%- endif -%}
@@ -20,6 +21,7 @@
   .rzgt .a.in{background:transparent;color:#c9a961!important;border:1px solid #c9a961}
   body:has([id^="rz-app-"]) .rzgt{display:none}
   .rzgt .sm{display:none}
+  @media (max-width:820px){.rzgt .g{display:none}}  /* phones reach gold from the bottom menu */
   @media (max-width:480px){.rzgt .lg{display:none}.rzgt .sm{display:inline}}
   @media (max-width:420px){.rzgt{gap:5px}.rzgt a{font-size:12px;padding:4px 9px}}
   @media (max-width:360px){.rzgt{gap:4px}.rzgt a{font-size:11px;padding:3px 7px}}

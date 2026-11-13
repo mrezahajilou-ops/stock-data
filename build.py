@@ -1432,6 +1432,31 @@ def fill_from_press(rec):
         roll_forward(rec, [[d, rv, ni] for d, rv, ni, *_ in rows], "press")
 
 
+
+DIVY_MAX = 0.25  # above this a yield must be confirmed by a second, independent source
+
+
+def div_yield(ref_y, dps, price, div_t, mcap):
+    """Dividend yield with a cross-check.
+    Sources: Yahoo forward yield (current rate / price, reflects raises and cuts), trailing dividends
+    per share / price, and trailing dividends paid / market cap. A single source is trusted up to 25%;
+    a higher value is used only if another source agrees within ±40% (special dividends, unit or
+    currency mix-ups and stale feeds otherwise produce yields of hundreds or thousands of percent)."""
+    ok = lambda v: isinstance(v, (int, float)) and v == v and v >= 0
+    fwd = ref_y if ok(ref_y) else None
+    tr = dps / price if ok(dps) and price else None
+    paid = div_t / mcap if ok(div_t) and mcap else None
+    others = [v for v in (tr, paid) if v is not None]
+    def agrees(v, pool):
+        return any(o > 0 and 0.6 <= v / o <= 1.4 for o in pool)
+    for v, pool in ((fwd, others), (tr, [x for x in (fwd, paid) if x is not None]), (paid, [x for x in (fwd, tr) if x is not None])):
+        if v is None:
+            continue
+        if v <= DIVY_MAX or agrees(v, pool):
+            return v
+    return None
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     fill_from_yahoo(rec, EST.get(rec["ticker"]))
@@ -1547,11 +1572,7 @@ def score(rec, mk, sector_pe):
     parts = [x for x in (value, future, past, health, capital) if x is not None]
     total = round(sum(parts) / len(parts), 1) if parts else None
     div_t = t.get("dividends") if t.get("dividends") is not None else last.get("dividends")
-    divy = (div_t or 0) / mcap if mcap else None
-    if isinstance(ref.get("divy"), (int, float)):
-        divy = ref["divy"]  # forward yield: current dividend rate / price (reflects cuts, raises and spin-offs)
-    elif t.get("dps") and price:
-        divy = t["dps"] / price  # dividends declared per share in the last four quarters / price
+    divy = div_yield(ref.get("divy"), t.get("dps"), price, div_t, mcap)
     buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
     checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],

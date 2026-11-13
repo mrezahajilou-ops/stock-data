@@ -41,9 +41,15 @@ def get(url, timeout=40, accept='application/json, text/csv, text/html, */*'):
 
 
 # ------------------------------------------------------------------ prices
-def yahoo(sym, rng='max', interval='1d'):
-    url = ('https://query2.finance.yahoo.com/v8/finance/chart/%s?range=%s&interval=%s&includeAdjustedClose=false'
-           % (urllib.parse.quote(sym), rng, interval))
+def yahoo(sym, rng=None, interval='1d'):
+    """rng=None: daily bars for the last 21 years (period1/period2 keeps Yahoo from thinning long ranges)."""
+    if rng:
+        q = 'range=%s' % rng
+    else:
+        now = int(time.time())
+        q = 'period1=%d&period2=%d' % (now - int(21 * 365.25 * 86400), now)
+    url = ('https://query2.finance.yahoo.com/v8/finance/chart/%s?%s&interval=%s&includeAdjustedClose=false'
+           % (urllib.parse.quote(sym), q, interval))
     j = json.loads(get(url))
     r = ((j.get('chart') or {}).get('result') or [None])[0] or {}
     meta = r.get('meta') or {}
@@ -226,6 +232,7 @@ def main():
     out = {'as_of': dt.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')}
     syms = {'gold': 'GC=F', 'silver': 'SI=F', 'spx': '^GSPC', 'btc': 'BTC-USD'}
     hist = {k: (safe('hist ' + k, yahoo, s) or [[], {}])[0] for k, s in syms.items()}
+    LOG.append('rows ' + ' '.join('%s=%d' % (k, len(v)) for k, v in hist.items()))
     if len(hist['gold']) < 500 or len(hist['silver']) < 500:
         print('\n'.join(LOG)); sys.exit('gold/silver history missing')
     out['spot'] = {k: safe('spot ' + k, spot, s) for k, s in syms.items()}

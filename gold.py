@@ -128,8 +128,9 @@ def treasury(kind, col='10 YR'):
         rd = csv.DictReader(io.StringIO(get(url, accept='text/csv')))
         for r in rd:
             try:
-                rows.append([dt.datetime.strptime(r['Date'], '%m/%d/%Y').date().isoformat(), float(r[col])])
-            except (KeyError, ValueError, TypeError):
+                v = next(r[k] for k in r if k and k.strip().upper() == col)
+                rows.append([dt.datetime.strptime(r['Date'], '%m/%d/%Y').date().isoformat(), float(v)])
+            except (KeyError, ValueError, TypeError, StopIteration):
                 pass
     return sorted(rows)
 

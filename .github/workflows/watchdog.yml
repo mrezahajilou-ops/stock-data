@@ -1,0 +1,49 @@
+name: Watchdog (jobs, site, worker, contest) - emails Reza on problems
+
+on:
+  schedule:
+    - cron: '23 */2 * * *'   # backup only: GitHub delays schedules by hours; the worker also starts this every hour
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Send a test email only'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write    # state.json in branch "watchdog"
+  actions: read
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: watchdog.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Previous state
+        run: curl -sf "https://raw.githubusercontent.com/${{ github.repository }}/watchdog/state.json" -o state_in.json || echo '{}' > state_in.json
+      - name: Check (nothing private is printed)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TEST: ${{ github.event.inputs.test == 'true' && '1' || '' }}
+        run: python watchdog.py
+      - name: Save state to branch "watchdog"
+        if: github.event.inputs.test != 'true'
+        run: |
+          mkdir out && cp state.json out/ && cd out
+          git init -q && git checkout -q -b watchdog
+          git -c user.name=github-actions -c user.email=actions@github.com add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm "watchdog $(date -u +%FT%TZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" watchdog:watchdog

@@ -427,6 +427,75 @@ async function cDetail(env, prof, Q) {
   return { cash: prof.cash, positions: pos.map(p => ({ t: p.t, qty: p.qty, cost: p.cost, px: Q[p.t] ? Q[p.t][0] : null, chg: Q[p.t] ? Q[p.t][1] : null })), orders, income: cash };
 }
 
+/* ---------- nightly audit (read-only; result in c_kv 'audit', served at GET /c/audit for the GitHub watchdog) ----------
+   Public output = profile ids, issue codes and numbers. Never tickers or holdings (they stay private until C_DETAIL_FROM).
+   Cash ledger:  cash = 10,000 - filled buys + filled sells + dividends/fixes (c_cash).
+   Share ledger: qty  = filled buys - filled sells (tickers with a split are skipped: a split changes qty without a trade).
+   Differences that already existed when the audit started (manual corrections before fixes were logged) are kept once
+   as an accepted baseline in c_kv 'audit_base' and listed openly in the output; only new differences are issues. */
+async function cAudit(env) {
+  const now = cnow(), issues = [], add = (pid, code, fa) => issues.push({ pid, code, fa });
+  const Q = await cQuotes();
+  const profs = await cq(env, "SELECT id, cash, house FROM c_profiles WHERE status!='removed'");
+  const fills = await cq(env, "SELECT pid, t, side, SUM(fill_amt) amt, SUM(fill_qty) q, MAX(fill_ts) last FROM c_orders WHERE status='filled' GROUP BY pid, t, side");
+  const income = await cq(env, "SELECT pid, SUM(amount) a FROM c_cash GROUP BY pid");
+  const splits = new Set((await cq(env, "SELECT pid, t FROM c_cash WHERE kind='split'")).map(r => r.pid + ':' + r.t));
+  const posAll = await cq(env, 'SELECT pid, t, qty FROM c_pos WHERE qty>0.0000001');
+  const baseRow = await c1(env, "SELECT v FROM c_kv WHERE k='audit_base'");
+  const first = !baseRow, base = baseRow ? JSON.parse(baseRow.v) : {};
+  const inc = Object.fromEntries(income.map(r => [r.pid, r.a || 0]));
+  const fmt = (x) => (Math.round(x * 100) / 100).toLocaleString('en-US');
+  for (const p of profs) {
+    const F = fills.filter(f => f.pid === p.id);
+    const want = C_START - F.filter(f => f.side === 'buy').reduce((s, f) => s + (f.amt || 0), 0)
+                         + F.filter(f => f.side === 'sell').reduce((s, f) => s + (f.amt || 0), 0) + (inc[p.id] || 0);
+    const diff = Math.round((p.cash - want) * 100) / 100, bk = 'cash:' + p.id;
+    if (first && Math.abs(diff) > 0.05) base[bk] = diff;
+    if (Math.abs(diff - (base[bk] || 0)) > 0.05) add(p.id, 'cash', `نقد پورتفوی ${p.id} با دفتر معاملات نمی‌خواند: ${fmt(p.cash)} دلار به‌جای ${fmt(want + (base[bk] || 0))}`);
+    if (p.cash < -0.01) add(p.id, 'neg_cash', `نقد پورتفوی ${p.id} منفی است: ${fmt(p.cash)} دلار`);
+    const pos = posAll.filter(x => x.pid === p.id), tick = new Set([...pos.map(x => x.t), ...F.map(f => f.t)]);
+    let k = 0;
+    for (const t of tick) {
+      k++;
+      if (splits.has(p.id + ':' + t)) continue;
+      const b = F.find(f => f.t === t && f.side === 'buy'), s = F.find(f => f.t === t && f.side === 'sell');
+      const wq = ((b && b.q) || 0) - ((s && s.q) || 0), hq = (pos.find(x => x.t === t) || { qty: 0 }).qty;
+      const d = hq - wq, qk = 'qty:' + p.id + ':' + t;
+      if (first && Math.abs(d) > 1e-4) base[qk] = d;
+      if (Math.abs(d - (base[qk] || 0)) > 1e-4) add(p.id, 'qty', `تعداد سهم شماره‌ی ${k} پورتفوی ${p.id} با دفتر معاملات نمی‌خواند (اختلاف ${d.toFixed(4)})`);
+    }
+    // 70% rule: only a fresh breach (a buy of that position in the last 26 h) can be a bug; later drift from price moves is allowed
+    const total = p.cash + pos.reduce((v, x) => v + (Q[x.t] ? x.qty * Q[x.t][0] : 0), 0);
+    for (const x of pos) {
+      const q = Q[x.t], b = F.find(f => f.t === x.t && f.side === 'buy');
+      if (!q) { add(p.id, 'no_price', `یکی از سهم‌های پورتفوی ${p.id} قیمت ندارد`); continue; }
+      if (total > 0 && x.qty * q[0] / total > C_MAX_W + 0.005 && b && now - b.last < 26 * 3600)
+        add(p.id, 'w70', `پورتفوی ${p.id} بعد از خرید دیروز بیش از ۷۰٪ در یک سهم است (${Math.round(x.qty * q[0] / total * 100)}٪)`);
+    }
+  }
+  const stuck = await cq(env, "SELECT pid, COUNT(*) n FROM c_orders WHERE status='filling' AND fill_ts<?1 GROUP BY pid", now - 900);
+  for (const r of stuck) add(r.pid, 'stuck', `${r.n} سفارش پورتفوی ${r.pid} بیش از ۱۵ دقیقه نیمه‌کاره مانده`);
+  const old = await cq(env, "SELECT pid, COUNT(*) n FROM c_orders WHERE status='pending' AND ts<?1 AND t NOT IN (SELECT t FROM c_hold) GROUP BY pid", now - 4 * 86400);
+  for (const r of old) add(r.pid, 'old_order', `${r.n} سفارش پورتفوی ${r.pid} بیش از ۴ روز اجرا نشده`);
+  const held = await cq(env, 'SELECT COUNT(*) n FROM c_hold WHERE ts<?1', now - 3 * 86400);
+  if (held[0] && held[0].n) add(0, 'hold', `${held[0].n} نماد بیش از ۳ روز به خاطر احتمال اسپلیت متوقف مانده`);
+  // day-over-day snapshot jumps above 30%
+  const snaps = await cq(env, 'SELECT pid, d, v FROM c_snap WHERE pid>0 AND d>=?1 ORDER BY pid, d', cday(now - 6 * 86400));
+  for (let i = 1; i < snaps.length; i++) {
+    const a = snaps[i - 1], b = snaps[i];
+    if (a.pid === b.pid && a.v > 0 && Math.abs(b.v / a.v - 1) > 0.30 && b.d >= cday(now - 2 * 86400))
+      add(b.pid, 'jump', `ارزش پورتفوی ${b.pid} در یک روز ${Math.round((b.v / a.v - 1) * 100)}٪ تغییر کرده (${fmt(a.v)} → ${fmt(b.v)})`);
+  }
+  const out = { as_of: new Date(now * 1000).toISOString().slice(0, 19) + 'Z', profiles: profs.length, issues,
+                // accepted old differences, without tickers: {"cash:12": -3.5, "qty:12": 2}  (qty = number of positions)
+                baseline: Object.keys(base).length ? Object.entries(base).reduce((o, [k, v]) => {
+                  const [kind, pid] = k.split(':'); if (kind === 'cash') o[k] = v; else o['qty:' + pid] = (o['qty:' + pid] || 0) + 1; return o; }, {}) : undefined };
+  const st = [env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('audit', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify(out), now)];
+  if (first) st.push(env.DB.prepare("INSERT OR IGNORE INTO c_kv (k, v, ts) VALUES ('audit_base', ?1, ?2)").bind(JSON.stringify(base), now));
+  await env.DB.batch(st);
+  return out;
+}
+
 /* ---------- router ---------- */
 async function contest(req, env, url, h) {
   await cSchema(env);
@@ -445,6 +514,11 @@ async function contest(req, env, url, h) {
     const kv = await c1(env, 'SELECT v FROM c_kv WHERE k=?1', path === '/quotes.json' ? 'quotes' : 'market');
     if (!kv) return J({ error: 'not ready' }, 503);
     return new Response(kv.v, { headers: { ...h, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=60' } });
+  }
+  if (req.method === 'GET' && path === '/audit') {
+    const kv = await c1(env, "SELECT v FROM c_kv WHERE k='audit'");
+    if (!kv) return J({ error: 'not ready' }, 503);
+    return new Response(kv.v, { headers: { ...h, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' } });
   }
   if (req.method === 'GET' && path === '/tickers') {
     return J({ t: (await cq(env, 'SELECT DISTINCT t FROM c_pos WHERE qty>0')).map(r => r.t) });
@@ -535,6 +609,7 @@ async function contest(req, env, url, h) {
       return J({ ok: true });
     }
     if (b.holds) return J({ holds: await cq(env, 'SELECT * FROM c_hold') });
+    if (b.audit) return J(await cAudit(env));
     if (b.market) return J({ n: await cMarketRefresh(env, true) });
     if (b.set_spy0) { for (const [pid, v] of b.set_spy0) await env.DB.prepare('UPDATE c_profiles SET spy0=?2 WHERE id=?1').bind(parseInt(pid, 10), Number(v)).run(); await caches.default.delete(new Request(url.origin + '/c/board')); return J({ ok: true }); }
     if (b.set_fill_ts) { for (const [id, v] of b.set_fill_ts) await env.DB.prepare("UPDATE c_orders SET fill_ts=?2 WHERE id=?1 AND status='filled'").bind(parseInt(id, 10), parseInt(v, 10)).run(); return J({ ok: true }); }
@@ -543,6 +618,7 @@ async function contest(req, env, url, h) {
       // one-off correction of a portfolio: {pid, cash, pos:[[t, dqty, dcost]], order:[id, fill_qty, fill_amt]}
       const F = b.fix, pid = parseInt(F.pid, 10), st = [];
       if (F.cash) st.push(env.DB.prepare('UPDATE c_profiles SET cash=cash+?2 WHERE id=?1').bind(pid, Number(F.cash)));
+      if (F.cash) st.push(env.DB.prepare("INSERT INTO c_cash (pid, ts, kind, t, amount, note, ref) VALUES (?1, ?2, 'fix', NULL, ?3, 'admin correction', ?4)").bind(pid, cnow(), Number(F.cash), 'fix:' + cnow() + ':' + Math.random().toString(36).slice(2, 8)));
       for (const [t, dq, dc] of F.pos || []) st.push(env.DB.prepare('UPDATE c_pos SET qty=qty+?3, cost=cost+?4 WHERE pid=?1 AND t=?2').bind(pid, t, Number(dq), Number(dc)));
       if (F.order) st.push(env.DB.prepare('UPDATE c_orders SET fill_qty=?3, fill_amt=?4 WHERE id=?1 AND pid=?2').bind(F.order[0], pid, Number(F.order[1]), Number(F.order[2])));
       if (st.length) await env.DB.batch(st);
@@ -694,6 +770,8 @@ async function cDispatch(env) {
     { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'rz-events', 'Content-Type': 'application/json' }, body: '{"ref":"main"}' });
   if (mi < 5) await go('fast.yml');
   if (mi % 15 < 5) await go('quotes.yml');
+  if (mi >= 30 && mi < 35) await go('watchdog.yml');
+  if (mi % 20 < 5) await go('alerts.yml');
 }
 async function cRefreshQuotes(env) {
   const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status IN ('pending','filling')")).map(r => r.t).concat(['SPY']);
@@ -723,7 +801,7 @@ async function contestCron(env, cron) {
   try { await cRefreshQuotes(env); } catch (e) { /* keep file quotes */ }
   try { await cCorpFetch(env); } catch (e) { /* next run */ }
   let n;
-  if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); n = await cSnapshot(env); await cWinners(env); }
+  if (String(cron).startsWith('45 23 ')) { await cCorpApply(env); await cFill(env); n = await cSnapshot(env); await cWinners(env); try { await cAudit(env); } catch (e) { /* next night */ } }
   else n = await cFill(env);
   // after the contest work: the whole-market refresh is the heaviest step and must never delay fills
   try { await cMarketRefresh(env); } catch (e) { /* next run */ }

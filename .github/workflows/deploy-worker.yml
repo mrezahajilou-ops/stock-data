@@ -1,0 +1,46 @@
+name: Deploy Cloudflare worker rz-events (contest + prices)
+
+# Runs when events/ changes on main, or by hand. Needs two repository secrets (one-time, by Reza):
+#   CLOUDFLARE_API_TOKEN   - token from the "Edit Cloudflare Workers" template with D1:Edit added
+#   CLOUDFLARE_ACCOUNT_ID  - the account id shown on the Cloudflare dashboard
+# Without them the job only checks the code and stops (nothing is deployed).
+# The worker's own secrets (GH_TOKEN, login secret, ...) live in Cloudflare and are not touched by a deploy.
+
+on:
+  push:
+    branches: [main]
+    paths: ['events/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: events
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build one file (worker.js + contest.js) and check it parses
+        run: |
+          mkdir -p events/dist
+          cat events/worker.js events/contest.js > events/dist/worker.js
+          node --check events/dist/worker.js
+          sed 's#^main = .*#main = "dist/worker.js"#' events/wrangler.toml > events/wrangler.deploy.toml
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "Cloudflare secrets not set yet - code checked, nothing deployed"; exit 0; fi
+          cd events && npx -y wrangler@4 deploy --config wrangler.deploy.toml

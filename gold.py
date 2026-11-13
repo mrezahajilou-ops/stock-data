@@ -19,7 +19,7 @@ Output gold.json (published to the orphan branch "gold" by .github/workflows/gol
   cal{fomc, cpi, jobs: "YYYY-MM-DD"}
   note  one Farsi sentence built from today's numbers (rule-based, no buy/sell language)
 """
-import csv, io, json, os, re, sys, time, datetime as dt, urllib.request, urllib.parse
+import csv, io, json, os, re, signal, sys, time, datetime as dt, urllib.request, urllib.parse
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36'
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
@@ -28,15 +28,17 @@ LOG = []
 TODAY = dt.date.today()
 
 
-def get(url, timeout=40, accept='application/json, text/csv, text/html, */*'):
+def get(url, timeout=20, accept='application/json, text/csv, text/html, */*'):
     last = None
     for a in range(3):
         try:
             req = urllib.request.Request(url, headers={'User-Agent': UA, 'Accept': accept, 'Accept-Language': 'en-US,en;q=0.9'})
             return urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace')
+        except Slow:
+            raise
         except Exception as e:
             last = e
-            time.sleep(3 * (a + 1))
+            time.sleep(2 * (a + 1))
     raise last
 
 
@@ -218,14 +220,29 @@ def note(sp, drv):
 
 
 # ------------------------------------------------------------------ main
+class Slow(Exception):
+    pass
+
+
+def _alarm(*_):
+    raise Slow('took over 75 s')
+
+
 def safe(name, fn, *a):
+    """Run one source; a slow or broken source is skipped (its block is hidden on the page), never blocks the rest."""
+    t0 = time.time()
+    signal.signal(signal.SIGALRM, _alarm)
+    signal.alarm(75)
     try:
         v = fn(*a)
-        LOG.append('%s ok' % name)
+        LOG.append('%s ok %.0fs' % (name, time.time() - t0))
         return v
     except Exception as e:
         LOG.append('%s FAILED %s' % (name, repr(e)[:120]))
         return None
+    finally:
+        signal.alarm(0)
+        print(LOG[-1], flush=True)
 
 
 def main():

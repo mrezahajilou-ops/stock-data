@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Build gold.json
-        run: python gold.py
+        run: python -u gold.py
       - name: Publish to branch "gold"
         run: |
           mkdir out && cp gold.json out/ && cd out

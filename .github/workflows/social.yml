@@ -1,0 +1,36 @@
+name: Social post drafts (daily email to Reza)
+
+# Ready-to-paste Persian drafts for X / Instagram from the site's data, emailed to Reza only.
+# Nothing is posted automatically.
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch side data
+        run: |
+          git fetch -q --depth 1 origin superinvestors:refs/remotes/origin/superinvestors || true
+          git fetch -q --depth 1 origin earnings:refs/remotes/origin/earnings || true
+          git fetch -q --depth 1 origin calendar:refs/remotes/origin/calendar || true
+      - name: Build and send drafts
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EARN_DAYS: '3'
+        run: |
+          python build_earnings.py
+          python social_drafts.py

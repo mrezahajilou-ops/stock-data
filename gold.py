@@ -3,10 +3,10 @@
 
 Sources
   prices   Yahoo chart API: GC=F (COMEX gold futures), SI=F (silver), ^GSPC (S&P 500), BTC-USD
-  rates    FRED CSV (public): DFII10 real 10y yield, DGS10 10y yield, DTWEXBGS broad dollar index,
-           DFEDTARU fed funds upper target, CPIAUCSL consumer prices (for the inflation-adjusted line)
+  rates    US Treasury daily par real / nominal yield curves (10-year), dollar index DX-Y.NYB (Yahoo),
+           CPI-U from the public BLS API (inflation-adjusted line); FRED only as a fallback (slow from GitHub runners)
   COT      CFTC public reporting (disaggregated futures): managed-money long/short, gold 088691, silver 084691
-  calendar federalreserve.gov FOMC calendar, bls.gov release schedules (CPI, jobs). Best effort: missing = hidden.
+  calendar federalreserve.gov FOMC calendar (bls.gov blocks automated reads of its schedule pages)
 
 Output gold.json (published to the orphan branch "gold" by .github/workflows/gold.yml):
   as_of, spot{gold,silver,spx,btc: {p, chg, prev, t}}, ratio{now, avg20, min20, max20},
@@ -14,9 +14,9 @@ Output gold.json (published to the orphan branch "gold" by .github/workflows/gol
   w{gold,silver,spx,btc: [[date, close], ...]       weekly, 20 years}
   real{gold: [[date, close in today's dollars], ...] weekly, 20 years}
   cmp{gold,silver,spx,btc: {"1": r, "5": r, "10": r, "20": r}}   total price change, fraction
-  drv{ry, y10, dxy, ff: {v, w1, y1, s: [[date, v], ...] weekly 2y}}
+  drv{ry, y10, dxy: {v, d, w1, y1, s: [[date, v], ...] weekly 2y}}
   cot{gold,silver: [{d, l, s, n, oi}, ...] last 52 weeks, newest last}
-  cal{fomc, cpi, jobs: "YYYY-MM-DD"}
+  cal{fomc: "YYYY-MM-DD"}  next FOMC decision day
   note  one Farsi sentence built from today's numbers (rule-based, no buy/sell language)
 """
 import csv, io, json, os, re, signal, sys, time, datetime as dt, urllib.request, urllib.parse
@@ -119,8 +119,46 @@ def fred(series):
     return rows
 
 
-def driver(series):
-    rows = fred(series)
+def treasury(kind, col='10 YR'):
+    """US Treasury daily par yield curves (public domain). kind: daily_treasury_real_yield_curve | daily_treasury_yield_curve."""
+    rows = []
+    for y in range(TODAY.year - 2, TODAY.year + 1):
+        url = ('https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/%d/all'
+               '?type=%s&field_tdr_date_value=%d&page&_format=csv' % (y, kind, y))
+        rd = csv.DictReader(io.StringIO(get(url, accept='text/csv')))
+        for r in rd:
+            try:
+                rows.append([dt.datetime.strptime(r['Date'], '%m/%d/%Y').date().isoformat(), float(r[col])])
+            except (KeyError, ValueError, TypeError):
+                pass
+    return sorted(rows)
+
+
+def yrows(sym):
+    return [[d, c] for d, c in yahoo(sym)[0]]
+
+
+def bls_cpi():
+    """CPI-U all items (CUUR0000SA0) monthly, 21 years, from the public BLS API (no key, 10 years per call)."""
+    rows = []
+    for a in range(TODAY.year - 20, TODAY.year + 1, 10):
+        body = json.dumps({'seriesid': ['CUUR0000SA0'], 'startyear': str(a), 'endyear': str(min(a + 9, TODAY.year))}).encode()
+        req = urllib.request.Request('https://api.bls.gov/publicAPI/v1/timeseries/data/', data=body,
+                                     headers={'Content-Type': 'application/json', 'User-Agent': UA})
+        j = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+        for r in ((j.get('Results') or {}).get('series') or [{}])[0].get('data') or []:
+            if r.get('period', '').startswith('M') and r['period'] != 'M13':
+                try:
+                    rows.append(['%s-%s-01' % (r['year'], r['period'][1:]), float(r['value'])])
+                except ValueError:
+                    pass
+    if len(rows) < 100:
+        raise ValueError('BLS CPI: %d rows' % len(rows))
+    return sorted(rows)
+
+
+def driver(series, rows=None):
+    rows = rows if rows is not None else fred(series)
     if not rows:
         return None
     last = rows[-1]
@@ -276,7 +314,7 @@ def main():
                         'avg20': round(sum(rv) / len(rv), 1), 'min20': round(min(rv), 1), 'max20': round(max(rv), 1)}
 
     # inflation-adjusted gold (today's dollars)
-    cpi = safe('cpi', fred, 'CPIAUCSL') or []
+    cpi = safe('cpi bls', bls_cpi) or safe('cpi fred', fred, 'CPIAUCSL') or []
     if cpi:
         cm = {d[:7]: v for d, v in cpi}
         last_cpi = cpi[-1][1]
@@ -287,16 +325,19 @@ def main():
                 real.append([d, round(c * last_cpi / v, 2)])
         out['real'] = {'gold': real, 'cpi_month': cpi[-1][0][:7]}
 
-    out['drv'] = {k: safe('fred ' + s, driver, s) for k, s in
-                  (('ry', 'DFII10'), ('y10', 'DGS10'), ('dxy', 'DTWEXBGS'), ('ff', 'DFEDTARU'))}
+    ry = safe('treasury real', treasury, 'daily_treasury_real_yield_curve')
+    y10 = safe('treasury nominal', treasury, 'daily_treasury_yield_curve')
+    dxy = safe('dollar index', yrows, 'DX-Y.NYB')
+    out['drv'] = {'ry': safe('drv ry', driver, 'DFII10', ry) if ry else None,
+                  'y10': safe('drv y10', driver, 'DGS10', y10) if y10 else None,
+                  'dxy': safe('drv dxy', driver, 'DXY', [r for r in dxy if r[0] >= (TODAY - dt.timedelta(days=800)).isoformat()]) if dxy else None}
     out['cot'] = {'gold': safe('cot gold', cot, '088691'), 'silver': safe('cot silver', cot, '084691')}
-    out['cal'] = {'fomc': safe('fomc', next_fomc), 'cpi': safe('bls cpi', next_bls, 'cpi'), 'jobs': safe('bls jobs', next_bls, 'empsit')}
+    out['cal'] = {'fomc': safe('fomc', next_fomc)}
     out['note'] = note(out['spot'], out['drv'])
-    out['log'] = LOG
+    out['log'] = [x for x in LOG if 'FAILED' in x]
 
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
-    print('\n'.join(LOG))
     print('gold', g, '| silver', s, '| size', os.path.getsize(OUT))
 
 

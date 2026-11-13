@@ -72,5 +72,9 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add -A data
           git commit -m "data: fast lane $(date -u +%FT%H:%MZ)" || echo "no changes"
-          git pull --rebase -q origin main || true
-          git push
+          for i in 1 2 3 4 5; do
+            git pull --rebase -X theirs -q origin main || { git rebase --abort 2>/dev/null; sleep $((i*5)); continue; }
+            git push && exit 0
+            sleep $((i*5))
+          done
+          echo "push failed after 5 tries"; exit 1

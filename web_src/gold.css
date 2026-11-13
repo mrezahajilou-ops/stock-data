@@ -1,0 +1,68 @@
+/* طلا و نقره — gold & silver page. Data: branch "gold" (gold.py). Mobile first (~83% of visitors on phones). */
+#ID .stamp{font-size:12.5px;color:var(--mut);margin:-6px 0 14px}
+#ID .px2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}
+#ID .pc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;min-width:0}
+#ID .pc .h{display:flex;justify-content:space-between;align-items:center;gap:6px;font-weight:800;font-size:14px}
+#ID .pc .h .ch{direction:ltr;font-size:13px;font-weight:800}
+#ID .pc .v{font-family:var(--serif);font-size:clamp(24px,7vw,34px);line-height:1.15;direction:ltr;text-align:right;margin:4px 0 2px;color:#fff;white-space:nowrap}
+#ID .pc .u{font-size:12px;color:var(--mut)}
+#ID .pc .g{display:flex;justify-content:space-between;gap:6px;border-top:1px solid var(--line);margin-top:8px;padding-top:6px;font-size:12.5px;color:var(--mut)}
+#ID .pc .g b{color:var(--ink);font-weight:700}
+#ID .ratio{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center}
+#ID .ratio .big{font-family:var(--serif);font-size:30px;color:var(--gold);direction:ltr}
+#ID .ratio p{margin:0;font-size:13.5px;color:var(--ink)}
+#ID .rbar{grid-column:1/-1;position:relative;height:30px;margin-top:4px}
+#ID .rbar .t{position:absolute;left:0;right:0;top:12px;height:6px;border-radius:9px;background:linear-gradient(90deg,#4FA37A55,#C9A96155,#C8534F55)}
+#ID .rbar .m{position:absolute;top:6px;width:2px;height:18px;background:#fff;border-radius:2px}
+#ID .rbar .a{position:absolute;top:8px;width:2px;height:14px;background:var(--mut)}
+#ID .rbar .lb{position:absolute;top:24px;font-size:11px;color:var(--mut);transform:translateX(-50%);white-space:nowrap}
+#ID .note2{border-right:3px solid var(--gold);background:var(--card);border-radius:12px;padding:10px 14px;font-size:14.5px;margin:0 0 14px}
+#ID .note2 small{display:block;color:var(--mut);font-size:11.5px;margin-top:4px}
+#ID .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+#ID .tabs button{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:4px 12px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit}
+#ID .tabs button.on{background:var(--gold);border-color:var(--gold);color:#0C0E12}
+#ID .tabs .sp{flex:1}
+@media (max-width:560px){#ID .tabs .sp{flex-basis:100%;height:0}}
+#ID .chart{position:relative;width:100%;touch-action:pan-y}
+#ID .chart svg{display:block;width:100%;height:auto;overflow:visible}
+#ID .chart .tip{position:absolute;top:0;pointer-events:none;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:4px 9px;font-size:12px;white-space:nowrap;display:none;direction:rtl;z-index:2}
+#ID .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mut);margin-top:6px}
+#ID .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-left:5px}
+#ID .plain{margin:10px 0 0;font-size:14px}
+#ID .flag{display:inline-block;border-radius:8px;padding:0 8px;font-size:12px;font-weight:700;margin-right:4px}
+#ID .cmp{width:100%;border-collapse:collapse;font-size:13.5px}
+#ID .cmp th{color:var(--mut);font-weight:700;font-size:12px;padding:6px 4px;border-bottom:1px solid var(--line);text-align:center}
+#ID .cmp td{padding:8px 4px;border-bottom:1px solid var(--line);text-align:center;direction:ltr;white-space:nowrap}
+#ID .cmp td:first-child,#ID .cmp th:first-child{text-align:right;direction:rtl;font-weight:800}
+#ID .cmp td.best{background:rgba(79,163,122,.14);border-radius:6px}
+#ID .drv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px}
+#ID .dc{background:var(--card2);border-radius:12px;padding:10px 12px;min-width:0}
+#ID .dc .k{font-size:12.5px;color:var(--mut)}
+#ID .dc .v{font-family:var(--serif);font-size:24px;direction:ltr;text-align:right;color:#fff}
+#ID .dc .s{font-size:12px;color:var(--mut)}
+#ID .dc svg{display:block;width:100%;height:36px;margin-top:4px}
+#ID .dc .why{font-size:12.5px;margin-top:6px;color:var(--ink)}
+#ID .plk{position:relative;border-radius:16px;overflow:hidden}
+#ID .plk-b{filter:blur(6px);opacity:.4;pointer-events:none;user-select:none}
+#ID .plk-c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:14px}
+#ID .plk-box{background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:18px;max-width:440px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+#ID .plk-box p{color:var(--mut);font-size:13.5px;margin:6px 0 12px}
+#ID .cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+#ID .cal div{background:var(--card2);border-radius:12px;padding:10px 12px}
+#ID .cal b{display:block;font-family:var(--serif);font-size:26px;color:var(--gold)}
+#ID .mn{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+#ID .mn a,#ID .mn span.x{display:block;background:var(--card2);border-radius:12px;padding:8px 10px;text-decoration:none!important;color:var(--ink)!important;min-width:0}
+#ID .mn .tk{font-size:15px}
+#ID .mn small{display:block;color:var(--mut);font-size:11.5px;line-height:1.5}
+#ID .mn .q{display:flex;justify-content:space-between;gap:6px;font-size:12.5px;direction:ltr}
+#ID .calc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+#ID .calc label{font-size:12.5px;color:var(--mut);display:flex;flex-direction:column;gap:3px}
+#ID .calc input,#ID .calc select{width:100%;direction:ltr;text-align:right}
+#ID .calc select{direction:rtl}
+#ID .res{margin-top:10px;background:var(--card2);border-radius:12px;padding:10px 12px;font-size:14px}
+#ID .res .row2{display:flex;justify-content:space-between;gap:8px;padding:3px 0}
+#ID .res .tot{border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-weight:900;font-size:16px}
+#ID .two2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
+#ID .src{font-size:12px;color:var(--mut);margin-top:6px}
+@media (max-width:420px){#ID .pc{padding:12px 10px 10px}#ID .pc .g{flex-direction:column;gap:0}#ID .cmp{font-size:12.5px}}
+#ID .plk .plk-b{max-height:440px;overflow:hidden}

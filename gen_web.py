@@ -347,6 +347,17 @@ def superinvestors_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzi'), nav('superinvestors'), JS, js)
 
 
+def gold_page():
+    """Gold & silver (/pages/gold). Not a stock tool, so it gets the account bar but not the stock-tools tab bar."""
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'gold.css'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'gold.js'), encoding='utf-8').read()
+    return ('<div id="rzg" dir="rtl">\n<style>%s</style>\n%s\n<h1>🥇 قیمت طلا و نقره امروز</h1>\n'
+            '<p class="sub">قیمت لحظه‌ای طلا و نقره به دلار، نمودار با میانگین‌های ۵۰ و ۲۰۰ روزه، مقایسه با سهام و بیت‌کوین، عوامل اصلی قیمت و ماشین‌حساب‌ها.</p>\n'
+            '<div id="rzg-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzg'), ACCT, EVENTS_JS + JS, js)
+
+
 def top30_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'top30.css'), encoding='utf-8').read()
@@ -435,6 +446,7 @@ def main():
         'my-portfolio.html': myportfolio_page(),
         'superinvestors.html': superinvestors_page(),
         'top-30.html': top30_page(),
+        'gold.html': gold_page(),
         'contest-portfolio.html': cport_page(),
         'home.html': home_page(),
         'portfolio.html': portfolio_page(),

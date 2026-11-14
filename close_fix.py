@@ -37,6 +37,9 @@ def main(pdir, qdir):
         days[d[-1][0]] = days.get(d[-1][0], 0) + 1
     last = max(k for k, c in days.items() if c >= 0.2 * len(daily))
     stamp = dt.datetime.combine(dt.date.fromisoformat(last), dt.time(16, 0), ZoneInfo('America/New_York')).isoformat()
+    # compact official closes for the worker, which serves the site's quotes (branch "closes")
+    cl = {t: [round(d[-1][1], 4), round(d[-2][1], 4)] for t, d in daily.items() if d[-1][0] == last}
+    json.dump({'d': last, 'stamp': stamp, 'c': cl}, open(os.path.join(qdir, 'closes.json'), 'w'), separators=(',', ':'))
     changed = same = 0
     for t, v in q.items():
         d = daily.get(t)

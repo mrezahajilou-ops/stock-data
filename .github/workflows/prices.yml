@@ -40,6 +40,8 @@ jobs:
           git show origin/bench:bench.json > qfix/bench.json || rm -f qfix/bench.json
           python close_fix.py prices qfix
           rm -f qfix/bench.json
+          mkdir -p cfix && mv qfix/closes.json cfix/
+          (cd cfix && git init -q -b closes && git config user.name github-actions && git config user.email actions@github.com && git add -A && git commit -qm "official closes $(date -u +%F)" && git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" closes:closes)
           cd qfix
           git init -q -b quotes
           git config user.name github-actions

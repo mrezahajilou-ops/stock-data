@@ -736,6 +736,13 @@ async function cMarketRefresh(env, force) {
     q[t] = [p, pc, nc != null ? Math.round((p - nc) * 10000) / 10000 : null, ts];
     m[t] = [nm(x.marketCap), (x.sector || '').trim() || null, (x.industry || '').trim() || null, (x.country || '').trim() || null, (x.ipoyear || '').trim() || null];
   }
+  // official closes of the last session (branch "closes", written after the daily price job): the screener's last sale
+  // lags a day (on 2026-11-14 it still showed Thursday's close), so anything not newer than that close is replaced by it
+  try {
+    const C = await cFetchJSON(C_RAW + '/closes/closes.json', 600);
+    const cs = C && Date.parse(C.stamp);
+    if (cs && C.c) for (const t in q) { const o = C.c[t]; if (o && Date.parse(q[t][3]) <= cs) q[t] = [o[0], o[1] ? Math.round((o[0] / o[1] - 1) * 10000) / 100 : null, o[1], C.stamp]; }
+  } catch (e) {}
   const asof = new Date(now * 1000).toISOString().slice(0, 19) + 'Z';
   try {   // keep the live prices the rotation already wrote (newer than the screener's close)
     const old = await c1(env, "SELECT v FROM c_kv WHERE k='quotes'");

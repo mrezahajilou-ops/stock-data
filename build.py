@@ -14,7 +14,7 @@ SEC EDGAR fundamentals engine for rezahajiloubooks.com  (v2)
 
 Data source: U.S. Securities and Exchange Commission, EDGAR XBRL APIs (public domain).
 """
-import io, json, os, re, sys, time, zipfile, datetime as dt
+import io, json, math, os, re, sys, time, zipfile, datetime as dt
 from collections import defaultdict
 import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -1274,6 +1274,12 @@ def reconcile_per_share(rec, mk, ref):
     market cap / price (independent of the filings):
       1) reported share count off by a clean split ratio -> scale every per-share series by it;
       2) trailing EPS != trailing net income / shares -> use net income / shares (Yahoo's trailing EPS when it agrees)."""
+    # dividends paid are a positive amount; some filers tag the cash outflow with a minus sign (Crown Castle, GSK,
+    # Petrobras), which showed as a negative dividend per share and failed the "pays a dividend" checks
+    for row in rec["annual"] + [rec.get("ttm") or {}, rec.get("latest") or {}]:
+        for k in ("dividends", "div_per_share", "dps"):
+            if isinstance(row.get(k), (int, float)) and row[k] < 0:
+                row[k] = -row[k]
     price, mcap = (mk or {}).get("price"), (mk or {}).get("mcap")
     if not price or not mcap:
         return
@@ -1716,8 +1722,16 @@ def finish(recs, market):
             te, ye = (r.get("ttm") or {}).get("eps"), ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("teps")
             if te and ye and isinstance(ye, (int, float)) and ye > 0 and te > 0:
                 q = te / ye
+                # EPS too high by q -> share count too low by q -> multiply the share counts by q
                 n = next((c for c in CAND if c not in (1000, 1e6) and abs(q / c - 1) < 0.06), None)
-                n = 1 / n if n else None  # EPS too high by q -> shares too low by q
+                # a split moves the share count by the same factor; shares issued in a merger (Kimberly-Clark / Kenvue)
+                # also dilute the trailing EPS but leave the dividend per share unchanged - that is not a split
+                if n and not 0.7 < k / n < 1.45:
+                    n = None
+                ref_ = (EST.get(r["ticker"]) or {}).get("ref") or {}
+                dps_, rate_ = (r.get("ttm") or {}).get("dps"), (ref_.get("divy") or 0) * (mk.get("price") or 0)
+                if n and dps_ and rate_ and 0.75 < dps_ / rate_ < 1.35:
+                    n = None
         if not n:
             continue
         prev = r["annual"][-2].get("shares_diluted") if len(r["annual"]) > 1 else None
@@ -1765,7 +1779,18 @@ def finish(recs, market):
         eps, ye = last.get("eps_diluted"), ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("teps")
         if eps and eps > 0 and isinstance(ye, (int, float)) and ye > 0 and mk["price"] / eps < 4:
             q = eps / ye
-            n = next((c for c in (2, 3, 4, 5, 6, 8, 10, 15, 20, 25, 30, 40, 50, 100) if abs(q / c - 1) < 0.25), None)
+            # the split ratio: the candidate nearest to market-implied / reported shares (annual EPS vs trailing EPS
+            # is only a rough witness - Booking's 25:1 split looked like 15:1 from EPS alone), else nearest to q
+            SPL = (2, 3, 4, 5, 6, 8, 10, 15, 20, 25, 30, 40, 50, 100)
+            k2 = implied / last["shares_diluted"] if last.get("shares_diluted") else None
+            n = None
+            if k2 and k2 > 1.5:
+                c = min(SPL, key=lambda c: abs(math.log(k2 / c)))
+                if abs(k2 / c - 1) < 0.2 and 0.4 < q / c < 2.5:
+                    n = c
+            if not n:
+                c = min(SPL, key=lambda c: abs(math.log(q / c)))
+                n = c if abs(q / c - 1) < 0.25 else None
             if n:
                 for row in r["annual"]:
                     for f in ("shares_diluted", "shares_out"):

@@ -156,8 +156,11 @@ def check_contest(issues, state):
     # deep audit written by the worker each night (ids, codes and numbers only)
     try:
         a = getj(WORKER + '/c/audit')
-    except Exception:
+    except Exception as ex:
+        print('audit: not available (%s)' % type(ex).__name__)
         return  # not deployed yet
+    # the audit holds ids, codes and numbers only - safe to show in the run log
+    print('audit:', json.dumps(a, ensure_ascii=False)[:4000])
     if a.get('as_of') and age_h(a['as_of']) > 80:
         issues['audit-age'] = 'بررسی شبانه‌ی مسابقه در ورکر بیش از ۳ روز است اجرا نشده.'
     for x in a.get('issues') or []:

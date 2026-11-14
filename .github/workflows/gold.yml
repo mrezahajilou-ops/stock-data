@@ -26,10 +26,11 @@ jobs:
           python-version: '3.12'
       - name: Build gold.json
         run: python -u gold.py
-      - name: Publish to branch "gold"
+      - name: Publish to branch "gold" (other branches publish to "gold-test")
         run: |
+          B=gold; if [ "${{ github.ref_name }}" != "main" ]; then B=gold-test; fi
           mkdir out && cp gold.json out/ && cd out
-          git init -q && git checkout -q -b gold
+          git init -q && git checkout -q -b $B
           git -c user.name=github-actions -c user.email=actions@github.com add -A
           git -c user.name=github-actions -c user.email=actions@github.com commit -qm "gold $(date -u +%FT%TZ)"
-          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gold:gold
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $B:$B

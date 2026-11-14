@@ -16,7 +16,10 @@ Output gold.json (published to the orphan branch "gold" by .github/workflows/gol
   cmp{gold,silver,spx,btc: {"1": r, "5": r, "10": r, "20": r}}   total price change, fraction
   drv{ry, y10, dxy: {v, d, w1, y1, s: [[date, v], ...] weekly 2y}}
   cot{gold,silver: [{d, l, s, n, oi}, ...] last 52 weeks, newest last}
-  cal{fomc: "YYYY-MM-DD"}  next FOMC decision day
+  cal{fomc, cpi: "YYYY-MM-DD"}  next FOMC decision day, next CPI release
+  infl{m, cpi, core, cpi_prev, core_prev, cpi_mom, core_mom, ppi, s{cpi,core,ppi: [[YYYY-MM, yoy%]]}, be{v,d,w1,y1,s}, next}
+  gr[[date, gold, real 10y]]  weekly; odds{meeting, k{src,url,o:[[label, %]]}, p{...}}  Kalshi / Polymarket Fed-decision odds
+  bls{day, s{...}}  raw BLS series, reused by the next runs of the same day (API limit)
   note  one Farsi sentence built from today's numbers (rule-based, no buy/sell language)
 """
 import csv, io, json, os, re, signal, sys, time, datetime as dt, urllib.request, urllib.parse
@@ -139,23 +142,188 @@ def yrows(sym):
     return [[d, c] for d, c in yahoo(sym)[0]]
 
 
-def bls_cpi():
-    """CPI-U all items (CUUR0000SA0) monthly, 21 years, from the public BLS API (no key, 10 years per call)."""
-    rows = []
+BLS_IDS = {'cpi': 'CUUR0000SA0', 'core': 'CUUR0000SA0L1E', 'cpi_sa': 'CUSR0000SA0', 'core_sa': 'CUSR0000SA0L1E', 'ppi': 'WPUFD4'}
+PREV = None
+
+
+def prev_json():
+    """Last published gold.json (the BLS key-less API allows ~25 calls a day; this job runs 48 times a day)."""
+    global PREV
+    if PREV is None:
+        try:
+            PREV = json.loads(get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/gold/gold.json'))
+        except Exception:
+            PREV = {}
+    return PREV
+
+
+def bls_all():
+    """CPI-U (headline, core; NSA for year-over-year, SA for month-over-month) and PPI final demand, monthly, 21 years.
+    Fetched at most once a day; otherwise reused from the previous gold.json."""
+    p = (prev_json().get('bls') or {})
+    if p.get('day') == TODAY.isoformat() and (p.get('s') or {}).get('cpi'):
+        return p
+    out = {k: [] for k in BLS_IDS}
+    rev = {v: k for k, v in BLS_IDS.items()}
     for a in range(TODAY.year - 20, TODAY.year + 1, 10):
-        body = json.dumps({'seriesid': ['CUUR0000SA0'], 'startyear': str(a), 'endyear': str(min(a + 9, TODAY.year))}).encode()
+        body = json.dumps({'seriesid': list(BLS_IDS.values()), 'startyear': str(a), 'endyear': str(min(a + 9, TODAY.year))}).encode()
         req = urllib.request.Request('https://api.bls.gov/publicAPI/v1/timeseries/data/', data=body,
                                      headers={'Content-Type': 'application/json', 'User-Agent': UA})
         j = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
-        for r in ((j.get('Results') or {}).get('series') or [{}])[0].get('data') or []:
-            if r.get('period', '').startswith('M') and r['period'] != 'M13':
-                try:
-                    rows.append(['%s-%s-01' % (r['year'], r['period'][1:]), float(r['value'])])
-                except ValueError:
-                    pass
-    if len(rows) < 100:
-        raise ValueError('BLS CPI: %d rows' % len(rows))
-    return sorted(rows)
+        for sr in (j.get('Results') or {}).get('series') or []:
+            k = rev.get(sr.get('seriesID'))
+            for r in sr.get('data') or []:
+                if k and r.get('period', '').startswith('M') and r['period'] != 'M13':
+                    try:
+                        out[k].append(['%s-%s' % (r['year'], r['period'][1:]), float(r['value'])])
+                    except ValueError:
+                        pass
+    if len(out['cpi']) < 100:
+        if (p.get('s') or {}).get('cpi'):
+            return p  # keep yesterday's numbers rather than none
+        raise ValueError('BLS: %d CPI rows (%s)' % (len(out['cpi']), str(j.get('message'))[:80]))
+    return {'day': TODAY.isoformat(), 's': {k: sorted(v) for k, v in out.items()}}
+
+
+def bls_cpi():
+    b = bls_all()
+    return [[m + '-01', v] for m, v in b['s']['cpi']]
+
+
+def yoy(rows):
+    m = dict(rows)
+    out = []
+    for ym, v in rows:
+        y, mo = ym.split('-')
+        b = m.get('%d-%s' % (int(y) - 1, mo))
+        if b:
+            out.append([ym, round((v / b - 1) * 100, 2)])
+    return out
+
+
+CPI_DATES = ['2026-12-10', '2027-01-13', '2027-02-11', '2027-03-10', '2027-04-13', '2027-05-12', '2027-06-10',
+             '2027-07-14', '2027-08-11', '2027-09-14', '2027-10-14', '2027-11-10', '2027-12-10']   # BLS schedule
+
+
+def inflation(b, ry, y10):
+    """Inflation block: CPI / core / PPI year-over-year (10 years), latest month-over-month, the market's 10-year
+    inflation expectation (nominal minus real Treasury yield) and the next CPI release."""
+    S = b['s']
+    o = {}
+    cy, ky, py = yoy(S['cpi']), yoy(S['core']), yoy(S.get('ppi') or [])
+    cut = '%d-%02d' % (TODAY.year - 10, TODAY.month)
+    o['m'] = cy[-1][0] if cy else None
+    o['cpi'] = cy[-1][1] if cy else None
+    o['cpi_prev'] = cy[-2][1] if len(cy) > 1 else None
+    o['core'] = ky[-1][1] if ky else None
+    o['core_prev'] = ky[-2][1] if len(ky) > 1 else None
+    o['ppi'] = py[-1][1] if py else None
+    o['ppi_m'] = py[-1][0] if py else None
+
+    def mom(rows):
+        return round((rows[-1][1] / rows[-2][1] - 1) * 100, 2) if len(rows) > 1 else None
+    o['cpi_mom'], o['core_mom'] = mom(S.get('cpi_sa') or []), mom(S.get('core_sa') or [])
+    o['s'] = {'cpi': [r for r in cy if r[0] >= cut], 'core': [r for r in ky if r[0] >= cut], 'ppi': [r for r in py if r[0] >= cut]}
+    if ry and y10:
+        rm = dict(ry)
+        be = [[d, round(v - rm[d], 3)] for d, v in y10 if d in rm]
+        if be:
+            o['be'] = driver('BE', be)
+    nxt = [d for d in CPI_DATES if d >= TODAY.isoformat()]
+    o['next'] = nxt[0] if nxt else None
+    return o
+
+
+def gold_vs_real(gold_rows, ry):
+    """Weekly gold price and 10-year real yield on the same dates (as far back as the Treasury data goes)."""
+    if not ry:
+        return None
+    rw = dict(weekly(ry))
+    gw = weekly(gold_rows)
+    rk = sorted(rw)
+    out = []
+    for d, c in gw:
+        if d < rk[0]:
+            continue
+        k = max((x for x in rk if x <= d), default=None)
+        if k:
+            out.append([d, round(c, 1), rw[k]])
+    return out
+
+
+# ------------------------------------------------------------------ prediction markets (Fed decision)
+MONS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+
+def _num(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def kalshi(meeting):
+    """Kalshi "Fed decision in <month>?" (series KXFEDDECISION): probability per outcome from the last trade
+    (mid of bid/ask when there is no trade). Public market-data API, no key."""
+    d = dt.date.fromisoformat(meeting)
+    ev = 'KXFEDDECISION-%02d%s' % (d.year % 100, MONS[d.month - 1])
+    j = json.loads(get('https://api.elections.kalshi.com/trade-api/v2/events/%s?with_nested_markets=true' % ev))
+    mk = (j.get('event') or {}).get('markets') or j.get('markets') or []
+    out = []
+    for m in mk:
+        lab = m.get('yes_sub_title') or m.get('subtitle') or m.get('title')
+        p = _num(m.get('last_price_dollars'))
+        if p is None:
+            lp = _num(m.get('last_price'))
+            p = lp / 100 if lp is not None else None
+        b, a = _num(m.get('yes_bid_dollars')), _num(m.get('yes_ask_dollars'))
+        if b is None and _num(m.get('yes_bid')) is not None:
+            b, a = _num(m.get('yes_bid')) / 100, (_num(m.get('yes_ask')) or 0) / 100
+        if (p is None or p <= 0) and b is not None and a:
+            p = (b + a) / 2
+        if lab and p is not None:
+            out.append([lab, round(p * 100, 1)])
+    out.sort(key=lambda x: -x[1])
+    if not out:
+        raise ValueError('kalshi: no markets for ' + ev)
+    return {'src': 'Kalshi', 'url': 'https://kalshi.com/markets/kxfeddecision/fed-meeting/' + ev.lower(), 'o': out[:5],
+            'vol': _num((j.get('event') or {}).get('volume'))}
+
+
+def polymarket(meeting):
+    """Polymarket "Fed Decision in <Month>?" event: probability per outcome = price of its Yes share. Public Gamma API."""
+    d = dt.date.fromisoformat(meeting)
+    want = 'fed decision in %s' % MONTHS_EN[d.month - 1].lower()
+    j = json.loads(get('https://gamma-api.polymarket.com/public-search?q=' + urllib.parse.quote('Fed decision in ' + MONTHS_EN[d.month - 1])
+                       + '&events_status=active&limit_per_type=20'))
+    evs = j.get('events') or []
+    best = None
+    for e in evs:
+        t = (e.get('title') or '').lower()
+        end = (e.get('endDate') or '')[:10]
+        if t.startswith(want) and not e.get('closed') and end and abs((dt.date.fromisoformat(end) - d).days) <= 25:
+            best = e
+            break
+    if not best:
+        raise ValueError('polymarket: event not found')
+    if not best.get('markets'):
+        best = json.loads(get('https://gamma-api.polymarket.com/events/%s' % best['id']))
+    out = []
+    for m in best.get('markets') or []:
+        if m.get('closed'):
+            continue
+        try:
+            pr = json.loads(m.get('outcomePrices') or '[]')
+            p = float(pr[0])
+        except (ValueError, IndexError, TypeError):
+            continue
+        lab = m.get('groupItemTitle') or m.get('question')
+        out.append([lab, round(p * 100, 1)])
+    out.sort(key=lambda x: -x[1])
+    if not out:
+        raise ValueError('polymarket: no prices')
+    return {'src': 'Polymarket', 'url': 'https://polymarket.com/event/' + best.get('slug', ''), 'o': out[:5], 'vol': _num(best.get('volume'))}
 
 
 def driver(series, rows=None):
@@ -315,7 +483,10 @@ def main():
                         'avg20': round(sum(rv) / len(rv), 1), 'min20': round(min(rv), 1), 'max20': round(max(rv), 1)}
 
     # inflation-adjusted gold (today's dollars)
-    cpi = safe('cpi bls', bls_cpi) or safe('cpi fred', fred, 'CPIAUCSL') or []
+    bls = safe('bls', bls_all)
+    cpi = ([[m + '-01', v] for m, v in bls['s']['cpi']] if bls else None) or safe('cpi fred', fred, 'CPIAUCSL') or []
+    if bls:
+        out['bls'] = bls
     if cpi:
         cm = {d[:7]: v for d, v in cpi}
         last_cpi = cpi[-1][1]
@@ -334,6 +505,14 @@ def main():
                   'dxy': safe('drv dxy', driver, 'DXY', [r for r in dxy if r[0] >= (TODAY - dt.timedelta(days=800)).isoformat()]) if dxy else None}
     out['cot'] = {'gold': safe('cot gold', cot, '088691'), 'silver': safe('cot silver', cot, '084691')}
     out['cal'] = {'fomc': safe('fomc', next_fomc)}
+    if bls:
+        out['infl'] = safe('inflation', inflation, bls, ry, y10)
+        if out['infl']:
+            out['cal']['cpi'] = out['infl'].get('next')
+    out['gr'] = safe('gold vs real yield', gold_vs_real, hist['gold'], ry)
+    f = out['cal']['fomc']
+    if f:
+        out['odds'] = {'meeting': f, 'k': safe('kalshi', kalshi, f), 'p': safe('polymarket', polymarket, f)}
     out['note'] = note(out['spot'], out['drv'])
     out['log'] = [x for x in LOG if 'FAILED' in x]
 

@@ -1,6 +1,6 @@
 /* طلا و نقره — gold & silver page. Data: RAW/gold/gold.json (gold.py, every ~30 min). Dollars only.
-   Free: prices, note, chart, comparison, calendar, miners, calculators. Stock Pro: drivers (real yield, 10y, dollar)
-   and speculator positioning (CFTC). */
+   The whole page is free (Nov 2026): prices, note, chart, inflation & rates, Fed odds (Kalshi / Polymarket), drivers,
+   CFTC positioning, comparison, calendar, miners, calculators. */
 var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',SUBY=window.RZS_SUB_Y||'/products/stock-data-pro-yearly';
 var OZ=31.1034768,D=null,ST={m:'gold',r:'1y'};
 var FA='۰۱۲۳۴۵۶۷۸۹';function fa(s){return String(s).replace(/[0-9]/g,function(c){return FA[c]})}
@@ -88,7 +88,7 @@ function cmpCard(){var C=D.cmp||{},rows=[['gold','طلا'],['silver','نقره']
 function spark(s,col){if(!s||s.length<2)return '';var v=s.map(function(r){return r[1]}),lo=Math.min.apply(null,v),hi=Math.max.apply(null,v),W=200,H=36;
   return '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" dir="ltr"><path d="'+path(s.map(function(r,i){return [i/(s.length-1)*W,H-2-(r[1]-lo)/((hi-lo)||1)*(H-4)]}))+'" fill="none" stroke="'+col+'" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>'}
 function dCard(o,k,unit,why,dec){if(!o)return '';var w=o.w1,y=o.y1;
-  return '<div class="dc"><div class="k">'+k+'</div><div class="v">'+n2(o.v,dec==null?2:dec)+unit+'</div><div class="s">یک هفته: <span class="num '+cls(w)+'">'+sg(w,dec==null?2:dec)+'</span> · یک سال: <span class="num '+cls(y)+'">'+sg(y,dec==null?2:dec)+'</span></div>'
+  return '<div class="dc"><div class="k">'+k+'</div><div class="v">'+n2(o.v,dec==null?2:dec)+unit+'</div><div class="s">یک هفته: <bdi dir="ltr" class="num '+cls(w)+'">'+sg(w,dec==null?2:dec)+'</bdi> · یک سال: <bdi dir="ltr" class="num '+cls(y)+'">'+sg(y,dec==null?2:dec)+'</bdi></div>'
     +spark(o.s,'#C9A961')+'<div class="why">'+why+'</div></div>'}
 function cotCard(k,nm){var L=((D.cot||{})[k])||[];if(L.length<4)return '';var last=L[L.length-1],ns=L.map(function(r){return r.n}),lo=Math.min.apply(null,ns),hi=Math.max.apply(null,ns),pos=hi>lo?(last.n-lo)/(hi-lo):0.5;
   var lvl=pos>0.8?'نزدیک بالاترین سطح یک سال اخیر (خوش‌بینی زیاد؛ گاهی نشانه‌ی شلوغ شدن معامله)':pos<0.2?'نزدیک پایین‌ترین سطح یک سال اخیر (بدبینی زیاد)':'در میانه‌ی دامنه‌ی یک سال اخیر';
@@ -103,10 +103,77 @@ function drvCard(){var V=D.drv||{};
     +cotCard('gold','طلا')+cotCard('silver','نقره')+'</div>'
     +'<p class="src">منابع: خزانه‌داری آمریکا، کمیسیون معاملات آتی کالا (CFTC، گزارش هفتگی جمعه‌ها)، شاخص دلار ICE.</p>';
   var h='<div class="card"><h3>🧭 عوامل اصلی قیمت طلا</h3>';
-  return h+(ACC?inner:lock(inner,'عوامل اصلی قیمت طلا مخصوص مشترکین Stock Pro است','بازده واقعی اوراق، شاخص دلار و موقعیت سفته‌بازها در بازار آتی طلا و نقره، با روند یک سال اخیر و توضیح ساده‌ی اثر هر کدام.'))+'</div>'}
-function calCard(){var f=(D.cal||{}).fomc;if(!f)return '';var dd=Math.ceil((new Date(f+'T19:00:00Z')-Date.now())/864e5);
-  return '<div class="card"><h3>📅 تقویم اقتصادی</h3><div class="cal"><div>جلسه‌ی بعدی فدرال رزرو (تصمیم نرخ بهره)<b>'+(dd<=0?'امروز':fa(dd)+' روز دیگر')+'</b><span class="mut" style="font-size:12.5px">'+day(f)+'</span></div></div>'
-    +'<p class="src">تصمیم‌های نرخ بهره معمولاً روی طلا اثر مستقیم دارند. منبع: وب‌سایت فدرال رزرو.</p></div>'}
+  return h+inner+'</div>'}
+function cd(d,hhmm){var x=Math.ceil((new Date(d+'T'+hhmm+'Z')-Date.now())/864e5);return x<=0?'امروز':fa(x)+' روز دیگر'}
+function calCard(){var C=D.cal||{},f=C.fomc,c=C.cpi;if(!f&&!c)return '';
+  return '<div class="card"><h3>📅 تقویم اقتصادی</h3><div class="cal">'
+    +(f?'<div>جلسه‌ی بعدی فدرال رزرو (تصمیم نرخ بهره)<b>'+cd(f,'19:00')+'</b><span class="mut" style="font-size:12.5px">'+day(f)+'</span></div>':'')
+    +(c?'<div>گزارش بعدی تورم آمریکا<b>'+cd(c,'13:30')+'</b><span class="mut" style="font-size:12.5px">'+day(c)+'، ساعت ۸:۳۰ به وقت نیویورک</span></div>':'')
+    +'</div><p class="src">هر دو معمولاً روی طلا اثر مستقیم دارند. منابع: فدرال رزرو و اداره‌ی آمار کار آمریکا.</p></div>'}
+
+/* ---------------------------------------------------------------- inflation & rates */
+function lineChart(id,sets,opt){var box=$(id);if(!box)return;var W=Math.max(300,Math.round(box.clientWidth||700)),H=W<500?210:250,pl=4,pr=46,pt=10,pb=24,all=[],keys=[];
+  sets.forEach(function(S){S.rows.forEach(function(r){all.push(r[1]);keys.push(r[0])})});if(opt.ref!=null)all.push(opt.ref);
+  if(all.length<2){box.innerHTML='';return}
+  var lo=Math.min.apply(null,all),hi=Math.max.apply(null,all),pad=(hi-lo)*0.08||0.5;lo-=pad;hi+=pad;
+  var k0=keys.reduce(function(a,b){return a<b?a:b}),k1=keys.reduce(function(a,b){return a>b?a:b});
+  var T=function(k){return new Date(k.length===7?k+'-15':k).getTime()},t0=T(k0),t1=T(k1);
+  var X=function(k){return pl+(T(k)-t0)/(t1-t0||1)*(W-pl-pr)},Y=function(v){return pt+(hi-v)/(hi-lo)*(H-pt-pb)};
+  var g='';for(var i=0;i<=4;i++){var v=lo+(hi-lo)*i/4,y=Y(v);g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'" stroke="#262B36"/><text x="'+(W-pr+6)+'" y="'+(y+4)+'" fill="#8A8F99" font-size="11">'+v.toFixed(1)+'%</text>'}
+  var nT=W<500?3:5;for(var j=0;j<=nT;j++){var dd=new Date(t0+(t1-t0)*j/nT);g+='<text x="'+Math.min(W-pr-16,Math.max(pl+16,pl+(W-pl-pr)*j/nT))+'" y="'+(H-6)+'" fill="#8A8F99" font-size="11" text-anchor="middle">'+dd.getFullYear()+'</text>'}
+  if(opt.ref!=null)g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(opt.ref)+'" y2="'+Y(opt.ref)+'" stroke="#4FA37A" stroke-dasharray="4 4"/>';
+  var ln=sets.map(function(S){return '<path d="'+path(S.rows.map(function(r){return [X(r[0]),Y(r[1])]}))+'" fill="none" stroke="'+S.c+'" stroke-width="'+(S.w||2)+'"'+(S.dash?' stroke-dasharray="5 3"':'')+'/>'}).join('');
+  box.innerHTML='<div class="chart"><svg viewBox="0 0 '+W+' '+H+'" dir="ltr">'+g+ln+'</svg></div><div class="legend">'+sets.map(function(S){return '<span><i style="background:'+S.c+'"></i>'+S.lb+'</span>'}).join('')
+    +(opt.ref!=null?'<span><i style="background:#4FA37A"></i>'+opt.refLb+'</span>':'')+'</div>'}
+function dual(id,rows){var box=$(id);if(!box||!rows||rows.length<10)return;var W=Math.max(300,Math.round(box.clientWidth||700)),H=W<500?250:260,pl=40,pr=W<500?50:56,pt=10,pb=24;
+  var gv=rows.map(function(r){return r[1]}),rv=rows.map(function(r){return r[2]});
+  var gl=Math.min.apply(null,gv),gh=Math.max.apply(null,gv),rl=Math.min.apply(null,rv),rh=Math.max.apply(null,rv);var gp=(gh-gl)*.06,rp=(rh-rl)*.06||.1;gl-=gp;gh+=gp;rl-=rp;rh+=rp;
+  var t0=new Date(rows[0][0]).getTime(),t1=new Date(rows[rows.length-1][0]).getTime(),X=function(d){return pl+(new Date(d).getTime()-t0)/(t1-t0||1)*(W-pl-pr)};
+  var YG=function(v){return pt+(gh-v)/(gh-gl)*(H-pt-pb)},YR=function(v){return pt+(rh-v)/(rh-rl)*(H-pt-pb)};
+  var g='';for(var i=0;i<=4;i++){var y=pt+(H-pt-pb)*i/4;g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'" stroke="#262B36"/>'
+    +'<text x="'+(W-pr+6)+'" y="'+(y+4)+'" fill="#C9A961" font-size="11">$'+n2(gh-(gh-gl)*i/4,0)+'</text><text x="'+(pl-6)+'" y="'+(y+4)+'" fill="#7FA7D9" font-size="11" text-anchor="end">'+(rh-(rh-rl)*i/4).toFixed(1)+'%</text>'}
+  var nT=W<500?3:5;for(var j=0;j<=nT;j++){var dd=new Date(t0+(t1-t0)*j/nT);g+='<text x="'+(pl+(W-pl-pr)*j/nT)+'" y="'+(H-6)+'" fill="#8A8F99" font-size="11" text-anchor="middle">'+dd.toLocaleDateString('fa-IR-u-ca-gregory',{month:'short',year:'2-digit'})+'</text>'}
+  box.innerHTML='<div class="chart"><svg viewBox="0 0 '+W+' '+H+'" dir="ltr">'+g+'<path d="'+path(rows.map(function(r){return [X(r[0]),YR(r[2])]}))+'" fill="none" stroke="#7FA7D9" stroke-width="2"/>'
+    +'<path d="'+path(rows.map(function(r){return [X(r[0]),YG(r[1])]}))+'" fill="none" stroke="#C9A961" stroke-width="2.2"/></svg></div>'
+    +'<div class="legend"><span><i style="background:#C9A961"></i>قیمت طلا (محور راست)</span><span><i style="background:#7FA7D9"></i>بازده واقعی اوراق ۱۰ ساله (محور چپ)</span></div>'}
+function corr(rows){if(!rows||rows.length<20)return null;var a=[],b=[];for(var i=1;i<rows.length;i++){a.push(rows[i][1]/rows[i-1][1]-1);b.push(rows[i][2]-rows[i-1][2])}
+  var ma=a.reduce(function(s,x){return s+x},0)/a.length,mb=b.reduce(function(s,x){return s+x},0)/b.length,sab=0,saa=0,sbb=0;
+  for(var j=0;j<a.length;j++){sab+=(a[j]-ma)*(b[j]-mb);saa+=(a[j]-ma)*(a[j]-ma);sbb+=(b[j]-mb)*(b[j]-mb)}return saa&&sbb?sab/Math.sqrt(saa*sbb):null}
+function pp(v){return v==null?'—':'<span class="num">'+fa(v.toFixed(1))+'٪</span>'}
+function inflCard(){var I=D.infl;if(!I||I.cpi==null)return '';var V=D.drv||{},ry=V.ry,be=I.be,mon=I.m?new Date(I.m+'-15').toLocaleDateString('fa-IR-u-ca-gregory',{month:'long',year:'numeric'}):'';
+  var arrow=function(v,p){return v==null||p==null?'':v>p?'<span class="dn">▲ از '+fa(p.toFixed(1))+'٪</span>':v<p?'<span class="up">▼ از '+fa(p.toFixed(1))+'٪</span>':'<span class="mut">بدون تغییر</span>'};
+  var tiles='<div class="drv inf">'
+    +'<div class="dc"><div class="k">تورم سالانه‌ی آمریکا · '+esc(mon)+'</div><div class="v">'+pp(I.cpi)+'</div><div class="s">ماه قبل: '+arrow(I.cpi,I.cpi_prev)+(I.cpi_mom!=null?' · تغییر ماهانه '+pp(I.cpi_mom):'')+'</div><div class="why">افزایش قیمت کالاها و خدمات مصرفی در ۱۲ ماه (شاخص قیمت مصرف‌کننده). هدف فدرال رزرو حدود ۲٪ است.</div></div>'
+    +'<div class="dc"><div class="k">تورم پایه (بدون خوراک و انرژی)</div><div class="v">'+pp(I.core)+'</div><div class="s">ماه قبل: '+arrow(I.core,I.core_prev)+(I.core_mom!=null?' · تغییر ماهانه '+pp(I.core_mom):'')+'</div><div class="why">نوسان کمتری دارد و فدرال رزرو بیشتر به آن نگاه می‌کند.</div></div>'
+    +(be?'<div class="dc"><div class="k">تورمی که بازار برای ۱۰ سال آینده انتظار دارد</div><div class="v">'+pp(be.v)+'</div><div class="s">یک هفته: <bdi class="num" dir="ltr">'+sg(be.w1)+'</bdi> · یک سال: <bdi class="num" dir="ltr">'+sg(be.y1)+'</bdi></div>'+spark(be.s,'#C8534F')+'<div class="why">بازده اسمی اوراق ۱۰ ساله منهای بازده واقعی آن؛ هر روز به‌روز می‌شود.</div></div>':'')
+    +(I.ppi!=null?'<div class="dc"><div class="k">تورم قیمت تولیدکننده</div><div class="v">'+pp(I.ppi)+'</div><div class="why">هزینه‌ی تولید؛ معمولاً زودتر از تورم مصرف‌کننده حرکت می‌کند.</div></div>':'')
+    +'</div>';
+  var read='';if(ry&&V.y10){var r=ry.v;
+    read='<p class="plain">بازده اسمی اوراق ۱۰ ساله الان '+pp(V.y10.v)+' است و بازار حدود '+pp(be?be.v:null)+' از آن را تورم آینده می‌داند؛ پس بازده <b>واقعی</b> حدود '+pp(r)+' است. '
+      +(r>2?'این سطح بالاست و نگه‌داشتن طلا را که سودی نمی‌دهد پرهزینه می‌کند.':r<0.5?'این سطح پایین است و هزینه‌ی نگه‌داشتن طلا کم است.':'این سطح متوسط است.')
+      +(be&&I.cpi>be.v+0.5?' تورم فعلی از تورمی که بازار برای آینده انتظار دارد بالاتر است؛ یعنی بازار فرض کرده تورم پایین می‌آید.':'')+'</p>'}
+  var k=corr(D.gr),kt=k==null?'':'<p class="src">در دوره‌ی این نمودار، همبستگی تغییرات هفتگی طلا و بازده واقعی <span class="num">'+fa(k.toFixed(2))+'</span> بوده است'
+    +(k<-0.2?' (رابطه‌ی معکوس دیده می‌شود)':' (رابطه‌ی معکوسِ معمول ضعیف بوده؛ از ۲۰۲۲ خرید سنگین بانک‌های مرکزی این رابطه را کم‌رنگ کرده)')+'. این یک عامل است، نه فرمول پیش‌بینی.</p>';
+  return '<div class="card"><h3>🔥 تورم و نرخ بهره‌ی آمریکا</h3>'+tiles+read
+    +'<h3 style="margin-top:16px;font-size:15px">تورم سالانه در ۱۰ سال اخیر</h3><div id="rzg-inf"></div>'
+    +'<h3 style="margin-top:16px;font-size:15px">طلا در برابر بازده واقعی اوراق</h3><div id="rzg-gr"></div>'+kt
+    +'<p class="src">منابع: اداره‌ی آمار کار آمریکا (تورم مصرف‌کننده و تولیدکننده)، خزانه‌داری آمریکا (بازده اسمی و واقعی). داده‌ی اکتبر ۲۰۲۵ به خاطر تعطیلی دولت آمریکا جمع‌آوری نشد؛ برای مقایسه‌ی سالانه‌ی اکتبر ۲۰۲۶ میانگین دو ماه کنارش به کار رفته.</p></div>'}
+function drawInfl(){var I=D.infl;if(!I||!I.s)return;
+  lineChart('rzg-inf',[{rows:I.s.cpi,c:'#C8534F',lb:'تورم کل'},{rows:I.s.core,c:'#C9A961',lb:'تورم پایه'}].concat(I.s.ppi&&I.s.ppi.length?[{rows:I.s.ppi,c:'#8A8F99',lb:'تورم تولیدکننده',w:1.4,dash:1}]:[]),{ref:2,refLb:'هدف ۲٪ فدرال رزرو'});
+  dual('rzg-gr',D.gr)}
+
+/* ---------------------------------------------------------------- Fed odds (prediction markets) */
+var OL=[[/hike\s*>\s*25|50\+?\s*bps\s*increase/i,'افزایش ۰٫۵٪ یا بیشتر'],[/hike\s*25|25\s*bps\s*increase/i,'افزایش ۰٫۲۵٪'],[/maintain|no change|hold/i,'بدون تغییر'],
+  [/cut\s*>\s*25|50\+?\s*bps\s*decrease/i,'کاهش ۰٫۵٪ یا بیشتر'],[/cut\s*25|25\s*bps\s*decrease/i,'کاهش ۰٫۲۵٪']];
+function olab(s){for(var i=0;i<OL.length;i++)if(OL[i][0].test(s))return OL[i][1];return esc(s)}
+function oddsCard(){var O=D.odds;if(!O||(!O.k&&!O.p))return '';
+  var col=function(S){if(!S)return '';return '<div class="od"><div class="odh"><b>'+S.src+'</b><a href="'+esc(S.url)+'" target="_blank" rel="noopener nofollow">مشاهده‌ی بازار ↗</a></div>'
+    +S.o.filter(function(x){return x[1]>=0.5}).map(function(x){return '<div class="odr"><span>'+olab(x[0])+'</span><div class="odb"><i style="width:'+Math.min(100,x[1])+'%"></i></div><b class="num">'+fa(Math.round(x[1]))+'٪</b></div>'}).join('')+'</div>'};
+  var top=(O.k||O.p).o[0];
+  return '<div class="card"><h3>🎲 بازار پیش‌بینی: تصمیم فدرال رزرو در '+day(O.meeting)+'</h3>'
+    +'<p class="plain">معامله‌گرها در دو بازار پیش‌بینی آمریکا روی تصمیم بعدی فدرال رزرو پول گذاشته‌اند؛ قیمت هر گزینه یعنی احتمالی که بازار به آن می‌دهد. محتمل‌ترین گزینه الان <b>'+olab(top[0])+'</b> با حدود <b class="num">'+fa(Math.round(top[1]))+'٪</b> است.</p>'
+    +'<div class="two2">'+col(O.k)+col(O.p)+'</div>'
+    +'<p class="src">منابع: Kalshi و Polymarket، هر ۳۰ دقیقه به‌روز. این عددها پیش‌بینی معامله‌گرهاست، نه نظر سهام آنالیز، و ممکن است اشتباه باشد. نرخ بهره‌ی بالاتر معمولاً برای طلا فشار است.</p></div>'}
 
 /* ---------------------------------------------------------------- miners & funds */
 var MIN=[['NEM','نیومانت','بزرگ‌ترین معدن‌کار طلا'],['AEM','اگنیکو ایگل','معدن طلا'],['B','بریک','معدن طلا و مس'],['WPM','ویتون پرشس متالز','حق امتیاز طلا و نقره'],['FNV','فرانکو-نوادا','حق امتیاز طلا'],['RGLD','رویال گلد','حق امتیاز طلا'],['KGC','کینروس','معدن طلا'],['AU','انگلوگلد آشانتی','معدن طلا'],['PAAS','پن امریکن سیلور','معدن نقره'],['HL','هکلا','معدن نقره'],['AG','فرست ماجستیک','معدن نقره'],['CDE','کوردالن','معدن طلا و نقره']];
@@ -145,14 +212,14 @@ function render(Q){var M=$('rzg-main');
     +'<div class="px2">'+priceCard('gold','طلا','🥇')+priceCard('silver','نقره','🥈')+'</div>'
     +(D.note?'<div class="note2">'+esc(D.note)+'<small>یادداشت خودکار بر اساس اعداد امروز؛ توصیه‌ی خرید یا فروش نیست.</small></div>':'')
     +'<div class="card"><h3>📈 نمودار قیمت</h3>'+tabs()+'<div id="rzg-ch"></div><p class="plain" id="rzg-pl"></p></div>'
-    +'<div class="two2">'+ratioCard()+calCard()+'</div>'+cmpCard()+drvCard()+minersCard(Q)
+    +inflCard()+oddsCard()+'<div class="two2">'+ratioCard()+calCard()+'</div>'+drvCard()+cmpCard()+minersCard(Q)
     +'<div class="two2">'+jewelCard()+dcaCard()+'</div>'
-    +'<p class="note">منابع: قیمت طلا و نقره از قرارداد آتی نزدیک بورس کامکس نیویورک، شاخص S&amp;P 500 و بیت‌کوین از بازار جهانی، تورم از اداره‌ی آمار کار آمریکا. همه‌ی قیمت‌ها به دلار. این صفحه آموزشی است و توصیه‌ی سرمایه‌گذاری نیست.</p>';
-  M.innerHTML=h;drawChart();jewel();dca();
+    +'<p class="note">منابع: قیمت طلا و نقره از قرارداد آتی نزدیک بورس کامکس نیویورک، شاخص S&amp;P 500 و بیت‌کوین از بازار جهانی، تورم از اداره‌ی آمار کار آمریکا، بازده اوراق از خزانه‌داری آمریکا، احتمال‌های تصمیم فدرال رزرو از Kalshi و Polymarket. همه‌ی قیمت‌ها به دلار. این صفحه آموزشی است و توصیه‌ی سرمایه‌گذاری نیست.</p>';
+  M.innerHTML=h;drawChart();drawInfl();jewel();dca();
   $('rzg-m').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.m)ST.m=b.dataset.m;if(b.dataset.r)ST.r=b.dataset.r;
     [].forEach.call(this.querySelectorAll('button'),function(x){x.classList.toggle('on',x.dataset.m?x.dataset.m===ST.m:x.dataset.r===ST.r)});drawChart();if(window.rzE)rzE('gold',ST.m,ST.r)});
   ['rzg-jw','rzg-jk','rzg-jf','rzg-jt'].forEach(function(i){$(i).addEventListener('input',jewel)});['rzg-da','rzg-dy'].forEach(function(i){$(i).addEventListener('input',dca)});
-  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(drawChart,200)})}
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){drawChart();drawInfl()},200)})}
 Promise.all([fetch(RAW+'/gold/gold.json?v='+Math.floor(Date.now()/300000)).then(function(r){if(!r.ok)throw 0;return r.json()}),liveQuotes().catch(function(){return null})])
   .then(function(a){D=a[0];render(a[1])})
   .catch(function(){$('rzg-main').innerHTML='<div class="card empty">بارگذاری داده‌ها ناموفق بود؛ چند لحظه بعد صفحه رو دوباره باز کن.</div>'});

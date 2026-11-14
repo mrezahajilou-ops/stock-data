@@ -191,11 +191,17 @@ def bls_cpi():
 
 
 def yoy(rows):
+    """Year-over-year %. A month missing a year earlier (BLS collected no October 2025 data during the 2025
+    shutdown) uses the geometric mean of its two neighbours as the base."""
     m = dict(rows)
     out = []
     for ym, v in rows:
-        y, mo = ym.split('-')
-        b = m.get('%d-%s' % (int(y) - 1, mo))
+        y, mo = int(ym[:4]), int(ym[5:])
+        b = m.get('%d-%02d' % (y - 1, mo))
+        if not b:
+            pv = m.get('%d-%02d' % (y - 1 if mo > 1 else y - 2, mo - 1 if mo > 1 else 12))
+            nx = m.get('%d-%02d' % (y - 1 if mo < 12 else y, mo + 1 if mo < 12 else 1))
+            b = (pv * nx) ** 0.5 if pv and nx else None
         if b:
             out.append([ym, round((v / b - 1) * 100, 2)])
     return out

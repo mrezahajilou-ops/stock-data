@@ -66,3 +66,13 @@
 #ID .src{font-size:12px;color:var(--mut);margin-top:6px}
 @media (max-width:420px){#ID .pc{padding:12px 10px 10px}#ID .pc .g{flex-direction:column;gap:0}#ID .cmp{font-size:12.5px}}
 #ID .plk .plk-b{max-height:440px;overflow:hidden}
+
+#ID .od{background:#15181F;border:1px solid #262B36;border-radius:12px;padding:12px 14px}
+#ID .odh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:14px}
+#ID .odh a{font-size:12.5px;color:#8A8F99}
+#ID .odr{display:grid;grid-template-columns:minmax(110px,1.2fr) 2fr 44px;gap:8px;align-items:center;margin:7px 0;font-size:13.5px}
+#ID .odb{height:9px;background:#1C2029;border-radius:6px;overflow:hidden;direction:ltr}
+#ID .odb i{display:block;height:100%;background:#C9A961;border-radius:6px}
+#ID .odr b{text-align:left}
+@media(max-width:600px){#ID .odr{grid-template-columns:minmax(96px,1.3fr) 1.6fr 38px;font-size:13px}}
+@media(max-width:600px){#ID .inf{grid-template-columns:1fr 1fr!important;gap:8px}#ID .inf .dc{padding:10px}#ID .inf .why,#ID .inf svg{display:none}#ID .inf .v{font-size:22px}#ID .inf .k{font-size:12px;line-height:1.6}#ID .inf .s{font-size:11.5px}}

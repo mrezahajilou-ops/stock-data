@@ -172,7 +172,7 @@ DIS = ('<p class="dis">این صفحه هر روز بعد از بسته شدن �
        'فهرست‌ها آموزشی‌اند و توصیه‌ی خرید یا فروش نیستند؛ قبل از هر تصمیم، تحلیل کامل هر سهم را ببین.</p>')
 
 TOOLS = [('/pages/stock', 'تحلیل سهام'), ('/pages/screener', 'غربالگر سهام'), ('/pages/dcf', 'ماشین‌حساب ارزش ذاتی'),
-         ('/pages/superinvestors', 'پورتفوی سرمایه‌گذاران بزرگ'), ('/pages/guides', 'همه‌ی فهرست‌ها')]
+         ('/pages/superinvestors', 'پورتفوی سرمایه‌گذاران بزرگ'), ('/blogs/learn', 'آموزش به زبان ساده'), ('/pages/guides', 'همه‌ی فهرست‌ها')]
 
 
 def wrap(intro, method, tbl, notes, qa, related, extra=''):

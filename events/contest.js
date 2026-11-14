@@ -127,6 +127,10 @@ const cQtime = (q) => { const t = q && q[3] ? Date.parse(q[3]) : NaN; return isN
 
 // a last price more than 3x / less than 0.25x its own previous close is treated as a bad tick and ignored
 const cSaneQuote = (p, prev) => !(prev > 0) || (p / prev <= 3 && p / prev >= 0.25);
+// trade time outside the regular session (ET clock in the quote's own timestamp): pre-market / after-hours prints are thin
+// and can be far from the official close (2026-11-13: NOW 148 after hours vs 102.25 close, shown all weekend), so the
+// displayed market quotes never take them
+const cOffHours = (ts) => { const hm = String(ts || '').slice(11, 16); return hm > '16:05' || hm < '09:30'; };
 async function cLive(tickers) {
   // live last-sale price from Nasdaq's watchlist API (same source as quotes.py), 20 symbols per call
   const out = {}, T = [...new Set(tickers)].slice(0, 400);
@@ -531,6 +535,8 @@ async function contest(req, env, url, h) {
     if (B.m !== mi) { B.m = mi; B.n = 0; }
     if (need.length && B.n >= 60) need.length = 0;                        // Nasdaq budget per minute: never let the page starve the contest
     if (need.length) { B.n += Math.ceil(need.length / 20); const L = await cLive(need); if (M.size > 5000) M.clear(); for (const t of need) { M.set(t, [now, L[t] || null]); if (L[t]) out[t] = L[t]; } }
+    const off = Object.keys(out).filter(t => cOffHours(out[t][3]));          // outside the session: show the official close instead
+    if (off.length) { const Q = await cQuotes(); for (const t of off) { if (Q[t] && !cOffHours(Q[t][3])) out[t] = Q[t]; else delete out[t]; } }
     return J({ q: out, at: new Date(now).toISOString() }, 200, { 'Cache-Control': 'public, max-age=10' });
   }
   const me = await cAuth(req, env);
@@ -733,7 +739,7 @@ async function cMarketRefresh(env, force) {
   const asof = new Date(now * 1000).toISOString().slice(0, 19) + 'Z';
   try {   // keep the live prices the rotation already wrote (newer than the screener's close)
     const old = await c1(env, "SELECT v FROM c_kv WHERE k='quotes'");
-    if (old) { const oq = JSON.parse(old.v).q || {}; for (const t in oq) if (q[t] && Date.parse(oq[t][3]) > Date.parse(q[t][3])) q[t] = oq[t]; }
+    if (old) { const oq = JSON.parse(old.v).q || {}; for (const t in oq) if (q[t] && !cOffHours(oq[t][3]) && Date.parse(oq[t][3]) > Date.parse(q[t][3])) q[t] = oq[t]; }
   } catch (e) {}
   await env.DB.batch([
     env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('quotes', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(JSON.stringify({ as_of: asof, status: E.session, n: Object.keys(q).length, src: 'worker', q }), now),
@@ -756,7 +762,7 @@ async function cLiveRotate(env) {
   const L = await cLive(pick);
   const Q = JSON.parse(cur.v);
   let n = 0;
-  for (const t in L) if (!Q.q[t] || Date.parse(L[t][3]) >= Date.parse(Q.q[t][3])) { Q.q[t] = L[t]; n++; }
+  for (const t in L) if (!cOffHours(L[t][3]) && (!Q.q[t] || Date.parse(L[t][3]) >= Date.parse(Q.q[t][3]))) { Q.q[t] = L[t]; n++; }
   Q.live_as_of = new Date().toISOString().slice(0, 19) + 'Z';
   Q.status = E.session;
   await env.DB.batch([

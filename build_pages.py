@@ -56,6 +56,14 @@ FA_NAME = {
     'PODD': 'اینسولت', 'CNC': 'سنتین', 'AXP': 'امریکن اکسپرس', 'MRK': 'مرک', 'ABBV': 'اب‌وی', 'T': 'ای‌تی‌اند‌تی',
     'VZ': 'وریزون', 'TMUS': 'تی‌موبایل', 'CAT': 'کاترپیلار', 'LMT': 'لاکهید مارتین', 'RTX': 'آر‌تی‌ایکس',
 }
+
+# More Persian names (content/fa_names.json): shown small beside the English name and used in the search
+# title/description, because people search "سهام لاکهید مارتین", not the ticker. FA_NAME above stays the
+# short list whose Persian name replaces the English one in headings.
+try:
+    FA_ALT = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', 'fa_names.json')))
+except Exception:
+    FA_ALT = {}
 FA_SECTOR = {
     'Technology': 'فناوری', 'Consumer Discretionary': 'کالاهای مصرفی غیرضروری', 'Industrials': 'صنعتی',
     'Health Care': 'سلامت و دارو', 'Finance': 'مالی', 'Telecommunications': 'مخابرات', 'Energy': 'انرژی',
@@ -108,7 +116,9 @@ def page(d, related):
     m, r, L = d.get('market') or {}, d.get('ratios') or {}, d['annual'][-1]
     nm_en = (d.get('name') or t).strip()
     nm = FA_NAME.get(t)
-    label = (nm + ' (' + t + ')') if nm else (nm_en + ' (' + t + ')')
+    fa2 = None if nm else FA_ALT.get(t)
+    anyfa = nm or fa2
+    label = (anyfa + ' (' + t + ')') if anyfa else (nm_en + ' (' + t + ')')
     sector_fa = FA_SECTOR.get(m.get('sector') or '', m.get('sector') or '')
     tot = sc.get('total')
     strengths, weaknesses = [], []
@@ -147,14 +157,17 @@ def page(d, related):
                (pct(abs(g)), 'بالاتر' if g >= 0 else 'پایین‌تر'))
     summary = '\n\n'.join(x for x in (p1, p2, p3) if x)
 
-    title = 'تحلیل سهام %s به فارسی | امتیاز %s از ۵، ارزش ذاتی و صورت‌های مالی' % (label, fa('%.1f' % tot) if tot is not None else '—')
+    if anyfa:  # lead with the words people type: "سهام <نام فارسی>"
+        title = 'سهام %s | تحلیل فارسی، امتیاز %s از ۵ و ارزش ذاتی' % (label, fa('%.1f' % tot) if tot is not None else '—')
+    else:
+        title = 'تحلیل سهام %s به فارسی | امتیاز %s از ۵، ارزش ذاتی و صورت‌های مالی' % (label, fa('%.1f' % tot) if tot is not None else '—')
     desc = ('تحلیل فارسی سهم %s: امتیاز %s از ۵ در ارزش، رشد، کارنامه، سلامت مالی و بازگشت سرمایه؛ P/E، جریان نقد آزاد، ارزش ذاتی DCF و صورت‌های مالی ۱۰ ساله از گزارش‌های رسمی SEC.'
             % (label, fa('%.1f' % tot) if tot is not None else '—'))
 
     hist = [{'fy': x['fy'], 'rev': x.get('revenue'), 'ni': x.get('net_income'), 'fcf': x.get('fcf'),
              'nm': num(x.get('net_margin'), 4), 'roic': num(x.get('roic'), 4)} for x in a[-6:]]
     data = {
-        't': t, 'name': nm_en, 'fa': nm, 'sector': m.get('sector'), 'sector_fa': sector_fa, 'industry': m.get('industry'),
+        't': t, 'name': nm_en, 'fa': nm, 'fa2': fa2, 'sector': m.get('sector'), 'sector_fa': sector_fa, 'industry': m.get('industry'),
         'price': m.get('price'), 'mcap': m.get('mcap'), 'as_of': m.get('as_of'),
         'scores': {k: sc.get(k) for k, _ in AX}, 'total': tot, 'verdict': verdict(tot),
         'axes': [{'k': k, 'fa': f, 'v': sc.get(k)} for k, f in AX],

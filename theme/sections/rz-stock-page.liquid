@@ -24,6 +24,7 @@
   .rzx .crumb{font-size:12.5px;color:var(--mut);margin-bottom:10px}
   .rzx .crumb a{color:var(--mut);text-decoration:none}
   .rzx h1{font-size:clamp(22px,4.6vw,30px);font-weight:900;margin:0 0 4px;color:#fff;line-height:1.45}
+  .rzx h1 .fa2{font-size:.6em;font-weight:600;color:#9db2c9;margin-inline-start:8px;white-space:nowrap}
   .rzx h2{font-size:19px;font-weight:900;margin:0 0 12px;color:#fff}
   .rzx .meta{color:var(--mut);font-size:13px}
   .rzx .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
@@ -97,7 +98,7 @@
   <nav class="crumb"><a href="/">خانه</a> › <a href="/pages/stock">تحلیل سهام</a> › <span dir="ltr">{{ t | escape }}</span></nav>
   <div class="top">
     <div>
-      <h1>تحلیل سهام {{ label | escape }} به فارسی</h1>
+      <h1>تحلیل سهام {{ label | escape }} به فارسی{% if d.fa2 != blank %} <small class="fa2">{{ d.fa2 | escape }}</small>{% endif %}</h1>
       <div class="meta">
         {%- if d.sector_fa != blank -%}بخش {{ d.sector_fa | escape }}{%- endif -%}
         {%- if d.industry != blank %} · <span dir="ltr">{{ d.industry | escape }}</span>{%- endif -%}

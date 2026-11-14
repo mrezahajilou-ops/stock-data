@@ -124,8 +124,9 @@ def main():
             old = {}
     new = dict(old)
     failed = sync_pages(tok, json.load(open(GUIDES)), old, new) if os.path.exists(GUIDES) else 0
-    if os.path.exists(ARTICLES):
-        failed += sync_articles(tok, json.load(open(ARTICLES)), old, new)
+    for path in (ARTICLES, os.path.join(ROOT, 'pages', 'explainers.json')):
+        if os.path.exists(path):
+            failed += sync_articles(tok, json.load(open(path)), old, new)
     json.dump(new, open(HASHES, 'w'))
     if failed > 5:
         sys.exit(1)

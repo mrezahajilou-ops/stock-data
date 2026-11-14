@@ -9,7 +9,7 @@ Output: pages/guides.json  - [{handle, title, seo_title, seo_desc, html}]
 """
 import json, os, re, glob, subprocess, datetime as dt, html as H
 
-from build_pages import FA_NAME, FA_SECTOR, MONTHS, fa, pct, big_fa, verdict
+from build_pages import FA_NAME, FA_ALT, FA_SECTOR, MONTHS, fa, pct, big_fa, verdict
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 SRC = os.path.join(ROOT, 'data', 'stocks')
@@ -90,6 +90,7 @@ CSS = '''<style>
 .rzg td{padding:8px 10px;border-top:1px solid #262B36;vertical-align:middle}
 .rzg td.n{white-space:nowrap}
 .rzg .tk{font-family:Inter,Arial,sans-serif;direction:ltr;unicode-bidi:isolate;color:#8A8F99;font-size:.85em;margin-right:6px}
+.rzg .fa2{color:#8A8F99;font-size:.82em;margin-right:6px;white-space:nowrap}
 .rzg .up{color:#4FA37A}.rzg .dn{color:#C8534F}
 .rzg .sc{display:inline-block;min-width:2.4em;text-align:center;border-radius:6px;padding:0 6px;background:#1C2029;color:#C9A961;font-weight:700}
 .rzg .chips a{display:inline-block;margin:4px 0 4px 8px;padding:4px 12px;border:1px solid #262B36;border-radius:999px;text-decoration:none;font-size:.9em}
@@ -102,7 +103,7 @@ CSS = '''<style>
 
 def name_cell(x):
     """Company cell: Persian name (or English) + ticker, linked to its stock page."""
-    return '<a href="/pages/stocks/%s">%s</a><span class="tk">%s</span>' % (e(x['t'].lower()), nm_html(x.get('fa'), x.get('en') or x['t']), e(x['t']))
+    return '<a href="/pages/stocks/%s">%s</a>%s<span class="tk">%s</span>' % (e(x['t'].lower()), nm_html(x.get('fa'), x.get('en') or x['t']), alt_html(x['t']), e(x['t']))
 
 
 def nm_html(fa_name, en):
@@ -110,6 +111,12 @@ def nm_html(fa_name, en):
     if fa_name:
         return e(fa_name)
     return '<bdi dir="ltr">%s</bdi>' % e(en)
+
+
+def alt_html(t):
+    """Small Persian name shown beside an English company name."""
+    a = None if t in FA_NAME else FA_ALT.get(t)
+    return ('<span class="fa2">%s</span>' % e(a)) if a else ''
 
 
 def label(x):

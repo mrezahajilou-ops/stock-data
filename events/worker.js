@@ -20,10 +20,15 @@ const U_RE = /^[a-z0-9]{8,32}$/;
 const RETAIN_DAYS = 400;
 const MIN_UNIQ = 3;
 
+const READ_ORIGINS = ['https://saqrmarkets.com', 'https://www.saqrmarkets.com'];
+
 function cors(req, env) {
   const o = req.headers.get('Origin') || '';
   const allowed = (env.ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
-  const ok = allowed.length === 0 || allowed.includes(o) || /^http:\/\/localhost(:\d+)?$/.test(o);
+  // the Arabic sister site only reads the public price cache (/c/...); every other endpoint stays closed to it
+  let readOnly = false;
+  try { readOnly = req.method === 'GET' && new URL(req.url).pathname.startsWith('/c/') && READ_ORIGINS.includes(o); } catch (e) {}
+  const ok = allowed.length === 0 || allowed.includes(o) || readOnly || /^http:\/\/localhost(:\d+)?$/.test(o);
   return {
     'Access-Control-Allow-Origin': ok ? (o || '*') : 'null',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',

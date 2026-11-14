@@ -159,9 +159,12 @@ def prev_json():
 
 def bls_all():
     """CPI-U (headline, core; NSA for year-over-year, SA for month-over-month) and PPI final demand, monthly, 21 years.
-    Fetched at most once a day; otherwise reused from the previous gold.json."""
+    Fetched twice a day: once after midnight and once after 13:35 UTC, i.e. a few minutes after the 8:30 New York
+    release time of CPI / PPI (12:30 or 13:30 UTC); otherwise reused from the previous gold.json (API limit)."""
+    now = dt.datetime.utcnow()
+    slot = 'pm' if now.hour * 60 + now.minute >= 13 * 60 + 35 else 'am'
     p = (prev_json().get('bls') or {})
-    if p.get('day') == TODAY.isoformat() and (p.get('s') or {}).get('cpi'):
+    if p.get('day') == TODAY.isoformat() and p.get('slot', 'am') == slot and (p.get('s') or {}).get('cpi'):
         return p
     out = {k: [] for k in BLS_IDS}
     rev = {v: k for k, v in BLS_IDS.items()}
@@ -182,7 +185,7 @@ def bls_all():
         if (p.get('s') or {}).get('cpi'):
             return p  # keep yesterday's numbers rather than none
         raise ValueError('BLS: %d CPI rows (%s)' % (len(out['cpi']), str(j.get('message'))[:80]))
-    return {'day': TODAY.isoformat(), 's': {k: sorted(v) for k, v in out.items()}}
+    return {'day': TODAY.isoformat(), 'slot': slot, 's': {k: sorted(v) for k, v in out.items()}}
 
 
 def bls_cpi():

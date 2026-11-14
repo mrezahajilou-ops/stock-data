@@ -37,7 +37,7 @@ JOBS = {
     'quotes.yml':         ('قیمت‌های لحظه‌ای', 6),
     'fast.yml':           ('مسیر سریع گزارش‌های مالی جدید', 6),
     'portfolio.yml':      ('بازده پورتفوی رضا', 8),
-    'gold.yml':           ('صفحه‌ی طلا و نقره', 8),
+    'gold.yml':           ('صفحه‌ی طلا و نقره', 3),
     'subs-mail.yml':      ('ایمیل‌های اشتراک (لغو، یادآوری تمدید)', 12),
     'alerts.yml':         ('ایمیل معاملات به مشترک‌های پورتفو', 12),
     'extras.yml':         ('اخبار و معاملات داخلی‌ها', 24),
@@ -135,6 +135,38 @@ def check_worker(issues):
         issues['worker'] = f'ورکر کلادفلر (قیمت‌ها و مسابقه) جواب نمی‌دهد ({type(e).__name__}).'
 
 
+def check_gold(issues):
+    """Gold & silver page data: fresh, and every block present (prices, inflation, yields, Fed odds, positioning)."""
+    try:
+        g = getj(f'https://raw.githubusercontent.com/{REPO}/gold/gold.json?t={int(time.time())}')
+    except Exception as e:
+        issues['gold'] = f'داده‌ی صفحه‌ی طلا و نقره خوانده نشد ({type(e).__name__}).'
+        return
+    h = age_h(g.get('as_of', '2000-01-01T00:00:00Z'))
+    if h > 2:
+        issues['gold-age'] = f'داده‌ی صفحه‌ی طلا و نقره {h:.0f} ساعت است به‌روز نشده (عادی: هر ۱۵ دقیقه).'
+    drv, odds, infl = g.get('drv') or {}, g.get('odds') or {}, g.get('infl') or {}
+    miss = [lab for ok, lab in (
+        (((g.get('spot') or {}).get('gold') or {}).get('p'), 'قیمت طلا'),
+        (((g.get('spot') or {}).get('silver') or {}).get('p'), 'قیمت نقره'),
+        (infl.get('cpi') is not None, 'تورم'),
+        (infl.get('be'), 'تورم مورد انتظار بازار'),
+        (drv.get('ry') and drv.get('y10'), 'بازده اوراق'),
+        (drv.get('dxy'), 'شاخص دلار'),
+        (odds.get('k'), 'احتمال‌های Kalshi'),
+        (odds.get('p'), 'احتمال‌های Polymarket'),
+        (((g.get('cot') or {}).get('gold')), 'موقعیت سفته‌بازها'),
+        (((g.get('cal') or {}).get('fomc')), 'تاریخ جلسه‌ی فدرال رزرو'),
+        (((g.get('cal') or {}).get('cpi')), 'تاریخ گزارش بعدی تورم (فهرست CPI_DATES در gold.py را تمدید کن)')) if not ok]
+    if miss:
+        issues['gold-miss'] = 'در صفحه‌ی طلا و نقره این بخش‌ها داده ندارند: ' + '، '.join(miss) + '.'
+    if infl.get('m'):
+        y, m = map(int, infl['m'].split('-'))
+        lag = (NOW.year - y) * 12 + NOW.month - m
+        if lag > 2:
+            issues['gold-cpi'] = f'آخرین عدد تورم در صفحه‌ی طلا مال {infl["m"]} است؛ گزارش جدیدتر باید آمده باشد.'
+
+
 def check_contest(issues, state):
     try:
         b = getj(WORKER + '/c/board')
@@ -201,6 +233,7 @@ def main():
     check_jobs(issues)
     check_site(issues)
     check_worker(issues)
+    check_gold(issues)
     check_contest(issues, state)
 
     old = state.get('issues') or {}

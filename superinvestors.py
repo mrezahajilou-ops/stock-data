@@ -130,6 +130,48 @@ MANAGERS = [
 ]
 
 
+# Large institutions and asset managers (shown on the English site stockanaliz.com only). Written to separate files
+# (index_inst.json, owners_inst.json), so the Farsi site's index.json / owners.json do not change. Same tuple layout as
+# MANAGERS; the Farsi fields are unused.
+INSTITUTIONS = [
+    ('i-vanguard', 102909, 'VANGUARD', 'Vanguard', 'The Vanguard Group', '', '', 'Index / Asset manager',
+     'The largest mutual fund and ETF provider in the US. Its holdings mostly mirror the market, because most of its money sits in index funds.'),
+    ('i-blackrock', (2012383, 1364742), 'BLACKROCK', 'BlackRock', 'BlackRock, Inc.', '', '', 'Index / Asset manager',
+     "The world's largest asset manager and the company behind iShares ETFs; like Vanguard, its holdings largely track the market."),
+    ('i-statestreet', 93751, 'STATE STREET', 'State Street', 'State Street Corporation', '', '', 'Index / Asset manager',
+     'Custody bank and asset manager behind the SPDR ETFs, including SPY, the oldest S&P 500 ETF.'),
+    ('i-fidelity', 315066, 'FMR', 'Fidelity', 'FMR LLC (Fidelity Investments)', '', '', 'Asset manager',
+     'Fidelity Investments, one of the biggest active fund managers, known for funds such as Contrafund.'),
+    ('i-capitalworld', 1422848, 'CAPITAL WORLD', 'Capital Group', 'Capital World Investors', '', '', 'Asset manager',
+     'Part of Capital Group, the active manager behind the American Funds family.'),
+    ('i-troweprice', 80255, 'ROWE', 'T. Rowe Price', 'T. Rowe Price Associates', '', '', 'Growth / Asset manager',
+     'Baltimore-based active manager with a long tradition of growth investing.'),
+    ('i-geode', 1214717, 'GEODE', 'Geode Capital', 'Geode Capital Management', '', '', 'Index / Asset manager',
+     "Runs many of Fidelity's index funds, so its portfolio closely follows the broad market."),
+    ('i-wellington', 902219, 'WELLINGTON', 'Wellington', 'Wellington Management', '', '', 'Asset manager',
+     "One of the oldest independent investment firms, managing money for Vanguard's active funds and pension plans."),
+    ('i-norges', 1374170, 'NORGES', "Norway's wealth fund", 'Norges Bank Investment Management', '', '', 'Sovereign fund',
+     "Norway's sovereign wealth fund, the largest in the world, owning a small slice of almost every listed company."),
+    ('i-jpmorgan', 19617, 'JPMORGAN', 'JPMorgan Chase', 'JPMorgan Chase & Co.', '', '', 'Bank',
+     "America's largest bank; its 13F covers the stocks held by its asset and wealth management arms."),
+    ('i-morganstanley', 895421, 'MORGAN STANLEY', 'Morgan Stanley', 'Morgan Stanley', '', '', 'Bank',
+     'Investment bank and one of the largest wealth managers in the US.'),
+    ('i-goldman', 886982, 'GOLDMAN', 'Goldman Sachs', 'The Goldman Sachs Group', '', '', 'Bank',
+     'Global investment bank; its 13F reflects asset management and trading positions.'),
+    ('i-bofa', 70858, 'BANK OF AMERICA', 'Bank of America', 'Bank of America Corporation', '', '', 'Bank',
+     'Second-largest US bank, including Merrill Lynch wealth management.'),
+    ('i-northerntrust', 73124, 'NORTHERN TRUST', 'Northern Trust', 'Northern Trust Corporation', '', '', 'Bank / Asset manager',
+     'Chicago custody bank and asset manager for pension funds and wealthy families.'),
+    ('i-invesco', 914208, 'INVESCO', 'Invesco', 'Invesco Ltd.', '', '', 'Asset manager',
+     'Global asset manager behind the Invesco QQQ ETF that tracks the Nasdaq-100.'),
+    ('i-renaissance', 1037389, 'RENAISSANCE', 'Renaissance Technologies', 'Renaissance Technologies', '', '', 'Quant',
+     "The quant fund founded by mathematician Jim Simons, famous for the Medallion fund's returns."),
+    ('i-citadel', 1423053, 'CITADEL', 'Citadel', 'Citadel Advisors (Ken Griffin)', '', '', 'Hedge fund',
+     "Ken Griffin's multi-strategy hedge fund, one of the most profitable in history."),
+    ('i-twosigma', 1179392, 'TWO SIGMA', 'Two Sigma', 'Two Sigma Investments', '', '', 'Quant',
+     'A data- and technology-driven quant fund.'),
+]
+
 # order of the default "most famous" view on the page
 FAME = ['buffett', 'ackman', 'druck', 'lilu', 'smith', 'burry', 'klarman', 'tepper', 'pabrai', 'icahn', 'munger', 'soros',
         'dalio', 'gates', 'wood', 'marks', 'loeb', 'coleman', 'gayner', 'watsa', 'akre', 'hohn', 'train', 'sequoia', 'elliott', 'peltz']
@@ -245,7 +287,7 @@ def quarter_rows(rows, filed):
     return eq, opt
 
 
-def load_manager(m):
+def load_manager(m, nq=NQ):
     mid, word = m[0], m[2]
     ciks = m[1] if isinstance(m[1], (tuple, list)) else (m[1],)
     fs, name = [], ''
@@ -264,7 +306,7 @@ def load_manager(m):
     fs.sort(key=lambda f: f['filed'], reverse=True)
     if not fs:
         print('::warning::%s: no 13F filings' % mid); return None
-    periods = sorted({f['period'] for f in fs if f['form'] == '13F-HR'}, reverse=True)[:NQ]
+    periods = sorted({f['period'] for f in fs if f['form'] == '13F-HR'}, reverse=True)[:nq]
     Q = []
     for p in periods:
         group = sorted([f for f in fs if f['period'] == p], key=lambda f: f['filed'])
@@ -337,7 +379,8 @@ def norm(s):
 
 
 # ------------------------------------------------------------------ main
-def main():
+def main(MANAGERS=MANAGERS, tag='', nq=NQ, top_map=None):
+    """tag='' builds the super investors (both sites); tag='_inst' the large institutions (English site only, separate files)."""
     os.makedirs(os.path.join(OUT, 'm'), exist_ok=True)
     idx = json.load(open(os.path.join(ROOT, 'data', 'index.json')))
     aliases = json.load(open(os.path.join(ROOT, 'data', 'aliases.json')))
@@ -357,7 +400,7 @@ def main():
     data = []
     for m in MANAGERS:
         try:
-            d = load_manager(m)
+            d = load_manager(m, nq)
         except Exception as e:  # one bad filing must not stop the rest
             print('::warning::%s failed: %s' % (m[0], str(e)[:200])); d = None
         if d and d['Q']:
@@ -368,7 +411,8 @@ def main():
     cus = set()
     for d in data:
         for q in d['Q'][:2]:
-            cus.update(q['eq'].keys())
+            # institutions hold thousands of stocks: map only their largest positions (the page shows the top 200)
+            cus.update(q['eq'].keys() if top_map is None else sorted(q['eq'], key=lambda c: -q['eq'][c]['v'])[:top_map])
             cus.update(k[0] for k in q['opt'].keys())
         for q in d['Q'][2:]:
             cus.update(sorted(q['eq'], key=lambda c: -q['eq'][c]['v'])[:40])
@@ -514,10 +558,10 @@ def main():
     index = {'as_of': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime()), 'latest': latest_all, 'managers': summary,
              'popular': pop[:100], 'buys': lst(B), 'sells': lst(S),
              'recent': [[r['id'], r['filed'], r['period']] for r in recent[:20]]}
-    json.dump(index, open(os.path.join(OUT, 'index.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
+    json.dump(index, open(os.path.join(OUT, 'index%s.json' % tag), 'w'), separators=(',', ':'), ensure_ascii=False)
     json.dump({t: [[x[0], x[1], x[2]] for x in sorted(L, key=lambda x: -x[1])] for t, L in owners.items()},
-              open(os.path.join(OUT, 'owners.json'), 'w'), separators=(',', ':'))
-    json.dump(DEBUG, open(os.path.join(OUT, 'debug.json'), 'w'), indent=0)
+              open(os.path.join(OUT, 'owners%s.json' % tag), 'w'), separators=(',', ':'))
+    json.dump(DEBUG, open(os.path.join(OUT, 'debug%s.json' % tag), 'w'), indent=0)
     print('done: %d managers, %d stocks owned, latest quarter %s' % (len(summary), len(owners), latest_all))
 
 
@@ -530,3 +574,10 @@ def quarter_back(p, n):
 
 if __name__ == '__main__':
     main()
+    # institutions are an extra for the English site: a failure here must never block the super investors above
+    if os.environ.get('SI_INSTITUTIONS', '1') == '1':
+        try:
+            DEBUG.clear()
+            main(INSTITUTIONS, '_inst', nq=4, top_map=250)
+        except BaseException as e:
+            print('::warning::institutions failed: %s' % str(e)[:300])

@@ -146,6 +146,31 @@ def fix_all_tags(tok):
     print('article tags repaired:', fixed, flush=True)
 
 
+BLOCKS = os.path.join(ROOT, 'pages', 'blocks.json')
+BLOCK_UPSERT = '''mutation($h: MetaobjectHandleInput!, $m: MetaobjectUpsertInput!) {
+  metaobjectUpsert(handle: $h, metaobject: $m) { metaobject { id handle } userErrors { field message code } } }'''
+
+
+def sync_blocks(tok, rows, old, new):
+    """Bottom-of-page text for the tool pages (metaobject rz_block, rendered by snippets/rz-seo-block.liquid)."""
+    sent = failed = 0
+    for b in rows:
+        h = hsh(b)
+        if old.get('block:' + b['handle']) == h:
+            continue
+        j = gql(tok, BLOCK_UPSERT, {'h': {'type': 'rz_block', 'handle': b['handle']},
+                                    'm': {'fields': [{'key': 'html', 'value': b['html']}], 'capabilities': {'publishable': {'status': 'ACTIVE'}}}})
+        ue = errs(j, 'metaobjectUpsert')
+        if ue:
+            failed += 1
+            print('block failed', b['handle'], ue, flush=True)
+        else:
+            sent += 1
+            new['block:' + b['handle']] = h
+    print('blocks sent:', sent, 'failed:', failed, flush=True)
+    return failed
+
+
 def main():
     tok = token()
     sc = {s['handle'] for s in ((gql(tok, SCOPES, {}).get('data') or {}).get('currentAppInstallation') or {}).get('accessScopes') or []}
@@ -164,6 +189,8 @@ def main():
     for path in (ARTICLES, os.path.join(ROOT, 'pages', 'explainers.json'), os.path.join(ROOT, 'pages', 'news.json')):
         if os.path.exists(path):
             failed += sync_articles(tok, json.load(open(path)), old, new)
+    if os.path.exists(BLOCKS):
+        failed += sync_blocks(tok, json.load(open(BLOCKS)), old, new)
     json.dump(new, open(HASHES, 'w'))
     fix_all_tags(tok)
     if failed > 5:

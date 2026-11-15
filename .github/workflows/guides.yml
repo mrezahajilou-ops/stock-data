@@ -46,6 +46,7 @@ jobs:
           if [ -f build_earnings.py ]; then python build_earnings.py; fi
           python build_explainers.py
           python build_news.py
+          python build_seo_blocks.py
       - name: Restore change cache
         if: ${{ !inputs.full }}
         uses: actions/cache/restore@v4

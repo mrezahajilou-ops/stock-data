@@ -20,6 +20,7 @@ const U_RE = /^[a-z0-9]{8,32}$/;
 const RETAIN_DAYS = 400;
 const MIN_UNIQ = 3;
 
+const EN_ORIGINS = ['https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev'];
 const READ_ORIGINS = ['https://saqrmarkets.com', 'https://www.saqrmarkets.com', 'https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev'];
 
 function cors(req, env) {
@@ -28,11 +29,13 @@ function cors(req, env) {
   // the Arabic and English sister sites only read the public price cache (/c/...); every other endpoint stays closed to them
   let readOnly = false;
   try { readOnly = req.method === 'GET' && new URL(req.url).pathname.startsWith('/c/') && READ_ORIGINS.includes(o); } catch (e) {}
+  // the English site runs its own contest board on the same engine: full access to /c/ only
+  try { if (EN_ORIGINS.includes(o) && new URL(req.url).pathname.startsWith('/c/')) readOnly = true; } catch (e) {}
   const ok = allowed.length === 0 || allowed.includes(o) || readOnly || /^http:\/\/localhost(:\d+)?$/.test(o);
   return {
     'Access-Control-Allow-Origin': ok ? (o || '*') : 'null',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, X-RZ-Token',
+    'Access-Control-Allow-Headers': 'Content-Type, X-RZ-Token, X-SA-Key',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin',
   };

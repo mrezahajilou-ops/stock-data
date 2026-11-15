@@ -89,7 +89,7 @@ def sync_articles(tok, doc, old, new):
         j = gql(tok, ART_FIND, {'q': 'handle:%s' % a['handle']})
         nodes = (((j.get('data') or {}).get('articles')) or {}).get('nodes') or []
         node = next((n for n in nodes if n['handle'] == a['handle'] and (n.get('blog') or {}).get('handle') == doc['blog']), None)
-        body = {'title': a['title'], 'body': a['html'], 'summary': a.get('summary'), 'tags': a.get('tags') or [],
+        body = {'title': a['title'], 'body': a['html'], 'summary': a.get('summary'), 'tags': clean_tags(a.get('tags')),
                 'metafields': seo(a)}
         if node:
             j = gql(tok, ART_UPDATE, {'id': node['id'], 'a': body})
@@ -107,6 +107,43 @@ def sync_articles(tok, doc, old, new):
         sent += 1
     print('articles: sent %d, unchanged %d, failed %d' % (sent, len(doc['articles']) - sent - failed, failed), flush=True)
     return failed
+
+
+ALL_ART = '''query($after: String) { articles(first: 100, after: $after) { pageInfo { hasNextPage endCursor } nodes { id handle tags } } }'''
+
+
+def clean_tags(tags):
+    """Tag links 404 on Shopify when a tag holds a half-space (ZWNJ) or HTML. Drop HTML, remove half-spaces, dedupe."""
+    out = []
+    for x in tags or []:
+        x = str(x)
+        if '<' in x or '>' in x:
+            continue
+        x = ' '.join(x.replace('\u200c', '').split())
+        if x and x not in out:
+            out.append(x)
+    return out
+
+
+def fix_all_tags(tok):
+    """Every article on the store (also hand-written ones): repair tags that break their /tagged/ links."""
+    after, fixed = None, 0
+    while True:
+        j = gql(tok, ALL_ART, {'after': after})
+        c = ((j.get('data') or {}).get('articles')) or {}
+        for n in c.get('nodes') or []:
+            t = clean_tags(n['tags'])
+            if t != n['tags']:
+                ue = errs(gql(tok, ART_UPDATE, {'id': n['id'], 'a': {'tags': t}}), 'articleUpdate')
+                if ue:
+                    print('tag fix failed', n['handle'], ue, flush=True)
+                else:
+                    fixed += 1
+        pi = c.get('pageInfo') or {}
+        if not pi.get('hasNextPage'):
+            break
+        after = pi.get('endCursor')
+    print('article tags repaired:', fixed, flush=True)
 
 
 def main():
@@ -128,6 +165,7 @@ def main():
         if os.path.exists(path):
             failed += sync_articles(tok, json.load(open(path)), old, new)
     json.dump(new, open(HASHES, 'w'))
+    fix_all_tags(tok)
     if failed > 5:
         sys.exit(1)
 

@@ -507,6 +507,49 @@ def ttm(qs):
     return sum(qs[k] for k in last4), last4[-1]
 
 
+def ttm_ytd(facts, tag, unit="USD"):
+    """(value, end) = last 10-K year + current year-to-date - prior year-to-date, every value taken from the latest
+    filing that reports that period (so restated comparatives - spin-offs, corrections - are used). Independent of
+    quarterly(), which differences year-to-date values from different filings."""
+    ns, nm = tag.split(":")
+    D = {}
+    for r in ((facts.get(ns, {}).get(nm) or {}).get("units", {}) or {}).get(unit) or []:
+        if not r.get("start") or r.get("form") not in ("10-Q", "10-K", "10-Q/A", "10-K/A") or r.get("val") is None:
+            continue
+        k = (r["start"], r["end"])
+        if k in D and days(*k) >= 350 and D[k][2].startswith("10-K") != r["form"].startswith("10-K"):
+            if r["form"].startswith("10-K"):
+                D[k] = (r["val"], r["filed"], r["form"])
+            continue
+        if k not in D or r["filed"] > D[k][1]:
+            D[k] = (r["val"], r["filed"], r["form"])
+    if not D:
+        return None, None
+    end = max(k[1] for k in D)
+    cur = [k for k in D if k[1] == end]
+    if any(350 <= days(*k) <= 380 for k in cur):
+        return None, None           # latest period is a full year: the annual row already is the trailing figure
+    ytd = max(cur, key=lambda k: days(*k))
+    L = days(*ytd)
+    if L > 300:
+        return None, None
+    fy = [k for k in D if 350 <= days(*k) <= 380 and 0 <= days(k[1], ytd[0]) <= 12]
+    if not fy:
+        return None, None
+    prior = [k for k in D if abs(days(k[1], end) - 365) <= 12 and abs(days(*k) - L) <= 12 and k[0] == fy[0][0]]
+    pv = D[prior[0]][0] if prior else None
+    if pv is None:
+        for lk in D:
+            if lk[0] == fy[0][0] and 70 <= days(*lk) - L <= 110:
+                qk = [k for k in D if k[1] == lk[1] and 80 <= days(*k) <= 100]
+                if qk:
+                    pv = D[lk][0] - D[qk[0]][0]
+                    break
+    if pv is None:
+        return None, None
+    return D[fy[0]][0] + D[ytd][0] - pv, end
+
+
 def nearest(series, end, tol=20):
     if end in series:
         return series[end]
@@ -852,6 +895,19 @@ def build_company(cik, entry, facts):
                        "dividends": abs(t_div) if same(e_div) else None,
                        "eps": t_eps if same(e_eps) else None,
                        "dps": t_dps}
+            # every revenue tag's own trailing sum (one tag per window, never mixed per quarter); reconcile_per_share
+            # picks the one the independent trailing revenue confirms when the per-quarter max mixed two definitions
+            for key, tags in (("rev_alts", list(dict.fromkeys(CONCEPTS["revenue"][1] + REV_TOTAL))),
+                              ("ni_alts", CONCEPTS["net_income"][1])):
+                alts = {}
+                for tg in tags:
+                    if not tg.startswith("us-gaap:"):
+                        continue
+                    for how, (av, ae) in (("q", ttm(quarterly(facts, [tg]))), ("ytd", ttm_ytd(facts, tg))):
+                        if av is not None and same(ae):
+                            alts[tg.split(":")[-1] + "/" + how] = av
+                if alts:
+                    ttm_rec[key] = alts
             # the rest of the income statement / cash flow on a trailing basis (for the TTM column of the 10-year table)
             for tk in ("gross_profit", "cogs", "rnd", "sbc", "buybacks", "interest_exp", "pretax_income", "tax"):
                 tv, te = ttm_tags(facts, CONCEPTS[tk][1])
@@ -1286,6 +1342,23 @@ def reconcile_per_share(rec, mk, ref):
         for k in ("dividends", "div_per_share", "dps"):
             if isinstance(row.get(k), (int, float)) and row[k] < 0:
                 row[k] = -row[k]
+    # trailing revenue: when our figure is not the independent trailing revenue but one single SEC tag's trailing sum
+    # is (within 1%), use that tag - the per-quarter maximum can mix "total revenues" with "contract revenue"
+    # (Devon, Vistra) or keep a spun-off business in the old annual base (S&P Global, Honeywell)
+    # Same for trailing net income: restated prior-year comparatives (CrowdStrike) are only in the latest filing.
+    tt = rec.get("ttm") or {}
+    for key, akey, rkey, tol in (("revenue", "rev_alts", "rev", 0.01), ("net_income", "ni_alts", "ni", 0.015)):
+        alts = tt.pop(akey, None)
+        yv = (ref or {}).get(rkey)
+        cur = tt.get(key)
+        if not alts or cur is None or not isinstance(yv, (int, float)) or not yv or tt.get("src") or tt.get("rolled_from"):
+            continue
+        if abs(cur - yv) / max(abs(yv), abs(cur)) <= tol:
+            continue
+        best = min(alts.values(), key=lambda v: abs(v - yv))
+        if abs(best - yv) / max(abs(yv), abs(best), 1) <= tol / 2:
+            tt[key] = best
+            tt[key[:3] + "_src"] = "sec-tag"
     price, mcap = (mk or {}).get("price"), (mk or {}).get("mcap")
     if not price or not mcap:
         return
@@ -1328,8 +1401,25 @@ def reconcile_per_share(rec, mk, ref):
     if ni and sh and 0.75 < implied / sh < 1.33:
         e2 = ni / sh
         ours = t.get("eps")
-        if ours is None or abs(ours / e2 - 1) > 0.12 or (ours > 0) != (e2 > 0):
-            yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
+        yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
+
+        def agree(a, b, tol):
+            if a is None or b is None:
+                return False
+            if abs(a - b) <= 0.02:
+                return True
+            return (a > 0) == (b > 0) and abs(a / b - 1) <= tol if b else False
+        # the sum of the four reported quarterly EPS is authoritative (it is what the company printed); it is replaced
+        # only when it is not confirmed: Yahoo's trailing EPS agrees with NI / shares instead (a split inside the window
+        # mixes share bases - Amphenol), or it is missing / far from NI / shares without an independent witness
+        if agree(ours, yeps, 0.05) or agree(ours, e2, 0.05):
+            pass
+        elif yeps is not None and agree(e2, yeps, 0.05):
+            t["eps"] = e2
+            t["eps_src"] = "ni/shares"
+        elif ours is not None and agree(ours, e2, 0.30):
+            pass   # share count moved inside the year (merger, buyback): the per-quarter sum is the right figure (Rocket)
+        else:
             if yeps and 0.5 < yeps / e2 < 2.0:
                 e2 = yeps   # the independent trailing diluted EPS handles dual-class / Up-C structures better than NI / shares
             t["eps"] = e2

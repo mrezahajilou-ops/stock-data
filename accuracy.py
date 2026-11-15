@@ -62,6 +62,11 @@ def duration_facts(facts, tags, unit):
             if not r.get('start') or r.get('form') not in ('10-Q', '10-K', '10-Q/A', '10-K/A'):
                 continue
             k = (r['start'], r['end'])
+            # a full-year value comes from a 10-K; a 10-Q sometimes mis-tags a quarter with a 12-month period (Comfort Systems)
+            if k in D and days(*k) >= 350 and D[k][2].startswith('10-K') != r['form'].startswith('10-K'):
+                if r['form'].startswith('10-K'):
+                    D[k] = (r['val'], r['filed'], r['form'])
+                continue
             if k not in D or r['filed'] > D[k][1]:
                 D[k] = (r['val'], r['filed'], r['form'])
         if not D:
@@ -88,11 +93,26 @@ def ttm(D):
         return None
     prior = [k for k in D if abs(days(k[1], end) - 365) <= 12 and abs(days(*k) - L) <= 12]
     fy = [k for k in D if 350 <= days(*k) <= 380 and 0 <= days(k[1], ytd[0]) <= 12]
-    if prior and fy:
-        return D[fy[0]][0] + D[ytd][0] - D[prior[0]][0], end, 'fy+ytd-prior'
+    pv = D[prior[0]][0] if prior else None
+    if pv is None and fy:
+        # prior-year YTD not tagged on its own: a longer prior YTD minus its last quarter (CrowdStrike)
+        for lk in D:
+            if lk[0] == fy[0][0] and 70 <= days(*lk) - L <= 110:
+                qk = [k for k in D if k[1] == lk[1] and 80 <= days(*k) <= 100]
+                if qk:
+                    pv = D[lk][0] - D[qk[0]][0]
+                    break
+    if pv is not None and fy:
+        return D[fy[0]][0] + D[ytd][0] - pv, end, 'fy+ytd-prior'
     # fallback: sum of the last four 3-month quarters
     qs = sorted([k for k in D if 80 <= days(*k) <= 100], key=lambda k: k[1])[-4:]
-    if len(qs) == 4 and days(qs[0][1], end) < 300:
+    # four distinct, back-to-back quarters only (52/53-week filers tag overlapping periods)
+    chain = len(qs) == 4 and all(0 < days(qs[i][1], qs[i + 1][0]) <= 7 for i in range(3))
+    vals = sorted(abs(D[k][0]) for k in qs) if len(qs) == 4 else []
+    # a full year mis-tagged as a quarter (L3Harris) is ~4x the other quarters
+    if chain and vals and vals[-1] > 2.5 * max(vals[1], 1):
+        chain = False
+    if chain and qs[-1][1] == end:
         return sum(D[k][0] for k in qs), end, '4q'
     return None
 
@@ -102,6 +122,64 @@ def ours(d):
     if T.get('end'):
         return {'end': T['end'], 'revenue': T.get('revenue'), 'net_income': T.get('net_income'), 'eps': T.get('eps')}
     return {'end': L.get('fy_end'), 'revenue': L.get('revenue'), 'net_income': L.get('net_income'), 'eps': L.get('eps_diluted')}
+
+SPLITS = [2, 3, 4, 5, 6, 8, 10, 13, 15, 20, 25, 50, 100]
+_EST = {}
+
+def yeps_of(t):
+    """Independent trailing diluted EPS (Yahoo, estimates branch) - already restated for splits and per ADS."""
+    if not _EST:
+        try:
+            _EST.update(json.loads(os.popen('git show origin/estimates:est.json 2>/dev/null').read() or '{}').get('est') or {})
+        except Exception:
+            pass
+        _EST.setdefault('_', 1)
+    v = ((_EST.get(t) or {}).get('ref') or {}).get('teps')
+    return v if isinstance(v, (int, float)) else None
+
+def agree(x, v, tol, k):
+    if x is None or v is None:
+        return False
+    if k == 'eps' and abs(x - v) <= 0.02:
+        return True
+    return abs(x - v) / max(abs(v), abs(x), 1e-9) <= tol
+
+def check(t, d, facts, yeps=None):
+    """-> ('ok'|'bad'|'stale'|'skip', payload). Every SEC revenue / net-income tag is tried on its own: our figure is
+    confirmed when it equals the TTM of any tag the company reports (banks, brokers and REITs use different revenue
+    lines). EPS is also confirmed by the independent split-adjusted trailing EPS, or by a clean split / ADS ratio."""
+    o = ours(d)
+    refs = {}
+    for k, tags, unit in (('revenue', REV_TAGS, 'USD'), ('net_income', NI_TAGS, 'USD'), ('eps', EPS_TAGS, 'USD/shares')):
+        for tag in tags:
+            v = ttm(duration_facts(facts, [tag], unit))
+            if v and v[0] is not None:
+                refs.setdefault(k, []).append(v + (tag,))
+    if not refs:
+        return 'skip', 'no comparable facts'
+    sec_end = max(v[1] for L in refs.values() for v in L)
+    if o['end'] and sec_end > o['end'] and days(o['end'], sec_end) >= 60:
+        return 'stale', {'t': t, 'ours': o['end'], 'sec': sec_end}
+    bad = []
+    for k, L in refs.items():
+        x = o.get(k)
+        same = [v for v in L if o['end'] and abs(days(v[1], o['end'])) <= 10]
+        if x is None or not same:
+            continue
+        if any(agree(x, v[0], TOL[k], k) for v in same):
+            continue
+        if k == 'eps':
+            if yeps is not None and agree(x, yeps, TOL[k], k):
+                continue
+            if (d.get('split_adj') or d.get('share_factor')) and any(
+                    v[0] and x and any(abs((v[0] / x) / F - 1) < 0.06 or abs((x / v[0]) / F - 1) < 0.06 for F in SPLITS) for v in same):
+                continue
+        v = min(same, key=lambda v: abs(v[0] - x))
+        bad.append({'k': k, 'ours': x, 'sec': v[0], 'diff': round(abs(x - v[0]) / max(abs(v[0]), abs(x), 1e-9), 4),
+                    'how': v[2], 'tag': v[3], 'end': v[1], 'yahoo': yeps if k == 'eps' else None})
+    if bad:
+        return 'bad', {'t': t, 'items': bad}
+    return 'ok', None
 
 def last_trading_day(now):
     d = now.date()
@@ -133,30 +211,14 @@ def main():
             report['skipped'].append([t, 'no companyfacts']); continue
         facts = json.loads(b).get('facts') or {}
         report['checked'] += 1
-        o = ours(d)
-        ref = {}
-        for k, tags, unit in (('revenue', REV_TAGS, 'USD'), ('net_income', NI_TAGS, 'USD'), ('eps', EPS_TAGS, 'USD/shares')):
-            v = ttm(duration_facts(facts, tags, unit))
-            if v:
-                ref[k] = v
-        if not ref:
-            report['skipped'].append([t, 'no comparable facts']); continue
-        sec_end = max(v[1] for v in ref.values())
-        if o['end'] and sec_end > o['end'] and days(o['end'], sec_end) >= 60:
-            report['stale'].append({'t': t, 'ours': o['end'], 'sec': sec_end}); continue
-        bad = []
-        for k, (v, end, how) in ref.items():
-            x = o.get(k)
-            if end != o['end'] or x is None or v is None:
-                continue
-            base = max(abs(v), abs(x), 1e-9)
-            diff = abs(x - v) / base
-            if k == 'eps' and abs(x - v) <= 0.02:
-                continue
-            if diff > TOL[k]:
-                bad.append({'k': k, 'ours': x, 'sec': v, 'diff': round(diff, 4), 'how': how, 'end': end})
-        if bad:
-            report['mismatch'].append({'t': t, 'mcap': r[ci['mcap']], 'items': bad})
+        st, payload = check(t, d, facts, yeps_of(t))
+        if st == 'skip':
+            report['skipped'].append([t, payload])
+        elif st == 'stale':
+            report['stale'].append(payload)
+        elif st == 'bad':
+            payload['mcap'] = r[ci['mcap']]
+            report['mismatch'].append(payload)
         else:
             report['ok'] += 1
     # feed freshness

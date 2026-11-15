@@ -63,9 +63,35 @@ def from_worker():
     return None
 
 
+def official_closes(q):
+    """Overlay the official closes (close_fix.py -> branch `closes`) on any quote stamped at or before them.
+    The screener's last sale can be the previous day's price stamped with today's close time."""
+    try:
+        url = 'https://raw.githubusercontent.com/' + os.environ.get('GITHUB_REPOSITORY', 'mrezahajilou-ops/stock-data') + '/closes/closes.json'
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'stock-data-quotes'}), timeout=30) as r:
+            c = json.loads(r.read())
+        cs = dt.datetime.fromisoformat(c['stamp'].replace('Z', '+00:00'))
+    except Exception as e:
+        print('official closes unavailable', e, flush=True)
+        return 0
+    n = 0
+    for t, v in (c.get('c') or {}).items():
+        o = q.get(t)
+        try:
+            ts = dt.datetime.fromisoformat(str(o[3]).replace('Z', '+00:00')) if o else None
+        except Exception:
+            ts = None
+        if o and ts and ts <= cs and v and v[0]:
+            q[t] = [v[0], round((v[0] / v[1] - 1) * 100, 2) if v[1] else None, v[1], c['stamp']]
+            n += 1
+    print('official closes applied:', n, c.get('d'), flush=True)
+    return n
+
+
 def main():
     j = from_worker()
     if j:
+        official_closes(j['q'])
         os.makedirs(OUT, exist_ok=True)
         json.dump(j, open(os.path.join(OUT, 'quotes.json'), 'w'), separators=(',', ':'))
         print('quotes from the worker:', len(j['q']), j.get('as_of'), j.get('status'), flush=True)
@@ -94,6 +120,7 @@ def main():
     if len(q) < len(tickers) * 0.3:
         sys.exit('too few quotes, keeping the previous file')
     os.makedirs(OUT, exist_ok=True)
+    official_closes(q)
     out = {'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
            'status': max(status, key=status.get) if status else None, 'n': len(q), 'q': q}
     json.dump(out, open(os.path.join(OUT, 'quotes.json'), 'w'), separators=(',', ':'))

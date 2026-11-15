@@ -981,6 +981,12 @@ def load_market():
             if m.get("price") and m.get("mcap"):
                 m["mcap"] = m["mcap"] * p / m["price"]
             m["price"] = p
+            # the trading day of that price (New York date), so pages never label a weekend date as the close
+            try:
+                ts = dt.datetime.fromisoformat(str(v[3]).replace("Z", "+00:00"))
+                m["px_date"] = (ts - dt.timedelta(hours=5)).date().isoformat()
+            except Exception:
+                pass
             n += 1
         log("live quotes applied:", n)
     except Exception as e:
@@ -1851,7 +1857,7 @@ def finish(recs, market):
         sc, ratios, checks = score(r, mk, sector_pe)
         r["market"] = {"price": mk.get("price"), "mcap": mk.get("mcap"), "sector": mk.get("sector"),
                        "industry": mk.get("industry"), "country": mk.get("country"), "ipo": mk.get("ipo"),
-                       "as_of": dt.date.today().isoformat()}
+                       "as_of": mk.get("px_date") or dt.date.today().isoformat()}
         r["ratios"] = {k: r4(v) for k, v in ratios.items()}
         r["scores"] = sc
         r["checks"] = checks

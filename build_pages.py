@@ -29,6 +29,17 @@ def about(t):
             'moat': p.get('moat'), 'rivals': rv, 'risks': p.get('risks') or [], 'updated_fa': month_fa(p.get('updated'))}
 
 
+def trading_day(d):
+    """The price is a close: never label it with a Saturday or Sunday (builds also run at weekends)."""
+    try:
+        x = dt.date.fromisoformat(str(d)[:10])
+    except Exception:
+        return d
+    while x.weekday() >= 5:
+        x -= dt.timedelta(days=1)
+    return x.isoformat()
+
+
 MONTHS = ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر']
 
 
@@ -168,7 +179,7 @@ def page(d, related):
              'nm': num(x.get('net_margin'), 4), 'roic': num(x.get('roic'), 4)} for x in a[-6:]]
     data = {
         't': t, 'name': nm_en, 'fa': nm, 'fa2': fa2, 'sector': m.get('sector'), 'sector_fa': sector_fa, 'industry': m.get('industry'),
-        'price': m.get('price'), 'mcap': m.get('mcap'), 'as_of': m.get('as_of'),
+        'price': m.get('price'), 'mcap': m.get('mcap'), 'as_of': trading_day(m.get('as_of')),
         'scores': {k: sc.get(k) for k, _ in AX}, 'total': tot, 'verdict': verdict(tot),
         'axes': [{'k': k, 'fa': f, 'v': sc.get(k)} for k, f in AX],
         'strengths': strengths[:8], 'weaknesses': weaknesses[:8],

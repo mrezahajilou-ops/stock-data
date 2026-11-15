@@ -79,6 +79,11 @@ def blog_id(tok, handle, title):
     return j['data']['blogCreate']['blog']['id']
 
 
+def now_z():
+    import datetime as _dt
+    return _dt.datetime.now(_dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
 def sync_articles(tok, doc, old, new):
     bid = blog_id(tok, doc['blog'], doc['blog_title'])
     sent = failed = 0
@@ -96,7 +101,7 @@ def sync_articles(tok, doc, old, new):
             ue = errs(j, 'articleUpdate')
         else:
             body.update({'handle': a['handle'], 'blogId': bid, 'isPublished': True,
-                         'author': {'name': 'سهام آنالیز'}, 'publishDate': a.get('date')})
+                         'author': {'name': 'سهام آنالیز'}, 'publishDate': min(a.get('date') or now_z(), now_z())})
             j = gql(tok, ART_CREATE, {'a': body})
             ue = errs(j, 'articleCreate')
         if ue:

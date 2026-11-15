@@ -72,7 +72,7 @@ window.rzLoad=function(c,url,failMsg){
 };
 /* Right-to-left guard */
 (function(){
-  var SIGN=/(^|[\s( ])([+\-−]\s?\$?[0-9۰-۹][0-9۰-۹.,٫٬]*\s?[%٪]?)/g,
+  var SIGN=/(^|[\s( ])([+\-−]\s?\$?[0-9۰-۹](?:[0-9۰-۹.,٫٬]*[0-9۰-۹])?(?:\s?[%٪])?)/g,
       CO=/[A-Za-z0-9][A-Za-z0-9&'’.,\- ]*?\b(?:Inc|Corp|Co|Ltd|Plc|Cos|Bros|Intl|L\.P|N\.V|S\.A|S\.p\.A)\./g,
       QUICK=/[+\-−]\s?\$?[0-9۰-۹]|(?:Inc|Corp|Co|Ltd|Plc|Cos|Bros|Intl|L\.P|N\.V|S\.A)\./,
       SKIP={SCRIPT:1,STYLE:1,NOSCRIPT:1,TEXTAREA:1,INPUT:1,SELECT:1,OPTION:1,CODE:1,PRE:1,BDI:1,TITLE:1};

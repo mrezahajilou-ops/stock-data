@@ -186,6 +186,9 @@ def main():
             old = {}
     new = dict(old)
     failed = sync_pages(tok, json.load(open(GUIDES)), old, new) if os.path.exists(GUIDES) else 0
+    FC = os.path.join(ROOT, 'pages', 'forecasts.json')
+    if os.path.exists(FC):
+        failed += sync_pages(tok, json.load(open(FC)), old, new)
     for path in (ARTICLES, os.path.join(ROOT, 'pages', 'explainers.json'), os.path.join(ROOT, 'pages', 'news.json')):
         if os.path.exists(path):
             failed += sync_articles(tok, json.load(open(path)), old, new)

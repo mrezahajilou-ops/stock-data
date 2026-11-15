@@ -27,7 +27,7 @@ jobs:
   guides:
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,6 +46,7 @@ jobs:
           if [ -f build_earnings.py ]; then python build_earnings.py; fi
           python build_explainers.py
           python build_news.py
+          python build_forecasts.py
           python build_seo_blocks.py
       - name: Restore change cache
         if: ${{ !inputs.full }}

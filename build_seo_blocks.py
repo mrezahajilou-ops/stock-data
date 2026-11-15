@@ -41,6 +41,16 @@ def stock_chips(rows):
         for x in rows) + '</div>'
 
 
+FC = {p['handle'] for p in (jl('forecasts.json') or [])}
+FC_HUB = ('/pages/stock-forecasts', 'پیش‌بینی سهام آمریکا (قیمت هدف تحلیلگرها)')
+
+
+def forecast_chips(rows):
+    rows = [x for x in rows if x['t'].lower().replace('.', '-') + '-forecast' in FC]
+    return '<div class="chips">' + ''.join('<a href="/pages/%s-forecast">پیش‌بینی سهام %s</a>' % (e(x['t'].lower().replace('.', '-')), nm_html(x.get('fa'), x['en']))
+                                           for x in rows) + '</div>'
+
+
 def guide_links(pred):
     return [('/pages/' + g['handle'], e(g['title'])) for g in GUIDES if pred(g['handle'])]
 
@@ -96,7 +106,7 @@ def build():
          'همه‌ی اعداد هر روز بعد از بسته شدن بازار آمریکا خودکار به‌روز می‌شوند و همه‌چیز به دلار است. این سایت آموزشی است و توصیه‌ی خرید یا فروش نمی‌دهد.'],
         '<h2>ابزارهای سهام آنالیز</h2>', tool_list(),
         '<h2>بزرگ‌ترین شرکت‌های بورس آمریکا</h2>', stock_chips(top30),
-        '<h2>فهرست‌های آماده‌ی سهام</h2>', chips(RANKINGS + SECTORS[:6] + [('/pages/guides', 'همه‌ی فهرست‌ها')]),
+        '<h2>فهرست‌های آماده‌ی سهام</h2>', chips([FC_HUB] + RANKINGS + SECTORS[:6] + [('/pages/guides', 'همه‌ی فهرست‌ها')]),
         '<h2>آموزش و اخبار</h2>', chips([('/blogs/learn', 'آموزش سرمایه‌گذاری'), ('/blogs/news', 'اخبار و مقالات'),
                                           ('/blogs/earnings-reports', 'گزارش‌های فصلی شرکت‌ها')] + learn('pe-ratio', 'intrinsic-value', 'etf', 'dividend')),
         faq_block([
@@ -111,6 +121,7 @@ def build():
          'نسبت قیمت به سود و جریان نقد آزاد، رشد درآمد و سود در ۱۰ سال، ارزش ذاتی با سه سناریو، قیمت هدف تحلیلگرها و مقایسه با شرکت‌های هم‌صنعت.',
          'اعداد از گزارش‌های رسمی سالانه و فصلی شرکت‌ها می‌آیند و هر روز به‌روز می‌شوند. %s شرکت پوشش داده می‌شود.' % nf],
         '<h2>تحلیل پربازدیدترین سهم‌ها</h2>', stock_chips(top50),
+        '<h2>پیش‌بینی تحلیلگرها برای بزرگ‌ترین شرکت‌ها</h2>', forecast_chips(top30[:20]),
         '<h2>یاد بگیر چطور یک سهم را تحلیل کنی</h2>', chips(learn('pe-ratio', 'eps', 'free-cash-flow', 'roic', 'profit-margin', 'intrinsic-value', 'market-cap')),
         other_tools('/pages/stock'))
 
@@ -146,7 +157,8 @@ def build():
         ['این فهرست ۳۰ سهم بورس آمریکا را نشان می‌دهد که میانگین قیمت هدف تحلیلگرها بیشترین فاصله را با قیمت فعلی‌شان دارد؛ یعنی تحلیلگرها '
          'بیشترین رشد را برایشان انتظار دارند. رتبه و درصد رشد تا قیمت هدف برای همه باز است و فهرست هر روز به‌روز می‌شود.',
          'قیمت هدف تحلیلگرها پیش‌بینی است و ممکن است اشتباه باشد؛ قبل از هر تصمیم تحلیل کامل هر سهم را ببین.'],
-        '<h2>فهرست‌های رایگان</h2>', chips(RANKINGS + SECTORS[:4]),
+        '<h2>قیمت هدف تحلیلگرها برای هر شرکت</h2>', forecast_chips(top30[:20]),
+        '<h2>فهرست‌های رایگان</h2>', chips([FC_HUB] + RANKINGS + SECTORS[:4]),
         other_tools('/pages/top-30'))
 
     B['compare'] = block(

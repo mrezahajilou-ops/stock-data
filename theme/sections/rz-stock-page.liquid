@@ -148,6 +148,8 @@
     <div class="btns">
       <a class="btn" href="/pages/stock#{{ t | escape }}">تحلیل کامل و نمودارها ←</a>
       <a class="btn ghost" href="/pages/dcf#{{ t | escape }}">محاسبه‌ی ارزش ذاتی (DCF)</a>
+      {%- assign fh = t | downcase | replace: '.', '-' | append: '-forecast' -%}
+      {%- if pages[fh].id -%}<a class="btn ghost" href="/pages/{{ fh }}">پیش‌بینی تحلیلگرها</a>{%- endif -%}
     </div>
   </div>
 

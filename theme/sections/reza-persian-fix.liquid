@@ -50,6 +50,10 @@
   add('link',{rel:'apple-touch-icon',sizes:'512x512',href:{{ 'rz-app-512.png' | asset_url | json }}});
 })();
 </script>
+{%- comment -%} Site icon (Nov 2026 logo: market candles in a gold ring). Google shows the icon from these links next to every search result. {%- endcomment -%}
+<link rel="icon" type="image/png" sizes="48x48" href="{{ 'rz-logo-48.png' | asset_url }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ 'rz-logo-96.png' | asset_url }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ 'rz-logo-192.png' | asset_url }}">
 <script type="speculationrules">
 {"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/cart*","/checkout*","/checkouts/*","/account*","/products/*","/collections/*","/apps/*","/a/*","/tools/*","/*.atom","/*?*"]}},{"not":{"selector_matches":"[rel~=nofollow],[target=_blank],[download]"}}]},"eagerness":"moderate"}]}
 </script>

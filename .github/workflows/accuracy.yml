@@ -1,0 +1,69 @@
+name: Accuracy guard (TTM vs SEC, freshness, auto-heal)
+
+# Independent check of the published numbers (accuracy.py): recomputes TTM revenue / net income / EPS of the largest
+# US companies straight from SEC companyfacts, flags stale data and mismatches, and sends stale tickers to the fast
+# lane so they are rebuilt within the hour. A failed run (= problems above the thresholds) e-mails the repo owner.
+on:
+  schedule:
+    - cron: '35 2 * * *'     # after the nightly SEC build
+    - cron: '35 15 * * 1-5'  # afternoon pass on trading days (earnings season)
+  workflow_dispatch:
+    inputs:
+      n:
+        description: 'Companies to check (largest first)'
+        required: false
+        default: '300'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: accuracy
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Feed branches (estimates, closes)
+        run: git fetch -q --depth 1 origin estimates:refs/remotes/origin/estimates closes:refs/remotes/origin/closes || true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check
+        id: check
+        env:
+          SEC_USER_AGENT: "Stock Analiz data check info@stockanaliz.com"
+          N: ${{ inputs.n || '300' }}
+          HEAL_OUT: /tmp/heal.txt
+        run: |
+          set +e
+          python accuracy.py
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          echo "heal=$(cat /tmp/heal.txt 2>/dev/null)" >> "$GITHUB_OUTPUT"
+      - name: Auto-heal stale tickers (fast lane)
+        if: steps.check.outputs.heal != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "rebuilding: ${{ steps.check.outputs.heal }}"
+          gh api -X POST "repos/${{ github.repository }}/actions/workflows/fast.yml/dispatches" -f ref=main -f "inputs[extra]=${{ steps.check.outputs.heal }}"
+      - name: Publish report to branch "accuracy"
+        run: |
+          cd accuracy
+          git init -q -b accuracy
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "accuracy $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" accuracy:accuracy
+      - name: Alert
+        if: steps.check.outputs.rc != '0'
+        run: |
+          echo "::error::Data accuracy problems above the thresholds - see the Check step and the accuracy branch"
+          exit 1

@@ -4,6 +4,11 @@
      Persian letters, and in Safari/iOS it also breaks the order of text inside SVG charts. Never use it.
   2) Visual identity: assets/rz-theme.css (same tokens as the tools: near-black ground, antique gold, Vazirmatn + Fraunces).
   3) Install-as-app (PWA): manifest (/pages/manifest), home-screen icon, and a small install banner on phones.
+  4) Speed (Nov 2026): tool pages are cached in the browser (rzLoad, stale-while-revalidate), the next page is
+     prerendered when the visitor hovers or touches a link (speculation rules; tools start only when the page is
+     actually shown, so no free-view quota or statistics are used by a prerender), lighter effects while scrolling.
+  5) Right-to-left guard (Nov 2026): signed numbers (+7٪, −3.2%) and English company names ending in an
+     abbreviation (NVIDIA Corp.) are isolated left-to-right so their sign or dot never jumps to the wrong side.
 {%- endcomment -%}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +30,12 @@
   .rzpwa .go{margin-right:auto;background:#C9A961;color:#15120A;font-weight:600;border:0;border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap}
   .rzpwa .x{background:transparent;border:0;color:#8A8F99;font-size:20px;padding:0 4px}
   @media (min-width:821px){.rzpwa{display:none!important}}
+  /* scrolling: a blurred fixed bar is re-painted on every frame on phones; a solid bar looks the same */
+  .rzmn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(12,14,18,.98)!important}
+  /* below-the-fold blocks are only laid out when they come near the screen */
+  .rzseo,.shopify-section-group-footer-group .footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
+  a,button,summary,[role=button],input,select,label{touch-action:manipulation}
+  bdi.rzb{unicode-bidi:isolate}
 </style>
 <script>
 (function(){
@@ -37,6 +48,67 @@
   add('meta',{name:'apple-mobile-web-app-title',content:'تحلیل سهام'});
   add('meta',{name:'apple-mobile-web-app-status-bar-style',content:'black-translucent'});
   add('link',{rel:'apple-touch-icon',sizes:'512x512',href:{{ 'rz-app-512.png' | asset_url | json }}});
+})();
+</script>
+<script type="speculationrules">
+{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/cart*","/checkout*","/checkouts/*","/account*","/products/*","/collections/*","/apps/*","/a/*","/tools/*","/*.atom","/*?*"]}},{"not":{"selector_matches":"[rel~=nofollow],[target=_blank],[download]"}}]},"eagerness":"moderate"}]}
+</script>
+<script>
+/* Tool loader: draws the cached copy at once (when younger than 6 h) and refreshes the cache in the background.
+   While the page is only prerendered, the tool is fetched but not started. */
+window.rzLoad=function(c,url,failMsg){
+  if(!c)return;
+  var key='rzweb:'+url.split('?')[0],hit=null,done=false;
+  try{hit=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
+  function put(h){if(done)return;done=true;c.style.cssText='';c.innerHTML=h;
+    [].slice.call(c.querySelectorAll('script')).forEach(function(s){var n=document.createElement('script');n.textContent=s.textContent;s.parentNode.replaceChild(n,s)})}
+  function save(h){try{localStorage.setItem(key,JSON.stringify({t:Date.now(),h:h}))}catch(e){
+    try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k&&k.indexOf('rzweb:')===0&&k!==key)localStorage.removeItem(k)}localStorage.setItem(key,JSON.stringify({t:Date.now(),h:h}))}catch(e2){}}}
+  var net=fetch(url).then(function(r){if(!r.ok)throw new Error(r.status);return r.text()}).then(function(h){save(h);return h});
+  function go(){
+    if(hit&&hit.h&&Date.now()-hit.t<216e5){put(hit.h);net.catch(function(){});return}
+    net.then(put).catch(function(){if(hit&&hit.h)put(hit.h);else c.innerHTML=failMsg||'بارگذاری ابزار ناموفق بود؛ چند لحظه بعد صفحه رو دوباره باز کن.'})}
+  if(document.prerendering)document.addEventListener('prerenderingchange',go,{once:true});else go();
+};
+/* Right-to-left guard */
+(function(){
+  var SIGN=/(^|[\s( ])([+\-−]\s?\$?[0-9۰-۹][0-9۰-۹.,٫٬]*\s?[%٪]?)/g,
+      CO=/[A-Za-z0-9][A-Za-z0-9&'’.,\- ]*?\b(?:Inc|Corp|Co|Ltd|Plc|Cos|Bros|Intl|L\.P|N\.V|S\.A|S\.p\.A)\./g,
+      QUICK=/[+\-−]\s?\$?[0-9۰-۹]|(?:Inc|Corp|Co|Ltd|Plc|Cos|Bros|Intl|L\.P|N\.V|S\.A)\./,
+      SKIP={SCRIPT:1,STYLE:1,NOSCRIPT:1,TEXTAREA:1,INPUT:1,SELECT:1,OPTION:1,CODE:1,PRE:1,BDI:1,TITLE:1};
+  function rtl(el){
+    if(el.closest('svg,[dir=ltr],.num,bdi,[contenteditable]'))return false;
+    var cs=getComputedStyle(el);return cs.direction==='rtl'&&cs.unicodeBidi!=='plaintext';
+  }
+  function fix(n){
+    var t=n.nodeValue,el=n.parentElement;
+    if(!t||t.length<2||!el||SKIP[el.tagName]||!QUICK.test(t))return;
+    if(!rtl(el))return;
+    var parts=[],last=0,m,all=[];
+    SIGN.lastIndex=0;while((m=SIGN.exec(t))){if(m[1]&&/[0-9\u06f0-\u06f9]/.test(t.charAt(m.index-1)))continue;var s0=m.index+m[1].length;all.push([s0,s0+m[2].length])}
+    CO.lastIndex=0;while((m=CO.exec(t))){all.push([m.index,m.index+m[0].length])}
+    if(!all.length)return;
+    all.sort(function(a,b){return a[0]-b[0]});
+    var f=document.createDocumentFragment();
+    all.forEach(function(r){if(r[0]<last)return;if(r[0]>last)f.appendChild(document.createTextNode(t.slice(last,r[0])));
+      var b=document.createElement('bdi');b.className='rzb';b.dir='ltr';b.textContent=t.slice(r[0],r[1]);f.appendChild(b);last=r[1]});
+    if(last<t.length)f.appendChild(document.createTextNode(t.slice(last)));
+    n.parentNode.replaceChild(f,n);
+  }
+  function scan(root){
+    if(!root||root.nodeType===3){if(root)fix(root);return}
+    if(root.nodeType!==1||SKIP[root.tagName]||root.closest&&root.closest('svg'))return;
+    var w=document.createTreeWalker(root,4),L=[],n;while((n=w.nextNode()))L.push(n);L.forEach(fix);
+  }
+  var Q=[],sched=false;
+  function flush(){sched=false;var q=Q;Q=[];q.forEach(function(n){if(n.isConnected)scan(n)})}
+  function start(){
+    scan(document.body);
+    new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){Q.push(n)})});
+      if(Q.length&&!sched){sched=true;(window.requestAnimationFrame||setTimeout)(flush)}})
+      .observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
 </script>
 <div class="rzpwa" id="rzpwa" role="dialog" aria-label="نصب روی گوشی">

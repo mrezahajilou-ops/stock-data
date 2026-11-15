@@ -1,0 +1,22 @@
+{%- comment -%}
+  Thin loader: the real page (HTML + CSS + JS) lives in the GitHub repo mrezahajilou-ops/stock-data
+  at web/screener.html, so updates only need a commit — no theme edits.
+  window.rzLoad (sections/reza-persian-fix.liquid) shows the browser's cached copy at once and refreshes it in the background.
+{%- endcomment -%}
+<div id="rz-app-screener" dir="rtl" style="min-height:300px;color:#93a7bf;text-align:center;padding:40px 0;font-family:Vazirmatn,Tahoma,sans-serif">در حال بارگذاری…</div>
+<script>
+(function(){
+  var RAW = 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
+  window.RZS_API = RAW + '/main/data';
+  window.RZD_API = RAW + '/main/data';
+  window.RZS_PRICES = RAW + '/prices';
+  window.RZ_WEB = window.RZ_WEB || (RAW + '/main/web');
+  var base = window.RZ_WEB || 'https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-data@main/web';
+  var c = document.getElementById('rz-app-screener'), u = base + '/screener.html?v=' + Math.floor(Date.now()/300000);
+  if (window.rzLoad) { rzLoad(c, u); return; }
+  fetch(u).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }).then(function(html){
+    c.style.cssText = ''; c.innerHTML = html;
+    [].slice.call(c.querySelectorAll('script')).forEach(function(s){ var n = document.createElement('script'); n.textContent = s.textContent; s.parentNode.replaceChild(n, s); });
+  }).catch(function(){ c.innerHTML = 'بارگذاری ابزار ناموفق بود؛ چند لحظه بعد صفحه رو دوباره باز کن.'; });
+})();
+</script>

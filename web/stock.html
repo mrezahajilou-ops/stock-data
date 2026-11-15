@@ -563,7 +563,10 @@ function open(t,via){
   try{localStorage.setItem('rz_last_ticker',t)}catch(e){}
   showQuota(); $('rzs-main').innerHTML='<div class="card empty">در حال بارگذاری…</div>';
   try{history.replaceState(null,'','#'+t)}catch(e){}
-  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes().then(function(){return liveFetch([t])})]).then(function(x){var d=x[0];
+  /* the second-level quote can take 2+ s (worker -> Nasdaq): give it 400 ms, then draw the page and update the header when it lands */
+  var lf=liveQuotes().then(function(){return liveFetch([t])});
+  Promise.all([fetch(API+'/stocks/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}),liveQuotes().then(function(){return Promise.race([lf,new Promise(function(res){setTimeout(function(){res(-1)},400)})])})]).then(function(x){var d=x[0];
+    if(d&&x[1]===-1)lf.then(function(n){if(n&&cur&&cur.ticker===d.ticker){applyLive(cur);liveHead(cur)}});
     if(d){applyLive(d);render(d);livePoll(d.ticker);recent(d.ticker);rzE('view',d.ticker,SRC);if(SRC==='search')rzE('search',d.ticker,'');SRC='link';loadCommunity(d);return}
     if(via){notFound(t);return}
     fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(p){ALIAS={from:t,to:p};open(p,true)}else notFound(t)}).catch(function(){notFound(t)});

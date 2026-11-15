@@ -1,0 +1,54 @@
+{%- comment -%}
+  Bottom-of-page text for Google (Nov 2026). The tool pages are drawn by JavaScript, so their HTML was empty for
+  search engines. This section sits in the footer group, i.e. UNDER the page content and above the footer, so the
+  designed page on top stays exactly as it is. Text: metaobject rz_block, handle = page handle ("home" for the
+  front page), written daily by stock-data/build_seo_blocks.py. No entry -> nothing is rendered.
+{%- endcomment -%}
+{%- liquid
+  assign k = ''
+  if template.name == 'index'
+    assign k = 'home'
+  elsif template.name == 'page'
+    assign k = page.handle
+  endif
+  assign b = nil
+  if k != ''
+    assign b = shop.metaobjects.rz_block[k]
+  endif
+-%}
+{%- if b and b.html.value != blank -%}
+<style>
+  .rzsb{direction:rtl;font-family:'Vazirmatn',Tahoma,sans-serif;padding:8px 18px 40px}
+  .rzsb-in{max-width:1500px;margin:0 auto;background:#111e31;border:1px solid #1f3550;border-radius:20px;padding:22px 24px;
+    color:#93a7bf;font-size:14.5px;line-height:2.05;box-sizing:border-box}
+  .rzsb h1,.rzsb .h1{font-size:19px;font-weight:800;color:#eef3f9;margin:0 0 8px;line-height:1.6;letter-spacing:0}
+  .rzsb h2{font-size:15.5px;font-weight:800;color:#C9A961;margin:22px 0 8px;line-height:1.6;letter-spacing:0}
+  .rzsb h3{font-size:14.5px;font-weight:700;color:#dfe7f3;margin:14px 0 2px;letter-spacing:0}
+  .rzsb p{margin:0 0 10px}
+  .rzsb a{color:#7cc4a0;text-decoration:none}
+  .rzsb a:hover{text-decoration:underline}
+  .rzsb ul.tl{margin:0;padding:0 18px 0 0}
+  .rzsb ul.tl li{margin:2px 0}
+  .rzsb .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .rzsb .chips a{display:inline-block;padding:4px 12px;border:1px solid #25405f;border-radius:999px;background:#13233a;font-size:13.5px;line-height:1.8;color:#dfe7f3}
+  .rzsb .chips a:hover{border-color:#4FA37A;text-decoration:none}
+  .rzsb .tk{font-family:Inter,Arial,sans-serif;direction:ltr;unicode-bidi:isolate;color:#93a7bf;font-size:.82em;margin-right:4px}
+  .rzsb .fa2{color:#93a7bf;font-size:.82em;margin-right:5px}
+  .rzsb .faq p{margin:0 0 6px}
+  .rzsb .upd{color:#6f839b;font-size:12.5px;margin:18px 0 0}
+  @media (max-width:700px){
+    .rzsb{padding:4px 12px 28px}
+    .rzsb-in{padding:16px 16px;border-radius:16px;font-size:14px}
+    .rzsb h1,.rzsb .h1{font-size:17px}
+    .rzsb .chips{gap:6px}
+    .rzsb .chips a{font-size:13px;padding:3px 10px}
+  }
+</style>
+<section class="rzsb" aria-label="درباره‌ی این صفحه"><div class="rzsb-in">{{ b.html.value }}</div></section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Bottom page text (SEO)",
+  "settings": []
+}
+{% endschema %}

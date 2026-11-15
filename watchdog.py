@@ -158,6 +158,14 @@ def check_gold(issues):
         (((g.get('cot') or {}).get('gold')), 'موقعیت سفته‌بازها'),
         (((g.get('cal') or {}).get('fomc')), 'تاریخ جلسه‌ی فدرال رزرو'),
         (((g.get('cal') or {}).get('cpi')), 'تاریخ گزارش بعدی تورم (فهرست CPI_DATES در gold.py را تمدید کن)')) if not ok]
+    sp, fu = g.get('sp') or {}, g.get('spot') or {}
+    if not ((sp.get('gold') or {}).get('p') and (sp.get('silver') or {}).get('p')):
+        miss.append('قیمت لحظه‌ای (انس جهانی)')
+    else:
+        for k, lab in (('gold', 'طلا'), ('silver', 'نقره')):
+            a, b = (sp.get(k) or {}).get('p'), (fu.get(k) or {}).get('p')
+            if a and b and abs(a / b - 1) > 0.025:
+                issues['gold-gap-' + k] = f'قیمت لحظه‌ای {lab} ({a:,.2f}) با قیمت آتی ({b:,.2f}) بیش از ۲٫۵٪ فاصله دارد؛ یکی از دو منبع احتمالاً اشتباه است.'
     if miss:
         issues['gold-miss'] = 'در صفحه‌ی طلا و نقره این بخش‌ها داده ندارند: ' + '، '.join(miss) + '.'
     if infl.get('m'):

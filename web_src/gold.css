@@ -76,3 +76,5 @@
 #ID .odr b{text-align:left}
 @media(max-width:600px){#ID .odr{grid-template-columns:minmax(96px,1.3fr) 1.6fr 38px;font-size:13px}}
 @media(max-width:600px){#ID .inf{grid-template-columns:1fr 1fr!important;gap:8px}#ID .inf .dc{padding:10px}#ID .inf .why,#ID .inf svg{display:none}#ID .inf .v{font-size:22px}#ID .inf .k{font-size:12px;line-height:1.6}#ID .inf .s{font-size:11.5px}}
+
+#ID .stamp .mk{font-weight:700;margin-left:6px;white-space:nowrap}#ID .stamp .mk.on{color:#3ecf8e}#ID .stamp .mk.off{color:#e8a33d}

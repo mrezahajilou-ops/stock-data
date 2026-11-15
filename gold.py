@@ -79,6 +79,56 @@ def spot(sym):
             't': dt.datetime.utcfromtimestamp(t).strftime('%Y-%m-%dT%H:%M:%SZ') if t else None}
 
 
+# ------------------------------------------------------------------ live spot (XAU / XAG)
+# The price cards show spot ("انس جهانی", what most sites quote), not COMEX futures. gold-api.com is free,
+# keyless and CORS-open, so the page also polls it every minute; this keeps the previous-session spot close.
+try:
+    from zoneinfo import ZoneInfo
+    ET = ZoneInfo('America/New_York')
+except Exception:  # pragma: no cover
+    ET = dt.timezone(dt.timedelta(hours=-5))
+
+
+def market_open(now=None):
+    """Gold trades Sun 18:00 ET to Fri 17:00 ET with a daily 17:00-18:00 ET break."""
+    e = (now or dt.datetime.now(dt.timezone.utc)).astimezone(ET)
+    wd, h = e.weekday(), e.hour
+    if wd == 5 or (wd == 4 and h >= 17) or (wd == 6 and h < 18):
+        return False
+    return h != 17
+
+
+def session_key(now=None):
+    """A session ends at 17:00 ET, so shift by 7h: Monday's session (Sun 18:00 to Mon 17:00) gets Monday's date."""
+    e = (now or dt.datetime.now(dt.timezone.utc)).astimezone(ET) + dt.timedelta(hours=7)
+    return e.date().isoformat()
+
+
+def spot_live(fut):
+    sh = dict(prev_json().get('sh') or {})
+    out, key, op = {}, session_key(), market_open()
+    for k, sym in (('gold', 'XAU'), ('silver', 'XAG')):
+        j = json.loads(get('https://api.gold-api.com/price/' + sym))
+        p = float(j['price'])
+        h = dict(sh.get(k) or {})
+        f = (fut or {}).get(k) or {}
+        if op:
+            h[key] = round(p, 3)
+        elif not h and f.get('t'):  # first run while closed: the price is that session's close
+            h[session_key(dt.datetime.fromisoformat(f['t'].replace('Z', '+00:00')))] = round(p, 3)
+        h = dict(sorted(h.items())[-10:])
+        sh[k] = h
+        older = [v for d, v in sorted(h.items()) if d < key] if op else [v for d, v in sorted(h.items())][:-1]
+        prev = older[-1] if older else None
+        if prev is None and f.get('chg') is not None:
+            prev = p / (1 + f['chg'] / 100)  # first runs only: borrow the futures move
+        out[k] = {'p': round(p, 2), 'prev': round(prev, 2) if prev else None,
+                  'chg': round((p / prev - 1) * 100, 2) if prev else None, 't': j.get('updatedAt')}
+        if f.get('p') and abs(p / f['p'] - 1) > 0.03:
+            LOG.append('spot FAILED sanity %s spot %.2f vs futures %.2f' % (k, p, f['p']))
+    return out, sh
+
+
 def ma(vals, n):
     out, s = [], 0.0
     for i, v in enumerate(vals):
@@ -409,15 +459,16 @@ def fa(x, nd=1):
     return ('%.*f' % (nd, abs(x))).translate(FA)
 
 
-def note(sp, drv):
+def note(sp, drv, live=True):
     g, s = sp.get('gold') or {}, sp.get('silver') or {}
+    day = 'امروز' if live else 'در آخرین روز معاملاتی'
     if g.get('chg') is None:
         return None
     c = g['chg']
     if abs(c) < 0.15:
-        head = 'قیمت طلا امروز تقریباً بدون تغییر بوده'
+        head = 'قیمت طلا %s تقریباً بدون تغییر بوده' % day
     else:
-        head = 'قیمت طلا امروز %s٪ %s' % (fa(c), 'بالا رفته' if c > 0 else 'پایین آمده')
+        head = 'قیمت طلا %s %s٪ %s' % (day, fa(c), 'بالا رفته' if c > 0 else 'پایین آمده')
     parts = []
     ry = (drv or {}).get('ry') or {}
     dx = (drv or {}).get('dxy') or {}
@@ -469,6 +520,10 @@ def main():
     if len(hist['gold']) < 500 or len(hist['silver']) < 500:
         print('\n'.join(LOG)); sys.exit('gold/silver history missing')
     out['spot'] = {k: safe('spot ' + k, spot, s) for k, s in syms.items()}
+    out['open'] = market_open()
+    live = safe('live spot', spot_live, out['spot'])
+    if live:
+        out['sp'], out['sh'] = live
 
     # daily last ~2 years with moving averages
     out['d'] = {}
@@ -522,7 +577,7 @@ def main():
     f = out['cal']['fomc']
     if f:
         out['odds'] = {'meeting': f, 'k': safe('kalshi', kalshi, f), 'p': safe('polymarket', polymarket, f)}
-    out['note'] = note(out['spot'], out['drv'])
+    out['note'] = note(out.get('sp') or out['spot'], out['drv'], out['open'])
     out['log'] = [x for x in LOG if 'FAILED' in x]
 
     with open(OUT, 'w', encoding='utf-8') as f:

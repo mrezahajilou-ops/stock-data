@@ -1,4 +1,4 @@
-/* طلا و نقره — gold & silver page. Data: RAW/gold/gold.json (gold.py, every ~30 min). Dollars only.
+/* طلا و نقره — gold & silver page. Data: RAW/gold/gold.json (gold.py, every 15 min); price cards poll spot from api.gold-api.com every minute while the market is open. Dollars only.
    The whole page is free (Nov 2026): prices, note, chart, inflation & rates, Fed odds (Kalshi / Polymarket), drivers,
    CFTC positioning, comparison, calendar, miners, calculators. */
 var ACC=!!window.RZS_ACCESS,SUB=window.RZS_SUB_URL||'/products/stock-data-pro',SUBY=window.RZS_SUB_Y||'/products/stock-data-pro-yearly';
@@ -15,10 +15,26 @@ function lock(inner,title,txt){return '<div class="plk"><div class="plk-b">'+inn
   +(window.RZS_LOGGED?'':'<p style="margin:10px 0 0;font-size:12.5px">قبلاً مشترک شدی؟ <a href="/account/login?return_url=%2Fpages%2Fgold">وارد حسابت شو</a></p>')+'</div></div></div>'}
 
 /* ---------------------------------------------------------------- prices */
-function priceCard(k,name,icon){var s=(D.spot||{})[k]||{};var g=s.p?s.p/OZ:null;
+function SP(){return D.sp||D.spot||{}}
+function priceCard(k,name,icon){var s=SP()[k]||{};var g=s.p?s.p/OZ:null;
   return '<div class="pc"><div class="h"><span>'+icon+' '+name+'</span><span class="ch '+cls(s.chg)+'">'+sg(s.chg)+'%</span></div>'
-    +'<div class="v">'+usd(s.p)+'</div><div class="u">هر اونس (۳۱٫۱ گرم)</div>'
-    +'<div class="g"><span>هر گرم <b>'+usd(g)+'</b></span><span>دیروز <b>'+usd(s.prev)+'</b></span></div></div>'}
+    +'<div class="v">'+usd(s.p)+'</div><div class="u">هر انس جهانی (۳۱٫۱ گرم)</div>'
+    +'<div class="g"><span>هر گرم <b>'+usd(g)+'</b></span><span>جلسه‌ی قبل <b>'+usd(s.prev)+'</b></span></div></div>'}
+/* market status: gold trades Sun 18:00 to Fri 17:00 New York time, daily break 17:00-18:00 */
+function nyParts(d){var o={};new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',hour12:false}).formatToParts(d).forEach(function(p){o[p.type]=p.value});
+  return {wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(o.weekday),h:(+o.hour)%24}}
+function isOpen(){var n=nyParts(new Date());if(n.wd===6||(n.wd===5&&n.h>=17)||(n.wd===0&&n.h<18))return false;return n.h!==17}
+function lastClose(){var f=(D.spot||{}).gold||{},t=f.t?new Date(f.t):null;if(!t||isNaN(t))return '';
+  try{return t.toLocaleDateString('fa-IR-u-ca-gregory',{weekday:'long',day:'numeric',month:'long',timeZone:'America/New_York'})}catch(e){return ''}}
+function stampHtml(){var o=isOpen(),t=new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Berlin'});
+  return o?'<span class="mk on">● بازار باز است</span> قیمت لحظه‌ای، هر یک دقیقه به‌روز می‌شود · آخرین قیمت: ساعت '+t+' به وقت اروپای مرکزی'
+    :'<span class="mk off">● بازار بسته است</span> قیمت پایانی '+esc(lastClose())+' · بازار یکشنبه ساعت ۱۸ به وقت نیویورک دوباره باز می‌شود'}
+function livePoll(){if(document.hidden||!isOpen()){$('rzg-st').innerHTML=stampHtml();return}
+  Promise.all(['XAU','XAG'].map(function(x){return fetch('https://api.gold-api.com/price/'+x,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()})}))
+    .then(function(a){var S=SP();[['gold',a[0]],['silver',a[1]]].forEach(function(z){var s=S[z[0]],p=+z[1].price;if(!s||!(p>0))return;
+        if(s.p&&Math.abs(p/s.p-1)>0.05)return;s.p=Math.round(p*100)/100;if(s.prev)s.chg=Math.round((s.p/s.prev-1)*10000)/100});
+      $('rzg-px').innerHTML=priceCard('gold','طلا','🥇')+priceCard('silver','نقره','🥈');jewel()})
+    .catch(function(){}).then(function(){$('rzg-st').innerHTML=stampHtml()})}
 function ratioCard(){var R=D.ratio;if(!R)return '';var lo=R.min20,hi=R.max20,P=function(x){return Math.max(0,Math.min(100,(x-lo)/(hi-lo)*100))};
   var vs=R.now>R.avg20*1.05?'نقره نسبت به طلا <b>ارزان‌تر</b> از میانگین ۲۰ ساله است':R.now<R.avg20*0.95?'نقره نسبت به طلا <b>گران‌تر</b> از میانگین ۲۰ ساله است':'نزدیک میانگین ۲۰ ساله است';
   return '<div class="card"><div class="ratio"><div class="big">'+n2(R.now,1)+'</div><p><b>نسبت طلا به نقره:</b> با پول یک اونس طلا <span class="num">'+n2(R.now,0)+'</span> اونس نقره می‌شود خرید. میانگین ۲۰ ساله <span class="num">'+n2(R.avg20,0)+'</span> است؛ یعنی '+vs+'.</p>'
@@ -192,7 +208,7 @@ function jewelCard(){return '<div class="card"><h3>💍 ماشین‌حساب ق
   +'<label>اجرت ساخت (٪)<input id="rzg-jf" type="number" min="0" step="0.5" value="10"></label>'
   +'<label>مالیات / سود فروشنده (٪)<input id="rzg-jt" type="number" min="0" step="0.5" value="0"></label></div><div class="res" id="rzg-jr"></div>'
   +'<p class="src">بر اساس قیمت جهانی همین لحظه. قیمت واقعی در هر کشور و هر فروشگاه فرق دارد.</p></div>'}
-function jewel(){var s=(D.spot||{}).gold||{};if(!s.p)return;var w=+$('rzg-jw').value||0,k=+$('rzg-jk').value,f=+$('rzg-jf').value||0,t=+$('rzg-jt').value||0;
+function jewel(){var s=SP().gold||{};if(!s.p)return;var w=+$('rzg-jw').value||0,k=+$('rzg-jk').value,f=+$('rzg-jf').value||0,t=+$('rzg-jt').value||0;
   var metal=w*(k/24)*s.p/OZ,fee=metal*f/100,tax=(metal+fee)*t/100,tot=metal+fee+tax;
   $('rzg-jr').innerHTML='<div class="row2"><span>ارزش طلای خالص</span><b>'+usd(metal)+'</b></div><div class="row2"><span>اجرت ساخت</span><b>'+usd(fee)+'</b></div>'
     +(t?'<div class="row2"><span>مالیات / سود فروشنده</span><b>'+usd(tax)+'</b></div>':'')+'<div class="row2 tot"><span>قیمت تقریبی</span><b>'+usd(tot)+'</b></div>'}
@@ -208,14 +224,15 @@ function dca(){var a=+$('rzg-da').value||0,y=$('rzg-dy').value,A=[['gold','طل�
 
 /* ---------------------------------------------------------------- page */
 function render(Q){var M=$('rzg-main');
-  var h='<p class="stamp">آخرین به‌روزرسانی: '+esc(when(D.as_of))+' · قیمت‌ها حدود ۱۰ تا ۱۵ دقیقه تأخیر دارند</p>'
-    +'<div class="px2">'+priceCard('gold','طلا','🥇')+priceCard('silver','نقره','🥈')+'</div>'
-    +(D.note?'<div class="note2">'+esc(D.note)+'<small>یادداشت خودکار بر اساس اعداد امروز؛ توصیه‌ی خرید یا فروش نیست.</small></div>':'')
+  var h='<p class="stamp" id="rzg-st">'+stampHtml()+'</p>'
+    +'<div class="px2" id="rzg-px">'+priceCard('gold','طلا','🥇')+priceCard('silver','نقره','🥈')+'</div>'
+    +(D.note?'<div class="note2">'+esc(D.note)+'<small>یادداشت خودکار بر اساس آخرین اعداد؛ توصیه‌ی خرید یا فروش نیست.</small></div>':'')
     +'<div class="card"><h3>📈 نمودار قیمت</h3>'+tabs()+'<div id="rzg-ch"></div><p class="plain" id="rzg-pl"></p></div>'
     +inflCard()+oddsCard()+'<div class="two2">'+ratioCard()+calCard()+'</div>'+drvCard()+cmpCard()+minersCard(Q)
     +'<div class="two2">'+jewelCard()+dcaCard()+'</div>'
-    +'<p class="note">منابع: قیمت طلا و نقره از قرارداد آتی نزدیک بورس کامکس نیویورک، شاخص S&amp;P 500 و بیت‌کوین از بازار جهانی، تورم از اداره‌ی آمار کار آمریکا، بازده اوراق از خزانه‌داری آمریکا، احتمال‌های تصمیم فدرال رزرو از Kalshi و Polymarket. همه‌ی قیمت‌ها به دلار. این صفحه آموزشی است و توصیه‌ی سرمایه‌گذاری نیست.</p>';
+    +'<p class="note">منابع: قیمت لحظه‌ای طلا و نقره (انس جهانی) از gold-api.com، نمودارها و تاریخچه از قرارداد آتی نزدیک بورس کامکس نیویورک، شاخص S&amp;P 500 و بیت‌کوین از بازار جهانی، تورم از اداره‌ی آمار کار آمریکا، بازده اوراق از خزانه‌داری آمریکا، احتمال‌های تصمیم فدرال رزرو از Kalshi و Polymarket. همه‌ی قیمت‌ها به دلار. این صفحه آموزشی است و توصیه‌ی سرمایه‌گذاری نیست.</p>';
   M.innerHTML=h;drawChart();drawInfl();jewel();dca();
+  if(D.sp){livePoll();setInterval(livePoll,60000);document.addEventListener('visibilitychange',function(){if(!document.hidden)livePoll()})}
   $('rzg-m').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.m)ST.m=b.dataset.m;if(b.dataset.r)ST.r=b.dataset.r;
     [].forEach.call(this.querySelectorAll('button'),function(x){x.classList.toggle('on',x.dataset.m?x.dataset.m===ST.m:x.dataset.r===ST.r)});drawChart();if(window.rzE)rzE('gold',ST.m,ST.r)});
   ['rzg-jw','rzg-jk','rzg-jf','rzg-jt'].forEach(function(i){$(i).addEventListener('input',jewel)});['rzg-da','rzg-dy'].forEach(function(i){$(i).addEventListener('input',dca)});

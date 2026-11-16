@@ -19,7 +19,7 @@ from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'superinvestors')
-UA = os.environ.get('SEC_USER_AGENT', 'Reza Hajilou mreza.hajilou@gmail.com')
+UA = os.environ.get('SEC_USER_AGENT', 'SahamAnaliz research contact@sahamanaliz.com')
 NQ = 8          # quarters kept per manager
 TOP = 200       # holdings stored per manager (rest only counted)
 
@@ -127,6 +127,77 @@ MANAGERS = [
      'پورتفوی خیلی متمرکز از حدود ده شرکت که عمیق می‌شناسه.'),
     ('gabelli', 807249, 'GAMCO', 'Mario Gabelli', 'GAMCO Investors', 'ماریو گابلی', 'گمکو', 'ارزشی',
      'سرمایه‌گذار ارزشی قدیمی با تمرکز روی شرکت‌های رسانه‌ای و صنعتی و موقعیت‌های ادغام.'),
+    # added Nov 2026 (well-known managers, mostly from Dataroma's list)
+    ('miller', 1135778, 'MILLER VALUE', 'Bill Miller', 'Miller Value Partners', 'بیل میلر', 'میلر ولیو', 'ارزشی / مخالف‌جریان',
+     'تنها مدیری که ۱۵ سال پشت سر هم شاخص اس‌اند‌پی ۵۰۰ رو شکست داد؛ از اولین خریدارهای بزرگ آمازون و بیت‌کوین.'),
+    ('spier', (1953324, 1404599), 'AQUAMARINE', 'Guy Spier', 'Aquamarine', 'گای اسپیر', 'آکوامارین', 'ارزشی',
+     'نویسنده‌ی کتاب «تحصیلات یک سرمایه‌گذار ارزشی»؛ همونی که با مونیش پابرای ۶۵۰ هزار دلار برای ناهار با بافت داد. پورتفوی کم‌تحرک و متمرکز.'),
+    ('einhorn', 1489933, 'DME', 'David Einhorn', 'Greenlight (DME Capital)', 'دیوید آینهورن', 'گرین‌لایت', 'ارزشی / فروش استقراضی',
+     'با شرط علیه بانک لیمن برادرز قبل از بحران ۲۰۰۸ معروف شد؛ سهام ارزون می‌خره و سهام گرون رو استقراضی می‌فروشه.'),
+    ('cooperman', 898382, 'COOPERMAN', 'Leon Cooperman', 'Omega Family Office', 'لئون کوپرمن', 'دفتر خانوادگی اومگا', 'ارزشی',
+     'مدیر سابق گلدمن ساکس که صندوق اومگا رو ساخت؛ حالا پول خودش رو در سهام ارزون و پرسود مدیریت می‌کنه.'),
+    ('berkowitz', 1056831, 'FAIRHOLME', 'Bruce Berkowitz', 'Fairholme Capital', 'بروس برکوویتز', 'فیرهولم', 'متمرکز / مخالف‌جریان',
+     'یکی از متمرکزترین پورتفوهای آمریکا؛ سال‌ها بخش بزرگی از پولش در یک سهم (سنت جو) بوده.'),
+    ('greenblatt', 1510387, 'GOTHAM', 'Joel Greenblatt', 'Gotham Asset Management', 'جوئل گرینبلات', 'گاتهام', 'ارزشی / کمی',
+     'نویسنده‌ی «کتاب کوچکی که بازار را شکست می‌دهد» و صاحب «فرمول جادویی»؛ صدها سهم ارزون و باکیفیت رو با مدل انتخاب می‌کنه.'),
+    ('ainslie', 934639, 'MAVERICK', 'Lee Ainslie', 'Maverick Capital', 'لی اینزلی', 'ماوریک', 'رشد / بنیادی',
+     'از «توله‌ببرهای» جولین رابرتسون؛ تحلیل بنیادی دقیق روی شرکت‌های بزرگ.'),
+    ('duan', 1759760, 'H&H', 'Duan Yongping', 'H&H International', 'دوآن یونگ‌پینگ', 'اچ‌اند‌اچ', 'ارزشی / متمرکز',
+     'به «بافت چین» معروفه؛ کارآفرین چینی که ناهار با بافت رو خرید و پورتفویی خیلی متمرکز، بیشتر اپل، داره.'),
+    ('grantham', 1352662, 'GRANTHAM', 'Jeremy Grantham', 'GMO', 'جرمی گرانتام', 'جی‌ام‌او', 'ارزشی / کلان',
+     'به هشدار درباره‌ی حباب‌ها معروفه (۲۰۰۰ و ۲۰۰۸)؛ روی ارزش‌گذاری بلندمدت و سهام باکیفیت تمرکز داره.'),
+    ('romick', 1377581, 'FIRST PACIFIC', 'Steven Romick', 'FPA', 'استیون رومیک', 'اف‌پی‌ای', 'ارزشی / انعطاف‌پذیر',
+     'مدیر صندوق معروف «کرسنت»؛ هر جا ارزش ببینه سرمایه‌گذاری می‌کنه و اگه چیز ارزونی نباشه نقد نگه می‌داره.'),
+    ('chou', 1389403, 'CHOU', 'Francis Chou', 'Chou Associates', 'فرانسیس چو', 'چو اسوشیتس', 'ارزشی عمیق',
+     'مدیر کانادایی به سبک بنجامین گراهام؛ سهام خیلی ارزون و تحت فشار.'),
+    ('kahn', 1039565, 'KAHN', 'Thomas Kahn', 'Kahn Brothers', 'تامس کان', 'کان برادرز', 'ارزشی',
+     'شرکتی که اروینگ کان، شاگرد مستقیم بنجامین گراهام، ساخت؛ سرمایه‌گذاری ارزشی کلاسیک.'),
+    ('jensen', 1106129, 'JENSEN', 'Jensen', 'Jensen Investment Management', 'جنسن', 'جنسن', 'کیفیت',
+     'فقط شرکت‌هایی که ده سال پشت سر هم بازده حقوق صاحبان سهام بالای ۱۵٪ داشتن.'),
+    ('ako', 1376879, 'AKO', 'Nicolai Tangen', 'AKO Capital', 'نیکلای تانگن', 'آکو کپیتال', 'کیفیت',
+     'صندوقی که نیکلای تانگن ساخت (او حالا مدیر صندوق ثروت ملی نروژه)؛ شرکت‌های باکیفیت اروپایی و آمریکایی.'),
+    ('kantesaria', 1697868, 'VALLEY FORGE', 'Dev Kantesaria', 'Valley Forge Capital', 'دو کانتساریا', 'ولی فورج', 'کیفیت / متمرکز',
+     'پورتفوی خیلی متمرکز از چند شرکت انحصاری مثل مودیز و ویزا؛ تقریباً هیچ معامله‌ای نمی‌کنه.'),
+    ('triplefrond', 1454502, 'TRIPLE FROND', 'Triple Frond', 'Triple Frond Partners', 'تریپل فراند', 'تریپل فراند', 'کیفیت / متمرکز',
+     'صندوق کوچک و متمرکز با سابقه‌ی خوب؛ چند شرکت عالی برای مدت طولانی.'),
+    ('hong', 1766908, 'SHAWSPRING', 'Dennis Hong', 'ShawSpring Partners', 'دنیس هونگ', 'شاواسپرینگ', 'رشد باکیفیت',
+     'شرکت‌های پررشد با مزیت رقابتی قوی؛ بیشتر نرم‌افزار و اینترنت.'),
+    ('rolfe', 859804, 'WEDGEWOOD', 'David Rolfe', 'Wedgewood Partners', 'دیوید رولف', 'ودجوود', 'رشد باکیفیت',
+     'پورتفوی متمرکز از حدود ۲۰ شرکت باکیفیت با رشد پایدار.'),
+    ('torray', 98758, 'TORRAY', 'Robert Torray', 'Torray', 'رابرت توری', 'توری', 'ارزشی',
+     'سرمایه‌گذار ارزشی قدیمی؛ شرکت‌های بزرگ و باثبات.'),
+    ('cantillon', 1279936, 'CANTILLON', 'William von Mueffling', 'Cantillon Capital', 'ویلیام فون موفلینگ', 'کانتیلون', 'کیفیت',
+     'شرکت‌های جهانی باکیفیت با مدیران قوی؛ نگهداری طولانی.'),
+    ('mairs', 1070134, 'MAIRS', 'Mairs & Power', 'Mairs & Power', 'میرز اند پاور', 'میرز اند پاور', 'کیفیت / محلی',
+     'شرکت قدیمی اهل مینه‌سوتا؛ بیشتر سهام شرکت‌های همون منطقه رو برای سال‌ها نگه می‌داره.'),
+    ('thirdavenue', 1099281, 'THIRD AVENUE', 'Third Avenue', 'Third Avenue Management', 'تِرد اونیو', 'تِرد اونیو', 'ارزشی عمیق',
+     'صندوقی که مارتی ویتمن ساخت؛ سهام خیلی ارزون با ترازنامه‌ی قوی.'),
+    ('wachenheim', 846222, 'GREENHAVEN', 'Edgar Wachenheim', 'Greenhaven Associates', 'ادگار واکنهایم', 'گرین‌هیون', 'ارزشی',
+     'نویسنده‌ی کتاب «سرمایه‌گذاری با عقل سلیم»؛ سهام ارزون شرکت‌های صنعتی و مصرفی.'),
+    ('burn', 820124, 'SOUND SHORE', 'Harry Burn', 'Sound Shore Management', 'هری برن', 'ساوند شور', 'ارزشی',
+     'سهام ارزون شرکت‌های بزرگ آمریکایی؛ سبک ارزشی آرام و بلندمدت.'),
+    ('armitage', 1581811, 'EGERTON', 'John Armitage', 'Egerton Capital', 'جان آرمیتج', 'اجرتون', 'کیفیت',
+     'مدیر انگلیسی با پورتفوی متمرکز از شرکت‌های باکیفیت جهانی.'),
+    ('tarasoff', 1766504, 'GREENLEA', 'Josh Tarasoff', 'Greenlea Lane Capital', 'جاش تاراسوف', 'گرینلی لین', 'کیفیت / متمرکز',
+     'چند شرکت عالی که می‌تونن ده‌ها سال رشد کنن؛ تقریباً هیچ وقت نمی‌فروشه.'),
+    ('lou', 1631664, 'PUNCH CARD', 'Norbert Lou', 'Punch Card Management', 'نوربرت لو', 'پانچ کارت', 'متمرکز',
+     'اسم صندوقش از توصیه‌ی بافته: «انگار فقط ۲۰ بار در عمرت حق خرید داری». خیلی متمرکز.'),
+    ('dorsey', 1671657, 'DORSEY', 'Pat Dorsey', 'Dorsey Asset Management', 'پت دورسی', 'دورسی', 'کیفیت',
+     'نویسنده‌ی کتاب «مزیت رقابتی کوچک» و مدیر سابق تحقیقات مورنینگ‌استار؛ فقط شرکت‌های دارای خندق اقتصادی.'),
+    ('lawrence', 1657335, 'OAKCLIFF', 'Bryan Lawrence', 'Oakcliff Capital', 'برایان لارنس', 'اوک‌کلیف', 'ارزشی / متمرکز',
+     'پورتفوی کوچک و متمرکز از شرکت‌هایی با قیمت مناسب.'),
+    ('rogers', 936753, 'ARIEL', 'John Rogers', 'Ariel Investments', 'جان راجرز', 'آریل', 'ارزشی',
+     'شعارش «آهسته و پیوسته برنده‌ی مسابقه است»؛ سهام شرکت‌های کوچک و متوسط ارزون.'),
+    ('ketterer', 1165797, 'CAUSEWAY', 'Sarah Ketterer', 'Causeway Capital', 'سارا کترر', 'کازوی', 'ارزشی / جهانی',
+     'سهام ارزون جهانی، بیشتر خارج از آمریکا.'),
+    ('baillie', 1088875, 'BAILLIE', 'Baillie Gifford', 'Baillie Gifford', 'بیلی گیفورد', 'بیلی گیفورد', 'رشد',
+     'صندوق قدیمی اسکاتلندی و از اولین سرمایه‌گذارهای بزرگ تسلا، آمازون و انویدیا؛ رشد بلندمدت.'),
+    ('rosenstein', (1998597, 1159159), 'JANA', 'Barry Rosenstein', 'Jana Partners', 'بری روزنستاین', 'جانا', 'فعال',
+     'اکتیویست معروف؛ سهم می‌خره و برای فروش یا تغییر استراتژی شرکت فشار میاره.'),
+    ('sacerdote', 1387322, 'WHALE ROCK', 'Alex Sacerdote', 'Whale Rock Capital', 'الکس ساکردوته', 'ویل راک', 'تکنولوژی',
+     'صندوق متخصص تکنولوژی؛ نرم‌افزار، اینترنت و نیمه‌هادی.'),
+    ('hillman', 1314620, 'HILLMAN CAPITAL', 'Mark Hillman', 'Hillman Capital', 'مارک هیلمن', 'هیلمن', 'ارزشی',
+     'شرکت‌های بزرگ با مزیت رقابتی، وقتی موقتاً ارزون شدن.'),
 ]
 
 
@@ -172,7 +243,8 @@ INSTITUTIONS = [
 
 # order of the default "most famous" view on the page
 FAME = ['buffett', 'ackman', 'druck', 'lilu', 'smith', 'burry', 'klarman', 'tepper', 'pabrai', 'icahn', 'munger', 'soros',
-        'dalio', 'gates', 'wood', 'marks', 'loeb', 'coleman', 'gayner', 'watsa', 'akre', 'hohn', 'train', 'sequoia', 'elliott', 'peltz']
+        'dalio', 'gates', 'wood', 'marks', 'loeb', 'coleman', 'gayner', 'watsa', 'akre', 'hohn', 'train', 'sequoia', 'elliott', 'peltz',
+        'miller', 'einhorn', 'greenblatt', 'duan', 'spier', 'grantham', 'cooperman', 'baillie', 'dorsey', 'berkowitz']
 
 
 def get(url, tries=4, data=None, headers=None):

@@ -257,6 +257,43 @@ def send(subject, lines):
     return True
 
 
+EN = 'https://stockanaliz.com'
+
+
+def check_en(issues):
+    """English site: pages and share images load, and the site was rebuilt recently."""
+    for name, url in (('صفحه‌ی اصلی سایت انگلیسی', EN + '/'), ('صفحه‌ی اپل در سایت انگلیسی', EN + '/stocks/aapl/'),
+                      ('تصویر اشتراک‌گذاری سایت انگلیسی', 'https://images.stockanaliz.com/aapl.png')):
+        try:
+            st, body = get(url, timeout=40)
+            if st != 200 or len(body) < 2000:
+                issues['en:' + url] = f'{name} درست باز نمی‌شود (کد {st}).'
+        except urllib.error.HTTPError as e:
+            issues['en:' + url] = f'{name} باز نمی‌شود (کد {e.code}).'
+        except Exception as e:
+            issues['en:' + url] = f'{name} باز نمی‌شود ({type(e).__name__}).'
+    try:
+        st, body = get('https://raw.githubusercontent.com/mrezahajilou-ops/stockanaliz-site/main/content/last-refresh', timeout=30)
+        h = age_h(body.decode().strip())
+        if h > 10:
+            issues['en:stale'] = f'سایت انگلیسی {h:.0f} ساعته دوباره ساخته نشده (حد مجاز ۱۰ ساعت).'
+    except Exception as e:
+        issues['en:stale'] = 'زمان آخرین بازسازی سایت انگلیسی خوانده نشد (' + type(e).__name__ + ').'
+    try:
+        k = getj('https://rz-events.mreza-hajilou.workers.dev/c/kick')
+        if k.get('status') and k['status'] not in (204, 200):
+            issues['en:kick'] = f'ورکر نمی‌تواند بازسازی سایت انگلیسی را شروع کند (کد {k["status"]}).'
+    except Exception:
+        pass
+    try:   # the Pages build itself: the newest deployment must have succeeded (public status via the site's own stamp)
+        st, body = get(EN + '/sitemap.xml', timeout=30)
+        m = re.search(rb'<lastmod>(\d{4}-\d\d-\d\d)</lastmod>', body)
+        if m and (NOW.date() - dt.date.fromisoformat(m.group(1).decode())).days > 1:
+            issues['en:deploy'] = 'آخرین نسخه‌ی منتشرشده‌ی سایت انگلیسی بیش از یک روز قدیمی است؛ احتمالاً ساخت در کلادفلر شکست خورده.'
+    except Exception:
+        pass
+
+
 def main():
     sin, sout = os.environ.get('STATE_IN', 'state_in.json'), os.environ.get('STATE_OUT', 'state.json')
     try:
@@ -273,6 +310,7 @@ def main():
     check_worker(issues)
     check_gold(issues)
     check_contest(issues, state)
+    check_en(issues)
 
     old = state.get('issues') or {}
     new = [k for k in issues if k not in old]

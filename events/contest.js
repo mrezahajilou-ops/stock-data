@@ -535,6 +535,10 @@ async function contest(req, env, url, h) {
     if (!kv) return J({ error: 'not ready' }, 503);
     return new Response(kv.v, { headers: { ...h, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' } });
   }
+  if (req.method === 'GET' && path === '/kick') {   // last English-site refresh start (HTTP status from GitHub), for the watchdog
+    const kv = await c1(env, "SELECT v, ts FROM c_kv WHERE k='en_kick'");
+    return J(kv ? { status: +kv.v, at: new Date(kv.ts * 1000).toISOString() } : { status: null });
+  }
   if (req.method === 'GET' && path === '/tickers') {
     return J({ t: (await cq(env, 'SELECT DISTINCT t FROM c_pos WHERE qty>0')).map(r => r.t) });
   }
@@ -809,6 +813,14 @@ async function cDispatch(env) {
   if (mi >= 30 && mi < 35) await go('watchdog.yml');
   if (mi % 15 >= 5 && mi % 15 < 10) await go('gold.yml');   // every 15 minutes (prices, yields, Fed odds)
   if (mi % 20 < 5) await go('alerts.yml');
+  // English site (stockanaliz.com): GitHub's own schedule skips runs, so the worker starts its refresh every 4 hours
+  // (archive + rebuild + IndexNow). Every rebuild also costs a Cloudflare Pages build (free plan: 500 a month).
+  const hr = new Date().getUTCHours();
+  if (mi >= 40 && mi < 45 && hr % 4 === 0) {
+    const r = await fetch('https://api.github.com/repos/mrezahajilou-ops/stockanaliz-site/actions/workflows/rebuild.yml/dispatches',
+      { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'rz-events', 'Content-Type': 'application/json' }, body: '{"ref":"main"}' });
+    await env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('en_kick', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(String(r.status), cnow()).run();
+  }
 }
 async function cRefreshQuotes(env) {
   const T = (await cq(env, "SELECT DISTINCT t FROM c_pos WHERE qty>0 UNION SELECT DISTINCT t FROM c_orders WHERE status IN ('pending','filling')")).map(r => r.t).concat(['SPY']);

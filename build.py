@@ -496,6 +496,28 @@ def ttm_tags(facts, tags):
     return best
 
 
+def ytd_tags(facts, tags, unit="USD"):
+    """ttm_ytd over several tags: the one reaching the latest period end."""
+    best = (None, None)
+    for tag in tags:
+        if not tag.startswith("us-gaap:"):
+            continue
+        v, e = ttm_ytd(facts, tag, unit)
+        if v is not None and (best[1] is None or e > best[1]):
+            best = (v, e)
+    return best
+
+
+def newer_ytd(cur, facts, tags, unit="USD"):
+    """Keep the quarterly TTM unless it is missing or stale next to the YTD-based one (irregular quarters after a
+    fiscal-year change, e.g. FedEx's four-month transition period, break the four-consecutive-quarters rule)."""
+    v, e = cur
+    yv, ye = ytd_tags(facts, tags, unit)
+    if yv is not None and (e is None or days(e, ye) > 20):
+        return yv, ye
+    return v, e
+
+
 def ttm(qs):
     """Sum of the last four quarters if they are consecutive."""
     ks = sorted(k for k, v in qs.items() if v is not None)
@@ -869,19 +891,29 @@ def build_company(cik, entry, facts):
             if t_pt is not None:
                 t_op, e_op = t_pt + (t_ie or 0), e_pt
         t_da, e_da = ttm_tags(facts, CONCEPTS["da"][1])
-        t_div, e_div = ttm_tags(facts, CONCEPTS["dividends"][1])
+        t_rev, e_rev = newer_ytd((t_rev, e_rev), facts, CONCEPTS["revenue"][1])
+        t_ni, e_ni = newer_ytd((t_ni, e_ni), facts, CONCEPTS["net_income"][1])
+        t_cfo, e_cfo = newer_ytd((t_cfo, e_cfo), facts, CONCEPTS["cfo"][1])
+        t_cap, e_cap = newer_ytd((t_cap, e_cap), facts, CONCEPTS["capex"][1])
+        t_op, e_op = newer_ytd((t_op, e_op), facts, CONCEPTS["op_income"][1])
+        t_da, e_da = newer_ytd((t_da, e_da), facts, CONCEPTS["da"][1])
+        t_div, e_div = newer_ytd(ttm_tags(facts, CONCEPTS["dividends"][1]), facts, CONCEPTS["dividends"][1])
         t_dps, e_dps = None, None
         for tag in ("us-gaap:CommonStockDividendsPerShareDeclared", "us-gaap:CommonStockDividendsPerShareCashPaid"):
             v, e = ttm(quarterly(facts, [tag], unit="USD/shares"))
             if v is not None and e >= (dt.date.today() - dt.timedelta(days=200)).isoformat():
                 t_dps, e_dps = v, e
                 break
+        _dv, _de = ytd_tags(facts, ["us-gaap:CommonStockDividendsPerShareDeclared", "us-gaap:CommonStockDividendsPerShareCashPaid"], "USD/shares")
+        if _dv is not None and (e_dps is None or days(e_dps, _de) > 20) and _de >= (dt.date.today() - dt.timedelta(days=200)).isoformat():
+            t_dps, e_dps = _dv, _de
         t_eps, e_eps = None, None
         for tag in CONCEPTS["eps_diluted"][1]:
             v, e = ttm(quarterly(facts, [tag], unit="USD/shares"))
             if v is not None:
                 t_eps, e_eps = v, e
                 break
+        t_eps, e_eps = newer_ytd((t_eps, e_eps), facts, CONCEPTS["eps_diluted"][1], "USD/shares")
         end = e_ni or e_rev
         if end and end > last["fy_end"]:
             same = lambda e: e is not None and abs(days(e, end)) <= 10
@@ -914,7 +946,7 @@ def build_company(cik, entry, facts):
                 ttm_rec["eps_rep"] = ev
             # the rest of the income statement / cash flow on a trailing basis (for the TTM column of the 10-year table)
             for tk in ("gross_profit", "cogs", "rnd", "sbc", "buybacks", "interest_exp", "pretax_income", "tax"):
-                tv, te = ttm_tags(facts, CONCEPTS[tk][1])
+                tv, te = newer_ytd(ttm_tags(facts, CONCEPTS[tk][1]), facts, CONCEPTS[tk][1])
                 ttm_rec[tk] = (abs(tv) if tk in ("buybacks",) else tv) if (tv is not None and same(te)) else None
             if ttm_rec["gross_profit"] is None and ttm_rec["cogs"] is not None and ttm_rec["revenue"] is not None:
                 ttm_rec["gross_profit"] = ttm_rec["revenue"] - ttm_rec["cogs"]
@@ -925,7 +957,7 @@ def build_company(cik, entry, facts):
             for tag in CONCEPTS["shares_diluted"][1]:
                 ns_, nm_ = tag.split(":")
                 for f in ((facts.get(ns_, {}).get(nm_) or {}).get("units", {}) or {}).get("shares") or []:
-                    if f.get("form") in QFORMS and f.get("start") and 80 <= days(f["start"], f.get("end", "")) <= 100 and f.get("end", "") > e_sh:
+                    if f.get("form") in QFORMS and f.get("start") and 80 <= days(f["start"], f.get("end", "")) <= 130 and f.get("end", "") > e_sh:
                         sh_q, e_sh = f["val"], f["end"]
             ok_sh = sh_q and same(e_sh) and last.get("shares_diluted") and 0.5 < sh_q / last["shares_diluted"] < 2
             ttm_rec["shares_diluted"] = sh_q if ok_sh else None

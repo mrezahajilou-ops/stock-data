@@ -908,6 +908,10 @@ def build_company(cik, entry, facts):
                             alts[tg.split(":")[-1] + "/" + how] = av
                 if alts:
                     ttm_rec[key] = alts
+            # the reported diluted EPS summed from the latest filings (fiscal year + YTD - prior YTD)
+            ev, ee = ttm_ytd(facts, "us-gaap:EarningsPerShareDiluted", "USD/shares")
+            if ev is not None and same(ee):
+                ttm_rec["eps_rep"] = ev
             # the rest of the income statement / cash flow on a trailing basis (for the TTM column of the 10-year table)
             for tk in ("gross_profit", "cogs", "rnd", "sbc", "buybacks", "interest_exp", "pretax_income", "tax"):
                 tv, te = ttm_tags(facts, CONCEPTS[tk][1])
@@ -1347,6 +1351,7 @@ def reconcile_per_share(rec, mk, ref):
     # (Devon, Vistra) or keep a spun-off business in the old annual base (S&P Global, Honeywell)
     # Same for trailing net income: restated prior-year comparatives (CrowdStrike) are only in the latest filing.
     tt = rec.get("ttm") or {}
+    eps_rep = tt.pop("eps_rep", None)
     for key, akey, rkey, tol in (("revenue", "rev_alts", "rev", 0.01), ("net_income", "ni_alts", "ni", 0.015)):
         alts = tt.pop(akey, None)
         yv = (ref or {}).get(rkey)
@@ -1412,7 +1417,10 @@ def reconcile_per_share(rec, mk, ref):
         # the sum of the four reported quarterly EPS is authoritative (it is what the company printed); it is replaced
         # only when it is not confirmed: Yahoo's trailing EPS agrees with NI / shares instead (a split inside the window
         # mixes share bases - Amphenol), or it is missing / far from NI / shares without an independent witness
-        if agree(ours, yeps, 0.05) or agree(ours, e2, 0.05):
+        if eps_rep is not None and yeps is not None and agree(eps_rep, yeps, 0.02) and not agree(ours, yeps, 0.02):
+            t["eps"] = eps_rep   # the printed EPS of the latest filings, confirmed by the independent figure (Devon)
+            t["eps_src"] = "sec-reported"
+        elif agree(ours, yeps, 0.05) or agree(ours, e2, 0.05):
             pass
         elif yeps is not None and agree(e2, yeps, 0.05):
             t["eps"] = e2

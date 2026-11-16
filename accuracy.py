@@ -196,6 +196,7 @@ def main():
     ci = {c: i for i, c in enumerate(sc['cols'])}
     rows = sorted(sc['rows'], key=lambda r: -(r[ci['mcap']] or 0))
     report = {'as_of': now.strftime('%Y-%m-%dT%H:%MZ'), 'checked': 0, 'stale': [], 'mismatch': [], 'ok': 0, 'skipped': [], 'feeds': {}}
+    seen_cik = set()
     for r in rows:
         if report['checked'] >= N:
             break
@@ -206,6 +207,9 @@ def main():
         d = json.load(open(p))
         if d.get('foreign') or (d.get('reported_currency') or 'USD') != 'USD' or not d.get('cik'):
             continue
+        if d['cik'] in seen_cik:
+            continue   # second ticker of the same filer (class B, preferred, baby bond): same filings
+        seen_cik.add(d['cik'])
         b = get('https://data.sec.gov/api/xbrl/companyfacts/CIK%010d.json' % int(d['cik']))
         if not b:
             report['skipped'].append([t, 'no companyfacts']); continue

@@ -132,12 +132,6 @@
 "cik": 7323
 },
 {
-"t": "QNT",
-"mcap": 8621743809,
-"why": "no usable annual data",
-"cik": 2110105
-},
-{
 "t": "EMP",
 "mcap": 8620049046,
 "why": "no usable annual data",
@@ -204,12 +198,6 @@
 "cik": 1569650
 },
 {
-"t": "OCTV",
-"mcap": 5696249861,
-"why": "no usable annual data",
-"cik": 2083632
-},
-{
 "t": "MWH",
 "mcap": 5694103395,
 "why": "no usable annual data",
@@ -274,12 +262,6 @@
 "mcap": 4140360000,
 "why": "no usable annual data",
 "cik": 1495222
-},
-{
-"t": "LFTO",
-"mcap": 4105442872,
-"why": "no usable annual data",
-"cik": 1850351
 },
 {
 "t": "ENO",

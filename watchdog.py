@@ -123,6 +123,35 @@ def check_site(issues):
             issues['site:' + url] = f'{name} باز نمی‌شود ({type(e).__name__}).'
 
 
+def check_ad(issues):
+    """House ad (sitesazweb.com) on the home page: shown to visitors without Stock Pro, link works, landing page opens."""
+    try:
+        st, body = get(SITE + '/?rzad=' + NOW.strftime('%H%M'), timeout=40)
+        h = body.decode('utf-8', 'replace')
+    except Exception as e:
+        issues['ad-home'] = f'صفحه‌ی اصلی برای بررسی تبلیغ باز نشد ({type(e).__name__}).'
+        return
+    m = re.search(r'<a class="rzad-card" href="([^"]+)"', h)
+    if not m:
+        issues['ad-missing'] = 'تبلیغ سایت‌ساز در صفحه‌ی اصلی (برای بازدیدکننده‌ی بدون اشتراک) دیده نمی‌شود.'
+        return
+    href = m.group(1).replace('&amp;', '&')
+    if 'sitesazweb.com' not in href or 'ref=sahamanaliz' not in href:
+        issues['ad-link'] = f'لینک تبلیغ سایت‌ساز عوض شده یا کد ارجاع ندارد: {href}'
+    for need, key, msg in (('class="rzad-tag"', 'ad-label', 'برچسب «تبلیغ» روی تبلیغ سایت‌ساز نیست.'),
+                           ('rzad-btn', 'ad-btn', 'دکمه‌ی تبلیغ سایت‌ساز در صفحه نیست.')):
+        if need not in h:
+            issues[key] = msg
+    try:
+        st, lp = get(href.split('#')[0], timeout=40)
+        if st != 200 or len(lp) < 2000 or 'templates' not in lp.decode('utf-8', 'replace'):
+            issues['ad-landing'] = f'صفحه‌ی مقصد تبلیغ (سایت‌ساز) درست باز نمی‌شود (کد {st}).'
+    except urllib.error.HTTPError as e:
+        issues['ad-landing'] = f'صفحه‌ی مقصد تبلیغ (سایت‌ساز) باز نمی‌شود (کد {e.code}).'
+    except Exception as e:
+        issues['ad-landing'] = f'صفحه‌ی مقصد تبلیغ (سایت‌ساز) باز نمی‌شود ({type(e).__name__}).'
+
+
 def check_worker(issues):
     try:
         q = getj(WORKER + '/c/quotes.json')
@@ -240,6 +269,7 @@ def main():
     issues = {}
     check_jobs(issues)
     check_site(issues)
+    check_ad(issues)
     check_worker(issues)
     check_gold(issues)
     check_contest(issues, state)

@@ -241,17 +241,133 @@ A = [
        ('فالکن‌ایکس: اندازه‌ی بازار توکن سهام', 'https://www.falconx.io/newsroom/velocity-of-value-the-ascent-of-tokenized-stocks'),
        ('کریپتوبریفینگ: بانک مرکزی ایران و حساب‌های صرافی‌ها', 'https://cryptobriefing.com/central-bank-iran-block-rial-accounts-tether/'),
        ('ایران اینترنشنال: سقف نگهداری رمزارز', 'https://www.iranintl.com/en/202601204955')]),
+
+ dict(handle='nvidia-earnings-preview-q3-2027', date='2026-11-16T08:00:00Z', tags=['NVDA', 'انویدیا', 'گزارش فصلی'],
+  title='گزارش فصلی انویدیا ۱۷ نوامبر: بازار چه انتظاری دارد و چه چیزهایی مهم است؟',
+  seo_title='گزارش سود انویدیا ۱۷ نوامبر ۲۰۲۶ | پیش‌بینی درآمد و سود هر سهم',
+  seo_desc='انویدیا سه‌شنبه ۱۷ نوامبر گزارش فصل سوم را می‌دهد؛ اولین گزارش بعد از استعفای جنسن هوانگ. پیش‌بینی درآمد حدود ۱۰۹ میلیارد دلار و سود هر سهم حدود ۲٫۴۷ دلار است. چه چیزهایی را باید دنبال کرد؟',
+  body='''<p class="upd">به‌روزرسانی: ۱۶ نوامبر ۲۰۲۶</p>
+<p>انویدیا سه‌شنبه <strong>۱۷ نوامبر ۲۰۲۶</strong>، بعد از بسته شدن بازار آمریکا، نتایج فصل سوم سال مالی ۲۰۲۷ را منتشر می‌کند. این فصل ۲۵ اکتبر ۲۰۲۶ تمام شد. گزارش حدود ساعت ۴:۲۰ بعدازظهر به وقت نیویورک منتشر می‌شود و جلسه‌ی پرسش و پاسخ مدیران ساعت ۵ بعدازظهر است؛ یعنی ساعت ۲۳ به وقت آلمان. این اولین گزارش بعد از <a href="/blogs/news/jensen-huang-resigns">استعفای جنسن هوانگ</a> است و <a href="/blogs/news/colette-kress">کولت کرس</a>، مدیرعامل موقت، آن را ارائه می‌دهد.</p>
+
+<h2>تحلیلگرها چه انتظاری دارند؟</h2>
+<ul>
+<li><strong>درآمد:</strong> حدود ۱۰۸٫۸ تا ۱۰۹ میلیارد دلار؛ یعنی حدود ۹۱ درصد بیشتر از ۵۷ میلیارد دلار فصل مشابه سال قبل.</li>
+<li><strong>سود هر سهم:</strong> حدود ۲٫۴۷ تا ۲٫۴۹ دلار؛ تقریباً دو برابر ۱٫۳۰ دلار سال قبل.</li>
+<li><strong>پیش‌بینی خود شرکت:</strong> انویدیا درآمد این فصل را بین ۱۰۵٫۸ تا ۱۱۰٫۲ میلیارد دلار و سود هر سهم را بین ۲٫۳۲ تا ۲٫۴۷ دلار اعلام کرده بود.</li>
+</ul>
+<div class="box"><strong>نکته‌ی مهم:</strong> پیش‌بینی تحلیلگرها برای سود هر سهم الان برابر یا بالاتر از سقف پیش‌بینی خود شرکت است. یعنی بازار فقط «رسیدن به هدف» را کافی نمی‌داند و انتظار دارد انویدیا از برنامه‌ی خودش هم بهتر عمل کند.</div>
+
+<h2>سابقه‌ی انویدیا در گزارش‌های قبلی</h2>
+<p>انویدیا در هر چهار فصل گذشته سودی بالاتر از میانگین پیش‌بینی تحلیلگرها گزارش کرده است. مثلاً در فصل منتهی به ژوئیه‌ی ۲۰۲۶، سود هر سهم ۲٫۲۲ دلار بود در حالی که پیش‌بینی حدود ۲٫۰۹ دلار بود. جزئیات را در <a href="/pages/nvda-forecast">صفحه‌ی پیش‌بینی سهام انویدیا</a> ببینید.</p>
+
+<h2>چرا این گزارش مهم‌تر از همیشه است؟</h2>
+<ul>
+<li><strong>افت قیمت قبل از گزارش:</strong> سهم انویدیا در ماه‌های اخیر نزدیک ۲۰ درصد پایین آمده و حدود ۱۸ واحد درصد از شاخص اس‌اند‌پی ۵۰۰ عقب مانده است. ارزش بازار شرکت ۱۰ نوامبر به حدود ۴٫۰۷ هزار میلیارد دلار رسید.</li>
+<li><strong>حاشیه‌ی سود:</strong> نگرانی بازار این است که هزینه‌ی رشد بالا رفته و حاشیه‌ی سود کم می‌شود.</li>
+<li><strong>تغییر مدیریت:</strong> سرمایه‌گذارها می‌خواهند ببینند شرکت بدون هوانگ چه پیامی درباره‌ی آینده می‌دهد.</li>
+<li><strong>هزینه‌ی هوش مصنوعی شرکت‌های بزرگ:</strong> هر نشانه‌ای از کند شدن سفارش غول‌های ابری روی کل بازار اثر می‌گذارد.</li>
+</ul>
+
+<h2>چه چیزهایی را در گزارش دنبال کنیم؟</h2>
+<ol>
+<li><strong>درآمد دیتاسنتر:</strong> بزرگ‌ترین بخش شرکت که بیش از ۸۵ درصد درآمد را می‌سازد.</li>
+<li><strong>پیش‌بینی فصل بعد:</strong> معمولاً واکنش سهم بیشتر به پیش‌بینی فصل آینده بستگی دارد تا به نتیجه‌ی همین فصل.</li>
+<li><strong>حاشیه‌ی سود ناخالص:</strong> برای اینکه ببینیم نگرانی حاشیه‌ی سود درست بوده یا نه.</li>
+<li><strong>بخش‌های کمتر دیده‌شده:</strong> مورنینگ‌استار گفته به درآمد بخش‌هایی مثل هوش مصنوعی ابری، صنعتی و سازمانی توجه می‌کند، چون مشتری‌های این بخش‌ها پایدارترند.</li>
+<li><strong>هر خبری درباره‌ی مدیرعامل دائمی</strong> و فروش تراشه به چین.</li>
+</ol>
+
+<h2>عددهای سهام آنالیز برای انویدیا</h2>
+<p>امتیاز کلی انویدیا در تحلیل ما ۴٫۸ از ۵ است. میانگین قیمت هدف ۵۳ تحلیلگر حدود ۲۸۳ دلار است، در حالی که قیمت پایانی جمعه ۱۶۲٫۸۵ دلار بود. نسبت قیمت به سود سهم با سود ۱۲ ماه گذشته حدود ۲۱ است و با سود پیش‌بینی‌شده‌ی سال مالی بعد حدود ۱۲. مورنینگ‌استار ارزش منصفانه‌ی سهم را ۳۱۰ دلار تخمین زده، ولی عدم قطعیت آن را «خیلی بالا» دانسته است. تحلیل کامل را در <a href="/pages/stocks/nvda">صفحه‌ی تحلیل سهام انویدیا</a> ببینید.</p>
+<p>بعد از انتشار گزارش، همین مقاله را با عددهای واقعی به‌روز می‌کنیم.</p>''',
+  qa=[('گزارش فصلی انویدیا کی منتشر می‌شود؟', 'سه‌شنبه ۱۷ نوامبر ۲۰۲۶، بعد از بسته شدن بازار؛ حدود ساعت ۴:۲۰ بعدازظهر به وقت نیویورک (۲۲:۲۰ به وقت آلمان).'),
+      ('پیش‌بینی درآمد انویدیا در این فصل چقدر است؟', 'حدود ۱۰۸٫۸ تا ۱۰۹ میلیارد دلار، یعنی حدود ۹۱ درصد رشد نسبت به سال قبل.'),
+      ('پیش‌بینی سود هر سهم انویدیا چقدر است؟', 'حدود ۲٫۴۷ تا ۲٫۴۹ دلار، در حالی که پیش‌بینی خود شرکت ۲٫۳۲ تا ۲٫۴۷ دلار بود.')],
+  links=[('/pages/stocks/nvda', 'تحلیل سهام انویدیا'), ('/pages/nvda-forecast', 'پیش‌بینی سهام انویدیا'), ('/blogs/news/jensen-huang-resigns', 'استعفای جنسن هوانگ'),
+         ('/blogs/news/colette-kress', 'کولت کرس کیست؟'), ('/blogs/news/what-nvidia-does', 'انویدیا چه کار می‌کند؟'), ('/pages/earnings', 'تقویم گزارش‌های مالی')],
+  src=[('مارکت‌پالس: پیش‌نمایش گزارش انویدیا', 'https://www.marketpulse.com/markets/nvidia-nvda-q3-earnings-preview-ai-spending-risks-and-governance-concerns-threaten-major-uptrend/'),
+       ('ارنینگز ویسپرز', 'https://www.earningswhispers.com/article/NVDA/23118'),
+       ('مورنینگ‌استار: نکات مهم گزارش انویدیا', 'https://www.morningstar.com/stocks/what-watch-nvidia-earnings-spy-scandal-data-center-concerns-take-center-stage'),
+       ('اینسایدر فایننس', 'https://www.insiderfinance.io/news/nvidia-earnings-set-for-nov-17-amid-sell-signals')]),
 ]
+
+
+def top5_article():
+    """Live list: the 5 large US-listed companies with the highest total score on the site (rebuilt every day)."""
+    from build_guides import load, nm_html, e, date_fa, TODAY
+    from build_pages import fa, pct
+    import re
+    try:
+        FAN = json.load(open(os.path.join(ROOT, 'content', 'fa_names.json')))
+    except Exception:
+        FAN = {}
+    rows = [x for x in load() if x['mcap'] >= 10e9 and x.get('tot')]
+    rows.sort(key=lambda x: (-x['tot'], -x['mcap']))
+    top = rows[:5]
+    for x in top:
+        x['fa'] = x.get('fa') or FAN.get(x['t']) or {'FIX': 'کامفورت سیستمز'}.get(x['t'])
+        x['en'] = re.sub(r',?\s+(Inc|Corp|Corporation|Ltd|Limited|Co|Plc|N\.V|S\.A|Holdings?)\.?$', '', x['en'] or x['t'])
+    LBL = (('value', 'ارزش'), ('future', 'آینده'), ('past', 'گذشته'), ('health', 'سلامت مالی'), ('capital', 'بازگشت سرمایه'))
+    def prof(t):
+        try:
+            return json.load(open(os.path.join(ROOT, 'content', 'profiles', t + '.json')))
+        except Exception:
+            return {}
+    def num(v, d=1):
+        return '—' if v is None else fa(('%.' + str(d) + 'f') % v)
+    parts = []
+    for i, x in enumerate(top, 1):
+        p, r, st = prof(x['t']), x.get('r') or {}, x.get('s') or {}
+        nm = nm_html(x.get('fa'), x['en'])
+        sc = ' · '.join('%s %s از ۵' % (l, fa(x['sc'].get(k, '—'))) for k, l in LBL)
+        gap = x.get('gap')
+        met = []
+        if r.get('pe'):
+            met.append('<li>نسبت قیمت به سود: %s%s</li>' % (num(r['pe']), (' (میانه‌ی صنعت %s)' % num(r['sector_pe'])) if r.get('sector_pe') else ''))
+        if st.get('rev_cagr_5y') is not None:
+            met.append('<li>رشد سالانه‌ی درآمد در ۵ سال: %s</li>' % pct(st['rev_cagr_5y'], 0))
+        if st.get('roic_avg_5y') is not None:
+            met.append('<li>میانگین بازده سرمایه در ۵ سال: %s</li>' % pct(st['roic_avg_5y'], 0))
+        if gap is not None:
+            met.append('<li>ارزش ذاتی با فرض متوسط: حدود %s %s از قیمت فعلی</li>' % (pct(abs(gap), 0), 'بالاتر' if gap >= 0 else 'پایین‌تر'))
+        parts.append('<h2>%s. %s <span class="tk">%s</span> · امتیاز %s از ۵</h2>' % (fa(i), nm, e(x['t']), num(x['tot']))
+                     + ('<p>%s</p>' % e(p['what']) if p.get('what') else '')
+                     + '<p class="sc5">%s</p>' % sc
+                     + ('<ul>%s</ul>' % ''.join(met) if met else '')
+                     + ('<p><strong>مزیت رقابتی:</strong> %s</p>' % e(p['moat']) if p.get('moat') else '')
+                     + ('<p><strong>ریسک اصلی:</strong> %s</p>' % e(p['risks'][0] if isinstance(p['risks'], list) else p['risks']) if p.get('risks') else '')
+                     + '<p><a href="/pages/stocks/%s">تحلیل کامل %s</a> · <a href="/pages/%s-forecast">پیش‌بینی تحلیلگرها</a></p>'
+                     % (x['t'].lower(), nm, x['t'].lower().replace('.', '-')))
+    names = '، '.join(x.get('fa') or x['en'] for x in top)
+    body = ('<p class="upd">به‌روزرسانی: %s · این فهرست هر روز خودکار به‌روز می‌شود</p>' % date_fa(TODAY)
+            + '<p>سهام آنالیز به هر شرکت بورس آمریکا در پنج بخش امتیاز می‌دهد: <strong>ارزش</strong> (ارزان یا گران بودن)، <strong>آینده</strong> (رشد پیش‌بینی‌شده)، '
+              '<strong>گذشته</strong> (کارنامه‌ی سود و رشد)، <strong>سلامت مالی</strong> (بدهی و نقدینگی) و <strong>بازگشت سرمایه</strong> (سود نقدی، بازخرید و بازده سرمایه). '
+              'امتیاز کلی میانگین این پنج بخش است. در این فهرست فقط شرکت‌هایی با ارزش بازار بیش از ۱۰ میلیارد دلار آمده‌اند.</p>'
+            + '<p>امروز پنج شرکت با بالاترین امتیاز این‌ها هستند: %s.</p>' % names
+            + '<div class="box"><strong>توجه:</strong> امتیاز بالا یعنی عددهای شرکت خوب است، نه اینکه قیمت سهم حتماً بالا می‌رود. این فهرست توصیه‌ی خرید نیست؛ نقطه‌ی شروع تحقیق است.</div>'
+            + ''.join(parts)
+            + '<h2>چطور از این فهرست استفاده کنیم؟</h2><p>برای هر شرکت تحلیل کامل را بخوانید، ریسک‌ها را بسنجید و ببینید با هدف و افق زمانی شما جور است یا نه. '
+              'برای پیدا کردن شرکت‌های بیشتر از <a href="/pages/screener">غربالگر سهام</a> و <a href="/pages/guides">فهرست‌های آماده</a> استفاده کنید.</p>')
+    return dict(handle='top-5-highest-rated-us-stocks', date='2026-11-16T08:00:00Z', tags=['آموزش', 'بهترین سهام', 'امتیاز سهام'],
+                title='۵ سهم آمریکایی با بالاترین امتیاز در سهام آنالیز (به‌روز روزانه)',
+                seo_title='بهترین سهام آمریکا برای بررسی | ۵ سهم با بالاترین امتیاز',
+                seo_desc=('۵ سهم بورس آمریکا با بالاترین امتیاز در تحلیل سهام آنالیز، هر روز به‌روز: %s. امتیاز ارزش، آینده، گذشته، سلامت مالی و بازگشت سرمایه.' % names)[:300],
+                body=body,
+                qa=[('بهترین سهام آمریکا کدام‌اند؟', 'جواب واحدی ندارد. طبق امتیاز سهام آنالیز، امروز پنج شرکت بزرگ با بالاترین امتیاز این‌ها هستند: %s. این توصیه‌ی خرید نیست.' % names),
+                    ('امتیاز سهام آنالیز چطور حساب می‌شود؟', 'میانگین امتیاز پنج بخش ارزش، آینده، گذشته، سلامت مالی و بازگشت سرمایه، از عددهای گزارش‌های رسمی شرکت‌ها.')],
+                links=[('/pages/screener', 'غربالگر سهام'), ('/pages/guides', 'فهرست‌های آماده'), ('/pages/stock-forecasts', 'پیش‌بینی سهام آمریکا'),
+                       ('/pages/undervalued-stocks', 'سهام زیر ارزش ذاتی'), ('/pages/best-growth-stocks', 'بهترین سهام رشدی')],
+                src=[])
 
 
 def main():
     arts = []
-    for a in A:
+    for a in A + [top5_article()]:
         src = ''
         if a['src']:
             src = '<h2>منابع</h2><ul>' + ''.join('<li><a href="%s" rel="noopener nofollow" target="_blank">%s</a></li>' % (u, t) for t, u in a['src']) + '</ul>'
         links = a.get('links') or [l for l in NV if not l[0].endswith('/' + a['handle'])]
-        html = (CSS + '<style>.rzg ul{padding-right:22px;margin:10px 0}.rzg li{margin:6px 0}</style><div class="rzg" dir="rtl">' + a['body']
+        html = (CSS + '<style>.rzg ul,.rzg ol{padding-right:22px;margin:10px 0}.rzg li{margin:6px 0}.rzg .sc5{color:#C9A961;font-size:.92em}</style><div class="rzg" dir="rtl">' + a['body']
                 + faq_block(a['qa']) + src + '<h2>بیشتر بخوان</h2>' + chips(links)
                 + '<p class="dis">این مطلب برای آگاهی است و توصیه‌ی خرید یا فروش هیچ سهمی نیست.</p></div>')
         arts.append(dict(handle=a['handle'], title=a['title'], seo_title=a['seo_title'], seo_desc=a['seo_desc'],

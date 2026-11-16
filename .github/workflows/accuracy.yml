@@ -12,7 +12,7 @@ on:
       n:
         description: 'Companies to check (largest first)'
         required: false
-        default: '300'
+        default: '1000'
 
 permissions:
   contents: write
@@ -39,7 +39,7 @@ jobs:
         id: check
         env:
           SEC_USER_AGENT: "Stock Analiz data check info@stockanaliz.com"
-          N: ${{ inputs.n || '300' }}
+          N: ${{ inputs.n || '1000' }}
           HEAL_OUT: /tmp/heal.txt
         run: |
           set +e

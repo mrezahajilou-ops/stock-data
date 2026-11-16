@@ -19,7 +19,7 @@ import gzip, json, os, sys, time, datetime, urllib.request, urllib.error
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'accuracy')
 UA = os.environ.get('SEC_USER_AGENT') or 'Stock Analiz data check info@stockanaliz.com'
-N = int(os.environ.get('N') or 300)
+N = int(os.environ.get('N') or 1000)
 TOL = {'revenue': 0.01, 'net_income': 0.02, 'eps': 0.03}
 REV_TAGS = ['Revenues', 'RevenueFromContractWithCustomerExcludingAssessedTax', 'RevenueFromContractWithCustomerIncludingAssessedTax',
             'SalesRevenueNet', 'RevenuesNetOfInterestExpense', 'TotalRevenuesAndOtherIncome']

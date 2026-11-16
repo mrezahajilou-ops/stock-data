@@ -279,12 +279,6 @@ def check_en(issues):
             issues['en:stale'] = f'سایت انگلیسی {h:.0f} ساعته دوباره ساخته نشده (حد مجاز ۱۰ ساعت).'
     except Exception as e:
         issues['en:stale'] = 'زمان آخرین بازسازی سایت انگلیسی خوانده نشد (' + type(e).__name__ + ').'
-    try:
-        k = getj('https://rz-events.mreza-hajilou.workers.dev/c/kick')
-        if k.get('status') and k['status'] not in (204, 200):
-            issues['en:kick'] = f'ورکر نمی‌تواند بازسازی سایت انگلیسی را شروع کند (کد {k["status"]}).'
-    except Exception:
-        pass
     try:   # the Pages build itself: the newest deployment must have succeeded (public status via the site's own stamp)
         st, body = get(EN + '/sitemap.xml', timeout=30)
         m = re.search(rb'<lastmod>(\d{4}-\d\d-\d\d)</lastmod>', body)

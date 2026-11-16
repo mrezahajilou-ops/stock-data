@@ -1,0 +1,30 @@
+{
+"t": "MU",
+"what": "Micron is one of the three big memory-chip makers: DRAM (working memory) and NAND (storage). High-bandwidth memory (HBM), which sits next to AI GPUs, is its key growth product.",
+"customers": "Server makers and cloud providers, NVIDIA (for HBM), and phone, PC and car makers.",
+"money": [
+[
+"DRAM",
+"about three quarters of revenue",
+"memory for servers, PCs, phones and HBM for AI"
+],
+[
+"NAND",
+"about a quarter",
+"SSD storage for data centers and devices"
+]
+],
+"moat": "Memory has only three major players and entry takes tens of billions of dollars and deep know-how. Micron is the only large US maker.",
+"rivals": [
+"Samsung",
+"SK Hynix",
+"Sandisk and Western Digital (NAND)|SNDK",
+"Kioxia"
+],
+"risks": [
+"Memory is highly cyclical; prices collapse when supply runs ahead",
+"Very high capital spending",
+"HBM competition with SK Hynix and Samsung"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,30 @@
+{
+"t": "HD",
+"what": "Home Depot is the largest home-improvement retailer in the US, selling tools, building materials and garden products to homeowners and professional contractors.",
+"customers": "Do-it-yourself homeowners and professional builders, roofers and contractors (a growing share after the SRS acquisition).",
+"money": [
+[
+"Store and online sales",
+"nearly all revenue",
+"building materials, tools, appliances, garden"
+],
+[
+"Pro distribution",
+"growing",
+"SRS and GMS supply to contractors"
+]
+],
+"moat": "Scale, store locations, supplier relationships and loyal professional customers.",
+"rivals": [
+"Lowe's|LOW",
+"Amazon|AMZN",
+"Walmart|WMT",
+"Local building-supply dealers"
+],
+"risks": [
+"A slow housing market and high mortgage rates",
+"Weaker home-improvement spending",
+"Tariffs on imported goods"
+],
+"updated": "2026-11"
+}

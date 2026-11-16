@@ -1,0 +1,35 @@
+{
+"t": "TSLA",
+"what": "Tesla is the largest US electric-car maker (Model 3, Y, S, X and Cybertruck) and also builds large battery storage systems. It invests heavily in self-driving, robotaxis and the Optimus humanoid robot.",
+"customers": "Car buyers in the US, Europe and China, and utilities and energy projects for its Megapack batteries.",
+"money": [
+[
+"Automotive",
+"about three quarters of revenue",
+"direct car sales without dealers, plus regulatory credits sold to other carmakers"
+],
+[
+"Energy generation and storage",
+"about 10–15%",
+"Megapack and Powerwall batteries; growing with good margins"
+],
+[
+"Services and other",
+"about 10%",
+"Superchargers, repairs, insurance and Full Self-Driving software"
+]
+],
+"moat": "A strong brand, a large charging network, low production costs and driving data from millions of cars to train its self-driving AI.",
+"rivals": [
+"BYD and Chinese carmakers",
+"Waymo (robotaxis)|GOOGL",
+"Ford|F",
+"General Motors|GM"
+],
+"risks": [
+"Falling EV prices and fierce competition, especially from China",
+"A valuation that depends on robotaxis and Optimus succeeding",
+"Dependence on Elon Musk and self-driving regulation"
+],
+"updated": "2026-11"
+}

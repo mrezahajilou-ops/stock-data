@@ -1,0 +1,29 @@
+{
+"t": "ASML",
+"what": "ASML (Netherlands) makes the lithography machines that print circuits onto silicon wafers. It is the only company in the world that builds extreme-ultraviolet (EUV) machines, needed for the most advanced chips.",
+"customers": "Chipmakers such as TSMC, Samsung, Intel, SK Hynix and Micron.",
+"money": [
+[
+"New systems",
+"about three quarters of revenue",
+"EUV and DUV lithography machines costing up to several hundred million dollars each"
+],
+[
+"Installed base services",
+"about a quarter",
+"service, upgrades and parts for machines already in factories"
+]
+],
+"moat": "A monopoly in EUV lithography built over decades with a unique supply chain (Zeiss optics, among others).",
+"rivals": [
+"Nikon",
+"Canon",
+"Applied Materials (other chip tools)|AMAT"
+],
+"risks": [
+"Export limits on sales to China",
+"Cyclical chipmaker spending",
+"Concentration on a handful of customers"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,35 @@
+{
+"t": "TSM",
+"what": "TSMC (Taiwan) is the world's largest contract chipmaker: it manufactures the chips that companies such as Apple and NVIDIA design, in the most advanced factories in the industry.",
+"customers": "Apple, NVIDIA, AMD, Qualcomm, Broadcom, MediaTek and hundreds of other chip designers.",
+"money": [
+[
+"High-performance computing and AI",
+"over half of revenue",
+"GPUs and data-center processors"
+],
+[
+"Smartphones",
+"about a third",
+"processors for iPhones and Android phones"
+],
+[
+"IoT, automotive and other",
+"smaller",
+"chips for cars and connected devices"
+]
+],
+"moat": "Years ahead of rivals in leading-edge processes (3 and 2 nanometer), huge scale, and customers' trust because it never competes with them.",
+"rivals": [
+"Samsung Foundry",
+"Intel Foundry|INTC",
+"GlobalFoundries|GFS",
+"SMIC (China)"
+],
+"risks": [
+"Geopolitical risk between Taiwan and China",
+"Concentration on a few large customers such as Apple and NVIDIA",
+"High cost of new fabs in the US and Japan"
+],
+"updated": "2026-11"
+}

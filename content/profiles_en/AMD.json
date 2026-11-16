@@ -1,0 +1,35 @@
+{
+"t": "AMD",
+"what": "AMD designs CPUs (Ryzen for PCs, EPYC for servers) and graphics and AI accelerators (Radeon, Instinct). It also makes the chips inside PlayStation and Xbox consoles. Like NVIDIA, it relies on TSMC to manufacture.",
+"customers": "Cloud providers and large companies, PC makers, Sony and Microsoft (consoles), and AI companies such as OpenAI and Meta.",
+"money": [
+[
+"Data center",
+"close to half of revenue",
+"EPYC server CPUs and Instinct AI accelerators"
+],
+[
+"Client (PCs)",
+"about a third",
+"Ryzen processors"
+],
+[
+"Gaming and embedded",
+"smaller",
+"console chips, graphics cards and Xilinx chips for industry and cars"
+]
+],
+"moat": "Competitive CPU designs that have taken server share from Intel, and the only serious alternative to NVIDIA in AI GPUs.",
+"rivals": [
+"NVIDIA|NVDA",
+"Intel|INTC",
+"Arm and cloud in-house chips|ARM",
+"Qualcomm (laptops)|QCOM"
+],
+"risks": [
+"AMD's AI software still trails NVIDIA's CUDA",
+"Export limits to China",
+"Cyclical PC and gaming demand"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,35 @@
+{
+"t": "MS",
+"what": "Morgan Stanley is a global investment bank and one of the largest wealth managers (including E*Trade), with institutional trading and an asset-management arm.",
+"customers": "Wealthy individuals and financial advisers' clients, corporations, governments and institutional investors.",
+"money": [
+[
+"Wealth management",
+"about half",
+"fees and interest from client assets and E*Trade"
+],
+[
+"Institutional securities",
+"about 40%",
+"investment banking and trading"
+],
+[
+"Investment management",
+"about 10%",
+"fund fees"
+]
+],
+"moat": "A large, sticky wealth business with recurring fees and a top-tier investment bank.",
+"rivals": [
+"Goldman Sachs|GS",
+"JPMorgan Chase|JPM",
+"Charles Schwab|SCHW",
+"UBS|UBS"
+],
+"risks": [
+"Market downturns reducing fees",
+"Weak deal-making",
+"Regulation"
+],
+"updated": "2026-11"
+}

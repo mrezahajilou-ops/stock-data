@@ -1,0 +1,40 @@
+{
+"t": "WMT",
+"what": "Walmart is the world's largest retailer, with thousands of stores in the US and other countries, Sam's Club warehouse stores and a fast-growing online business.",
+"customers": "Hundreds of millions of shoppers a week, mostly low- and middle-income households, increasingly higher-income ones too.",
+"money": [
+[
+"Walmart US",
+"about two thirds of revenue",
+"groceries and general merchandise in stores and online"
+],
+[
+"Walmart International",
+"about 18%",
+"Mexico, Canada, China and Flipkart in India"
+],
+[
+"Sam's Club",
+"about 13%",
+"membership warehouse stores"
+],
+[
+"Advertising and membership",
+"small but very profitable",
+"Walmart Connect ads and Walmart+"
+]
+],
+"moat": "Enormous buying power that keeps prices low, stores within a few miles of about 90% of Americans, and a very efficient supply chain.",
+"rivals": [
+"Amazon|AMZN",
+"Costco|COST",
+"Target|TGT",
+"Kroger|KR"
+],
+"risks": [
+"Thin margins sensitive to wages and tariffs",
+"Online competition from Amazon",
+"A high valuation relative to growth"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,30 @@
+{
+"t": "COST",
+"what": "Costco runs membership warehouse stores selling groceries and household goods in bulk at very low markups, in the US and abroad.",
+"customers": "More than 70 million paying member households and businesses.",
+"money": [
+[
+"Merchandise sales",
+"about 98% of revenue",
+"goods sold at low margins"
+],
+[
+"Membership fees",
+"about 2% of revenue but a large share of profit",
+"annual Gold Star and Executive memberships"
+]
+],
+"moat": "Membership loyalty (renewal rates around 90%), huge buying power and a limited assortment that keeps costs and prices low.",
+"rivals": [
+"Walmart and Sam's Club|WMT",
+"Amazon|AMZN",
+"BJ's Wholesale|BJ",
+"Target|TGT"
+],
+"risks": [
+"A very high valuation",
+"Thin margins",
+"Slower membership growth"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,40 @@
+{
+"t": "V",
+"what": "Visa runs the world's largest card-payment network. It does not lend money or issue cards itself; banks issue Visa cards and Visa earns a small fee on every transaction it processes.",
+"customers": "Banks and card issuers, merchants that accept cards, and the billions of cardholders who use them.",
+"money": [
+[
+"Service revenues",
+"about a third",
+"fees based on the payment volume on Visa cards"
+],
+[
+"Data processing",
+"about a third",
+"fees for authorizing, clearing and settling each transaction"
+],
+[
+"International transactions",
+"about a quarter",
+"higher fees on cross-border and currency-conversion payments"
+],
+[
+"Value-added services",
+"growing",
+"fraud tools, data, consulting and account-to-account payments"
+]
+],
+"moat": "A two-sided network: merchants accept Visa because billions carry it and people carry it because merchants accept it. Very high margins and little capital needed.",
+"rivals": [
+"Mastercard|MA",
+"American Express|AXP",
+"PayPal|PYPL",
+"Real-time and account-to-account payment systems"
+],
+"risks": [
+"Regulation of card fees in the US and Europe",
+"Antitrust lawsuits",
+"Instant bank payments and digital wallets bypassing card networks"
+],
+"updated": "2026-11"
+}

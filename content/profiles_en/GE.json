@@ -1,0 +1,29 @@
+{
+"t": "GE",
+"what": "GE Aerospace (the former General Electric) makes jet engines for commercial and military aircraft, mostly through CFM International with Safran, and earns most of its profit servicing them.",
+"customers": "Airlines, aircraft makers (Boeing, Airbus), lessors and the US military.",
+"money": [
+[
+"Commercial engines and services",
+"about three quarters",
+"LEAP and GE9X engines, spare parts and long-term service"
+],
+[
+"Defense and propulsion technologies",
+"about a quarter",
+"military engines and components"
+]
+],
+"moat": "A huge installed fleet of engines that generates decades of high-margin service revenue.",
+"rivals": [
+"RTX (Pratt & Whitney)|RTX",
+"Rolls-Royce",
+"Safran (partner and competitor)"
+],
+"risks": [
+"Air-travel downturns",
+"Supply-chain and quality problems",
+"Aircraft production delays at Boeing and Airbus"
+],
+"updated": "2026-11"
+}

@@ -1,0 +1,30 @@
+{
+"t": "MRK",
+"what": "Merck (MSD outside North America) is a large drugmaker whose biggest product is the cancer immunotherapy Keytruda; it also sells vaccines (Gardasil) and animal-health products.",
+"customers": "Patients through doctors, insurers, governments and veterinarians.",
+"money": [
+[
+"Pharmaceuticals",
+"about 90%",
+"Keytruda (roughly half of sales), Gardasil and other drugs"
+],
+[
+"Animal health",
+"about 10%",
+"medicines and vaccines for livestock and pets"
+]
+],
+"moat": "Keytruda's broad approvals across many cancers, vaccine manufacturing, and a deep pipeline.",
+"rivals": [
+"Bristol Myers Squibb|BMY",
+"AstraZeneca|AZN",
+"Pfizer|PFE",
+"Roche"
+],
+"risks": [
+"Keytruda patent expiry around 2028",
+"Gardasil weakness in China",
+"US drug-price negotiation"
+],
+"updated": "2026-11"
+}

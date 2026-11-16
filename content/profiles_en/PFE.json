@@ -1,0 +1,35 @@
+{
+"t": "PFE",
+"what": "Pfizer is a large drugmaker selling medicines and vaccines in oncology, cardiology, vaccines (Prevnar, Comirnaty) and rare diseases. It bought Seagen in 2023.",
+"customers": "Patients through doctors, insurers, governments and pharmacies.",
+"money": [
+[
+"Primary care",
+"about half",
+"Eliquis, Prevnar, COVID products"
+],
+[
+"Specialty care",
+"about a quarter",
+"Vyndaqel and hospital drugs"
+],
+[
+"Oncology",
+"about a quarter",
+"Ibrance, Xtandi and Seagen cancer drugs"
+]
+],
+"moat": "A broad portfolio, global sales reach and manufacturing scale.",
+"rivals": [
+"Merck|MRK",
+"Bristol Myers Squibb|BMY",
+"AstraZeneca|AZN",
+"Johnson & Johnson|JNJ"
+],
+"risks": [
+"Several patent expiries by 2028",
+"Falling COVID sales",
+"US drug-price negotiation"
+],
+"updated": "2026-11"
+}

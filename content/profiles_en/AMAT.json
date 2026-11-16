@@ -1,0 +1,35 @@
+{
+"t": "AMAT",
+"what": "Applied Materials is the largest maker of chip-manufacturing equipment, used to deposit, etch and inspect the layers on silicon wafers. It also makes display equipment.",
+"customers": "Chipmakers such as TSMC, Samsung, Intel, Micron and SK Hynix.",
+"money": [
+[
+"Semiconductor systems",
+"about three quarters",
+"deposition, etch, implant and inspection tools"
+],
+[
+"Applied Global Services",
+"about a fifth",
+"service, parts and upgrades"
+],
+[
+"Display",
+"small",
+"equipment for screen makers"
+]
+],
+"moat": "The broadest tool portfolio in the industry and deep engineering relationships with chipmakers.",
+"rivals": [
+"Lam Research|LRCX",
+"Tokyo Electron",
+"KLA|KLAC",
+"ASML|ASML"
+],
+"risks": [
+"Cyclical chipmaker spending",
+"Export limits to China",
+"Customer concentration"
+],
+"updated": "2026-11"
+}

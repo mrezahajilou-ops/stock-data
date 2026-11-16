@@ -1,0 +1,35 @@
+{
+"t": "ORCL",
+"what": "Oracle sells database software, business applications (NetSuite, Fusion, Cerner health records) and Oracle Cloud Infrastructure, which is growing fast with large AI contracts.",
+"customers": "Large companies and governments worldwide, hospitals, and AI companies renting computing capacity.",
+"money": [
+[
+"Cloud services and license support",
+"about three quarters",
+"subscriptions and support for database and applications, OCI cloud"
+],
+[
+"Cloud and on-premise licenses",
+"about 10–15%",
+"one-time software licenses"
+],
+[
+"Hardware and services",
+"the rest",
+"servers and consulting"
+]
+],
+"moat": "Its database runs the core systems of many large organizations, which makes switching very costly.",
+"rivals": [
+"Amazon (AWS)|AMZN",
+"Microsoft|MSFT",
+"SAP|SAP",
+"Alphabet (Google Cloud)|GOOGL"
+],
+"risks": [
+"Very large spending on AI data centers funded by debt",
+"Dependence on a few huge AI contracts",
+"Competition from the bigger clouds"
+],
+"updated": "2026-11"
+}

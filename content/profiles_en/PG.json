@@ -1,0 +1,35 @@
+{
+"t": "PG",
+"what": "Procter & Gamble makes everyday household brands: Tide, Pampers, Gillette, Head & Shoulders, Oral-B, Ariel, Pantene, Charmin and many more.",
+"customers": "Supermarkets, pharmacies and online retailers that sell to billions of consumers in about 180 countries.",
+"money": [
+[
+"Fabric and home care",
+"about a third",
+"Tide, Ariel, Downy, Dawn"
+],
+[
+"Baby, feminine and family care",
+"about a quarter",
+"Pampers, Always, Charmin, Bounty"
+],
+[
+"Beauty, grooming and health care",
+"about 40%",
+"Pantene, Gillette, Oral-B, Vicks"
+]
+],
+"moat": "Leading brands in essentials, large R&D and marketing budgets, and scale with retailers.",
+"rivals": [
+"Unilever|UL",
+"Colgate-Palmolive|CL",
+"Kimberly-Clark|KMB",
+"Private labels"
+],
+"risks": [
+"Price-sensitive shoppers trading down",
+"Raw-material and currency costs",
+"Slow growth"
+],
+"updated": "2026-11"
+}

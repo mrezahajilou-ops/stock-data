@@ -1,0 +1,30 @@
+{
+"t": "JNJ",
+"what": "Johnson & Johnson is a healthcare group focused on prescription medicines (Innovative Medicine) and medical devices (MedTech) after spinning off its consumer brands as Kenvue in 2023.",
+"customers": "Patients through doctors and hospitals, insurers and governments that pay for treatment, and surgeons who use its devices.",
+"money": [
+[
+"Innovative Medicine",
+"about 60–65%",
+"drugs for cancer (Darzalex, Carvykti), immunology (Stelara, Tremfya) and neuroscience"
+],
+[
+"MedTech",
+"about 35–40%",
+"surgical tools, orthopedics, heart devices and contact lenses"
+]
+],
+"moat": "A broad portfolio of patented drugs, deep relationships with hospitals and surgeons, and a AAA-rated balance sheet.",
+"rivals": [
+"Merck|MRK",
+"AbbVie|ABBV",
+"Medtronic|MDT",
+"Stryker|SYK"
+],
+"risks": [
+"Patent expiry of Stelara and biosimilar competition",
+"Talc lawsuits",
+"US drug-price negotiation"
+],
+"updated": "2026-11"
+}

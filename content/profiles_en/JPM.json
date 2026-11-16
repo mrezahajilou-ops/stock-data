@@ -1,0 +1,40 @@
+{
+"t": "JPM",
+"what": "JPMorgan Chase is the largest US bank: consumer accounts and cards (Chase), lending to companies, investment banking, markets trading and wealth management.",
+"customers": "Tens of millions of US households, small businesses, large corporations, governments and investment funds.",
+"money": [
+[
+"Net interest income",
+"about half of revenue",
+"the gap between interest earned on loans and paid on deposits"
+],
+[
+"Investment banking and markets",
+"large",
+"advisory and underwriting fees, trading"
+],
+[
+"Card and payment fees",
+"sizable",
+"Chase credit cards and corporate payments"
+],
+[
+"Asset and wealth management",
+"medium",
+"fees on client assets"
+]
+],
+"moat": "Enormous scale, cheap deposits, a trusted brand and diversification that has made it resilient through crises.",
+"rivals": [
+"Bank of America|BAC",
+"Wells Fargo|WFC",
+"Citigroup|C",
+"Goldman Sachs|GS"
+],
+"risks": [
+"A recession raising loan losses",
+"Lower interest rates squeezing margins",
+"Strict capital rules for the largest banks"
+],
+"updated": "2026-11"
+}

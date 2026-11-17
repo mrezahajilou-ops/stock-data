@@ -816,7 +816,9 @@ async function cDispatch(env) {
   // English site (stockanaliz.com): GitHub's own schedule skips runs, so the worker starts its refresh every 4 hours
   // (archive + rebuild + IndexNow). Every rebuild also costs a Cloudflare Pages build (free plan: 500 a month).
   const hr = new Date().getUTCHours();
-  if (mi >= 40 && mi < 45 && hr % 4 === 0) {
+  const ek = await c1(env, "SELECT v, ts FROM c_kv WHERE k='en_kick'");
+  const retry = ek && +ek.v !== 204 && cnow() - ek.ts > 1800;   // last start failed: try again every 30 minutes
+  if ((mi >= 40 && mi < 45 && hr % 4 === 0) || retry) {
     const r = await fetch('https://api.github.com/repos/mrezahajilou-ops/stockanaliz-site/actions/workflows/rebuild.yml/dispatches',
       { method: 'POST', headers: { 'Authorization': 'Bearer ' + env.GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'rz-events', 'Content-Type': 'application/json' }, body: '{"ref":"main"}' });
     await env.DB.prepare("INSERT INTO c_kv (k, v, ts) VALUES ('en_kick', ?1, ?2) ON CONFLICT(k) DO UPDATE SET v=?1, ts=?2").bind(String(r.status), cnow()).run();

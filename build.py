@@ -20,7 +20,7 @@ import urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dcf_model  # noqa: E402
 
-UA = os.environ.get("SEC_USER_AGENT", "Reza Hajilou mreza.hajilou@gmail.com")
+UA = os.environ.get("SEC_USER_AGENT", "SahamAnaliz research contact@sahamanaliz.com")
 OUT = os.path.join(os.getcwd(), "data")
 YEARS = 12
 ANNUAL_FORMS = {"10-K", "10-K/A", "10-KT", "20-F", "20-F/A", "40-F", "40-F/A"}

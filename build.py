@@ -631,6 +631,57 @@ def nice_name(n):
     return re.sub(r"\s+", " ", " ".join(out)).replace(" Com Inc.", ".com Inc.").replace(" Com,", ".com,").strip()
 
 
+NEWLIST = {}
+NL_DUR = {"revenue": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet", "RevenueFromContractWithCustomerIncludingAssessedTax"],
+          "op_income": ["OperatingIncomeLoss"], "net_income": ["NetIncomeLoss", "ProfitLoss"],
+          "eps": ["EarningsPerShareDiluted", "EarningsPerShareBasicAndDiluted", "EarningsPerShareBasic"],
+          "cfo": ["NetCashProvidedByUsedInOperatingActivities"], "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"],
+          "rnd": ["ResearchAndDevelopmentExpense"], "shares": ["WeightedAverageNumberOfDilutedSharesOutstanding"]}
+NL_INST = {"cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"],
+           "debt": ["LongTermDebt", "LongTermDebtNoncurrent", "DebtInstrumentCarryingAmount"], "equity": ["StockholdersEquity"],
+           "assets": ["Assets"], "liabilities": ["Liabilities"]}
+
+
+def newlist_extract(cik, entry, facts):
+    """Compact quarterly facts for a listed company without a usable annual history (only 10-Qs so far)."""
+    g = (facts or {}).get("us-gaap") or {}
+    out = {"cik": cik, "name": entry.get("title"), "q": {}, "ytd": {}, "inst": {}}
+    def pick(tags, unit):
+        for tg in tags:
+            arr = ((g.get(tg) or {}).get("units") or {}).get(unit)
+            if arr:
+                return arr
+        return None
+    for k, tags in NL_DUR.items():
+        arr = pick(tags, "USD/shares" if k == "eps" else ("shares" if k == "shares" else "USD"))
+        if not arr:
+            continue
+        latest = {}
+        for f in arr:
+            if not f.get("start") or not f.get("end") or f.get("form") not in ("10-Q", "10-Q/A", "10-K", "S-1", "S-1/A", "10-KT"):
+                continue
+            key = (f["start"], f["end"])
+            if key not in latest or f.get("filed", "") > latest[key].get("filed", ""):
+                latest[key] = f
+        for (s, e), f in latest.items():
+            n = days(s, e)
+            if 80 <= n <= 100:
+                out["q"].setdefault(e, {"start": s})[k] = f["val"]
+            elif n > 100:
+                out["ytd"].setdefault(e + "|" + s, {"start": s, "end": e})[k] = f["val"]
+    for k, tags in NL_INST.items():
+        arr = pick(tags, "USD")
+        if arr:
+            f = max((x for x in arr if x.get("end")), key=lambda x: (x["end"], x.get("filed", "")), default=None)
+            if f:
+                out["inst"][k] = [f["end"], f["val"]]
+    if len([q for q in out["q"].values() if q.get("revenue") is not None]) < 2:
+        return None
+    out["q"] = [dict(v, end=e) for e, v in sorted(out["q"].items())][-8:]
+    out["ytd"] = sorted(out["ytd"].values(), key=lambda x: (x["end"], x["start"]))[-6:]
+    return out
+
+
 def build_company(cik, entry, facts):
     series, filed, hist = {}, {}, {}
     meta = {}
@@ -2172,6 +2223,12 @@ def main():
             if not rec:
                 skipped += 1
                 why.setdefault(entry["ticker"], "no usable annual data")
+                try:
+                    nl = newlist_extract(cik, entry, facts)
+                    if nl:
+                        NEWLIST[entry["ticker"]] = nl
+                except Exception as e:
+                    log("newlist extract failed", entry["ticker"], repr(e)[:120])
                 continue
             recs.append(rec)
             done += 1
@@ -2191,6 +2248,22 @@ def main():
     miss.sort(key=lambda x: -x["mcap"])
     with open(os.path.join(OUT, "missing.json"), "w") as f:
         json.dump(miss, f, indent=0)
+    # recent listings without a first annual report (SpaceX, new spin-offs): quarterly facts from their 10-Qs, so the
+    # site can show a reduced page until the first 10-K arrives (data/newlist/<T>.json)
+    nd = os.path.join(OUT, "newlist")
+    os.makedirs(nd, exist_ok=True)
+    keep = set()
+    for m_ in miss:
+        nl = NEWLIST.get(m_["t"])
+        if nl and m_["mcap"] >= 5e9:
+            nl = dict(nl, ticker=m_["t"], market=market.get(m_["t"]) or {}, mcap=m_["mcap"])
+            with open(os.path.join(nd, m_["t"] + ".json"), "w") as f:
+                json.dump(nl, f, separators=(",", ":"))
+            keep.add(m_["t"] + ".json")
+    for fn in os.listdir(nd):
+        if fn not in keep:
+            os.remove(os.path.join(nd, fn))
+    log("new listings (quarterly only):", sorted(keep))
     log("large companies missing:", len(miss), [(m["t"], m["why"]) for m in miss[:30]])
     finish(recs, market)
     with open(os.path.join(OUT, "meta.json"), "w") as f:

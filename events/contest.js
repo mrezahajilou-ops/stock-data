@@ -813,6 +813,11 @@ async function cDispatch(env) {
   if (mi >= 30 && mi < 35) await go('watchdog.yml');
   if (mi % 15 >= 5 && mi % 15 < 10) await go('gold.yml');   // every 15 minutes (prices, yields, Fed odds)
   if (mi % 20 < 5) await go('alerts.yml');
+  if (mi % 20 >= 10 && mi % 20 < 15) await go('si-watch.yml');   // new 13F filings -> super-investors rebuild
+  // official closes (prices.yml -> close_fix.py -> branch "closes"): GitHub's own 00:40 UTC schedule ran ~10 h late
+  // (2026-11-17), leaving the previous day's price on every page all night. Start it right after the close, retry later.
+  const hu = new Date().getUTCHours(), wd = new Date().getUTCDay();
+  if (mi >= 40 && mi < 45 && (((hu === 21 || hu === 22) && wd >= 1 && wd <= 5) || ((hu === 0 || hu === 3) && wd >= 2 && wd <= 6))) await go('prices.yml');
   // English site (stockanaliz.com): GitHub's own schedule skips runs, so the worker starts its refresh every 4 hours
   // (archive + rebuild + IndexNow). Every rebuild also costs a Cloudflare Pages build (free plan: 500 a month).
   const hr = new Date().getUTCHours();

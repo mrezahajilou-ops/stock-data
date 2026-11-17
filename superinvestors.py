@@ -301,7 +301,36 @@ def parse_table(xml):
     return rows
 
 
+ACC_DIR = os.path.join(OUT, 'acc')  # filings never change, so each parsed filing is kept here between runs
+ACC_STATS = Counter()
+
+
+def acc_cache(kind, acc, fn):
+    p = os.path.join(ACC_DIR, '%s-%s.json.gz' % (kind, acc))
+    try:
+        with gzip.open(p, 'rt', encoding='utf-8') as fh:
+            ACC_STATS['hit'] += 1
+            return json.load(fh)
+    except Exception:
+        pass
+    v = fn()
+    ACC_STATS['miss'] += 1
+    if v:
+        os.makedirs(ACC_DIR, exist_ok=True)
+        with gzip.open(p, 'wt', encoding='utf-8') as fh:
+            json.dump(v, fh, separators=(',', ':'), ensure_ascii=False)
+    return v
+
+
 def amendment_type(cik, acc):
+    return acc_cache('t', acc, lambda: _amendment_type(cik, acc))
+
+
+def info_table(cik, acc):
+    return acc_cache('r', acc, lambda: _info_table(cik, acc))
+
+
+def _amendment_type(cik, acc):
     b = sec('https://www.sec.gov/Archives/edgar/data/%d/%s/primary_doc.xml' % (cik, acc.replace('-', '')))
     if not b:
         return 'RESTATEMENT'
@@ -309,8 +338,8 @@ def amendment_type(cik, acc):
     return m.group(1).decode().strip().upper() if m else 'RESTATEMENT'
 
 
-def info_table(cik, acc):
-    base = 'https://www.sec.gov/Archives/edgar/data/%d/%s/' % (cik, acc.replace('-', ''))
+def _info_table(cik, acc):
+    base ='https://www.sec.gov/Archives/edgar/data/%d/%s/' % (cik, acc.replace('-', ''))
     b = sec(base + 'index.json')
     if not b:
         return None
@@ -632,6 +661,7 @@ def main(MANAGERS=MANAGERS, tag='', nq=NQ, top_map=None):
     json.dump({t: [[x[0], x[1], x[2]] for x in sorted(L, key=lambda x: -x[1])] for t, L in owners.items()},
               open(os.path.join(OUT, 'owners%s.json' % tag), 'w'), separators=(',', ':'))
     json.dump(DEBUG, open(os.path.join(OUT, 'debug%s.json' % tag), 'w'), indent=0)
+    print('filing cache: %d reused, %d downloaded' % (ACC_STATS['hit'], ACC_STATS['miss']))
     print('done: %d managers, %d stocks owned, latest quarter %s' % (len(summary), len(owners), latest_all))
 
 

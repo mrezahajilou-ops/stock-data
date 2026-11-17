@@ -96,12 +96,6 @@
 "cik": 18748
 },
 {
-"t": "HZN",
-"mcap": 11703643222,
-"why": "not in SEC ticker map",
-"cik": null
-},
-{
 "t": "JAN",
 "mcap": 10927650268,
 "why": "no usable annual data",

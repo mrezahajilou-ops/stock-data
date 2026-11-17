@@ -360,9 +360,277 @@ def top5_article():
                 src=[])
 
 
+FA_EXTRA = {'AMZN': 'آمازون', 'META': 'متا', 'NVDA': 'انویدیا', 'GOOGL': 'آلفابت (گوگل)', 'GOOG': 'آلفابت (گوگل)', 'MSFT': 'مایکروسافت',
+            'AAPL': 'اپل', 'TSM': 'تی‌اس‌ام‌سی', 'MU': 'میکرون', 'AVGO': 'برادکام', 'AMD': 'ای‌ام‌دی', 'ASML': 'ای‌اس‌ام‌ال', 'AMAT': 'اپلاید متریالز',
+            'LRCX': 'لم ریسرچ', 'KLAC': 'کی‌ال‌ای', 'ANET': 'آریستا نتورکس', 'VRT': 'ورتیو', 'ORCL': 'اوراکل', 'PLTR': 'پالانتیر', 'SMCI': 'سوپرمیکرو',
+            'MRVL': 'مارول', 'DELL': 'دل', 'CRWV': 'کورویو', 'NBIS': 'نبیوس', 'TSLA': 'تسلا', 'UBER': 'اوبر', 'UNH': 'یونایتدهلث', 'V': 'ویزا',
+            'MA': 'مسترکارت', 'JPM': 'جی‌پی مورگان', 'BAC': 'بانک آو امریکا', 'LLY': 'الی لیلی', 'NFLX': 'نتفلیکس', 'COST': 'کاستکو',
+            'BRK-B': 'برکشایر هاتاوی', 'KO': 'کوکاکولا', 'AXP': 'امریکن اکسپرس', 'BABA': 'علی‌بابا', 'PDD': 'پین‌دودو', 'SE': 'سی لیمیتد',
+            'MELI': 'مرکادولیبره', 'SPCX': 'اسپیس‌ایکس', 'CRM': 'سیلزفورس', 'ADBE': 'ادوبی', 'NOW': 'سرویس‌نو', 'INTU': 'اینتوئیت', 'HD': 'هوم دیپو',
+            'WMT': 'والمارت', 'XOM': 'اکسون موبیل', 'CVX': 'شورون', 'OXY': 'اکسیدنتال', 'CMG': 'چیپوتله', 'SBUX': 'استارباکس', 'NKE': 'نایکی', 'DIS': 'دیزنی', 'LEN': 'لنار', 'LEN-B': 'لنار'}
+
+
+def _fan():
+    try:
+        F = json.load(open(os.path.join(ROOT, 'content', 'fa_names.json')))
+    except Exception:
+        F = {}
+    for k, v in FA_EXTRA.items():
+        F.setdefault(k, v)
+    return F
+
+
+def _prof(t):
+    try:
+        return json.load(open(os.path.join(ROOT, 'content', 'profiles', t + '.json')))
+    except Exception:
+        return {}
+
+
+def _short_en(s):
+    import re
+    s = re.sub(r'\s*-?\s*(cl(ass)?\s*[A-C]|[A-C]\s+shs|adr|sponsored adr)$', '', (s or '').strip(), flags=re.I)
+    s = re.sub(r'\s*/the$', '', s, flags=re.I)
+    return re.sub(r',?\s+(Inc|Corp|Corporation|Ltd|Limited|Co|Plc|N\.?V|S\.?A|Holdings?|Group)\.?$', '', s, flags=re.I).strip()
+
+
+def _tname(t, en, FAN):
+    from build_guides import nm_html
+    return nm_html(FAN.get(t), _short_en(en) or t)
+
+
+QFA = {'03-31': 'اول', '06-30': 'دوم', '09-30': 'سوم', '12-31': 'چهارم'}
+
+
+def superinvestors_q_article():
+    """Quarterly 13F round-up from the super-investors data: what the famous managers bought and sold."""
+    from build_guides import git_json, e, date_fa, TODAY, table
+    from build_pages import fa, pct
+    try:
+        GH = {x['handle'] for x in json.load(open(os.path.join(ROOT, 'pages', 'guides.json')))}
+    except Exception:
+        GH = set()
+    ref = os.environ.get('SI_REF', 'origin/superinvestors')
+    idx = git_json(ref, 'index.json')
+    if not idx or not idx.get('managers'):
+        return None
+    FAN = _fan()
+    M = {m['id']: m for m in idx['managers']}
+    per = idx.get('latest') or max(m['period'] for m in idx['managers'])
+    qn, yr = QFA.get(per[5:], ''), per[:4]
+    rep = [m for m in idx['managers'] if m['period'] == per]
+    def bill(v):
+        return fa('%.1f' % (v / 1e9)) + ' میلیارد دلار' if v >= 1e9 else fa('%.0f' % (v / 1e6)) + ' میلیون دلار'
+    def who(ids, k=4):
+        return '، '.join(M[i]['fa'] for i in ids if i in M)[:200]
+    buys = [b for b in idx.get('buys') or [] if b.get('k')][:10]
+    sells = [s for s in idx.get('sells') or [] if s.get('k')][:8]
+    rows_b = [[fa(i), '%s <span class="tk">%s</span>' % (_tname(b['t'], b['n'], FAN), e(b['t'])), fa(b['k']), fa(b.get('new') or 0),
+               who([o[0] for o in sorted(b['o'], key=lambda o: -(o[2] or 0))][:3])] for i, b in enumerate(buys, 1)]
+    rows_s = [[fa(i), '%s <span class="tk">%s</span>' % (_tname(s['t'], s['n'], FAN), e(s['t'])), fa(s['k']), fa(s.get('sold') or 0),
+               who([o[0] for o in sorted(s['o'], key=lambda o: -(o[2] or 0))][:3])] for i, s in enumerate(sells, 1)]
+    star = ['buffett', 'tepper', 'druck', 'ackman', 'lilu', 'duan', 'mandel', 'marks', 'klarman', 'pabrai']
+    secs = []
+    for mid in star:
+        m = M.get(mid)
+        if not m:
+            continue
+        d = git_json(ref, 'm/%s.json' % mid) or {}
+        H = d.get('hold') or []
+        if m['period'] != per:
+            secs.append('<h3>%s (%s)</h3><p>گزارش فصل %s هنوز به کمیسیون بورس آمریکا نرسیده است؛ آخرین پرتفوی منتشرشده مربوط به %s است. '
+                        '<a href="/pages/superinvestors">صفحه‌ی سوپر سرمایه‌گذارها</a> به محض انتشار گزارش جدید خودکار به‌روز می‌شود.</p>'
+                        % (e(m['fa']), e(m['ffa']), qn, date_fa(__import__('datetime').date.fromisoformat(m['period']))))
+            continue
+        G = {}
+        for x in H:
+            k = FAN.get(x['t']) or _short_en(x['n'])
+            if k not in G:
+                G[k] = [x, 0.0]
+            G[k][1] += x['w'] or 0
+        top = '، '.join('%s (%s)' % (_tname(x['t'], x['n'], FAN), pct(w, 0)) for x, w in sorted(G.values(), key=lambda g: -g[1])[:3])
+        new = [x for x in H if x.get('a') == 'new'][:4]
+        add, seen = [], set()
+        for x in sorted([x for x in H if x.get('a') == 'add' and (x.get('c') or 0) >= 0.2], key=lambda x: -x['w']):
+            k = FAN.get(x['t']) or _short_en(x['n']).split()[0].lower()
+            if k not in seen:
+                seen.add(k); add.append(x)
+        add = add[:3]
+        sold = (d.get('sold') or [])[:4]
+        li = ['<li>ارزش پرتفوی: %s در %s سهم</li>' % (bill(m['value']), fa(m['n'])), '<li>بزرگ‌ترین سهم‌ها: %s</li>' % top]
+        if new:
+            li.append('<li>خریدهای جدید: %s</li>' % '، '.join(_tname(x['t'], x['n'], FAN) for x in new))
+        if add:
+            li.append('<li>بیشترین افزایش: %s</li>' % '، '.join('%s (+%s)' % (_tname(x['t'], x['n'], FAN), pct(x['c'], 0)) for x in add))
+        if sold:
+            li.append('<li>کامل فروخت: %s</li>' % '، '.join(_tname(x['t'], x['n'], FAN) for x in sold))
+        if not new and not sold and m.get('turn') is not None and m['turn'] < 0.03:
+            li.append('<li>تقریباً هیچ تغییری نداد؛ فقط حدود %s از پرتفوی جابه‌جا شد.</li>' % pct(m['turn'], 0))
+        secs.append('<h3>%s (%s)</h3><ul>%s</ul>' % (e(m['fa']), e(m['ffa']), ''.join(li))
+                    + ('<p><a href="/pages/portfolio-%s">پرتفوی کامل %s</a></p>' % (mid, e(m['fa'])) if 'portfolio-' + mid in GH else ''))
+    top_buy = '، '.join(_tname(b['t'], b['n'], FAN) for b in buys[:3])
+    top_sell = '، '.join(_tname(s['t'], s['n'], FAN) for s in sells[:3])
+    plain = lambda L: '، '.join(FAN.get(x['t']) or _short_en(x['n']) for x in L)
+    body = ('<p class="upd">به‌روزرسانی: %s · بر اساس گزارش‌های رسمی 13F به کمیسیون بورس آمریکا</p>' % date_fa(TODAY)
+            + '<p>مدیران صندوق‌های بزرگ آمریکا موظف‌اند هر سه ماه یک بار فهرست سهام‌شان را در گزارشی به نام 13F منتشر کنند؛ '
+              'حداکثر ۴۵ روز بعد از پایان فصل. گزارش‌های فصل %s %s (پرتفوی ۳۰ سپتامبر) منتشر شده و تا امروز %s نفر از %s سوپر سرمایه‌گذاری که '
+              'سهام آنالیز دنبال می‌کند گزارش جدید داده‌اند.</p>' % (qn, fa(yr), fa(len(rep)), fa(len(idx['managers'])))
+            + '<p>خلاصه در یک جمله: بیشترین سرمایه‌گذارها به %s اضافه کردند و بیشترین فروش روی %s ثبت شد.</p>' % (top_buy, top_sell)
+            + '<div class="box"><strong>یادتان باشد:</strong> این گزارش‌ها وضعیت ۳۰ سپتامبر را نشان می‌دهند و حدود ۶ هفته دیر منتشر می‌شوند. '
+              'ممکن است مدیر صندوق از آن موقع سهم را فروخته باشد. کپی کردن کورکورانه‌ی خرید آن‌ها استراتژی نیست.</div>'
+            + '<h2>پرطرفدارترین خریدهای فصل</h2><p>تعداد سرمایه‌گذارانی که سهم را خریدند یا اضافه کردند:</p>'
+            + table(['#', 'سهم', 'خریدار', 'خرید جدید', 'بزرگ‌ترین خریدارها'], rows_b)
+            + '<h2>بیشترین فروش‌ها</h2>'
+            + table(['#', 'سهم', 'فروشنده', 'فروش کامل', 'بزرگ‌ترین فروشنده‌ها'], rows_s)
+            + '<h2>معروف‌ترین‌ها چه کردند؟</h2>' + ''.join(secs)
+            + '<h2>از این اطلاعات چطور استفاده کنیم؟</h2><p>خرید یک سرمایه‌گذار بزرگ یعنی آن سهم ارزش بررسی دارد، نه اینکه حتماً سود می‌دهد. '
+              'ببینید سهم چند درصد پرتفوی اوست (خریدهای کوچک اغلب آزمایشی‌اند)، از آن موقع قیمت چقدر تغییر کرده و آیا با استراتژی خود شما جور است. '
+              'برای هر سهم <a href="/pages/screener">تحلیل کامل</a> و برای هر سرمایه‌گذار <a href="/pages/superinvestors">پرتفوی کامل و تاریخچه‌ی ۸ فصل</a> را ببینید.</p>')
+    title = 'سوپر سرمایه‌گذارها در فصل %s %s چه خریدند و چه فروختند؟ بافت، تپر، دراکن‌میلر و دیگران' % (qn, fa(yr))
+    return dict(handle='superinvestors-q3-2026-buys-sells' if per == '2026-09-30' else 'superinvestors-%s-buys-sells' % per,
+                date='2026-11-17T09:00:00Z', tags=['سوپر سرمایه‌گذارها', 'وارن بافت', '13F', 'پورتفوی'],
+                title=title,
+                seo_title='سوپر سرمایه‌گذارها فصل %s %s چه خریدند؟ پورتفوی بافت و تپر' % (qn, fa(yr)),
+                seo_desc=('خلاصه‌ی گزارش‌های 13F فصل %s %s: پرطرفدارترین خریدها (%s)، بیشترین فروش‌ها و تغییرات پورتفوی وارن بافت، دیوید تپر، دراکن‌میلر، بیل اکمن و لی لو.'
+                          % (qn, fa(yr), plain(buys[:3])))[:300],
+                body=body,
+                qa=[('سوپر سرمایه‌گذارها در فصل %s چه خریدند؟' % qn, 'بیشترین خرید روی این سهم‌ها بود: %s.' % plain(buys[:5])),
+                    ('گزارش 13F چه زمانی منتشر می‌شود؟', 'حداکثر ۴۵ روز بعد از پایان هر فصل؛ یعنی حدود ۱۵ فوریه، ۱۵ مه، ۱۴ اوت و ۱۴ نوامبر.'),
+                    ('آیا کپی کردن پورتفوی وارن بافت سودآور است؟', 'نه لزوماً. گزارش‌ها ۶ هفته تأخیر دارند و فقط سهام آمریکایی خرید (نه فروش استقراضی) را نشان می‌دهند. برای ایده گرفتن مفیدند، نه کپی.')],
+                links=[('/pages/superinvestors', 'سوپر سرمایه‌گذارها'), ('/pages/portfolio-buffett', 'پورتفوی وارن بافت'),
+                       ('/pages/portfolio-tepper', 'پورتفوی دیوید تپر'), ('/pages/portfolio-druck', 'پورتفوی دراکن‌میلر'),
+                       ('/blogs/learn/13f', 'گزارش 13F چیست؟')],
+                src=[('کمیسیون بورس آمریکا: جست‌وجوی گزارش‌های 13F', 'https://www.sec.gov/edgar/search/')])
+
+
+AI = ['NVDA', 'MSFT', 'GOOGL', 'META', 'AMZN', 'AVGO', 'TSM', 'AMD', 'MU', 'ASML', 'AMAT', 'LRCX', 'KLAC', 'ANET', 'VRT', 'ORCL', 'PLTR', 'SMCI', 'MRVL', 'DELL', 'CRWV', 'NBIS']
+
+
+def ai_stocks_article():
+    """Live list of the main AI stocks, ranked by the site's total score (rebuilt every day)."""
+    from build_guides import load, e, date_fa, TODAY, table
+    from build_pages import fa, pct
+    FAN = _fan()
+    rows = {x['t']: x for x in load()}
+    L = [rows[t] for t in AI if t in rows and rows[t].get('tot') is not None]
+    L.sort(key=lambda x: (-x['tot'], -x['mcap']))
+    top = L[:10]
+    LBL = (('value', 'ارزش'), ('future', 'آینده'), ('past', 'گذشته'), ('health', 'سلامت'), ('capital', 'بازگشت سرمایه'))
+    def num(v, d=1):
+        return '—' if v is None else fa(('%.' + str(d) + 'f') % v)
+    parts, trs = [], []
+    for i, x in enumerate(top, 1):
+        p, r, st = _prof(x['t']), x.get('r') or {}, x.get('s') or {}
+        nm = _tname(x['t'], x['en'], FAN)
+        trs.append([fa(i), '%s <span class="tk">%s</span>' % (nm, e(x['t'])), num(x['tot']), num(r.get('pe'), 0) if r.get('pe') and r['pe'] < 500 else '—',
+                    pct(st['rev_cagr_3y'], 0) if st.get('rev_cagr_3y') is not None else '—'])
+        met = []
+        if r.get('pe') and r['pe'] < 500:
+            met.append('نسبت قیمت به سود %s' % num(r['pe']))
+        if r.get('fwd_pe') and r['fwd_pe'] < 500:
+            met.append('با سود سال آینده %s' % num(r['fwd_pe']))
+        if st.get('rev_cagr_3y') is not None:
+            met.append('رشد سالانه‌ی درآمد در ۳ سال %s' % pct(st['rev_cagr_3y'], 0))
+        sc = ' · '.join('%s %s' % (l, fa(x['sc'].get(k, '—'))) for k, l in LBL)
+        parts.append('<h3>%s. %s <span class="tk">%s</span> · امتیاز %s از ۵</h3>' % (fa(i), nm, e(x['t']), num(x['tot']))
+                     + ('<p>%s</p>' % e(p['what']) if p.get('what') else '')
+                     + '<p class="sc5">%s</p>' % sc
+                     + ('<p>%s.</p>' % '؛ '.join(met) if met else '')
+                     + ('<p><strong>ریسک اصلی:</strong> %s</p>' % e(p['risks'][0] if isinstance(p['risks'], list) else p['risks']) if p.get('risks') else '')
+                     + '<p><a href="/pages/stocks/%s">تحلیل کامل</a> · <a href="/pages/%s-forecast">پیش‌بینی تحلیلگرها</a></p>'
+                     % (x['t'].lower(), x['t'].lower().replace('.', '-')))
+    names = '، '.join(FAN.get(x['t']) or _short_en(x['en']) for x in top[:5])
+    body = ('<p class="upd">به‌روزرسانی: %s · این فهرست هر روز خودکار به‌روز می‌شود</p>' % date_fa(TODAY)
+            + '<p>هوش مصنوعی بزرگ‌ترین موج سرمایه‌گذاری این دهه در بورس آمریکاست. اما «سهام هوش مصنوعی» یک گروه یکدست نیست. '
+              'سه لایه دارد: <strong>سازندگان تراشه</strong> (مثل انویدیا و تی‌اس‌ام‌سی)، <strong>سازندگان تجهیزات و زیرساخت</strong> (حافظه، شبکه، برق و سرمایش مراکز داده) '
+              'و <strong>شرکت‌هایی که از هوش مصنوعی پول درمی‌آورند</strong> (رایانش ابری، نرم‌افزار و تبلیغات).</p>'
+            + '<p>در این فهرست %s شرکت اصلی این سه لایه را با امتیاز سهام آنالیز مرتب کرده‌ایم. امتیاز از عددهای گزارش‌های رسمی شرکت‌ها ساخته می‌شود: '
+              'ارزش، رشد آینده، کارنامه‌ی گذشته، سلامت مالی و بازگشت سرمایه به سهامدار. امروز بالاترین امتیازها مال این‌هاست: %s.</p>' % (fa(len(L)), names)
+            + '<div class="box"><strong>توجه:</strong> سهام هوش مصنوعی پرنوسان‌اند و بخشی از رشد آینده در قیمت امروزشان است. '
+              'امتیاز بالا یعنی عددهای شرکت خوب است، نه اینکه قیمت حتماً بالا می‌رود. این فهرست توصیه‌ی خرید نیست.</div>'
+            + '<h2>جدول خلاصه</h2>' + table(['#', 'شرکت', 'امتیاز', 'قیمت به سود', 'رشد درآمد ۳ ساله'], trs)
+            + '<h2>بررسی تک‌تک شرکت‌ها</h2>' + ''.join(parts)
+            + '<h2>ریسک‌های مشترک سهام هوش مصنوعی</h2><ul>'
+              '<li><strong>ارزش‌گذاری بالا:</strong> وقتی انتظارها زیاد است، حتی یک گزارش «خوب ولی نه عالی» می‌تواند قیمت را چند ده درصد پایین بیاورد.</li>'
+              '<li><strong>تمرکز مشتری:</strong> بخش بزرگی از خرید تراشه‌ها را چند غول فناوری انجام می‌دهند؛ اگر آن‌ها هزینه‌ی مراکز داده را کم کنند، کل زنجیره آسیب می‌بیند.</li>'
+              '<li><strong>چرخه‌ای بودن:</strong> صنعت تراشه و حافظه همیشه دوره‌های رونق و رکود داشته است.</li>'
+              '<li><strong>سیاست و صادرات:</strong> محدودیت‌های صادرات تراشه به چین و تنش‌های تایوان روی این گروه اثر مستقیم دارند.</li></ul>'
+            + '<p>برای مقایسه‌ی دو سهم کنار هم از <a href="/pages/compare">ابزار مقایسه</a> و برای پیدا کردن سهام بیشتر از <a href="/pages/screener">غربالگر</a> استفاده کنید.</p>')
+    return dict(handle='best-ai-stocks', date='2026-11-17T09:10:00Z', tags=['هوش مصنوعی', 'بهترین سهام', 'تکنولوژی'],
+                title='بهترین سهام هوش مصنوعی آمریکا: ۱۰ شرکت با بالاترین امتیاز (به‌روز روزانه)',
+                seo_title='بهترین سهام هوش مصنوعی آمریکا | ۱۰ سهم با بالاترین امتیاز',
+                seo_desc=('بهترین سهام هوش مصنوعی بورس آمریکا با امتیاز، نسبت قیمت به سود و رشد درآمد، هر روز به‌روز: %s. سازندگان تراشه، زیرساخت و نرم‌افزار.' % names)[:300],
+                body=body,
+                qa=[('بهترین سهام هوش مصنوعی آمریکا کدام‌اند؟', 'طبق امتیاز امروز سهام آنالیز: %s. این توصیه‌ی خرید نیست.' % names),
+                    ('سهام هوش مصنوعی چه ریسکی دارند؟', 'ارزش‌گذاری بالا، وابستگی به چند مشتری بزرگ، چرخه‌ای بودن صنعت تراشه و محدودیت‌های صادرات.'),
+                    ('آیا می‌شود با یک صندوق در هوش مصنوعی سرمایه‌گذاری کرد؟', 'بله؛ صندوق‌های قابل معامله (ای‌تی‌اف) نیمه‌هادی و فناوری ده‌ها شرکت این حوزه را با هم دارند و ریسک تک‌سهم را کم می‌کنند.')],
+                links=[('/blogs/news/what-nvidia-does', 'انویدیا چه کار می‌کند؟'), ('/pages/best-technology-stocks', 'بهترین سهام فناوری'),
+                       ('/pages/nvda-forecast', 'پیش‌بینی سهام انویدیا'), ('/pages/screener', 'غربالگر سهام'), ('/blogs/learn/etf', 'صندوق ETF چیست؟')],
+                src=[])
+
+
+def invest_abroad_article():
+    """Evergreen guide: how Iranians living outside Iran can start investing in US stocks."""
+    body = (
+        '<p>اگر خارج از ایران زندگی می‌کنید و اقامت قانونی دارید، خرید سهام آمریکایی کار پیچیده‌ای نیست. در این راهنما قدم‌به‌قدم می‌گوییم چه چیزهایی لازم است، '
+        'هزینه‌ها و مالیات چطور است و چه اشتباه‌هایی را نکنید. اگر داخل ایران هستید، <a href="/blogs/news/buy-us-stocks-from-iran">این مقاله</a> را بخوانید؛ شرایطش کاملاً فرق می‌کند.</p>'
+        '<h2>۱. چه چیزی لازم دارید؟</h2><ul>'
+        '<li><strong>اقامت قانونی و آدرس ثابت</strong> در کشوری که در آن حساب باز می‌کنید. کارگزارها کشور محل سکونت را ملاک می‌گیرند.</li>'
+        '<li><strong>مدرک شناسایی معتبر</strong> (پاسپورت یا کارت اقامت) و مدرک آدرس.</li>'
+        '<li><strong>شماره‌ی مالیاتی</strong> کشور محل سکونت.</li>'
+        '<li><strong>حساب بانکی به نام خودتان</strong> در همان کشور.</li></ul>'
+        '<p>بعضی کارگزارها برای کسانی که ملیت ایرانی دارند محدودیت می‌گذارند، حتی اگر خارج از ایران زندگی کنند. قبل از ثبت‌نام، شرایط پذیرش را در سایت کارگزار بخوانید '
+        'یا از پشتیبانی بپرسید. هیچ‌وقت آدرس یا اطلاعات نادرست ندهید؛ اگر کشف شود، حساب و پولتان ممکن است مسدود شود.</p>'
+        '<h2>۲. انتخاب کارگزار</h2><p>کارگزاری انتخاب کنید که <strong>زیر نظر نهاد ناظر مالی کشور محل سکونت شما</strong> باشد و حساب‌ها را بیمه کند '
+        '(در اروپا معمولاً تا ۲۰ هزار یورو اوراق بهادار و ۱۰۰ هزار یورو نقد). این موارد را مقایسه کنید:</p><ul>'
+        '<li>کارمزد هر معامله و هزینه‌ی تبدیل ارز (هزینه‌ی تبدیل یورو به دلار گاهی از کارمزد معامله بیشتر است)</li>'
+        '<li>دسترسی به بورس‌های آمریکا (نیویورک و نزدک) و امکان خرید بخشی از یک سهم</li>'
+        '<li>گزارش مالیاتی سالانه‌ی آماده برای کشور شما</li>'
+        '<li>پشتیبانی و اپلیکیشن قابل‌اعتماد</li></ul>'
+        '<h2>۳. صندوق یا تک‌سهم؟</h2><p>برای بیشتر تازه‌کارها، شروع با یک <strong>صندوق شاخصی</strong> (مثلاً صندوقی که شاخص <a href="/blogs/learn/sp500">اس‌اند‌پی ۵۰۰</a> را دنبال می‌کند) منطقی‌تر است: '
+        'با یک خرید، سهم ۵۰۰ شرکت بزرگ آمریکا را دارید و ریسک تک‌شرکت کم می‌شود.</p>'
+        '<div class="box"><strong>نکته‌ی مهم برای ساکنان اروپا:</strong> به‌خاطر قانون اتحادیه‌ی اروپا درباره‌ی مدارک اطلاعاتی محصول، معمولاً نمی‌توانید صندوق‌های ثبت‌شده در آمریکا '
+        '(مثل نسخه‌ی آمریکایی صندوق اس‌اند‌پی ۵۰۰) را بخرید. به‌جایش صندوق‌های اروپایی معادل با استاندارد «یوسیتس» وجود دارند که همان شاخص را دنبال می‌کنند. '
+        'سهام تک شرکت‌های آمریکایی را می‌توانید بخرید.</div>'
+        '<p>اگر سراغ تک‌سهم می‌روید، اول کسب‌وکار را بشناسید: از کجا پول درمی‌آورد، رشدش چطور است و آیا قیمتش منطقی است. '
+        'صفحه‌ی تحلیل هر سهم،  <a href="/pages/screener">غربالگر</a> و <a href="/pages/dcf">ماشین‌حساب ارزش ذاتی</a> برای همین ساخته شده‌اند.</p>'
+        '<h2>۴. مالیات</h2><ul>'
+        '<li><strong>سود نقدی سهام آمریکایی:</strong> آمریکا از سود نقدی مالیات کم می‌کند. اگر کشور شما با آمریکا قرارداد مالیاتی دارد و فرم «دبلیو-۸ بن» را پر کرده باشید '
+        '(معمولاً کارگزار هنگام ثبت‌نام پر می‌کند)، این مالیات معمولاً ۱۵٪ است، نه ۳۰٪.</li>'
+        '<li><strong>سود فروش سهام:</strong> در کشور محل سکونت شما مالیات دارد، نه در آمریکا. نرخ و معافیت‌ها در هر کشور فرق می‌کند؛ '
+        'مثلاً در آلمان سود سرمایه با نرخ ثابت حدود ۲۶٪ (با عوارض همبستگی) مالیات دارد و هر نفر سالانه ۱٬۰۰۰ یورو معافیت دارد.</li>'
+        '<li>برای وضعیت شخصی خودتان با مشاور مالیاتی کشور محل سکونت مشورت کنید.</li></ul>'
+        '<h2>۵. اولین خرید</h2><ol>'
+        '<li>به حساب کارگزاری پول واریز کنید.</li>'
+        '<li>سهم یا صندوق را با نماد آن جست‌وجو کنید (مثلاً <bdi dir="ltr">AAPL</bdi> برای اپل).</li>'
+        '<li>نوع سفارش را انتخاب کنید: <strong>سفارش محدود</strong> (با قیمتی که خودتان تعیین می‌کنید) برای تازه‌کارها امن‌تر از <strong>سفارش بازار</strong> است، '
+        'مخصوصاً بیرون از ساعت اصلی معاملات آمریکا (۱۵:۳۰ تا ۲۲:۰۰ به وقت آلمان).</li>'
+        '<li>بعد از خرید، سهم را در <a href="/pages/watchlist">واچ‌لیست</a> بگذارید و گزارش‌های فصلی شرکت را دنبال کنید.</li></ol>'
+        '<h2>۶. اشتباه‌های رایج</h2><ul>'
+        '<li>گذاشتن همه‌ی پول روی یک یا دو سهم داغ</li>'
+        '<li>خرید با پول قرضی یا پولی که تا یکی دو سال آینده لازمش دارید</li>'
+        '<li>فروش از سر ترس در افت‌های بازار؛ بازار آمریکا بارها ۲۰ تا ۳۰ درصد ریخته و دوباره برگشته است</li>'
+        '<li>معامله‌ی زیاد: هر خرید و فروش کارمزد و مالیات دارد</li>'
+        '<li>اعتماد به کانال‌ها و گروه‌هایی که «سود تضمینی» وعده می‌دهند</li></ul>'
+        '<h2>جمع‌بندی</h2><p>با اقامت قانونی، یک کارگزار معتبر و یک برنامه‌ی ساده (مثلاً خرید ماهانه‌ی یک صندوق شاخصی و نگه داشتن بلندمدت) می‌توانید از رشد بورس آمریکا سهم ببرید. '
+        'قدرت اصلی در <a href="/blogs/learn/compound-interest">بهره‌ی مرکب</a> و صبر است، نه پیدا کردن سهم معجزه‌گر.</p>')
+    return dict(handle='how-to-invest-in-us-stocks-from-abroad', date='2026-11-17T09:20:00Z', tags=['آموزش', 'شروع سرمایه‌گذاری', 'بورس آمریکا'],
+                title='سرمایه‌گذاری در بورس آمریکا برای ایرانیان خارج از کشور: راهنمای کامل شروع',
+                seo_title='سرمایه‌گذاری در بورس آمریکا از خارج از ایران | راهنمای کامل',
+                seo_desc='چطور از خارج از ایران سهام آمریکایی بخریم؟ مدارک لازم، انتخاب کارگزار، صندوق یا تک‌سهم، مالیات سود نقدی و فروش، اولین خرید و اشتباه‌های رایج.',
+                body=body,
+                qa=[('ایرانیان خارج از کشور می‌توانند سهام آمریکایی بخرند؟', 'بله، با اقامت قانونی و حساب نزد کارگزار معتبر کشور محل سکونت. بعضی کارگزارها برای ملیت ایرانی محدودیت دارند؛ قبل از ثبت‌نام شرایط را بپرسید.'),
+                    ('مالیات سود نقدی سهام آمریکایی چقدر است؟', 'با فرم دبلیو-۸ بن و قرارداد مالیاتی معمولاً ۱۵٪ در آمریکا کسر می‌شود؛ سود فروش در کشور محل سکونت مالیات دارد.'),
+                    ('برای شروع چه بخرم؟', 'برای بیشتر تازه‌کارها یک صندوق شاخصی گسترده مثل صندوق‌های اس‌اند‌پی ۵۰۰ منطقی‌تر از تک‌سهم است.')],
+                links=[('/blogs/news/buy-us-stocks-from-iran', 'خرید سهام آمریکا از داخل ایران'), ('/blogs/learn/sp500', 'شاخص S&P 500 چیست؟'),
+                       ('/blogs/learn/etf', 'صندوق ETF چیست؟'), ('/blogs/learn/dividend', 'سود نقدی سهام چیست؟'), ('/pages/screener', 'غربالگر سهام')],
+                src=[('سازمان مالیات آمریکا: فرم دبلیو-۸ بن', 'https://www.irs.gov/forms-pubs/about-form-w-8-ben'),
+                     ('سازمان مالیات آمریکا: قراردادهای مالیاتی', 'https://www.irs.gov/individuals/international-taxpayers/tax-treaties')])
+
+
 def main():
     arts = []
-    for a in A + [top5_article()]:
+    for a in A + [x for x in (top5_article(), superinvestors_q_article(), ai_stocks_article(), invest_abroad_article()) if x]:
         src = ''
         if a['src']:
             src = '<h2>منابع</h2><ul>' + ''.join('<li><a href="%s" rel="noopener nofollow" target="_blank">%s</a></li>' % (u, t) for t, u in a['src']) + '</ul>'

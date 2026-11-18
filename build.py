@@ -686,29 +686,34 @@ CUST_FUNDS = ["srt:PayablesToCustomers", "us-gaap:PayablesToCustomers"]
 
 
 def customer_funds(facts):
-    """{end: balance} of money held for customers (Mercado Pago wallets, broker cash). Its growth runs through
-    operating cash flow but belongs to the customers, so free cash flow excludes the change (MELI: CFO 12.1B
-    in 2025 included +6.1B of customer balances)."""
-    out = {}
+    """[{end: balance}] per tag of money held for customers (Mercado Pago wallets, broker cash). Its growth runs
+    through operating cash flow but belongs to the customers, so free cash flow excludes the change (MELI: CFO
+    12.1B in 2025 included +6.1B of customer balances). One dict per tag, so two definitions are never mixed."""
+    out = []
     for tag in CUST_FUNDS:
         ns, nm = tag.split(":")
+        s = {}
         for f in ((facts.get(ns, {}).get(nm) or {}).get("units", {}) or {}).get("USD") or []:
             if f.get("form") in QFORMS or f.get("form") in ANNUAL_FORMS:
-                out.setdefault(f["end"], f["val"])
+                s.setdefault(f["end"], f["val"])
+        if s:
+            out.append(s)
     return out
 
 
-def funds_change(cf, end):
-    """Change in customer balances over the twelve months to `end` (None when either balance is missing)."""
-    if not cf or not end:
+def funds_change(cfs, end):
+    """Change in customer balances over the twelve months to `end`, from the first tag that has both balances."""
+    if not cfs or not end:
         return None
-    now = nearest(cf, end, 10)
     try:
         prev_end = (dt.date.fromisoformat(end[:10]) - dt.timedelta(days=365)).isoformat()
     except Exception:
         return None
-    prev = nearest(cf, prev_end, 20)
-    return (now - prev) if (now is not None and prev is not None) else None
+    for cf in cfs:
+        now, prev = nearest(cf, end, 10), nearest(cf, prev_end, 20)
+        if now is not None and prev is not None:
+            return now - prev
+    return None
 
 
 def build_company(cik, entry, facts):
@@ -1750,6 +1755,10 @@ def score(rec, mk, sector_pe):
     elif isinstance(ref.get("teps"), (int, float)) and price and (stale or t.get("eps") is None):
         pe = price / ref["teps"] if ref["teps"] > 0 else None
     pfcf = mcap / fcf if (mcap and fcf and fcf > 0) else None
+    _A, _L = last.get("assets"), last.get("liabilities")
+    if pfcf and _A and _L and _L / _A > 0.85 and ni and ni > 0 and fcf > 3 * ni \
+            and ((mk or {}).get("sector") in ("Finance", "Real Estate") or (last.get("cash") or 0) > 0.75 * _A):
+        pfcf = None  # balance-sheet businesses (banks, insurers, Wise): operating cash flow swings with customer money
     ps = mcap / rev if (mcap and rev and rev > 0) else None
     b = rec.get("bs") or {}
     equity_now = b.get("equity") if b.get("equity") is not None else last.get("equity")

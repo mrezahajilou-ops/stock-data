@@ -135,16 +135,41 @@ def one(t):
     return o
 
 
+def all_tickers():
+    import glob
+    out = []
+    for f in glob.glob(os.path.join(ROOT, 'data', 'stocks', '*.json')):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if d.get('annual'):
+            out.append((-(((d.get('market') or {}).get('mcap')) or 0), d['ticker']))
+    return [t for _, t in sorted(out)]
+
+
 def main():
-    ts = [x.strip().upper() for x in (sys.argv[1] if len(sys.argv) > 1 else 'NVDA').split(',') if x.strip()]
+    arg = sys.argv[1] if len(sys.argv) > 1 else 'NVDA'
+    if arg.upper() == 'ALL':
+        ts = all_tickers()
+        shard, n = int(os.environ.get('SHARD', '0')), int(os.environ.get('SHARDS', '1'))
+        ts = ts[shard::n]
+    else:
+        ts = [x.strip().upper() for x in arg.split(',') if x.strip()]
     os.makedirs(OUT, exist_ok=True)
-    print('crumb:', bool(crumb()))
+    print('crumb:', bool(crumb()), 'tickers:', len(ts))
+    t0 = time.time()
     for t in ts:
-        o = one(t)
+        if time.time() - t0 > float(os.environ.get('MAX_SEC', '1e9')):
+            print('time budget reached'); break
+        try:
+            o = one(t)
+        except Exception as e:
+            print(t, 'failed', e); continue
         json.dump(o, open(os.path.join(OUT, t + '.json'), 'w'), separators=(',', ':'))
         print(t, 'stats', len(o['stats']), 'q_inc', len(o['q_inc']), 'q_bal', len(o['q_bal']), 'q_cf', len(o['q_cf']),
               'a_inc', len(o['a_inc']), 'trend', len(o['trend']), 'recs', len(o['recs']), 'actions', len(o['actions']), 'price', bool(o.get('price')))
-        time.sleep(1)
+        time.sleep(0.3)
 
 
 if __name__ == '__main__':

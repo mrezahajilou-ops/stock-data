@@ -10,7 +10,10 @@
   var RAW = CFG.raw || 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';
   var I18N = (window.FIN2_I18N || {})[LANG] || {};
   function T(s) { return I18N[s] || s; }
-  function F(s) { var a = arguments, i = 0; return T(s).replace(/%(\d)\$s|%s/g, function (_, n) { return n ? a[+n] : a[++i]; }); }
+  var RTL = LANG === 'fa' || LANG === 'ar';
+  // numbers inside right-to-left text: keep "$3.64T", "-$1.2B", "+5.0%" in their own left-to-right island
+  function B(x) { return (RTL && /[\d$%]/.test(String(x))) ? '<bdi dir="ltr">' + x + '</bdi>' : x; }
+  function F(s) { var a = arguments, i = 0; return T(s).replace(/%(\d)\$s|%s/g, function (_, n) { return B(n ? a[+n] : a[++i]); }); }
   var LOC = { en: 'en-US', es: 'es-ES', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
 
   // ---------------------------------------------------------------- formatting (same rules as the server pages)
@@ -107,11 +110,11 @@
 
   // ---------------------------------------------------------------- table
   function table(cols, sub, rows, first) {
-    var th = cols.map(function (c) { return '<th>' + c + '</th>'; }).join('');
-    var ts = sub.map(function (c) { return '<th>' + c + '</th>'; }).join('');
+    var th = cols.map(function (c) { return '<th>' + B(c) + '</th>'; }).join('');
+    var ts = sub.map(function (c) { return '<th>' + B(c) + '</th>'; }).join('');
     var body = rows.map(function (r) {
       if (r[2] === 'sec') return '<tr class="sec"><td colspan="' + (cols.length + 1) + '">' + T(r[0]) + '</td></tr>';
-      return '<tr class="' + (r[2] || '') + '"><td>' + T(r[0]) + '</td>' + r[1].map(function (v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
+      return '<tr class="' + (r[2] || '') + '"><td>' + T(r[0]) + '</td>' + r[1].map(function (v) { return '<td>' + B(v) + '</td>'; }).join('') + '</tr>';
     }).join('');
     var pe = sub.some(function (x) { return x; }) ? '<tr class="pe"><th>' + T('Period ending') + '</th>' + ts + '</tr>' : '';
     return '<div class="fb-tw"><table class="fb-t"><thead><tr><th>' + T(first || 'Fiscal year') + '</th>' + th + '</tr>' + pe + '</thead><tbody>' + body + '</tbody></table></div>';
@@ -415,7 +418,7 @@
   function recName(x) { return T(REC[x] || (x ? x.charAt(0).toUpperCase() + x.slice(1) : '')); }
   function grp(title, rows, lead) {
     return '<section class="ks-g"><h3>' + T(title) + '</h3>' + (lead ? '<p>' + lead + '</p>' : '') + rows.filter(function (x) { return x[1] !== null && x[1] !== D && x[1] !== '' && x[1] !== D + ' · ' + D; }).map(function (x) {
-      return '<div class="ks-r"><span>' + T(x[0]) + '</span><b' + (x[2] ? ' class="' + x[2] + '"' : '') + '>' + x[1] + (x[3] ? '<small>' + x[3] + '</small>' : '') + '</b></div>';
+      return '<div class="ks-r"><span>' + T(x[0]) + '</span><b' + (x[2] ? ' class="' + x[2] + '"' : '') + '>' + B(x[1]) + (x[3] ? '<small>' + x[3] + '</small>' : '') + '</b></div>';
     }).join('') + '</section>';
   }
   function summary(c) {
@@ -479,7 +482,7 @@
     var span = (lo && hi && hi > lo) ? hi - lo : null;
     function pos(v) { return Math.max(0, Math.min(100, (v - lo) / span * 100)); }
     var tbar = span ? '<div class="trange"><i style="left:' + pos(px).toFixed(1) + '%" class="cur" title="' + T('Current price') + '"></i><i style="left:' + pos(tgt).toFixed(1) + '%" class="avg" title="' + T('Average target') + '"></i></div>' +
-      '<div class="tlab"><span>' + T('Low') + ' ' + dol(lo, 0) + '</span><span>' + T('Average') + ' ' + dol(tgt, 0) + '</span><span>' + T('High') + ' ' + dol(hi, 0) + '</span></div>' : '';
+      '<div class="tlab"><span>' + T('Low') + ' ' + B(dol(lo, 0)) + '</span><span>' + T('Average') + ' ' + B(dol(tgt, 0)) + '</span><span>' + T('High') + ' ' + B(dol(hi, 0)) + '</span></div>' : '';
     var ptab = table([T('Low'), T('Median'), T('Average'), T('High')], ['', '', '', ''], [
       ['Price target', [lo ? dol(lo) : D, med ? dol(med) : D, dol(tgt), hi ? dol(hi) : D], 'b'],
       ['vs. current price', [lo ? sp(lo / px - 1) : D, med ? sp(med / px - 1) : D, sp(up), hi ? sp(hi / px - 1) : D], '']], 'Target');
@@ -536,7 +539,7 @@
     var acts = (k.actions || []).slice(0, 15).map(function (a) {
       var dte = ep(a.d), ptxt = (a.ppt && a.pt) ? dol(a.ppt, 0) + ' → ' + dol(a.pt, 0) : a.pt ? dol(a.pt, 0) : D;
       var rating = (a.from && a.from !== a.to) ? a.from + ' → ' + a.to : (a.to || D);
-      return '<tr><td>' + esc(a.firm || D) + '</td><td>' + esc(rating) + '</td><td>' + T(ACT[a.act] || (a.act || '')) + '</td><td>' + ptxt + '</td><td>' + (a.pt ? sp(a.pt / px - 1) : D) + '</td><td>' + sdate(dte) + '</td></tr>';
+      return '<tr><td>' + esc(a.firm || D) + '</td><td>' + esc(rating) + '</td><td>' + T(ACT[a.act] || (a.act || '')) + '</td><td>' + B(ptxt) + '</td><td>' + B(a.pt ? sp(a.pt / px - 1) : D) + '</td><td>' + sdate(dte) + '</td></tr>';
     });
     var actions = acts.length ? '<section class="card"><h2>' + T('Latest analyst actions') + '</h2><div class="fb-tw"><table class="fb-t"><thead><tr><th>' + T('Firm') + '</th><th>' + T('Rating') + '</th><th>' + T('Action') + '</th><th>' + T('Price target') + '</th><th>' + T('Upside') + '</th><th>' + T('Date') + '</th></tr></thead><tbody>' + acts.join('') + '</tbody></table></div></section>' : '';
     return lead + '<div class="fc-2">' + priceCard + rateCard + '</div>' + chart + est + actions;

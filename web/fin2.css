@@ -60,3 +60,4 @@
 .fin2-mount .xnote{color:#8A8F99;font-size:12.5px;line-height:1.6;margin:8px 0 0}
 .fin2-mount .lead{line-height:1.7;margin:4px 0 12px}
 .fin2-mount .sa-stk .trange{position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,#C8534F,#C9A961,#4FA37A);margin:18px 6px 6px}
+.sa-stk .trange,.sa-stk .tlab{direction:ltr}

@@ -562,7 +562,8 @@
   var SUBS = [['income', 'Income statement'], ['balance', 'Balance sheet'], ['cash', 'Cash flow'], ['ratios', 'Ratios'], ['forecast', 'Forecast']];
   var STMT_RE = CFG.stmtRe || /10-year financial statements|Estados financieros de 10|10 yıllık mali tablolar|صورت‌های مالی ۱۰ ساله/i;
   var cur = '';
-  function tk() { return decodeURIComponent((location.hash || '').slice(1)).toUpperCase().split(/[?&\/]/)[0]; }
+  var FIXED = null;
+  function tk() { return FIXED || decodeURIComponent((location.hash || '').slice(1)).toUpperCase().split(/[?&\/]/)[0]; }
   function statCards(main) { return [].slice.call(main.querySelectorAll('.card')).filter(function (c) { return c.querySelector(':scope > .stats'); }); }
   function stmtCard(main) {
     if (CFG.stmtSel) { var s = main.querySelector(CFG.stmtSel); if (s) return s.closest('.card') || s; }
@@ -645,5 +646,18 @@
     bind();
     setInterval(bind, 1000);   // the tool page can be re-rendered as a whole (cached copy first, then the fresh one)
   }
-  if (!CFG.noTool) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start(); }
+  // static stock pages: <div data-fin2="AAPL"></div> gets the key statistics and the statements bar; [data-fin2-hide] is the no-JS fallback it replaces
+  function mountAll() {
+    var el = document.querySelector('[data-fin2]');
+    if (!el) return false;
+    FIXED = el.getAttribute('data-fin2').toUpperCase();
+    var a = document.createElement('div'), b = document.createElement('div');
+    el.appendChild(a); el.appendChild(b);
+    if (el.getAttribute('data-fin2-summary') !== '0') putSummary(FIXED, [a]); else a.remove();
+    putStatements(FIXED, b);
+    [].forEach.call(document.querySelectorAll('[data-fin2-hide]'), function (x) { x.classList.add('v2-hide'); });
+    return true;
+  }
+  function boot() { if (!mountAll()) start(); }
+  if (!CFG.noTool) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot(); }
 })();

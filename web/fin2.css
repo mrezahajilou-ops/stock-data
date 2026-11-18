@@ -52,3 +52,11 @@
 #rzs-main .v2 .fb-t th:first-child,#rzs-main .v2 .fb-t td:first-child{text-align:start}
 #rzs-main .v2 .fb-t tr.sec td{text-align:start}
 @media(max-width:640px){#rzs-main .v2 .fb-t th:first-child,#rzs-main .v2 .fb-t td:first-child{white-space:normal;min-width:118px;max-width:140px}#rzs-main .v2{padding-inline:12px}}
+/* stand-alone mount on static stock pages (sites without the analysis tool's own card styles) */
+.fin2-mount .v2{display:block;margin:0 0 16px}
+.fin2-mount .v2 .card,.fin2-mount .v2.card{background:var(--card,#14171D);border:1px solid var(--line,#262A33);border-radius:14px;padding:14px 16px}
+.fin2-mount .v2 #v2-body .card{margin:12px 0}
+.fin2-mount .v2 h2{font-size:17px;margin:0 0 10px}.fin2-mount .v2 h3{font-size:15px;margin:0 0 8px}
+.fin2-mount .xnote{color:#8A8F99;font-size:12.5px;line-height:1.6;margin:8px 0 0}
+.fin2-mount .lead{line-height:1.7;margin:4px 0 12px}
+.fin2-mount .sa-stk .trange{position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,#C8534F,#C9A961,#4FA37A);margin:18px 6px 6px}

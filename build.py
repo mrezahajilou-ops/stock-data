@@ -682,6 +682,35 @@ def newlist_extract(cik, entry, facts):
     return out
 
 
+CUST_FUNDS = ["srt:PayablesToCustomers", "us-gaap:PayablesToCustomers"]
+
+
+def customer_funds(facts):
+    """{end: balance} of money held for customers (Mercado Pago wallets, broker cash). Its growth runs through
+    operating cash flow but belongs to the customers, so free cash flow excludes the change (MELI: CFO 12.1B
+    in 2025 included +6.1B of customer balances)."""
+    out = {}
+    for tag in CUST_FUNDS:
+        ns, nm = tag.split(":")
+        for f in ((facts.get(ns, {}).get(nm) or {}).get("units", {}) or {}).get("USD") or []:
+            if f.get("form") in QFORMS or f.get("form") in ANNUAL_FORMS:
+                out.setdefault(f["end"], f["val"])
+    return out
+
+
+def funds_change(cf, end):
+    """Change in customer balances over the twelve months to `end` (None when either balance is missing)."""
+    if not cf or not end:
+        return None
+    now = nearest(cf, end, 10)
+    try:
+        prev_end = (dt.date.fromisoformat(end[:10]) - dt.timedelta(days=365)).isoformat()
+    except Exception:
+        return None
+    prev = nearest(cf, prev_end, 20)
+    return (now - prev) if (now is not None and prev is not None) else None
+
+
 def build_company(cik, entry, facts):
     series, filed, hist = {}, {}, {}
     meta = {}
@@ -721,6 +750,7 @@ def build_company(cik, entry, facts):
         series["revenue"][k] = max(v, nearest(netrev, e) or 0)
     has_capex = bool(series["capex"])
     pays_div = bool(series["dividends"])
+    cust = customer_funds(facts)
     rows = []
     for end in ends:
         g = lambda k: nearest(series[k], end)
@@ -729,6 +759,9 @@ def build_company(cik, entry, facts):
             rev = None  # a partial revenue line (e.g. a bank's "sale of goods"), not total revenue
         capex = g("capex")
         fcf = (cfo - abs(capex)) if (cfo is not None and capex is not None) else None
+        cfd = funds_change(cust, end)
+        if fcf is not None and cfd and cfo and abs(cfd) > 0.05 * abs(cfo):
+            fcf -= cfd   # customer money is not the company's cash
         op = g("op_income")
         if op is None and rev is not None and g("costs_expenses") is not None:
             op = rev - g("costs_expenses")
@@ -1013,6 +1046,9 @@ def build_company(cik, entry, facts):
             ok_sh = sh_q and same(e_sh) and last.get("shares_diluted") and 0.5 < sh_q / last["shares_diluted"] < 2
             ttm_rec["shares_diluted"] = sh_q if ok_sh else None
             ttm_rec["fcf"] = (ttm_rec["cfo"] - ttm_rec["capex"]) if (ttm_rec["cfo"] is not None and ttm_rec["capex"] is not None) else None
+            _cfd = funds_change(customer_funds(facts), end)
+            if ttm_rec["fcf"] is not None and _cfd and ttm_rec["cfo"] and abs(_cfd) > 0.05 * abs(ttm_rec["cfo"]):
+                ttm_rec["fcf"] -= _cfd
             da_t = ttm_rec["da"] if ttm_rec["da"] is not None else last.get("da")  # D&A often only reported yearly
             ttm_rec["ebitda"] = (ttm_rec["op_income"] + da_t) if (ttm_rec["op_income"] is not None and da_t is not None) else None
     return {
@@ -1806,7 +1842,20 @@ def fix_mcap(recs, market):
     fixed = []
     for r in recs:
         t = r["ticker"]
-        mk, ref = market.get(t), ((EST.get(t) or {}).get("ref") or {})
+        e_ = EST.get(t) or {}
+        mk, ref = market.get(t), (e_.get("ref") or {})
+        if mk and mk.get("mcap") and mk.get("price") and not ref.get("mcap") and (e_.get("cur") or "USD") != "USD" and (ref.get("pe") or 0) > 0 and (ref.get("ni") or 0) > 0 \
+                and ref.get("price") and abs(ref["price"] / mk["price"] - 1) < 0.1:
+            # no independent market cap (Yahoo leaves it out for some ADRs, e.g. Coca-Cola FEMSA): the P/E times the
+            # net income in dollars gives one; a Nasdaq figure far off it counts ordinary shares instead of ADSs
+            cur = e_.get("cur") or "USD"
+            fx = 1.0 if cur == "USD" else FX_LATEST.get(cur)
+            if fx:
+                implied = ref["pe"] * ref["ni"] / fx
+                if not 0.6 < mk["mcap"] / implied < 1.6:
+                    fixed.append((t, round(mk["mcap"] / implied, 2)))
+                    mk["mcap"] = implied
+            continue
         if not mk or not mk.get("mcap") or not mk.get("price") or not ref.get("mcap") or not ref.get("price"):
             continue
         sh_ours, sh_ref = mk["mcap"] / mk["price"], ref["mcap"] / ref["price"]

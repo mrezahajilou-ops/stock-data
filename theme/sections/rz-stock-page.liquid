@@ -92,6 +92,9 @@
   .rzx .ab .chips a b{color:var(--ac);direction:ltr;display:inline-block;margin-right:4px}
   .rzx .ab ul{margin:0;padding:0 18px 0 0;font-size:14.5px;color:#cfdbe8}
   .rzx .ab ul li{padding:3px 0}
+  .rzx .lk{display:flex;flex-wrap:wrap;gap:8px}
+  .rzx .lk a{background:#0f1d31;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;color:#fff;text-decoration:none}
+  .rzx .lk a:hover{border-color:var(--ac)}
 </style>
 
 <div class="rzx" id="rzx" data-t="{{ t | escape }}">
@@ -244,6 +247,25 @@
         <a href="/pages/stocks/{{ r.t | downcase }}"><b>{{ r.t }}</b>{% if r.s != nil %} · {{ r.s }}/5{% endif %}<small>{{ r.n | escape }}</small></a>
       {%- endfor -%}
     </div>
+  </div>
+  {%- endif -%}
+
+  {%- comment -%} Links to this stock's 10-year history page and its comparison pages (built by build_seo_more.py); shown only when those pages exist. {%- endcomment -%}
+  {%- assign tk = tl | replace: '.', '-' -%}
+  {%- assign hh = tk | append: '-financial-history' -%}
+  {%- capture more -%}
+    {%- if pages[hh].id -%}<a href="/pages/{{ hh }}">درآمد و سود ۱۰ ساله</a>{%- endif -%}
+    {%- for r in d.related -%}
+      {%- assign rt = r.t | downcase | replace: '.', '-' -%}
+      {%- assign c1 = tk | append: '-vs-' | append: rt -%}
+      {%- assign c2 = rt | append: '-vs-' | append: tk -%}
+      {%- if pages[c1].id -%}<a href="/pages/{{ c1 }}">مقایسه با {{ r.n | escape }}</a>{%- elsif pages[c2].id -%}<a href="/pages/{{ c2 }}">مقایسه با {{ r.n | escape }}</a>{%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if more != blank -%}
+  <div class="card">
+    <h2>صفحه‌های بیشتر درباره‌ی {{ label | escape }}</h2>
+    <div class="lk">{{ more }}</div>
   </div>
   {%- endif -%}
 

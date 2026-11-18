@@ -40,6 +40,8 @@ jobs:
           git fetch -q --depth 1 origin superinvestors:refs/remotes/origin/superinvestors || true
           git fetch -q --depth 1 origin earnings:refs/remotes/origin/earnings || true
           git fetch -q --depth 1 origin estimates:refs/remotes/origin/estimates || true
+          git fetch -q --depth 1 origin quotes:refs/remotes/origin/quotes || true
+          git fetch -q --depth 1 origin prices:refs/remotes/origin/prices || true
       - name: Build pages
         run: |
           python build_guides.py

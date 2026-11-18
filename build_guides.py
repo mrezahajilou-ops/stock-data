@@ -502,7 +502,7 @@ def hub(pages):
                 seo_desc='همه‌ی فهرست‌های به‌روز سهام آمریکا به فارسی: بهترین سهام سود نقدی، رشدی، زیر ارزش ذاتی، بدون بدهی، بهترین سهم هر صنعت و پورتفوی سرمایه‌گذاران بزرگ.',
                 html=CSS + '<div class="rzg" dir="rtl"><p class="upd">به‌روزرسانی: %s</p><p>این فهرست‌ها هر روز بعد از بسته شدن بازار آمریکا از روی گزارش‌های رسمی شرکت‌ها و قیمت‌های روز دوباره ساخته می‌شوند. '
                      'روی هر سهم بزنی، تحلیل کامل آن را با امتیاز، ارزش ذاتی و صورت‌های مالی ۱۰ ساله می‌بینی.</p>%s<h2>ابزارها</h2>%s%s</div>'
-                     % (date_fa(TODAY), body, chips(TOOLS[:4]), DIS))
+                     % (date_fa(TODAY), body, chips(TOOLS[:4] + [('/pages/market-movers', 'بیشترین رشد و افت امروز'), ('/pages/all-stocks', 'فهرست همه‌ی سهام')]), DIS))
 
 
 def main():
@@ -511,6 +511,13 @@ def main():
     names = {x['t']: (x.get('fa'), x['en']) for x in U}
     pages = rank_pages(U) + sector_pages(U) + guru_pages(have_page, names)
     pages.append(hub(pages))
+    try:
+        import build_seo_more
+        pages += build_seo_more.build(U)
+    except Exception as ex:   # the extra pages must never stop the main guides from publishing
+        import traceback
+        traceback.print_exc()
+        print('extra SEO pages skipped:', ex)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(pages, open(OUT, 'w'), ensure_ascii=False)
     for p in pages:

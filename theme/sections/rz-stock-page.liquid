@@ -259,7 +259,7 @@
       {%- assign rt = r.t | downcase | replace: '.', '-' -%}
       {%- assign c1 = tk | append: '-vs-' | append: rt -%}
       {%- assign c2 = rt | append: '-vs-' | append: tk -%}
-      {%- if pages[c1].id -%}<a href="/pages/{{ c1 }}">مقایسه با {{ r.n | escape }}</a>{%- elsif pages[c2].id -%}<a href="/pages/{{ c2 }}">مقایسه با {{ r.n | escape }}</a>{%- endif -%}
+      {%- if pages[c1].id -%}<a href="/pages/{{ c1 }}">{{ pages[c1].title | split: '؟' | first | escape }}؟</a>{%- elsif pages[c2].id -%}<a href="/pages/{{ c2 }}">{{ pages[c2].title | split: '؟' | first | escape }}؟</a>{%- endif -%}
     {%- endfor -%}
   {%- endcapture -%}
   {%- if more != blank -%}

@@ -1500,7 +1500,9 @@ def reconcile_per_share(rec, mk, ref):
         # the sum of the four reported quarterly EPS is authoritative (it is what the company printed); it is replaced
         # only when it is not confirmed: Yahoo's trailing EPS agrees with NI / shares instead (a split inside the window
         # mixes share bases - Amphenol), or it is missing / far from NI / shares without an independent witness
-        if eps_rep is not None and yeps is not None and agree(eps_rep, yeps, 0.02) and not agree(ours, yeps, 0.02):
+        if t.get("rolled_from") and ours and agree(ours, e2, 0.05):
+            pass   # TTM was just rolled forward with a fresh quarter; the filed EPS sum and Yahoo both still end a quarter earlier
+        elif eps_rep is not None and yeps is not None and agree(eps_rep, yeps, 0.02) and not agree(ours, yeps, 0.02):
             t["eps"] = eps_rep   # the printed EPS of the latest filings, confirmed by the independent figure (Devon)
             t["eps_src"] = "sec-reported"
         elif agree(ours, yeps, 0.05) or agree(ours, e2, 0.05):
@@ -1511,8 +1513,9 @@ def reconcile_per_share(rec, mk, ref):
         elif ours is not None and agree(ours, e2, 0.30):
             pass   # share count moved inside the year (merger, buyback): the per-quarter sum is the right figure (Rocket)
         else:
-            if yeps and 0.5 < yeps / e2 < 2.0:
+            if yeps and 0.5 < yeps / e2 < 2.0 and not t.get("rolled_from"):
                 e2 = yeps   # the independent trailing diluted EPS handles dual-class / Up-C structures better than NI / shares
+                # (not after a roll-forward: Yahoo's trailing EPS lags a fresh quarter by days - NVDA 2026-11-18)
             t["eps"] = e2
             t["eps_src"] = "ni/shares"
     # dividend per share must be a per-share number (a mis-tagged total shows up as $1,170 "per share")
@@ -1573,6 +1576,10 @@ def roll_forward(rec, rows, src):
                 nt["net_income"] = base["net_income"] - ya[2] + ni
                 if nt.get("shares_diluted"):
                     nt["eps"] = nt["net_income"] / nt["shares_diluted"]
+                elif base.get("eps") and base["net_income"] and base["net_income"] > 0 and nt["net_income"] > 0:
+                    # no share count in the TTM row: scale EPS with net income (share count barely moves in a quarter);
+                    # without this the old EPS stayed and P/E was computed from last quarter's earnings (NVDA, 2026-11-18)
+                    nt["eps"] = base["eps"] * nt["net_income"] / base["net_income"]
             # figures not in the release data: leave them empty rather than mix two periods in one column
             for k in ("cfo", "capex", "fcf", "op_income", "gross_profit", "ebitda", "da", "rnd", "sbc", "dividends", "dps",
                       "buybacks", "interest_exp", "pretax_income", "tax"):
@@ -1697,7 +1704,8 @@ def score(rec, mk, sector_pe):
         rec["ttm_src"] = "yahoo"
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
-    if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10:
+    if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10 \
+            and not t.get("rolled_from"):
         pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
     elif not stale and t.get("eps") and t["eps"] > 0 and price:
         pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)

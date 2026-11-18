@@ -85,8 +85,8 @@ async function cAuth(req, env) {
   if (ek && env.CONTEST_SECRET) {
     const [uid, sig] = ek.split('.');
     if (!/^[a-f0-9]{24}$/.test(uid || '') || !/^[0-9a-f]{64}$/.test(sig || '')) return null;
-    // borsakartal.com (Turkish) uses the same kind of key, signed for 'tr'
-    const st = sig === await cHmac(env.CONTEST_SECRET, 'en|' + uid) ? 'en' : sig === await cHmac(env.CONTEST_SECRET, 'tr|' + uid) ? 'tr' : '';
+    // borsakartal.com (Turkish) and bolsacondor.com (Spanish) use the same kind of key, signed for 'tr' / 'es'
+    const st = sig === await cHmac(env.CONTEST_SECRET, 'en|' + uid) ? 'en' : sig === await cHmac(env.CONTEST_SECRET, 'tr|' + uid) ? 'tr' : sig === await cHmac(env.CONTEST_SECRET, 'es|' + uid) ? 'es' : '';
     if (st)
       return { cid: st + '_' + uid, email: null, pro: true, admin: false, site: st };
     return null;
@@ -557,11 +557,11 @@ async function contest(req, env, url, h) {
     if (off.length) { const Q = await cQuotes(); for (const t of off) { if (Q[t] && !cOffHours(Q[t][3])) out[t] = Q[t]; else delete out[t]; } }
     return J({ q: out, at: new Date(now).toISOString() }, 200, { 'Cache-Control': 'public, max-age=10' });
   }
-  if (req.method === 'POST' && (path === '/en/join' || path === '/tr/join')) {
+  if (req.method === 'POST' && (path === '/en/join' || path === '/tr/join' || path === '/es/join')) {
     // English site: a new anonymous account = a random id + its HMAC; the browser keeps it (and can copy it to another device)
     if (!env.CONTEST_SECRET) return J({ error: 'not configured' }, 503);
     const uid = [...crypto.getRandomValues(new Uint8Array(12))].map(b => b.toString(16).padStart(2, '0')).join('');
-    return J({ key: uid + '.' + await cHmac(env.CONTEST_SECRET, (path === '/tr/join' ? 'tr' : 'en') + '|' + uid) });
+    return J({ key: uid + '.' + await cHmac(env.CONTEST_SECRET, (path === '/tr/join' ? 'tr' : path === '/es/join' ? 'es' : 'en') + '|' + uid) });
   }
   const me0 = await cAuth(req, env);
   const me = me0;
@@ -877,7 +877,7 @@ const C_EN_ERR = {
   'بعد از این خرید، این سهم بیش از ۷۰٪ پورتفو می‌شه': 'After this buy the position would be more than 70% of the portfolio',
   'تعداد بیشتر از سهم‌هایی که داری': 'More shares than you hold',
 };
-const C_SITES = ['en', 'tr'];   // sister sites with their own boards (no prizes); 'fa' = sahamanaliz.com
+const C_SITES = ['en', 'tr', 'es'];   // sister sites with their own boards (no prizes); 'fa' = sahamanaliz.com
 const C_TR_ERR = {
   'Profile not found': 'Profil bulunamadı', 'This profile is inactive': 'Bu profil aktif değil', 'Invalid order': 'Geçersiz emir',
   'At most 40 orders in 24 hours': '24 saatte en fazla 40 emir', 'No price available for this ticker': 'Bu hisse için fiyat yok',

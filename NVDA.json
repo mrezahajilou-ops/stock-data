@@ -1,0 +1,1961 @@
+{
+"t": "NVDA",
+"cik": 1045810,
+"name": "NVIDIA CORP",
+"tags": {
+"dei:EntityCommonStockSharesOutstanding|shares": [
+null,
+"2026-02-20",
+24300000000,
+"10-K",
+"2026-02-25",
+17
+],
+"dei:EntityPublicFloat|USD": [
+null,
+"2025-07-25",
+4000000000000,
+"10-K",
+"2026-02-25",
+17
+],
+"us-gaap:AcceleratedShareRepurchasesSettlementPaymentOrReceipt|USD": [
+null,
+"2016-01-31",
+587000000,
+"10-K",
+"2016-03-17",
+1
+],
+"us-gaap:AccruedLiabilitiesCurrent|USD": [
+null,
+"2026-01-25",
+21352000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment|USD": [
+null,
+"2026-01-25",
+6587000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:AccumulatedOtherComprehensiveIncomeLossCumulativeChangesInNetGainLossFromCashFlowHedgesEffectNetOfTax|USD": [
+null,
+"2016-01-31",
+-4000000,
+"10-K",
+"2016-03-17",
+2
+],
+"us-gaap:AdditionalPaidInCapital|USD": [
+null,
+"2026-01-25",
+10118000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther|USD": [
+"2010-02-01",
+"2011-01-30",
+887000,
+"10-K",
+"2011-03-16",
+6
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalConvertibleDebtWithConversionFeature|USD": [
+"2018-01-29",
+"2019-01-27",
+0,
+"10-K",
+"2020-02-20",
+8
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalEquityComponentOfConvertibleDebtSubsequentAdjustments|USD": [
+"2017-01-30",
+"2018-01-28",
+-31000000,
+"10-K",
+"2020-02-20",
+9
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue|USD": [
+"2025-01-27",
+"2026-01-25",
+6387000000,
+"10-K",
+"2026-02-25",
+24
+],
+"us-gaap:AdjustmentsToAdditionalPaidInCapitalTaxEffectFromShareBasedCompensation|USD": [
+"2010-02-01",
+"2011-01-30",
+-14201000,
+"10-K",
+"2011-03-16",
+6
+],
+"us-gaap:AmortizationOfDebtDiscountPremium|USD": [
+"2017-01-30",
+"2018-01-28",
+3000000,
+"10-K",
+"2018-02-28",
+13
+],
+"us-gaap:AmortizationOfFinancingCosts|USD": [
+"2014-01-27",
+"2015-01-25",
+195000,
+"10-K",
+"2015-03-12",
+3
+],
+"us-gaap:AmortizationOfFinancingCostsAndDiscounts|USD": [
+"2017-01-30",
+"2018-01-28",
+2000000,
+"10-K",
+"2018-02-28",
+6
+],
+"us-gaap:AmortizationOfIntangibleAssets|USD": [
+"2025-01-27",
+"2026-01-25",
+488000000,
+"10-K",
+"2026-02-25",
+39
+],
+"us-gaap:AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount|shares": [
+"2025-01-27",
+"2026-01-25",
+41000000,
+"10-K",
+"2026-02-25",
+45
+],
+"us-gaap:AvailableForSaleDebtSecuritiesAccumulatedGrossUnrealizedGainBeforeTax|USD": [
+null,
+"2026-01-25",
+174000000,
+"10-K",
+"2026-02-25",
+16
+],
+"us-gaap:AvailableForSaleDebtSecuritiesAccumulatedGrossUnrealizedLossBeforeTax|USD": [
+null,
+"2026-01-25",
+6000000,
+"10-K",
+"2026-02-25",
+22
+],
+"us-gaap:AvailableForSaleDebtSecuritiesAmortizedCostBasis|USD": [
+null,
+"2025-01-26",
+42062000000,
+"10-K",
+"2025-02-26",
+22
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsAmortizedCost|USD": [
+null,
+"2025-01-26",
+23636000000,
+"10-K",
+"2025-02-26",
+30
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAfterOneThroughFiveYearsFairValue|USD": [
+null,
+"2026-01-25",
+19093000000,
+"10-K",
+"2026-02-25",
+31
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesAmortizedCost|USD": [
+null,
+"2014-01-26",
+4087893000,
+"10-K",
+"2014-03-13",
+8
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesFairValue|USD": [
+null,
+"2011-01-30",
+2175989000,
+"10-K",
+"2011-03-16",
+2
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearAmortizedCost|USD": [
+null,
+"2025-01-26",
+18426000000,
+"10-K",
+"2025-02-26",
+30
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithinOneYearFairValue|USD": [
+null,
+"2026-01-25",
+20427000000,
+"10-K",
+"2026-02-25",
+31
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithoutSingleMaturityDateAmortizedCost|USD": [
+null,
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+20
+],
+"us-gaap:AvailableForSaleSecuritiesDebtMaturitiesWithoutSingleMaturityDateFairValue|USD": [
+null,
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+20
+],
+"us-gaap:AvailableForSaleSecuritiesDebtSecurities|USD": [
+null,
+"2026-01-25",
+39520000000,
+"10-K",
+"2026-02-25",
+29
+],
+"us-gaap:BusinessAcquisitionCostOfAcquiredEntityTransactionCosts|USD": [
+null,
+"2014-01-26",
+4200000,
+"10-K",
+"2014-03-13",
+4
+],
+"us-gaap:BusinessAcquisitionProFormaEarningsPerShareBasic|USD/shares": [
+"2011-01-31",
+"2012-01-29",
+0.92,
+"10-K",
+"2012-03-13",
+2
+],
+"us-gaap:BusinessAcquisitionProFormaEarningsPerShareDiluted|USD/shares": [
+"2011-01-31",
+"2012-01-29",
+0.9,
+"10-K",
+"2012-03-13",
+2
+],
+"us-gaap:BusinessAcquisitionPurchasePriceAllocationAssetsAcquiredLiabilitiesAssumedNet|USD": [
+null,
+"2013-01-27",
+352200000,
+"10-K",
+"2013-03-12",
+2
+],
+"us-gaap:BusinessAcquisitionPurchasePriceAllocationCurrentLiabilitiesAccruedLiabilities|USD": [
+null,
+"2012-01-29",
+-38735000,
+"10-K",
+"2012-03-13",
+1
+],
+"us-gaap:BusinessAcquisitionPurchasePriceAllocationPropertyPlantAndEquipment|USD": [
+null,
+"2014-01-26",
+2433000,
+"10-K",
+"2014-03-13",
+3
+],
+"us-gaap:BusinessAcquisitionsProFormaNetIncomeLoss|USD": [
+"2020-01-27",
+"2021-01-31",
+4757000000,
+"10-K",
+"2023-02-24",
+7
+],
+"us-gaap:BusinessAcquisitionsProFormaRevenue|USD": [
+"2020-01-27",
+"2021-01-31",
+17104000000,
+"10-K",
+"2023-02-24",
+7
+],
+"us-gaap:CapitalLeaseObligationsCurrent|USD": [
+null,
+"2018-01-28",
+5000000,
+"10-K",
+"2018-02-28",
+10
+],
+"us-gaap:CapitalLeaseObligationsNoncurrent|USD": [
+null,
+"2017-01-29",
+6000000,
+"10-K",
+"2017-03-01",
+16
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDue|USD": [
+null,
+"2017-01-29",
+11000000,
+"10-K",
+"2017-03-01",
+7
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueCurrent|USD": [
+null,
+"2017-01-29",
+5000000,
+"10-K",
+"2017-03-01",
+7
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInFiveYears|USD": [
+null,
+"2015-01-25",
+26000,
+"10-K",
+"2015-03-12",
+5
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInFourYears|USD": [
+null,
+"2015-01-25",
+5767000,
+"10-K",
+"2015-03-12",
+5
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInThreeYears|USD": [
+null,
+"2016-01-31",
+6000000,
+"10-K",
+"2016-03-17",
+6
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueInTwoYears|USD": [
+null,
+"2017-01-29",
+6000000,
+"10-K",
+"2017-03-01",
+7
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsDueThereafter|USD": [
+null,
+"2015-01-25",
+0,
+"10-K",
+"2015-03-12",
+5
+],
+"us-gaap:CapitalLeasesFutureMinimumPaymentsPresentValueOfNetMinimumPayments|USD": [
+null,
+"2017-01-29",
+10000000,
+"10-K",
+"2017-03-01",
+7
+],
+"us-gaap:CashAndCashEquivalentsAtCarryingValue|USD": [
+null,
+"2026-01-25",
+10605000000,
+"10-K",
+"2026-02-25",
+54
+],
+"us-gaap:CashAndCashEquivalentsPeriodIncreaseDecrease|USD": [
+"2018-01-29",
+"2019-01-27",
+-3220000000,
+"10-K",
+"2019-02-21",
+30
+],
+"us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents|USD": [
+null,
+"2026-01-25",
+10605000000,
+"10-K",
+"2026-02-25",
+28
+],
+"us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalentsPeriodIncreaseDecreaseIncludingExchangeRateEffect|USD": [
+"2025-01-27",
+"2026-01-25",
+2016000000,
+"10-K",
+"2026-02-25",
+21
+],
+"us-gaap:CashEquivalentsAtCarryingValue|USD": [
+null,
+"2026-01-25",
+8285000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:CommonStockCapitalSharesReservedForFutureIssuance|shares": [
+null,
+"2013-01-27",
+25000000,
+"10-K",
+"2013-03-12",
+1
+],
+"us-gaap:CommonStockDividendsPerShareCashPaid|USD/shares": [
+"2023-01-30",
+"2024-01-28",
+0.16,
+"10-K",
+"2024-02-21",
+33
+],
+"us-gaap:CommonStockDividendsPerShareDeclared|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+0.04,
+"10-K",
+"2026-02-25",
+23
+],
+"us-gaap:CommonStockSharesAuthorized|shares": [
+null,
+"2026-01-25",
+80000000000,
+"10-K",
+"2026-02-25",
+33
+],
+"us-gaap:CommonStockSharesIssued|shares": [
+null,
+"2026-01-25",
+24304000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:CommonStockSharesOutstanding|shares": [
+null,
+"2026-01-25",
+24304000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:ContractWithCustomerLiabilityRevenueRecognized|USD": [
+"2025-01-27",
+"2026-01-25",
+974000000,
+"10-K",
+"2026-02-25",
+7
+],
+"us-gaap:ConvertibleDebt|USD": [
+null,
+"2019-01-27",
+0,
+"10-K",
+"2019-02-21",
+5
+],
+"us-gaap:ConvertibleDebtCurrent|USD": [
+null,
+"2019-01-27",
+0,
+"10-K",
+"2019-02-21",
+8
+],
+"us-gaap:ConvertibleDebtFairValueDisclosures|USD": [
+null,
+"2015-01-25",
+1679600000,
+"10-K",
+"2015-03-12",
+3
+],
+"us-gaap:ConvertibleDebtNoncurrent|USD": [
+null,
+"2016-01-31",
+0,
+"10-K",
+"2016-03-17",
+2
+],
+"us-gaap:CostOfGoodsAndServicesSold|USD": [
+"2020-01-27",
+"2021-01-31",
+6279000000,
+"10-K",
+"2021-02-26",
+25
+],
+"us-gaap:CostOfGoodsSoldAmortization|USD": [
+"2012-01-30",
+"2013-01-27",
+20000000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:CostOfRevenue|USD": [
+"2025-01-27",
+"2026-01-25",
+62475000000,
+"10-K",
+"2026-02-25",
+106
+],
+"us-gaap:DebtConversionConvertedInstrumentSharesIssued1|shares": [
+"2017-01-30",
+"2018-01-28",
+33000000,
+"10-K",
+"2018-02-28",
+2
+],
+"us-gaap:DebtCurrent|USD": [
+null,
+"2026-01-25",
+999000000,
+"10-K",
+"2026-02-25",
+12
+],
+"us-gaap:DebtInstrumentConvertibleCarryingAmountOfTheEquityComponent|USD": [
+null,
+"2018-01-28",
+126000000,
+"10-K",
+"2018-02-28",
+8
+],
+"us-gaap:DebtInstrumentConvertibleConversionPrice1|USD/shares": [
+null,
+"2019-01-27",
+20.02,
+"10-K",
+"2019-02-21",
+7
+],
+"us-gaap:DebtInstrumentConvertibleConversionRatio|shares": [
+"2013-01-28",
+"2014-01-26",
+49.6,
+"10-K",
+"2014-03-13",
+1
+],
+"us-gaap:DebtInstrumentConvertibleConversionRatio1|pure": [
+"2017-01-30",
+"2018-01-28",
+49.9127,
+"10-K",
+"2018-02-28",
+5
+],
+"us-gaap:DebtInstrumentConvertibleEffectiveInterestRate|pure": [
+"2013-01-28",
+"2014-01-26",
+0.0315,
+"10-K",
+"2014-03-13",
+1
+],
+"us-gaap:DebtInstrumentConvertibleIfConvertedValueInExcessOfPrincipal|USD": [
+"2017-01-30",
+"2018-01-28",
+174000000,
+"10-K",
+"2018-02-28",
+3
+],
+"us-gaap:DebtInstrumentConvertibleInterestExpense|USD": [
+"2013-01-28",
+"2014-01-26",
+7134000,
+"10-K",
+"2014-03-13",
+1
+],
+"us-gaap:DebtInstrumentConvertibleNumberOfEquityInstruments|instrument": [
+"2018-01-29",
+"2019-01-27",
+0,
+"10-K",
+"2019-02-21",
+1
+],
+"us-gaap:DebtInstrumentConvertibleThresholdPercentageOfStockPriceTrigger|pure": [
+"2015-01-26",
+"2016-01-31",
+1.3,
+"10-K",
+"2016-03-17",
+1
+],
+"us-gaap:DebtInstrumentFaceAmount|USD": [
+null,
+"2018-01-28",
+15000000,
+"10-K",
+"2018-02-28",
+9
+],
+"us-gaap:DebtInstrumentInterestRateEffectivePercentage|pure": [
+null,
+"2018-01-28",
+0.0315,
+"10-K",
+"2018-02-28",
+4
+],
+"us-gaap:DebtInstrumentInterestRateStatedPercentage|pure": [
+null,
+"2019-01-27",
+0.01,
+"10-K",
+"2019-02-21",
+6
+],
+"us-gaap:DebtInstrumentUnamortizedDiscount|USD": [
+null,
+"2018-01-28",
+0,
+"10-K",
+"2018-02-28",
+9
+],
+"us-gaap:DebtInstrumentUnamortizedDiscountPremiumAndDebtIssuanceCostsNet|USD": [
+null,
+"2026-01-25",
+32000000,
+"10-K",
+"2026-02-25",
+19
+],
+"us-gaap:DebtSecuritiesAvailableForSaleContinuousUnrealizedLossPosition12MonthsOrLonger|USD": [
+null,
+"2025-01-26",
+213000000,
+"10-K",
+"2025-02-26",
+8
+],
+"us-gaap:DebtSecuritiesAvailableForSaleContinuousUnrealizedLossPosition12MonthsOrLongerAccumulatedLoss|USD": [
+null,
+"2025-01-26",
+0,
+"10-K",
+"2025-02-26",
+8
+],
+"us-gaap:DebtSecuritiesAvailableForSaleContinuousUnrealizedLossPositionLessThan12Months|USD": [
+null,
+"2026-01-25",
+13132000000,
+"10-K",
+"2026-02-25",
+10
+],
+"us-gaap:DebtSecuritiesAvailableForSaleContinuousUnrealizedLossPositionLessThan12MonthsAccumulatedLoss|USD": [
+null,
+"2026-01-25",
+6000000,
+"10-K",
+"2026-02-25",
+10
+],
+"us-gaap:DebtSecuritiesAvailableForSaleUnrealizedLossPosition|USD": [
+null,
+"2025-01-26",
+12635000000,
+"10-K",
+"2025-02-26",
+8
+],
+"us-gaap:DebtSecuritiesAvailableForSaleUnrealizedLossPositionAccumulatedLoss|USD": [
+null,
+"2025-01-26",
+56000000,
+"10-K",
+"2025-02-26",
+8
+],
+"us-gaap:DeferredIncomeTaxLiabilities|USD": [
+null,
+"2026-01-25",
+4611000000,
+"10-K",
+"2026-02-25",
+12
+],
+"us-gaap:DeferredIncomeTaxLiabilitiesNet|USD": [
+null,
+"2026-01-25",
+1774000000,
+"10-K",
+"2026-02-25",
+16
+],
+"us-gaap:DeferredRevenueAdditions|USD": [
+"2019-01-28",
+"2020-01-26",
+334000000,
+"10-K",
+"2020-02-20",
+2
+],
+"us-gaap:DeferredRevenueCurrent|USD": [
+null,
+"2018-01-28",
+53000000,
+"10-K",
+"2018-02-28",
+16
+],
+"us-gaap:DeferredRevenueNoncurrent|USD": [
+null,
+"2018-01-28",
+15000000,
+"10-K",
+"2018-02-28",
+16
+],
+"us-gaap:DeferredRevenueRevenueRecognized|USD": [
+"2012-01-30",
+"2013-01-27",
+264000000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:DeferredRevenueRevenueRecognized1|USD": [
+"2019-01-28",
+"2020-01-26",
+271000000,
+"10-K",
+"2020-02-20",
+2
+],
+"us-gaap:DeferredTaxAssetsLiabilitiesNet|USD": [
+null,
+"2026-01-25",
+11484000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:DeferredTaxLiabilities|USD": [
+null,
+"2020-01-26",
+148000000,
+"10-K",
+"2020-02-20",
+18
+],
+"us-gaap:DeferredTaxLiabilitiesNoncurrent|USD": [
+null,
+"2018-01-28",
+18000000,
+"10-K",
+"2018-02-28",
+16
+],
+"us-gaap:DeferredTaxLiabilitiesUndistributedForeignEarnings|USD": [
+null,
+"2026-01-25",
+1813000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:Depreciation|USD": [
+"2025-01-27",
+"2026-01-25",
+2400000000,
+"10-K",
+"2026-02-25",
+48
+],
+"us-gaap:DepreciationAndAmortization|USD": [
+"2020-01-27",
+"2021-01-31",
+1098000000,
+"10-K",
+"2021-02-26",
+36
+],
+"us-gaap:DepreciationDepletionAndAmortization|USD": [
+"2025-01-27",
+"2026-01-25",
+2843000000,
+"10-K",
+"2026-02-25",
+15
+],
+"us-gaap:Dividends|USD": [
+"2014-01-27",
+"2015-01-25",
+0.34,
+"10-K",
+"2015-03-12",
+2
+],
+"us-gaap:DividendsCommonStockCash|USD": [
+"2025-01-27",
+"2026-01-25",
+974000000,
+"10-K",
+"2026-02-25",
+39
+],
+"us-gaap:EarningsPerShareBasic|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+4.93,
+"10-K",
+"2026-02-25",
+132
+],
+"us-gaap:EarningsPerShareDiluted|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+4.9,
+"10-K",
+"2026-02-25",
+132
+],
+"us-gaap:EmployeeRelatedLiabilitiesCurrent|USD": [
+null,
+"2026-01-25",
+1146000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:EmployeeServiceShareBasedCompensationAllocationOfRecognizedPeriodCostsCapitalizedAmount|USD": [
+"2014-01-27",
+"2015-01-25",
+100000,
+"10-K",
+"2015-03-12",
+13
+],
+"us-gaap:EquitySecuritiesFvNiUnrealizedGain|USD": [
+"2021-02-01",
+"2022-01-30",
+48000000,
+"10-K",
+"2023-02-24",
+2
+],
+"us-gaap:EquitySecuritiesFvNiUnrealizedLoss|USD": [
+"2022-01-31",
+"2023-01-29",
+61000000,
+"10-K",
+"2023-02-24",
+1
+],
+"us-gaap:ExtinguishmentOfDebtAmount|USD": [
+"2017-01-30",
+"2018-01-28",
+812000000,
+"10-K",
+"2018-02-28",
+2
+],
+"us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization|USD": [
+null,
+"2026-01-25",
+2878000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpense|USD": [
+"2012-01-30",
+"2013-01-27",
+68400000,
+"10-K",
+"2013-03-12",
+9
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseAfterYearFive|USD": [
+null,
+"2026-01-25",
+83000000,
+"10-K",
+"2026-02-25",
+8
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseNextTwelveMonths|USD": [
+null,
+"2026-01-25",
+923000000,
+"10-K",
+"2026-02-25",
+13
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearFive|USD": [
+null,
+"2026-01-25",
+468000000,
+"10-K",
+"2026-02-25",
+11
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearFour|USD": [
+null,
+"2026-01-25",
+511000000,
+"10-K",
+"2026-02-25",
+13
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearThree|USD": [
+null,
+"2026-01-25",
+592000000,
+"10-K",
+"2026-02-25",
+13
+],
+"us-gaap:FiniteLivedIntangibleAssetsAmortizationExpenseYearTwo|USD": [
+null,
+"2026-01-25",
+729000000,
+"10-K",
+"2026-02-25",
+13
+],
+"us-gaap:FutureAmortizationExpenseAfterYearFive|USD": [
+"2012-01-30",
+"2013-01-27",
+31300000,
+"10-K",
+"2013-03-12",
+2
+],
+"us-gaap:FutureAmortizationExpenseYearFive|USD": [
+"2012-01-30",
+"2013-01-27",
+40500000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:FutureAmortizationExpenseYearFour|USD": [
+"2012-01-30",
+"2013-01-27",
+44100000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:FutureAmortizationExpenseYearOne|USD": [
+"2012-01-30",
+"2013-01-27",
+68400000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:FutureAmortizationExpenseYearThree|USD": [
+"2012-01-30",
+"2013-01-27",
+59700000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:FutureAmortizationExpenseYearTwo|USD": [
+"2012-01-30",
+"2013-01-27",
+68300000,
+"10-K",
+"2013-03-12",
+3
+],
+"us-gaap:GainLossOnForeignCurrencyCashFlowHedgeIneffectiveness|USD": [
+"2019-01-28",
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+4
+],
+"us-gaap:GainsLossesOnExtinguishmentOfDebt|USD": [
+"2019-01-28",
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+12
+],
+"us-gaap:GrossProfit|USD": [
+"2025-01-27",
+"2026-01-25",
+153463000000,
+"10-K",
+"2026-02-25",
+131
+],
+"us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments|USD": [
+"2020-01-27",
+"2021-01-31",
+4409000000,
+"10-K",
+"2021-02-26",
+33
+],
+"us-gaap:IncreaseDecreaseInAccruedLiabilitiesAndOtherOperatingLiabilities|USD": [
+"2025-01-27",
+"2026-01-25",
+5257000000,
+"10-K",
+"2026-02-25",
+36
+],
+"us-gaap:IncreaseDecreaseInOtherNoncurrentLiabilities|USD": [
+"2025-01-27",
+"2026-01-25",
+1844000000,
+"10-K",
+"2026-02-25",
+36
+],
+"us-gaap:IncrementalCommonSharesAttributableToCallOptionsAndWarrants|shares": [
+"2019-01-28",
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+12
+],
+"us-gaap:IncrementalCommonSharesAttributableToConversionOfDebtSecurities|shares": [
+"2019-01-28",
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+15
+],
+"us-gaap:InterestExpenseDebt|USD": [
+"2017-01-30",
+"2018-01-28",
+2000000,
+"10-K",
+"2018-02-28",
+11
+],
+"us-gaap:InterestExpenseDebtExcludingAmortization|USD": [
+"2017-01-30",
+"2018-01-28",
+0,
+"10-K",
+"2018-02-28",
+12
+],
+"us-gaap:InterestRateDerivativeLiabilitiesAtFairValue|USD": [
+null,
+"2016-01-31",
+7000000,
+"10-K",
+"2016-03-17",
+2
+],
+"us-gaap:Liabilities|USD": [
+null,
+"2026-01-25",
+49510000000,
+"10-K",
+"2026-02-25",
+22
+],
+"us-gaap:LiabilitiesAndStockholdersEquity|USD": [
+null,
+"2026-01-25",
+206803000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:LiabilitiesAssumed|USD": [
+"2010-02-01",
+"2011-01-30",
+252796000,
+"10-K",
+"2011-03-16",
+6
+],
+"us-gaap:LiabilitiesAssumed1|USD": [
+"2019-01-28",
+"2020-01-26",
+212000000,
+"10-K",
+"2020-02-20",
+27
+],
+"us-gaap:LiabilitiesCurrent|USD": [
+null,
+"2026-01-25",
+32163000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:LineOfCreditFacilityCurrentBorrowingCapacity|USD": [
+null,
+"2017-01-29",
+575000000,
+"10-K",
+"2017-03-01",
+1
+],
+"us-gaap:LongTermDebt|USD": [
+null,
+"2026-01-25",
+8468000000,
+"10-K",
+"2026-02-25",
+26
+],
+"us-gaap:LongTermDebtCurrent|USD": [
+null,
+"2026-01-25",
+999000000,
+"10-K",
+"2026-02-25",
+12
+],
+"us-gaap:LongTermDebtNoncurrent|USD": [
+null,
+"2026-01-25",
+7469000000,
+"10-K",
+"2026-02-25",
+12
+],
+"us-gaap:NetCashProvidedByUsedInFinancingActivities|USD": [
+"2025-01-27",
+"2026-01-25",
+-48474000000,
+"10-K",
+"2026-02-25",
+54
+],
+"us-gaap:NetCashProvidedByUsedInInvestingActivities|USD": [
+"2025-01-27",
+"2026-01-25",
+-52228000000,
+"10-K",
+"2026-02-25",
+51
+],
+"us-gaap:NetCashProvidedByUsedInOperatingActivities|USD": [
+"2025-01-27",
+"2026-01-25",
+102718000000,
+"10-K",
+"2026-02-25",
+54
+],
+"us-gaap:NetIncomeLoss|USD": [
+"2025-01-27",
+"2026-01-25",
+120067000000,
+"10-K",
+"2026-02-25",
+132
+],
+"us-gaap:OperatingExpenses|USD": [
+"2025-01-27",
+"2026-01-25",
+23076000000,
+"10-K",
+"2026-02-25",
+51
+],
+"us-gaap:OperatingIncomeLoss|USD": [
+"2025-01-27",
+"2026-01-25",
+130387000000,
+"10-K",
+"2026-02-25",
+51
+],
+"us-gaap:OptionIndexedToIssuersEquityStrikePrice1|USD/shares": [
+"2013-01-28",
+"2014-01-26",
+27.14,
+"10-K",
+"2015-03-12",
+1
+],
+"us-gaap:OtherAccruedLiabilitiesCurrent|USD": [
+null,
+"2026-01-25",
+1373000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:OtherComprehensiveIncomeLossCashFlowHedgeGainLossAfterReclassificationAndTax|USD": [
+"2024-01-29",
+"2025-01-26",
+0,
+"10-K",
+"2025-02-26",
+15
+],
+"us-gaap:OtherComprehensiveIncomeLossCashFlowHedgeGainLossBeforeReclassificationAfterTax|USD": [
+"2024-01-29",
+"2025-01-26",
+21000000,
+"10-K",
+"2025-02-26",
+18
+],
+"us-gaap:OtherComprehensiveIncomeLossCashFlowHedgeGainLossReclassificationAfterTax|USD": [
+"2024-01-29",
+"2025-01-26",
+21000000,
+"10-K",
+"2025-02-26",
+15
+],
+"us-gaap:OtherComprehensiveIncomeLossReclassificationAdjustmentForSaleOfSecuritiesIncludedInNetIncomeNetOfTax|USD": [
+"2013-01-28",
+"2014-01-26",
+-1549000,
+"10-K",
+"2014-03-13",
+3
+],
+"us-gaap:OtherComprehensiveIncomeLossReclassificationAdjustmentForSaleOfSecuritiesIncludedInNetIncomeTax|USD": [
+"2013-01-28",
+"2014-01-26",
+834000,
+"10-K",
+"2014-03-13",
+3
+],
+"us-gaap:OtherComprehensiveIncomeReclassificationAdjustmentForSaleOfSecuritiesIncludedInNetIncomeNetOfTax|USD": [
+"2012-01-30",
+"2013-01-27",
+-330000,
+"10-K",
+"2013-03-12",
+12
+],
+"us-gaap:OtherComprehensiveIncomeReclassificationAdjustmentForSaleOfSecuritiesIncludedInNetIncomeTax|USD": [
+"2012-01-30",
+"2013-01-27",
+178000,
+"10-K",
+"2013-03-12",
+12
+],
+"us-gaap:OtherLiabilitiesNoncurrent|USD": [
+null,
+"2026-01-25",
+7306000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:OtherNoncurrentLiabilities|USD": [
+null,
+"2011-01-30",
+71300000,
+"10-K",
+"2011-03-16",
+2
+],
+"us-gaap:OtherSundryLiabilitiesNoncurrent|USD": [
+null,
+"2026-01-25",
+381000000,
+"10-K",
+"2026-02-25",
+14
+],
+"us-gaap:OtherThanTemporaryImpairmentLossDebtSecuritiesAvailableForSaleRecognizedInEarnings|USD": [
+"2019-01-28",
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+6
+],
+"us-gaap:PaymentsForRepurchaseOfCommonStock|USD": [
+"2025-01-27",
+"2026-01-25",
+40086000000,
+"10-K",
+"2026-02-25",
+45
+],
+"us-gaap:PaymentsOfDebtIssuanceCosts|USD": [
+"2017-01-30",
+"2018-01-28",
+0,
+"10-K",
+"2018-02-28",
+6
+],
+"us-gaap:PaymentsOfDividends|USD": [
+"2025-01-27",
+"2026-01-25",
+974000000,
+"10-K",
+"2026-02-25",
+42
+],
+"us-gaap:PaymentsToAcquireAvailableForSaleSecuritiesDebt|USD": [
+"2025-01-27",
+"2026-01-25",
+40616000000,
+"10-K",
+"2026-02-25",
+24
+],
+"us-gaap:PaymentsToAcquireBusinessesNetOfCashAcquired|USD": [
+"2025-01-27",
+"2026-01-25",
+1535000000,
+"10-K",
+"2026-02-25",
+39
+],
+"us-gaap:PaymentsToAcquirePropertyPlantAndEquipment|USD": [
+"2011-01-31",
+"2012-01-29",
+138735000,
+"10-K",
+"2012-03-13",
+3
+],
+"us-gaap:PreferredStockSharesAuthorized|shares": [
+null,
+"2026-01-25",
+2000000,
+"10-K",
+"2026-02-25",
+33
+],
+"us-gaap:PreferredStockSharesIssued|shares": [
+null,
+"2026-01-25",
+0,
+"10-K",
+"2026-02-25",
+33
+],
+"us-gaap:PreferredStockSharesOutstanding|shares": [
+null,
+"2020-01-26",
+0,
+"10-K",
+"2020-02-20",
+4
+],
+"us-gaap:ProceedsFromConvertibleDebt|USD": [
+"2018-01-29",
+"2019-01-27",
+0,
+"10-K",
+"2019-02-21",
+18
+],
+"us-gaap:ProceedsFromDebtNetOfIssuanceCosts|USD": [
+"2023-01-30",
+"2024-01-28",
+0,
+"10-K",
+"2024-02-21",
+12
+],
+"us-gaap:ProceedsFromIssuanceOfLongTermDebt|USD": [
+"2019-01-28",
+"2020-01-26",
+1980000000,
+"10-K",
+"2020-02-20",
+5
+],
+"us-gaap:ProceedsFromSaleOfAvailableForSaleSecuritiesDebt|USD": [
+"2025-01-27",
+"2026-01-25",
+15157000000,
+"10-K",
+"2026-02-25",
+24
+],
+"us-gaap:PropertyPlantAndEquipmentGross|USD": [
+null,
+"2026-01-25",
+16970000000,
+"10-K",
+"2026-02-25",
+32
+],
+"us-gaap:PropertyPlantAndEquipmentNet|USD": [
+null,
+"2026-01-25",
+10383000000,
+"10-K",
+"2026-02-25",
+34
+],
+"us-gaap:PropertyPlantAndEquipmentUsefulLifeMaximum|pure": [
+"2010-02-01",
+"2011-01-30",
+5,
+"10-K",
+"2011-03-16",
+1
+],
+"us-gaap:PropertyPlantAndEquipmentUsefulLifeMinimum|pure": [
+"2010-02-01",
+"2011-01-30",
+3,
+"10-K",
+"2011-03-16",
+1
+],
+"us-gaap:RepaymentsOfConvertibleDebt|USD": [
+"2020-01-27",
+"2021-01-31",
+0,
+"10-K",
+"2021-02-26",
+15
+],
+"us-gaap:RepaymentsOfDebt|USD": [
+"2025-01-27",
+"2026-01-25",
+0,
+"10-K",
+"2026-02-25",
+15
+],
+"us-gaap:RepaymentsOfLongTermCapitalLeaseObligations|USD": [
+"2015-01-26",
+"2016-01-31",
+3000000,
+"10-K",
+"2016-03-17",
+15
+],
+"us-gaap:RestructuringReserveSettledWithoutCash1|USD": [
+"2015-01-26",
+"2016-01-31",
+45000000,
+"10-K",
+"2016-03-17",
+1
+],
+"us-gaap:RestructuringReserveSettledWithoutCash2|USD": [
+"2016-02-01",
+"2017-01-29",
+0,
+"10-K",
+"2017-03-01",
+2
+],
+"us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax|USD": [
+"2021-02-01",
+"2022-01-30",
+26914000000,
+"10-K",
+"2022-03-18",
+28
+],
+"us-gaap:RevenueRemainingPerformanceObligation|USD": [
+null,
+"2026-01-25",
+2300000000,
+"10-K",
+"2026-02-25",
+8
+],
+"us-gaap:Revenues|USD": [
+"2025-01-27",
+"2026-01-25",
+215938000000,
+"10-K",
+"2026-02-25",
+106
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsForfeitedInPeriod|shares": [
+"2025-01-27",
+"2026-01-25",
+9000000,
+"10-K",
+"2026-02-25",
+23
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsForfeitedInPeriodWeightedAverageGrantDateFairValue|USD": [
+null,
+"2013-01-27",
+15.14,
+"10-K",
+"2013-03-12",
+8
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsForfeituresWeightedAverageGrantDateFairValue|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+59.29,
+"10-K",
+"2026-02-25",
+15
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriod|shares": [
+"2025-01-27",
+"2026-01-25",
+70000000,
+"10-K",
+"2026-02-25",
+31
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsGrantsInPeriodWeightedAverageGrantDateFairValue|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+133.97,
+"10-K",
+"2026-02-25",
+31
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsNonvestedNumber|shares": [
+null,
+"2014-01-26",
+18852288,
+"10-K",
+"2014-03-13",
+14
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsNonvestedWeightedAverageGrantDateFairValue|USD/shares": [
+null,
+"2026-01-25",
+81.51,
+"10-K",
+"2026-02-25",
+29
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsVestedInPeriod|shares": [
+"2025-01-27",
+"2026-01-25",
+146000000,
+"10-K",
+"2026-02-25",
+23
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardEquityInstrumentsOtherThanOptionsVestedInPeriodWeightedAverageGrantDateFairValue|USD/shares": [
+"2025-01-27",
+"2026-01-25",
+39.14,
+"10-K",
+"2026-02-25",
+23
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardNonOptionEquityInstrumentsOther|shares": [
+"2014-01-27",
+"2015-01-25",
+12500000,
+"10-K",
+"2015-03-12",
+1
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardNonOptionEquityInstrumentsOutstandingNumber|shares": [
+null,
+"2026-01-25",
+189000000,
+"10-K",
+"2026-02-25",
+24
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardNumberOfSharesAvailableForGrant|shares": [
+null,
+"2025-01-26",
+1400000000,
+"10-K",
+"2026-02-25",
+36
+],
+"us-gaap:ShareBasedCompensationArrangementByShareBasedPaymentAwardPerShareWeightedAveragePriceOfSharesPurchased|USD/shares": [
+null,
+"2018-01-28",
+21.24,
+"10-K",
+"2018-02-28",
+21
+],
+"us-gaap:SharebasedCompensationSharesAuthorizedUnderStockOptionPlansExercisePriceRangeExercisableOptionsWeightedAverageRemainingContractualTerm1|shares": [
+null,
+"2013-01-27",
+3,
+"10-K",
+"2013-03-12",
+2
+],
+"us-gaap:SharesPaidForTaxWithholdingForShareBasedCompensation|shares": [
+"2013-01-28",
+"2014-01-26",
+1944391,
+"10-K",
+"2014-03-13",
+2
+],
+"us-gaap:StockholdersEquity|USD": [
+null,
+"2026-01-25",
+157293000000,
+"10-K",
+"2026-02-25",
+68
+],
+"us-gaap:StockholdersEquityNoteStockSplitConversionRatio1|pure": [
+null,
+"2021-07-19",
+4,
+"10-K",
+"2022-03-18",
+1
+],
+"us-gaap:StockIssuedDuringPeriodSharesEmployeeStockPurchasePlans|shares": [
+"2021-02-01",
+"2022-01-30",
+5000000,
+"10-K",
+"2022-03-18",
+36
+],
+"us-gaap:StockIssuedDuringPeriodSharesNewIssues|shares": [
+"2012-01-30",
+"2013-01-27",
+57255365,
+"10-K",
+"2013-03-12",
+2
+],
+"us-gaap:StockIssuedDuringPeriodSharesStockOptionsExercised|shares": [
+"2016-02-01",
+"2017-01-29",
+6000000,
+"10-K",
+"2017-03-01",
+12
+],
+"us-gaap:StockRepurchasedAndRetiredDuringPeriodShares|shares": [
+"2025-01-27",
+"2026-01-25",
+282000000,
+"10-K",
+"2026-02-25",
+6
+],
+"us-gaap:StockRepurchasedAndRetiredDuringPeriodValue|USD": [
+"2025-01-27",
+"2026-01-25",
+40388000000,
+"10-K",
+"2026-02-25",
+30
+],
+"us-gaap:StockRepurchasedDuringPeriodShares|shares": [
+"2018-01-29",
+"2019-01-27",
+9000000,
+"10-K",
+"2019-02-21",
+6
+],
+"us-gaap:StockRepurchasedDuringPeriodValue|USD": [
+"2018-01-29",
+"2019-01-27",
+1580000000,
+"10-K",
+"2019-02-21",
+2
+],
+"us-gaap:StockRepurchaseProgramAuthorizedAmount|USD": [
+"2013-01-28",
+"2014-01-26",
+3700000000,
+"10-K",
+"2014-03-13",
+3
+],
+"us-gaap:StockRepurchaseProgramAuthorizedAmount1|USD": [
+null,
+"2024-01-28",
+22500000000,
+"10-K",
+"2024-02-21",
+3
+],
+"us-gaap:StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount|USD": [
+"2013-01-28",
+"2014-01-26",
+1250000000,
+"10-K",
+"2014-03-13",
+3
+],
+"us-gaap:StockRepurchaseProgramRemainingAuthorizedRepurchaseAmount1|USD": [
+null,
+"2026-01-25",
+58500000000,
+"10-K",
+"2026-02-25",
+10
+],
+"us-gaap:TemporaryEquityValueExcludingAdditionalPaidInCapital|USD": [
+null,
+"2018-01-28",
+0,
+"10-K",
+"2018-02-28",
+6
+],
+"us-gaap:TreasuryStockShares|shares": [
+null,
+"2022-01-30",
+0,
+"10-K",
+"2022-03-18",
+26
+],
+"us-gaap:TreasuryStockSharesAcquired|shares": [
+"2010-02-01",
+"2011-01-30",
+-1117179,
+"10-K",
+"2011-03-16",
+1
+],
+"us-gaap:WeightedAverageNumberDilutedSharesOutstandingAdjustment|shares": [
+"2025-01-27",
+"2026-01-25",
+155000000,
+"10-K",
+"2026-02-25",
+45
+],
+"us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding|shares": [
+"2025-01-27",
+"2026-01-25",
+24514000000,
+"10-K",
+"2026-02-25",
+54
+],
+"us-gaap:WeightedAverageNumberOfSharesOutstandingBasic|shares": [
+"2025-01-27",
+"2026-01-25",
+24359000000,
+"10-K",
+"2026-02-25",
+51
+],
+"us-gaap:CapitalExpendituresIncurredButNotYetPaid|USD": [
+"2025-01-27",
+"2026-01-25",
+820000000,
+"10-K",
+"2026-02-25",
+15
+],
+"us-gaap:TreasuryStockSharesRetired|shares": [
+"2021-02-01",
+"2022-01-30",
+349000000,
+"10-K",
+"2024-02-21",
+3
+],
+"us-gaap:DeferredTaxLiabilitiesGoodwillAndIntangibleAssetsIntangibleAssets|USD": [
+null,
+"2026-01-25",
+38000000,
+"10-K",
+"2026-02-25",
+8
+],
+"us-gaap:EquitySecuritiesWithoutReadilyDeterminableFairValueAmount|USD": [
+null,
+"2026-01-25",
+22251000000,
+"10-K",
+"2026-02-25",
+8
+],
+"us-gaap:EquitySecuritiesWithoutReadilyDeterminableFairValueUpwardPriceAdjustmentAnnualAmount|USD": [
+"2025-01-27",
+"2026-01-25",
+2369000000,
+"10-K",
+"2026-02-25",
+5
+],
+"us-gaap:EquitySecuritiesWithoutReadilyDeterminableFairValueUpwardPriceAdjustmentCumulativeAmount|USD": [
+null,
+"2026-01-25",
+2700000000,
+"10-K",
+"2026-02-25",
+5
+],
+"us-gaap:FinanceLeaseRightOfUseAssetAccumulatedAmortization|USD": [
+null,
+"2026-01-25",
+519000000,
+"10-K",
+"2026-02-25",
+6
+],
+"us-gaap:EquitySecuritiesFVNINoncurrent|USD": [
+null,
+"2026-01-25",
+22251000000,
+"10-K",
+"2026-02-25",
+4
+],
+"us-gaap:PaymentsToAcquireEquitySecuritiesFvNi|USD": [
+"2025-01-27",
+"2026-01-25",
+17502000000,
+"10-K",
+"2026-02-25",
+6
+],
+"us-gaap:ProceedsFromSaleOfEquitySecuritiesFvNi|USD": [
+"2025-01-27",
+"2026-01-25",
+84000000,
+"10-K",
+"2026-02-25",
+6
+],
+"us-gaap:DeferredTaxLiabilitiesInvestments|USD": [
+null,
+"2026-01-25",
+2227000000,
+"10-K",
+"2026-02-25",
+4
+],
+"us-gaap:LongTermDebtFairValue|USD": [
+null,
+"2026-01-25",
+7500000000,
+"10-K",
+"2026-02-25",
+2
+],
+"us-gaap:OtherComprehensiveIncomeLossCashFlowHedgeGainLossAfterReclassificationAndTaxParent|USD": [
+"2025-01-27",
+"2026-01-25",
+43000000,
+"10-K",
+"2026-02-25",
+3
+],
+"us-gaap:PaymentsToAcquireBusinessTwoNetOfCashAcquired|USD": [
+"2025-01-27",
+"2026-01-25",
+13000000000,
+"10-K",
+"2026-02-25",
+3
+],
+"srt:StockRepurchaseProgramAuthorizedAmount1|USD": [
+null,
+"2025-01-26",
+38700000000,
+"10-K",
+"2025-02-26",
+1
+]
+},
+"dei_forms": [
+[
+"10-Q",
+2016
+],
+[
+"10-Q",
+2017
+],
+[
+"10-Q",
+2018
+],
+[
+"10-Q",
+2019
+],
+[
+"10-Q",
+2020
+],
+[
+"10-Q",
+2021
+],
+[
+"10-Q",
+2022
+],
+[
+"10-Q",
+2023
+],
+[
+"10-Q",
+2024
+],
+[
+"10-Q",
+2025
+],
+[
+"10-Q",
+2026
+],
+[
+"10-Q",
+2027
+]
+]
+}

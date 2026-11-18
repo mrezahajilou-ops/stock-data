@@ -1,6 +1,6 @@
 {
- "ok": 91,
- "diff": 8,
+ "ok": 88,
+ "diff": 11,
  "missing": 3,
  "rows": [
   {
@@ -556,10 +556,10 @@
    "ticker": "MELI",
    "fy": 2025,
    "metric": "fcf",
-   "ours": 10773000000,
+   "ours": 4698000000,
    "ref": 10773000000,
-   "diff": 0.0,
-   "status": "OK"
+   "diff": 0.5639,
+   "status": "DIFF"
   },
   {
    "ticker": "MELI",
@@ -601,10 +601,10 @@
    "ticker": "MELI",
    "fy": 2024,
    "metric": "fcf",
-   "ours": 7058000000,
+   "ours": 4579000000,
    "ref": 7058000000,
-   "diff": 0.0,
-   "status": "OK"
+   "diff": 0.3512,
+   "status": "DIFF"
   },
   {
    "ticker": "MELI",
@@ -646,10 +646,10 @@
    "ticker": "MELI",
    "fy": 2023,
    "metric": "fcf",
-   "ours": 4631000000,
+   "ours": 3610000000,
    "ref": 4631000000,
-   "diff": 0.0,
-   "status": "OK"
+   "diff": 0.2205,
+   "status": "DIFF"
   },
   {
    "ticker": "HOOD",

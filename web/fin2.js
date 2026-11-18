@@ -37,6 +37,7 @@
   function dd(s) { if (!s) return null; var m = String(s).slice(0, 10).match(/^(\d{4})-(\d{2})-(\d{2})$/); return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null; }
   function ep(ts) { return ts ? new Date(+ts * 1000) : null; }
   function days(a, b) { return (a - b) / 864e5; }
+  function newer(end, fyEnd) { var a = dd(end), b = dd(fyEnd); return !!a && (!b || days(a, b) > 20); }
   var fmtM = new Intl.DateTimeFormat(LOC, { month: 'short', timeZone: 'UTC' });
   var fmtL = new Intl.DateTimeFormat(LOC, { month: 'long', timeZone: 'UTC' });
   var fmtD = new Intl.DateTimeFormat(LOC, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -153,7 +154,7 @@
     var KA = k.a_inc || [], KQ = k.q_inc || [];
     var YT = ttmInc(k), Tt = YT[YT.length - 1] || {};
     var lastA = A[A.length - 1] || {};
-    var has = !!Tt.TotalRevenue && String(Tt.end) > String(lastA.fy_end || '');
+    var has = !!Tt.TotalRevenue && newer(Tt.end, lastA.fy_end);
     var lag = !!Tt.end && tt.end && days(dd(tt.end), dd(Tt.end)) > 20;
     var yc = ycols(c), cols = (has ? ['TTM'] : []).concat(yc[0]), sub = (has ? [mon(dd(Tt.end))] : []).concat(yc[1]);
     function ser(fn, tv) { return (has ? [tv === undefined ? D : tv] : []).concat(R.map(function (a, i) { return fn(a, R[i + 1]); })); }
@@ -267,7 +268,7 @@
     ];
     var yc = ycols(c), cols = yc[0], sub = yc[1];
     var L = latest(k)[2], lastA = A[A.length - 1] || {};
-    if (L.end && String(L.end) > String(lastA.fy_end || '')) {
+    if (L.end && newer(L.end, lastA.fy_end)) {
       var eq = L.StockholdersEquity, debt = L.TotalDebt, cs = L.CashAndCashEquivalents, sh = L.OrdinarySharesNumber, tl = L.TotalLiabilitiesNetMinorityInterest;
       rows = prepend(rows, {
         'Cash & equivalents': usd(cs), 'Short-term investments': usd(L.OtherShortTermInvestments), 'Accounts receivable': usd(L.AccountsReceivable),
@@ -313,7 +314,7 @@
       ['FCF / net income', S(function (a) { return x2(a.fcf_conv, 2); }), '']
     ];
     var yc = ycols(c), cols = yc[0], sub = yc[1], LT = latest(k), TI = LT[0], TC = LT[1], lastA = A[A.length - 1] || {};
-    if (TC.end && String(TC.end) > String(lastA.fy_end || '')) {
+    if (TC.end && newer(TC.end, lastA.fy_end)) {
       var same = TI.end === TC.end, fcf = TC.FreeCashFlow, rv = same ? TI.TotalRevenue : null, ni = TC.NetIncomeFromContinuingOperations, sh = same ? TI._sh : null;
       rows = prepend(rows, {
         'Net income': usd(ni), 'Depreciation & amortization': usd(TC.DepreciationAndAmortization), 'Stock-based compensation': usd(TC.StockBasedCompensation),

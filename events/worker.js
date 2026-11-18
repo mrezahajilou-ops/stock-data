@@ -20,8 +20,10 @@ const U_RE = /^[a-z0-9]{8,32}$/;
 const RETAIN_DAYS = 400;
 const MIN_UNIQ = 3;
 
-const EN_ORIGINS = ['https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev'];
-const READ_ORIGINS = ['https://saqrmarkets.com', 'https://www.saqrmarkets.com', 'https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev'];
+const EN_ORIGINS = ['https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev',
+  'https://borsakartal.com', 'https://www.borsakartal.com', 'https://borsakartal-site.pages.dev'];   // English + Turkish sister sites: own contest boards
+const READ_ORIGINS = ['https://saqrmarkets.com', 'https://www.saqrmarkets.com', 'https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev',
+  'https://borsakartal.com', 'https://www.borsakartal.com', 'https://borsakartal-site.pages.dev'];
 
 function cors(req, env) {
   const o = req.headers.get('Origin') || '';

@@ -84,8 +84,11 @@ async function cAuth(req, env) {
   const ek = (req.headers.get('X-SA-Key') || '').trim();
   if (ek && env.CONTEST_SECRET) {
     const [uid, sig] = ek.split('.');
-    if (/^[a-f0-9]{24}$/.test(uid || '') && /^[0-9a-f]{64}$/.test(sig || '') && sig === await cHmac(env.CONTEST_SECRET, 'en|' + uid))
-      return { cid: 'en_' + uid, email: null, pro: true, admin: false, site: 'en' };
+    if (!/^[a-f0-9]{24}$/.test(uid || '') || !/^[0-9a-f]{64}$/.test(sig || '')) return null;
+    // borsakartal.com (Turkish) uses the same kind of key, signed for 'tr'
+    const st = sig === await cHmac(env.CONTEST_SECRET, 'en|' + uid) ? 'en' : sig === await cHmac(env.CONTEST_SECRET, 'tr|' + uid) ? 'tr' : '';
+    if (st)
+      return { cid: st + '_' + uid, email: null, pro: true, admin: false, site: st };
     return null;
   }
   const hk = (req.headers.get('X-RZ-House') || '').trim();
@@ -394,7 +397,7 @@ function cPeriodStart(kind, now) {
 
 async function cBoard(env, site) {
   const Q = await cQuotes();
-  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade, house, spy0 FROM c_profiles WHERE status='active' AND site=?1", site === 'en' ? 'en' : 'fa');
+  const profs = await cq(env, "SELECT id, name, strategy, created, cash, last_trade, house, spy0 FROM c_profiles WHERE status='active' AND site=?1", C_SITES.includes(site) ? site : 'fa');
   const posAll = await cq(env, 'SELECT pid, t, qty, cost FROM c_pos WHERE qty>0.0000001');
   const trades = await cq(env, "SELECT pid, COUNT(*) n FROM c_orders WHERE status='filled' GROUP BY pid");
   const tn = Object.fromEntries(trades.map(r => [r.pid, r.n]));
@@ -430,7 +433,7 @@ async function cBoard(env, site) {
 
 /* ---------- visibility ---------- */
 function cCanSee(me, prof) {
-  if (prof.site === 'en') return true;
+  if (prof.site && prof.site !== 'fa') return true;
   if (me && (me.admin || me.cid === prof.cid)) return true;
     return !!(me && me.pro && cnow() >= C_DETAIL_FROM);
 }
@@ -518,8 +521,8 @@ async function contest(req, env, url, h) {
   const body = async () => { try { return JSON.parse(await req.text()); } catch { return {}; } };
 
   if (req.method === 'GET' && path === '/board') {
-    const site = url.searchParams.get('site') === 'en' ? 'en' : 'fa';
-    const cache = caches.default, ck = new Request(url.origin + '/c/board' + (site === 'en' ? '?site=en' : ''));
+    const site = C_SITES.includes(url.searchParams.get('site')) ? url.searchParams.get('site') : 'fa';
+    const cache = caches.default, ck = new Request(url.origin + '/c/board' + (site !== 'fa' ? '?site=' + site : ''));
     let data, hit = await cache.match(ck);
     if (hit) data = await hit.json();
     else { data = await cBoard(env, site); await cache.put(ck, new Response(JSON.stringify(data), { headers: { 'Cache-Control': 'max-age=300' } })); }
@@ -554,15 +557,15 @@ async function contest(req, env, url, h) {
     if (off.length) { const Q = await cQuotes(); for (const t of off) { if (Q[t] && !cOffHours(Q[t][3])) out[t] = Q[t]; else delete out[t]; } }
     return J({ q: out, at: new Date(now).toISOString() }, 200, { 'Cache-Control': 'public, max-age=10' });
   }
-  if (req.method === 'POST' && path === '/en/join') {
+  if (req.method === 'POST' && (path === '/en/join' || path === '/tr/join')) {
     // English site: a new anonymous account = a random id + its HMAC; the browser keeps it (and can copy it to another device)
     if (!env.CONTEST_SECRET) return J({ error: 'not configured' }, 503);
     const uid = [...crypto.getRandomValues(new Uint8Array(12))].map(b => b.toString(16).padStart(2, '0')).join('');
-    return J({ key: uid + '.' + await cHmac(env.CONTEST_SECRET, 'en|' + uid) });
+    return J({ key: uid + '.' + await cHmac(env.CONTEST_SECRET, (path === '/tr/join' ? 'tr' : 'en') + '|' + uid) });
   }
   const me0 = await cAuth(req, env);
   const me = me0;
-  if (me && me.site === 'en') {
+  if (me && C_SITES.includes(me.site)) {
     // English answers for the English site (the order/profile checks are shared with the Farsi contest)
     const r = await cRouteEn(req, env, url, path, me, J, body);
     if (r) return r;
@@ -593,7 +596,7 @@ async function contest(req, env, url, h) {
     if (last && last.c && cnow() - last.c < C_NEW_EVERY && !me.admin) return J({ error: 'هر ۶ ماه فقط یک پروفایل جدید', next: cday(last.c + C_NEW_EVERY) }, 400);
     const dup = await c1(env, "SELECT id FROM c_profiles WHERE lower(name)=lower(?1) AND status!='removed'", name);
     if (dup) return J({ error: 'این اسم قبلاً گرفته شده' }, 400);
-    const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house, site) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)').bind(house ? 'house' : me.cid, me.email, name, strategy, cnow(), C_START, house, me.site === 'en' ? 'en' : 'fa').run();
+    const r = await env.DB.prepare('INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house, site) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)').bind(house ? 'house' : me.cid, me.email, name, strategy, cnow(), C_START, house, C_SITES.includes(me.site) ? me.site : 'fa').run();
     await env.DB.prepare('INSERT OR IGNORE INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3)').bind(r.meta.last_row_id, cday(cnow() - 86400), C_START).run();
       return J({ ok: true, id: r.meta.last_row_id });
   }
@@ -874,15 +877,29 @@ const C_EN_ERR = {
   'بعد از این خرید، این سهم بیش از ۷۰٪ پورتفو می‌شه': 'After this buy the position would be more than 70% of the portfolio',
   'تعداد بیشتر از سهم‌هایی که داری': 'More shares than you hold',
 };
-function cEnErr(o) {
+const C_SITES = ['en', 'tr'];   // sister sites with their own boards (no prizes); 'fa' = sahamanaliz.com
+const C_TR_ERR = {
+  'Profile not found': 'Profil bulunamadı', 'This profile is inactive': 'Bu profil aktif değil', 'Invalid order': 'Geçersiz emir',
+  'At most 40 orders in 24 hours': '24 saatte en fazla 40 emir', 'No price available for this ticker': 'Bu hisse için fiyat yok',
+  'At most 20 open orders': 'En fazla 20 açık emir', 'The minimum buy is $10': 'En düşük alım tutarı 10 $', 'Not enough cash': 'Yeterli nakit yok',
+  'After this buy the position would be more than 70% of the portfolio': 'Bu alımdan sonra pozisyon portföyün %70’inden fazla olur',
+  'More shares than you hold': 'Sahip olduğundan fazla hisse', 'Please accept the rules': 'Lütfen kuralları kabul et',
+  'The profile name needs at least 2 characters': 'Profil adı en az 2 karakter olmalı', 'One new profile every 6 months': '6 ayda bir yeni profil',
+  'That name is already taken': 'Bu ad zaten alınmış',
+  'This ticker is not allowed (US stocks above $1 billion market cap and $5 a share, or the listed ETFs)': 'Bu hisseye izin verilmiyor (piyasa değeri 1 milyar $ ve fiyatı 5 $ üzerindeki ABD hisseleri ya da listelenen ETF’ler)',
+  'Trading in this ticker is paused for a moment (unusual price move, probably a split). Try again later.': 'Bu hissede işlem kısa süreliğine durduruldu (olağan dışı fiyat hareketi, muhtemelen bölünme). Daha sonra tekrar dene.',
+};
+function cEnErr(o, site) {
   if (o && typeof o.error === 'string') {
     if (C_EN_ERR[o.error]) o.error = C_EN_ERR[o.error];
     else if (o.error.startsWith('این نماد در مسابقه مجاز نیست')) o.error = 'This ticker is not allowed (US stocks above $1 billion market cap and $5 a share, or the listed ETFs)';
     else if (o.error.startsWith('معامله‌ی این نماد موقتاً متوقفه')) o.error = 'Trading in this ticker is paused for a moment (unusual price move, probably a split). Try again later.';
+    if (site === 'tr' && C_TR_ERR[o.error]) o.error = C_TR_ERR[o.error];
   }
   return o;
 }
-async function cRouteEn(req, env, url, path, me, J, body) {
+async function cRouteEn(req, env, url, path, me, J0, body) {
+  const J = (o, s, x) => J0(cEnErr(o, me.site), s, x);
   if (req.method === 'POST' && path === '/profile') {
     const b = await body();
     if (!b.accept) return J({ error: 'Please accept the rules' }, 400);
@@ -892,14 +909,14 @@ async function cRouteEn(req, env, url, path, me, J, body) {
     if (last && last.c && cnow() - last.c < C_NEW_EVERY) return J({ error: 'One new profile every 6 months', next: cday(last.c + C_NEW_EVERY) }, 400);
     const dup = await c1(env, "SELECT id FROM c_profiles WHERE lower(name)=lower(?1) AND status!='removed'", name);
     if (dup) return J({ error: 'That name is already taken' }, 400);
-    const r = await env.DB.prepare("INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house, site) VALUES (?1, NULL, ?2, ?3, ?4, ?5, 0, 'en')").bind(me.cid, name, strategy, cnow(), C_START).run();
+    const r = await env.DB.prepare("INSERT INTO c_profiles (cid, email, name, strategy, created, cash, house, site) VALUES (?1, NULL, ?2, ?3, ?4, ?5, 0, ?6)").bind(me.cid, name, strategy, cnow(), C_START, me.site).run();
     await env.DB.prepare('INSERT OR IGNORE INTO c_snap (pid, d, v) VALUES (?1, ?2, ?3)').bind(r.meta.last_row_id, cday(cnow() - 86400), C_START).run();
-    await caches.default.delete(new Request(url.origin + '/c/board?site=en'));
+    await caches.default.delete(new Request(url.origin + '/c/board?site=' + me.site));
     return J({ ok: true, id: r.meta.last_row_id });
   }
   if (req.method === 'POST' && path === '/order') {
     const [s, o] = await cPlace(env, me, await body());
-    return J(cEnErr(o), s);
+    return J(o, s);
   }
   return null;   // /me, /cancel, /p/:id, /hist/:id: the shared handlers (no Farsi text in them)
 }

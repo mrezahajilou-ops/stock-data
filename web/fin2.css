@@ -72,3 +72,5 @@
 .fb-rtl .fc-root .fb-t td,.fb-rtl .fc-root .fb-t th,#rzs-main .v2.fb-rtl .fc-root .fb-t td,#rzs-main .v2.fb-rtl .fc-root .fb-t th{text-align:right;direction:ltr;unicode-bidi:plaintext}
 .fb-rtl .fc-root .fb-t td:first-child,.fb-rtl .fc-root .fb-t th:first-child,#rzs-main .v2.fb-rtl .fc-root .fb-t td:first-child,#rzs-main .v2.fb-rtl .fc-root .fb-t th:first-child{text-align:left;direction:rtl;unicode-bidi:plaintext}
 .fb-rtl .fc-root .rt-r span{text-align:left;unicode-bidi:plaintext}
+#rzs .fb-rtl .fc-root table,.fb-rtl .fc-root table{direction:ltr}
+.fb-rtl .fc-root .fc-2{direction:ltr}.fb-rtl .fc-root .fc-2>*{direction:rtl}

@@ -19,7 +19,14 @@ def iso(s):
     """Isolate Latin runs in Persian text so they do not break the right-to-left order."""
     if not s:
         return s
-    return _LAT.sub(lambda m: '⁨' + m.group(0) + '⁩', s)
+    def wrap(m):
+        run = m.group(0)
+        tail = ''
+        while run and run[-1] in ".-'’":   # a full stop that ends the Persian sentence is not part of the name
+            tail = run[-1] + tail
+            run = run[:-1]
+        return '⁨' + run + '⁩' + tail if run else m.group(0)
+    return _LAT.sub(wrap, s)
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 SRC = os.path.join(ROOT, 'data', 'stocks')

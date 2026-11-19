@@ -538,7 +538,7 @@ function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n)
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 /* یک کلمه‌ی لاتین وسط جمله‌ی فارسی ترتیب راست‌به‌چپ را به هم می‌ریزد: هر تکه‌ی لاتین را با
    جداکننده‌های یونیکد (FSI … PDI) ایزوله می‌کنیم تا جهت متن فارسی اطرافش دست‌نخورده بماند. */
-function escFa(t){return esc(String(t==null?'':t).replace(/[A-Za-z][A-Za-z0-9&+.\-'’]*(?: [A-Za-z0-9][A-Za-z0-9&+.\-'’]*)*/g,function(m){return '⁨'+m+'⁩'}))}
+function escFa(t){return esc(String(t==null?'':t).replace(/[A-Za-z][A-Za-z0-9&+.\-'’]*(?: [A-Za-z0-9][A-Za-z0-9&+.\-'’]*)*/g,function(m){var tail='';while(m&&'.-\'’'.indexOf(m.charAt(m.length-1))>=0){tail=m.charAt(m.length-1)+tail;m=m.slice(0,-1)}return m?'⁨'+m+'⁩'+tail:tail}))}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return '<span title="بیش از ۱۰۰۰٪ — پایه‌ی محاسبه خیلی کوچک است">n/m</span>';return '\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'}

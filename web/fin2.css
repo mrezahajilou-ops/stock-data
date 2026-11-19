@@ -62,7 +62,7 @@
 .fin2-mount .sa-stk .trange{position:relative;height:10px;border-radius:6px;background:linear-gradient(90deg,#C8534F,#C9A961,#4FA37A);margin:18px 6px 6px}
 .sa-stk .trange,.sa-stk .tlab{direction:ltr}
 /* right-to-left sites (Persian, Arabic): numbers centred like the original tables, labels on the right */
-.fb-rtl .fb-t td,.fb-rtl .fb-t th{text-align:center}.fb-rtl .fb-t td{direction:ltr;unicode-bidi:isolate}
-.fb-rtl .fb-t td:first-child,.fb-rtl .fb-t th:first-child,.fb-rtl .fb-t tr.sec td{text-align:right;direction:rtl}
+.fb-rtl .fb-t td,.fb-rtl .fb-t th,#rzs-main .v2.fb-rtl .fb-t td,#rzs-main .v2.fb-rtl .fb-t th{text-align:center}.fb-rtl .fb-t td{direction:ltr;unicode-bidi:isolate}
+.fb-rtl .fb-t td:first-child,.fb-rtl .fb-t th:first-child,.fb-rtl .fb-t tr.sec td,#rzs-main .v2.fb-rtl .fb-t td:first-child,#rzs-main .v2.fb-rtl .fb-t th:first-child,#rzs-main .v2.fb-rtl .fb-t tr.sec td{text-align:right;direction:rtl}
 .fb-rtl .ks-r span{text-align:right}.fb-rtl .ks-r b{text-align:left}
 .fb-rtl .lead,.fb-rtl .xnote,.fb-rtl h2,.fb-rtl h3{text-align:right}

@@ -641,13 +641,21 @@ _BRAND = {"NVIDIA": "NVIDIA", "JPMORGAN": "JPMorgan", "AT&T": "AT&T", "UNITEDHEA
           "MSCI": "MSCI", "S&P": "S&P", "T-MOBILE": "T-Mobile", "DOORDASH": "DoorDash", "LINKEDIN": "LinkedIn", "YOUTUBE": "YouTube",
           "SALESFORCE": "Salesforce", "SERVICENOW": "ServiceNow", "CROWDSTRIKE": "CrowdStrike", "DATADOG": "Datadog", "MERCADOLIBRE": "MercadoLibre",
           "AIRBNB": "Airbnb", "COINBASE": "Coinbase", "GLOBALFOUNDRIES": "GlobalFoundries", "QUALCOMM": "Qualcomm", "BIOGEN": "Biogen",
-          "AUTOZONE": "AutoZone", "CARMAX": "CarMax", "DEXCOM": "DexCom", "IDEXX": "IDEXX", "KLA": "KLA", "LAM": "Lam", "MICROSOFT": "Microsoft"}
+          "AUTOZONE": "AutoZone", "CARMAX": "CarMax", "DEXCOM": "DexCom", "IDEXX": "IDEXX", "KLA": "KLA", "LAM": "Lam", "MICROSOFT": "Microsoft",
+          "GSCI": "GSCI", "ATS": "ATS", "IOT": "IoT", "YXTCOM": "YXT.com", "IIOT-OXYS": "IIOT-OXYS", "BGIN": "BGIN", "JRSIS": "JRSIS"}
 
 
 def nice_name(n):
     """SEC titles are shouted ("TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD"); make them readable. Mixed-case names stay."""
     n = re.sub(r"\s*/\s*[A-Z]{2,3}\s*/\s*", " ", str(n or "")).strip()   # "CORP/OH/", "CORP /TX/"
-    if n != n.upper() or not re.search(r"[A-Z]{2}", n):
+    n = re.sub(r"\s*/\s*[A-Z]{2,4}\s*$", "", n).strip()                  # "ATS Corp /ATS"
+    # Some EDGAR titles shout only the company itself and spell the legal suffix normally
+    # ("PROCTER & GAMBLE Co", "ELI LILLY & Co"), so a whole-string test let those through unread.
+    # Two or more shouted words is a shouted name; one on its own is a brand that spells itself that
+    # way (ONEOK, STERIS, PERRIGO) and is left alone.
+    shouted = [w for w in re.findall(r"[A-Z][A-Z'&.]{2,}", n)
+               if w.replace(".", "").replace(",", "") not in _KEEP]
+    if (n != n.upper() and len(shouted) < 2) or not re.search(r"[A-Z]{2}", n):
         return n
     out = []
     for w in n.split():
@@ -657,10 +665,14 @@ def nice_name(n):
         elif k in _KEEP:
             if _KEEP[k]:
                 out.append(_KEEP[k])
-        elif re.fullmatch(r"[A-Z]{1,2}", k) or re.search(r"\d", w) or re.fullmatch(r"[A-Z]&[A-Z]", k):
+        elif (re.fullmatch(r"[A-Z]{1,2}", k) or re.search(r"\d", w) or re.fullmatch(r"[A-Z]&[A-Z]", k)
+                # a word the company itself spells with small letters (iShares, aTyr, eBay) is already
+                # written the way it wants; an all-consonant shout (JBG, CXJ, ATS) and a Roman numeral
+                # are initials, not a word, so both stay as they are
+                or not w.isupper() or not re.search(r"[AEIOUY]", k) or re.fullmatch(r"[IVXLC]+", k)):
             out.append(w)
-        else:
-            out.append(w[0] + w[1:].lower())
+        else:   # capitalise every run of letters, so "(CAYMAN)" and "COMMODITY-INDEXED" come out right
+            out.append(re.sub(r"[A-Za-z]+", lambda m_: m_.group(0)[0] + m_.group(0)[1:].lower(), w))
     return re.sub(r"\s+", " ", " ".join(out)).replace(" Com Inc.", ".com Inc.").replace(" Com,", ".com,").strip()
 
 

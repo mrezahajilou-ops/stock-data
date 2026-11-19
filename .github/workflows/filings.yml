@@ -1,0 +1,87 @@
+name: Annual report text (business and risk sections) for the company write-ups
+
+on:
+  schedule:
+    - cron: '15 3 * * 0'   # weekly: only companies with a new annual report are fetched again
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: 'Comma-separated tickers, or ALL'
+        required: false
+        default: 'ALL'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: filings
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - name: Skip extra shards for a short ticker list
+        id: s
+        run: |
+          T="${{ inputs.tickers || 'ALL' }}"
+          if [ "$T" != "ALL" ] && [ "${{ matrix.shard }}" != "0" ]; then echo "skip=1" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v4
+        if: steps.s.outputs.skip != '1'
+        with:
+          sparse-checkout: |
+            filings.py
+            data/stocks
+      - uses: actions/setup-python@v5
+        if: steps.s.outputs.skip != '1'
+        with:
+          python-version: '3.12'
+      - name: Files already made
+        if: steps.s.outputs.skip != '1'
+        run: git clone -q --depth 1 --branch filings "https://github.com/${{ github.repository }}.git" /tmp/have || mkdir -p /tmp/have
+      - name: Fetch
+        if: steps.s.outputs.skip != '1'
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARDS: ${{ (inputs.tickers || 'ALL') == 'ALL' && '12' || '1' }}
+          HAVE: /tmp/have
+        run: python filings.py "${{ inputs.tickers || 'ALL' }}" | tail -30
+      - uses: actions/upload-artifact@v4
+        if: steps.s.outputs.skip != '1'
+        with:
+          name: fl-${{ matrix.shard }}
+          path: filings/
+          retention-days: 1
+          if-no-files-found: ignore
+
+  publish:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Current files
+        run: |
+          git clone -q --depth 1 --branch filings "https://github.com/${{ github.repository }}.git" fl || mkdir -p fl
+          rm -rf fl/.git
+      - uses: actions/download-artifact@v4
+        with:
+          path: new
+          pattern: fl-*
+          merge-multiple: true
+      - name: Publish to branch "filings" (new files over the old ones; one commit, no history)
+        run: |
+          cp -f new/*.json fl/ 2>/dev/null || true
+          cd fl
+          echo "files: $(ls | wc -l)"
+          git init -q -b filings
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "filings $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" filings:filings

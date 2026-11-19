@@ -489,16 +489,34 @@ BANK_NII, BANK_NONII = "us-gaap:InterestIncomeExpenseNet", "us-gaap:NoninterestI
 
 
 def revenue_max(per_tag):
-    """per_tag: list of {end: value}. Max per period end (ends within 10 days are the same period)."""
-    out = {}
-    for d in per_tag:
+    """per_tag: list of {end: value}. Max per period end (ends within 10 days are the same period).
+
+    One definition for the whole series. Taking the largest tag year by year is right when a high-priority tag holds
+    only a component, but it breaks when a company retires a tag: Diageo's older years carry sales including excise
+    duty while the newest 20-F files net sales only, and the max rule then shows a 30% collapse in revenue that never
+    happened. So once the per-year winners are picked, the tag that won the most recent year is carried back over any
+    year whose winner came from a tag that company has since stopped filing."""
+    out, who = {}, {}
+    for i, d in enumerate(per_tag):
         for e, v in d.items():
             if v is None:
                 continue
             k = next((x for x in out if abs(days(x, e)) <= 10), e)
             if out.get(k) is None or v > out[k]:
-                out[k] = v
-    return out
+                out[k], who[k] = v, i
+    forced = set()
+    if not out:
+        return out, forced
+    last = max(out)
+    cur = per_tag[who[last]]                       # the definition the company files today
+    live = {i for i, d in enumerate(per_tag) if any(abs(days(x, last)) <= 10 for x in d)}
+    for e in out:
+        if who[e] in live or e == last:
+            continue                               # that tag is still filed, so the two years are comparable
+        v = nearest(cur, e)
+        if v is not None and v < out[e]:
+            out[e], _ = v, forced.add(e)
+    return out, forced
 
 
 def ttm_tags(facts, tags):
@@ -757,10 +775,12 @@ def build_company(cik, entry, facts):
     alts = [annual_series(facts, [tg], "dur", {})[0] for tg in REV_TOTAL]
     nii, nonii = annual_series(facts, [BANK_NII], "dur", {})[0], annual_series(facts, [BANK_NONII], "dur", {})[0]
     bank = {e: v + nearest(nonii, e) for e, v in nii.items() if nearest(nonii, e) is not None}
-    best = revenue_max(alts)
+    best, restated = revenue_max(alts)
     for e, v in best.items():
         cur = nearest(series["revenue"], e)
-        if cur is None or v > cur * 1.02:
+        # restated: an older year rewritten in the definition the company files today, so it must overwrite the
+        # larger retired figure rather than lose to it
+        if cur is None or v > cur * 1.02 or e in restated:
             k = next((x for x in series["revenue"] if abs(days(x, e)) <= 20), e)
             series["revenue"][k] = v
     # banks: revenue = net interest income + non-interest income (gross interest income is not revenue)
@@ -965,13 +985,13 @@ def build_company(cik, entry, facts):
         q_alts = [quarterly(facts, [tg]) for tg in REV_TOTAL]
         q_nii, q_non = quarterly(facts, [BANK_NII]), quarterly(facts, [BANK_NONII])
         q_bank = {e: v + q_non[e] for e, v in q_nii.items() if v is not None and q_non.get(e) is not None}
-        qbest = revenue_max(q_alts)
+        qbest, q_restated = revenue_max(q_alts)
         for e, v in qbest.items():
             k = next((x for x in qr if abs(days(x, e)) <= 10), None)
             if k is None:
                 if qr and e >= min(qr):
                     qr[e] = v
-            elif qr[k] is None or v > qr[k] * 1.02:
+            elif qr[k] is None or v > qr[k] * 1.02 or e in q_restated:
                 qr[k] = v
         for e, v in q_bank.items():
             k = next((x for x in qr if abs(days(x, e)) <= 10), e)

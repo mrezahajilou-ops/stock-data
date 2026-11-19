@@ -1,0 +1,43 @@
+{
+ "t": "BG",
+ "what": "Bunge buys, ships, stores and processes agricultural commodities. It crushes oilseeds into vegetable oil and meal, refines edible oils, and after merging with Viterra it also has one of the largest grain origination networks in the world.",
+ "customers": "Food manufacturers, animal feed producers, biofuel refiners and commodity buyers worldwide.",
+ "money": [
+  [
+   "Agribusiness",
+   "the large majority",
+   "oilseed processing and grain origination and trading"
+  ],
+  [
+   "Refined and Specialty Oils",
+   "large",
+   "edible oils for food manufacturers and consumers"
+  ],
+  [
+   "Milling and other",
+   "smaller",
+   "wheat and corn milling"
+  ]
+ ],
+ "moat": "Port terminals, crushing plants and elevators placed along the routes crops travel from farm to ship, which lets it earn a margin on volume regardless of price direction.",
+ "rivals": [
+  "Archer-Daniels-Midland|ADM",
+  "Cargill",
+  "Louis Dreyfus",
+  "Wilmar International",
+  "CHS"
+ ],
+ "risks": [
+  "Net margin of about 1% is extremely thin",
+  "Crush margins have fallen as processing capacity expanded worldwide",
+  "Debt of about $18 billion after the Viterra merger",
+  "Biofuel policy changes swing demand for vegetable oil sharply"
+ ],
+ "opportunities": [
+  "Revenue grew about 32% last year as Viterra was consolidated",
+  "Analysts see large upside, with a median target well above the current price",
+  "The merger makes it a genuine global competitor to Cargill and ADM"
+ ],
+ "watch": "Crush margins and synergy delivery from the Viterra merger.",
+ "updated": "2026-11"
+}

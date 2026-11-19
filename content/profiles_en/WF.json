@@ -1,0 +1,42 @@
+{
+ "t": "WF",
+ "what": "Woori Financial Group is one of South Korea's four large financial groups. Woori Bank is its main subsidiary, and it has been adding securities and insurance businesses to catch up with its rivals.",
+ "customers": "South Korean households, small businesses and corporations.",
+ "money": [
+  [
+   "Banking",
+   "the large majority",
+   "Woori Bank deposits, mortgages and corporate lending"
+  ],
+  [
+   "Credit cards and capital",
+   "meaningful",
+   "card and consumer finance"
+  ],
+  [
+   "Securities and insurance",
+   "growing",
+   "recently acquired brokerage and insurance operations"
+  ]
+ ],
+ "moat": "A large Korean deposit base in a market dominated by four groups, though it is the least diversified of the four.",
+ "rivals": [
+  "KB Financial Group|KB",
+  "Shinhan Financial|SHG",
+  "Hana Financial",
+  "Kakao Bank"
+ ],
+ "risks": [
+  "It depends more heavily on banking than its rivals, which makes earnings less diversified",
+  "Korean household debt is very high relative to income",
+  "Property project financing losses have hurt Korean banks",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Analysts see about 27% upside from current levels",
+  "Korean governance reform is pushing banks to raise shareholder returns",
+  "A dividend yield around 4% with growing buybacks"
+ ],
+ "watch": "Credit costs on property project loans and progress in diversifying beyond banking.",
+ "updated": "2026-11"
+}

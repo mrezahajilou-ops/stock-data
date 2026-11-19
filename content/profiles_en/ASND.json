@@ -1,0 +1,37 @@
+{
+ "t": "ASND",
+ "what": "Ascendis Pharma is a Danish biotechnology company. Its technology attaches a medicine to a carrier that releases it slowly, turning daily injections into weekly or monthly ones. Skytrofa for growth hormone deficiency and Yorvipath for hypoparathyroidism are its approved products.",
+ "customers": "Endocrinologists and specialist centres, with treatment paid for by insurers and health systems.",
+ "money": [
+  [
+   "Yorvipath",
+   "growing fastest",
+   "treatment for chronic hypoparathyroidism"
+  ],
+  [
+   "Skytrofa",
+   "meaningful",
+   "weekly growth hormone for children"
+  ]
+ ],
+ "moat": "A drug delivery technology that converts existing medicines into far less frequent dosing, protected by patents and validated by two approvals.",
+ "rivals": [
+  "Novo Nordisk|NVO",
+  "Pfizer|PFE",
+  "Amolyt (AstraZeneca)|AZN",
+  "Calcilytix"
+ ],
+ "risks": [
+  "It still makes an operating loss while launching its products",
+  "Revenue is concentrated in two medicines",
+  "Reimbursement decisions in Europe and the United States determine uptake",
+  "It has raised money repeatedly and may need to again"
+ ],
+ "opportunities": [
+  "Revenue grew about 124% last year and about 149% a year over three years",
+  "Gross margin of 87% means scale converts quickly into profit",
+  "Hypoparathyroidism has had no good treatment, so the patient need is clear"
+ ],
+ "watch": "Yorvipath prescription uptake and the path to sustained profitability.",
+ "updated": "2026-11"
+}

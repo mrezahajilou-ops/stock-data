@@ -1,0 +1,43 @@
+{
+ "t": "RGA",
+ "what": "Reinsurance Group of America reinsures life and health insurance. Primary insurers pass it a share of their mortality, longevity and health risk, and it also provides capital solutions to insurers through structured transactions.",
+ "customers": "Life and health insurers worldwide, plus pension schemes transferring longevity risk.",
+ "money": [
+  [
+   "US and Latin America",
+   "the largest part",
+   "traditional life reinsurance and financial solutions"
+  ],
+  [
+   "Asia Pacific and EMEA",
+   "large, growing",
+   "life and health reinsurance across Asia and Europe"
+  ],
+  [
+   "Canada",
+   "meaningful",
+   "Canadian life reinsurance"
+  ]
+ ],
+ "moat": "Mortality and morbidity data across decades and dozens of markets, which lets it price life risk more accurately than the insurers ceding it.",
+ "rivals": [
+  "Munich Re",
+  "Swiss Re",
+  "Hannover Re",
+  "SCOR",
+  "Pacific Life Re"
+ ],
+ "risks": [
+  "Unexpected mortality events, as in the pandemic, produce large losses",
+  "Net margin of about 5% reflects a reinsurance business with large premium volumes",
+  "Interest rate moves change the value of long-dated liabilities",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year and about 13% a year over three years",
+  "Asian life insurance growth drives structural demand for reinsurance",
+  "Pension longevity transfers are a growing market with few capable counterparties"
+ ],
+ "watch": "Value of new business written and mortality experience against assumptions.",
+ "updated": "2026-11"
+}

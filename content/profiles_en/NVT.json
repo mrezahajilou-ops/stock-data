@@ -1,0 +1,38 @@
+{
+ "t": "NVT",
+ "what": "nVent Electric makes electrical connection and protection products: enclosures that house electrical equipment, electrical fastening systems, and thermal management including liquid cooling for data centres.",
+ "customers": "Data centre builders, industrial plants, utilities, infrastructure contractors and commercial builders.",
+ "money": [
+  [
+   "Systems Protection",
+   "the largest part",
+   "enclosures, cooling and power distribution for electrical equipment"
+  ],
+  [
+   "Electrical Connections",
+   "large",
+   "fastening, grounding and connection systems"
+  ]
+ ],
+ "moat": "Products specified into electrical installations and data centre designs, where approval and compatibility make substitution awkward once a standard is set.",
+ "rivals": [
+  "Hubbell|HUBB",
+  "Eaton|ETN",
+  "Schneider Electric",
+  "Vertiv|VRT",
+  "ABB"
+ ],
+ "risks": [
+  "Debt of about $2.3 billion",
+  "Data centre spending is now a large share of growth, so a pause there would hurt",
+  "Industrial demand outside data centres has been soft",
+  "Return on invested capital of about 9% reflects acquisition goodwill"
+ ],
+ "opportunities": [
+  "Revenue grew about 30% last year and about 19% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Liquid cooling for AI racks is a fast-growing product line where it has a position"
+ ],
+ "watch": "Data centre revenue growth and organic order rates.",
+ "updated": "2026-11"
+}

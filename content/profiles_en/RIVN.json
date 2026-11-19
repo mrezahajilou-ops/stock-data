@@ -1,0 +1,38 @@
+{
+ "t": "RIVN",
+ "what": "Rivian makes electric vehicles. It sells the R1T pickup and R1S sport utility vehicle to consumers, builds electric delivery vans, and is preparing the cheaper R2 model. Volkswagen has invested in a joint venture for its software and electrical architecture.",
+ "customers": "Consumers buying premium electric trucks and sport utility vehicles, and commercial fleets buying delivery vans.",
+ "money": [
+  [
+   "Vehicle sales",
+   "almost all of revenue",
+   "R1T, R1S and commercial vans"
+  ],
+  [
+   "Software and services",
+   "growing",
+   "the Volkswagen joint venture, charging and service"
+  ]
+ ],
+ "moat": "Its own electrical architecture and software, which Volkswagen paid billions to license, in an area where most traditional carmakers have struggled.",
+ "rivals": [
+  "Tesla|TSLA",
+  "Ford|F",
+  "General Motors|GM",
+  "Lucid Group|LCID",
+  "Hyundai"
+ ],
+ "risks": [
+  "It loses a very large amount per vehicle, with an operating margin around negative 67%",
+  "Gross margin of 3% means it barely covers the cost of building each car",
+  "Electric vehicle demand growth slowed when US tax credits were withdrawn",
+  "It will need more capital if losses continue"
+ ],
+ "opportunities": [
+  "Cash of about $5.5 billion roughly matches its debt",
+  "The R2 is aimed at a far larger market at a much lower price",
+  "Analysts see large upside, reflecting the size of the opportunity if R2 succeeds"
+ ],
+ "watch": "Gross margin per vehicle and the R2 production launch.",
+ "updated": "2026-11"
+}

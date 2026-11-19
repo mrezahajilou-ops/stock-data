@@ -1,0 +1,38 @@
+{
+ "t": "TPG",
+ "what": "TPG is a global alternative asset manager with about $303 billion under management. It invests institutional money in private equity buyouts, growth companies, real estate, credit and impact funds.",
+ "customers": "Pension funds, sovereign wealth funds, insurers and wealthy individuals investing in its funds.",
+ "money": [
+  [
+   "Management fees",
+   "the largest part, steady",
+   "fees on committed and invested capital"
+  ],
+  [
+   "Performance allocations",
+   "volatile",
+   "a share of profits when funds exit investments well"
+  ]
+ ],
+ "moat": "A thirty-year investment record across several strategies, which is what allows it to raise successor funds of increasing size from the same institutions.",
+ "rivals": [
+  "Blackstone|BX",
+  "KKR|KKR",
+  "Apollo Global Management|APO",
+  "Carlyle Group|CG",
+  "Ares Management|ARES"
+ ],
+ "risks": [
+  "Performance fees depend on selling investments well, which requires open markets",
+  "Net margin of about 4% looks low because consolidated funds inflate revenue",
+  "Debt of about $2.9 billion",
+  "Fundraising slows when institutions are over-allocated to private assets"
+ ],
+ "opportunities": [
+  "Revenue grew about 33% last year and about 33% a year over three years",
+  "Analysts see about 27% upside from current levels",
+  "Credit and real estate strategies added through acquisition broaden its fundraising base"
+ ],
+ "watch": "Fee-related earnings and new fund commitments raised.",
+ "updated": "2026-11"
+}

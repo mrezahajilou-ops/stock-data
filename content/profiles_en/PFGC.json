@@ -1,0 +1,43 @@
+{
+ "t": "PFGC",
+ "what": "Performance Food Group distributes food. It supplies restaurants and institutions, delivers snacks and beverages to convenience stores through Vistar, and serves the convenience store channel directly.",
+ "customers": "Independent and chain restaurants, convenience stores, vending operators, theatres and institutions.",
+ "money": [
+  [
+   "Foodservice",
+   "the largest part",
+   "food and supplies to restaurants and institutions"
+  ],
+  [
+   "Convenience",
+   "large",
+   "products delivered to convenience stores"
+  ],
+  [
+   "Specialty (Vistar)",
+   "meaningful",
+   "snacks and beverages to vending, theatres and retail"
+  ]
+ ],
+ "moat": "Distribution networks serving three different channels from overlapping warehouses, which spreads fixed costs further than a single-channel distributor can.",
+ "rivals": [
+  "Sysco|SYY",
+  "US Foods|USFD",
+  "McLane (Berkshire)|BRK.B",
+  "Core-Mark",
+  "Gordon Food Service"
+ ],
+ "risks": [
+  "Net margin of about 1% is extremely thin",
+  "Restaurant traffic falls when consumers cut back",
+  "Debt of about $6.1 billion",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year and about 6% a year over three years",
+  "Analysts see about 19% upside from current levels",
+  "Independent restaurant cases, its most profitable business, grow faster than chains"
+ ],
+ "watch": "Independent restaurant case growth and gross profit per case.",
+ "updated": "2026-11"
+}

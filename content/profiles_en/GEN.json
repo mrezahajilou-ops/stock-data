@@ -1,0 +1,38 @@
+{
+ "t": "GEN",
+ "what": "Gen Digital sells consumer security and identity protection software: Norton antivirus, Avast, LifeLock identity theft protection, and after buying MoneyLion, consumer financial products.",
+ "customers": "Individual consumers and households worldwide, paying monthly or annual subscriptions.",
+ "money": [
+  [
+   "Consumer security and identity",
+   "the large majority",
+   "Norton, Avast, Avira and LifeLock subscriptions"
+  ],
+  [
+   "Consumer finance (MoneyLion)",
+   "growing",
+   "financial products and marketplace revenue"
+  ]
+ ],
+ "moat": "Subscriptions that renew automatically with high retention, sold to a base of hundreds of millions of users assembled through decades of acquisitions.",
+ "rivals": [
+  "McAfee",
+  "Microsoft Defender|MSFT",
+  "Bitdefender",
+  "Aura",
+  "Credit Karma (Intuit)|INTU"
+ ],
+ "risks": [
+  "Debt of about $8 billion from acquisitions against little cash",
+  "Free security built into operating systems competes with paid antivirus",
+  "Consumer subscription growth is slow without acquisitions",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 27% last year with a 42% operating margin",
+  "Gross margin of 78% and very high subscription renewal rates",
+  "MoneyLion extends it into consumer finance, a bigger spending category"
+ ],
+ "watch": "Direct customer count and bookings growth excluding acquisitions.",
+ "updated": "2026-11"
+}

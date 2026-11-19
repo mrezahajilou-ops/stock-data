@@ -1,0 +1,33 @@
+{
+ "t": "ESS",
+ "what": "Essex Property Trust owns apartment buildings on the US West Coast, concentrated in Southern California, the San Francisco Bay Area and Seattle. It owns and manages the buildings itself.",
+ "customers": "Apartment renters in West Coast metropolitan areas, typically on one-year leases.",
+ "money": [
+  [
+   "Rental income",
+   "almost all of revenue",
+   "apartment rents and related fees"
+  ]
+ ],
+ "moat": "Buildings in coastal markets where land is scarce and planning rules are restrictive, so very little new supply is added even when rents rise.",
+ "rivals": [
+  "AvalonBay Communities|AVB",
+  "UDR|UDR",
+  "Equity Residential",
+  "Camden Property Trust|CPT",
+  "Independence Realty|IRT"
+ ],
+ "risks": [
+  "Debt of about $6.4 billion against almost no cash",
+  "West Coast technology employment drives demand and has been uneven",
+  "Rent control and tenant protection rules in California limit increases",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Operating margin of 48% and net margin of 35%",
+  "Almost no new apartment supply is under construction in its markets",
+  "A dividend yield near 4% raised every year for three decades"
+ ],
+ "watch": "Same-property revenue growth and occupancy on the West Coast.",
+ "updated": "2026-11"
+}

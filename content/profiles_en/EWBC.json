@@ -1,0 +1,37 @@
+{
+ "t": "EWBC",
+ "what": "East West Bancorp is a US bank focused on serving businesses and individuals connecting the American and Chinese economies. It has branches in California, New York, Texas and greater China.",
+ "customers": "Chinese-American households and businesses, companies trading between the US and Asia, and commercial borrowers in its markets.",
+ "money": [
+  [
+   "Commercial banking",
+   "the largest part",
+   "commercial and industrial lending, commercial property and trade finance"
+  ],
+  [
+   "Consumer and business banking",
+   "large",
+   "deposits, mortgages and small business lending"
+  ]
+ ],
+ "moat": "A cross-border niche that large banks find awkward and small banks cannot staff, with deposit relationships from a community that rarely moves banks.",
+ "rivals": [
+  "Cathay General Bancorp|CATY",
+  "Western Alliance|WAL",
+  "Zions Bancorporation|ZION",
+  "HSBC|HSBC"
+ ],
+ "risks": [
+  "US-China tensions could disrupt the cross-border business that defines it",
+  "Commercial property lending is a watched exposure",
+  "Californian commercial property values have fallen",
+  "Concentration in one customer community is a risk as well as an advantage"
+ ],
+ "opportunities": [
+  "Net margin of 45%, among the highest of any US bank",
+  "Revenue grew about 12% last year",
+  "Analysts see about 21% upside from current levels"
+ ],
+ "watch": "Deposit growth and commercial property credit metrics.",
+ "updated": "2026-11"
+}

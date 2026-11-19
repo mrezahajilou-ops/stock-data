@@ -1,0 +1,43 @@
+{
+ "t": "NDSN",
+ "what": "Nordson makes precision dispensing equipment: the systems that apply exact amounts of adhesive, sealant, coating or solder in manufacturing, from packaging lines to electronics assembly, plus medical fluid components.",
+ "customers": "Packaging and consumer goods manufacturers, electronics assemblers, medical device makers and industrial producers.",
+ "money": [
+  [
+   "Industrial Precision Solutions",
+   "the larger part",
+   "adhesive dispensing for packaging, nonwovens and industrial coating"
+  ],
+  [
+   "Medical and Fluid Solutions",
+   "large, highest margin",
+   "medical tubing, balloons and fluid components"
+  ],
+  [
+   "Advanced Technology Solutions",
+   "meaningful",
+   "electronics dispensing, test and inspection"
+  ]
+ ],
+ "moat": "Equipment that runs for decades and consumes its own nozzles, filters and parts, so the installed base generates recurring revenue at high margins.",
+ "rivals": [
+  "Graco|GGG",
+  "Illinois Tool Works|ITW",
+  "Dover|DOV",
+  "Atlas Copco",
+  "Hillenbrand|HI"
+ ],
+ "risks": [
+  "Industrial capital spending has been soft",
+  "Revenue grew only about 4% last year",
+  "Debt of about $1.8 billion against very little cash",
+  "Electronics dispensing demand is cyclical"
+ ],
+ "opportunities": [
+  "Operating margin of 25% with a 55% gross margin",
+  "Medical components grow faster and more steadily than industrial equipment",
+  "Parts and consumables are a large share of revenue and recur automatically"
+ ],
+ "watch": "Organic order growth and the medical segment's revenue share.",
+ "updated": "2026-11"
+}

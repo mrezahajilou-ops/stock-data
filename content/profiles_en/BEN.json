@@ -1,0 +1,38 @@
+{
+ "t": "BEN",
+ "what": "Franklin Templeton manages money. It runs mutual funds, exchange-traded funds and institutional portfolios across equities, bonds and alternatives, and has bought several specialist managers including Western Asset and Legg Mason.",
+ "customers": "Individual investors through advisers, retirement plans, and institutional clients worldwide.",
+ "money": [
+  [
+   "Investment management fees",
+   "the large majority",
+   "fees on assets under management"
+  ],
+  [
+   "Sales, distribution and shareholder servicing",
+   "meaningful",
+   "distribution fees"
+  ]
+ ],
+ "moat": "A broad set of specialist investment firms under one roof, with distribution relationships across advisers and institutions built over decades.",
+ "rivals": [
+  "BlackRock|BLK",
+  "T. Rowe Price|TROW",
+  "Invesco|IVZ",
+  "Amundi",
+  "Vanguard"
+ ],
+ "risks": [
+  "Investigations and outflows at Western Asset cost it a large amount of fixed income assets",
+  "Money keeps moving from active funds to index funds",
+  "Return on invested capital of about 6% reflects acquisition goodwill",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "A dividend yield near 4% with cash exceeding debt",
+  "Alternative and private market strategies grow faster and charge higher fees"
+ ],
+ "watch": "Net client flows excluding Western Asset, and the average fee rate.",
+ "updated": "2026-11"
+}

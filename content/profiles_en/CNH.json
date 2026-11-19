@@ -1,0 +1,43 @@
+{
+ "t": "CNH",
+ "what": "CNH Industrial makes agricultural and construction machinery under the Case IH, New Holland and Case brands: tractors, combine harvesters, excavators and loaders, plus a finance arm that lends to buyers.",
+ "customers": "Farmers, agricultural contractors and construction companies worldwide, mostly through dealers.",
+ "money": [
+  [
+   "Agriculture",
+   "the large majority",
+   "tractors, combines, planters and precision farming technology"
+  ],
+  [
+   "Construction",
+   "meaningful",
+   "excavators, loaders and compaction equipment"
+  ],
+  [
+   "Financial Services",
+   "smaller",
+   "equipment financing for buyers and dealers"
+  ]
+ ],
+ "moat": "Dealer networks and brands farmers have used for generations, with precision farming technology that keeps the machines connected to its software.",
+ "rivals": [
+  "Deere|DE",
+  "AGCO|AGCO",
+  "Kubota",
+  "Caterpillar|CAT",
+  "Claas"
+ ],
+ "risks": [
+  "Farm equipment demand has fallen sharply with crop prices",
+  "Revenue fell about 9% last year and about 8% a year over three years",
+  "Dealer inventories had to be reduced, which cut production further",
+  "Operating margin fell to about 3%"
+ ],
+ "opportunities": [
+  "Analysts see about 38% upside from current levels",
+  "Dealer inventories are now much closer to normal, which should let production recover",
+  "Precision farming technology raises content and recurring revenue per machine"
+ ],
+ "watch": "Dealer inventory levels and agricultural equipment order rates.",
+ "updated": "2026-11"
+}

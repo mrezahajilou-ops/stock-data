@@ -1,0 +1,38 @@
+{
+ "t": "SSNC",
+ "what": "SS&C Technologies provides software and outsourced operations to financial firms. It administers hedge funds and private equity funds, acts as transfer agent for mutual funds, and sells portfolio and accounting software.",
+ "customers": "Hedge funds, private equity firms, mutual fund companies, insurers, banks and healthcare payers.",
+ "money": [
+  [
+   "Software-enabled services",
+   "the large majority",
+   "fund administration, transfer agency and outsourced operations"
+  ],
+  [
+   "Software licences and maintenance",
+   "meaningful",
+   "portfolio accounting and management software"
+  ]
+ ],
+ "moat": "Running the books and records of funds, where moving administrators means migrating years of positions and valuations under regulatory scrutiny.",
+ "rivals": [
+  "State Street|STT",
+  "BNY|BK",
+  "Broadridge|BR",
+  "Citco",
+  "FIS|FIS"
+ ],
+ "risks": [
+  "Debt of about $7.7 billion from a long series of acquisitions",
+  "Growth of about 7% is steady rather than fast",
+  "Fund closures reduce administration revenue",
+  "Integration of many acquisitions leaves significant goodwill"
+ ],
+ "opportunities": [
+  "Analysts see about 31% upside from current levels",
+  "Operating margin of 23% with revenue that renews at very high rates",
+  "Private markets growth increases demand for fund administration"
+ ],
+ "watch": "Organic revenue growth and the debt-to-EBITDA ratio.",
+ "updated": "2026-11"
+}

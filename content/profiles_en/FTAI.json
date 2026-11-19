@@ -1,0 +1,38 @@
+{
+ "t": "FTAI",
+ "what": "FTAI Aviation leases jet engines and repairs them. It buys used CFM56 and V2500 engines, the two most common engine families on narrowbody aircraft, leases them to airlines, and sells refurbished modules and parts.",
+ "customers": "Airlines and maintenance providers needing engines or engine modules, especially for Boeing 737 and Airbus A320 fleets.",
+ "money": [
+  [
+   "Aerospace Products",
+   "the larger part, higher margin",
+   "refurbished engine modules, parts and repairs"
+  ],
+  [
+   "Leasing",
+   "large",
+   "engine and aircraft leasing"
+  ]
+ ],
+ "moat": "A module-swap model that returns an engine to service far faster and cheaper than a full overhaul, in engine families where the installed base runs into the tens of thousands.",
+ "rivals": [
+  "GE Aerospace|GE",
+  "Safran",
+  "AerCap|AER",
+  "Willis Lease Finance|WLFC",
+  "Standard Aero|SARO"
+ ],
+ "risks": [
+  "Debt of about $3.5 billion",
+  "A short-seller report questioned its accounting, which hit the shares",
+  "Engine values depend on how long airlines keep older aircraft flying",
+  "It pays a modest dividend relative to its leverage"
+ ],
+ "opportunities": [
+  "Revenue grew about 45% last year and about 52% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "New engine delivery delays keep older engines in service longer, raising demand for its parts"
+ ],
+ "watch": "Aerospace Products revenue and margin, and cash generation against debt.",
+ "updated": "2026-11"
+}

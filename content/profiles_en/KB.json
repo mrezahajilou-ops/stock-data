@@ -1,0 +1,42 @@
+{
+ "t": "KB",
+ "what": "KB Financial Group is one of South Korea's largest financial groups. It owns Kookmin Bank, the country's biggest retail bank by customers, plus securities, insurance and card businesses.",
+ "customers": "South Korean households, small businesses and corporations, plus insurance and securities clients.",
+ "money": [
+  [
+   "Banking",
+   "the largest part",
+   "Kookmin Bank deposits, mortgages and corporate lending"
+  ],
+  [
+   "Securities and insurance",
+   "large",
+   "brokerage, asset management and life and general insurance"
+  ],
+  [
+   "Credit cards",
+   "meaningful",
+   "KB Kookmin Card"
+  ]
+ ],
+ "moat": "The largest retail customer base in Korea, which provides cheap deposits in a market dominated by four large groups.",
+ "rivals": [
+  "Shinhan Financial|SHG",
+  "Hana Financial",
+  "Woori Financial|WF",
+  "Kakao Bank"
+ ],
+ "risks": [
+  "Korean household debt is among the highest in the world relative to income",
+  "Property project financing losses have hurt Korean banks",
+  "Regulators have intervened in bank lending and pricing",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Net margin of 27% with a dividend yield near 3%",
+  "Korean government reforms are pushing companies to raise shareholder returns",
+  "Analysts see large upside from the current price"
+ ],
+ "watch": "Credit costs on property project loans and the capital return policy.",
+ "updated": "2026-11"
+}

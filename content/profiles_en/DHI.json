@@ -1,0 +1,43 @@
+{
+ "t": "DHI",
+ "what": "D.R. Horton is the largest homebuilder in the United States by number of homes sold. It builds in 128 markets across 38 states, mostly entry-level and first move-up homes, and also owns a mortgage and title business and a majority of the rental company Forestar.",
+ "customers": "First-time and move-up home buyers across the southern and western United States.",
+ "money": [
+  [
+   "Homebuilding",
+   "almost all of revenue",
+   "homes sold, weighted to entry-level price points"
+  ],
+  [
+   "Financial services",
+   "smaller, high margin",
+   "mortgage origination and title insurance for its own buyers"
+  ],
+  [
+   "Rental and Forestar",
+   "meaningful",
+   "single-family rental communities and residential land development"
+  ]
+ ],
+ "moat": "Scale that lowers its cost per home below smaller builders, and land positions bought through options rather than owned outright, which keeps capital light.",
+ "rivals": [
+  "Lennar|LEN",
+  "PulteGroup|PHM",
+  "NVR|NVR",
+  "Toll Brothers|TOL",
+  "Meritage Homes|MTH"
+ ],
+ "risks": [
+  "High mortgage rates have slowed sales and forced price incentives",
+  "Revenue fell about 4% last year",
+  "Buying down mortgage rates for buyers eats into gross margin",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Return on invested capital of 10% with a strong balance sheet",
+  "It builds the cheapest homes in a market with a long-term shortage of them",
+  "Lower mortgage rates would quickly revive demand"
+ ],
+ "watch": "Net sales orders and the gross margin after incentives.",
+ "updated": "2026-11"
+}

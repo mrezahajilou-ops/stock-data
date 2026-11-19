@@ -1,0 +1,38 @@
+{
+ "t": "STM",
+ "what": "STMicroelectronics makes chips for cars, industrial equipment and consumer devices: microcontrollers, power semiconductors including silicon carbide, sensors and analogue chips. It is European, with plants in France and Italy.",
+ "customers": "Carmakers and their suppliers, industrial equipment manufacturers, and consumer electronics companies including smartphone makers.",
+ "money": [
+  [
+   "Analog, Power and Discrete, MEMS and Sensors",
+   "the larger part",
+   "power chips, silicon carbide and sensors"
+  ],
+  [
+   "Microcontrollers, Digital ICs and RF",
+   "large",
+   "microcontrollers for cars and industry, plus radio frequency chips"
+  ]
+ ],
+ "moat": "Designed-in positions in car platforms and industrial equipment that last for the product's life, plus one of the few Western silicon carbide manufacturing bases.",
+ "rivals": [
+  "Infineon Technologies",
+  "NXP Semiconductors|NXPI",
+  "Texas Instruments|TXN",
+  "onsemi|ON",
+  "Renesas"
+ ],
+ "risks": [
+  "Revenue fell about 11% last year and about 10% a year over three years",
+  "Operating margin collapsed to about 1% as factories ran below capacity",
+  "European car production has been falling",
+  "Chinese silicon carbide competitors are driving prices down"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $5 billion exceeds its debt, so it can ride out the downturn",
+  "Industrial and automotive chip inventories have largely been worked off"
+ ],
+ "watch": "Quarterly revenue against the bottom of the cycle, and factory utilisation.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,47 @@
+{
+ "t": "CBOE",
+ "what": "Cboe Global Markets runs options, futures and stock exchanges. Its most valuable products are options on the S&P 500 index and the VIX volatility index, which it owns and which trade nowhere else.",
+ "customers": "Options and futures traders, market makers, brokers, asset managers and data subscribers.",
+ "money": [
+  [
+   "Options",
+   "the largest part",
+   "S&P 500 index options, VIX products and equity options"
+  ],
+  [
+   "North American Equities",
+   "large",
+   "stock exchanges and off-exchange trading"
+  ],
+  [
+   "Europe and Asia Pacific, Futures, FX",
+   "meaningful",
+   "international exchanges and currency trading"
+  ],
+  [
+   "Data and Access Solutions",
+   "growing, high margin",
+   "market data and connectivity subscriptions"
+  ]
+ ],
+ "moat": "Exclusive licences to trade options on the S&P 500 and ownership of the VIX, which cannot be replicated by a competing exchange.",
+ "rivals": [
+  "CME Group|CME",
+  "Intercontinental Exchange|ICE",
+  "Nasdaq|NDAQ",
+  "MIAX"
+ ],
+ "risks": [
+  "Trading volumes fall in calm markets",
+  "Analyst targets imply the shares are already fully valued",
+  "Index licence agreements must be renewed",
+  "Competition for equity trading market share is intense"
+ ],
+ "opportunities": [
+  "Revenue grew about 15% last year with a 31% operating margin",
+  "Retail participation in index options has grown sharply, including same-day expiries",
+  "Data and access subscriptions grow regardless of trading volumes"
+ ],
+ "watch": "Index options volumes and data and access revenue growth.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "RKT",
+ "what": "Rocket Companies is the largest mortgage lender in the United States. It originates and services home loans, and after buying Mr. Cooper and Redfin it now also runs a large servicing book and a property search portal.",
+ "customers": "American homebuyers and people refinancing, plus investors who buy the loans it originates.",
+ "money": [
+  [
+   "Mortgage origination",
+   "large",
+   "gain on sale of home loans"
+  ],
+  [
+   "Servicing",
+   "growing after the Mr. Cooper purchase",
+   "fees for collecting payments on mortgages"
+  ],
+  [
+   "Real estate and title",
+   "smaller",
+   "Redfin property search, title and closing services"
+  ]
+ ],
+ "moat": "A brand that American borrowers recognise and a technology platform that closes loans faster than branch-based lenders, now paired with a servicing book that feeds it refinancing customers.",
+ "rivals": [
+  "UWM Holdings|UWMC",
+  "PennyMac|PFSI",
+  "loanDepot|LDI",
+  "Wells Fargo|WFC",
+  "Zillow|Z"
+ ],
+ "risks": [
+  "Mortgage volumes collapse when rates rise and surge when they fall, so earnings are very cyclical",
+  "Debt of about $11 billion",
+  "Integrating Mr. Cooper and Redfin at the same time is a large undertaking",
+  "It pays no dividend and the founder controls voting power"
+ ],
+ "opportunities": [
+  "Revenue grew about 31% last year",
+  "The servicing book provides fee income that rises when origination falls, balancing the cycle",
+  "A fall in mortgage rates would set off a refinancing wave it is built to capture"
+ ],
+ "watch": "Origination volume and market share, and servicing portfolio size.",
+ "updated": "2026-11"
+}

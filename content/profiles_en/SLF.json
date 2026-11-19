@@ -1,0 +1,47 @@
+{
+ "t": "SLF",
+ "what": "Sun Life Financial is a Canadian insurer and asset manager. It sells life, health and group benefits insurance in Canada and the United States, manages money through MFS and SLC Management, and has a large and growing business across Asia.",
+ "customers": "Canadian and US individuals and employers, institutional investors in its funds, and insurance customers across Asia.",
+ "money": [
+  [
+   "Asset Management",
+   "large",
+   "MFS mutual funds and SLC alternative asset management"
+  ],
+  [
+   "Canada",
+   "large",
+   "individual and group insurance and wealth"
+  ],
+  [
+   "United States",
+   "large",
+   "group benefits and dental, including Medicaid dental"
+  ],
+  [
+   "Asia",
+   "growing",
+   "insurance in Hong Kong, the Philippines, India and Vietnam"
+  ]
+ ],
+ "moat": "The group benefits business in Canada and the US, where employer relationships renew year after year, alongside asset management fees that need no insurance capital.",
+ "rivals": [
+  "Manulife Financial|MFC",
+  "Great-West Lifeco",
+  "MetLife|MET",
+  "Prudential Financial|PRU"
+ ],
+ "risks": [
+  "US dental and group benefits claims have run higher than expected",
+  "MFS has seen persistent fund outflows",
+  "Insurance accounting makes reported revenue volatile",
+  "Only one analyst covers it in this data and the target implies downside"
+ ],
+ "opportunities": [
+  "Revenue grew about 13% last year",
+  "Asian insurance sales grow faster than in developed markets",
+  "A dividend yield near 4% with a strong capital position"
+ ],
+ "watch": "US group benefits claims experience and MFS net flows.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "WDS",
+ "what": "Woodside Energy is Australia's largest independent oil and gas producer. Most of its value is in liquefied natural gas, shipped from Western Australia to Asian buyers, and it is building the Scarborough and Louisiana LNG projects.",
+ "customers": "Japanese, Korean, Chinese and other Asian utilities and gas buyers under long-term contracts, plus oil buyers.",
+ "money": [
+  [
+   "Liquefied natural gas",
+   "the largest part",
+   "North West Shelf, Pluto and Scarborough"
+  ],
+  [
+   "Oil and condensate",
+   "large",
+   "Australian and Gulf of Mexico production"
+  ],
+  [
+   "Gas marketing and trading",
+   "smaller",
+   "third-party volumes and spot cargoes"
+  ]
+ ],
+ "moat": "LNG plants in Western Australia with decades of resource behind them, sited closer to Asian buyers than Gulf Coast or Qatari supply.",
+ "rivals": [
+  "Santos",
+  "Chevron|CVX",
+  "Shell|SHEL",
+  "Cheniere Energy|LNG",
+  "QatarEnergy"
+ ],
+ "risks": [
+  "Debt of about $14 billion while two very large projects are under construction",
+  "Asian LNG prices drive earnings",
+  "Australian environmental approvals have delayed projects before",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Operating margin of 30% with a dividend yield near 6%",
+  "Scarborough and Louisiana LNG add substantial production this decade",
+  "Long-term contracts with Asian buyers provide revenue visibility"
+ ],
+ "watch": "Project construction against budget and schedule, and realised LNG prices.",
+ "updated": "2026-11"
+}

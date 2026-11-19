@@ -1,0 +1,41 @@
+{
+ "t": "CHT",
+ "what": "Chunghwa Telecom is Taiwan's largest telecom operator. It provides mobile service, fixed-line and fibre broadband, pay television and enterprise services, and the Taiwanese government remains its largest shareholder.",
+ "customers": "Taiwanese households and businesses, plus international carriers and enterprise clients.",
+ "money": [
+  [
+   "Consumer",
+   "the largest part",
+   "mobile, broadband, Wi-Fi and television"
+  ],
+  [
+   "Enterprise",
+   "large",
+   "corporate connectivity, cloud and information services"
+  ],
+  [
+   "International",
+   "smaller",
+   "wholesale and cross-border services"
+  ]
+ ],
+ "moat": "The incumbent network across Taiwan, with the deepest fibre coverage and the largest mobile subscriber base in a market of only a few operators.",
+ "rivals": [
+  "Taiwan Mobile",
+  "Far EasTone",
+  "Asia Pacific Telecom"
+ ],
+ "risks": [
+  "Taiwan's population is shrinking, limiting subscriber growth",
+  "Government ownership can mean pricing decisions with a public policy element",
+  "Revenue has fallen about 3% a year over three years",
+  "Geopolitical tension around Taiwan affects foreign investor appetite"
+ ],
+ "opportunities": [
+  "A dividend yield above 3% paid consistently from stable cash flow",
+  "Very low debt of about $1.2 billion",
+  "Enterprise cloud and information services grow faster than consumer telecom"
+ ],
+ "watch": "Mobile service revenue per user and enterprise segment growth.",
+ "updated": "2026-11"
+}

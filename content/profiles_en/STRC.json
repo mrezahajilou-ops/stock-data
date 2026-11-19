@@ -1,0 +1,37 @@
+{
+ "t": "STRC",
+ "what": "This is a preferred share issued by Strategy, the company formerly called MicroStrategy, which holds bitcoin as its main asset and also sells enterprise analytics software. Preferred shares rank ahead of ordinary shares for dividends and in a wind-up, and pay a fixed rate rather than sharing in the upside.",
+ "customers": "Enterprise software customers buy the analytics products; the preferred shares are sold to income investors who want a high fixed payment backed by the company's bitcoin.",
+ "money": [
+  [
+   "Software",
+   "almost all reported revenue",
+   "enterprise analytics licences and cloud subscriptions"
+  ],
+  [
+   "Bitcoin holdings",
+   "the main asset, not revenue",
+   "bitcoin bought with money raised from shares and securities like this one"
+  ]
+ ],
+ "moat": "Strategy's advantage is access to capital markets at a scale no other bitcoin holder has; the software business is small and the bitcoin itself is not scarce to anyone else.",
+ "rivals": [
+  "Bitcoin exchange-traded funds",
+  "Marathon Digital|MARA",
+  "Riot Platforms|RIOT",
+  "Coinbase|COIN"
+ ],
+ "risks": [
+  "The dividend depends on the company being able to keep raising money or sell bitcoin",
+  "Large reported losses come from writing bitcoin down when its price falls",
+  "Debt of about $7 billion ranks ahead of these preferred shares",
+  "A falling bitcoin price erodes the asset cover behind the payment"
+ ],
+ "opportunities": [
+  "A double-digit fixed dividend rate, far above ordinary company payouts",
+  "Preferred holders are paid before ordinary shareholders",
+  "Bitcoin holdings currently exceed the debt and preferred obligations in value"
+ ],
+ "watch": "Bitcoin price against the company's debt and preferred obligations, and whether the dividend keeps being declared.",
+ "updated": "2026-11"
+}

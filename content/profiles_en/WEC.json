@@ -1,0 +1,42 @@
+{
+ "t": "WEC",
+ "what": "WEC Energy Group is a regulated utility serving Wisconsin, Illinois, Michigan and Minnesota. It delivers electricity and natural gas to around 4.7 million customers and owns a share of American Transmission Company.",
+ "customers": "Households, businesses and industrial users across four Midwestern states.",
+ "money": [
+  [
+   "Wisconsin segment",
+   "the largest part",
+   "electricity and gas in Wisconsin"
+  ],
+  [
+   "Illinois and other states",
+   "large",
+   "gas distribution in Illinois and neighbouring states"
+  ],
+  [
+   "Electric Transmission and non-utility",
+   "smaller",
+   "transmission stakes and renewable generation"
+  ]
+ ],
+ "moat": "Regulated monopolies in states where it has operated for over a century, with returns set by state commissions.",
+ "rivals": [
+  "Xcel Energy|XEL",
+  "Alliant Energy|LNT",
+  "Ameren|AEE",
+  "CMS Energy|CMS"
+ ],
+ "risks": [
+  "Debt of about $21 billion against almost no cash",
+  "Wisconsin and Illinois regulators set the returns it may earn",
+  "Heavy capital spending requires continuous financing",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year",
+  "A large data centre development in Wisconsin raises long-term electricity demand",
+  "Operating margin of 23% with a dividend raised for two decades"
+ ],
+ "watch": "Data centre load growth in Wisconsin and rate case outcomes.",
+ "updated": "2026-11"
+}

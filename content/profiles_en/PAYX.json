@@ -1,0 +1,43 @@
+{
+ "t": "PAYX",
+ "what": "Paychex handles payroll and human resources for small and medium businesses. It processes pay, files payroll taxes, administers benefits and insurance, and since buying Paycor serves larger companies too, with about 840,000 customers.",
+ "customers": "Small and medium-sized businesses across the United States and parts of Europe.",
+ "money": [
+  [
+   "Management Solutions",
+   "the largest part",
+   "payroll processing, HR software and benefits administration"
+  ],
+  [
+   "PEO and Insurance Solutions",
+   "large",
+   "co-employment services and insurance for small firms"
+  ],
+  [
+   "Interest on client funds",
+   "smaller, high margin",
+   "interest earned on payroll money held before it is paid out"
+  ]
+ ],
+ "moat": "Payroll is the last thing a business changes supplier for, because errors mean unpaid staff and tax penalties, so retention is very high.",
+ "rivals": [
+  "ADP|ADP",
+  "Paycom|PAYC",
+  "Paylocity|PCTY",
+  "Gusto",
+  "TriNet|TNET"
+ ],
+ "risks": [
+  "Small business employment levels drive the number of employees it is paid to process",
+  "Falling interest rates reduce the income it earns on client money held",
+  "Integrating Paycor is a large undertaking",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 17% last year with a 39% operating margin",
+  "Return on invested capital of 23% with a dividend yield above 4%",
+  "Paycor extends it into the larger-company market where ADP has been strongest"
+ ],
+ "watch": "Client employee counts and revenue retention.",
+ "updated": "2026-11"
+}

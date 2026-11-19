@@ -1,0 +1,37 @@
+{
+ "t": "MSTR",
+ "what": "Strategy, formerly MicroStrategy, holds bitcoin as its main asset. It issues shares and fixed-income securities and uses the proceeds to buy more bitcoin, and it still sells the enterprise analytics software the company was originally built on.",
+ "customers": "Enterprise software customers for the analytics products; investors are the real audience for the bitcoin strategy.",
+ "money": [
+  [
+   "Software",
+   "almost all reported revenue",
+   "enterprise analytics licences and cloud subscriptions"
+  ],
+  [
+   "Bitcoin holdings",
+   "the main asset, not revenue",
+   "bitcoin bought with money raised in capital markets"
+  ]
+ ],
+ "moat": "No conventional moat: the software business is small and anyone can buy bitcoin. Its real advantage is the ability to raise capital at a scale no other bitcoin holder has.",
+ "rivals": [
+  "Bitcoin exchange-traded funds",
+  "Marathon Digital|MARA",
+  "Riot Platforms|RIOT",
+  "Coinbase|COIN"
+ ],
+ "risks": [
+  "The shares move with bitcoin, amplified by borrowed money in both directions",
+  "Large reported losses come from writing bitcoin down when its price falls",
+  "Debt of about $7 billion plus preferred dividends must be serviced whatever bitcoin does",
+  "If the shares fall below the value of the bitcoin per share, issuing new shares destroys value"
+ ],
+ "opportunities": [
+  "Analysts see large upside, though the estimate is really a view on bitcoin",
+  "Issuing shares above the value of bitcoin per share raises bitcoin per share",
+  "It holds far more bitcoin than any other listed company"
+ ],
+ "watch": "Bitcoin per share, total debt and preferred obligations, and the premium to the value of its holdings.",
+ "updated": "2026-11"
+}

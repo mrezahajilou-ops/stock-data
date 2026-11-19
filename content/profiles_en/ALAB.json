@@ -1,0 +1,32 @@
+{
+ "t": "ALAB",
+ "what": "Astera Labs makes connectivity chips for AI data centres: the retimers, switches and controllers that keep high-speed signals intact between processors, accelerators and memory inside a server rack.",
+ "customers": "Cloud and AI infrastructure operators, server manufacturers and chip companies building AI systems.",
+ "money": [
+  [
+   "Semiconductor products and software",
+   "almost all of revenue",
+   "PCIe and Ethernet connectivity chips, modules and the software that manages them"
+  ]
+ ],
+ "moat": "Designed into AI server platforms years ahead, with diagnostic software that data centre operators rely on and would have to replace alongside the chips.",
+ "rivals": [
+  "Broadcom|AVGO",
+  "Marvell Technology|MRVL",
+  "Credo Technology|CRDO",
+  "Montage Technology"
+ ],
+ "risks": [
+  "Revenue depends on a handful of very large cloud customers",
+  "Broadcom and Marvell can bundle connectivity with their larger chip sales",
+  "A slowdown in AI server building would hit it immediately",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 115% last year and about 120% a year over three years",
+  "Gross margin of 76% with cash of $1.4 billion and almost no debt",
+  "Each new AI rack generation needs more connectivity content than the last"
+ ],
+ "watch": "Quarterly revenue guidance and customer concentration.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "SYY",
+ "what": "Sysco is the largest food distributor in the world. It buys food and supplies and delivers them to restaurants, hospitals, schools, hotels and other places where meals are prepared away from home.",
+ "customers": "Independent restaurants above all, plus chains, healthcare and education caterers, and hotels.",
+ "money": [
+  [
+   "US Foodservice Operations",
+   "the largest part",
+   "food distribution across the United States"
+  ],
+  [
+   "International Foodservice",
+   "large",
+   "Canada, the United Kingdom, France and Latin America"
+  ],
+  [
+   "SYGMA and other",
+   "meaningful",
+   "distribution to large restaurant chains"
+  ]
+ ],
+ "moat": "A distribution network of warehouses and trucks reaching hundreds of thousands of kitchens, where delivery reliability matters more than price for independent restaurants.",
+ "rivals": [
+  "US Foods|USFD",
+  "Performance Food Group|PFGC",
+  "McLane (Berkshire)|BRK.B",
+  "Gordon Food Service"
+ ],
+ "risks": [
+  "Net margin of about 2% is thin, as is normal in distribution",
+  "Restaurant traffic falls when consumers cut back on eating out",
+  "Debt of about $15 billion",
+  "Food cost inflation and deflation both disrupt its pricing"
+ ],
+ "opportunities": [
+  "Return on invested capital of 14% is good for a distributor",
+  "Independent restaurants, its most profitable customers, are growing as a share of cases",
+  "Analysts see about 18% upside from current levels"
+ ],
+ "watch": "US case volume growth, especially to local independent restaurants.",
+ "updated": "2026-11"
+}

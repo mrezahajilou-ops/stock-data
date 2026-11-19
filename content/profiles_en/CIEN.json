@@ -1,0 +1,38 @@
+{
+ "t": "CIEN",
+ "what": "Ciena makes optical networking equipment: the systems that carry data as light over long distances, plus the routing and software that manage those networks. Cloud and AI operators have become a larger share of its customers than telecom carriers.",
+ "customers": "Cloud providers and data centre operators, telecom carriers, cable companies and governments.",
+ "money": [
+  [
+   "Networking Platforms",
+   "the largest part",
+   "optical transport, coherent optics and routing"
+  ],
+  [
+   "Platform Software and Services",
+   "large",
+   "network management software, installation and support"
+  ]
+ ],
+ "moat": "Coherent optical technology developed in-house, where a handful of companies in the world can build the chips that pack more data into a single fibre.",
+ "rivals": [
+  "Nokia|NOK",
+  "Infinera (Nokia)",
+  "Huawei",
+  "Cisco|CSCO",
+  "Lumentum|LITE"
+ ],
+ "risks": [
+  "Operating margin of about 4% is thin for a technology company",
+  "Telecom carrier spending is cyclical and has been weak",
+  "A few very large cloud customers account for a growing share of revenue",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year",
+  "Analysts see large upside, with a median target well above the current price",
+  "AI data centres connected across sites need exactly the long-haul optical capacity it sells"
+ ],
+ "watch": "Orders from cloud customers and gross margin as the mix shifts.",
+ "updated": "2026-11"
+}

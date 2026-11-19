@@ -1,0 +1,48 @@
+{
+ "t": "GEHC",
+ "what": "GE HealthCare makes medical imaging equipment: MRI, CT and ultrasound scanners, X-ray systems, patient monitors, and the contrast agents injected before scans. It was spun out of General Electric in 2023.",
+ "customers": "Hospitals, imaging centres and health systems worldwide, plus pharmaceutical companies using its diagnostic agents.",
+ "money": [
+  [
+   "Imaging",
+   "the largest part",
+   "MRI, CT, X-ray and molecular imaging systems"
+  ],
+  [
+   "Advanced Visualization Solutions",
+   "large",
+   "ultrasound and image-guided therapy"
+  ],
+  [
+   "Patient Care Solutions",
+   "meaningful",
+   "monitors, anaesthesia and infant care"
+  ],
+  [
+   "Pharmaceutical Diagnostics",
+   "meaningful, high margin",
+   "contrast media and radiopharmaceuticals"
+  ]
+ ],
+ "moat": "An installed base of scanners in hospitals worldwide that generates service contracts and replacement sales for decades, plus contrast agent manufacturing that few can match.",
+ "rivals": [
+  "Siemens Healthineers",
+  "Philips|PHG",
+  "Canon Medical",
+  "Mindray",
+  "Hologic|HOLX"
+ ],
+ "risks": [
+  "Chinese hospital purchasing has been weak and government procurement rules favour local suppliers",
+  "Debt of about $10 billion from the spin-off",
+  "Tariffs raise the cost of equipment built across borders",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Pharmaceutical diagnostics is a high-margin business with new Alzheimer's imaging agents",
+  "Service contracts on the installed base provide recurring revenue",
+  "Hospitals are replacing scanners installed a decade or more ago"
+ ],
+ "watch": "Order growth, especially in China, and pharmaceutical diagnostics revenue.",
+ "updated": "2026-11"
+}

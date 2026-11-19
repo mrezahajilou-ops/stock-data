@@ -1,0 +1,37 @@
+{
+ "t": "FIX",
+ "what": "Comfort Systems USA installs and services the mechanical, electrical and plumbing systems inside buildings: heating and air conditioning, piping, electrical and fire protection. Data centres and chip plants have become its largest and fastest-growing market.",
+ "customers": "Data centre developers, semiconductor and pharmaceutical plant builders, hospitals, schools, and commercial and industrial property owners.",
+ "money": [
+  [
+   "Mechanical",
+   "the larger part",
+   "HVAC, plumbing, piping, controls and off-site modular construction"
+  ],
+  [
+   "Electrical",
+   "large",
+   "electrical system installation and servicing"
+  ]
+ ],
+ "moat": "Skilled trade labour at scale, which is the binding constraint on data centre construction, plus modular prefabrication that lets it build faster than rivals.",
+ "rivals": [
+  "EMCOR Group|EME",
+  "APi Group|APG",
+  "Quanta Services|PWR",
+  "IES Holdings|IESC"
+ ],
+ "risks": [
+  "Data centre construction is now a large share of its backlog, so a pause there would hurt",
+  "Skilled labour shortages limit how fast it can grow",
+  "Fixed-price contracts carry execution risk",
+  "The shares have risen a long way and trade at a high multiple"
+ ],
+ "opportunities": [
+  "Revenue grew about 30% last year and about 30% a year over three years",
+  "Return on invested capital of 35% with cash of $2.2 billion against almost no debt",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "The backlog and same-store revenue growth.",
+ "updated": "2026-11"
+}

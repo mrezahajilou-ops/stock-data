@@ -1,0 +1,47 @@
+{
+ "t": "EPD",
+ "what": "Enterprise Products Partners owns midstream energy infrastructure: pipelines, storage, processing plants and export terminals, mainly for natural gas liquids, crude oil and petrochemicals along the US Gulf Coast.",
+ "customers": "Oil and gas producers, refiners, petrochemical plants and export buyers in Asia and Europe.",
+ "money": [
+  [
+   "NGL Pipelines and Services",
+   "the largest part",
+   "natural gas liquids pipelines, fractionation and export"
+  ],
+  [
+   "Crude Oil Pipelines and Services",
+   "large",
+   "crude gathering, transport and terminals"
+  ],
+  [
+   "Natural Gas Pipelines",
+   "meaningful",
+   "gas transport and storage"
+  ],
+  [
+   "Petrochemical and Refined Products",
+   "meaningful",
+   "propylene, octane and refined product logistics"
+  ]
+ ],
+ "moat": "An integrated network from Permian wellhead to Gulf Coast export dock, with assets that cannot be rebuilt and contracts of ten years or more.",
+ "rivals": [
+  "Energy Transfer|ET",
+  "MPLX|MPLX",
+  "ONEOK|OKE",
+  "Williams Companies|WMB"
+ ],
+ "risks": [
+  "Debt of about $34 billion against almost no cash",
+  "Volumes depend on US drilling activity",
+  "It is a partnership, which complicates tax reporting for some investors",
+  "Revenue has drifted down about 3% a year over three years as commodity prices fell"
+ ],
+ "opportunities": [
+  "A distribution yield above 6%, raised every year for more than 25 years",
+  "Natural gas liquids exports to Asia keep growing",
+  "Petrochemical demand supports fractionation volumes regardless of oil prices"
+ ],
+ "watch": "Distributable cash flow coverage and new export capacity coming online.",
+ "updated": "2026-11"
+}

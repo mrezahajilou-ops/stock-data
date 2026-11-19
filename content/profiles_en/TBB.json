@@ -1,0 +1,42 @@
+{
+ "t": "TBB",
+ "what": "AT&T is one of the two largest mobile operators in the United States. It sells phone and data plans, and is building fibre broadband to replace its old copper network. It no longer owns a media business after spinning off WarnerMedia.",
+ "customers": "US households and businesses buying mobile service, home internet and business connectivity.",
+ "money": [
+  [
+   "Mobility",
+   "the largest part",
+   "postpaid and prepaid wireless service and device sales"
+  ],
+  [
+   "Consumer Wireline",
+   "growing",
+   "fibre broadband to homes"
+  ],
+  [
+   "Business Wireline",
+   "declining",
+   "legacy voice and data services to companies"
+  ]
+ ],
+ "moat": "Spectrum licences and a national network that cost tens of billions to build, in a market with only three large operators.",
+ "rivals": [
+  "Verizon|VZ",
+  "T-Mobile US|TMUS",
+  "Comcast|CMCSA",
+  "Charter Communications|CHTR"
+ ],
+ "risks": [
+  "Debt of about $178 billion is among the largest of any US company",
+  "Legacy business wireline revenue keeps shrinking",
+  "Price competition from cable operators selling mobile service",
+  "Copper network retirement and fibre building need continuous capital"
+ ],
+ "opportunities": [
+  "Fibre broadband wins customers from cable and holds them longer",
+  "Mobile customers who also take fibre leave far less often",
+  "A dividend yield above 6% is now covered by free cash flow after the dividend cut"
+ ],
+ "watch": "Postpaid phone net additions and fibre customer growth.",
+ "updated": "2026-11"
+}

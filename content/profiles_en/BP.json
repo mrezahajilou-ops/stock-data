@@ -1,0 +1,42 @@
+{
+ "t": "BP",
+ "what": "BP is a British integrated oil and gas company. It explores for and produces oil and gas, refines it, sells fuel through service stations, trades energy, and has been scaling back an earlier push into renewables.",
+ "customers": "Refiners, fuel distributors, motorists at its service stations, airlines and industrial gas buyers.",
+ "money": [
+  [
+   "Oil production and operations",
+   "large",
+   "upstream oil and gas production"
+  ],
+  [
+   "Gas and low carbon energy",
+   "large",
+   "gas production, trading and renewables"
+  ],
+  [
+   "Customers and products",
+   "large",
+   "refining, service stations, lubricants and aviation fuel"
+  ]
+ ],
+ "moat": "Integrated positions from the wellhead to the pump, plus a trading operation that profits from price differences others cannot access.",
+ "rivals": [
+  "Shell|SHEL",
+  "Exxon Mobil|XOM",
+  "Chevron|CVX",
+  "TotalEnergies|TTE"
+ ],
+ "risks": [
+  "Net margin was near zero last year after impairments",
+  "Debt of about $70 billion is high for an oil company at this point in the cycle",
+  "Strategy has reversed twice, from oil to renewables and back",
+  "Oil and gas prices set profits and it does not control them"
+ ],
+ "opportunities": [
+  "Refocusing on oil and gas raises returns on new investment",
+  "Asset sales are reducing debt",
+  "Trading earns money whether prices rise or fall"
+ ],
+ "watch": "Net debt reduction and upstream production volumes.",
+ "updated": "2026-11"
+}

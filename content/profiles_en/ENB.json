@@ -1,0 +1,47 @@
+{
+ "t": "ENB",
+ "what": "Enbridge moves energy through pipelines. Its Mainline system carries the largest volume of Canadian crude oil into the United States, and it also owns North American gas pipelines, gas utilities serving millions of customers, and renewable power.",
+ "customers": "Oil producers in Alberta, refiners in the US Midwest and Gulf Coast, gas shippers, and household gas customers in Ontario and three US states.",
+ "money": [
+  [
+   "Liquids Pipelines",
+   "the largest part of profit",
+   "the Mainline crude oil system and related pipelines"
+  ],
+  [
+   "Gas Transmission",
+   "large",
+   "long-haul natural gas pipelines"
+  ],
+  [
+   "Gas Distribution and Storage",
+   "large",
+   "regulated gas utilities in Ontario and the United States"
+  ],
+  [
+   "Renewable Power",
+   "smaller",
+   "wind and solar generation"
+  ]
+ ],
+ "moat": "Pipeline corridors that would be nearly impossible to permit today, with capacity contracted under long-term, mostly regulated terms.",
+ "rivals": [
+  "TC Energy|TRP",
+  "Pembina Pipeline|PBA",
+  "Kinder Morgan|KMI",
+  "Williams Companies|WMB"
+ ],
+ "risks": [
+  "Debt of about $80 billion is very large and interest-rate sensitive",
+  "Return on invested capital is low at around 5%",
+  "New pipeline projects face long regulatory and legal challenges",
+  "It issues shares and debt regularly to fund growth"
+ ],
+ "opportunities": [
+  "Revenue grew about 28% last year after acquiring three US gas utilities",
+  "About 98% of cash flow comes from regulated or contracted sources",
+  "A dividend yield near 6% raised for three decades running"
+ ],
+ "watch": "Distributable cash flow per share and the debt-to-EBITDA ratio.",
+ "updated": "2026-11"
+}

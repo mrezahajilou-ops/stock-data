@@ -1,0 +1,47 @@
+{
+ "t": "CM",
+ "what": "Canadian Imperial Bank of Commerce is one of Canada's big six banks. It focuses more heavily on Canadian personal and business banking than its peers, and also runs a US commercial bank and wealth business.",
+ "customers": "Canadian households and small businesses, Canadian and US commercial clients, and wealth management customers.",
+ "money": [
+  [
+   "Canadian Personal and Business Banking",
+   "the largest part",
+   "deposits, mortgages and small business lending"
+  ],
+  [
+   "Canadian Commercial Banking and Wealth",
+   "large",
+   "commercial lending and wealth management"
+  ],
+  [
+   "US Commercial Banking and Wealth",
+   "meaningful",
+   "US commercial lending and private wealth"
+  ],
+  [
+   "Capital Markets",
+   "meaningful",
+   "trading and corporate finance"
+  ]
+ ],
+ "moat": "A share of the Canadian banking oligopoly, with deposit relationships that rarely move.",
+ "rivals": [
+  "Royal Bank of Canada|RY",
+  "Toronto-Dominion Bank|TD",
+  "Bank of Montreal|BMO",
+  "Bank of Nova Scotia|BNS"
+ ],
+ "risks": [
+  "The highest exposure to Canadian mortgages among the big banks",
+  "Canadian house prices and household debt are a concentrated risk",
+  "US commercial property lending losses have been elevated",
+  "Less geographic diversification than its peers"
+ ],
+ "opportunities": [
+  "Revenue grew about 13% last year with a 29% net margin",
+  "Canadian mortgage renewals have so far performed better than feared",
+  "A dividend yield near 3% with consistent increases"
+ ],
+ "watch": "Canadian mortgage delinquencies and US commercial property provisions.",
+ "updated": "2026-11"
+}

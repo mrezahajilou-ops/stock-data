@@ -1,0 +1,37 @@
+{
+ "t": "CNQ",
+ "what": "Canadian Natural Resources is Canada's largest oil and gas producer. Much of its output comes from oil sands mines and thermal projects in Alberta that produce for decades with almost no decline.",
+ "customers": "Refiners in Canada and the United States, and natural gas buyers in North America.",
+ "money": [
+  [
+   "Oil sands mining and upgrading",
+   "the largest part",
+   "long-life mining operations in northern Alberta"
+  ],
+  [
+   "Exploration and production",
+   "large",
+   "thermal oil, conventional oil and natural gas"
+  ]
+ ],
+ "moat": "Oil sands reserves measured in decades with no exploration risk and very low decline rates, so sustaining capital is unusually low.",
+ "rivals": [
+  "Suncor Energy|SU",
+  "Cenovus Energy|CVE",
+  "Imperial Oil|IMO",
+  "ConocoPhillips|COP"
+ ],
+ "risks": [
+  "The discount on Canadian heavy crude widens when pipeline capacity is tight",
+  "Oil prices set earnings",
+  "Carbon regulation in Canada raises long-term costs for oil sands",
+  "Rising maintenance costs as mines age"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year",
+  "The Trans Mountain pipeline expansion gives Canadian crude access to Pacific markets",
+  "Net margin near 28% is high for a producer, reflecting low operating costs"
+ ],
+ "watch": "The Canadian heavy crude differential and production volumes.",
+ "updated": "2026-11"
+}

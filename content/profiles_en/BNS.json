@@ -1,0 +1,47 @@
+{
+ "t": "BNS",
+ "what": "The Bank of Nova Scotia, known as Scotiabank, is one of Canada's big six banks. Alongside Canadian retail and commercial banking it has the largest Latin American presence of any Canadian bank, in Mexico, Peru, Chile and Colombia.",
+ "customers": "Canadian households and businesses, and retail and corporate customers across Latin America.",
+ "money": [
+  [
+   "Canadian Banking",
+   "large",
+   "deposits, mortgages and commercial lending in Canada"
+  ],
+  [
+   "International Banking",
+   "large",
+   "retail and commercial banking in Mexico and the Pacific Alliance countries"
+  ],
+  [
+   "Global Wealth Management",
+   "meaningful",
+   "asset management and advice"
+  ],
+  [
+   "Global Banking and Markets",
+   "meaningful",
+   "corporate lending and trading"
+  ]
+ ],
+ "moat": "Protected positions in both the Canadian oligopoly and in Latin American markets where it has operated for over a century.",
+ "rivals": [
+  "Royal Bank of Canada|RY",
+  "Toronto-Dominion Bank|TD",
+  "Bank of Montreal|BMO",
+  "Grupo Financiero Banorte"
+ ],
+ "risks": [
+  "Latin American exposure brings currency and political volatility",
+  "Canadian mortgage renewals at higher rates raise loan losses",
+  "Returns have lagged the other large Canadian banks for years",
+  "It has been reshaping the Latin American footprint, selling some markets"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year",
+  "Redirecting capital from weaker Latin American markets to Canada and Mexico",
+  "A dividend yield above 3.5% with a long payment record"
+ ],
+ "watch": "International banking credit losses and the return on equity against Canadian peers.",
+ "updated": "2026-11"
+}

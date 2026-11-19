@@ -1,0 +1,47 @@
+{
+ "t": "PSX",
+ "what": "Phillips 66 refines crude oil into fuels, owns midstream pipelines and processing plants, sells fuel under the Phillips 66, 76 and JET brands, and holds a half-share of the chemicals producer CPChem.",
+ "customers": "Fuel distributors and branded service stations, airlines, chemicals buyers and energy shippers.",
+ "money": [
+  [
+   "Refining",
+   "large, cyclical",
+   "refineries in the US and Europe"
+  ],
+  [
+   "Midstream",
+   "large, steadier",
+   "pipelines, terminals and natural gas liquids processing"
+  ],
+  [
+   "Chemicals",
+   "meaningful",
+   "the CPChem joint venture"
+  ],
+  [
+   "Marketing and Specialties",
+   "meaningful",
+   "branded fuel, lubricants and retail"
+  ]
+ ],
+ "moat": "Refineries connected to its own pipelines and terminals, so it captures margin at several points along the same barrel.",
+ "rivals": [
+  "Valero Energy|VLO",
+  "Marathon Petroleum|MPC",
+  "Exxon Mobil|XOM",
+  "Enterprise Products Partners|EPD"
+ ],
+ "risks": [
+  "Refining margins drive earnings and are outside its control",
+  "Revenue has fallen about 8% a year over three years",
+  "Debt of about $19 billion",
+  "An activist investor has pressed for a breakup, creating strategic uncertainty"
+ ],
+ "opportunities": [
+  "Midstream earnings are contracted and cushion refining downturns",
+  "Cost-cutting targets have been raised",
+  "Buybacks and a dividend return most free cash flow"
+ ],
+ "watch": "Refining margin capture rate and midstream earnings growth.",
+ "updated": "2026-11"
+}

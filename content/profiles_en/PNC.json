@@ -1,0 +1,42 @@
+{
+ "t": "PNC",
+ "what": "PNC Financial Services is one of the largest regional banks in the United States, headquartered in Pittsburgh with branches coast to coast. It does retail banking, corporate and institutional banking, and asset management.",
+ "customers": "Households and small businesses in its branch markets, corporations, government entities and wealth clients.",
+ "money": [
+  [
+   "Retail Banking",
+   "large",
+   "deposits, mortgages, cards and consumer lending"
+  ],
+  [
+   "Corporate and Institutional Banking",
+   "large",
+   "commercial lending, real estate finance and treasury management"
+  ],
+  [
+   "Asset Management Group",
+   "smaller",
+   "wealth and institutional asset management"
+  ]
+ ],
+ "moat": "A national commercial banking franchise built on deposit relationships and treasury services that companies rarely move.",
+ "rivals": [
+  "US Bancorp|USB",
+  "Truist Financial|TFC",
+  "Fifth Third Bancorp|FITB",
+  "Bank of America|BAC"
+ ],
+ "risks": [
+  "Commercial property loans, especially offices, are a sector-wide concern",
+  "Deposit costs rise with competition for savings",
+  "Regional banks face higher capital and liquidity requirements",
+  "Loan growth is slow when businesses hold back on investment"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 28% net margin",
+  "Expanding into new metropolitan markets with a branch-light model",
+  "A dividend yield above 3.5% with a strong capital position"
+ ],
+ "watch": "Net interest income guidance and office property loan reserves.",
+ "updated": "2026-11"
+}

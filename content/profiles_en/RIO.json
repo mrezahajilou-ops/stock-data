@@ -1,0 +1,48 @@
+{
+ "t": "RIO",
+ "what": "Rio Tinto is one of the world's largest mining companies. Iron ore from the Pilbara in Western Australia produces most of its profit, and it also mines copper, aluminium, lithium and minerals.",
+ "customers": "Chinese and other Asian steelmakers for iron ore, smelters and manufacturers for copper and aluminium.",
+ "money": [
+  [
+   "Iron Ore",
+   "the largest part of profit",
+   "Pilbara operations in Western Australia"
+  ],
+  [
+   "Aluminium",
+   "large",
+   "bauxite, alumina and smelting, largely hydro-powered in Canada"
+  ],
+  [
+   "Copper",
+   "growing",
+   "Oyu Tolgoi in Mongolia, Escondida stake and Kennecott"
+  ],
+  [
+   "Minerals",
+   "smaller",
+   "titanium dioxide, borates and lithium"
+  ]
+ ],
+ "moat": "Pilbara iron ore deposits with their own railways and ports, among the lowest-cost sources of iron ore in the world.",
+ "rivals": [
+  "BHP|BHP",
+  "Vale|VALE",
+  "Fortescue",
+  "Glencore",
+  "Anglo American"
+ ],
+ "risks": [
+  "Iron ore profit depends on Chinese steel demand and construction",
+  "Mining projects face long permitting and community consent processes",
+  "Oyu Tolgoi in Mongolia carries political and cost risk",
+  "Currency moves between the dollar and Australian dollar affect margins"
+ ],
+ "opportunities": [
+  "Copper production is rising as Oyu Tolgoi's underground mine ramps up",
+  "Hydro-powered aluminium sells at a premium to coal-powered metal",
+  "A dividend yield near 6% paid from low-cost iron ore cash flow"
+ ],
+ "watch": "Pilbara shipment volumes and the copper production ramp at Oyu Tolgoi.",
+ "updated": "2026-11"
+}

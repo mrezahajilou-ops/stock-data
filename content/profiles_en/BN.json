@@ -1,0 +1,42 @@
+{
+ "t": "BN",
+ "what": "Brookfield Corporation is an owner and manager of real assets. Through Brookfield Asset Management and its listed affiliates it owns infrastructure, renewable power, real estate and private equity holdings, and manages money for institutions on top of that.",
+ "customers": "Pension funds, sovereign wealth funds and insurers investing in its funds, plus tenants and customers of the assets it owns.",
+ "money": [
+  [
+   "Asset management",
+   "growing, high margin",
+   "fees on capital managed for institutions"
+  ],
+  [
+   "Insurance solutions",
+   "growing",
+   "annuity and insurance assets invested in its own strategies"
+  ],
+  [
+   "Operating businesses",
+   "large",
+   "renewable power, infrastructure, real estate and private equity"
+  ]
+ ],
+ "moat": "Decades of experience owning hard assets, which gives it access to deals and the credibility to raise very large funds from institutions.",
+ "rivals": [
+  "Blackstone|BX",
+  "KKR|KKR",
+  "Apollo Global Management|APO",
+  "Macquarie"
+ ],
+ "risks": [
+  "Consolidated debt of about $282 billion looks enormous, though most is non-recourse at the asset level",
+  "Reported revenue fell about 13% last year",
+  "The structure of listed affiliates is complex and hard to value",
+  "Office real estate holdings have fallen in value"
+ ],
+ "opportunities": [
+  "Fee-bearing capital grows as institutions allocate more to infrastructure and private credit",
+  "Insurance assets provide permanent capital to invest",
+  "Analysts see substantial upside to the current share price"
+ ],
+ "watch": "Fee-bearing capital growth and distributable earnings per share.",
+ "updated": "2026-11"
+}

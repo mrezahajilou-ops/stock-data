@@ -1,0 +1,37 @@
+{
+ "t": "AEM",
+ "what": "Agnico Eagle Mines is a gold producer with mines in Canada, Finland, Australia and Mexico. Almost all of its production comes from politically stable countries, which is unusual among large gold miners.",
+ "customers": "Gold refiners and bullion markets.",
+ "money": [
+  [
+   "Gold",
+   "almost all of revenue",
+   "mines in Ontario, Quebec, Nunavut, Finland, Australia and Mexico"
+  ],
+  [
+   "By-products",
+   "small",
+   "silver, zinc and copper"
+  ]
+ ],
+ "moat": "Long-life deposits in low-risk jurisdictions, with mining districts where it already owns the infrastructure for expansion.",
+ "rivals": [
+  "Newmont|NEM",
+  "Barrick Mining|B",
+  "Kinross Gold|KGC",
+  "Gold Fields|GFI"
+ ],
+ "risks": [
+  "The gold price sets profits and it does not control it",
+  "Mining cost inflation has been persistent across the industry",
+  "Arctic operations in Nunavut are expensive and weather-dependent",
+  "A low dividend yield of about 1% compared with other income investments"
+ ],
+ "opportunities": [
+  "Revenue grew about 44% last year on gold prices and volumes",
+  "Net margin of 37% and return on invested capital near 18% are top of the industry",
+  "Almost no debt: about $328 million against $3.6 billion of cash"
+ ],
+ "watch": "All-in sustaining cost per ounce and production guidance.",
+ "updated": "2026-11"
+}

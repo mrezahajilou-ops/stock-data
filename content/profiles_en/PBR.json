@@ -1,0 +1,42 @@
+{
+ "t": "PBR",
+ "what": "Petrobras is Brazil's state-controlled oil company. It produces most of Brazil's oil, much of it from deepwater pre-salt fields that are among the cheapest large oil deposits in the world, and it refines and distributes fuel in Brazil.",
+ "customers": "International oil buyers, Brazilian fuel distributors, refiners and petrochemical producers.",
+ "money": [
+  [
+   "Exploration and Production",
+   "the largest part of profit",
+   "deepwater and pre-salt oil and gas production"
+  ],
+  [
+   "Refining, Transportation and Marketing",
+   "large",
+   "Brazilian refineries and fuel distribution"
+  ],
+  [
+   "Gas and Power",
+   "smaller",
+   "natural gas processing and electricity"
+  ]
+ ],
+ "moat": "Pre-salt fields with extraction costs among the lowest in the industry and decades of reserves, in a country where it holds the dominant acreage position.",
+ "rivals": [
+  "Exxon Mobil|XOM",
+  "Shell|SHEL",
+  "Equinor|EQNR",
+  "Vale|VALE"
+ ],
+ "risks": [
+  "The Brazilian government controls it and has in the past used fuel prices for political ends",
+  "Dividend policy can change with government priorities",
+  "Debt of about $71 billion remains substantial",
+  "Oil price swings move earnings directly"
+ ],
+ "opportunities": [
+  "Pre-salt production costs are so low that it earns money at oil prices where others do not",
+  "A dividend yield near 9% when oil prices are firm",
+  "Analysts see meaningful upside from current levels"
+ ],
+ "watch": "Pre-salt production growth and whether fuel pricing stays aligned with international prices.",
+ "updated": "2026-11"
+}

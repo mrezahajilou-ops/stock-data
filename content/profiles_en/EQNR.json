@@ -1,0 +1,42 @@
+{
+ "t": "EQNR",
+ "what": "Equinor is Norway's state-controlled energy company. It produces oil and gas, mostly from the Norwegian continental shelf, supplies a large share of Europe's natural gas, trades energy, and builds offshore wind.",
+ "customers": "European utilities and industrial gas buyers, refiners, and power markets.",
+ "money": [
+  [
+   "Exploration and Production Norway",
+   "the largest part",
+   "oil and gas from the Norwegian continental shelf"
+  ],
+  [
+   "Marketing, Midstream and Processing",
+   "large",
+   "gas sales, trading and refining"
+  ],
+  [
+   "International and Renewables",
+   "smaller",
+   "overseas production and offshore wind"
+  ]
+ ],
+ "moat": "Low-cost Norwegian fields and the pipeline system that delivers gas directly into European markets, a position no other supplier holds.",
+ "rivals": [
+  "Shell|SHEL",
+  "TotalEnergies|TTE",
+  "BP|BP",
+  "ConocoPhillips|COP"
+ ],
+ "risks": [
+  "European gas prices have fallen from their crisis peaks",
+  "Norwegian petroleum taxation is very high",
+  "Offshore wind projects have had cost overruns industry-wide",
+  "Reported net margin is low because of the tax regime"
+ ],
+ "opportunities": [
+  "Return on invested capital near 30% is among the highest in the industry",
+  "Europe's need for non-Russian gas supports long-term demand",
+  "A strong balance sheet with cash close to debt"
+ ],
+ "watch": "European gas prices and Norwegian production volumes.",
+ "updated": "2026-11"
+}

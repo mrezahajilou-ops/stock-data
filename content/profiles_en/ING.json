@@ -1,0 +1,38 @@
+{
+ "t": "ING",
+ "what": "ING Groep is a Dutch bank. It is the leading bank in the Netherlands and Belgium and runs a large digital-only retail bank in Germany, Spain, Poland and Australia, plus wholesale banking for European corporates.",
+ "customers": "Retail customers across ten European markets and Australia, and corporate and institutional clients in Europe.",
+ "money": [
+  [
+   "Retail Banking",
+   "the larger part",
+   "current accounts, savings and mortgages across Europe"
+  ],
+  [
+   "Wholesale Banking",
+   "large",
+   "corporate lending, trade finance and financial markets"
+  ]
+ ],
+ "moat": "A digital-only model with no branches in most markets, giving it a cost advantage over incumbent banks that still run branch networks.",
+ "rivals": [
+  "BNP Paribas",
+  "Deutsche Bank|DB",
+  "Santander|SAN",
+  "ABN AMRO",
+  "Revolut"
+ ],
+ "risks": [
+  "European Central Bank rate cuts lower income on its deposit base",
+  "Dutch and Belgian mortgage competition is intense",
+  "Debt funding of about $203 billion makes it sensitive to wholesale markets",
+  "Anti-money-laundering compliance has cost it fines in the past"
+ ],
+ "opportunities": [
+  "Revenue grew about 38% last year as rates lifted deposit income",
+  "Return on invested capital near 35% is high for a European bank",
+  "It returns capital through large buybacks alongside a dividend above 4%"
+ ],
+ "watch": "Net interest income as European rates fall, and fee income growth.",
+ "updated": "2026-11"
+}

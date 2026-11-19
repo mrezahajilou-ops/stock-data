@@ -1,0 +1,47 @@
+{
+ "t": "BMO",
+ "what": "Bank of Montreal is one of Canada's big six banks. It serves Canadian households and businesses, owns a large US retail bank across the Midwest after buying Bank of the West, and runs capital markets and wealth management.",
+ "customers": "Canadian and US retail customers, small businesses, corporations and institutional investors.",
+ "money": [
+  [
+   "Canadian Personal and Commercial",
+   "large",
+   "Canadian deposits, mortgages and business lending"
+  ],
+  [
+   "US Personal and Commercial",
+   "large",
+   "Midwestern US retail and commercial banking"
+  ],
+  [
+   "BMO Capital Markets",
+   "meaningful",
+   "trading, underwriting and advisory"
+  ],
+  [
+   "Wealth Management",
+   "meaningful",
+   "asset management and private banking"
+  ]
+ ],
+ "moat": "An oligopoly position in Canadian banking where six banks hold most deposits, plus a large US franchise that few Canadian banks have built.",
+ "rivals": [
+  "Royal Bank of Canada|RY",
+  "Toronto-Dominion Bank|TD",
+  "Bank of Nova Scotia|BNS",
+  "Canadian Imperial Bank|CM"
+ ],
+ "risks": [
+  "Canadian household debt is high relative to income",
+  "US commercial lending losses rose after the Bank of the West purchase",
+  "Canadian housing is sensitive to mortgage renewal at higher rates",
+  "Analyst price targets imply little upside at current levels"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year as margins recovered",
+  "The US business gives growth that Canada alone cannot provide",
+  "A dividend that has been paid without interruption since 1829"
+ ],
+ "watch": "US commercial credit losses and Canadian mortgage renewal performance.",
+ "updated": "2026-11"
+}

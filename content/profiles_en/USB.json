@@ -1,0 +1,48 @@
+{
+ "t": "USB",
+ "what": "U.S. Bancorp is one of the largest regional banks in the United States. It does retail and commercial banking across the Midwest and West, and runs one of the country's biggest payment processing businesses for merchants and card issuers.",
+ "customers": "Households and businesses in its branch footprint, corporate clients nationally, and merchants and banks using its payments services.",
+ "money": [
+  [
+   "Consumer and Business Banking",
+   "large",
+   "deposits, mortgages and consumer lending"
+  ],
+  [
+   "Wholesale Banking and Commercial Real Estate",
+   "large",
+   "corporate lending and treasury management"
+  ],
+  [
+   "Payment Services",
+   "meaningful, high-margin",
+   "merchant acquiring, corporate cards and card issuing"
+  ],
+  [
+   "Wealth and Investment Services",
+   "meaningful",
+   "trust, custody and asset management"
+  ]
+ ],
+ "moat": "A payments business that earns fees from transactions rather than lending, which few regional banks have, alongside a long-standing deposit base.",
+ "rivals": [
+  "PNC Financial|PNC",
+  "Truist Financial|TFC",
+  "Fifth Third Bancorp|FITB",
+  "Wells Fargo|WFC",
+  "Fiserv|FI"
+ ],
+ "risks": [
+  "Payments faces competition from technology-led processors",
+  "Commercial property lending is watched across all regional banks",
+  "Deposit costs rise as customers move to higher-yielding accounts",
+  "Regional bank capital rules are being tightened"
+ ],
+ "opportunities": [
+  "Payment fees grow with card spending and do not consume capital",
+  "Cost discipline after the Union Bank integration is lifting efficiency",
+  "A dividend yield above 3.5% with a long increase record"
+ ],
+ "watch": "Payment services revenue growth and net interest margin.",
+ "updated": "2026-11"
+}

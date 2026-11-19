@@ -1,0 +1,43 @@
+{
+ "t": "HDB",
+ "what": "HDFC Bank is India's largest private-sector bank. After merging with the mortgage lender HDFC Ltd it serves tens of millions of customers with current accounts, home loans, car loans, credit cards and business lending across more than 9,000 branches.",
+ "customers": "Indian households, salaried professionals, small businesses, farmers and large corporations.",
+ "money": [
+  [
+   "Retail banking",
+   "the largest part",
+   "mortgages, car loans, personal loans, credit cards and deposits"
+  ],
+  [
+   "Wholesale banking",
+   "large",
+   "lending and transaction banking for Indian companies"
+  ],
+  [
+   "Treasury and other",
+   "smaller",
+   "investments, foreign exchange and insurance distribution"
+  ]
+ ],
+ "moat": "The widest branch and digital network of any private Indian bank, which gathers low-cost deposits in a market where most households still bank locally.",
+ "rivals": [
+  "ICICI Bank|IBN",
+  "Axis Bank",
+  "State Bank of India",
+  "Kotak Mahindra Bank",
+  "Bajaj Finance"
+ ],
+ "risks": [
+  "Merging HDFC Ltd brought a large book of mortgages funded with costly borrowings rather than deposits",
+  "Reported revenue fell about 4% last year as that funding mix was repaired",
+  "Indian regulators set strict loan-to-deposit expectations",
+  "Unsecured consumer lending has shown rising stress across the industry"
+ ],
+ "opportunities": [
+  "Indian credit grows faster than the economy as more households borrow for the first time",
+  "Revenue has grown about 27% a year over three years",
+  "Deposit growth is restoring a cheaper funding mix after the merger"
+ ],
+ "watch": "Deposit growth against loan growth, and the net interest margin as merger funding is replaced.",
+ "updated": "2026-11"
+}

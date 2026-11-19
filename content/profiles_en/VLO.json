@@ -1,0 +1,42 @@
+{
+ "t": "VLO",
+ "what": "Valero is one of the largest independent oil refiners in the world. It buys crude oil, turns it into petrol, diesel and jet fuel at refineries on the US Gulf Coast and elsewhere, and is also a large producer of renewable diesel and ethanol.",
+ "customers": "Fuel wholesalers, retailers, airlines and industrial buyers across North America and in export markets.",
+ "money": [
+  [
+   "Refining",
+   "almost all of profit",
+   "15 refineries producing petrol, diesel and jet fuel"
+  ],
+  [
+   "Renewable Diesel",
+   "meaningful",
+   "the Diamond Green Diesel joint venture"
+  ],
+  [
+   "Ethanol",
+   "smaller",
+   "corn ethanol plants in the Midwest"
+  ]
+ ],
+ "moat": "Gulf Coast refineries with deepwater access that can process cheap heavy crude and export finished fuel, an advantage few refiners have.",
+ "rivals": [
+  "Marathon Petroleum|MPC",
+  "Phillips 66|PSX",
+  "Exxon Mobil|XOM",
+  "PBF Energy|PBF"
+ ],
+ "risks": [
+  "Profit depends on the refining margin between crude and fuel, which swings violently",
+  "Revenue has fallen about 11% a year over three years as fuel prices came down",
+  "Renewable diesel economics depend on government credits",
+  "Refineries need periodic expensive maintenance shutdowns"
+ ],
+ "opportunities": [
+  "Little new refining capacity is being built in the West, supporting margins",
+  "Low debt relative to peers at about $11 billion against $10 billion of cash",
+  "Large buybacks return most free cash flow to shareholders"
+ ],
+ "watch": "Refining margin per barrel and throughput volumes.",
+ "updated": "2026-11"
+}

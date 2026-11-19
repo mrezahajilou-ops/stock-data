@@ -1,0 +1,42 @@
+{
+ "t": "MFG",
+ "what": "Mizuho Financial Group is one of Japan's three megabanks. It takes deposits from Japanese households, lends to Japanese corporations, runs trust and securities businesses, and has built a US investment banking presence.",
+ "customers": "Japanese households and corporations, institutional investors, and US mid-market corporate clients.",
+ "money": [
+  [
+   "Retail and Business Banking",
+   "large",
+   "Japanese household deposits, loans and asset management"
+  ],
+  [
+   "Corporate and Institutional",
+   "large",
+   "lending and transaction banking for Japanese companies"
+  ],
+  [
+   "Global Corporate and Markets",
+   "growing",
+   "overseas lending, securities and trading"
+  ]
+ ],
+ "moat": "A core of Japanese corporate relationships going back more than a century, and a deposit base so large it costs almost nothing to fund.",
+ "rivals": [
+  "Mitsubishi UFJ Financial|MUFG",
+  "Sumitomo Mitsui Financial|SMFG",
+  "Nomura|NMR",
+  "Resona"
+ ],
+ "risks": [
+  "Decades of near-zero Japanese rates kept lending margins very thin",
+  "Large holdings of Japanese government bonds lose value as rates rise",
+  "Japanese corporate loan demand grows slowly",
+  "Overseas expansion competes against entrenched US and European banks"
+ ],
+ "opportunities": [
+  "The Bank of Japan ending negative rates lifts income on its huge deposit base directly",
+  "Revenue grew about 29% last year as rates rose",
+  "Selling cross-shareholdings in client companies releases capital for buybacks"
+ ],
+ "watch": "Domestic net interest income as Japanese policy rates move, and the pace of cross-shareholding sales.",
+ "updated": "2026-11"
+}

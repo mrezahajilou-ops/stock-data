@@ -1,0 +1,43 @@
+{
+ "t": "GSK",
+ "what": "GSK is a British pharmaceutical company. It develops medicines for HIV, respiratory disease and cancer, and is one of the world's largest vaccine makers, with shingles, meningitis and respiratory vaccines.",
+ "customers": "Health systems, insurers, pharmacies and governments worldwide.",
+ "money": [
+  [
+   "Specialty Medicines",
+   "the largest part",
+   "HIV treatments, respiratory biologics and oncology"
+  ],
+  [
+   "Vaccines",
+   "large",
+   "shingles, meningitis, RSV and flu vaccines"
+  ],
+  [
+   "General Medicines",
+   "meaningful",
+   "older respiratory and established products"
+  ]
+ ],
+ "moat": "Patent-protected medicines and a vaccine manufacturing base that takes a decade and billions to replicate.",
+ "rivals": [
+  "AstraZeneca|AZN",
+  "Merck|MRK",
+  "Pfizer|PFE",
+  "Sanofi|SNY",
+  "Moderna|MRNA"
+ ],
+ "risks": [
+  "Shingrix vaccine sales have been weaker than expected",
+  "Patents on its HIV medicines expire later this decade",
+  "US litigation over the heartburn medicine Zantac has been a long overhang",
+  "Debt of about $31 billion against modest cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year with a 72% gross margin",
+  "Return on invested capital near 20% is strong for a large pharmaceutical company",
+  "A pipeline weighted toward respiratory and oncology medicines in late-stage trials"
+ ],
+ "watch": "Vaccine sales and late-stage trial readouts in oncology and respiratory.",
+ "updated": "2026-11"
+}

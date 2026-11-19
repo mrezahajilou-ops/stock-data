@@ -1,0 +1,42 @@
+{
+ "t": "NGG",
+ "what": "National Grid owns and operates electricity transmission networks in Britain and electricity and gas networks in New York and Massachusetts. It is a regulated monopoly: the wires and pipes, not the energy itself.",
+ "customers": "Electricity and gas suppliers and households in Britain and the northeastern United States, through regulated charges.",
+ "money": [
+  [
+   "UK Electricity Transmission and Distribution",
+   "the largest part",
+   "high-voltage transmission and regional distribution in England and Wales"
+  ],
+  [
+   "New England and New York",
+   "large",
+   "regulated electricity and gas networks in the US Northeast"
+  ],
+  [
+   "National Grid Ventures and other",
+   "smaller",
+   "interconnectors and commercial ventures"
+  ]
+ ],
+ "moat": "A legal monopoly over networks that cannot be duplicated, with returns set by regulators rather than competition.",
+ "rivals": [
+  "SSE",
+  "Iberdrola",
+  "Consolidated Edison|ED",
+  "Eversource Energy|ES"
+ ],
+ "risks": [
+  "Debt of about $62 billion against very little cash",
+  "It raised equity in 2024, diluting shareholders",
+  "UK and US regulators set the return it may earn",
+  "Grid investment requires continuous heavy spending"
+ ],
+ "opportunities": [
+  "Electrification and offshore wind require enormous grid investment, which raises the asset base it earns a return on",
+  "Revenue is regulated and largely inflation-linked",
+  "A dividend yield near 4% backed by regulated cash flow"
+ ],
+ "watch": "Regulated asset base growth and the outcome of UK price control reviews.",
+ "updated": "2026-11"
+}

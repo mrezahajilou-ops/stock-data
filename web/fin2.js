@@ -15,6 +15,8 @@
   function B(x) {
     x = String(x);
     if (!RTL || !/[\d$%]/.test(x) || x.indexOf('<bdi') >= 0) return x;
+    // "a · b" pairs follow the label's right-to-left order, so isolate each value on its own
+    if (x.indexOf(' · ') >= 0 && x.indexOf('<') < 0) return x.split(' · ').map(B).join(' · ');
     if (!/[\u0600-\u06FF]/.test(x) && x.indexOf('<') < 0) return '<bdi dir="ltr">' + x + '</bdi>';
     // mixed text: isolate each number only
     return x.replace(/(<[^>]*>)|([-−+]?\$?\d[\d.,]*(?:\s?[%TBMK])?(?:\s?–\s?\$?\d[\d.,]*[%TBMK]?)?)/g, function (m, tag, num) { return tag ? tag : '<bdi dir="ltr">' + num + '</bdi>'; });

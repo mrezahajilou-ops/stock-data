@@ -1,0 +1,38 @@
+name: Theme code -> Shopify live theme
+
+# The liquid and CSS under theme/ is the source of truth for the Persian pages. Pushing it straight
+# into the live theme keeps the site in step with this repo without a manual publish in the admin.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'theme/**'
+      - 'deploy_theme.py'
+      - '.github/workflows/theme.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: theme
+  cancel-in-progress: false
+
+jobs:
+  theme:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Push theme files
+        env:
+          SHOPIFY_CLIENT_ID: ${{ secrets.SHOPIFY_CLIENT_ID }}
+          SHOPIFY_CLIENT_SECRET: ${{ secrets.SHOPIFY_CLIENT_SECRET }}
+        run: |
+          if [ -z "$SHOPIFY_CLIENT_ID" ]; then echo "Shopify secrets not set - skipping"; exit 0; fi
+          python deploy_theme.py

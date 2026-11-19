@@ -1,0 +1,42 @@
+{
+ "t": "BTI",
+ "what": "British American Tobacco sells cigarettes and smoke-free nicotine products in most of the world. Its brands include Dunhill, Lucky Strike and Pall Mall, and in smoke-free products Vuse vapes, Velo pouches and glo heated tobacco.",
+ "customers": "Adult nicotine consumers worldwide, with the United States its single largest profit pool.",
+ "money": [
+  [
+   "Combustibles",
+   "the large majority of revenue",
+   "cigarettes sold under Dunhill, Lucky Strike, Pall Mall and Newport"
+  ],
+  [
+   "New Categories",
+   "growing share",
+   "Vuse vapour, Velo nicotine pouches and glo heated tobacco"
+  ],
+  [
+   "Other",
+   "small",
+   "traditional oral tobacco and wholesale operations"
+  ]
+ ],
+ "moat": "Global brands and distribution in markets where advertising is restricted, which protects incumbents, plus scale in manufacturing.",
+ "rivals": [
+  "Philip Morris International|PM",
+  "Altria|MO",
+  "Japan Tobacco",
+  "Imperial Brands"
+ ],
+ "risks": [
+  "Cigarette volumes decline structurally in developed markets",
+  "It took a very large write-down on its US cigarette brands",
+  "Illegal vapes have taken share from Vuse in the US",
+  "Currency moves affect results because earnings come from many countries"
+ ],
+ "opportunities": [
+  "New Categories are approaching profitability after years of investment",
+  "Velo pouches are growing quickly in the US, the most profitable nicotine market",
+  "A dividend yield above 5% is covered by cash flow from the cigarette business"
+ ],
+ "watch": "New Category revenue and whether it keeps contributing profit rather than absorbing it.",
+ "updated": "2026-11"
+}

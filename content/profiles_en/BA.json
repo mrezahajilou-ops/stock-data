@@ -1,0 +1,43 @@
+{
+ "t": "BA",
+ "what": "Boeing designs and builds commercial jets, defence aircraft and space systems, and services the aircraft already flying. With Airbus it forms the duopoly that supplies the world's large passenger jets.",
+ "customers": "Airlines and leasing companies for jets; the US government and allied governments for defence and space.",
+ "money": [
+  [
+   "Commercial Airplanes",
+   "the largest segment",
+   "the 737 MAX, 767, 777/777X and 787"
+  ],
+  [
+   "Defense, Space and Security",
+   "large",
+   "military aircraft, satellites, weapons and the Starliner capsule"
+  ],
+  [
+   "Global Services",
+   "meaningful, the most profitable",
+   "parts, maintenance and training for aircraft already delivered"
+  ]
+ ],
+ "moat": "Only two companies can build large passenger jets. Airlines are tied to a fleet type by pilot training, spare parts and maintenance, which makes switching expensive.",
+ "rivals": [
+  "Airbus",
+  "Lockheed Martin|LMT",
+  "Northrop Grumman|NOC",
+  "Embraer|ERJ",
+  "COMAC"
+ ],
+ "risks": [
+  "Years of quality and safety problems left regulators capping 737 production",
+  "Fixed-price defence contracts have produced repeated large charges",
+  "Debt of roughly $46 billion built up through the crisis years",
+  "Any new safety incident would restart regulatory scrutiny"
+ ],
+ "opportunities": [
+  "A backlog of thousands of ordered aircraft gives years of work if it can build them",
+  "Raising monthly 737 and 787 output converts that backlog into cash",
+  "The services business earns steady, higher-margin revenue from the installed fleet"
+ ],
+ "watch": "Monthly 737 and 787 delivery rates and whether free cash flow turns sustainably positive.",
+ "updated": "2026-11"
+}

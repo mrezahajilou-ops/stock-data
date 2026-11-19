@@ -131,7 +131,8 @@ def one(t, cik):
     old = os.path.join(HAVE, t + ".json")
     if HAVE and os.path.exists(old):
         try:
-            if json.load(open(old)).get("url") == url:
+            prev = json.load(open(old))
+            if prev.get("url") == url and len(prev.get("business") or "") > 1200:
                 return "same"
         except Exception:
             pass

@@ -1,0 +1,46 @@
+{
+ "t": "MCK",
+ "what": "McKesson distributes prescription medicines. It buys drugs from manufacturers and delivers them to pharmacies, hospitals and doctors' offices across North America, and runs specialty services around cancer care and prescription technology.",
+ "customers": "Retail and independent pharmacies, hospital systems, oncology practices and pharmaceutical manufacturers.",
+ "money": [
+  [
+   "US Pharmaceutical",
+   "the large majority of revenue",
+   "distributing branded, generic and specialty drugs"
+  ],
+  [
+   "Oncology and Multispecialty",
+   "meaningful profit",
+   "practice services and distribution for cancer and specialty care"
+  ],
+  [
+   "Prescription Technology Solutions",
+   "smaller, high margin",
+   "software linking manufacturers, pharmacies and patients"
+  ],
+  [
+   "Medical-Surgical Solutions",
+   "smaller",
+   "medical supplies to clinics and doctors' offices"
+  ]
+ ],
+ "moat": "Three distributors handle almost all US drug volume. The scale of the warehouse and delivery network, and contracts with large pharmacy chains, make entry impractical.",
+ "rivals": [
+  "Cencora|COR",
+  "Cardinal Health|CAH",
+  "Amazon Pharmacy|AMZN"
+ ],
+ "risks": [
+  "Margins are very thin: about one cent of profit on each dollar of revenue",
+  "Losing or repricing a single large pharmacy contract moves results materially",
+  "Opioid litigation settlements still require payments over many years",
+  "Government action on drug pricing changes how distributors are paid"
+ ],
+ "opportunities": [
+  "Specialty and oncology drugs carry better economics than ordinary distribution",
+  "GLP-1 weight-loss drugs push large volumes through the network",
+  "Steady cash flow funds continuous share buybacks, which lift earnings per share"
+ ],
+ "watch": "Operating profit by segment rather than revenue, since revenue is dominated by pass-through drug cost.",
+ "updated": "2026-11"
+}

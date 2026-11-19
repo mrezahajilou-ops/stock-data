@@ -1,0 +1,53 @@
+{
+ "t": "SPGI",
+ "what": "S&P Global sells the ratings, indices, data and analytics that financial markets run on. It rates bonds, owns the S&P 500 and other indices, and supplies data on commodities, energy and the car industry.",
+ "customers": "Asset managers, banks, insurers, exchanges, bond issuers, energy traders and carmakers.",
+ "money": [
+  [
+   "Market Intelligence",
+   "large",
+   "financial data, desktop products and analytics"
+  ],
+  [
+   "Ratings",
+   "large and the most profitable",
+   "credit ratings on bond issues and issuers"
+  ],
+  [
+   "Commodity Insights",
+   "meaningful",
+   "energy and commodity price benchmarks such as Platts"
+  ],
+  [
+   "Indices",
+   "meaningful, very high margin",
+   "the S&P 500 and thousands of other indices licensed to funds"
+  ],
+  [
+   "Mobility",
+   "smaller",
+   "data on vehicles and the car market, formerly IHS Markit"
+  ]
+ ],
+ "moat": "Benchmarks that the whole market has standardised on: a bond usually needs two ratings to be sold, and index funds pay a fee to track S&P indices.",
+ "rivals": [
+  "Moody's|MCO",
+  "MSCI|MSCI",
+  "FactSet|FDS",
+  "Bloomberg (private)",
+  "LSEG"
+ ],
+ "risks": [
+  "Ratings revenue rises and falls with how many bonds are issued",
+  "Regulators periodically examine the rating-agency model",
+  "Index fee pressure as passive funds compete on cost",
+  "It is splitting off the Mobility business, which brings execution risk"
+ ],
+ "opportunities": [
+  "Index revenue grows with the money invested in passive funds, with almost no extra cost",
+  "Private-credit and sustainability data are new areas it is selling into",
+  "Separating Mobility can let both parts be valued on their own merits"
+ ],
+ "watch": "Bond issuance volumes, which drive the Ratings segment, and net new index assets.",
+ "updated": "2026-11"
+}

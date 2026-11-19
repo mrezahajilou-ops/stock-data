@@ -1,0 +1,48 @@
+{
+ "t": "ETN",
+ "what": "Eaton makes the equipment that moves and controls electrical power: switchgear, circuit breakers, transformers, uninterruptible power supplies and the components that go inside data centres, factories, buildings, aircraft and vehicles.",
+ "customers": "Data centre operators, utilities, construction contractors, industrial manufacturers, aerospace firms and vehicle makers, mostly in North America and Europe.",
+ "money": [
+  [
+   "Electrical Americas",
+   "the largest segment",
+   "power distribution and control equipment for North and South America"
+  ],
+  [
+   "Electrical Global",
+   "large",
+   "the same equipment outside the Americas"
+  ],
+  [
+   "Aerospace",
+   "meaningful",
+   "hydraulics, fuel and power systems for aircraft"
+  ],
+  [
+   "Vehicle and eMobility",
+   "smaller",
+   "drivetrain components and electric-vehicle power systems"
+  ]
+ ],
+ "moat": "Equipment that has to be certified and specified into a building or aircraft design, long lead times that lock in orders, and a service network close to customers.",
+ "rivals": [
+  "Schneider Electric",
+  "ABB",
+  "Siemens",
+  "Vertiv|VRT",
+  "Hubbell|HUBB"
+ ],
+ "risks": [
+  "Data centre orders are concentrated among a few large buyers whose spending can pause",
+  "Construction and industrial demand follow the economic cycle",
+  "Debt of about $20 billion was raised partly for acquisitions",
+  "Competitors are expanding capacity for the same electrical demand"
+ ],
+ "opportunities": [
+  "Electricity demand from data centres, grid upgrades and electrification is growing faster than the wider economy",
+  "A long order backlog gives visibility on revenue for several quarters",
+  "Aerospace aftermarket work carries higher margins than new equipment"
+ ],
+ "watch": "The orders-to-sales ratio and the backlog, which show whether demand is still running ahead of deliveries.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "MDT",
+ "what": "Medtronic makes medical devices: pacemakers and heart valves, surgical robots and stapling tools, spinal implants, brain stimulators and insulin pumps. Its products are implanted or used by surgeons in more than 150 countries.",
+ "customers": "Hospitals, surgical centres and physicians, paid for by insurers and national health systems.",
+ "money": [
+  [
+   "Cardiovascular",
+   "the largest segment",
+   "pacemakers, defibrillators, heart valves and stents"
+  ],
+  [
+   "Neuroscience",
+   "large",
+   "spine implants, neuromodulation and ear-nose-throat devices"
+  ],
+  [
+   "Medical Surgical",
+   "large",
+   "surgical stapling, energy devices and the Hugo surgical robot"
+  ],
+  [
+   "Diabetes",
+   "smaller, being separated",
+   "insulin pumps and continuous glucose monitors"
+  ]
+ ],
+ "moat": "Surgeons train on specific devices and rarely switch, approvals take years, and hospitals buy across its whole catalogue under one contract.",
+ "rivals": [
+  "Abbott|ABT",
+  "Boston Scientific|BSX",
+  "Stryker|SYK",
+  "Johnson & Johnson MedTech|JNJ",
+  "Intuitive Surgical|ISRG"
+ ],
+ "risks": [
+  "Growth has been slow compared with rivals such as Boston Scientific",
+  "Hospitals push back on device prices",
+  "Separating the diabetes business removes a growing unit",
+  "Product recalls and regulatory actions are a constant risk in devices"
+ ],
+ "opportunities": [
+  "The Hugo surgical robot gives it a position in a market Intuitive Surgical has dominated",
+  "Renal denervation for high blood pressure is a potentially large new category now reimbursed in the US",
+  "A dividend raised for decades supports the shares while growth is rebuilt"
+ ],
+ "watch": "Organic revenue growth by segment, and the commercial roll-out of Hugo and renal denervation.",
+ "updated": "2026-11"
+}

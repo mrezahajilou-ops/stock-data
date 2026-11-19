@@ -1,0 +1,37 @@
+{
+ "t": "LOW",
+ "what": "Lowe's is the second-largest home improvement retailer in the United States, with about 1,750 stores. It sells building materials, appliances, tools and garden products to homeowners doing their own projects and to professional contractors.",
+ "customers": "US homeowners and renters, and professional builders and trades, who are a growing focus.",
+ "money": [
+  [
+   "Do-it-yourself customers",
+   "the larger share of sales",
+   "homeowners buying materials, appliances and seasonal goods"
+  ],
+  [
+   "Professional customers",
+   "a growing share",
+   "contractors and trades, now supported by the acquired Foundation Building Materials and Artisan Design Group"
+  ]
+ ],
+ "moat": "Store locations near housing markets, supplier scale and a delivery network that is expensive to reproduce for heavy goods.",
+ "rivals": [
+  "Home Depot|HD",
+  "Tractor Supply|TSCO",
+  "Amazon|AMZN",
+  "Local lumber yards and builders merchants"
+ ],
+ "risks": [
+  "High mortgage rates keep people from moving and from starting large projects",
+  "Sales fell for several years after the pandemic boom faded",
+  "Debt is high relative to equity after years of buybacks",
+  "Home Depot is larger and ahead with professional customers"
+ ],
+ "opportunities": [
+  "Recent acquisitions move it closer to the professional contractor market, where Home Depot has led",
+  "Housing stock in the US is old, which eventually forces repair and replacement spending",
+  "A fall in mortgage rates would restart moves and renovation projects"
+ ],
+ "watch": "Same-store sales, especially for professional customers, and big-ticket discretionary categories.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "SCCO",
+ "what": "Southern Copper mines copper in Peru and Mexico, and smelts and refines it itself. Molybdenum, zinc and silver come out of the same ore and are sold as by-products. It is controlled by Grupo México.",
+ "customers": "Industrial buyers of refined copper and metal traders worldwide; copper demand comes from construction, electrical grids and vehicles.",
+ "money": [
+  [
+   "Copper",
+   "the large majority of revenue",
+   "mining, smelting and refining at operations in Peru and Mexico"
+  ],
+  [
+   "By-products",
+   "meaningful",
+   "molybdenum, zinc and silver recovered from the same ore"
+  ]
+ ],
+ "moat": "Very large, long-life ore bodies with among the lowest production costs in the industry, and its own smelting and refining capacity.",
+ "rivals": [
+  "Freeport-McMoRan|FCX",
+  "BHP|BHP",
+  "Rio Tinto|RIO",
+  "Antofagasta",
+  "Teck Resources|TECK"
+ ],
+ "risks": [
+  "Profit moves directly with the copper price, which the company does not control",
+  "Community protests and permitting have delayed Peruvian projects for years",
+  "Mexican and Peruvian tax and royalty rules can change",
+  "Grupo México controls the company, so minority holders have limited influence"
+ ],
+ "opportunities": [
+  "Copper demand is rising with electrical grids, data centres and electric vehicles while new mines are scarce",
+  "Low production costs mean it stays profitable at copper prices that hurt competitors",
+  "Expansion projects in Peru and Mexico could lift output if permits are granted"
+ ],
+ "watch": "The copper price and whether the Tía María and other Peruvian projects move ahead.",
+ "updated": "2026-11"
+}

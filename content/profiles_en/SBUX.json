@@ -1,0 +1,42 @@
+{
+ "t": "SBUX",
+ "what": "Starbucks runs and licenses coffeehouses in 91 markets. It roasts its own coffee, sells drinks and food in its own stores and through licensed outlets, and sells packaged coffee in supermarkets through a partnership with Nestlé.",
+ "customers": "Consumers buying coffee and food in stores and through its app; licensees and grocery buyers of packaged products.",
+ "money": [
+  [
+   "North America",
+   "the largest share",
+   "company-operated and licensed stores in the US and Canada"
+  ],
+  [
+   "International",
+   "meaningful",
+   "stores worldwide, with China the largest and most contested market"
+  ],
+  [
+   "Channel Development",
+   "smaller, high margin",
+   "packaged coffee and ready-to-drink products sold through Nestlé and partners"
+  ]
+ ],
+ "moat": "A brand that supports premium prices, dense store locations, and a loyalty app that holds customer balances and drives repeat visits.",
+ "rivals": [
+  "Luckin Coffee",
+  "Dutch Bros|BROS",
+  "McDonald's|MCD",
+  "Local independent coffee shops"
+ ],
+ "risks": [
+  "US same-store sales have been weak and the turnaround is taking time",
+  "Chinese competitors undercut it heavily on price",
+  "Labour costs and unionisation efforts raise store expenses",
+  "Profit margins have fallen while the company reinvests in stores and staff"
+ ],
+ "opportunities": [
+  "The current turnaround is simplifying the menu and cutting waiting times, which can restore traffic",
+  "Store growth continues in international markets",
+  "Channel Development earns high margins with little capital"
+ ],
+ "watch": "US same-store transactions, not just the ticket size, and the China business after the local partnership deal.",
+ "updated": "2026-11"
+}

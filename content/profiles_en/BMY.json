@@ -1,0 +1,38 @@
+{
+ "t": "BMY",
+ "what": "Bristol Myers Squibb develops and sells prescription medicines, concentrated in cancer, blood disorders, immunology, heart disease and brain disorders. Its best-known products include the blood thinner Eliquis and the cancer immunotherapy Opdivo.",
+ "customers": "Health systems, insurers and government payers, with medicines prescribed by specialists.",
+ "money": [
+  [
+   "Growth portfolio",
+   "the growing part",
+   "newer medicines including Opdivo, Reblozyl, Breyanzi, Camzyos and Cobenfy"
+  ],
+  [
+   "Legacy portfolio",
+   "still large, declining",
+   "Eliquis, Revlimid and Pomalyst, which face or will face generic competition"
+  ]
+ ],
+ "moat": "Patents, large late-stage trial capability and manufacturing for complex biologics and cell therapies that few companies can run.",
+ "rivals": [
+  "Merck|MRK",
+  "Pfizer|PFE",
+  "AstraZeneca|AZN",
+  "Johnson & Johnson|JNJ",
+  "Eli Lilly|LLY"
+ ],
+ "risks": [
+  "Eliquis and Revlimid, two of its largest products, lose exclusivity and revenue will fall sharply",
+  "US Medicare price negotiation already covers Eliquis",
+  "Debt of about $45 billion was raised partly for acquisitions",
+  "The newer portfolio must grow fast enough to replace the losses"
+ ],
+ "opportunities": [
+  "Cobenfy is the first genuinely new mechanism for schizophrenia in decades and addresses a large unmet need",
+  "Camzyos and Reblozyl are growing quickly from a small base",
+  "A dividend yield above 4% is paid while the portfolio turns over"
+ ],
+ "watch": "Whether growth-portfolio revenue rises faster than the legacy portfolio falls, and Cobenfy prescriptions.",
+ "updated": "2026-11"
+}

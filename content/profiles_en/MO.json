@@ -1,0 +1,42 @@
+{
+ "t": "MO",
+ "what": "Altria sells cigarettes and other tobacco products in the United States only. Marlboro is its main brand and provides most of its profit. It also owns oral tobacco brands and nicotine pouches, and holds a stake in the brewer AB InBev.",
+ "customers": "Adult tobacco consumers in the US, reached through convenience stores and other retailers.",
+ "money": [
+  [
+   "Smokeable products",
+   "the large majority of profit",
+   "Marlboro cigarettes and Black & Mild cigars"
+  ],
+  [
+   "Oral tobacco products",
+   "meaningful",
+   "Copenhagen and Skoal moist tobacco and the on! nicotine pouch"
+  ],
+  [
+   "Other",
+   "small",
+   "a stake in AB InBev and other investments"
+  ]
+ ],
+ "moat": "Marlboro's brand share in a market where advertising is banned, which makes it almost impossible for a new brand to be built, plus the pricing power that comes with it.",
+ "rivals": [
+  "Philip Morris International|PM",
+  "British American Tobacco|BTI",
+  "Turning Point Brands|TPB",
+  "Illicit disposable vape sellers"
+ ],
+ "risks": [
+  "US cigarette volumes fall every year and the decline has been accelerating",
+  "Regulators have proposed cutting nicotine levels in cigarettes",
+  "It has written off most of its investments in Juul and in cannabis",
+  "Illegal flavoured vapes take share from its legal products"
+ ],
+ "opportunities": [
+  "Price increases have so far more than offset falling volumes",
+  "The on! pouch line is growing in the fastest-growing part of the nicotine market",
+  "Almost all free cash flow is returned through a high dividend and buybacks"
+ ],
+ "watch": "Whether price increases keep covering volume declines, and the growth of on! pouch shipments.",
+ "updated": "2026-11"
+}

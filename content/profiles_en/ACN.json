@@ -1,0 +1,38 @@
+{
+ "t": "ACN",
+ "what": "Accenture is one of the world's largest consulting and technology services firms. Companies and governments hire it to design strategy, rebuild systems, move to the cloud and now to put AI into day-to-day operations, and then often pay it to run those systems.",
+ "customers": "Large companies and public bodies: it says it serves more than 9,000 clients, mostly Forbes Global 2000 companies, governments and agencies.",
+ "money": [
+  [
+   "Consulting",
+   "roughly half of revenue",
+   "advisory and project work: strategy, systems design and implementation"
+  ],
+  [
+   "Managed services",
+   "roughly half of revenue",
+   "running clients' technology and business processes under multi-year contracts"
+  ]
+ ],
+ "moat": "Scale no rival matches, with hundreds of thousands of trained staff in low-cost delivery centres, long contracts that are costly to move, and partnerships with every major software and cloud vendor.",
+ "rivals": [
+  "Infosys|INFY",
+  "Wipro|WIT",
+  "Cognizant|CTSH",
+  "IBM Consulting|IBM",
+  "Capgemini and Deloitte"
+ ],
+ "risks": [
+  "Demand for consulting falls quickly when clients cut budgets",
+  "Its people are its product, so wage inflation squeezes margins",
+  "AI tools could let clients do some of this work with far fewer billed hours",
+  "Large contracts can be repriced or lost at renewal"
+ ],
+ "opportunities": [
+  "It is positioning AI work as the next large wave of client spending after cloud migration",
+  "Managed services revenue is contracted for years, which cushions a weak consulting market",
+  "Steady cash flow funds regular acquisitions that add skills and clients"
+ ],
+ "watch": "New bookings each quarter, which lead revenue by about a year, and whether AI-related work grows faster than the rest.",
+ "updated": "2026-11"
+}

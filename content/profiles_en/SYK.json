@@ -1,0 +1,38 @@
+{
+ "t": "SYK",
+ "what": "Stryker makes medical equipment and implants: hip and knee replacements, spine products, surgical power tools, endoscopy systems, hospital beds and emergency equipment. Its Mako robot assists surgeons in joint replacement.",
+ "customers": "Hospitals, surgical centres and emergency services in about 61 countries.",
+ "money": [
+  [
+   "MedSurg and Neurotechnology",
+   "the larger part",
+   "surgical instruments, endoscopy, hospital equipment and neurovascular devices"
+  ],
+  [
+   "Orthopaedics and Spine",
+   "large",
+   "hip, knee and trauma implants, and the Mako surgical robot"
+  ]
+ ],
+ "moat": "Surgeons trained on its instruments and robot, Mako systems installed in hospitals that then buy its implants, and a sales force that works inside operating theatres.",
+ "rivals": [
+  "Zimmer Biomet|ZBH",
+  "Johnson & Johnson MedTech|JNJ",
+  "Medtronic|MDT",
+  "Smith & Nephew|SNN",
+  "Intuitive Surgical|ISRG"
+ ],
+ "risks": [
+  "Hospitals negotiate hard on implant prices",
+  "Return on invested capital is modest because of the price paid for acquisitions",
+  "Elective surgery volumes fall when hospitals are short of staff",
+  "Any recall in implants carries long-term liability"
+ ],
+ "opportunities": [
+  "An ageing population raises the number of joint replacements every year",
+  "Each Mako robot placed pulls years of implant sales behind it",
+  "Revenue has grown around 11% a year, faster than most large device makers"
+ ],
+ "watch": "Mako installations and organic growth in Orthopaedics, which shows whether the robot is winning implant share.",
+ "updated": "2026-11"
+}

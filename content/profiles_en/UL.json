@@ -1,0 +1,53 @@
+{
+ "t": "UL",
+ "what": "Unilever sells everyday consumer products in most countries: Dove and Vaseline in personal care, Domestos and Omo in home care, Hellmann's and Knorr in food, and Magnum and Ben & Jerry's in ice cream, which it is separating into a standalone company.",
+ "customers": "Consumers worldwide through supermarkets, small shops and e-commerce, with a large share of sales in emerging markets.",
+ "money": [
+  [
+   "Beauty and Wellbeing",
+   "large",
+   "hair care, skin care and vitamins"
+  ],
+  [
+   "Personal Care",
+   "large",
+   "Dove, Rexona, Axe and oral care"
+  ],
+  [
+   "Home Care",
+   "large",
+   "laundry and cleaning brands"
+  ],
+  [
+   "Foods",
+   "large",
+   "Knorr, Hellmann's and food service"
+  ],
+  [
+   "Ice Cream",
+   "being separated",
+   "Magnum, Ben & Jerry's and Wall's"
+  ]
+ ],
+ "moat": "Brands people ask for by name, shelf space in millions of shops, and distribution in emerging markets built over a century.",
+ "rivals": [
+  "Procter & Gamble|PG",
+  "Nestlé",
+  "Colgate-Palmolive|CL",
+  "L'Oréal",
+  "Reckitt"
+ ],
+ "risks": [
+  "Growth has depended heavily on price increases rather than volume",
+  "Supermarket own-label products take share when household budgets tighten",
+  "Currency moves in emerging markets reduce reported results",
+  "The ice cream separation is a large reorganisation while the rest is being restructured"
+ ],
+ "opportunities": [
+  "Separating ice cream leaves a higher-margin, faster-growing company behind",
+  "A cost programme is cutting overheads and reinvesting in the thirty largest brands",
+  "Emerging market exposure gives long-term volume growth as incomes rise"
+ ],
+ "watch": "Underlying volume growth rather than price, and progress of the ice cream separation.",
+ "updated": "2026-11"
+}

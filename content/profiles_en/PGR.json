@@ -1,0 +1,42 @@
+{
+ "t": "PGR",
+ "what": "Progressive is one of the largest car insurers in the United States. It sells motor insurance directly and through agents, prices each driver with its own data models, and increasingly bundles home insurance with it.",
+ "customers": "US drivers and small businesses, reached directly online and by phone as well as through independent agents.",
+ "money": [
+  [
+   "Personal lines",
+   "the large majority of premiums",
+   "car, motorcycle, boat and recreational-vehicle insurance"
+  ],
+  [
+   "Commercial lines",
+   "meaningful",
+   "insurance for small-business vehicles and transport fleets"
+  ],
+  [
+   "Property",
+   "smaller",
+   "home and renters insurance, often sold alongside a car policy"
+  ]
+ ],
+ "moat": "Decades of claims data turned into pricing models, a very low cost of acquiring customers relative to rivals, and a brand built on price comparison.",
+ "rivals": [
+  "GEICO (Berkshire Hathaway)|BRK-B",
+  "Allstate|ALL",
+  "Travelers|TRV",
+  "State Farm (private)"
+ ],
+ "risks": [
+  "Insurance is cyclical: when rivals cut prices to win share, margins fall",
+  "Severe weather and larger repair bills can raise claims faster than premiums",
+  "State regulators can delay or refuse rate increases",
+  "Reserves set aside for claims can prove too low"
+ ],
+ "opportunities": [
+  "Years of rate increases have been earned through, lifting profit while claims inflation cools",
+  "Bundling home with car insurance raises how long each customer stays",
+  "Advertising spending can be turned up to take share when pricing is favourable"
+ ],
+ "watch": "The combined ratio each month: below 100% means underwriting is profitable before investment income.",
+ "updated": "2026-11"
+}

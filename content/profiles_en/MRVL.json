@@ -1,0 +1,42 @@
+{
+ "t": "MRVL",
+ "what": "Marvell designs semiconductors for data infrastructure: the custom AI chips, optical connections, switches and storage controllers that move data inside and between data centres. It has no factories and uses TSMC to manufacture.",
+ "customers": "Cloud providers and AI data centre operators, telecom equipment makers, enterprise networking vendors and carmakers.",
+ "money": [
+  [
+   "Data centre",
+   "the large majority of revenue",
+   "custom AI silicon, optical interconnect and switching for cloud operators"
+  ],
+  [
+   "Enterprise networking and carrier",
+   "smaller",
+   "chips for corporate networks and telecom infrastructure"
+  ],
+  [
+   "Consumer and automotive",
+   "small",
+   "storage controllers and in-car networking"
+  ]
+ ],
+ "moat": "Deep engineering relationships with a handful of cloud customers who co-design chips with it, and leading expertise in high-speed optical interconnect.",
+ "rivals": [
+  "Broadcom|AVGO",
+  "NVIDIA|NVDA",
+  "Astera Labs|ALAB",
+  "Credo Technology|CRDO"
+ ],
+ "risks": [
+  "A few cloud customers account for much of revenue; losing one custom-chip socket matters a great deal",
+  "Broadcom is larger and competes directly for the same custom AI designs",
+  "Non-data-centre businesses have been shrinking",
+  "Return on invested capital is low because of past acquisitions and amortisation"
+ ],
+ "opportunities": [
+  "Custom AI chips for cloud operators are growing much faster than the chip market as a whole",
+  "Optical interconnect demand rises with every new AI cluster built",
+  "Revenue grew about 42% in the last financial year as AI orders scaled"
+ ],
+ "watch": "Data centre revenue each quarter and any news on winning or losing a custom-silicon programme.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "VRTX",
+ "what": "Vertex Pharmaceuticals develops medicines for diseases caused by a single faulty gene. Its cystic fibrosis drugs, led by Trikafta and the newer Alyftrek, treat the large majority of people with the disease worldwide and provide almost all of the company's revenue.",
+ "customers": "Health systems, insurers and national health services that pay for its medicines, prescribed by specialist doctors.",
+ "money": [
+  [
+   "Cystic fibrosis medicines",
+   "nearly all of revenue",
+   "Trikafta/Kaftrio, Alyftrek and earlier combinations, taken daily for life"
+  ],
+  [
+   "Casgevy",
+   "small but new",
+   "a one-time gene-editing treatment for sickle cell disease and beta thalassemia, developed with CRISPR Therapeutics"
+  ],
+  [
+   "Journavx",
+   "small but new",
+   "a non-opioid painkiller approved for acute pain"
+  ]
+ ],
+ "moat": "Patents and two decades of clinical know-how in cystic fibrosis, a disease where it has no direct competitor, plus deep relationships with the specialist clinics that treat patients.",
+ "rivals": [
+  "Alnylam Pharmaceuticals|ALNY",
+  "CRISPR Therapeutics|CRSP",
+  "Insmed|INSM",
+  "Large pharmaceutical companies entering gene therapy"
+ ],
+ "risks": [
+  "Revenue still depends overwhelmingly on cystic fibrosis; a safety problem or a rival drug would hit hard",
+  "Key patents expire over the next decade",
+  "New launches outside cystic fibrosis have to prove they can replace that concentration",
+  "Price pressure from governments and US drug-pricing rules"
+ ],
+ "opportunities": [
+  "Alyftrek can extend the cystic fibrosis franchise with once-daily dosing and fresh patent life",
+  "Journavx addresses acute pain, a very large market where the alternative is opioids",
+  "Casgevy and the pipeline in kidney disease and pain could add revenue that does not depend on cystic fibrosis"
+ ],
+ "watch": "Whether Journavx prescriptions scale, and how quickly patients switch from Trikafta to Alyftrek.",
+ "updated": "2026-11"
+}

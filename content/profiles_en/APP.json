@@ -1,0 +1,32 @@
+{
+ "t": "APP",
+ "what": "AppLovin runs an advertising platform. Its Axon system decides which ad to show to which person inside mobile apps, and it is paid when advertisers hit their return targets. It has sold off most of its own games business to focus on advertising.",
+ "customers": "App developers and, increasingly, e-commerce and consumer brands buying advertising; app publishers who sell space through it.",
+ "money": [
+  [
+   "Advertising",
+   "effectively all of revenue",
+   "the Axon engine matching advertisers with audiences inside apps"
+  ]
+ ],
+ "moat": "A self-improving machine-learning engine trained on enormous volumes of ad outcomes, plus direct links into many mobile apps that competitors do not have.",
+ "rivals": [
+  "Meta Platforms|META",
+  "Alphabet|GOOGL",
+  "Unity Software|U",
+  "The Trade Desk|TTD"
+ ],
+ "risks": [
+  "Growth has come from a single advertising engine, so a step down in its performance hits everything",
+  "Advertising budgets fall quickly in a downturn",
+  "Apple and Google control the platforms it depends on and change privacy rules",
+  "Short-seller reports have questioned its measurement and growth claims"
+ ],
+ "opportunities": [
+  "Moving beyond mobile games into e-commerce advertising opens a much larger pool of spending",
+  "Operating margins above 70% mean most new revenue drops to profit",
+  "Strong cash generation funds continuous share buybacks"
+ ],
+ "watch": "Whether revenue from non-gaming advertisers keeps growing, and the pace of buybacks.",
+ "updated": "2026-11"
+}

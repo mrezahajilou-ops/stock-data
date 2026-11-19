@@ -1,0 +1,48 @@
+{
+ "t": "LMT",
+ "what": "Lockheed Martin is the largest defence contractor in the world. It builds the F-35 fighter, missiles and missile-defence systems, military helicopters and satellites, and it maintains those systems for decades after delivery.",
+ "customers": "The US government is by far the largest customer, mainly the Department of Defense; allied governments buy through foreign military sales.",
+ "money": [
+  [
+   "Aeronautics",
+   "the largest business area",
+   "the F-35, F-16 and F-22 fighters and classified aircraft programmes"
+  ],
+  [
+   "Missiles and Fire Control",
+   "large",
+   "PAC-3 interceptors, HIMARS, JASSM and other precision weapons"
+  ],
+  [
+   "Rotary and Mission Systems",
+   "large",
+   "Sikorsky helicopters, naval and radar systems"
+  ],
+  [
+   "Space",
+   "large",
+   "satellites, strategic missiles and space exploration work"
+  ]
+ ],
+ "moat": "Programmes that take decades to qualify for, security clearances, and installed systems that need its own parts and servicing for thirty or more years.",
+ "rivals": [
+  "RTX|RTX",
+  "Northrop Grumman|NOC",
+  "General Dynamics|GD",
+  "Boeing Defense|BA",
+  "Anduril and other new entrants"
+ ],
+ "risks": [
+  "Almost all revenue depends on US government budgets and political decisions",
+  "Fixed-price development contracts have produced large losses before",
+  "F-35 delivery and upgrade delays affect both revenue and reputation",
+  "Newer, cheaper autonomous systems challenge its traditional platforms"
+ ],
+ "opportunities": [
+  "European and Asian rearmament is lifting foreign demand for fighters and missiles",
+  "Missile and interceptor production is being expanded to refill stockpiles used in recent conflicts",
+  "Decades of maintenance on each delivered aircraft provide revenue long after the sale"
+ ],
+ "watch": "F-35 deliveries and the backlog figure, which shows work already under contract.",
+ "updated": "2026-11"
+}

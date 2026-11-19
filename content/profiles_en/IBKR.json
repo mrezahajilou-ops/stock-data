@@ -1,0 +1,42 @@
+{
+ "t": "IBKR",
+ "what": "Interactive Brokers runs an electronic brokerage. Clients trade stocks, options, futures, bonds and currencies on more than 150 markets from one account, and the firm earns commissions, interest on client cash and margin lending.",
+ "customers": "Active individual traders, financial advisers, hedge funds and introducing brokers, with a large share outside the United States.",
+ "money": [
+  [
+   "Net interest income",
+   "the largest part",
+   "interest earned on client cash balances and margin loans"
+  ],
+  [
+   "Commissions",
+   "large",
+   "per-trade fees on stocks, options and futures"
+  ],
+  [
+   "Other fees",
+   "smaller",
+   "market data, currency conversion and services for advisers"
+  ]
+ ],
+ "moat": "Automation that keeps costs far below traditional brokers, direct access to many markets worldwide, and margin rates competitors struggle to match.",
+ "rivals": [
+  "Charles Schwab|SCHW",
+  "Robinhood|HOOD",
+  "Futu Holdings|FUTU",
+  "Tradeweb and traditional prime brokers"
+ ],
+ "risks": [
+  "Interest income falls when central banks cut rates",
+  "Trading activity drops in quiet markets",
+  "Competitors offer zero commissions and attract less sophisticated customers",
+  "Operating in many countries brings varied and changing regulation"
+ ],
+ "opportunities": [
+  "Client account growth has been running above 30% a year, which compounds all revenue lines",
+  "Its cost per trade is among the lowest in the industry, so new accounts add profit directly",
+  "Expansion among non-US clients and financial advisers continues"
+ ],
+ "watch": "Account growth and daily average revenue trades, plus the sensitivity of interest income to rate cuts.",
+ "updated": "2026-11"
+}

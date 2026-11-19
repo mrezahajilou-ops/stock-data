@@ -1,0 +1,37 @@
+{
+ "t": "SPOT",
+ "what": "Spotify is the largest music streaming service outside China. Users pay a monthly subscription or listen free with advertising, and the company pays most of what it collects to record labels, publishers and podcast creators.",
+ "customers": "Consumers in most countries; advertisers buying audio and video ads against free listeners.",
+ "money": [
+  [
+   "Premium subscriptions",
+   "the large majority of revenue",
+   "monthly plans for individuals, families, students and duos"
+  ],
+  [
+   "Advertising",
+   "smaller",
+   "audio, video and podcast advertising shown to free users"
+  ]
+ ],
+ "moat": "The largest audience in streaming audio, recommendation systems trained on years of listening, and playlists that users build and do not want to recreate elsewhere.",
+ "rivals": [
+  "Apple Music|AAPL",
+  "Amazon Music|AMZN",
+  "YouTube Music|GOOGL",
+  "Tencent Music|TME"
+ ],
+ "risks": [
+  "Record labels own the music and take most of each subscription",
+  "Apple, Amazon and Google can bundle music into services people already pay for",
+  "Price increases risk slowing subscriber growth",
+  "Podcast and audiobook investments have not always paid back"
+ ],
+ "opportunities": [
+  "Price rises have flowed through with little subscriber loss, lifting margins",
+  "Audiobooks and a higher-priced tier can raise revenue per user",
+  "Advertising is a small share of revenue and could grow if podcast monetisation improves"
+ ],
+ "watch": "Monthly active users and premium subscribers, and gross margin, which shows how much it keeps after paying rights holders.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "DB",
+ "what": "Deutsche Bank is Germany's largest bank. It serves German households and companies, finances corporates across Europe, and runs a large fixed income trading and investment banking business, plus the asset manager DWS.",
+ "customers": "German retail and business customers, European and global corporations, institutional investors and governments.",
+ "money": [
+  [
+   "Investment Bank",
+   "the largest part of revenue",
+   "fixed income and currency trading, debt origination and advisory"
+  ],
+  [
+   "Corporate Bank",
+   "large",
+   "transaction banking, lending and cash management for companies"
+  ],
+  [
+   "Private Bank",
+   "large",
+   "German retail banking and wealth management"
+  ],
+  [
+   "Asset Management",
+   "smaller",
+   "DWS funds"
+  ]
+ ],
+ "moat": "The home relationship with German industry and one of the few European banks able to compete in global fixed income trading.",
+ "rivals": [
+  "UBS|UBS",
+  "Barclays|BCS",
+  "BNP Paribas",
+  "Goldman Sachs|GS",
+  "Commerzbank"
+ ],
+ "risks": [
+  "Trading revenue is volatile and capital-intensive",
+  "European banks earn lower returns than US rivals",
+  "Past conduct and control failures brought large fines",
+  "German economic weakness affects its home lending book"
+ ],
+ "opportunities": [
+  "Profitability has improved after years of restructuring",
+  "Higher interest rates lifted income from its deposit base",
+  "It has resumed dividends and buybacks after a long gap"
+ ],
+ "watch": "Return on tangible equity against its target, and the cost-income ratio.",
+ "updated": "2026-11"
+}

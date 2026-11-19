@@ -1,0 +1,37 @@
+{
+ "t": "MPLX",
+ "what": "MPLX owns midstream energy infrastructure: crude and refined product pipelines, marine vessels, terminals and natural gas gathering and processing plants. It is controlled by Marathon Petroleum, which is also its largest customer.",
+ "customers": "Marathon Petroleum above all, plus gas producers, refiners and fuel distributors.",
+ "money": [
+  [
+   "Logistics and Storage",
+   "the larger part",
+   "pipelines, terminals, marine transport and fuels distribution"
+  ],
+  [
+   "Gathering and Processing",
+   "large",
+   "gathering, processing and fractionating natural gas and liquids"
+  ]
+ ],
+ "moat": "Pipeline corridors and processing plants that cannot be rebuilt, with capacity contracted under long-term minimum-volume agreements.",
+ "rivals": [
+  "Enterprise Products Partners|EPD",
+  "Energy Transfer|ET",
+  "Williams Companies|WMB",
+  "ONEOK|OKE"
+ ],
+ "risks": [
+  "Debt of about $27 billion is large relative to earnings",
+  "Marathon Petroleum controls it, so minority holders have limited influence",
+  "Gathering volumes depend on drilling activity",
+  "It is a partnership, which complicates taxes for some investors"
+ ],
+ "opportunities": [
+  "A distribution yield above 8% is covered by contracted cash flow",
+  "Natural gas liquids demand from petrochemicals and exports keeps growing",
+  "Expansion projects in the Permian basin add contracted capacity"
+ ],
+ "watch": "Distributable cash flow coverage of the distribution and new project commitments.",
+ "updated": "2026-11"
+}

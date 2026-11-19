@@ -1,0 +1,42 @@
+{
+ "t": "D",
+ "what": "Dominion Energy supplies electricity in Virginia and South Carolina and natural gas in several states. Virginia's data centre cluster, the largest in the world, sits inside its service territory.",
+ "customers": "Households, businesses and data centre operators in Virginia, South Carolina and nearby states.",
+ "money": [
+  [
+   "Dominion Energy Virginia",
+   "the largest part",
+   "regulated electricity generation and delivery in Virginia"
+  ],
+  [
+   "Dominion Energy South Carolina",
+   "meaningful",
+   "electricity and gas in South Carolina"
+  ],
+  [
+   "Contracted Energy",
+   "smaller",
+   "the Coastal Virginia offshore wind project and other generation"
+  ]
+ ],
+ "moat": "A regulated monopoly in a territory with the fastest electricity demand growth in the country, with rates set by state regulators.",
+ "rivals": [
+  "Duke Energy|DUK",
+  "American Electric Power|AEP",
+  "Southern Company|SO",
+  "NextEra Energy|NEE"
+ ],
+ "risks": [
+  "Debt of about $48 billion makes it sensitive to interest rates",
+  "The Coastal Virginia offshore wind project is very large and has had cost increases",
+  "Virginia regulators decide how data centre load is charged",
+  "It cut its dividend in 2020 and growth since has been modest"
+ ],
+ "opportunities": [
+  "Data centre demand in northern Virginia gives it the strongest load growth of any US utility",
+  "A simplified portfolio after selling the gas distribution businesses",
+  "Every approved investment raises the base it earns a regulated return on"
+ ],
+ "watch": "Data centre connection requests and the cost and schedule of the offshore wind project.",
+ "updated": "2026-11"
+}

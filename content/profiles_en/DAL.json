@@ -1,0 +1,37 @@
+{
+ "t": "DAL",
+ "what": "Delta Air Lines is one of the largest airlines in the world, carrying over 200 million passengers a year. A large share of its profit comes not from economy seats but from premium cabins, its loyalty programme and the American Express partnership.",
+ "customers": "Leisure and business travellers, corporate accounts, cargo shippers and American Express cardholders.",
+ "money": [
+  [
+   "Passenger",
+   "the large majority",
+   "ticket revenue, skewed toward premium cabins"
+  ],
+  [
+   "Loyalty and other",
+   "meaningful, very high margin",
+   "payments from American Express for miles, plus cargo and maintenance services"
+  ]
+ ],
+ "moat": "Hub positions at Atlanta, Detroit and Minneapolis where it faces little competition, plus a loyalty programme and card partnership that earn money regardless of seat prices.",
+ "rivals": [
+  "United Airlines|UAL",
+  "American Airlines|AAL",
+  "Southwest Airlines|LUV",
+  "Alaska Air Group|ALK"
+ ],
+ "risks": [
+  "Airlines are cyclical and fixed costs are high",
+  "Fuel prices move earnings sharply",
+  "Debt of about $18 billion remains from the pandemic years",
+  "Pilot and staff contracts have raised labour costs"
+ ],
+ "opportunities": [
+  "Premium and loyalty revenue grow faster than economy fares and are more stable",
+  "American Express payments provide billions of high-margin revenue a year",
+  "Limited new aircraft deliveries industry-wide keep capacity growth in check"
+ ],
+ "watch": "Premium revenue growth against main cabin, and American Express remuneration.",
+ "updated": "2026-11"
+}

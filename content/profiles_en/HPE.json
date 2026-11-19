@@ -1,0 +1,48 @@
+{
+ "t": "HPE",
+ "what": "Hewlett Packard Enterprise sells servers, storage and networking to businesses, along with the GreenLake service that rents that hardware by consumption. Buying Juniper Networks made networking a much larger part of the company.",
+ "customers": "Large enterprises, service providers, governments and research institutions.",
+ "money": [
+  [
+   "Server",
+   "the largest part",
+   "standard and AI servers for data centres"
+  ],
+  [
+   "Networking",
+   "large after the Juniper acquisition",
+   "switches, wireless and routing under Aruba and Juniper"
+  ],
+  [
+   "Hybrid Cloud and Storage",
+   "meaningful",
+   "storage arrays and the GreenLake consumption service"
+  ],
+  [
+   "Financial Services",
+   "smaller",
+   "leasing and financing for customers"
+  ]
+ ],
+ "moat": "Enterprise relationships and support contracts, plus networking equipment that is costly to swap once a campus or data centre runs on it.",
+ "rivals": [
+  "Dell Technologies|DELL",
+  "Cisco|CSCO",
+  "Arista Networks|ANET",
+  "Lenovo",
+  "Super Micro Computer|SMCI"
+ ],
+ "risks": [
+  "AI server sales carry very low margins because the chip cost dominates",
+  "It reported an operating loss last year after acquisition and legal charges",
+  "Debt rose to about $20 billion for the Juniper deal",
+  "Integrating two large networking businesses is a multi-year job"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% on AI server demand",
+  "Networking is the most profitable part and is now much larger",
+  "GreenLake recurring revenue makes earnings steadier than hardware sales"
+ ],
+ "watch": "Networking segment margin and the AI server backlog converted into revenue.",
+ "updated": "2026-11"
+}

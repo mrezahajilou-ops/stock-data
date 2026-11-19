@@ -1,0 +1,38 @@
+{
+ "t": "NU",
+ "what": "Nu Holdings runs Nubank, the largest digital bank in Latin America. It serves about 120 million customers in Brazil, Mexico and Colombia with credit cards, accounts, loans and investments, entirely through an app and without branches.",
+ "customers": "Consumers and small businesses in Brazil above all, plus a fast-growing base in Mexico and Colombia.",
+ "money": [
+  [
+   "Credit cards and lending",
+   "the larger part",
+   "interest and fees on cards, personal loans and payroll loans"
+  ],
+  [
+   "Deposits and other services",
+   "growing",
+   "interest earned on deposits, plus investments, insurance and marketplace fees"
+  ]
+ ],
+ "moat": "The lowest cost to serve a customer in the region because it has no branches, combined with a brand that acquires customers largely by word of mouth.",
+ "rivals": [
+  "Itaú Unibanco|ITUB",
+  "Banco Bradesco|BBD",
+  "MercadoLibre (Mercado Pago)|MELI",
+  "Banco do Brasil",
+  "Revolut"
+ ],
+ "risks": [
+  "Brazilian interest rates and unemployment drive credit losses",
+  "Reported revenue fell about 8% last year on currency and rate effects",
+  "Expansion into Mexico and Colombia is expensive before it becomes profitable",
+  "Brazilian regulators are tightening rules on card interest and fees"
+ ],
+ "opportunities": [
+  "It serves a population where tens of millions were previously unbanked",
+  "Deposits fund lending cheaply, which is the key advantage over fintech rivals",
+  "Mexico is growing fast and could become a second large market"
+ ],
+ "watch": "Customer growth outside Brazil and the non-performing loan ratio.",
+ "updated": "2026-11"
+}

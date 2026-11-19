@@ -1,0 +1,42 @@
+{
+ "t": "NUE",
+ "what": "Nucor is the largest steelmaker in the United States. It melts scrap in electric arc furnaces rather than using blast furnaces, and makes sheet, bar, plate and structural steel plus finished products like joists, decking and insulated panels.",
+ "customers": "Construction contractors, carmakers, equipment manufacturers, energy companies and steel service centres.",
+ "money": [
+  [
+   "Steel mills",
+   "the largest part",
+   "sheet, bar, plate and structural steel"
+  ],
+  [
+   "Steel products",
+   "large, higher margin",
+   "joists, decking, rebar fabrication, buildings and racking"
+  ],
+  [
+   "Raw materials",
+   "smaller",
+   "scrap processing and direct reduced iron"
+  ]
+ ],
+ "moat": "Electric arc furnaces with lower fixed costs than blast furnaces, a variable pay model that cuts costs in downturns, and mills placed near customers.",
+ "rivals": [
+  "Steel Dynamics|STLD",
+  "Cleveland-Cliffs|CLF",
+  "Commercial Metals|CMC",
+  "ArcelorMittal|MT"
+ ],
+ "risks": [
+  "Steel prices are cyclical and drive earnings",
+  "Imports and tariff policy change competitive conditions quickly",
+  "New capacity from itself and rivals can oversupply the market",
+  "Construction demand follows interest rates"
+ ],
+ "opportunities": [
+  "Tariffs on imported steel support domestic prices",
+  "Data centre, factory and infrastructure building raises steel demand",
+  "Downstream steel products earn steadier margins than raw steel"
+ ],
+ "watch": "Steel shipments and the realised price per ton.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,33 @@
+{
+ "t": "DDOG",
+ "what": "Datadog sells observability software. It collects metrics, logs and traces from cloud applications so engineers can see what is slow or broken, and it has added security and AI monitoring to the same platform.",
+ "customers": "Companies running software in the cloud, from startups to large enterprises.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "usage-based subscriptions across infrastructure, application and log monitoring"
+  ]
+ ],
+ "moat": "Once a company's dashboards, alerts and on-call processes are built on it, moving means rebuilding how engineering teams operate.",
+ "rivals": [
+  "Splunk (Cisco)|CSCO",
+  "Dynatrace|DT",
+  "New Relic",
+  "Grafana Labs",
+  "Amazon CloudWatch|AMZN"
+ ],
+ "risks": [
+  "Usage-based pricing means revenue falls when customers optimise their cloud spending",
+  "Stock-based compensation is large relative to reported profit",
+  "Cloud providers bundle competing monitoring tools",
+  "The shares trade at a high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue has grown about 28% a year with gross margins near 80%",
+  "AI workloads generate far more telemetry to monitor",
+  "It holds about $5.2 billion of cash against almost no debt"
+ ],
+ "watch": "Dollar-based net retention and the number of customers spending over $1 million a year.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "BDX",
+ "what": "Becton Dickinson makes medical supplies: syringes and needles, infusion pumps, catheters, diagnostic instruments and laboratory equipment. It is preparing to separate its biosciences and diagnostics business.",
+ "customers": "Hospitals, clinics, laboratories, pharmaceutical companies and health systems worldwide.",
+ "money": [
+  [
+   "BD Medical",
+   "the largest part",
+   "syringes, infusion systems, pharmaceutical delivery devices"
+  ],
+  [
+   "BD Interventional",
+   "large",
+   "surgical, vascular and urology products"
+  ],
+  [
+   "BD Life Sciences",
+   "meaningful, being separated",
+   "diagnostics instruments and research tools"
+  ]
+ ],
+ "moat": "Products used by the billion across hospital systems with purchasing contracts and regulatory approvals that make substitution slow.",
+ "rivals": [
+  "Baxter International|BAX",
+  "Abbott|ABT",
+  "Cardinal Health|CAH",
+  "Thermo Fisher Scientific|TMO",
+  "Stryker|SYK"
+ ],
+ "risks": [
+  "Growth has been slow at about 5% a year over three years",
+  "Debt of about $17 billion from past acquisitions",
+  "Return on invested capital is low at around 5%",
+  "Regulatory warnings on infusion pumps have cost time and money"
+ ],
+ "opportunities": [
+  "Separating the biosciences and diagnostics business should let both be valued on their own",
+  "Pharmaceutical injectable delivery grows with GLP-1 and biologic medicines",
+  "Cost programmes are lifting margins from a low base"
+ ],
+ "watch": "Organic revenue growth and the timetable for the Life Sciences separation.",
+ "updated": "2026-11"
+}

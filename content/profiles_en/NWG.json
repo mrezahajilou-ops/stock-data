@@ -1,0 +1,43 @@
+{
+ "t": "NWG",
+ "what": "NatWest Group is a large British bank. It serves households and small businesses through NatWest, Royal Bank of Scotland and Coutts, and lends to UK corporates. The British government sold the last of its stake in 2025.",
+ "customers": "UK households, small and medium businesses, large corporates and wealth management clients.",
+ "money": [
+  [
+   "Retail Banking",
+   "the largest part",
+   "current accounts, mortgages and consumer lending"
+  ],
+  [
+   "Commercial and Institutional",
+   "large",
+   "business lending, transaction banking and markets"
+  ],
+  [
+   "Private Banking",
+   "smaller",
+   "Coutts wealth management"
+  ]
+ ],
+ "moat": "A current account base that rarely moves, which provides cheap deposits, and one of the largest shares of UK business banking.",
+ "rivals": [
+  "Lloyds Banking Group|LYG",
+  "Barclays|BCS",
+  "HSBC|HSBC",
+  "Santander UK",
+  "Nationwide"
+ ],
+ "risks": [
+  "UK mortgage competition has squeezed lending margins",
+  "A weak UK economy raises loan losses",
+  "Bank taxes and levies in the UK are high",
+  "Deposit costs rise as customers move money to savings accounts"
+ ],
+ "opportunities": [
+  "The end of government ownership removes an overhang on the shares",
+  "Hedging of its deposit book keeps lifting interest income as old positions roll",
+  "A dividend yield above 6% plus buybacks returns most of its earnings"
+ ],
+ "watch": "Net interest margin and the impairment charge on loans.",
+ "updated": "2026-11"
+}

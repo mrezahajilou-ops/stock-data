@@ -1,0 +1,43 @@
+{
+ "t": "NDAQ",
+ "what": "Nasdaq runs the stock exchange of the same name, but most of its growth now comes from selling software: market surveillance, financial crime detection, risk management for banks, and index licensing.",
+ "customers": "Listed companies, brokers and traders, banks and asset managers buying software and data, and fund managers licensing indices.",
+ "money": [
+  [
+   "Market Services",
+   "large",
+   "trading and clearing fees on equities, options and other markets"
+  ],
+  [
+   "Capital Access Platforms",
+   "large",
+   "listings, index licensing, data and investor relations tools"
+  ],
+  [
+   "Financial Technology",
+   "growing",
+   "anti-financial-crime, regulatory and risk software for banks"
+  ]
+ ],
+ "moat": "The exchange has network effects in listings and liquidity, while the software is embedded in bank compliance processes that regulators audit.",
+ "rivals": [
+  "Intercontinental Exchange|ICE",
+  "CME Group|CME",
+  "Cboe Global Markets|CBOE",
+  "London Stock Exchange Group",
+  "MSCI|MSCI"
+ ],
+ "risks": [
+  "Debt of about $9 billion from the Adenza acquisition",
+  "Trading volumes fall in calm markets",
+  "Listings revenue depends on how many companies go public",
+  "Software competes against many well-funded vendors"
+ ],
+ "opportunities": [
+  "Software and data now provide most revenue and are subscription-based",
+  "Index licensing grows with money invested in index funds",
+  "A pickup in public listings would lift the exchange business"
+ ],
+ "watch": "Annualised recurring revenue in Financial Technology and the number of new listings.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "B",
+ "what": "Barrick Mining is one of the world's largest gold producers, with mines in Nevada, Africa, Latin America and Papua New Guinea. It also produces a significant amount of copper and is expanding that side.",
+ "customers": "Refiners and bullion markets for gold; smelters and traders for copper.",
+ "money": [
+  [
+   "Gold",
+   "the large majority of revenue",
+   "production from mines in North America, Africa and Latin America"
+  ],
+  [
+   "Copper",
+   "growing",
+   "Lumwana in Zambia and Reko Diq in Pakistan"
+  ]
+ ],
+ "moat": "Tier-one ore bodies with decades of reserves, including a joint venture over the Nevada gold complex with Newmont.",
+ "rivals": [
+  "Newmont|NEM",
+  "Agnico Eagle Mines|AEM",
+  "AngloGold Ashanti|AU",
+  "Gold Fields|GFI"
+ ],
+ "risks": [
+  "Profit depends on the gold price, which it does not control",
+  "The dispute over its Mali operations removed production and remains unresolved",
+  "Operations in Pakistan, Zambia and Mali carry political risk",
+  "Mining cost inflation has squeezed margins industry-wide"
+ ],
+ "opportunities": [
+  "A high gold price lifted revenue about 31% in the last financial year",
+  "The Reko Diq copper project is one of the largest undeveloped deposits in the world",
+  "It holds more cash than debt, unusual among large miners"
+ ],
+ "watch": "All-in sustaining cost per ounce and progress on Reko Diq and the Mali dispute.",
+ "updated": "2026-11"
+}

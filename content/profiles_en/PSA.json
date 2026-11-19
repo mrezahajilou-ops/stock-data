@@ -1,0 +1,37 @@
+{
+ "t": "PSA",
+ "what": "Public Storage owns self-storage facilities. It is the largest operator in the United States, renting small lockable units to people and small businesses on month-to-month contracts, and it owns a stake in the European operator Shurgard.",
+ "customers": "Households moving, downsizing or short of space, and small businesses storing stock and equipment.",
+ "money": [
+  [
+   "Self-storage rental",
+   "almost all of revenue",
+   "monthly rent on units across roughly 3,000 US facilities"
+  ],
+  [
+   "Ancillary",
+   "small",
+   "tenant insurance, merchandise and management fees"
+  ]
+ ],
+ "moat": "Locations in dense urban areas where new storage is hard to permit, and a brand customers search for by name, which keeps marketing costs low.",
+ "rivals": [
+  "Extra Space Storage|EXR",
+  "CubeSmart|CUBE",
+  "National Storage Affiliates|NSA",
+  "Local operators"
+ ],
+ "risks": [
+  "Demand depends on people moving house, which high mortgage rates have slowed",
+  "New supply in some markets has held down rents",
+  "Debt of about $12 billion is modest for a landlord but still rate-sensitive",
+  "Customers can leave with a month's notice, so pricing power cuts both ways"
+ ],
+ "opportunities": [
+  "Operating margin near 40% is very high because facilities need few staff",
+  "Existing customers accept regular rent increases once they have moved in",
+  "A recovery in house moves would lift occupancy and new-customer rates"
+ ],
+ "watch": "Same-store occupancy and the rate charged to new customers, which leads revenue.",
+ "updated": "2026-11"
+}

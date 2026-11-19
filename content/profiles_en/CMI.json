@@ -1,0 +1,53 @@
+{
+ "t": "CMI",
+ "what": "Cummins makes diesel and natural gas engines, and the components around them: turbochargers, filtration, emission systems and generators. It also builds electric drivetrains and electrolysers through its Accelera unit.",
+ "customers": "Truck and bus manufacturers, construction and farm equipment makers, data centre operators buying backup generators, and marine and rail customers.",
+ "money": [
+  [
+   "Components",
+   "the largest part",
+   "turbochargers, fuel systems, emission controls and filtration"
+  ],
+  [
+   "Engine",
+   "large",
+   "diesel and natural gas engines for trucks and equipment"
+  ],
+  [
+   "Distribution",
+   "large",
+   "parts and service through its own network"
+  ],
+  [
+   "Power Systems",
+   "growing",
+   "generators and power generation for data centres"
+  ],
+  [
+   "Accelera",
+   "small, lossmaking",
+   "electrolysers and electric drivetrains"
+  ]
+ ],
+ "moat": "Engines designed into truck platforms and serviced through its own distribution network for decades, with emissions know-how that is costly to replicate.",
+ "rivals": [
+  "Caterpillar|CAT",
+  "Paccar|PCAR",
+  "Daimler Truck",
+  "Traton",
+  "Generac|GNRC"
+ ],
+ "risks": [
+  "North American truck orders have been weak and revenue fell slightly last year",
+  "Emission regulation changes force expensive redesigns",
+  "Accelera continues to lose money",
+  "A freight recession reduces both new engines and parts demand"
+ ],
+ "opportunities": [
+  "Power Systems is growing quickly on data centre backup generator demand",
+  "Parts and service revenue is steadier than new engine sales",
+  "Return on invested capital near 15% is good for a heavy manufacturer"
+ ],
+ "watch": "Power Systems revenue and North American heavy truck order rates.",
+ "updated": "2026-11"
+}

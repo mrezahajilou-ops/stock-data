@@ -1,0 +1,43 @@
+{
+ "t": "TEL",
+ "what": "TE Connectivity makes connectors and sensors: the parts that carry power, signal and data between components in cars, factory machines, aircraft, medical devices and data centre equipment.",
+ "customers": "Carmakers and their suppliers, industrial equipment manufacturers, data centre builders, aerospace and medical device companies.",
+ "money": [
+  [
+   "Transportation Solutions",
+   "the largest part",
+   "connectors and sensors for cars, trucks and off-highway vehicles"
+  ],
+  [
+   "Industrial Solutions",
+   "large and growing",
+   "connectors for factory automation, aerospace, energy and data centres"
+  ],
+  [
+   "Communications Solutions",
+   "smaller",
+   "connectors for data centres and appliances"
+  ]
+ ],
+ "moat": "Parts designed into a vehicle or machine platform years ahead, with qualification cycles that keep a supplier in place for the product's life.",
+ "rivals": [
+  "Amphenol|APH",
+  "Aptiv|APTV",
+  "Molex",
+  "Sensata Technologies|ST",
+  "Yazaki"
+ ],
+ "risks": [
+  "Car production volumes have been falling in Europe",
+  "Industrial demand in Europe and China has been weak",
+  "Content per vehicle depends on electric vehicle adoption rates",
+  "Tariffs disrupt a business with plants in many countries"
+ ],
+ "opportunities": [
+  "Revenue grew about 15% in the last financial year, led by data centre connectors",
+  "AI servers need far more high-speed connectors per rack",
+  "Electric and software-defined cars carry more connector content than older vehicles"
+ ],
+ "watch": "Industrial Solutions growth, especially the data centre portion, and orders.",
+ "updated": "2026-11"
+}

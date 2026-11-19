@@ -1,0 +1,38 @@
+{
+ "t": "TFC",
+ "what": "Truist Financial is a large US regional bank formed by the merger of BB&T and SunTrust. It serves households and businesses across the southeastern United States and runs commercial banking and an investment bank.",
+ "customers": "Consumers, small businesses and corporate clients, mainly in the Southeast and mid-Atlantic.",
+ "money": [
+  [
+   "Consumer and Small Business Banking",
+   "large",
+   "deposits, mortgages, car loans and credit cards"
+  ],
+  [
+   "Wholesale Banking",
+   "large",
+   "commercial lending, investment banking and treasury services"
+  ]
+ ],
+ "moat": "Branch density and deposit share in fast-growing southeastern markets, which provides cheap, stable funding.",
+ "rivals": [
+  "Bank of America|BAC",
+  "PNC Financial|PNC",
+  "US Bancorp|USB",
+  "Fifth Third Bancorp|FITB",
+  "Regions Financial|RF"
+ ],
+ "risks": [
+  "Commercial property loans are a watched area for all regional banks",
+  "Deposit costs rise when customers move money to higher-yielding accounts",
+  "The BB&T and SunTrust integration consumed years of management attention",
+  "Regional bank regulation is being tightened"
+ ],
+ "opportunities": [
+  "Selling its insurance brokerage raised a large amount of capital for buybacks",
+  "Population and business growth in the Southeast is above the national average",
+  "A dividend yield above 4% while the balance sheet is repositioned"
+ ],
+ "watch": "Net interest margin and credit quality in commercial property lending.",
+ "updated": "2026-11"
+}

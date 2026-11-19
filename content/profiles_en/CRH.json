@@ -1,0 +1,43 @@
+{
+ "t": "CRH",
+ "what": "CRH supplies building materials: cement, aggregates, asphalt and ready-mixed concrete, and it also builds roads and infrastructure itself. North America is its largest market and it moved its primary listing to New York.",
+ "customers": "Road agencies and departments of transportation, infrastructure contractors, housebuilders and commercial developers.",
+ "money": [
+  [
+   "Americas Materials Solutions",
+   "the largest part",
+   "aggregates, cement, asphalt and paving services in North America"
+  ],
+  [
+   "Americas Building Solutions",
+   "large",
+   "precast, building envelope and outdoor living products"
+  ],
+  [
+   "International Solutions",
+   "meaningful",
+   "materials and products in Europe and Australia"
+  ]
+ ],
+ "moat": "Quarries and cement plants close to the roads they serve: aggregates are too heavy to transport far, so each site has a local monopoly on cost.",
+ "rivals": [
+  "Vulcan Materials|VMC",
+  "Martin Marietta|MLM",
+  "Holcim",
+  "Heidelberg Materials",
+  "Summit Materials"
+ ],
+ "risks": [
+  "Infrastructure spending depends on government budgets",
+  "Residential construction is weak while mortgage rates are high",
+  "Debt of about $21 billion funds continuous acquisitions",
+  "Energy costs are a large input for cement"
+ ],
+ "opportunities": [
+  "US federal infrastructure funding supports multi-year road and bridge demand",
+  "Bundling materials with paving services captures more of each project",
+  "Pricing has risen faster than costs for several years"
+ ],
+ "watch": "Pricing in Americas Materials and the backlog of infrastructure work.",
+ "updated": "2026-11"
+}

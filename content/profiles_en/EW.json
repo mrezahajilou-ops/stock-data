@@ -1,0 +1,42 @@
+{
+ "t": "EW",
+ "what": "Edwards Lifesciences makes heart valves and the catheters used to place them. Its transcatheter aortic valve, placed through an artery rather than open surgery, is the product it is best known for.",
+ "customers": "Hospitals and cardiac specialists worldwide.",
+ "money": [
+  [
+   "Transcatheter Aortic Valve Replacement",
+   "the largest part",
+   "replacement aortic valves delivered by catheter"
+  ],
+  [
+   "Transcatheter Mitral and Tricuspid",
+   "growing",
+   "newer valve repair and replacement devices"
+  ],
+  [
+   "Surgical Structural Heart and Critical Care",
+   "meaningful",
+   "surgical valves and patient monitoring"
+  ]
+ ],
+ "moat": "Two decades of clinical trial evidence that regulators and insurers rely on, and physician training that makes its delivery systems familiar.",
+ "rivals": [
+  "Medtronic|MDT",
+  "Abbott|ABT",
+  "Boston Scientific|BSX",
+  "JenaValve"
+ ],
+ "risks": [
+  "Growth in aortic valves has slowed as the market matures",
+  "Competitors are approved in the same procedures",
+  "Hospital capacity limits how many procedures can be done",
+  "Reimbursement decisions determine which patients qualify"
+ ],
+ "opportunities": [
+  "Mitral and tricuspid valve therapy is a large, barely treated market",
+  "Expanding approvals to patients with milder disease widens the eligible population",
+  "It holds about $4.6 billion of cash against almost no debt"
+ ],
+ "watch": "Transcatheter aortic valve growth and the launch pace of mitral and tricuspid devices.",
+ "updated": "2026-11"
+}

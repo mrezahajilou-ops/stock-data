@@ -1,0 +1,32 @@
+{
+ "t": "LNG",
+ "what": "Cheniere Energy liquefies natural gas and ships it abroad. It owns the Sabine Pass and Corpus Christi terminals in Texas and Louisiana, the largest liquefied natural gas export capacity in the United States.",
+ "customers": "Utilities and energy companies in Europe and Asia under long-term contracts, plus buyers in the spot market.",
+ "money": [
+  [
+   "Liquefied natural gas sales",
+   "almost all of revenue",
+   "long-term contracted cargoes plus spot sales"
+  ]
+ ],
+ "moat": "Export terminals that cost tens of billions and take years to permit and build, with capacity sold out under twenty-year contracts.",
+ "rivals": [
+  "Venture Global|VG",
+  "NextDecade|NEXT",
+  "QatarEnergy",
+  "Shell|SHEL"
+ ],
+ "risks": [
+  "Debt of about $27 billion was raised to build the terminals",
+  "Spot gas prices swing and affect the uncontracted portion of volumes",
+  "Permitting and policy decisions can delay expansion projects",
+  "A mild winter in Europe or Asia reduces demand for extra cargoes"
+ ],
+ "opportunities": [
+  "Most capacity is contracted for twenty years with fixed fees paid whether or not gas is lifted",
+  "European buyers want supply that does not come from Russia",
+  "Expansion trains at both terminals add capacity through the decade"
+ ],
+ "watch": "Volumes shipped and the share of revenue under fixed-fee contracts.",
+ "updated": "2026-11"
+}

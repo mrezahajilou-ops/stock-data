@@ -1,0 +1,37 @@
+{
+ "t": "EXC",
+ "what": "Exelon is the largest electricity delivery company in the United States. It does not generate power: it owns six regulated utilities that deliver electricity and gas, including ComEd in Chicago, PECO in Philadelphia, BGE in Baltimore and Pepco in Washington.",
+ "customers": "About 10.7 million households and businesses in Illinois, Pennsylvania, Maryland, Delaware, New Jersey and Washington DC.",
+ "money": [
+  [
+   "Regulated electricity delivery",
+   "the largest part",
+   "transmission and distribution across six utilities"
+  ],
+  [
+   "Regulated gas delivery",
+   "smaller",
+   "gas distribution in several of those territories"
+  ]
+ ],
+ "moat": "Pure delivery monopolies with no exposure to power prices, so earnings depend on regulated returns rather than commodity markets.",
+ "rivals": [
+  "PPL|PPL",
+  "FirstEnergy|FE",
+  "Public Service Enterprise|PEG",
+  "Dominion Energy|D"
+ ],
+ "risks": [
+  "Debt of about $49 billion against under $1 billion of cash",
+  "Illinois and Maryland regulators have pushed back on requested returns",
+  "Heavy capital spending requires regular share issuance",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 5% last year",
+  "Data centre connection requests in Chicago and northern Virginia raise long-term investment needs",
+  "Having no generation means no exposure to power price swings"
+ ],
+ "watch": "Rate case outcomes and data centre load growth in its territories.",
+ "updated": "2026-11"
+}

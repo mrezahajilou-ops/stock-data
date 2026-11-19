@@ -1,0 +1,38 @@
+{
+ "t": "HUM",
+ "what": "Humana is one of the largest providers of Medicare Advantage health plans in the United States, the private alternative to government Medicare for older Americans. Through CenterWell it also owns primary care clinics, home health services and a pharmacy.",
+ "customers": "Americans over 65 on Medicare Advantage plans, Medicaid members, and military families under TRICARE.",
+ "money": [
+  [
+   "Insurance",
+   "almost all of revenue",
+   "Medicare Advantage, Medicaid and military health plans"
+  ],
+  [
+   "CenterWell",
+   "growing",
+   "primary care clinics, home health and pharmacy"
+  ]
+ ],
+ "moat": "Scale in Medicare Advantage combined with owning the clinics that treat its own members, which lets it manage cost rather than just pay claims.",
+ "rivals": [
+  "UnitedHealth Group|UNH",
+  "CVS Health (Aetna)|CVS",
+  "Elevance Health|ELV",
+  "Centene|CNC",
+  "Alignment Healthcare|ALHC"
+ ],
+ "risks": [
+  "Medical costs have risen faster than the government payments it receives",
+  "Net margin of about 1% leaves no room for cost surprises",
+  "Star ratings cuts reduce the bonus payments it earns per member",
+  "Medicare Advantage payment rules are set by the government and can change"
+ ],
+ "opportunities": [
+  "Analysts see about 34% upside from current levels",
+  "Owning clinics lets it capture the saving when care is managed better",
+  "The population turning 65 grows every year"
+ ],
+ "watch": "The medical loss ratio and Star ratings for the coming plan year.",
+ "updated": "2026-11"
+}

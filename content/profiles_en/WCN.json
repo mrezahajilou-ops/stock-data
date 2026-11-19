@@ -1,0 +1,42 @@
+{
+ "t": "WCN",
+ "what": "Waste Connections collects rubbish and recycling and runs landfills across the United States and Canada. It deliberately focuses on smaller, less competitive markets rather than big cities.",
+ "customers": "Households through municipal contracts, businesses, construction sites and industrial customers.",
+ "money": [
+  [
+   "Collection",
+   "the largest part",
+   "residential, commercial and roll-off collection"
+  ],
+  [
+   "Disposal and transfer",
+   "large",
+   "landfills and transfer stations"
+  ],
+  [
+   "Recycling and resource recovery",
+   "smaller",
+   "recycled commodities and landfill gas"
+  ]
+ ],
+ "moat": "Landfill permits that are almost impossible to obtain today, in secondary markets where it is often the only operator with somewhere to put the waste.",
+ "rivals": [
+  "Waste Management|WM",
+  "Republic Services|RSG",
+  "GFL Environmental|GFL",
+  "Casella Waste Systems|CWST"
+ ],
+ "risks": [
+  "Debt of about $10 billion against almost no cash",
+  "Recycled commodity prices are volatile",
+  "Landfill environmental liabilities can be expensive",
+  "Fuel and labour costs rise faster than contracted price increases at times"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year with pricing consistently above inflation",
+  "Waste volumes barely fall in a recession",
+  "Landfill gas projects turn a cost into an energy revenue stream"
+ ],
+ "watch": "Core pricing growth and the operating margin.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "TRI",
+ "what": "Thomson Reuters sells professional information and software. Westlaw is the research system used by American lawyers, Checkpoint by accountants, and it also supplies tax software, government compliance tools and the Reuters news agency.",
+ "customers": "Law firms, corporate legal departments, accounting firms, tax professionals, governments and news organisations.",
+ "money": [
+  [
+   "Legal Professionals",
+   "the largest part",
+   "Westlaw research and legal workflow software"
+  ],
+  [
+   "Corporates",
+   "large",
+   "tax, legal and trade compliance software for companies"
+  ],
+  [
+   "Tax and Accounting Professionals",
+   "large",
+   "tax preparation and audit software"
+  ],
+  [
+   "Reuters News",
+   "smaller",
+   "news agency services"
+  ]
+ ],
+ "moat": "Research systems lawyers and accountants are trained on, with proprietary editorial content built over a century that cannot be recreated from public sources.",
+ "rivals": [
+  "RELX (LexisNexis)|RELX",
+  "Wolters Kluwer",
+  "Intuit|INTU",
+  "Bloomberg Law",
+  "Clio"
+ ],
+ "risks": [
+  "Artificial intelligence could let competitors build research tools more cheaply",
+  "Legal and accounting firm headcount drives seat-based pricing",
+  "Revenue grew only about 3% last year",
+  "Reuters News is a small and structurally difficult business"
+ ],
+ "opportunities": [
+  "Analysts see about 26% upside from current levels",
+  "Its own AI research assistants let it charge more per seat",
+  "Recurring subscription revenue is around 80% of the total"
+ ],
+ "watch": "Organic revenue growth in Legal Professionals and the uptake of its AI products.",
+ "updated": "2026-11"
+}

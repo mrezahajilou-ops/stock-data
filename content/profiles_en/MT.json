@@ -1,0 +1,48 @@
+{
+ "t": "MT",
+ "what": "ArcelorMittal is one of the world's largest steelmakers, with plants across Europe, North and South America, Africa and India, and its own iron ore mines. It makes everything from car body steel to construction beams.",
+ "customers": "Carmakers, construction companies, appliance and machinery manufacturers, and energy companies.",
+ "money": [
+  [
+   "Europe",
+   "the largest part",
+   "flat and long steel products across several countries"
+  ],
+  [
+   "North America",
+   "large",
+   "steel for the US and Mexican markets"
+  ],
+  [
+   "Brazil and Mining",
+   "meaningful",
+   "Brazilian steel and its own iron ore supply"
+  ],
+  [
+   "India joint venture",
+   "growing",
+   "a 50% share of AM/NS India"
+  ]
+ ],
+ "moat": "Owning iron ore mines alongside the mills, so it is less exposed to raw material prices than steelmakers that buy everything.",
+ "rivals": [
+  "Nucor|NUE",
+  "POSCO|PKX",
+  "Tata Steel",
+  "Baowu",
+  "Nippon Steel"
+ ],
+ "risks": [
+  "European steel demand has been weak and energy costs there are high",
+  "Chinese steel exports depress world prices",
+  "Net margin of about 5% reflects an industry with little pricing power",
+  "Carbon regulation in Europe requires expensive plant conversions"
+ ],
+ "opportunities": [
+  "European trade measures against imported steel would support prices",
+  "The Indian joint venture is expanding in a fast-growing market",
+  "Analysts see about 27% upside from current levels"
+ ],
+ "watch": "European steel spreads and Chinese export volumes.",
+ "updated": "2026-11"
+}

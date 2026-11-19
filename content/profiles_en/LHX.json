@@ -1,0 +1,48 @@
+{
+ "t": "LHX",
+ "what": "L3Harris Technologies is a US defence contractor. It makes tactical radios, electronic warfare systems, night vision, space sensors and, since buying Aerojet Rocketdyne, rocket motors for missiles.",
+ "customers": "The US Department of Defense and intelligence agencies, allied governments in more than 100 countries, and prime contractors.",
+ "money": [
+  [
+   "Space and Airborne Systems",
+   "large",
+   "space sensors, intelligence systems and avionics"
+  ],
+  [
+   "Integrated Mission Systems",
+   "large",
+   "maritime, intelligence and electro-optical systems"
+  ],
+  [
+   "Communication Systems",
+   "large",
+   "tactical radios and night vision"
+  ],
+  [
+   "Aerojet Rocketdyne",
+   "growing",
+   "solid rocket motors and propulsion"
+  ]
+ ],
+ "moat": "Programmes written into defence budgets for years ahead, with classified work and qualified production lines that competitors cannot enter quickly.",
+ "rivals": [
+  "RTX|RTX",
+  "Northrop Grumman|NOC",
+  "Lockheed Martin|LMT",
+  "General Dynamics|GD",
+  "Leonardo"
+ ],
+ "risks": [
+  "US defence budget decisions drive almost all revenue",
+  "Debt of about $11 billion from the Aerojet purchase",
+  "Fixed-price development contracts have caused losses across the industry",
+  "Operating margin of 10% is lower than its larger peers'"
+ ],
+ "opportunities": [
+  "Solid rocket motors are in short supply industry-wide as missile stockpiles are rebuilt",
+  "Analysts see about 30% upside from current levels",
+  "European and Asian allies are raising defence spending"
+ ],
+ "watch": "The book-to-bill ratio and margin progress at Aerojet Rocketdyne.",
+ "updated": "2026-11"
+}

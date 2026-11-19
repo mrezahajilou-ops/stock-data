@@ -1,0 +1,42 @@
+{
+ "t": "VTR",
+ "what": "Ventas is a healthcare property owner. It owns senior housing communities, outpatient medical buildings, research centres and hospitals in the United States, Canada and the United Kingdom, and operates much of the senior housing itself rather than just collecting rent.",
+ "customers": "Senior housing residents and their families, healthcare providers renting medical offices, and universities and biotech firms renting research space.",
+ "money": [
+  [
+   "Senior Housing Operating Portfolio",
+   "the largest part",
+   "communities it operates, taking the resident fees directly"
+  ],
+  [
+   "Outpatient Medical and Research",
+   "large",
+   "rent from medical offices and research buildings"
+  ],
+  [
+   "Triple-Net Leased",
+   "smaller",
+   "properties leased to healthcare operators"
+  ]
+ ],
+ "moat": "Senior housing in markets where very little new building has happened since 2020, just as the population most likely to need it is growing fastest.",
+ "rivals": [
+  "Welltower|WELL",
+  "Healthpeak Properties|DOC",
+  "Omega Healthcare|OHI",
+  "Brookdale Senior Living|BKD"
+ ],
+ "risks": [
+  "Debt of about $13 billion against very little cash",
+  "Operating senior housing means taking on staffing costs and occupancy risk directly",
+  "Research building demand has softened with biotech funding",
+  "Reported net margin is low because of depreciation"
+ ],
+ "opportunities": [
+  "Revenue grew about 18% last year as senior housing occupancy recovered",
+  "The number of Americans over 80 grows sharply for the next decade",
+  "Almost no new senior housing has been started, so supply stays tight"
+ ],
+ "watch": "Senior housing occupancy and the net operating income growth in that portfolio.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "BKR",
+ "what": "Baker Hughes supplies equipment and services to energy companies. One half serves oil and gas drilling and production; the other, called Industrial and Energy Technology, makes gas turbines and compressors used in liquefied natural gas plants and increasingly in data centre power.",
+ "customers": "Oil and gas producers, LNG plant developers, refiners, and industrial and power customers.",
+ "money": [
+  [
+   "Oilfield Services and Equipment",
+   "the larger part",
+   "drilling, completions, production and subsea equipment"
+  ],
+  [
+   "Industrial and Energy Technology",
+   "large, higher margin",
+   "gas turbines, compressors and industrial control systems"
+  ]
+ ],
+ "moat": "Turbomachinery for liquefied natural gas plants, where only a handful of companies in the world can supply the compressors, and each plant then needs decades of service.",
+ "rivals": [
+  "SLB|SLB",
+  "Halliburton|HAL",
+  "Siemens Energy",
+  "GE Vernova|GEV",
+  "Weatherford|WFRD"
+ ],
+ "risks": [
+  "Oilfield activity has been flat as producers hold spending",
+  "Debt of about $18 billion against $4 billion of cash",
+  "Large equipment orders are lumpy and can shift between years",
+  "Revenue was roughly flat last year"
+ ],
+ "opportunities": [
+  "Analysts see about 45% upside from current levels",
+  "Liquefied natural gas plant construction is in a multi-year build cycle",
+  "Gas turbines are now being sold for data centre power, a new market"
+ ],
+ "watch": "Industrial and Energy Technology orders and backlog.",
+ "updated": "2026-11"
+}

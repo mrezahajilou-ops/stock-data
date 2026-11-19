@@ -1,0 +1,37 @@
+{
+ "t": "VEEV",
+ "what": "Veeva Systems makes software for pharmaceutical and biotech companies: systems for running clinical trials, managing regulatory submissions, controlling quality, and managing relationships with doctors.",
+ "customers": "Pharmaceutical and biotechnology companies of all sizes, plus contract research organisations.",
+ "money": [
+  [
+   "R&D Solutions",
+   "the larger part",
+   "clinical trial, regulatory and quality management software"
+  ],
+  [
+   "Commercial Solutions",
+   "large",
+   "CRM and data for sales and marketing to doctors"
+  ]
+ ],
+ "moat": "Software validated for regulated pharmaceutical processes, where switching means revalidating systems with regulators, and an industry-specific design no general software vendor matches.",
+ "rivals": [
+  "Salesforce|CRM",
+  "IQVIA|IQV",
+  "Oracle Health Sciences|ORCL",
+  "Dassault Systèmes (Medidata)"
+ ],
+ "risks": [
+  "It is tied to one industry, so a pharmaceutical spending downturn hits everything",
+  "It is replacing Salesforce underneath its commercial products, a large migration",
+  "Biotech funding weakness reduces spending by smaller customers",
+  "The shares trade at a high multiple of earnings"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year with a 29% operating margin",
+  "Cash of about $7 billion against almost no debt",
+  "Its own data products compete with established pharmaceutical data vendors"
+ ],
+ "watch": "Customer migrations to its own CRM platform, and subscription revenue growth.",
+ "updated": "2026-11"
+}

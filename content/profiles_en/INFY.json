@@ -1,0 +1,43 @@
+{
+ "t": "INFY",
+ "what": "Infosys is an Indian information technology services company. It runs, maintains and modernises the software systems of large corporations worldwide, and increasingly builds artificial intelligence into those systems.",
+ "customers": "Banks, insurers, retailers, manufacturers and communications companies, mostly in North America and Europe.",
+ "money": [
+  [
+   "Financial Services",
+   "the largest part",
+   "technology services to banks and insurers"
+  ],
+  [
+   "Retail, Manufacturing, Energy",
+   "large",
+   "sector-specific IT services"
+  ],
+  [
+   "Communications, Life Sciences and other",
+   "meaningful",
+   "services across remaining sectors"
+  ]
+ ],
+ "moat": "A trained workforce of hundreds of thousands at Indian cost levels, with multi-year contracts that embed it in customers' core systems.",
+ "rivals": [
+  "Tata Consultancy Services",
+  "Accenture|ACN",
+  "Wipro|WIT",
+  "Cognizant|CTSH",
+  "HCLTech"
+ ],
+ "risks": [
+  "Client technology budgets have been tight for two years",
+  "Artificial intelligence may reduce the number of people needed per project, which is how this industry bills",
+  "US immigration policy affects its staffing model",
+  "Revenue grew only about 5% last year"
+ ],
+ "opportunities": [
+  "Almost no debt: about $516 million against $4 billion of cash",
+  "A dividend yield around 4.5% with large buybacks",
+  "Companies rebuilding systems for artificial intelligence need exactly this kind of implementation work"
+ ],
+ "watch": "Large deal wins and revenue growth in constant currency.",
+ "updated": "2026-11"
+}

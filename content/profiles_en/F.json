@@ -1,0 +1,48 @@
+{
+ "t": "F",
+ "what": "Ford builds trucks, vans and cars. The F-Series pickup is the best-selling vehicle in the United States and the main source of profit. Ford Pro sells and services commercial vans and trucks to businesses, and Ford Credit finances vehicle purchases.",
+ "customers": "American truck and van buyers, commercial fleets and tradespeople, and buyers in Europe and other markets.",
+ "money": [
+  [
+   "Ford Blue",
+   "large",
+   "petrol and hybrid vehicles, including the F-Series"
+  ],
+  [
+   "Ford Pro",
+   "large, most profitable",
+   "commercial vans and trucks plus service and software subscriptions"
+  ],
+  [
+   "Ford Model e",
+   "lossmaking",
+   "electric vehicles"
+  ],
+  [
+   "Ford Credit",
+   "meaningful",
+   "vehicle financing"
+  ]
+ ],
+ "moat": "The F-Series franchise, where loyalty and dealer service have held for decades, plus a commercial van business with repeat fleet relationships.",
+ "rivals": [
+  "General Motors|GM",
+  "Stellantis|STLA",
+  "Toyota|TM",
+  "Rivian|RIVN",
+  "Tesla|TSLA"
+ ],
+ "risks": [
+  "It reported a large loss in the latest twelve months after warranty, recall and other charges",
+  "Electric vehicle operations have lost billions a year",
+  "Warranty and recall costs have been among the worst in the industry",
+  "Tariffs on imported parts raise costs"
+ ],
+ "opportunities": [
+  "Ford Pro earns high margins and is growing through service and software",
+  "Analysts see about 30% upside from current levels",
+  "Cash of about $34 billion gives it room to absorb a difficult period"
+ ],
+ "watch": "Ford Pro profit, warranty costs, and losses in the electric vehicle unit.",
+ "updated": "2026-11"
+}

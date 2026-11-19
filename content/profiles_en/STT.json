@@ -1,0 +1,48 @@
+{
+ "t": "STT",
+ "what": "State Street is a custody bank. It holds and administers assets for the world's largest investors, handles the record-keeping, settlement and reporting behind them, and runs State Street Global Advisors, which manages the SPDR exchange-traded funds.",
+ "customers": "Asset managers, pension funds, sovereign wealth funds, insurers and central banks.",
+ "money": [
+  [
+   "Servicing fees",
+   "the largest part",
+   "custody, fund administration and middle-office outsourcing"
+  ],
+  [
+   "Management fees",
+   "large",
+   "State Street Global Advisors, including SPDR ETFs"
+  ],
+  [
+   "Net interest income",
+   "meaningful",
+   "interest on client cash balances"
+  ],
+  [
+   "Foreign exchange and financing",
+   "smaller",
+   "currency trading and securities finance"
+  ]
+ ],
+ "moat": "Custody mandates that are extremely rarely moved, because transferring trillions in assets between custodians is slow, risky and expensive.",
+ "rivals": [
+  "BNY|BK",
+  "Northern Trust|NTRS",
+  "JPMorgan Chase|JPM",
+  "BlackRock|BLK",
+  "Citigroup|C"
+ ],
+ "risks": [
+  "Fee revenue falls when markets fall, since custody fees are charged on asset values",
+  "Price competition for custody mandates is persistent",
+  "Index fund fee pressure affects its asset management arm",
+  "Debt of about $25 billion funds its balance sheet"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "New servicing mandates won but not yet installed give visible future revenue",
+  "Buybacks have shrunk the share count significantly"
+ ],
+ "watch": "New servicing wins to be installed, and fee revenue against market levels.",
+ "updated": "2026-11"
+}

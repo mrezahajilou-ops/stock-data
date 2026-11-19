@@ -1,0 +1,38 @@
+{
+ "t": "XYZ",
+ "what": "Block runs two businesses. Square sells payment hardware and software to small businesses, and Cash App is a consumer money app used for payments, direct deposit, stock and bitcoin buying. It also owns Afterpay, a buy-now-pay-later service.",
+ "customers": "Small and medium businesses using Square, and consumers using Cash App, mostly in the United States.",
+ "money": [
+  [
+   "Cash App",
+   "the larger part of profit",
+   "transaction fees, Cash App Card interchange, bitcoin sales and lending"
+  ],
+  [
+   "Square",
+   "large",
+   "payment processing, hardware and software subscriptions for merchants"
+  ]
+ ],
+ "moat": "Two networks that feed each other: consumers paying businesses that already use Square, with services that are hard to unpick once a small business runs its till, payroll and loans through one system.",
+ "rivals": [
+  "PayPal|PYPL",
+  "Toast|TOST",
+  "Shopify|SHOP",
+  "Fiserv|FI",
+  "Stripe"
+ ],
+ "risks": [
+  "Revenue was flat last year",
+  "Cash App user growth has slowed",
+  "Bitcoin trading revenue is large but carries almost no margin",
+  "Consumer lending exposes it to credit losses"
+ ],
+ "opportunities": [
+  "Analysts see about 30% upside from current levels",
+  "Cash App is being built into a full banking relationship with direct deposit and lending",
+  "Cash of about $8 billion exceeds its debt"
+ ],
+ "watch": "Gross profit growth at Cash App and Square separately, and monthly active Cash App users.",
+ "updated": "2026-11"
+}

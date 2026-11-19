@@ -1,0 +1,43 @@
+{
+ "t": "FITB",
+ "what": "Fifth Third Bancorp is a regional bank based in Cincinnati. It takes deposits and lends across the Midwest and Southeast, and runs commercial banking, wealth management and a large payments business for businesses.",
+ "customers": "Households and small businesses in eleven states, plus commercial and corporate clients nationally.",
+ "money": [
+  [
+   "Commercial Banking",
+   "large",
+   "corporate lending, treasury management and capital markets"
+  ],
+  [
+   "Consumer and Small Business Banking",
+   "large",
+   "deposits, mortgages and consumer lending"
+  ],
+  [
+   "Wealth and Asset Management",
+   "smaller",
+   "investment and trust services"
+  ]
+ ],
+ "moat": "Deposit share in Midwestern markets where it has been established for generations, plus payments services that companies rarely move.",
+ "rivals": [
+  "PNC Financial|PNC",
+  "US Bancorp|USB",
+  "KeyCorp|KEY",
+  "Huntington Bancshares|HBAN",
+  "Truist Financial|TFC"
+ ],
+ "risks": [
+  "Commercial property loans are a watched area across regional banking",
+  "Deposit costs rise when savers move money to higher-yielding accounts",
+  "Midwestern economies grow more slowly than the Sunbelt",
+  "Regional bank capital rules are being tightened"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year with a 28% net margin",
+  "Branch expansion into faster-growing southeastern markets",
+  "A dividend yield above 3% with regular buybacks"
+ ],
+ "watch": "Net interest margin and commercial loan growth.",
+ "updated": "2026-11"
+}

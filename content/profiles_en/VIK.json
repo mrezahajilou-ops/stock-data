@@ -1,0 +1,42 @@
+{
+ "t": "VIK",
+ "what": "Viking Holdings runs river and ocean cruises for adults only, with no casinos or children on board. It operates more than 100 ships, from river vessels in Europe to ocean ships and polar expedition vessels.",
+ "customers": "Mostly affluent English-speaking travellers over 55, largely from North America and the United Kingdom.",
+ "money": [
+  [
+   "River cruises",
+   "large",
+   "the European river fleet and the Mississippi"
+  ],
+  [
+   "Ocean cruises",
+   "large",
+   "ocean voyages worldwide"
+  ],
+  [
+   "Expedition and other",
+   "smaller",
+   "polar expeditions and onboard sales"
+  ]
+ ],
+ "moat": "A clearly defined brand for a single type of customer, with high repeat booking rates and a direct marketing operation that fills ships without relying on travel agents.",
+ "rivals": [
+  "Royal Caribbean|RCL",
+  "Carnival|CCL",
+  "Norwegian Cruise Line|NCLH",
+  "Lindblad Expeditions|LIND"
+ ],
+ "risks": [
+  "Cruise demand falls sharply in a recession or after a health scare",
+  "Debt of about $6 billion funds its shipbuilding programme",
+  "Its customer base is concentrated in one age group and a few countries",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 22% last year and about 27% a year over three years",
+  "Return on invested capital of 22% is high for a cruise operator",
+  "Bookings are typically taken far in advance, giving unusual revenue visibility"
+ ],
+ "watch": "Forward bookings and net yield per passenger day.",
+ "updated": "2026-11"
+}

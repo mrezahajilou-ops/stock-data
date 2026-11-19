@@ -1,0 +1,38 @@
+{
+ "t": "HEI",
+ "what": "Heico makes replacement parts for jet engines and aircraft that are approved by regulators as alternatives to the original manufacturer's parts, usually at a lower price. It also makes electronic equipment for defence, space and medical uses.",
+ "customers": "Airlines, maintenance providers, defence contractors and space companies.",
+ "money": [
+  [
+   "Flight Support Group",
+   "the larger part",
+   "approved replacement parts, repair and overhaul services"
+  ],
+  [
+   "Electronic Technologies Group",
+   "large, higher margin",
+   "electronics for defence, space, medical and industrial uses"
+  ]
+ ],
+ "moat": "Thousands of individual regulatory approvals built up over decades, each one a licence to sell a part the original manufacturer would rather sell itself.",
+ "rivals": [
+  "TransDigm|TDG",
+  "RTX|RTX",
+  "GE Aerospace|GE",
+  "Safran",
+  "Honeywell|HON"
+ ],
+ "risks": [
+  "Its parts compete directly with engine makers who control the aftermarket",
+  "Airline maintenance spending falls in a downturn",
+  "Growth depends partly on continuous small acquisitions",
+  "The shares trade at a high multiple of earnings"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year and about 27% a year over three years",
+  "Airlines flying older aircraft for longer raises demand for replacement parts",
+  "Operating margin of 23% with a long record of family-led capital discipline"
+ ],
+ "watch": "Flight Support organic growth and new part approvals.",
+ "updated": "2026-11"
+}

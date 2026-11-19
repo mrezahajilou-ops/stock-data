@@ -1,0 +1,43 @@
+{
+ "t": "ROP",
+ "what": "Roper Technologies buys and runs software businesses that lead small, specialised markets: legal case management, construction bidding, freight matching, insurance claims software and laboratory systems. It rarely sells anything it buys.",
+ "customers": "Law firms, contractors, insurers, freight brokers, hospitals, government agencies and manufacturers, each through a different subsidiary.",
+ "money": [
+  [
+   "Application Software",
+   "the largest part",
+   "vertical software for legal, construction, government and healthcare"
+  ],
+  [
+   "Network Software",
+   "large",
+   "freight matching, insurance networks and marketplaces"
+  ],
+  [
+   "Technology Enabled Products",
+   "smaller",
+   "medical and industrial products"
+  ]
+ ],
+ "moat": "Software that runs a customer's core workflow in a market too small for large vendors to attack, giving very high retention and pricing power.",
+ "rivals": [
+  "Constellation Software",
+  "Danaher|DHR",
+  "Tyler Technologies|TYL",
+  "Fortive|FTV",
+  "Thomson Reuters|TRI"
+ ],
+ "risks": [
+  "Growth depends on continuing to find and buy good businesses",
+  "Debt of about $10 billion funds that acquisition programme",
+  "Return on invested capital of about 6% looks low because goodwill from acquisitions sits in the denominator",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year with a 69% gross margin",
+  "Recurring software revenue is the large majority of the total",
+  "A long record of raising acquired companies' margins"
+ ],
+ "watch": "Organic revenue growth excluding acquisitions, and free cash flow conversion.",
+ "updated": "2026-11"
+}

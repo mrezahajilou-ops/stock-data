@@ -1,0 +1,48 @@
+{
+ "t": "MSCI",
+ "what": "MSCI sells investment indexes and analytics. Fund managers pay to track its indexes, such as MSCI World and MSCI Emerging Markets, and institutions pay for its risk models, private asset data and sustainability ratings.",
+ "customers": "Asset managers, exchange-traded fund providers, pension funds, banks, insurers and hedge funds.",
+ "money": [
+  [
+   "Index",
+   "the largest part",
+   "licence fees on funds tracking its indexes and subscription data"
+  ],
+  [
+   "Analytics",
+   "large",
+   "risk models and portfolio analytics"
+  ],
+  [
+   "Sustainability and Climate",
+   "meaningful",
+   "ESG and climate ratings and data"
+  ],
+  [
+   "Private Assets",
+   "growing",
+   "private market data and benchmarks"
+  ]
+ ],
+ "moat": "Indexes written into fund mandates and benchmarks, so changing provider means changing what a fund is contractually obliged to track.",
+ "rivals": [
+  "S&P Global|SPGI",
+  "FTSE Russell (LSEG)",
+  "Bloomberg",
+  "Morningstar|MORN",
+  "FactSet|FDS"
+ ],
+ "risks": [
+  "Index revenue rises and falls with the assets tracking its indexes, so a market fall cuts revenue",
+  "Debt of about $7 billion against very little cash",
+  "Passive fund fee pressure flows through to index licensing rates",
+  "European sustainability regulation has shifted demand for ESG data"
+ ],
+ "opportunities": [
+  "Return on invested capital of 37% and a 55% operating margin",
+  "Subscription revenue renews at very high rates",
+  "Private asset data is a newer market where it has been buying capability"
+ ],
+ "watch": "Assets under management linked to its indexes and the retention rate on subscriptions.",
+ "updated": "2026-11"
+}

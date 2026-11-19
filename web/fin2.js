@@ -80,8 +80,9 @@
   }
   function byEnd(a) { return (a || []).slice().sort(function (x, y) { return x.end < y.end ? -1 : 1; }); }
   function ttmInc(k) {
-    var Q = byEnd(k.q_inc), out = sum4(Q), cf = {}, last = {};
-    sum4(byEnd(k.q_cf)).forEach(function (r) { cf[r.end] = r; });
+    // a quarter the source lists before its statement is out has only a few fields: leave it out of the sums
+    var Q = byEnd(k.q_inc).filter(function (r) { return !nn(r.TotalRevenue); }), out = sum4(Q), cf = {}, last = {};
+    sum4(qcf(k)).forEach(function (r) { cf[r.end] = r; });
     Q.forEach(function (r) { last[r.end] = r; });
     out.forEach(function (r) {
       var rv = r.TotalRevenue, c = cf[r.end] || {};
@@ -94,8 +95,9 @@
     });
     return out;
   }
+  function qcf(k) { return byEnd(k.q_cf).filter(function (r) { return !nn(r.OperatingCashFlow); }); }
   function latest(k) {
-    var I = ttmInc(k), C = sum4(byEnd(k.q_cf)), B = byEnd(k.q_bal);
+    var I = ttmInc(k), C = sum4(qcf(k)), B = byEnd(k.q_bal).filter(function (r) { return !nn(r.TotalAssets); });
     return [I[I.length - 1] || {}, C[C.length - 1] || {}, B[B.length - 1] || {}];
   }
   function pxAt(W, end) {
@@ -341,14 +343,14 @@
       cols = ['TTM'].concat(cols); sub = [mon(dd(TC.end))].concat(sub);
     }
     return sec('a', table(cols, sub, rows)) + sec('q', qtable(KQ.slice().reverse(), CFROWS) + note(T('Quarterly cash flow from Yahoo Finance.')), 1) +
-      sec('t', qtable(sum4(KQ).reverse(), CFROWS, 'Twelve months ending') + note(T('Each column adds up the four quarters ending on that date.')), 1);
+      sec('t', qtable(sum4(qcf(k)).reverse(), CFROWS, 'Twelve months ending') + note(T('Each column adds up the four quarters ending on that date.')), 1);
   }
 
   // ---------------------------------------------------------------- ratios
   function qratios(k, ttm) {
     var B = {}, C = {}, I;
     (k.q_bal || []).forEach(function (r) { B[r.end] = r; });
-    if (ttm) { I = ttmInc(k); sum4(byEnd(k.q_cf)).forEach(function (r) { C[r.end] = r; }); }
+    if (ttm) { I = ttmInc(k); sum4(qcf(k)).forEach(function (r) { C[r.end] = r; }); }
     else {
       I = byEnd(k.q_inc).map(function (r0) {
         var r = {}; Object.keys(r0).forEach(function (x) { r[x] = r0[x]; });

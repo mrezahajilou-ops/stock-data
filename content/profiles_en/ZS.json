@@ -1,0 +1,33 @@
+{
+ "t": "ZS",
+ "what": "Zscaler sells cloud security. Instead of routing a company's traffic through hardware in its own offices, traffic goes through Zscaler's global network, which inspects it and decides what is allowed. This is the model known as zero trust.",
+ "customers": "Large enterprises and government agencies securing employees working anywhere.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "cloud security subscriptions priced per user"
+  ]
+ ],
+ "moat": "A global network of data centres inspecting traffic at scale, which took years to build, plus the fact that replacing it means re-architecting how a company connects its people to its applications.",
+ "rivals": [
+  "Palo Alto Networks|PANW",
+  "Netskope|NTSK",
+  "Cloudflare|NET",
+  "Cisco|CSCO",
+  "Microsoft|MSFT"
+ ],
+ "risks": [
+  "It still makes an operating loss because of very large stock-based compensation",
+  "Palo Alto and Microsoft bundle competing capabilities into broader platforms",
+  "Growth has slowed from its earlier pace",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 25% last year and about 28% a year over three years",
+  "Gross margin of 77% with strong free cash flow despite the accounting loss",
+  "Securing artificial intelligence applications and agents is a new product area"
+ ],
+ "watch": "Billings growth and the number of customers spending over $1 million a year.",
+ "updated": "2026-11"
+}

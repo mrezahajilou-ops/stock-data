@@ -1,0 +1,38 @@
+{
+ "t": "RKLB",
+ "what": "Rocket Lab launches small satellites on its Electron rocket, builds spacecraft and satellite components for other operators, and is developing the much larger Neutron rocket to compete for bigger payloads.",
+ "customers": "Government space and defence agencies, commercial satellite operators, and prime contractors buying spacecraft components.",
+ "money": [
+  [
+   "Space Systems",
+   "the larger part",
+   "satellite manufacturing, components, solar panels and separation systems"
+  ],
+  [
+   "Launch Services",
+   "large",
+   "Electron launches and, in future, Neutron"
+  ]
+ ],
+ "moat": "The only Western company besides SpaceX with a regularly flying orbital rocket, plus a components business that supplies much of the small satellite industry.",
+ "risks": [
+  "It loses money, with an operating margin around negative 38%",
+  "Neutron development is expensive and schedules in rocketry usually slip",
+  "SpaceX dominates launch economics at larger payload sizes",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "rivals": [
+  "SpaceX",
+  "Firefly Aerospace|FLY",
+  "Astra Space",
+  "Northrop Grumman|NOC",
+  "Arianespace"
+ ],
+ "opportunities": [
+  "Revenue grew about 38% last year and about 42% a year over three years",
+  "Cash of about $4.6 billion funds Neutron development without near-term dilution",
+  "Defence demand for responsive launch and satellite constellations is growing fast"
+ ],
+ "watch": "The Neutron first launch date and Space Systems backlog.",
+ "updated": "2026-11"
+}

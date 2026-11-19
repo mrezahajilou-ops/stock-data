@@ -1,0 +1,38 @@
+{
+ "t": "IR",
+ "what": "Ingersoll Rand makes equipment that moves air and liquid: industrial compressors, vacuum pumps, blowers and precision pumps, plus specialised pumps for laboratories and life sciences. It grows largely by buying smaller makers of niche equipment.",
+ "customers": "Manufacturers, chemical and food processors, pharmaceutical and laboratory customers, and energy companies.",
+ "money": [
+  [
+   "Industrial Technologies and Services",
+   "the large majority",
+   "compressors, vacuum pumps, blowers and aftermarket parts"
+  ],
+  [
+   "Precision and Science Technologies",
+   "smaller, higher margin",
+   "precision pumps for life sciences and medical use"
+  ]
+ ],
+ "moat": "Compressors installed in factories that then need parts and service for twenty years, delivered through a distribution network that competitors cannot easily replicate.",
+ "rivals": [
+  "Atlas Copco",
+  "Gardner Denver rivals",
+  "Flowserve|FLS",
+  "IDEX|IEX",
+  "SPX Flow"
+ ],
+ "risks": [
+  "Industrial capital spending has been soft in Europe and China",
+  "Growth depends on continuing acquisitions",
+  "Debt of about $5 billion funds that programme",
+  "Return on invested capital of about 6% reflects goodwill from past deals"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year with a 44% gross margin",
+  "Aftermarket parts and service are around a third of revenue and far steadier than new equipment",
+  "Life science pumps serve a market growing faster than general industry"
+ ],
+ "watch": "Organic order growth and aftermarket revenue share.",
+ "updated": "2026-11"
+}

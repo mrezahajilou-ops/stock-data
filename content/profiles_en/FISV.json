@@ -1,0 +1,38 @@
+{
+ "t": "FISV",
+ "what": "Fiserv provides payments and banking technology. It processes card payments for merchants through Clover, runs the core banking systems many American banks rely on, and handles card issuing and bill payment.",
+ "customers": "Merchants of all sizes, banks and credit unions, and corporate and government clients.",
+ "money": [
+  [
+   "Merchant Solutions",
+   "the larger part",
+   "payment processing and the Clover point-of-sale platform"
+  ],
+  [
+   "Financial Solutions",
+   "large",
+   "core banking systems, card issuing and digital banking"
+  ]
+ ],
+ "moat": "Core banking systems that a bank cannot replace without rebuilding its operations, and a merchant base that runs its tills and payments through Clover.",
+ "rivals": [
+  "Fidelity National Information Services|FIS",
+  "Global Payments|GPN",
+  "Block|XYZ",
+  "Toast|TOST",
+  "Adyen"
+ ],
+ "risks": [
+  "It reported a large loss in the latest period after goodwill charges",
+  "Debt of about $27 billion against almost no cash",
+  "Growth guidance was cut sharply and management changed",
+  "Clover's growth rate has slowed, and it was the main reason investors held the shares"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year with a 27% operating margin",
+  "Core banking contracts are long and extremely sticky",
+  "New management is resetting expectations and cutting costs"
+ ],
+ "watch": "Clover revenue growth and organic revenue growth excluding acquisitions.",
+ "updated": "2026-11"
+}

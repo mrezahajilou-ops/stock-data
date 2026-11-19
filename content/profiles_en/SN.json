@@ -1,0 +1,43 @@
+{
+ "t": "SN",
+ "what": "SharkNinja designs and sells household appliances under two brands: Shark for vacuums, hair tools and cleaning, and Ninja for blenders, air fryers, coffee makers and outdoor cooking. It launches new products at an unusually fast pace.",
+ "customers": "Households worldwide, sold through retailers such as Walmart, Target, Costco and Amazon, and increasingly direct.",
+ "money": [
+  [
+   "Cleaning appliances",
+   "large",
+   "Shark vacuums, steam mops and cleaning products"
+  ],
+  [
+   "Cooking and beverage",
+   "large",
+   "Ninja air fryers, blenders and coffee machines"
+  ],
+  [
+   "Beauty and other",
+   "growing",
+   "Shark hair tools and personal care"
+  ]
+ ],
+ "moat": "A product development machine that turns out dozens of new models a year at prices below premium rivals, with marketing that creates demand before retailers stock them.",
+ "rivals": [
+  "Dyson",
+  "Helen of Troy|HELE",
+  "Whirlpool|WHR",
+  "Breville",
+  "Instant Brands"
+ ],
+ "risks": [
+  "Tariffs on goods made in Asia directly raise its costs",
+  "Retailer concentration means a few buyers control much of its sales",
+  "Appliance demand is discretionary",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year and about 20% a year over three years",
+  "Return on invested capital of 20% with modest debt",
+  "International markets outside North America are still a small share of sales"
+ ],
+ "watch": "New product launch success and international revenue growth.",
+ "updated": "2026-11"
+}

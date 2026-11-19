@@ -1,0 +1,48 @@
+{
+ "t": "ESLT",
+ "what": "Elbit Systems is Israel's largest defence company. It makes drones, artillery and rocket systems, electro-optics and night vision, helmet-mounted displays for fighter pilots, electronic warfare systems and ammunition.",
+ "customers": "The Israeli Ministry of Defense, European and Asian governments, and the US defence market through its American subsidiary.",
+ "money": [
+  [
+   "Aerospace",
+   "large",
+   "drones, avionics and electro-optics"
+  ],
+  [
+   "C4I and Cyber",
+   "large",
+   "command and control systems and communications"
+  ],
+  [
+   "ISTAR and EW",
+   "large",
+   "intelligence, surveillance and electronic warfare"
+  ],
+  [
+   "Land",
+   "meaningful",
+   "artillery, ammunition and armoured vehicle systems"
+  ]
+ ],
+ "moat": "Combat-proven systems tested in actual use, which European buyers rebuilding their armies value, combined with a cost base below large US primes.",
+ "rivals": [
+  "RTX|RTX",
+  "Rheinmetall",
+  "Leonardo|LDO",
+  "Israel Aerospace Industries",
+  "BAE Systems"
+ ],
+ "risks": [
+  "Some European governments have faced political pressure to limit Israeli defence purchases",
+  "Gross margin of 24% is modest and operating margin is 8%",
+  "Production capacity has been stretched by wartime demand",
+  "It depends heavily on government budget cycles"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year and about 13% a year over three years",
+  "European rearmament has produced a record order backlog",
+  "Drones and precision munitions, where it is strong, are the fastest-growing defence categories"
+ ],
+ "watch": "The order backlog and new European contract wins.",
+ "updated": "2026-11"
+}

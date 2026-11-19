@@ -1,0 +1,38 @@
+{
+ "t": "TEAM",
+ "what": "Atlassian makes software for teams: Jira for tracking work, Confluence for documentation, and tools for IT service management. Most of its customers find it and buy it without ever speaking to a salesperson.",
+ "customers": "Software development teams, IT departments and increasingly business teams, in over 300,000 organisations.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "cloud subscriptions to Jira, Confluence and related products"
+  ],
+  [
+   "Marketplace and other",
+   "smaller",
+   "a share of third-party apps sold for its platform"
+  ]
+ ],
+ "moat": "Jira holds the record of how work gets done inside an engineering organisation, and the processes, integrations and history built around it make replacing it painful.",
+ "rivals": [
+  "Microsoft (Azure DevOps)|MSFT",
+  "Monday.com|MNDY",
+  "Asana|ASAN",
+  "ServiceNow|NOW",
+  "Linear"
+ ],
+ "risks": [
+  "Operating margin is near zero because stock-based compensation is very large",
+  "Migrating customers from server products to cloud is a long transition",
+  "Competition in work management is crowded",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 26% last year with an 85% gross margin",
+  "Analysts see large upside, with a median target well above the current price",
+  "Selling to IT service management and business teams expands beyond its engineering base"
+ ],
+ "watch": "Cloud revenue growth and free cash flow margin.",
+ "updated": "2026-11"
+}

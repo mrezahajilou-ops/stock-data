@@ -1,0 +1,43 @@
+{
+ "t": "ILMN",
+ "what": "Illumina makes the machines that read DNA. Laboratories buy its sequencers and then keep buying the reagent kits that run on them, which is where most of the profit comes from.",
+ "customers": "Research institutions, pharmaceutical companies, clinical and diagnostic laboratories worldwide.",
+ "money": [
+  [
+   "Sequencing consumables",
+   "the largest part",
+   "reagent kits and flow cells used on its instruments"
+  ],
+  [
+   "Sequencing instruments",
+   "smaller",
+   "sequencers including the NovaSeq X"
+  ],
+  [
+   "Services and other",
+   "meaningful",
+   "service contracts and genotyping"
+  ]
+ ],
+ "moat": "An installed base of sequencers that run only its consumables, backed by data pipelines and clinical validations built around its output format.",
+ "rivals": [
+  "Thermo Fisher Scientific|TMO",
+  "Pacific Biosciences|PACB",
+  "Oxford Nanopore",
+  "MGI Tech",
+  "Roche"
+ ],
+ "risks": [
+  "Revenue has fallen slightly for two years as research budgets tightened",
+  "China has restricted purchases of its sequencers",
+  "MGI and others are competing on price in a way they could not before",
+  "The costly Grail acquisition was unwound after regulators objected"
+ ],
+ "opportunities": [
+  "Gross margin of 66% with a 19% operating margin after cost reductions",
+  "Analysts see about 22% upside from current levels",
+  "Clinical sequencing, especially in cancer, grows faster than research use"
+ ],
+ "watch": "Consumable revenue per installed instrument and high-throughput sequencer placements.",
+ "updated": "2026-11"
+}

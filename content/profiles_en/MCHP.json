@@ -1,0 +1,43 @@
+{
+ "t": "MCHP",
+ "what": "Microchip Technology makes microcontrollers and related analogue, connectivity and memory chips. They sit inside cars, industrial machines, appliances and medical devices, usually in large numbers and at modest prices each.",
+ "customers": "Industrial equipment makers, carmakers and their suppliers, aerospace and defence contractors, and consumer and medical device manufacturers.",
+ "money": [
+  [
+   "Microcontrollers",
+   "the largest part",
+   "8-, 16- and 32-bit microcontrollers"
+  ],
+  [
+   "Analog and mixed signal",
+   "large",
+   "power management, interface and timing chips"
+  ],
+  [
+   "Other",
+   "meaningful",
+   "memory, FPGAs and licensing"
+  ]
+ ],
+ "moat": "Tens of thousands of customers designing its chips into products that stay in production for a decade or more, with no single customer large enough to dictate terms.",
+ "rivals": [
+  "Texas Instruments|TXN",
+  "STMicroelectronics|STM",
+  "NXP Semiconductors|NXPI",
+  "Infineon Technologies",
+  "Renesas"
+ ],
+ "risks": [
+  "Revenue fell about 18% a year over three years in a severe industrial downturn",
+  "Debt of about $5.5 billion against very little cash",
+  "Customers built up large inventories that took years to work off",
+  "Operating margin fell to about 10% from far higher levels"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year as the cycle turned",
+  "Analysts see about 40% upside from current levels",
+  "Factory utilisation recovering would restore margins quickly given its high fixed costs"
+ ],
+ "watch": "Book-to-bill ratio and inventory levels in the channel.",
+ "updated": "2026-11"
+}

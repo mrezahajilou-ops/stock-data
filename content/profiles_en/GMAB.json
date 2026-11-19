@@ -1,0 +1,43 @@
+{
+ "t": "GMAB",
+ "what": "Genmab is a Danish biotechnology company that creates antibody medicines. It discovers them and usually partners with large pharmaceutical companies to develop and sell them, earning royalties, and is now also selling its own products.",
+ "customers": "Partner pharmaceutical companies pay royalties; its own medicines are sold to hospitals and oncologists.",
+ "money": [
+  [
+   "Royalties",
+   "the largest part",
+   "royalties on Darzalex for multiple myeloma and other partnered medicines"
+  ],
+  [
+   "Own products",
+   "growing",
+   "Epkinly, Tivdak and Rina-S"
+  ],
+  [
+   "Collaboration and milestones",
+   "meaningful",
+   "payments from partners as programmes progress"
+  ]
+ ],
+ "moat": "Antibody engineering platforms that large pharmaceutical companies license rather than build, producing royalty streams with almost no cost attached.",
+ "rivals": [
+  "Johnson & Johnson|JNJ",
+  "AbbVie|ABBV",
+  "Roche",
+  "Regeneron Pharmaceuticals|REGN",
+  "BioNTech|BNTX"
+ ],
+ "risks": [
+  "A large share of income comes from royalties on one medicine, Darzalex",
+  "Those royalties step down over time as the patent life runs out",
+  "Building its own commercial organisation is expensive",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Gross margin of 94% and operating margin of 29% because royalties cost nothing to earn",
+  "Revenue grew about 19% last year and about 66% a year over three years",
+  "Its own medicines, if successful, replace royalty income with full product economics"
+ ],
+ "watch": "Own-product sales growth and the Darzalex royalty trajectory.",
+ "updated": "2026-11"
+}

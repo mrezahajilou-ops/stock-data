@@ -1,0 +1,33 @@
+{
+ "t": "OKTA",
+ "what": "Okta sells identity software. It decides who is allowed to log in to a company's applications and systems, handling single sign-on, multi-factor authentication and the management of employee and customer accounts.",
+ "customers": "Companies of all sizes managing employee access, and developers using Auth0 to handle logins for their own apps.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "identity platform subscriptions for workforce and customer identity"
+  ]
+ ],
+ "moat": "Independence from the big cloud vendors, so it connects to everything, combined with integrations into thousands of applications that make it the hub of access control.",
+ "rivals": [
+  "Microsoft (Entra ID)|MSFT",
+  "Ping Identity",
+  "CyberArk|CYBR",
+  "SailPoint|SAIL",
+  "Auth0 alternatives"
+ ],
+ "risks": [
+  "Microsoft bundles competing identity tools with its enterprise licences at little extra cost",
+  "Growth has slowed from its earlier pace",
+  "Security breaches at an identity vendor are especially damaging, and it has had them",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year with a 77% gross margin",
+  "Cash of about $2.3 billion against almost no debt",
+  "Identity governance and privileged access are newer products that raise spending per customer"
+ ],
+ "watch": "Remaining performance obligations and net revenue retention.",
+ "updated": "2026-11"
+}

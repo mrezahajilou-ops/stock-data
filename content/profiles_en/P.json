@@ -1,0 +1,38 @@
+{
+ "t": "P",
+ "what": "Everpure, formerly Pure Storage, makes all-flash data storage systems and the software that runs them. It sells storage as a subscription service as well as equipment, and supplies large flash systems for AI training clusters.",
+ "customers": "Large enterprises, cloud providers and AI infrastructure operators that need fast storage at scale.",
+ "money": [
+  [
+   "Product",
+   "the larger part",
+   "all-flash storage arrays and systems"
+  ],
+  [
+   "Subscription services",
+   "large, recurring",
+   "Evergreen subscriptions, cloud storage and support"
+  ]
+ ],
+ "moat": "Its own flash module design rather than off-the-shelf solid-state drives, which gives better density and efficiency, plus a subscription model that upgrades hardware without a rip-and-replace.",
+ "rivals": [
+  "NetApp|NTAP",
+  "Dell Technologies|DELL",
+  "Hewlett Packard Enterprise|HPE",
+  "Vast Data",
+  "Weka"
+ ],
+ "risks": [
+  "Operating margin of about 3% is thin because of heavy stock-based compensation",
+  "Flash memory price increases raise its input costs",
+  "Large hyperscaler deals are lumpy and can distort quarters",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year with a 70% gross margin",
+  "Analysts see about 35% upside from current levels",
+  "A design win with a major hyperscaler would be a large and long-lived revenue stream"
+ ],
+ "watch": "Subscription annual recurring revenue and hyperscaler deployment progress.",
+ "updated": "2026-11"
+}

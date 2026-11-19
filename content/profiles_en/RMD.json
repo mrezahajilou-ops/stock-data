@@ -1,0 +1,42 @@
+{
+ "t": "RMD",
+ "what": "ResMed makes devices for sleep apnoea and respiratory conditions: the masks and flow generators used in continuous positive airway pressure therapy, plus software for the home medical equipment providers who supply them.",
+ "customers": "Sleep apnoea patients through home medical equipment providers, hospitals, and the providers themselves who buy its software.",
+ "money": [
+  [
+   "Devices",
+   "large",
+   "flow generators and ventilators"
+  ],
+  [
+   "Masks and accessories",
+   "large, recurring",
+   "masks and consumable parts replaced regularly"
+  ],
+  [
+   "Software as a Service",
+   "meaningful",
+   "software for home medical equipment providers"
+  ]
+ ],
+ "moat": "Masks are personal and replaced every few months, so once a patient is fitted the recurring revenue follows, and the clinical data behind its devices is extensive.",
+ "rivals": [
+  "Philips Respironics|PHG",
+  "Fisher & Paykel Healthcare",
+  "React Health",
+  "Löwenstein Medical"
+ ],
+ "risks": [
+  "Weight-loss medicines could reduce the number of people developing sleep apnoea",
+  "Reimbursement decisions determine who gets a device paid for",
+  "Philips returning fully to the market after its recall would increase competition",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Operating margin of 33% and return on invested capital of 20%",
+  "Most people with sleep apnoea remain undiagnosed, so the market is far from saturated",
+  "Mask resupply gives recurring revenue that compounds with each new patient"
+ ],
+ "watch": "Device and mask revenue growth separately, and new patient starts.",
+ "updated": "2026-11"
+}

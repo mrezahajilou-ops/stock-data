@@ -1,0 +1,48 @@
+{
+ "t": "BIP",
+ "what": "Brookfield Infrastructure Partners owns essential infrastructure worldwide: regulated utilities, toll roads and rail, gas pipelines and processing, and data centres and towers. It is managed by Brookfield and structured as a partnership.",
+ "customers": "Shippers, utilities, telecom operators and industrial users who pay to use its networks under regulated or contracted terms.",
+ "money": [
+  [
+   "Midstream",
+   "large",
+   "gas pipelines, processing and storage"
+  ],
+  [
+   "Transport",
+   "large",
+   "rail, toll roads, ports and terminals"
+  ],
+  [
+   "Utilities",
+   "large",
+   "regulated distribution and transmission"
+  ],
+  [
+   "Data",
+   "growing",
+   "data centres, towers and fibre"
+  ]
+ ],
+ "moat": "Assets that are regulated monopolies or have contracts running for decades, in businesses where no one would build a second network alongside.",
+ "rivals": [
+  "Brookfield Corporation|BN",
+  "Enbridge|ENB",
+  "American Tower|AMT",
+  "Macquarie Infrastructure",
+  "Digital Realty|DLR"
+ ],
+ "risks": [
+  "Consolidated debt of about $61 billion, though most is non-recourse at the asset level",
+  "Rising interest rates raise financing costs for an asset-heavy business",
+  "It is a partnership, which complicates tax reporting for some investors",
+  "Reported net margin is low because of depreciation and minority interests"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year and about 17% a year over three years",
+  "Most revenue is regulated or contracted and linked to inflation",
+  "A distribution yield above 4% with a record of annual increases"
+ ],
+ "watch": "Funds from operations per unit and the pace of asset sales funding new investments.",
+ "updated": "2026-11"
+}

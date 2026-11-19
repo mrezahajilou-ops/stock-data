@@ -1,0 +1,38 @@
+{
+ "t": "NTAP",
+ "what": "NetApp makes data storage systems and the software that manages data across on-premises hardware and the public clouds. Its cloud storage services run natively inside Amazon, Microsoft and Google's platforms.",
+ "customers": "Large enterprises, government agencies and cloud providers storing and managing data.",
+ "money": [
+  [
+   "Hybrid Cloud",
+   "the large majority",
+   "storage systems, software and support contracts"
+  ],
+  [
+   "Public Cloud",
+   "smaller, growing",
+   "cloud storage services sold through the major cloud providers"
+  ]
+ ],
+ "moat": "Storage operating software that enterprises build their data management around, and a unique position as first-party storage inside all three big clouds.",
+ "rivals": [
+  "Dell Technologies|DELL",
+  "Pure Storage|P",
+  "Hewlett Packard Enterprise|HPE",
+  "Hitachi Vantara",
+  "Vast Data"
+ ],
+ "risks": [
+  "Storage hardware growth is slow in a mature market",
+  "Memory and component cost increases squeeze margins",
+  "Public cloud revenue has grown more slowly than hoped",
+  "Revenue grew only about 5% last year"
+ ],
+ "opportunities": [
+  "Return on invested capital of 32% with a 71% gross margin",
+  "AI workloads need large amounts of fast storage, which is its core product",
+  "Cash of about $3.6 billion exceeds its debt, funding buybacks"
+ ],
+ "watch": "All-flash array revenue and public cloud services growth.",
+ "updated": "2026-11"
+}

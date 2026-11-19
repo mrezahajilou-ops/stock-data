@@ -1,0 +1,43 @@
+{
+ "t": "CNC",
+ "what": "Centene is the largest managed care company in the United States focused on government programmes. It runs Medicaid plans for states, health insurance exchange plans under the Affordable Care Act, and Medicare plans.",
+ "customers": "State Medicaid agencies, individuals buying subsidised exchange plans, and Medicare members.",
+ "money": [
+  [
+   "Medicaid",
+   "the largest part",
+   "managed care contracts with state governments"
+  ],
+  [
+   "Commercial (exchange)",
+   "large",
+   "individual plans sold on the health insurance marketplaces"
+  ],
+  [
+   "Medicare",
+   "meaningful",
+   "Medicare Advantage and prescription drug plans"
+  ]
+ ],
+ "moat": "Contracts with state Medicaid agencies that take years to win and are rarely moved, plus scale in a market most commercial insurers avoid.",
+ "rivals": [
+  "UnitedHealth Group|UNH",
+  "Elevance Health|ELV",
+  "Molina Healthcare|MOH",
+  "Humana|HUM",
+  "CVS Health|CVS"
+ ],
+ "risks": [
+  "It reported an operating loss in the latest period as exchange medical costs ran far above expectations",
+  "States have been removing members from Medicaid rolls after the pandemic",
+  "Exchange subsidies expiring would shrink its largest growth market",
+  "Net margin is thin even in good years"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year",
+  "Cash of about $24 billion against $16 billion of debt",
+  "Repricing exchange premiums for the next plan year should restore margins if costs are correctly estimated"
+ ],
+ "watch": "The health benefits ratio, especially on exchange plans, and Medicaid rate adjustments from states.",
+ "updated": "2026-11"
+}

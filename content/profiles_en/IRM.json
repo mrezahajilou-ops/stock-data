@@ -1,0 +1,42 @@
+{
+ "t": "IRM",
+ "what": "Iron Mountain stores and manages business records. It began with physical document storage in warehouses and now also runs data centres, destroys and digitises documents, and recycles retired IT equipment.",
+ "customers": "About 240,000 organisations including most of the Fortune 1000: banks, hospitals, law firms, governments and technology companies.",
+ "money": [
+  [
+   "Global RIM (records and information management)",
+   "the largest part",
+   "physical storage, shredding and digitisation"
+  ],
+  [
+   "Data Centers",
+   "growing fastest",
+   "colocation data centre capacity"
+  ],
+  [
+   "Asset Lifecycle Management",
+   "growing",
+   "decommissioning and reselling retired IT equipment"
+  ]
+ ],
+ "moat": "Boxes that customers pay to store but almost never remove, giving revenue that persists for decades at very low cost once the warehouse is built.",
+ "rivals": [
+  "Digital Realty|DLR",
+  "Equinix|EQIX",
+  "Shred-it (Stericycle)",
+  "Crown Holdings record storage"
+ ],
+ "risks": [
+  "Debt of about $21 billion against almost no cash",
+  "Data centre expansion is capital-intensive and competes with far larger operators",
+  "Net margin of about 2% is depressed by depreciation and interest",
+  "Physical records volumes decline slowly as companies digitise"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year and about 11% a year over three years",
+  "Storage revenue rises with annual price increases on boxes already stored",
+  "Data centres and asset disposal grow much faster than the legacy business"
+ ],
+ "watch": "Data centre leasing signed and organic storage revenue growth.",
+ "updated": "2026-11"
+}

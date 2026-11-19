@@ -1,0 +1,43 @@
+{
+ "t": "JD",
+ "what": "JD.com is a Chinese online retailer. Unlike marketplace rivals it buys and holds much of the inventory it sells and delivers it through its own logistics network, which is why its delivery is fast and its margins are thin.",
+ "customers": "Chinese consumers, especially for electronics and home appliances, plus businesses using its logistics and procurement services.",
+ "money": [
+  [
+   "JD Retail",
+   "the large majority",
+   "first-party sales of electronics, appliances and general merchandise, plus marketplace fees"
+  ],
+  [
+   "JD Logistics",
+   "large",
+   "warehousing and delivery for itself and third parties"
+  ],
+  [
+   "New businesses",
+   "smaller",
+   "food delivery, overseas expansion and other ventures"
+  ]
+ ],
+ "moat": "A nationwide warehouse and delivery network built over two decades, which lets it promise same-day or next-day delivery that marketplace-only rivals cannot match.",
+ "rivals": [
+  "Alibaba|BABA",
+  "PDD Holdings|PDD",
+  "Meituan",
+  "Douyin e-commerce",
+  "Amazon|AMZN"
+ ],
+ "risks": [
+  "Net margin of about 2% because it carries inventory and logistics costs",
+  "Chinese consumer spending has been weak",
+  "It has been spending heavily on food delivery, which loses money",
+  "Chinese regulatory and geopolitical risk affects all US-listed Chinese shares"
+ ],
+ "opportunities": [
+  "Revenue grew about 18% last year",
+  "Cash of about $31 billion against $17 billion of debt",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Retail revenue growth and losses in the new businesses, especially food delivery.",
+ "updated": "2026-11"
+}

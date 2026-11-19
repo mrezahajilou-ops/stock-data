@@ -1,0 +1,43 @@
+{
+ "t": "ADM",
+ "what": "Archer-Daniels-Midland buys, stores, ships and processes agricultural crops. It crushes soybeans into oil and meal, mills corn into sweeteners and ethanol, and supplies ingredients and nutrition products to food and animal feed companies.",
+ "customers": "Food and beverage manufacturers, animal feed producers, biofuel blenders and commodity buyers worldwide.",
+ "money": [
+  [
+   "Ag Services and Oilseeds",
+   "the large majority",
+   "grain origination, transport and soybean crushing"
+  ],
+  [
+   "Carbohydrate Solutions",
+   "large",
+   "corn milling, sweeteners and ethanol"
+  ],
+  [
+   "Nutrition",
+   "smaller, higher margin",
+   "food and animal nutrition ingredients"
+  ]
+ ],
+ "moat": "Grain elevators, ports and processing plants along the routes crops travel, which let it earn a margin on volume no matter which way prices move.",
+ "rivals": [
+  "Bunge Global|BG",
+  "Cargill",
+  "Louis Dreyfus",
+  "Ingredion|INGR",
+  "Darling Ingredients|DAR"
+ ],
+ "risks": [
+  "Net margin of about 1% is extremely thin",
+  "Crush margins have fallen as processing capacity expanded industry-wide",
+  "Revenue has fallen about 8% a year over three years with crop prices",
+  "An accounting investigation into its nutrition segment damaged confidence"
+ ],
+ "opportunities": [
+  "A dividend yield around 3% with a very long payment record",
+  "Biofuel policy changes could lift demand for soybean oil",
+  "Cost cutting and plant closures are being used to restore margins"
+ ],
+ "watch": "Soybean crush margins and ethanol spreads.",
+ "updated": "2026-11"
+}

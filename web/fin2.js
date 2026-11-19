@@ -48,7 +48,8 @@
   var fmtL = new Intl.DateTimeFormat(LOC, { month: 'long', timeZone: 'UTC' });
   var fmtD = new Intl.DateTimeFormat(LOC, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   var fmtF = new Intl.DateTimeFormat(LOC, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-  function mon(x) { if (!x) return ''; return fmtM.format(x).replace('.', '') + ' ’' + String(x.getUTCFullYear()).slice(2); }
+  // English-style "Sep ’26"; in Persian/Arabic the apostrophe breaks right-to-left reading, so write "سپتامبر 2026"
+  function mon(x) { if (!x) return ''; return LANG === 'fa' || LANG === 'ar' ? fmtM.format(x) + ' ' + x.getUTCFullYear() : fmtM.format(x).replace('.', '') + ' ’' + String(x.getUTCFullYear()).slice(2); }
   function fdate(s) { var x = dd(s); return x ? fmtF.format(x) : ''; }
   function sdate(x) { return x ? fmtD.format(x) : D; }
 
@@ -606,7 +607,7 @@
     if (old && old.getAttribute('data-t') === t) return;
     if (old) old.remove();
     var box = document.createElement('div');
-    box.id = 'v2s'; box.setAttribute('data-t', t); box.className = 'card sa-stk fb v2';
+    box.id = 'v2s'; box.setAttribute('data-t', t); box.className = 'card sa-stk fb v2' + (RTL ? ' fb-rtl' : '');
     box.innerHTML = '<div class="v2-head"><h3 style="margin:0">' + F('%s key statistics', t) + '</h3></div><div id="v2s-body"><p class="xnote">' + T('Loading…') + '</p></div>';
     cards[0].parentNode.insertBefore(box, cards[0]);
     cards.forEach(function (c) { c.classList.add('v2-hide'); });
@@ -620,7 +621,7 @@
     if (old && old.getAttribute('data-t') === t) return;
     if (old) old.remove();
     var box = document.createElement('div');
-    box.id = 'v2'; box.setAttribute('data-t', t); box.className = 'card sa-stk fb v2';
+    box.id = 'v2'; box.setAttribute('data-t', t); box.className = 'card sa-stk fb v2' + (RTL ? ' fb-rtl' : '');
     box.innerHTML = '<div class="v2-head"><h3 style="margin:0">' + F('%s financial statements & forecast', t) + '</h3></div>' +
       '<div class="fb-bar"><div class="fb-tabs" role="tablist">' + SUBS.map(function (s) { return '<button type="button" role="tab" data-u="' + s[0] + '">' + T(s[1]) + '</button>'; }).join('') + '</div>' +
       '<div class="fb-per" role="group"><button type="button" class="on" data-p="a">' + T('Annual') + '</button><button type="button" data-p="q">' + T('Quarterly') + '</button><button type="button" data-p="t">TTM</button></div></div>' +

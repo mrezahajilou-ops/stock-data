@@ -1,0 +1,37 @@
+{
+ "t": "EQT",
+ "what": "EQT is the largest natural gas producer in the United States. It drills in the Marcellus and Utica shales in Appalachia and, unusually for a producer, also owns the gathering and transmission pipelines that move its gas.",
+ "customers": "Utilities, industrial users, liquefied natural gas exporters and power generators, mostly in the eastern United States.",
+ "money": [
+  [
+   "Natural gas, NGLs and oil sales",
+   "the large majority",
+   "Appalachian production"
+  ],
+  [
+   "Gathering and transmission",
+   "meaningful",
+   "pipeline fees, including from third parties"
+  ]
+ ],
+ "moat": "The lowest-cost large gas position in the country, with its own pipelines attached, so it does not depend on others for takeaway capacity.",
+ "rivals": [
+  "Expand Energy|EXE",
+  "Coterra Energy|CTRA",
+  "Antero Resources|AR",
+  "Range Resources|RRC"
+ ],
+ "risks": [
+  "Natural gas prices are volatile and set earnings",
+  "Debt of about $6 billion against almost no cash",
+  "Appalachian pipeline capacity limits how much gas can reach premium markets",
+  "Revenue fell about 11% a year over three years before last year's rebound"
+ ],
+ "opportunities": [
+  "Revenue grew about 64% last year on higher gas prices",
+  "Data centre power demand and LNG exports are both raising US gas demand",
+  "Operating margin of 38% with the lowest cost structure among large gas producers"
+ ],
+ "watch": "Realised gas price against benchmark, and production volumes.",
+ "updated": "2026-11"
+}

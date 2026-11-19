@@ -1,0 +1,37 @@
+{
+ "t": "LH",
+ "what": "Labcorp runs clinical laboratories. It processes blood and other samples ordered by doctors and hospitals, and also runs a central laboratory business supporting pharmaceutical clinical trials.",
+ "customers": "Doctors, hospitals and health systems ordering tests, insurers and patients paying for them, and drug companies running trials.",
+ "money": [
+  [
+   "Diagnostics Laboratories",
+   "the large majority",
+   "routine and specialty clinical testing"
+  ],
+  [
+   "Biopharma Laboratory Services",
+   "meaningful",
+   "central laboratory and early development services for drug trials"
+  ]
+ ],
+ "moat": "A national network of laboratories and collection sites with contracts with insurers, where volume drives down cost per test below what smaller labs can achieve.",
+ "rivals": [
+  "Quest Diagnostics|DGX",
+  "Sonic Healthcare",
+  "BioReference",
+  "Hospital laboratories"
+ ],
+ "risks": [
+  "Reimbursement rates for routine tests are under continual government pressure",
+  "Net margin of about 6% is thin",
+  "Debt of about $7 billion against almost no cash",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "Hospitals outsourcing their laboratories to it adds volume without new facilities",
+  "Specialty testing in oncology and neurology earns far more per test than routine work"
+ ],
+ "watch": "Organic test volume growth and revenue per test.",
+ "updated": "2026-11"
+}

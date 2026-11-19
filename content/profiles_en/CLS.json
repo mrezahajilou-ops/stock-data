@@ -1,0 +1,38 @@
+{
+ "t": "CLS",
+ "what": "Celestica builds electronic hardware for other companies. Its fastest-growing work is network switches and racks for AI data centres, designed either to a customer's specification or to its own designs sold under the Celestica name.",
+ "customers": "Hyperscale cloud operators, networking equipment companies, aerospace and defence contractors, and industrial and healthcare manufacturers.",
+ "money": [
+  [
+   "Connectivity and Cloud Solutions",
+   "the larger part",
+   "network switches, servers and storage for data centres"
+  ],
+  [
+   "Advanced Technology Solutions",
+   "large",
+   "aerospace, defence, industrial, healthcare and capital equipment"
+  ]
+ ],
+ "moat": "Its own high-speed networking switch designs, which turn a contract manufacturer into a product company with better margins, plus engineering relationships with hyperscalers.",
+ "rivals": [
+  "Flex|FLEX",
+  "Jabil|JBL",
+  "Sanmina|SANM",
+  "Arista Networks|ANET",
+  "Foxconn"
+ ],
+ "risks": [
+  "Gross margin of 12% is thin, as is normal in contract manufacturing",
+  "A few hyperscale customers account for a large share of revenue",
+  "Orders can be cut quickly if a customer changes its data centre plans",
+  "The shares have risen sharply and trade at a high multiple for the sector"
+ ],
+ "opportunities": [
+  "Revenue grew about 28% last year and about 20% a year over three years",
+  "Return on invested capital of 28% with cash of $4 billion against $1 billion of debt",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Connectivity and Cloud Solutions revenue growth and customer concentration.",
+ "updated": "2026-11"
+}

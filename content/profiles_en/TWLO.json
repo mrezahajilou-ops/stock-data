@@ -1,0 +1,38 @@
+{
+ "t": "TWLO",
+ "what": "Twilio sells communications as software. Developers use its interfaces to send text messages, emails, WhatsApp messages and phone calls from inside their own applications: the delivery notifications, verification codes and alerts people receive every day.",
+ "customers": "Software developers and companies of all sizes building customer communications into their products.",
+ "money": [
+  [
+   "Communications",
+   "almost all of revenue",
+   "messaging, voice, email and verification, priced per message"
+  ],
+  [
+   "Segment (customer data)",
+   "small",
+   "customer data platform"
+  ]
+ ],
+ "moat": "Carrier relationships and deliverability built over fifteen years, plus code written into customers' applications that is tedious to replace.",
+ "rivals": [
+  "Sinch",
+  "Bandwidth|BAND",
+  "MessageBird",
+  "Amazon Web Services|AMZN",
+  "Vonage (Ericsson)|ERIC"
+ ],
+ "risks": [
+  "Gross margin of 49% is low for software because carrier fees are passed through",
+  "Operating margin of 3% leaves little room",
+  "Large customers can build directly with carriers at scale",
+  "Growth is in the low teens rather than the rates it once had"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year",
+  "Analysts see about 34% upside from current levels",
+  "Verification and AI-driven customer messaging are growing use cases"
+ ],
+ "watch": "Dollar-based net expansion rate and gross margin.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "PUK",
+ "what": "Prudential plc is a life and health insurer focused entirely on Asia and Africa. Despite the name it has no connection to the American company Prudential Financial, and it no longer operates in the United Kingdom.",
+ "customers": "Individuals and families across Hong Kong, mainland China, Indonesia, Singapore, Malaysia, India and several African markets.",
+ "money": [
+  [
+   "Insurance",
+   "the largest part",
+   "life and health policies sold through agents and bank partnerships"
+  ],
+  [
+   "Asset management (Eastspring)",
+   "smaller",
+   "investment management fees"
+  ]
+ ],
+ "moat": "Agency networks and bank distribution agreements built over more than a century in Asia, in markets where insurance penetration is still low and trust in a long-established name matters.",
+ "rivals": [
+  "AIA Group",
+  "Manulife Financial|MFC",
+  "Ping An Insurance",
+  "Sun Life Financial|SLF",
+  "Allianz"
+ ],
+ "risks": [
+  "Mainland Chinese visitors buying policies in Hong Kong drive a large share of new sales and that flow can be restricted",
+  "Asian currency movements affect sterling-reported results",
+  "Interest rate moves change the value of long-dated liabilities",
+  "Chinese property exposure in its investment portfolio"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 29% operating margin",
+  "Analysts see about 50% upside from current levels",
+  "Asian middle-class growth drives structural demand for health and life insurance"
+ ],
+ "watch": "New business profit growth and Hong Kong sales to mainland visitors.",
+ "updated": "2026-11"
+}

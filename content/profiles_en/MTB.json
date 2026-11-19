@@ -1,0 +1,42 @@
+{
+ "t": "MTB",
+ "what": "M&T Bank is a regional bank serving New York State, the mid-Atlantic and New England. It is known for conservative commercial lending, and also owns Wilmington Trust, a corporate trust and wealth business.",
+ "customers": "Households and small businesses in its branch markets, commercial borrowers, and institutional trust clients.",
+ "money": [
+  [
+   "Commercial banking",
+   "large",
+   "commercial and industrial lending and commercial real estate"
+  ],
+  [
+   "Retail banking",
+   "large",
+   "deposits, mortgages and consumer lending"
+  ],
+  [
+   "Wilmington Trust",
+   "meaningful",
+   "corporate trust and wealth management"
+  ]
+ ],
+ "moat": "A century-long record of conservative underwriting through cycles, with deposit relationships in markets where it is the leading community bank.",
+ "rivals": [
+  "Citizens Financial|CFG",
+  "KeyCorp|KEY",
+  "PNC Financial|PNC",
+  "Webster Financial|WBS"
+ ],
+ "risks": [
+  "Commercial property, especially offices in the Northeast, is a concentrated exposure",
+  "Deposit costs rise with competition for savings",
+  "Its markets grow more slowly than the Sunbelt",
+  "Regional bank capital rules are being tightened"
+ ],
+ "opportunities": [
+  "Net margin of 29% with a dividend yield above 3%",
+  "Credit losses have consistently been below peers through past downturns",
+  "Buybacks have been substantial while capital remains strong"
+ ],
+ "watch": "Commercial real estate credit metrics and net interest margin.",
+ "updated": "2026-11"
+}

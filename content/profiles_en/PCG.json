@@ -1,0 +1,37 @@
+{
+ "t": "PCG",
+ "what": "PG&E delivers electricity and natural gas across northern and central California, serving around 16 million people. It emerged from bankruptcy in 2020 after its equipment was found to have started catastrophic wildfires.",
+ "customers": "Households, businesses and a growing number of data centres across northern and central California.",
+ "money": [
+  [
+   "Electricity",
+   "the larger part",
+   "generation, transmission and delivery"
+  ],
+  [
+   "Natural gas",
+   "large",
+   "gas distribution and transmission"
+  ]
+ ],
+ "moat": "A delivery monopoly across a large and wealthy part of California, with rates set by state regulators.",
+ "rivals": [
+  "Edison International|EIX",
+  "Sempra|SRE",
+  "Southern California Edison",
+  "Municipal utilities"
+ ],
+ "risks": [
+  "Wildfire liability remains the central risk and California law makes utilities liable even without negligence",
+  "Debt of about $63 billion is among the largest of any US utility",
+  "Burying power lines is extremely expensive and progress is slow",
+  "California political pressure over electricity bills limits rate increases"
+ ],
+ "opportunities": [
+  "Analysts see about 29% upside from current levels",
+  "The California wildfire fund provides a buffer against catastrophic claims",
+  "Data centre demand in its territory raises long-term load growth"
+ ],
+ "watch": "Wildfire mitigation progress, undergrounding miles completed, and regulatory decisions.",
+ "updated": "2026-11"
+}

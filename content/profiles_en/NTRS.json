@@ -1,0 +1,43 @@
+{
+ "t": "NTRS",
+ "what": "Northern Trust provides asset servicing to institutions, wealth management to wealthy families, and asset management. It is one of three large American custody banks and the one most focused on private wealth.",
+ "customers": "Pension funds, sovereign wealth funds, asset managers, family offices and high-net-worth individuals.",
+ "money": [
+  [
+   "Asset Servicing",
+   "the larger part",
+   "custody, fund administration and related services"
+  ],
+  [
+   "Wealth Management",
+   "large",
+   "private banking and family office services"
+  ],
+  [
+   "Net interest income",
+   "meaningful",
+   "interest on client deposits"
+  ]
+ ],
+ "moat": "Multi-generational relationships with wealthy families and custody mandates that are rarely moved because transferring assets is slow and risky.",
+ "rivals": [
+  "State Street|STT",
+  "BNY|BK",
+  "JPMorgan Chase|JPM",
+  "Fifth Third Bancorp|FITB",
+  "UBS|UBS"
+ ],
+ "risks": [
+  "Revenue fell about 2% last year",
+  "Fee revenue falls when markets fall",
+  "Custody pricing is under constant competitive pressure",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Wealth management is a higher-margin business than custody and it has unusual depth there",
+  "Cost discipline programmes have improved the efficiency ratio",
+  "Buybacks and a consistent dividend return most earnings"
+ ],
+ "watch": "Trust fee growth and the expense-to-revenue ratio.",
+ "updated": "2026-11"
+}

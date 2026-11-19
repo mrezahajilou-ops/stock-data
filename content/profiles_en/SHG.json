@@ -1,0 +1,42 @@
+{
+ "t": "SHG",
+ "what": "Shinhan Financial Group is one of South Korea's largest financial groups. It owns Shinhan Bank, plus securities, credit card, insurance and asset management businesses.",
+ "customers": "South Korean households, small businesses and corporations, plus investment and insurance clients.",
+ "money": [
+  [
+   "Banking",
+   "the largest part",
+   "Shinhan Bank deposits, mortgages and corporate lending"
+  ],
+  [
+   "Credit cards and securities",
+   "large",
+   "Shinhan Card and brokerage"
+  ],
+  [
+   "Insurance and other",
+   "meaningful",
+   "life and general insurance"
+  ]
+ ],
+ "moat": "One of the largest deposit bases in Korea, in a market where four groups hold most of the banking system.",
+ "rivals": [
+  "KB Financial Group|KB",
+  "Hana Financial",
+  "Woori Financial|WF",
+  "Kakao Bank"
+ ],
+ "risks": [
+  "Korean household debt is very high relative to income",
+  "Property project financing losses have hurt Korean banks",
+  "Regulators have intervened in lending and pricing",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Analysts see large upside from the current price",
+  "Korean corporate governance reform is pushing banks to raise shareholder returns",
+  "A dividend yield above 3% with growing buybacks"
+ ],
+ "watch": "Credit costs on property project loans and the shareholder return plan.",
+ "updated": "2026-11"
+}

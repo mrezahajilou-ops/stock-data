@@ -1,0 +1,38 @@
+{
+ "t": "NBIS",
+ "what": "Nebius runs an artificial intelligence cloud. It builds and operates data centres full of graphics processors and rents that computing capacity to companies training and running AI models. It emerged from the restructuring of the Russian internet company Yandex.",
+ "customers": "AI companies, model developers and enterprises needing large-scale GPU computing.",
+ "money": [
+  [
+   "AI cloud",
+   "almost all of revenue",
+   "GPU compute capacity, storage and AI platform software"
+  ],
+  [
+   "Other ventures",
+   "small",
+   "Avride self-driving, Toloka data labelling and an education business"
+  ]
+ ],
+ "moat": "Data centre capacity and GPU supply secured ahead of demand, with its own software stack built by engineers who ran one of the largest search infrastructures in Europe.",
+ "rivals": [
+  "CoreWeave|CRWV",
+  "Amazon Web Services|AMZN",
+  "Microsoft Azure|MSFT",
+  "Lambda Labs",
+  "Crusoe"
+ ],
+ "risks": [
+  "Debt of about $16 billion raised to fund data centre construction",
+  "It makes an operating loss while building capacity",
+  "Revenue is concentrated in a small number of very large contracts",
+  "GPU hardware depreciates quickly and may be worth far less in a few years"
+ ],
+ "opportunities": [
+  "Revenue grew nearly fivefold last year",
+  "Analysts see large upside, with a median target well above the current price",
+  "Demand for AI compute has exceeded supply, which supports pricing"
+ ],
+ "watch": "Contracted capacity, annualised run-rate revenue, and how new data centres are financed.",
+ "updated": "2026-11"
+}

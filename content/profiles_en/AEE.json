@@ -1,0 +1,42 @@
+{
+ "t": "AEE",
+ "what": "Ameren is a regulated utility in Missouri and Illinois. It generates and delivers electricity in Missouri, delivers electricity and gas in Illinois, and owns transmission lines across the region.",
+ "customers": "About 2.4 million electricity and 900,000 gas customers across Missouri and Illinois.",
+ "money": [
+  [
+   "Ameren Missouri",
+   "the largest part",
+   "regulated electricity generation and delivery plus gas"
+  ],
+  [
+   "Ameren Illinois",
+   "large",
+   "regulated electricity and gas delivery"
+  ],
+  [
+   "Transmission",
+   "meaningful",
+   "regional transmission investment"
+  ]
+ ],
+ "moat": "Regulated monopolies in two states, with returns set by commissions rather than by competition.",
+ "rivals": [
+  "Evergy|EVRG",
+  "WEC Energy|WEC",
+  "Xcel Energy|XEL",
+  "Entergy|ETR"
+ ],
+ "risks": [
+  "Debt of about $21 billion against almost no cash",
+  "Missouri and Illinois regulators set allowed returns and have been demanding",
+  "Heavy capital spending requires continuous financing",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 15% last year with a 23% operating margin",
+  "Data centre interest in Missouri is raising projected load growth",
+  "Transmission investment earns a federally regulated return"
+ ],
+ "watch": "Data centre connection agreements in Missouri and rate case outcomes.",
+ "updated": "2026-11"
+}

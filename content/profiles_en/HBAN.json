@@ -1,0 +1,38 @@
+{
+ "t": "HBAN",
+ "what": "Huntington Bancshares is a regional bank headquartered in Columbus, Ohio, serving households and businesses across the Midwest and, after recent acquisitions, the Southwest. It has been lending since 1866.",
+ "customers": "Midwestern households and small businesses, commercial borrowers, and specialty finance customers nationally.",
+ "money": [
+  [
+   "Consumer and Regional Banking",
+   "large",
+   "deposits, mortgages, car and recreational vehicle lending"
+  ],
+  [
+   "Commercial Banking",
+   "large",
+   "corporate lending, treasury management and specialty finance"
+  ]
+ ],
+ "moat": "Deposit share built over 150 years in Ohio and Michigan, which funds lending cheaply, plus niche lending businesses such as equipment and fund finance.",
+ "rivals": [
+  "Fifth Third Bancorp|FITB",
+  "KeyCorp|KEY",
+  "Regions Financial|RF",
+  "Citizens Financial|CFG",
+  "PNC Financial|PNC"
+ ],
+ "risks": [
+  "Commercial property lending is a watched area across regional banking",
+  "Integrating recent acquisitions including Cadence is a large undertaking",
+  "Deposit costs rise when savers move money to higher-yielding accounts",
+  "Midwestern economic growth is slower than the Sunbelt"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year with a 27% net margin",
+  "Expansion into Texas and the Southwest adds faster-growing markets",
+  "Analysts see about 25% upside from current levels"
+ ],
+ "watch": "Net interest margin, loan growth, and integration of the Cadence acquisition.",
+ "updated": "2026-11"
+}

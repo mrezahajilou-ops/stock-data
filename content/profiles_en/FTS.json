@@ -1,0 +1,47 @@
+{
+ "t": "FTS",
+ "what": "Fortis is a North American regulated utility. It owns electricity and gas utilities in Canada, the Caribbean and the United States, including ITC, the largest independent electricity transmission company in the US.",
+ "customers": "About 3.5 million electricity and gas customers across Canada, the United States and the Caribbean.",
+ "money": [
+  [
+   "ITC (US transmission)",
+   "large",
+   "federally regulated electricity transmission in the Midwest"
+  ],
+  [
+   "US Electric and Gas",
+   "large",
+   "utilities in Arizona and the Midwest"
+  ],
+  [
+   "Canadian utilities",
+   "large",
+   "British Columbia, Alberta, Ontario and Atlantic Canada"
+  ],
+  [
+   "Caribbean and other",
+   "small",
+   "utilities in Caribbean territories"
+  ]
+ ],
+ "moat": "Regulated monopolies in many separate jurisdictions, so no single regulator can damage the whole company, with transmission assets earning federally set returns.",
+ "rivals": [
+  "Emera",
+  "Hydro One",
+  "Algonquin Power|AQN",
+  "CenterPoint Energy|CNP"
+ ],
+ "risks": [
+  "Debt of about $27 billion",
+  "Return on invested capital of about 5%, normal for a regulated utility",
+  "Rate decisions across many jurisdictions each affect a slice of earnings",
+  "Analyst coverage here is thin and the target implies downside"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year with a 29% operating margin",
+  "A dividend increased every year for more than fifty years",
+  "Transmission investment grows as renewable generation is connected"
+ ],
+ "watch": "Rate base growth and regulatory decisions at ITC.",
+ "updated": "2026-11"
+}

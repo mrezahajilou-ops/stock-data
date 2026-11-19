@@ -1,0 +1,37 @@
+{
+ "t": "DXCM",
+ "what": "DexCom makes continuous glucose monitors: small sensors worn on the body that read glucose levels every few minutes and send them to a phone, replacing finger-prick testing for people with diabetes.",
+ "customers": "People with type 1 and type 2 diabetes, prescribed by doctors and paid for by insurers and health systems.",
+ "money": [
+  [
+   "Sensors and other",
+   "almost all of revenue",
+   "disposable sensors replaced every ten to fifteen days"
+  ],
+  [
+   "Hardware",
+   "small",
+   "transmitters and receivers"
+  ]
+ ],
+ "moat": "Sensors are consumable and replaced constantly, so each new patient produces recurring revenue, and insurer coverage and clinical data took years to establish.",
+ "rivals": [
+  "Abbott|ABT",
+  "Medtronic|MDT",
+  "Senseonics|SENS",
+  "Roche"
+ ],
+ "risks": [
+  "Abbott competes directly with its own sensor at a lower price point",
+  "US distribution changes caused a sales disruption that took time to recover from",
+  "Reimbursement decisions determine which patients qualify",
+  "It pays no dividend and trades at a high multiple"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year and about 17% a year over three years",
+  "Return on invested capital of 25% with almost no debt",
+  "Type 2 diabetes patients not on insulin are a far larger market than its current base"
+ ],
+ "watch": "New patient starts and the rate of expansion into type 2 diabetes.",
+ "updated": "2026-11"
+}

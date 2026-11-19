@@ -1,0 +1,47 @@
+{
+ "t": "STLD",
+ "what": "Steel Dynamics melts recycled scrap in electric arc furnaces to make steel, and also fabricates it into finished products such as steel joists and decking for buildings. It is building a large aluminium rolling mill.",
+ "customers": "Construction contractors, carmakers, equipment manufacturers, appliance makers and steel service centres.",
+ "money": [
+  [
+   "Steel operations",
+   "the largest part",
+   "flat-rolled, long and specialty steel"
+  ],
+  [
+   "Steel fabrication",
+   "smaller, higher margin",
+   "joists, decking and building products"
+  ],
+  [
+   "Metals recycling",
+   "meaningful",
+   "scrap processing"
+  ],
+  [
+   "Aluminium",
+   "new",
+   "the Columbus aluminium rolling mill"
+  ]
+ ],
+ "moat": "Low-cost electric arc furnaces, its own scrap supply, and a fabrication business that uses its own steel and earns a better margin than selling raw coils.",
+ "rivals": [
+  "Nucor|NUE",
+  "Cleveland-Cliffs|CLF",
+  "Commercial Metals|CMC",
+  "ArcelorMittal|MT"
+ ],
+ "risks": [
+  "Steel prices are cyclical and drive earnings",
+  "Revenue fell about 7% a year over three years",
+  "The aluminium mill is a large project outside its traditional business",
+  "Imports and tariff policy change competitive conditions quickly"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year",
+  "Tariffs on imported steel and aluminium support domestic prices",
+  "Data centre and manufacturing construction raises demand for its fabricated products"
+ ],
+ "watch": "Steel shipments, fabrication backlog, and the aluminium mill ramp.",
+ "updated": "2026-11"
+}

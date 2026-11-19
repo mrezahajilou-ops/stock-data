@@ -1,0 +1,48 @@
+{
+ "t": "WSM",
+ "what": "Williams-Sonoma sells home furnishings through Pottery Barn, West Elm, Williams Sonoma and Rejuvenation. Most sales are online rather than in stores, and it designs much of what it sells rather than reselling other brands.",
+ "customers": "American households furnishing and decorating homes, plus a growing business-to-business design and contract business.",
+ "money": [
+  [
+   "Pottery Barn",
+   "the largest brand",
+   "furniture and home decor"
+  ],
+  [
+   "West Elm",
+   "large",
+   "modern furniture aimed at younger buyers"
+  ],
+  [
+   "Williams Sonoma",
+   "meaningful",
+   "cookware and kitchen goods"
+  ],
+  [
+   "Other brands and B2B",
+   "growing",
+   "Rejuvenation, Mark and Graham, and contract furnishing"
+  ]
+ ],
+ "moat": "Own-designed products sold only through its own channels, which removes price comparison and protects margin in a category where most retailers resell the same goods.",
+ "rivals": [
+  "RH|RH",
+  "Wayfair|W",
+  "Arhaus|ARHS",
+  "IKEA",
+  "Target|TGT"
+ ],
+ "risks": [
+  "Furniture demand is tied to house moves, which high mortgage rates have slowed",
+  "Revenue has fallen about 3% a year over three years",
+  "Tariffs on imported furniture raise costs directly",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Return on invested capital of 30% with an 18% operating margin, the best in home furnishings",
+  "A recovery in house moves would revive demand quickly",
+  "The business-to-business design business is growing faster than retail"
+ ],
+ "watch": "Comparable brand revenue growth and gross margin after tariffs.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "RJF",
+ "what": "Raymond James is a financial services firm built around its network of financial advisers, who manage money for individual clients. It also runs an investment bank, an asset manager, and a bank that lends to its own clients.",
+ "customers": "Individual investors through advisers, corporate and municipal clients of the investment bank, and institutional asset management clients.",
+ "money": [
+  [
+   "Private Client Group",
+   "the largest part",
+   "fees and commissions on client assets managed by advisers"
+  ],
+  [
+   "Capital Markets",
+   "meaningful",
+   "investment banking, trading and municipal finance"
+  ],
+  [
+   "Bank",
+   "meaningful",
+   "lending to clients and interest on cash balances"
+  ],
+  [
+   "Asset Management",
+   "smaller",
+   "investment management fees"
+  ]
+ ],
+ "moat": "Advisers who own their client relationships and choose to affiliate with it rather than a bank-owned firm, which has made it a consistent recruiter of talent.",
+ "rivals": [
+  "LPL Financial|LPLA",
+  "Ameriprise Financial|AMP",
+  "Stifel Financial|SF",
+  "Charles Schwab|SCHW",
+  "Morgan Stanley|MS"
+ ],
+ "risks": [
+  "Fee revenue falls when markets fall",
+  "Falling interest rates reduce income on client cash balances",
+  "Investment banking revenue is cyclical",
+  "Adviser recruitment costs rise when competition for them increases"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year with a 15% net margin",
+  "Adviser headcount and client assets have grown consistently",
+  "Cash of about $10 billion against very little debt"
+ ],
+ "watch": "Net new assets and adviser recruitment, plus the yield on client cash.",
+ "updated": "2026-11"
+}

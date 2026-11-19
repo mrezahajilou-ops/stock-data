@@ -1,0 +1,48 @@
+{
+ "t": "NTR",
+ "what": "Nutrien is the world's largest supplier of crop nutrients. It mines potash in Canada, makes nitrogen fertiliser, produces phosphate, and sells seed, chemicals and advice to farmers through more than 2,000 retail outlets.",
+ "customers": "Farmers through its own retail network and distributors, plus industrial buyers of nitrogen and potash.",
+ "money": [
+  [
+   "Retail",
+   "the largest part of revenue",
+   "seed, crop protection, fertiliser and agronomy services to farmers"
+  ],
+  [
+   "Potash",
+   "the largest part of profit",
+   "Canadian potash mines"
+  ],
+  [
+   "Nitrogen",
+   "large",
+   "ammonia and urea production"
+  ],
+  [
+   "Phosphate",
+   "smaller",
+   "phosphate fertiliser"
+  ]
+ ],
+ "moat": "Canadian potash reserves that are among the lowest-cost in the world, plus a farm retail network that puts it in direct contact with the farmers who buy the fertiliser.",
+ "rivals": [
+  "Mosaic|MOS",
+  "CF Industries|CF",
+  "ICL Group|ICL",
+  "Yara International",
+  "K+S"
+ ],
+ "risks": [
+  "Fertiliser prices are volatile and have fallen from their 2022 peaks",
+  "Revenue fell about 11% a year over three years",
+  "Natural gas is the main input for nitrogen, and its price moves margins",
+  "Debt of about $14 billion against under $1 billion of cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year as volumes recovered",
+  "Potash demand grows with world food consumption",
+  "The retail business earns steadier margins than commodity fertiliser"
+ ],
+ "watch": "Potash sales volumes and realised prices, and retail segment margins.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "AWK",
+ "what": "American Water Works is the largest publicly traded water and wastewater utility in the United States. It supplies drinking water and treats wastewater for communities across fourteen states, and buys small municipal systems to grow.",
+ "customers": "About 14 million people in communities across fourteen states, plus military bases under long-term contracts.",
+ "money": [
+  [
+   "Regulated water and wastewater",
+   "almost all of revenue",
+   "water supply and wastewater treatment under state regulation"
+  ],
+  [
+   "Military services",
+   "small",
+   "operating water systems on military bases"
+  ]
+ ],
+ "moat": "Regulated monopolies over water networks, a service with no substitute, where returns are set by state commissions and demand barely changes with the economy.",
+ "rivals": [
+  "Essential Utilities|WTRG",
+  "California Water Service|CWT",
+  "American States Water|AWR",
+  "Municipal systems"
+ ],
+ "risks": [
+  "Debt of about $16 billion against almost no cash",
+  "Return on invested capital of about 6% is low by design",
+  "Regulators set the returns and can reject requested increases",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year with a 37% operating margin",
+  "Thousands of small municipal water systems need investment they cannot fund, and it buys them",
+  "Water demand is the most recession-proof of any utility service"
+ ],
+ "watch": "Acquisitions of municipal systems and rate case outcomes.",
+ "updated": "2026-11"
+}

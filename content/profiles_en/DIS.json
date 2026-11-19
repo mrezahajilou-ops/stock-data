@@ -1,35 +1,41 @@
 {
-"t": "DIS",
-"what": "Disney owns film studios (Disney, Pixar, Marvel, Lucasfilm), streaming (Disney+, Hulu, ESPN), TV networks and theme parks, resorts and cruise lines.",
-"customers": "Families and fans worldwide, park and cruise guests, streaming subscribers, and advertisers.",
-"money": [
-[
-"Experiences",
-"about a third of revenue and over half of operating profit",
-"theme parks, resorts, cruises and consumer products"
-],
-[
-"Entertainment",
-"about 40%",
-"streaming, TV networks and films"
-],
-[
-"Sports (ESPN)",
-"about a quarter",
-"sports TV rights and advertising"
-]
-],
-"moat": "Unmatched characters and franchises that feed films, parks, merchandise and streaming.",
-"rivals": [
-"Netflix|NFLX",
-"Comcast (Universal)|CMCSA",
-"Warner Bros. Discovery|WBD",
-"Amazon|AMZN"
-],
-"risks": [
-"Decline of cable TV",
-"Streaming profitability",
-"Weaker spending at parks"
-],
-"updated": "2026-11"
+ "t": "DIS",
+ "what": "Disney owns film studios (Disney, Pixar, Marvel, Lucasfilm), streaming (Disney+, Hulu, ESPN), TV networks and theme parks, resorts and cruise lines.",
+ "customers": "Families and fans worldwide, park and cruise guests, streaming subscribers, and advertisers.",
+ "money": [
+  [
+   "Experiences",
+   "about a third of revenue and over half of operating profit",
+   "theme parks, resorts, cruises and consumer products"
+  ],
+  [
+   "Entertainment",
+   "about 40%",
+   "streaming, TV networks and films"
+  ],
+  [
+   "Sports (ESPN)",
+   "about a quarter",
+   "sports TV rights and advertising"
+  ]
+ ],
+ "moat": "Unmatched characters and franchises that feed films, parks, merchandise and streaming.",
+ "rivals": [
+  "Netflix|NFLX",
+  "Comcast (Universal)|CMCSA",
+  "Warner Bros. Discovery|WBD",
+  "Amazon|AMZN"
+ ],
+ "risks": [
+  "Decline of cable TV",
+  "Streaming profitability",
+  "Weaker spending at parks"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Streaming has turned profitable after years of heavy losses",
+  "Parks and experiences generate large, durable cash flow",
+  "Its film and character library supports parks, merchandise and streaming at once"
+ ],
+ "watch": "Streaming operating profit and parks operating margin."
 }

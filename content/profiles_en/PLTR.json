@@ -1,30 +1,36 @@
 {
-"t": "PLTR",
-"what": "Palantir builds software platforms (Gotham, Foundry, AIP) that let governments and companies combine large amounts of data and use AI to make decisions.",
-"customers": "US and allied defense and intelligence agencies, and large companies in manufacturing, healthcare, energy and finance.",
-"money": [
-[
-"Government",
-"about half",
-"defense and intelligence contracts in the US and abroad"
-],
-[
-"Commercial",
-"about half and growing faster",
-"Foundry and AIP subscriptions for companies"
-]
-],
-"moat": "Deep integration in sensitive government work, security clearances and software that becomes the operating layer of its customers.",
-"rivals": [
-"Snowflake|SNOW",
-"Databricks",
-"Microsoft and cloud AI tools|MSFT",
-"Defense IT contractors"
-],
-"risks": [
-"An extremely high valuation",
-"Dependence on government budgets",
-"Stock-based pay diluting shareholders"
-],
-"updated": "2026-11"
+ "t": "PLTR",
+ "what": "Palantir builds software platforms (Gotham, Foundry, AIP) that let governments and companies combine large amounts of data and use AI to make decisions.",
+ "customers": "US and allied defense and intelligence agencies, and large companies in manufacturing, healthcare, energy and finance.",
+ "money": [
+  [
+   "Government",
+   "about half",
+   "defense and intelligence contracts in the US and abroad"
+  ],
+  [
+   "Commercial",
+   "about half and growing faster",
+   "Foundry and AIP subscriptions for companies"
+  ]
+ ],
+ "moat": "Deep integration in sensitive government work, security clearances and software that becomes the operating layer of its customers.",
+ "rivals": [
+  "Snowflake|SNOW",
+  "Databricks",
+  "Microsoft and cloud AI tools|MSFT",
+  "Defense IT contractors"
+ ],
+ "risks": [
+  "An extremely high valuation",
+  "Dependence on government budgets",
+  "Stock-based pay diluting shareholders"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 56% last year and about 33% a year over three years",
+  "Operating margin of 32% with cash of $10.6 billion and almost no debt",
+  "US commercial customer count has been growing very quickly"
+ ],
+ "watch": "US commercial revenue growth and net new customer additions."
 }

@@ -1,1 +1,36 @@
-{"t": "KLAC", "what": "KLA makes inspection and measurement machines that find defects on silicon wafers during chip manufacturing, which is how chipmakers raise the share of working chips.", "customers": "Leading chipmakers such as TSMC, Samsung, Intel, SK Hynix and Micron.", "money": [["Semiconductor process control", "most revenue", "inspection and metrology systems and their servicing"], ["Specialty processes and other", "the rest", "equipment for specialty chips, circuit boards and displays"]], "moat": "A dominant share of process control, where each new chip generation needs more inspection, and a growing service business.", "rivals": ["Applied Materials|AMAT", "ASML|ASML", "Onto Innovation|ONTO", "Lam Research|LRCX"], "risks": ["Chip equipment cycles", "Export limits on China", "Customer concentration"], "updated": "2026-11"}
+{
+ "t": "KLAC",
+ "what": "KLA makes inspection and measurement machines that find defects on silicon wafers during chip manufacturing, which is how chipmakers raise the share of working chips.",
+ "customers": "Leading chipmakers such as TSMC, Samsung, Intel, SK Hynix and Micron.",
+ "money": [
+  [
+   "Semiconductor process control",
+   "most revenue",
+   "inspection and metrology systems and their servicing"
+  ],
+  [
+   "Specialty processes and other",
+   "the rest",
+   "equipment for specialty chips, circuit boards and displays"
+  ]
+ ],
+ "moat": "A dominant share of process control, where each new chip generation needs more inspection, and a growing service business.",
+ "rivals": [
+  "Applied Materials|AMAT",
+  "ASML|ASML",
+  "Onto Innovation|ONTO",
+  "Lam Research|LRCX"
+ ],
+ "risks": [
+  "Chip equipment cycles",
+  "Export limits on China",
+  "Customer concentration"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Return on invested capital of 41% and an operating margin of 43%",
+  "Analysts see about 51% upside from current levels",
+  "Advanced chip nodes need more inspection steps, which raises its content per wafer"
+ ],
+ "watch": "Wafer inspection orders from leading-edge logic and memory customers."
+}

@@ -1,30 +1,36 @@
 {
-"t": "NFLX",
-"what": "Netflix is the largest paid streaming service, with more than 300 million subscribers in over 190 countries, offering series, films, games and live events.",
-"customers": "Households worldwide that pay a monthly subscription; advertisers on the cheaper ad-supported plan.",
-"money": [
-[
-"Subscriptions",
-"almost all revenue",
-"monthly plans in the US, Europe, Latin America and Asia"
-],
-[
-"Advertising",
-"small but growing",
-"ads on the ad-supported plan"
-]
-],
-"moat": "Global scale that lets it spend more on content per subscriber than rivals, a strong recommendation engine and brand.",
-"rivals": [
-"Disney+|DIS",
-"YouTube|GOOGL",
-"Amazon Prime Video|AMZN",
-"Warner Bros. Discovery (HBO Max)|WBD"
-],
-"risks": [
-"Rising content costs",
-"Slower subscriber growth in mature markets",
-"Competition for viewing time from YouTube and social media"
-],
-"updated": "2026-11"
+ "t": "NFLX",
+ "what": "Netflix is the largest paid streaming service, with more than 300 million subscribers in over 190 countries, offering series, films, games and live events.",
+ "customers": "Households worldwide that pay a monthly subscription; advertisers on the cheaper ad-supported plan.",
+ "money": [
+  [
+   "Subscriptions",
+   "almost all revenue",
+   "monthly plans in the US, Europe, Latin America and Asia"
+  ],
+  [
+   "Advertising",
+   "small but growing",
+   "ads on the ad-supported plan"
+  ]
+ ],
+ "moat": "Global scale that lets it spend more on content per subscriber than rivals, a strong recommendation engine and brand.",
+ "rivals": [
+  "Disney+|DIS",
+  "YouTube|GOOGL",
+  "Amazon Prime Video|AMZN",
+  "Warner Bros. Discovery (HBO Max)|WBD"
+ ],
+ "risks": [
+  "Rising content costs",
+  "Slower subscriber growth in mature markets",
+  "Competition for viewing time from YouTube and social media"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 16% last year with a 29% operating margin",
+  "Its advertising tier adds revenue from subscribers paying less, which raises total revenue per household",
+  "Analysts see about 43% upside from current levels"
+ ],
+ "watch": "Revenue growth per region and advertising revenue scale."
 }

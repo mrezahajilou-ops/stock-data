@@ -1,1 +1,41 @@
-{"t": "SCHW", "what": "Charles Schwab is the largest US retail brokerage. It holds client investments, earns interest on client cash, manages funds and serves independent financial advisers.", "customers": "Individual investors and independent advisers in the US.", "money": [["Net interest revenue", "about half", "interest earned on client cash held at its bank"], ["Asset management and administration fees", "a large part", "funds, ETFs and advice"], ["Trading and other", "the rest", "order flow, commissions, bank deposit fees"]], "moat": "Enormous scale, low prices and a trusted brand that keep attracting client assets.", "rivals": ["Fidelity", "Morgan Stanley (E*Trade)|MS", "Interactive Brokers|IBKR", "Robinhood|HOOD"], "risks": ["Clients moving cash to higher-yield products", "Falling interest rates", "Market downturns"], "updated": "2026-11"}
+{
+ "t": "SCHW",
+ "what": "Charles Schwab is the largest US retail brokerage. It holds client investments, earns interest on client cash, manages funds and serves independent financial advisers.",
+ "customers": "Individual investors and independent advisers in the US.",
+ "money": [
+  [
+   "Net interest revenue",
+   "about half",
+   "interest earned on client cash held at its bank"
+  ],
+  [
+   "Asset management and administration fees",
+   "a large part",
+   "funds, ETFs and advice"
+  ],
+  [
+   "Trading and other",
+   "the rest",
+   "order flow, commissions, bank deposit fees"
+  ]
+ ],
+ "moat": "Enormous scale, low prices and a trusted brand that keep attracting client assets.",
+ "rivals": [
+  "Fidelity",
+  "Morgan Stanley (E*Trade)|MS",
+  "Interactive Brokers|IBKR",
+  "Robinhood|HOOD"
+ ],
+ "risks": [
+  "Clients moving cash to higher-yield products",
+  "Falling interest rates",
+  "Market downturns"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 22% last year with a 37% net margin",
+  "Analysts see about 27% upside from current levels",
+  "Client cash moving back from money funds into its bank would lift interest income"
+ ],
+ "watch": "Net new client assets and the level of client cash held at the bank."
+}

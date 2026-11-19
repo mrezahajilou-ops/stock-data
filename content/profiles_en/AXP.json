@@ -1,40 +1,46 @@
 {
-"t": "AXP",
-"what": "American Express issues premium credit and charge cards and runs its own payment network, earning fees from both cardholders and merchants.",
-"customers": "Affluent consumers, small businesses and corporations, and the merchants that accept Amex.",
-"money": [
-[
-"Discount revenue",
-"about half",
-"fees merchants pay on Amex purchases"
-],
-[
-"Net interest income",
-"about a quarter",
-"interest on card balances"
-],
-[
-"Card fees",
-"about 15%",
-"annual fees on Platinum, Gold and other cards"
-],
-[
-"Other",
-"the rest",
-"travel and service fees"
-]
-],
-"moat": "A closed-loop network with premium, high-spending customers, loyal through rewards programs.",
-"rivals": [
-"Visa|V",
-"Mastercard|MA",
-"JPMorgan Chase (Sapphire)|JPM",
-"Capital One|COF"
-],
-"risks": [
-"Credit losses in a recession",
-"Rising rewards costs",
-"Lower consumer and travel spending"
-],
-"updated": "2026-11"
+ "t": "AXP",
+ "what": "American Express issues premium credit and charge cards and runs its own payment network, earning fees from both cardholders and merchants.",
+ "customers": "Affluent consumers, small businesses and corporations, and the merchants that accept Amex.",
+ "money": [
+  [
+   "Discount revenue",
+   "about half",
+   "fees merchants pay on Amex purchases"
+  ],
+  [
+   "Net interest income",
+   "about a quarter",
+   "interest on card balances"
+  ],
+  [
+   "Card fees",
+   "about 15%",
+   "annual fees on Platinum, Gold and other cards"
+  ],
+  [
+   "Other",
+   "the rest",
+   "travel and service fees"
+  ]
+ ],
+ "moat": "A closed-loop network with premium, high-spending customers, loyal through rewards programs.",
+ "rivals": [
+  "Visa|V",
+  "Mastercard|MA",
+  "JPMorgan Chase (Sapphire)|JPM",
+  "Capital One|COF"
+ ],
+ "risks": [
+  "Credit losses in a recession",
+  "Rising rewards costs",
+  "Lower consumer and travel spending"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 10% last year and about 11% a year over three years",
+  "Its cardholders spend far more per card than those of any other network",
+  "Card fee revenue grows every year as it raises fees and adds premium cardholders"
+ ],
+ "watch": "Billed business growth and net card fee revenue."
 }

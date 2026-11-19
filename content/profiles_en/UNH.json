@@ -1,30 +1,36 @@
 {
-"t": "UNH",
-"what": "UnitedHealth Group is the largest US health insurer (UnitedHealthcare) and owns Optum, which runs clinics, a pharmacy-benefit manager and health-data services.",
-"customers": "Employers, individuals, Medicare and Medicaid members, and hospitals and doctors that use Optum services.",
-"money": [
-[
-"UnitedHealthcare",
-"about two thirds of revenue",
-"health insurance premiums"
-],
-[
-"Optum",
-"about a third of revenue and a large share of profit",
-"care delivery (Optum Health), pharmacy benefits (Optum Rx), data and technology (Optum Insight)"
-]
-],
-"moat": "Scale in insurance and the integration of insurance, care and pharmacy that few rivals can match.",
-"rivals": [
-"Elevance Health|ELV",
-"CVS Health (Aetna)|CVS",
-"Cigna|CI",
-"Humana|HUM"
-],
-"risks": [
-"Rising medical costs squeezing margins",
-"Medicare Advantage payment changes and investigations",
-"Political pressure on insurers and pharmacy-benefit managers"
-],
-"updated": "2026-11"
+ "t": "UNH",
+ "what": "UnitedHealth Group is the largest US health insurer (UnitedHealthcare) and owns Optum, which runs clinics, a pharmacy-benefit manager and health-data services.",
+ "customers": "Employers, individuals, Medicare and Medicaid members, and hospitals and doctors that use Optum services.",
+ "money": [
+  [
+   "UnitedHealthcare",
+   "about two thirds of revenue",
+   "health insurance premiums"
+  ],
+  [
+   "Optum",
+   "about a third of revenue and a large share of profit",
+   "care delivery (Optum Health), pharmacy benefits (Optum Rx), data and technology (Optum Insight)"
+  ]
+ ],
+ "moat": "Scale in insurance and the integration of insurance, care and pharmacy that few rivals can match.",
+ "rivals": [
+  "Elevance Health|ELV",
+  "CVS Health (Aetna)|CVS",
+  "Cigna|CI",
+  "Humana|HUM"
+ ],
+ "risks": [
+  "Rising medical costs squeezing margins",
+  "Medicare Advantage payment changes and investigations",
+  "Political pressure on insurers and pharmacy-benefit managers"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Analysts see about 43% upside from current levels",
+  "Optum provides care and pharmacy services that grow independently of insurance margins",
+  "Revenue grew about 12% last year and about 11% a year over three years"
+ ],
+ "watch": "The medical care ratio and Medicare Advantage Star ratings."
 }

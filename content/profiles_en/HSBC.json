@@ -1,1 +1,41 @@
-{"t": "HSBC", "what": "HSBC is one of the world's largest banks, with its strongest positions in Hong Kong and the UK. It takes deposits, lends, runs wealth management and finances international trade.", "customers": "Households, wealthy clients, companies that trade across borders and large institutions.", "money": [["Hong Kong and UK banking", "the largest part", "retail and commercial banking in its two home markets"], ["Corporate and institutional banking", "a large part", "trade finance, payments, markets"], ["International wealth", "the rest", "wealth and premier banking, mainly in Asia"]], "moat": "A deposit base in Hong Kong that is very hard to copy and a network that connects Asia with the rest of the world.", "rivals": ["Standard Chartered", "JPMorgan Chase|JPM", "Citigroup|C", "DBS"], "risks": ["Interest-rate cuts", "China and Hong Kong property losses", "Tension between China and the West"], "updated": "2026-11"}
+{
+ "t": "HSBC",
+ "what": "HSBC is one of the world's largest banks, with its strongest positions in Hong Kong and the UK. It takes deposits, lends, runs wealth management and finances international trade.",
+ "customers": "Households, wealthy clients, companies that trade across borders and large institutions.",
+ "money": [
+  [
+   "Hong Kong and UK banking",
+   "the largest part",
+   "retail and commercial banking in its two home markets"
+  ],
+  [
+   "Corporate and institutional banking",
+   "a large part",
+   "trade finance, payments, markets"
+  ],
+  [
+   "International wealth",
+   "the rest",
+   "wealth and premier banking, mainly in Asia"
+  ]
+ ],
+ "moat": "A deposit base in Hong Kong that is very hard to copy and a network that connects Asia with the rest of the world.",
+ "rivals": [
+  "Standard Chartered",
+  "JPMorgan Chase|JPM",
+  "Citigroup|C",
+  "DBS"
+ ],
+ "risks": [
+  "Interest-rate cuts",
+  "China and Hong Kong property losses",
+  "Tension between China and the West"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Return on invested capital of 11% with a 34% net margin",
+  "Asian wealth management is growing faster than its banking businesses",
+  "Large buybacks have shrunk the share count substantially"
+ ],
+ "watch": "Asian wealth revenue and net interest income guidance."
+}

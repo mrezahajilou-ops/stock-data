@@ -1,1 +1,41 @@
-{"t": "GEV", "what": "GE Vernova makes the equipment that generates and moves electricity: gas turbines, wind turbines, and grid gear such as transformers and switchgear. It was spun out of General Electric in 2024.", "customers": "Utilities, power producers and grid operators worldwide.", "money": [["Power", "the largest part", "gas turbines and their long-term servicing, steam and nuclear"], ["Electrification", "the fastest-growing part", "transformers, grid equipment and software"], ["Wind", "the rest", "onshore and offshore turbines"]], "moat": "A huge installed base of gas turbines that needs decades of service, and scarce capacity in turbines and grid equipment.", "rivals": ["Siemens Energy", "Mitsubishi Heavy Industries", "Vestas", "Hitachi Energy"], "risks": ["Losses in offshore wind", "Power demand from data centres slowing", "Execution on a large order backlog"], "updated": "2026-11"}
+{
+ "t": "GEV",
+ "what": "GE Vernova makes the equipment that generates and moves electricity: gas turbines, wind turbines, and grid gear such as transformers and switchgear. It was spun out of General Electric in 2024.",
+ "customers": "Utilities, power producers and grid operators worldwide.",
+ "money": [
+  [
+   "Power",
+   "the largest part",
+   "gas turbines and their long-term servicing, steam and nuclear"
+  ],
+  [
+   "Electrification",
+   "the fastest-growing part",
+   "transformers, grid equipment and software"
+  ],
+  [
+   "Wind",
+   "the rest",
+   "onshore and offshore turbines"
+  ]
+ ],
+ "moat": "A huge installed base of gas turbines that needs decades of service, and scarce capacity in turbines and grid equipment.",
+ "rivals": [
+  "Siemens Energy",
+  "Mitsubishi Heavy Industries",
+  "Vestas",
+  "Hitachi Energy"
+ ],
+ "risks": [
+  "Losses in offshore wind",
+  "Power demand from data centres slowing",
+  "Execution on a large order backlog"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Analysts see about 49% upside from current levels",
+  "Cash of about $17 billion far exceeds its debt",
+  "Gas turbine demand from data centres has produced a multi-year sold-out order book"
+ ],
+ "watch": "Gas power equipment orders and the backlog's profitability."
+}

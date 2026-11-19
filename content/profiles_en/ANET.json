@@ -1,1 +1,36 @@
-{"t": "ANET", "what": "Arista Networks makes the high-speed network switches and software that connect servers inside cloud and AI data centres, and increasingly corporate campus networks.", "customers": "Cloud giants above all (Microsoft and Meta are its largest customers), plus enterprises and financial firms.", "money": [["Products", "most revenue", "switches and routers running its EOS software"], ["Services", "the rest", "support contracts and software subscriptions"]], "moat": "One software system (EOS) across all its hardware, a reputation for reliability and deep ties with the biggest cloud builders.", "rivals": ["Cisco|CSCO", "Nvidia|NVDA", "Juniper (HPE)|HPE", "white-box switch makers"], "risks": ["Reliance on a few very large customers", "Nvidia pushing its own networking", "Swings in cloud spending"], "updated": "2026-11"}
+{
+ "t": "ANET",
+ "what": "Arista Networks makes the high-speed network switches and software that connect servers inside cloud and AI data centres, and increasingly corporate campus networks.",
+ "customers": "Cloud giants above all (Microsoft and Meta are its largest customers), plus enterprises and financial firms.",
+ "money": [
+  [
+   "Products",
+   "most revenue",
+   "switches and routers running its EOS software"
+  ],
+  [
+   "Services",
+   "the rest",
+   "support contracts and software subscriptions"
+  ]
+ ],
+ "moat": "One software system (EOS) across all its hardware, a reputation for reliability and deep ties with the biggest cloud builders.",
+ "rivals": [
+  "Cisco|CSCO",
+  "Nvidia|NVDA",
+  "Juniper (HPE)|HPE",
+  "white-box switch makers"
+ ],
+ "risks": [
+  "Reliance on a few very large customers",
+  "Nvidia pushing its own networking",
+  "Swings in cloud spending"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 29% last year and about 27% a year over three years",
+  "Operating margin of 43% with no debt and $14 billion of cash",
+  "AI clusters need the high-speed Ethernet switching it specialises in"
+ ],
+ "watch": "Revenue from the largest cloud customers and AI networking orders."
+}

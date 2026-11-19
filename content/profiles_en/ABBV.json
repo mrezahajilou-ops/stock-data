@@ -1,40 +1,46 @@
 {
-"t": "ABBV",
-"what": "AbbVie is a large drugmaker best known for immunology (Skyrizi, Rinvoq, previously Humira), plus neuroscience (Botox, Vraylar), aesthetics and oncology.",
-"customers": "Patients through doctors, insurers, governments and pharmacies.",
-"money": [
-[
-"Immunology",
-"about half of revenue",
-"Skyrizi and Rinvoq, with Humira declining"
-],
-[
-"Neuroscience",
-"about 20%",
-"Vraylar, Botox Therapeutic, migraine drugs"
-],
-[
-"Oncology",
-"about 10–15%",
-"Imbruvica, Venclexta and newer cancer drugs"
-],
-[
-"Aesthetics",
-"about 10%",
-"Botox Cosmetic and Juvederm"
-]
-],
-"moat": "Successful replacement of Humira by two fast-growing patented drugs and strong commercial reach.",
-"rivals": [
-"Johnson & Johnson|JNJ",
-"Eli Lilly|LLY",
-"Amgen|AMGN",
-"Pfizer|PFE"
-],
-"risks": [
-"Drug-price pressure in the US",
-"Dependence on two immunology drugs",
-"Weak consumer spending in aesthetics"
-],
-"updated": "2026-11"
+ "t": "ABBV",
+ "what": "AbbVie is a large drugmaker best known for immunology (Skyrizi, Rinvoq, previously Humira), plus neuroscience (Botox, Vraylar), aesthetics and oncology.",
+ "customers": "Patients through doctors, insurers, governments and pharmacies.",
+ "money": [
+  [
+   "Immunology",
+   "about half of revenue",
+   "Skyrizi and Rinvoq, with Humira declining"
+  ],
+  [
+   "Neuroscience",
+   "about 20%",
+   "Vraylar, Botox Therapeutic, migraine drugs"
+  ],
+  [
+   "Oncology",
+   "about 10–15%",
+   "Imbruvica, Venclexta and newer cancer drugs"
+  ],
+  [
+   "Aesthetics",
+   "about 10%",
+   "Botox Cosmetic and Juvederm"
+  ]
+ ],
+ "moat": "Successful replacement of Humira by two fast-growing patented drugs and strong commercial reach.",
+ "rivals": [
+  "Johnson & Johnson|JNJ",
+  "Eli Lilly|LLY",
+  "Amgen|AMGN",
+  "Pfizer|PFE"
+ ],
+ "risks": [
+  "Drug-price pressure in the US",
+  "Dependence on two immunology drugs",
+  "Weak consumer spending in aesthetics"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Skyrizi and Rinvoq have more than replaced the revenue Humira lost to biosimilars",
+  "Gross margin of 70% with a dividend yield around 2.4% and a long record of increases",
+  "Its aesthetics and neuroscience businesses diversify it away from immunology"
+ ],
+ "watch": "Combined Skyrizi and Rinvoq sales and the pace of debt reduction."
 }

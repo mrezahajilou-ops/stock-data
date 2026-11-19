@@ -1,1 +1,36 @@
-{"t": "LRCX", "what": "Lam Research builds the machines chipmakers use to etch away and deposit thin layers of material on silicon wafers, steps that are repeated hundreds of times in memory and logic chips.", "customers": "A handful of large chipmakers: TSMC, Samsung, SK Hynix, Micron, Intel and Chinese fabs.", "money": [["Systems", "the larger part", "new etch and deposition equipment"], ["Customer support", "the rest", "spare parts, service and upgrades for installed machines"]], "moat": "Leadership in etch, especially for memory, deep process know-how and a large installed base that needs service.", "rivals": ["Applied Materials|AMAT", "Tokyo Electron", "KLA|KLAC", "ASML|ASML"], "risks": ["Boom-and-bust chip equipment cycles", "US export limits on China", "Dependence on a few customers"], "updated": "2026-11"}
+{
+ "t": "LRCX",
+ "what": "Lam Research builds the machines chipmakers use to etch away and deposit thin layers of material on silicon wafers, steps that are repeated hundreds of times in memory and logic chips.",
+ "customers": "A handful of large chipmakers: TSMC, Samsung, SK Hynix, Micron, Intel and Chinese fabs.",
+ "money": [
+  [
+   "Systems",
+   "the larger part",
+   "new etch and deposition equipment"
+  ],
+  [
+   "Customer support",
+   "the rest",
+   "spare parts, service and upgrades for installed machines"
+  ]
+ ],
+ "moat": "Leadership in etch, especially for memory, deep process know-how and a large installed base that needs service.",
+ "rivals": [
+  "Applied Materials|AMAT",
+  "Tokyo Electron",
+  "KLA|KLAC",
+  "ASML|ASML"
+ ],
+ "risks": [
+  "Boom-and-bust chip equipment cycles",
+  "US export limits on China",
+  "Dependence on a few customers"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Return on invested capital of 43% and an operating margin of 35%",
+  "Analysts see large upside, with a median target well above the current price",
+  "Advanced memory and 3D chip structures need far more etch and deposition steps"
+ ],
+ "watch": "Memory customer spending and the installed base service revenue."
+}

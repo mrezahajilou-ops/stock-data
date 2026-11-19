@@ -1,1 +1,36 @@
-{"t": "QCOM", "what": "Qualcomm designs the Snapdragon processors and modems in most high-end Android phones, and licenses the patents behind mobile networks. It is expanding into cars, PCs and connected devices.", "customers": "Phone makers such as Samsung, Xiaomi and Apple, carmakers and device makers.", "money": [["Chips (QCT)", "most revenue", "handset, automotive and IoT chips"], ["Licensing (QTL)", "a small part of revenue but a large part of profit", "royalties on phones that use its patents"]], "moat": "A leading modem and patent portfolio that nearly every phone maker must license.", "rivals": ["MediaTek", "Apple|AAPL", "Broadcom|AVGO", "Nvidia|NVDA"], "risks": ["Apple replacing its modems", "A flat smartphone market", "Exposure to China"], "updated": "2026-11"}
+{
+ "t": "QCOM",
+ "what": "Qualcomm designs the Snapdragon processors and modems in most high-end Android phones, and licenses the patents behind mobile networks. It is expanding into cars, PCs and connected devices.",
+ "customers": "Phone makers such as Samsung, Xiaomi and Apple, carmakers and device makers.",
+ "money": [
+  [
+   "Chips (QCT)",
+   "most revenue",
+   "handset, automotive and IoT chips"
+  ],
+  [
+   "Licensing (QTL)",
+   "a small part of revenue but a large part of profit",
+   "royalties on phones that use its patents"
+  ]
+ ],
+ "moat": "A leading modem and patent portfolio that nearly every phone maker must license.",
+ "rivals": [
+  "MediaTek",
+  "Apple|AAPL",
+  "Broadcom|AVGO",
+  "Nvidia|NVDA"
+ ],
+ "risks": [
+  "Apple replacing its modems",
+  "A flat smartphone market",
+  "Exposure to China"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Gross margin of 53% with a 20% operating margin",
+  "Automotive and internet-of-things chips diversify it away from smartphones",
+  "Analysts see about 13% upside with a dividend yield above 2%"
+ ],
+ "watch": "Automotive and IoT revenue growth, and content per handset."
+}

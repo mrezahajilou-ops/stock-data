@@ -1,1 +1,39 @@
-{"t": "MUFG", "what": "Mitsubishi UFJ Financial Group is Japan's largest bank. It lends to companies and households, runs trust banking and securities businesses, and owns a large stake in Morgan Stanley.", "customers": "Japanese companies and households and corporate clients across Asia and the US.", "money": [["Japanese retail and commercial banking", "a large part", "deposits, loans, wealth management"], ["Global corporate and investment banking", "a large part", "lending and services to large companies"], ["Asian banks and markets", "the rest", "Krungsri, Bank Danamon, trading"]], "moat": "The largest deposit base in Japan and a broad international network.", "rivals": ["Sumitomo Mitsui Financial|SMFG", "Mizuho Financial|MFG"], "risks": ["Japanese interest-rate policy", "The yen", "Credit losses overseas"], "updated": "2026-11"}
+{
+ "t": "MUFG",
+ "what": "Mitsubishi UFJ Financial Group is Japan's largest bank. It lends to companies and households, runs trust banking and securities businesses, and owns a large stake in Morgan Stanley.",
+ "customers": "Japanese companies and households and corporate clients across Asia and the US.",
+ "money": [
+  [
+   "Japanese retail and commercial banking",
+   "a large part",
+   "deposits, loans, wealth management"
+  ],
+  [
+   "Global corporate and investment banking",
+   "a large part",
+   "lending and services to large companies"
+  ],
+  [
+   "Asian banks and markets",
+   "the rest",
+   "Krungsri, Bank Danamon, trading"
+  ]
+ ],
+ "moat": "The largest deposit base in Japan and a broad international network.",
+ "rivals": [
+  "Sumitomo Mitsui Financial|SMFG",
+  "Mizuho Financial|MFG"
+ ],
+ "risks": [
+  "Japanese interest-rate policy",
+  "The yen",
+  "Credit losses overseas"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 15% last year with a 25% net margin",
+  "The Bank of Japan ending negative rates lifts income on its very large deposit base directly",
+  "Selling cross-shareholdings in client companies releases capital for buybacks"
+ ],
+ "watch": "Domestic net interest income as Japanese rates move, and the pace of share buybacks."
+}

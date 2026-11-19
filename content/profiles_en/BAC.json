@@ -1,40 +1,46 @@
 {
-"t": "BAC",
-"what": "Bank of America is the second-largest US bank: consumer banking, credit cards, wealth management (Merrill), corporate banking and markets trading.",
-"customers": "About 70 million consumers and small businesses, wealthy clients, corporations and institutions.",
-"money": [
-[
-"Net interest income",
-"about half",
-"interest on loans and securities above what it pays on deposits"
-],
-[
-"Wealth and investment management",
-"about a fifth",
-"Merrill and Private Bank fees"
-],
-[
-"Investment banking and markets",
-"about a fifth",
-"advisory, underwriting and trading"
-],
-[
-"Card and service fees",
-"the rest",
-"cards and account fees"
-]
-],
-"moat": "A huge low-cost deposit base and leading digital banking.",
-"rivals": [
-"JPMorgan Chase|JPM",
-"Wells Fargo|WFC",
-"Citigroup|C",
-"Morgan Stanley|MS"
-],
-"risks": [
-"Rate changes and bond-portfolio losses",
-"Credit losses in a recession",
-"Regulation"
-],
-"updated": "2026-11"
+ "t": "BAC",
+ "what": "Bank of America is the second-largest US bank: consumer banking, credit cards, wealth management (Merrill), corporate banking and markets trading.",
+ "customers": "About 70 million consumers and small businesses, wealthy clients, corporations and institutions.",
+ "money": [
+  [
+   "Net interest income",
+   "about half",
+   "interest on loans and securities above what it pays on deposits"
+  ],
+  [
+   "Wealth and investment management",
+   "about a fifth",
+   "Merrill and Private Bank fees"
+  ],
+  [
+   "Investment banking and markets",
+   "about a fifth",
+   "advisory, underwriting and trading"
+  ],
+  [
+   "Card and service fees",
+   "the rest",
+   "cards and account fees"
+  ]
+ ],
+ "moat": "A huge low-cost deposit base and leading digital banking.",
+ "rivals": [
+  "JPMorgan Chase|JPM",
+  "Wells Fargo|WFC",
+  "Citigroup|C",
+  "Morgan Stanley|MS"
+ ],
+ "risks": [
+  "Rate changes and bond-portfolio losses",
+  "Credit losses in a recession",
+  "Regulation"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 7% last year with a 27% net margin",
+  "A very large deposit base funds lending at low cost",
+  "Analysts see about 28% upside from current levels"
+ ],
+ "watch": "Net interest income guidance and credit card charge-offs."
 }

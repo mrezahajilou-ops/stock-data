@@ -1,1 +1,40 @@
-{"t": "NVO", "what": "Novo Nordisk is the Danish maker of Ozempic and Wegovy, the GLP-1 drugs for diabetes and obesity, and one of the world's largest insulin producers.", "customers": "People with diabetes or obesity, through pharmacies, insurers and health systems.", "money": [["Diabetes care", "the largest part", "Ozempic, Rybelsus and insulin"], ["Obesity care", "a large part", "Wegovy and Saxenda"], ["Rare disease", "the rest", "haemophilia and growth disorders"]], "moat": "A century of expertise in diabetes, large-scale manufacturing of injectable drugs and patents on semaglutide.", "rivals": ["Eli Lilly|LLY", "Sanofi|SNY", "Amgen|AMGN"], "risks": ["Competition from Lilly and compounded copies", "US price cuts", "Semaglutide patent expiries"], "updated": "2026-11"}
+{
+ "t": "NVO",
+ "what": "Novo Nordisk is the Danish maker of Ozempic and Wegovy, the GLP-1 drugs for diabetes and obesity, and one of the world's largest insulin producers.",
+ "customers": "People with diabetes or obesity, through pharmacies, insurers and health systems.",
+ "money": [
+  [
+   "Diabetes care",
+   "the largest part",
+   "Ozempic, Rybelsus and insulin"
+  ],
+  [
+   "Obesity care",
+   "a large part",
+   "Wegovy and Saxenda"
+  ],
+  [
+   "Rare disease",
+   "the rest",
+   "haemophilia and growth disorders"
+  ]
+ ],
+ "moat": "A century of expertise in diabetes, large-scale manufacturing of injectable drugs and patents on semaglutide.",
+ "rivals": [
+  "Eli Lilly|LLY",
+  "Sanofi|SNY",
+  "Amgen|AMGN"
+ ],
+ "risks": [
+  "Competition from Lilly and compounded copies",
+  "US price cuts",
+  "Semaglutide patent expiries"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Gross margin of 81% with return on invested capital of 31%",
+  "A dividend yield around 4.6% after the share price fall",
+  "An oral version of its weight-loss medicine would reach patients unwilling to inject"
+ ],
+ "watch": "Wegovy and Ozempic prescription share against Eli Lilly."
+}

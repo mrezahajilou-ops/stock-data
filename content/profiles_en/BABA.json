@@ -1,1 +1,46 @@
-{"t": "BABA", "what": "Alibaba runs China's largest online marketplaces (Taobao and Tmall), a leading Chinese cloud business, international e-commerce sites and logistics.", "customers": "Chinese shoppers and the merchants who pay to reach them, plus cloud customers.", "money": [["China e-commerce", "the largest part and most of the profit", "advertising and commissions from merchants"], ["Cloud", "a growing part", "computing and AI services"], ["International commerce", "a growing part", "AliExpress, Lazada, Trendyol"], ["Other", "the rest", "logistics, local services, media"]], "moat": "A vast base of buyers and sellers and the largest cloud platform in China.", "rivals": ["PDD Holdings|PDD", "JD.com|JD", "Tencent", "ByteDance"], "risks": ["Fierce price competition in Chinese e-commerce", "Chinese regulation and US-China tension", "Weak consumer spending"], "updated": "2026-11"}
+{
+ "t": "BABA",
+ "what": "Alibaba runs China's largest online marketplaces (Taobao and Tmall), a leading Chinese cloud business, international e-commerce sites and logistics.",
+ "customers": "Chinese shoppers and the merchants who pay to reach them, plus cloud customers.",
+ "money": [
+  [
+   "China e-commerce",
+   "the largest part and most of the profit",
+   "advertising and commissions from merchants"
+  ],
+  [
+   "Cloud",
+   "a growing part",
+   "computing and AI services"
+  ],
+  [
+   "International commerce",
+   "a growing part",
+   "AliExpress, Lazada, Trendyol"
+  ],
+  [
+   "Other",
+   "the rest",
+   "logistics, local services, media"
+  ]
+ ],
+ "moat": "A vast base of buyers and sellers and the largest cloud platform in China.",
+ "rivals": [
+  "PDD Holdings|PDD",
+  "JD.com|JD",
+  "Tencent",
+  "ByteDance"
+ ],
+ "risks": [
+  "Fierce price competition in Chinese e-commerce",
+  "Chinese regulation and US-China tension",
+  "Weak consumer spending"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $58 billion exceeds its debt",
+  "Its cloud business is the largest in China and is growing again on AI demand"
+ ],
+ "watch": "Cloud revenue growth and whether e-commerce customer management revenue stabilises."
+}

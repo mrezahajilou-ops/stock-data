@@ -1,30 +1,36 @@
 {
-"t": "PEP",
-"what": "PepsiCo makes snacks and drinks: Frito-Lay (Lay's, Doritos, Cheetos), Quaker, Pepsi, Gatorade, Mountain Dew and many more.",
-"customers": "Supermarkets, convenience stores, restaurants and vending, serving consumers in more than 200 countries.",
-"money": [
-[
-"Snacks and convenient foods",
-"about 55%",
-"Frito-Lay and Quaker"
-],
-[
-"Beverages",
-"about 45%",
-"Pepsi, Gatorade, Lipton (JV), Mountain Dew"
-]
-],
-"moat": "Dominant snack brands, a direct-store-delivery network and shelf space with retailers.",
-"rivals": [
-"Coca-Cola|KO",
-"Mondelez|MDLZ",
-"Keurig Dr Pepper|KDP",
-"Private labels"
-],
-"risks": [
-"Weight-loss drugs and health trends reducing snack demand",
-"Price-sensitive consumers",
-"Input costs"
-],
-"updated": "2026-11"
+ "t": "PEP",
+ "what": "PepsiCo makes snacks and drinks: Frito-Lay (Lay's, Doritos, Cheetos), Quaker, Pepsi, Gatorade, Mountain Dew and many more.",
+ "customers": "Supermarkets, convenience stores, restaurants and vending, serving consumers in more than 200 countries.",
+ "money": [
+  [
+   "Snacks and convenient foods",
+   "about 55%",
+   "Frito-Lay and Quaker"
+  ],
+  [
+   "Beverages",
+   "about 45%",
+   "Pepsi, Gatorade, Lipton (JV), Mountain Dew"
+  ]
+ ],
+ "moat": "Dominant snack brands, a direct-store-delivery network and shelf space with retailers.",
+ "rivals": [
+  "Coca-Cola|KO",
+  "Mondelez|MDLZ",
+  "Keurig Dr Pepper|KDP",
+  "Private labels"
+ ],
+ "risks": [
+  "Weight-loss drugs and health trends reducing snack demand",
+  "Price-sensitive consumers",
+  "Input costs"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "A dividend yield above 4% with a very long record of increases",
+  "Its snacks business earns far higher margins than drinks and is the larger profit contributor",
+  "International markets grow faster than North America"
+ ],
+ "watch": "Frito-Lay North America volume trends and organic revenue growth."
 }

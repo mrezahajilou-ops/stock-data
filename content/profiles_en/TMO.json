@@ -1,1 +1,41 @@
-{"t": "TMO", "what": "Thermo Fisher Scientific supplies laboratories: scientific instruments, chemicals and consumables, diagnostic tests, and contract services that help drug companies develop and manufacture medicines.", "customers": "Pharma and biotech companies, hospitals and diagnostic labs, universities and governments.", "money": [["Laboratory products and biopharma services", "the largest part", "lab supplies, drug development and manufacturing services"], ["Life sciences solutions", "a large part", "reagents and bioproduction materials"], ["Analytical instruments and diagnostics", "the rest", "mass spectrometers, microscopes, tests"]], "moat": "Unmatched breadth and scale, a large share of recurring consumables and services, and a strong record of acquisitions.", "rivals": ["Danaher|DHR", "Agilent|A", "Merck KGaA", "IQVIA|IQV"], "risks": ["Swings in biotech funding and pharma spending", "Government research budgets", "China demand"], "updated": "2026-11"}
+{
+ "t": "TMO",
+ "what": "Thermo Fisher Scientific supplies laboratories: scientific instruments, chemicals and consumables, diagnostic tests, and contract services that help drug companies develop and manufacture medicines.",
+ "customers": "Pharma and biotech companies, hospitals and diagnostic labs, universities and governments.",
+ "money": [
+  [
+   "Laboratory products and biopharma services",
+   "the largest part",
+   "lab supplies, drug development and manufacturing services"
+  ],
+  [
+   "Life sciences solutions",
+   "a large part",
+   "reagents and bioproduction materials"
+  ],
+  [
+   "Analytical instruments and diagnostics",
+   "the rest",
+   "mass spectrometers, microscopes, tests"
+  ]
+ ],
+ "moat": "Unmatched breadth and scale, a large share of recurring consumables and services, and a strong record of acquisitions.",
+ "rivals": [
+  "Danaher|DHR",
+  "Agilent|A",
+  "Merck KGaA",
+  "IQVIA|IQV"
+ ],
+ "risks": [
+  "Swings in biotech funding and pharma spending",
+  "Government research budgets",
+  "China demand"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Gross margin and recurring consumables across a very broad product range",
+  "Bioprocessing and pharmaceutical services orders have recovered after a long destocking cycle",
+  "A long record of acquiring life science businesses and raising their margins"
+ ],
+ "watch": "Core organic revenue growth and bioprocessing orders."
+}

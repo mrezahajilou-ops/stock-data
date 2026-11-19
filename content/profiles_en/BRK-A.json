@@ -1,1 +1,51 @@
-{"t": "BRK-A", "what": "Berkshire Hathaway, Warren Buffett's company, fully owns dozens of businesses: insurance (GEICO and reinsurance), the BNSF railroad, utilities and energy, and industrial and consumer brands. It also holds a large stock portfolio (Apple, American Express, Coca-Cola and others).", "customers": "GEICO policyholders, shippers using BNSF, utility customers, and the customers of its many brands (Dairy Queen, Duracell, See's Candies and more).", "money": [["Insurance", "the largest profit source", "auto insurance and reinsurance premiums, plus income from investing the float"], ["BNSF railroad", "large", "freight across the western US"], ["Berkshire Hathaway Energy", "medium", "electricity and gas"], ["Manufacturing, service and retail", "the most revenue", "dozens of industrial and consumer companies"], ["Investment income", "varies", "dividends and interest on a huge cash pile"]], "moat": "An exceptionally strong balance sheet with hundreds of billions in cash, cheap insurance float, and diversification across many businesses.", "rivals": ["Markel|MKL", "Loews|L", "Progressive (insurance)|PGR", "Union Pacific (rail)|UNP"], "risks": ["Succession after Warren Buffett", "Sheer size makes growth harder", "Large insurance losses from natural disasters"], "updated": "2026-11"}
+{
+ "t": "BRK-A",
+ "what": "Berkshire Hathaway, Warren Buffett's company, fully owns dozens of businesses: insurance (GEICO and reinsurance), the BNSF railroad, utilities and energy, and industrial and consumer brands. It also holds a large stock portfolio (Apple, American Express, Coca-Cola and others).",
+ "customers": "GEICO policyholders, shippers using BNSF, utility customers, and the customers of its many brands (Dairy Queen, Duracell, See's Candies and more).",
+ "money": [
+  [
+   "Insurance",
+   "the largest profit source",
+   "auto insurance and reinsurance premiums, plus income from investing the float"
+  ],
+  [
+   "BNSF railroad",
+   "large",
+   "freight across the western US"
+  ],
+  [
+   "Berkshire Hathaway Energy",
+   "medium",
+   "electricity and gas"
+  ],
+  [
+   "Manufacturing, service and retail",
+   "the most revenue",
+   "dozens of industrial and consumer companies"
+  ],
+  [
+   "Investment income",
+   "varies",
+   "dividends and interest on a huge cash pile"
+  ]
+ ],
+ "moat": "An exceptionally strong balance sheet with hundreds of billions in cash, cheap insurance float, and diversification across many businesses.",
+ "rivals": [
+  "Markel|MKL",
+  "Loews|L",
+  "Progressive (insurance)|PGR",
+  "Union Pacific (rail)|UNP"
+ ],
+ "risks": [
+  "Succession after Warren Buffett",
+  "Sheer size makes growth harder",
+  "Large insurance losses from natural disasters"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "A very large cash position gives it the ability to act when prices fall",
+  "Its insurance float costs nothing and can be invested indefinitely",
+  "Operating earnings from the wholly owned businesses keep growing independently of the share portfolio"
+ ],
+ "watch": "Operating earnings excluding investment gains, and the cash balance."
+}

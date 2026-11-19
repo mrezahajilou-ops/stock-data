@@ -1,35 +1,41 @@
 {
-"t": "AAPL",
-"what": "Apple makes the iPhone, Mac, iPad, Apple Watch and AirPods, and runs a growing set of paid services on top of them: the App Store, iCloud, Apple Music, Apple Pay and AppleCare.",
-"customers": "More than 2 billion active devices worldwide, mostly middle- and higher-income consumers, plus businesses and schools.",
-"money": [
-[
-"iPhone",
-"about half of revenue",
-"high-margin smartphones"
-],
-[
-"Services",
-"about a quarter",
-"App Store, iCloud, subscriptions and the fee Google pays to be the default search engine; far higher margins than hardware"
-],
-[
-"Mac, iPad and wearables",
-"about a quarter",
-"laptops, tablets, watches and headphones"
-]
-],
-"moat": "A very strong brand, an ecosystem that keeps users (photos, messages and apps sync across devices) and in-house M- and A-series chips.",
-"rivals": [
-"Samsung",
-"Alphabet (Android)|GOOGL",
-"Microsoft and Windows PC makers|MSFT",
-"Xiaomi and Chinese brands"
-],
-"risks": [
-"Heavy dependence on iPhone upgrade cycles",
-"Antitrust cases over the App Store and the Google search deal",
-"Manufacturing concentrated in China; trade tensions"
-],
-"updated": "2026-11"
+ "t": "AAPL",
+ "what": "Apple makes the iPhone, Mac, iPad, Apple Watch and AirPods, and runs a growing set of paid services on top of them: the App Store, iCloud, Apple Music, Apple Pay and AppleCare.",
+ "customers": "More than 2 billion active devices worldwide, mostly middle- and higher-income consumers, plus businesses and schools.",
+ "money": [
+  [
+   "iPhone",
+   "about half of revenue",
+   "high-margin smartphones"
+  ],
+  [
+   "Services",
+   "about a quarter",
+   "App Store, iCloud, subscriptions and the fee Google pays to be the default search engine; far higher margins than hardware"
+  ],
+  [
+   "Mac, iPad and wearables",
+   "about a quarter",
+   "laptops, tablets, watches and headphones"
+  ]
+ ],
+ "moat": "A very strong brand, an ecosystem that keeps users (photos, messages and apps sync across devices) and in-house M- and A-series chips.",
+ "rivals": [
+  "Samsung",
+  "Alphabet (Android)|GOOGL",
+  "Microsoft and Windows PC makers|MSFT",
+  "Xiaomi and Chinese brands"
+ ],
+ "risks": [
+  "Heavy dependence on iPhone upgrade cycles",
+  "Antitrust cases over the App Store and the Google search deal",
+  "Manufacturing concentrated in China; trade tensions"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Services revenue keeps growing faster than hardware and carries roughly double the margin",
+  "Return on invested capital of 65% is among the highest of any large company",
+  "An installed base above two billion devices gives it a captive market for every new product and service"
+ ],
+ "watch": "iPhone revenue growth and services revenue as a share of the total."
 }

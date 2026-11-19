@@ -1,40 +1,46 @@
 {
-"t": "CSCO",
-"what": "Cisco makes the networking equipment that runs company networks and the internet (switches, routers, Wi-Fi), plus security and observability software, including Splunk.",
-"customers": "Businesses, governments, telecom operators and cloud companies.",
-"money": [
-[
-"Networking",
-"about half",
-"switches, routers, wireless and data-center networking for AI"
-],
-[
-"Security",
-"about 15%",
-"firewalls and security software"
-],
-[
-"Collaboration and observability",
-"about 10–15%",
-"Webex, Splunk"
-],
-[
-"Services",
-"about a quarter",
-"support and maintenance contracts"
-]
-],
-"moat": "A huge installed base, strong relationships with IT departments and growing recurring software revenue.",
-"rivals": [
-"Arista Networks|ANET",
-"Juniper (HPE)|HPE",
-"Palo Alto Networks|PANW",
-"Fortinet|FTNT"
-],
-"risks": [
-"Slow growth",
-"Competition in data-center networking for AI",
-"Cyclical IT budgets"
-],
-"updated": "2026-11"
+ "t": "CSCO",
+ "what": "Cisco makes the networking equipment that runs company networks and the internet (switches, routers, Wi-Fi), plus security and observability software, including Splunk.",
+ "customers": "Businesses, governments, telecom operators and cloud companies.",
+ "money": [
+  [
+   "Networking",
+   "about half",
+   "switches, routers, wireless and data-center networking for AI"
+  ],
+  [
+   "Security",
+   "about 15%",
+   "firewalls and security software"
+  ],
+  [
+   "Collaboration and observability",
+   "about 10–15%",
+   "Webex, Splunk"
+  ],
+  [
+   "Services",
+   "about a quarter",
+   "support and maintenance contracts"
+  ]
+ ],
+ "moat": "A huge installed base, strong relationships with IT departments and growing recurring software revenue.",
+ "rivals": [
+  "Arista Networks|ANET",
+  "Juniper (HPE)|HPE",
+  "Palo Alto Networks|PANW",
+  "Fortinet|FTNT"
+ ],
+ "risks": [
+  "Slow growth",
+  "Competition in data-center networking for AI",
+  "Cyclical IT budgets"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 12% last year as networking demand recovered",
+  "Analysts see about 34% upside from current levels",
+  "AI data centre orders have become a meaningful and growing revenue line"
+ ],
+ "watch": "AI infrastructure orders and software subscription revenue."
 }

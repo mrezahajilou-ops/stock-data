@@ -1,1 +1,36 @@
-{"t": "VZ", "what": "Verizon is one of the largest US wireless carriers and also sells home internet (Fios fibre and fixed wireless) and network services to businesses.", "customers": "US consumers, businesses and government agencies.", "money": [["Consumer", "most revenue", "mobile plans, phones and home internet"], ["Business", "the rest", "wireless and network services for companies and the public sector"]], "moat": "A nationwide network and spectrum that cost hundreds of billions to build, and a large base of monthly subscribers.", "rivals": ["AT&T|T", "T-Mobile US|TMUS", "Comcast|CMCSA", "Charter|CHTR"], "risks": ["Price competition for subscribers", "A heavy debt load", "Large network spending"], "updated": "2026-11"}
+{
+ "t": "VZ",
+ "what": "Verizon is one of the largest US wireless carriers and also sells home internet (Fios fibre and fixed wireless) and network services to businesses.",
+ "customers": "US consumers, businesses and government agencies.",
+ "money": [
+  [
+   "Consumer",
+   "most revenue",
+   "mobile plans, phones and home internet"
+  ],
+  [
+   "Business",
+   "the rest",
+   "wireless and network services for companies and the public sector"
+  ]
+ ],
+ "moat": "A nationwide network and spectrum that cost hundreds of billions to build, and a large base of monthly subscribers.",
+ "rivals": [
+  "AT&T|T",
+  "T-Mobile US|TMUS",
+  "Comcast|CMCSA",
+  "Charter|CHTR"
+ ],
+ "risks": [
+  "Price competition for subscribers",
+  "A heavy debt load",
+  "Large network spending"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "A dividend yield above 6%, the highest of the large US operators",
+  "Fibre and fixed wireless broadband add customers without building new mobile networks",
+  "Buying Frontier extends its fibre footprint substantially"
+ ],
+ "watch": "Postpaid phone net additions and broadband subscriber growth."
+}

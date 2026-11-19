@@ -1,1 +1,36 @@
-{"t": "DELL", "what": "Dell sells PCs, servers, storage and networking gear. Servers built for AI have become its main growth driver.", "customers": "Businesses, public bodies, cloud providers and consumers.", "money": [["Infrastructure solutions", "about half and growing", "AI and traditional servers, storage, networking"], ["Client solutions", "about half", "commercial and consumer PCs"]], "moat": "A direct sales force with deep enterprise relationships, supply-chain scale and services bundled with hardware.", "rivals": ["HP|HPQ", "Hewlett Packard Enterprise|HPE", "Lenovo", "Super Micro Computer|SMCI"], "risks": ["Thin margins on AI servers", "PC demand cycles", "Component cost swings"], "updated": "2026-11"}
+{
+ "t": "DELL",
+ "what": "Dell sells PCs, servers, storage and networking gear. Servers built for AI have become its main growth driver.",
+ "customers": "Businesses, public bodies, cloud providers and consumers.",
+ "money": [
+  [
+   "Infrastructure solutions",
+   "about half and growing",
+   "AI and traditional servers, storage, networking"
+  ],
+  [
+   "Client solutions",
+   "about half",
+   "commercial and consumer PCs"
+  ]
+ ],
+ "moat": "A direct sales force with deep enterprise relationships, supply-chain scale and services bundled with hardware.",
+ "rivals": [
+  "HP|HPQ",
+  "Hewlett Packard Enterprise|HPE",
+  "Lenovo",
+  "Super Micro Computer|SMCI"
+ ],
+ "risks": [
+  "Thin margins on AI servers",
+  "PC demand cycles",
+  "Component cost swings"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 19% last year with return on invested capital of 22%",
+  "Analysts see large upside, with a median target well above the current price",
+  "AI server orders have become a very large and growing backlog"
+ ],
+ "watch": "AI server shipments and backlog, and storage margins."
+}

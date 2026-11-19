@@ -1,35 +1,41 @@
 {
-"t": "LLY",
-"what": "Eli Lilly is one of the world's largest drugmakers and the maker of the best-selling diabetes and weight-loss drugs based on tirzepatide (Mounjaro and Zepbound). It also has important medicines in cancer, immunology and Alzheimer's.",
-"customers": "Patients through their doctors, insurers and governments that pay for medicines, pharmacies and hospitals.",
-"money": [
-[
-"Diabetes and obesity",
-"over half of revenue",
-"Mounjaro, Zepbound and Trulicity"
-],
-[
-"Oncology",
-"a sizable share",
-"Verzenio and other cancer drugs"
-],
-[
-"Immunology and neuroscience",
-"smaller",
-"Taltz, Ebglyss and Kisunla (Alzheimer's)"
-]
-],
-"moat": "A lead in GLP-1 medicines backed by huge manufacturing capacity, patents and a pipeline including an oral weight-loss pill.",
-"rivals": [
-"Novo Nordisk|NVO",
-"Pfizer|PFE",
-"Amgen|AMGN",
-"AstraZeneca|AZN"
-],
-"risks": [
-"US government pressure to cut drug prices",
-"Heavy reliance on one class of drugs",
-"Cheaper competing versions in the future"
-],
-"updated": "2026-11"
+ "t": "LLY",
+ "what": "Eli Lilly is one of the world's largest drugmakers and the maker of the best-selling diabetes and weight-loss drugs based on tirzepatide (Mounjaro and Zepbound). It also has important medicines in cancer, immunology and Alzheimer's.",
+ "customers": "Patients through their doctors, insurers and governments that pay for medicines, pharmacies and hospitals.",
+ "money": [
+  [
+   "Diabetes and obesity",
+   "over half of revenue",
+   "Mounjaro, Zepbound and Trulicity"
+  ],
+  [
+   "Oncology",
+   "a sizable share",
+   "Verzenio and other cancer drugs"
+  ],
+  [
+   "Immunology and neuroscience",
+   "smaller",
+   "Taltz, Ebglyss and Kisunla (Alzheimer's)"
+  ]
+ ],
+ "moat": "A lead in GLP-1 medicines backed by huge manufacturing capacity, patents and a pipeline including an oral weight-loss pill.",
+ "rivals": [
+  "Novo Nordisk|NVO",
+  "Pfizer|PFE",
+  "Amgen|AMGN",
+  "AstraZeneca|AZN"
+ ],
+ "risks": [
+  "US government pressure to cut drug prices",
+  "Heavy reliance on one class of drugs",
+  "Cheaper competing versions in the future"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 45% last year and about 32% a year over three years",
+  "Operating margin of 41% with return on invested capital of 30%",
+  "An oral weight-loss medicine would reach patients unwilling to inject"
+ ],
+ "watch": "Mounjaro and Zepbound revenue and manufacturing capacity expansion."
 }

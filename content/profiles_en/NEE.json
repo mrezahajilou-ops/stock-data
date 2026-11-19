@@ -1,1 +1,35 @@
-{"t": "NEE", "what": "NextEra Energy owns Florida Power & Light, the largest electric utility in the US, and NextEra Energy Resources, the world's largest generator of wind and solar power.", "customers": "Homes and businesses in Florida, and utilities and companies that buy clean power under long contracts.", "money": [["Florida Power & Light", "the larger part of profit", "a regulated utility with about six million customer accounts"], ["NextEra Energy Resources", "the rest", "wind, solar, batteries and gas pipelines"]], "moat": "A fast-growing regulated service area and unmatched scale in building renewables.", "rivals": ["Duke Energy|DUK", "Southern Company|SO", "Constellation Energy|CEG"], "risks": ["Interest rates", "Changes to clean-energy tax credits", "Hurricanes and Florida regulation"], "updated": "2026-11"}
+{
+ "t": "NEE",
+ "what": "NextEra Energy owns Florida Power & Light, the largest electric utility in the US, and NextEra Energy Resources, the world's largest generator of wind and solar power.",
+ "customers": "Homes and businesses in Florida, and utilities and companies that buy clean power under long contracts.",
+ "money": [
+  [
+   "Florida Power & Light",
+   "the larger part of profit",
+   "a regulated utility with about six million customer accounts"
+  ],
+  [
+   "NextEra Energy Resources",
+   "the rest",
+   "wind, solar, batteries and gas pipelines"
+  ]
+ ],
+ "moat": "A fast-growing regulated service area and unmatched scale in building renewables.",
+ "rivals": [
+  "Duke Energy|DUK",
+  "Southern Company|SO",
+  "Constellation Energy|CEG"
+ ],
+ "risks": [
+  "Interest rates",
+  "Changes to clean-energy tax credits",
+  "Hurricanes and Florida regulation"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 11% last year with a 30% operating margin",
+  "Its Florida utility serves one of the fastest-growing states in the country",
+  "It has the largest renewable development backlog in the United States, contracted years ahead"
+ ],
+ "watch": "The renewables backlog and Florida load growth."
+}

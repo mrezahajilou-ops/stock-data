@@ -1,30 +1,36 @@
 {
-"t": "MCD",
-"what": "McDonald's is the largest fast-food chain, with over 40,000 restaurants. About 95% are run by franchisees who pay rent and royalties.",
-"customers": "Franchisees, who pay McDonald's, and billions of customers worldwide.",
-"money": [
-[
-"Franchise revenues",
-"about 60% of revenue and most of the profit",
-"rent and royalties from franchisees"
-],
-[
-"Company-operated restaurants",
-"about 40%",
-"food sales at restaurants it runs itself"
-]
-],
-"moat": "A global brand, prime real estate it owns under many restaurants and scale in purchasing and marketing.",
-"rivals": [
-"Yum! Brands|YUM",
-"Restaurant Brands (Burger King)|QSR",
-"Chipotle|CMG",
-"Starbucks|SBUX"
-],
-"risks": [
-"Low-income customers cutting back",
-"Wage and food costs",
-"Health trends"
-],
-"updated": "2026-11"
+ "t": "MCD",
+ "what": "McDonald's is the largest fast-food chain, with over 40,000 restaurants. About 95% are run by franchisees who pay rent and royalties.",
+ "customers": "Franchisees, who pay McDonald's, and billions of customers worldwide.",
+ "money": [
+  [
+   "Franchise revenues",
+   "about 60% of revenue and most of the profit",
+   "rent and royalties from franchisees"
+  ],
+  [
+   "Company-operated restaurants",
+   "about 40%",
+   "food sales at restaurants it runs itself"
+  ]
+ ],
+ "moat": "A global brand, prime real estate it owns under many restaurants and scale in purchasing and marketing.",
+ "rivals": [
+  "Yum! Brands|YUM",
+  "Restaurant Brands (Burger King)|QSR",
+  "Chipotle|CMG",
+  "Starbucks|SBUX"
+ ],
+ "risks": [
+  "Low-income customers cutting back",
+  "Wage and food costs",
+  "Health trends"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Operating margin of 46% because almost all restaurants are franchised",
+  "Return on invested capital of 25% with a dividend raised every year since 1976",
+  "Its value menu wins customers when consumers trade down from casual dining"
+ ],
+ "watch": "Global comparable sales and US traffic trends."
 }

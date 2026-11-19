@@ -1,1 +1,46 @@
-{"t": "TD", "what": "Toronto-Dominion is one of Canada's two largest banks and runs a big retail bank on the US East Coast. It also has wealth management, insurance and a wholesale bank.", "customers": "Households and businesses in Canada and the US.", "money": [["Canadian personal and commercial banking", "the largest part", "deposits, mortgages, cards"], ["US retail", "a large part", "branch banking from Maine to Florida"], ["Wealth and insurance", "a smaller part", "advice, direct investing, insurance"], ["Wholesale banking", "the rest", "TD Securities"]], "moat": "Strong share in Canada's concentrated banking market and a low-cost deposit base on both sides of the border.", "rivals": ["Royal Bank of Canada|RY", "Bank of Montreal|BMO", "Bank of Nova Scotia|BNS", "JPMorgan Chase|JPM"], "risks": ["US regulatory limits after its money-laundering penalties", "Canadian housing and consumer debt", "Interest-rate moves"], "updated": "2026-11"}
+{
+ "t": "TD",
+ "what": "Toronto-Dominion is one of Canada's two largest banks and runs a big retail bank on the US East Coast. It also has wealth management, insurance and a wholesale bank.",
+ "customers": "Households and businesses in Canada and the US.",
+ "money": [
+  [
+   "Canadian personal and commercial banking",
+   "the largest part",
+   "deposits, mortgages, cards"
+  ],
+  [
+   "US retail",
+   "a large part",
+   "branch banking from Maine to Florida"
+  ],
+  [
+   "Wealth and insurance",
+   "a smaller part",
+   "advice, direct investing, insurance"
+  ],
+  [
+   "Wholesale banking",
+   "the rest",
+   "TD Securities"
+  ]
+ ],
+ "moat": "Strong share in Canada's concentrated banking market and a low-cost deposit base on both sides of the border.",
+ "rivals": [
+  "Royal Bank of Canada|RY",
+  "Bank of Montreal|BMO",
+  "Bank of Nova Scotia|BNS",
+  "JPMorgan Chase|JPM"
+ ],
+ "risks": [
+  "US regulatory limits after its money-laundering penalties",
+  "Canadian housing and consumer debt",
+  "Interest-rate moves"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 17% last year with a 30% net margin",
+  "Its Canadian retail franchise is one of the strongest deposit businesses in the country",
+  "A dividend with an unbroken payment record stretching back more than a century"
+ ],
+ "watch": "US regulatory remediation progress and Canadian credit quality."
+}

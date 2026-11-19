@@ -1,1 +1,44 @@
-{"t": "LIN", "what": "Linde is the world's largest industrial gas company. It separates air into oxygen, nitrogen and argon, makes hydrogen and other gases, and delivers them by pipeline, truck or cylinder.", "customers": "Chemical plants, refineries, steelmakers, chipmakers, hospitals and food producers.", "money": [["Americas", "the largest part", "industrial gases in North and South America"], ["EMEA", "a large part", "Europe, Middle East and Africa"], ["Asia Pacific", "a large part", "China, India, Korea and others"], ["Engineering", "the rest", "building gas plants"]], "moat": "Long contracts with minimum volumes, plants built next to customers and high local market share make earnings unusually steady.", "rivals": ["Air Liquide", "Air Products|APD"], "risks": ["Industrial slowdowns", "Energy costs", "Large project execution"], "updated": "2026-11"}
+{
+ "t": "LIN",
+ "what": "Linde is the world's largest industrial gas company. It separates air into oxygen, nitrogen and argon, makes hydrogen and other gases, and delivers them by pipeline, truck or cylinder.",
+ "customers": "Chemical plants, refineries, steelmakers, chipmakers, hospitals and food producers.",
+ "money": [
+  [
+   "Americas",
+   "the largest part",
+   "industrial gases in North and South America"
+  ],
+  [
+   "EMEA",
+   "a large part",
+   "Europe, Middle East and Africa"
+  ],
+  [
+   "Asia Pacific",
+   "a large part",
+   "China, India, Korea and others"
+  ],
+  [
+   "Engineering",
+   "the rest",
+   "building gas plants"
+  ]
+ ],
+ "moat": "Long contracts with minimum volumes, plants built next to customers and high local market share make earnings unusually steady.",
+ "rivals": [
+  "Air Liquide",
+  "Air Products|APD"
+ ],
+ "risks": [
+  "Industrial slowdowns",
+  "Energy costs",
+  "Large project execution"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Operating margin of 26%, the best among industrial gas companies",
+  "Long-term on-site contracts with built-in price increases make revenue very predictable",
+  "A project backlog of new plants already contracted with customers"
+ ],
+ "watch": "Pricing growth and the contracted project backlog."
+}

@@ -1,1 +1,46 @@
-{"t": "C", "what": "Citigroup is a global bank operating in more countries than any US rival. It moves money for multinational companies, trades, offers investment banking, issues credit cards and serves wealthy clients.", "customers": "Multinationals, governments, investors and US card customers.", "money": [["Services", "a large and steady part", "cash management and securities services"], ["Markets and banking", "a large part", "trading and investment banking"], ["US personal banking", "a large part", "credit cards and retail banking"], ["Wealth", "the rest", "private banking"]], "moat": "A payments network for corporations that spans roughly a hundred countries and is very hard to replicate.", "rivals": ["JPMorgan Chase|JPM", "Bank of America|BAC", "HSBC|HSBC", "Wells Fargo|WFC"], "risks": ["A long restructuring that must deliver", "Credit-card losses", "Regulatory orders"], "updated": "2026-11"}
+{
+ "t": "C",
+ "what": "Citigroup is a global bank operating in more countries than any US rival. It moves money for multinational companies, trades, offers investment banking, issues credit cards and serves wealthy clients.",
+ "customers": "Multinationals, governments, investors and US card customers.",
+ "money": [
+  [
+   "Services",
+   "a large and steady part",
+   "cash management and securities services"
+  ],
+  [
+   "Markets and banking",
+   "a large part",
+   "trading and investment banking"
+  ],
+  [
+   "US personal banking",
+   "a large part",
+   "credit cards and retail banking"
+  ],
+  [
+   "Wealth",
+   "the rest",
+   "private banking"
+  ]
+ ],
+ "moat": "A payments network for corporations that spans roughly a hundred countries and is very hard to replicate.",
+ "rivals": [
+  "JPMorgan Chase|JPM",
+  "Bank of America|BAC",
+  "HSBC|HSBC",
+  "Wells Fargo|WFC"
+ ],
+ "risks": [
+  "A long restructuring that must deliver",
+  "Credit-card losses",
+  "Regulatory orders"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 6% last year",
+  "Analysts see about 29% upside from current levels",
+  "Selling consumer banking businesses in several countries simplifies a notoriously complex bank"
+ ],
+ "watch": "Return on tangible equity and progress on the restructuring."
+}

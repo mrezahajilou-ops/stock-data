@@ -1,35 +1,41 @@
 {
-"t": "INTC",
-"what": "Intel designs and manufactures processors for PCs and servers and is building a contract chip-manufacturing business (Intel Foundry) to make chips for others.",
-"customers": "PC makers (Dell, HP, Lenovo), cloud and server companies, and potential foundry customers.",
-"money": [
-[
-"Client computing",
-"about half",
-"Core processors for laptops and desktops"
-],
-[
-"Data center and AI",
-"about a third",
-"Xeon server processors"
-],
-[
-"Foundry and other",
-"the rest",
-"manufacturing services, Altera and Mobileye (partly sold or spun off)"
-]
-],
-"moat": "Large manufacturing capacity in the US and Europe, a huge installed base and government support for domestic chipmaking.",
-"rivals": [
-"AMD|AMD",
-"NVIDIA|NVDA",
-"TSMC|TSM",
-"Arm-based chips from Apple and Qualcomm"
-],
-"risks": [
-"Lost market share and manufacturing delays",
-"Very heavy spending on new factories",
-"Uncertain foundry demand"
-],
-"updated": "2026-11"
+ "t": "INTC",
+ "what": "Intel designs and manufactures processors for PCs and servers and is building a contract chip-manufacturing business (Intel Foundry) to make chips for others.",
+ "customers": "PC makers (Dell, HP, Lenovo), cloud and server companies, and potential foundry customers.",
+ "money": [
+  [
+   "Client computing",
+   "about half",
+   "Core processors for laptops and desktops"
+  ],
+  [
+   "Data center and AI",
+   "about a third",
+   "Xeon server processors"
+  ],
+  [
+   "Foundry and other",
+   "the rest",
+   "manufacturing services, Altera and Mobileye (partly sold or spun off)"
+  ]
+ ],
+ "moat": "Large manufacturing capacity in the US and Europe, a huge installed base and government support for domestic chipmaking.",
+ "rivals": [
+  "AMD|AMD",
+  "NVIDIA|NVDA",
+  "TSMC|TSM",
+  "Arm-based chips from Apple and Qualcomm"
+ ],
+ "risks": [
+  "Lost market share and manufacturing delays",
+  "Very heavy spending on new factories",
+  "Uncertain foundry demand"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $54 billion exceeds its debt",
+  "Government funding and outside investment support its foundry build-out"
+ ],
+ "watch": "Foundry customer commitments and progress on its advanced process nodes."
 }

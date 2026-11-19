@@ -1,30 +1,36 @@
 {
-"t": "MU",
-"what": "Micron is one of the three big memory-chip makers: DRAM (working memory) and NAND (storage). High-bandwidth memory (HBM), which sits next to AI GPUs, is its key growth product.",
-"customers": "Server makers and cloud providers, NVIDIA (for HBM), and phone, PC and car makers.",
-"money": [
-[
-"DRAM",
-"about three quarters of revenue",
-"memory for servers, PCs, phones and HBM for AI"
-],
-[
-"NAND",
-"about a quarter",
-"SSD storage for data centers and devices"
-]
-],
-"moat": "Memory has only three major players and entry takes tens of billions of dollars and deep know-how. Micron is the only large US maker.",
-"rivals": [
-"Samsung",
-"SK Hynix",
-"Sandisk and Western Digital (NAND)|SNDK",
-"Kioxia"
-],
-"risks": [
-"Memory is highly cyclical; prices collapse when supply runs ahead",
-"Very high capital spending",
-"HBM competition with SK Hynix and Samsung"
-],
-"updated": "2026-11"
+ "t": "MU",
+ "what": "Micron is one of the three big memory-chip makers: DRAM (working memory) and NAND (storage). High-bandwidth memory (HBM), which sits next to AI GPUs, is its key growth product.",
+ "customers": "Server makers and cloud providers, NVIDIA (for HBM), and phone, PC and car makers.",
+ "money": [
+  [
+   "DRAM",
+   "about three quarters of revenue",
+   "memory for servers, PCs, phones and HBM for AI"
+  ],
+  [
+   "NAND",
+   "about a quarter",
+   "SSD storage for data centers and devices"
+  ]
+ ],
+ "moat": "Memory has only three major players and entry takes tens of billions of dollars and deep know-how. Micron is the only large US maker.",
+ "rivals": [
+  "Samsung",
+  "SK Hynix",
+  "Sandisk and Western Digital (NAND)|SNDK",
+  "Kioxia"
+ ],
+ "risks": [
+  "Memory is highly cyclical; prices collapse when supply runs ahead",
+  "Very high capital spending",
+  "HBM competition with SK Hynix and Samsung"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew to $133 billion in the last financial year from $37 billion, an extraordinary memory upcycle",
+  "Gross margin of 81% and operating margin of 75%, far above anything in its history",
+  "Analysts see large upside, with memory supply expected to stay tight into 2028"
+ ],
+ "watch": "Memory pricing, which drives everything, and whether supply tightness persists."
 }

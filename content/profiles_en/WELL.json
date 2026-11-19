@@ -1,1 +1,40 @@
-{"t": "WELL", "what": "Welltower is a real-estate investment trust that owns senior housing communities, outpatient medical buildings and post-acute care facilities in the US, Canada and the UK.", "customers": "Older residents and their families, and the operators and health systems that run its buildings.", "money": [["Senior housing operating", "the largest part", "communities where Welltower shares in the operating profit"], ["Triple-net leases", "a smaller part", "properties leased to operators"], ["Outpatient medical", "the rest", "medical office buildings"]], "moat": "Scale and data in a fragmented market, with an ageing population pushing up demand faster than new supply.", "rivals": ["Ventas|VTR", "Healthpeak|DOC", "Omega Healthcare|OHI"], "risks": ["Interest rates", "Labour costs in senior housing", "New construction returning"], "updated": "2026-11"}
+{
+ "t": "WELL",
+ "what": "Welltower is a real-estate investment trust that owns senior housing communities, outpatient medical buildings and post-acute care facilities in the US, Canada and the UK.",
+ "customers": "Older residents and their families, and the operators and health systems that run its buildings.",
+ "money": [
+  [
+   "Senior housing operating",
+   "the largest part",
+   "communities where Welltower shares in the operating profit"
+  ],
+  [
+   "Triple-net leases",
+   "a smaller part",
+   "properties leased to operators"
+  ],
+  [
+   "Outpatient medical",
+   "the rest",
+   "medical office buildings"
+  ]
+ ],
+ "moat": "Scale and data in a fragmented market, with an ageing population pushing up demand faster than new supply.",
+ "rivals": [
+  "Ventas|VTR",
+  "Healthpeak|DOC",
+  "Omega Healthcare|OHI"
+ ],
+ "risks": [
+  "Interest rates",
+  "Labour costs in senior housing",
+  "New construction returning"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 36% last year and about 23% a year over three years",
+  "The number of Americans over 80 grows sharply for the next decade",
+  "Very little new senior housing has been started since 2020, so supply stays tight"
+ ],
+ "watch": "Senior housing occupancy and same-store net operating income growth."
+}

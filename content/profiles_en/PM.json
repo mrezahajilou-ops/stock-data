@@ -1,29 +1,35 @@
 {
-"t": "PM",
-"what": "Philip Morris International sells Marlboro and other cigarettes outside the US and smoke-free products: IQOS heated tobacco, ZYN nicotine pouches and vapes.",
-"customers": "Adult smokers and nicotine users in about 180 markets, through retailers and distributors.",
-"money": [
-[
-"Combustible tobacco",
-"about 60%",
-"Marlboro, L&M, Chesterfield"
-],
-[
-"Smoke-free products",
-"about 40% and rising",
-"IQOS heated tobacco and ZYN pouches"
-]
-],
-"moat": "Strong brands, pricing power and a lead in heated tobacco and nicotine pouches.",
-"rivals": [
-"British American Tobacco|BTI",
-"Altria|MO",
-"Japan Tobacco"
-],
-"risks": [
-"Regulation and taxes",
-"Declining cigarette volumes",
-"Currency swings"
-],
-"updated": "2026-11"
+ "t": "PM",
+ "what": "Philip Morris International sells Marlboro and other cigarettes outside the US and smoke-free products: IQOS heated tobacco, ZYN nicotine pouches and vapes.",
+ "customers": "Adult smokers and nicotine users in about 180 markets, through retailers and distributors.",
+ "money": [
+  [
+   "Combustible tobacco",
+   "about 60%",
+   "Marlboro, L&M, Chesterfield"
+  ],
+  [
+   "Smoke-free products",
+   "about 40% and rising",
+   "IQOS heated tobacco and ZYN pouches"
+  ]
+ ],
+ "moat": "Strong brands, pricing power and a lead in heated tobacco and nicotine pouches.",
+ "rivals": [
+  "British American Tobacco|BTI",
+  "Altria|MO",
+  "Japan Tobacco"
+ ],
+ "risks": [
+  "Regulation and taxes",
+  "Declining cigarette volumes",
+  "Currency swings"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Return on invested capital of 30% with a 67% gross margin",
+  "Smoke-free products now provide a large and growing share of revenue at better margins",
+  "A dividend yield above 3% with consistent increases"
+ ],
+ "watch": "Smoke-free product revenue share and Zyn shipment volumes."
 }

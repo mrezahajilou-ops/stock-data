@@ -1,1 +1,41 @@
-{"t": "ADI", "what": "Analog Devices designs high-performance analog and mixed-signal chips that convert real-world signals such as temperature, sound and motion into data, and manage power.", "customers": "Industrial equipment makers above all, then car, communications and consumer electronics companies.", "money": [["Industrial", "about half", "factory automation, instruments, aerospace, healthcare"], ["Automotive", "a large part", "battery management, in-car connectivity"], ["Communications and consumer", "the rest", "network gear and devices"]], "moat": "Hard-to-design, long-lived chips with high margins and tens of thousands of customers.", "rivals": ["Texas Instruments|TXN", "Microchip|MCHP", "NXP|NXPI", "Infineon"], "risks": ["Inventory cycles", "Industrial and car demand", "Chinese competition"], "updated": "2026-11"}
+{
+ "t": "ADI",
+ "what": "Analog Devices designs high-performance analog and mixed-signal chips that convert real-world signals such as temperature, sound and motion into data, and manage power.",
+ "customers": "Industrial equipment makers above all, then car, communications and consumer electronics companies.",
+ "money": [
+  [
+   "Industrial",
+   "about half",
+   "factory automation, instruments, aerospace, healthcare"
+  ],
+  [
+   "Automotive",
+   "a large part",
+   "battery management, in-car connectivity"
+  ],
+  [
+   "Communications and consumer",
+   "the rest",
+   "network gear and devices"
+  ]
+ ],
+ "moat": "Hard-to-design, long-lived chips with high margins and tens of thousands of customers.",
+ "rivals": [
+  "Texas Instruments|TXN",
+  "Microchip|MCHP",
+  "NXP|NXPI",
+  "Infineon"
+ ],
+ "risks": [
+  "Inventory cycles",
+  "Industrial and car demand",
+  "Chinese competition"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 17% last year as the industrial chip cycle turned",
+  "Gross margin of 61% with thousands of products that stay in production for a decade or more",
+  "Analysts see about 24% upside from current levels"
+ ],
+ "watch": "Industrial and automotive bookings and factory utilisation."
+}

@@ -1,35 +1,41 @@
 {
-"t": "NVDA",
-"what": "NVIDIA designs graphics processors (GPUs) and complete computing systems that have become the main engine for training and running AI models. It has no factories; TSMC makes its chips.",
-"customers": "Cloud giants such as Microsoft, Amazon, Google and Meta, AI labs, governments, and, on a smaller scale, gamers, designers and carmakers.",
-"money": [
-[
-"Data center and AI",
-"over 85% of revenue",
-"Hopper and Blackwell GPUs, full servers and networking"
-],
-[
-"Gaming",
-"about 8%",
-"GeForce graphics cards"
-],
-[
-"Professional graphics and automotive",
-"small",
-"chips for design, simulation and self-driving cars"
-]
-],
-"moat": "The CUDA software ecosystem that millions of developers build on, leading chip design, networking (NVLink, InfiniBand) and selling whole systems rather than single chips.",
-"rivals": [
-"AMD|AMD",
-"Broadcom (custom AI chips)|AVGO",
-"In-house chips from Google, Amazon and Microsoft",
-"Intel|INTC"
-],
-"risks": [
-"Revenue depends on the spending of a few cloud customers; an AI slowdown would hit fast",
-"US export limits on sales to China",
-"Customers designing their own chips, and competition from AMD"
-],
-"updated": "2026-11"
+ "t": "NVDA",
+ "what": "NVIDIA designs graphics processors (GPUs) and complete computing systems that have become the main engine for training and running AI models. It has no factories; TSMC makes its chips.",
+ "customers": "Cloud giants such as Microsoft, Amazon, Google and Meta, AI labs, governments, and, on a smaller scale, gamers, designers and carmakers.",
+ "money": [
+  [
+   "Data center and AI",
+   "over 85% of revenue",
+   "Hopper and Blackwell GPUs, full servers and networking"
+  ],
+  [
+   "Gaming",
+   "about 8%",
+   "GeForce graphics cards"
+  ],
+  [
+   "Professional graphics and automotive",
+   "small",
+   "chips for design, simulation and self-driving cars"
+  ]
+ ],
+ "moat": "The CUDA software ecosystem that millions of developers build on, leading chip design, networking (NVLink, InfiniBand) and selling whole systems rather than single chips.",
+ "rivals": [
+  "AMD|AMD",
+  "Broadcom (custom AI chips)|AVGO",
+  "In-house chips from Google, Amazon and Microsoft",
+  "Intel|INTC"
+ ],
+ "risks": [
+  "Revenue depends on the spending of a few cloud customers; an AI slowdown would hit fast",
+  "US export limits on sales to China",
+  "Customers designing their own chips, and competition from AMD"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 65% last year and about 100% a year over three years",
+  "Operating margin of 60% and return on invested capital of 66%",
+  "Analysts see about 62% upside, with data centre demand still exceeding supply"
+ ],
+ "watch": "Data centre revenue growth and whether supply constraints ease."
 }

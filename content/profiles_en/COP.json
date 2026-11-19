@@ -1,1 +1,41 @@
-{"t": "COP", "what": "ConocoPhillips is the largest independent oil and gas producer: it explores and pumps but does not refine or run fuel stations. Its core is US shale, with assets in Alaska, Canada, Norway and Qatar LNG.", "customers": "Refiners, utilities and commodity traders.", "money": [["Lower 48", "the largest part", "shale oil and gas in the Permian, Eagle Ford and Bakken"], ["Alaska and Canada", "a large part", "conventional oil and oil sands"], ["International", "the rest", "Norway, Qatar, Asia Pacific, Libya"]], "moat": "A large inventory of low-cost drilling locations and disciplined returns of cash to shareholders.", "rivals": ["EOG Resources|EOG", "Occidental|OXY", "ExxonMobil|XOM", "Chevron|CVX"], "risks": ["Oil and gas prices", "Regulation of drilling", "Large project costs (Willow, LNG)"], "updated": "2026-11"}
+{
+ "t": "COP",
+ "what": "ConocoPhillips is the largest independent oil and gas producer: it explores and pumps but does not refine or run fuel stations. Its core is US shale, with assets in Alaska, Canada, Norway and Qatar LNG.",
+ "customers": "Refiners, utilities and commodity traders.",
+ "money": [
+  [
+   "Lower 48",
+   "the largest part",
+   "shale oil and gas in the Permian, Eagle Ford and Bakken"
+  ],
+  [
+   "Alaska and Canada",
+   "a large part",
+   "conventional oil and oil sands"
+  ],
+  [
+   "International",
+   "the rest",
+   "Norway, Qatar, Asia Pacific, Libya"
+  ]
+ ],
+ "moat": "A large inventory of low-cost drilling locations and disciplined returns of cash to shareholders.",
+ "rivals": [
+  "EOG Resources|EOG",
+  "Occidental|OXY",
+  "ExxonMobil|XOM",
+  "Chevron|CVX"
+ ],
+ "risks": [
+  "Oil and gas prices",
+  "Regulation of drilling",
+  "Large project costs (Willow, LNG)"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 8% last year",
+  "Low-cost shale and Alaskan positions with decades of inventory",
+  "A dividend yield around 2.7% plus variable returns when prices are high"
+ ],
+ "watch": "Production volumes and free cash flow per share."
+}

@@ -1,35 +1,41 @@
 {
-"t": "MSFT",
-"what": "Microsoft makes Windows and Office (Microsoft 365) and runs Azure, the world's second-largest cloud platform. It also owns LinkedIn, GitHub, Xbox and a large stake in OpenAI.",
-"customers": "Almost every company and public organization in the world, developers, and consumers (Windows, Xbox).",
-"money": [
-[
-"Intelligent Cloud (Azure and servers)",
-"about 40%",
-"cloud infrastructure and AI for companies; the fastest-growing part"
-],
-[
-"Productivity and Business Processes",
-"about 40%",
-"Microsoft 365 and Copilot subscriptions, Teams, LinkedIn, Dynamics"
-],
-[
-"More Personal Computing",
-"about 20%",
-"Windows, Xbox and games, Surface, Bing ads"
-]
-],
-"moat": "Deep roots inside companies (replacing Office and Windows across a large organization is close to impossible), predictable subscription revenue and privileged access to OpenAI models.",
-"rivals": [
-"Amazon (AWS)|AMZN",
-"Alphabet (Google Cloud, Workspace)|GOOGL",
-"Oracle|ORCL",
-"Salesforce|CRM"
-],
-"risks": [
-"Very heavy AI data-center spending pressuring margins",
-"Dependence on the OpenAI relationship",
-"Antitrust rules, especially in Europe"
-],
-"updated": "2026-11"
+ "t": "MSFT",
+ "what": "Microsoft makes Windows and Office (Microsoft 365) and runs Azure, the world's second-largest cloud platform. It also owns LinkedIn, GitHub, Xbox and a large stake in OpenAI.",
+ "customers": "Almost every company and public organization in the world, developers, and consumers (Windows, Xbox).",
+ "money": [
+  [
+   "Intelligent Cloud (Azure and servers)",
+   "about 40%",
+   "cloud infrastructure and AI for companies; the fastest-growing part"
+  ],
+  [
+   "Productivity and Business Processes",
+   "about 40%",
+   "Microsoft 365 and Copilot subscriptions, Teams, LinkedIn, Dynamics"
+  ],
+  [
+   "More Personal Computing",
+   "about 20%",
+   "Windows, Xbox and games, Surface, Bing ads"
+  ]
+ ],
+ "moat": "Deep roots inside companies (replacing Office and Windows across a large organization is close to impossible), predictable subscription revenue and privileged access to OpenAI models.",
+ "rivals": [
+  "Amazon (AWS)|AMZN",
+  "Alphabet (Google Cloud, Workspace)|GOOGL",
+  "Oracle|ORCL",
+  "Salesforce|CRM"
+ ],
+ "risks": [
+  "Very heavy AI data-center spending pressuring margins",
+  "Dependence on the OpenAI relationship",
+  "Antitrust rules, especially in Europe"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Operating margin of 47% with revenue growing about 18% last year",
+  "Azure is growing faster than the company as a whole and has AI demand it cannot yet meet",
+  "Its software is embedded in almost every large organisation, which makes price increases easy to pass"
+ ],
+ "watch": "Azure revenue growth and capital spending on AI data centres."
 }

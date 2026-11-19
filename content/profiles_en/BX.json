@@ -1,1 +1,36 @@
-{"t": "BX", "what": "Blackstone is the world's largest manager of alternative investments: private equity, real estate, private credit and hedge-fund solutions. It earns management fees and a share of profits.", "customers": "Pension funds, sovereign funds, insurers and wealthy individuals.", "money": [["Management and advisory fees", "the steady part", "fees on assets under management"], ["Performance revenues", "the variable part", "a share of investment gains"]], "moat": "A top brand and track record that attract capital, and scale that gives access to the largest deals.", "rivals": ["KKR|KKR", "Apollo|APO", "Carlyle|CG", "Brookfield|BN"], "risks": ["Fewer asset sales when markets are weak", "Real-estate valuations", "Withdrawals from funds sold to individuals"], "updated": "2026-11"}
+{
+ "t": "BX",
+ "what": "Blackstone is the world's largest manager of alternative investments: private equity, real estate, private credit and hedge-fund solutions. It earns management fees and a share of profits.",
+ "customers": "Pension funds, sovereign funds, insurers and wealthy individuals.",
+ "money": [
+  [
+   "Management and advisory fees",
+   "the steady part",
+   "fees on assets under management"
+  ],
+  [
+   "Performance revenues",
+   "the variable part",
+   "a share of investment gains"
+  ]
+ ],
+ "moat": "A top brand and track record that attract capital, and scale that gives access to the largest deals.",
+ "rivals": [
+  "KKR|KKR",
+  "Apollo|APO",
+  "Carlyle|CG",
+  "Brookfield|BN"
+ ],
+ "risks": [
+  "Fewer asset sales when markets are weak",
+  "Real-estate valuations",
+  "Withdrawals from funds sold to individuals"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Operating margin of 47% with return on invested capital of 26%",
+  "Fee-paying assets under management keep growing, which is what drives earnings",
+  "Wealthy individual investors are a large new source of capital for private markets"
+ ],
+ "watch": "Fee-related earnings and net inflows into its funds."
+}

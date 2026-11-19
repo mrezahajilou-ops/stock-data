@@ -1,1 +1,41 @@
-{"t": "UBS", "what": "UBS is the world's largest wealth manager for rich clients and Switzerland's biggest bank. It took over Credit Suisse in 2023.", "customers": "Wealthy individuals and families worldwide, Swiss households and companies, and institutions.", "money": [["Global wealth management", "the largest part", "advice and lending for wealthy clients"], ["Personal and corporate banking", "a large part", "Swiss retail and business banking"], ["Investment bank and asset management", "the rest", "advisory, trading, funds"]], "moat": "A leading brand in private banking and unmatched scale in client assets.", "rivals": ["Morgan Stanley|MS", "JPMorgan Chase|JPM", "Julius Baer", "Goldman Sachs|GS"], "risks": ["Tougher Swiss capital rules", "Finishing the Credit Suisse integration", "Market downturns"], "updated": "2026-11"}
+{
+ "t": "UBS",
+ "what": "UBS is the world's largest wealth manager for rich clients and Switzerland's biggest bank. It took over Credit Suisse in 2023.",
+ "customers": "Wealthy individuals and families worldwide, Swiss households and companies, and institutions.",
+ "money": [
+  [
+   "Global wealth management",
+   "the largest part",
+   "advice and lending for wealthy clients"
+  ],
+  [
+   "Personal and corporate banking",
+   "a large part",
+   "Swiss retail and business banking"
+  ],
+  [
+   "Investment bank and asset management",
+   "the rest",
+   "advisory, trading, funds"
+  ]
+ ],
+ "moat": "A leading brand in private banking and unmatched scale in client assets.",
+ "rivals": [
+  "Morgan Stanley|MS",
+  "JPMorgan Chase|JPM",
+  "Julius Baer",
+  "Goldman Sachs|GS"
+ ],
+ "risks": [
+  "Tougher Swiss capital rules",
+  "Finishing the Credit Suisse integration",
+  "Market downturns"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 13% a year over three years including the Credit Suisse integration",
+  "Analysts see about 21% upside from current levels",
+  "Credit Suisse integration cost savings are still being delivered"
+ ],
+ "watch": "Integration cost savings and net new money in wealth management."
+}

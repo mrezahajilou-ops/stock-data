@@ -1,30 +1,36 @@
 {
-"t": "AVGO",
-"what": "Broadcom has two large businesses: chips for networking, connectivity and AI (including custom AI chips for Google and Meta), and enterprise software, above all VMware, acquired in 2023.",
-"customers": "Google, Meta, Apple, cloud providers, telecom operators and large enterprises (VMware).",
-"money": [
-[
-"Semiconductors",
-"about 60%",
-"networking and switch chips, custom AI accelerators (ASICs), iPhone wireless chips"
-],
-[
-"Infrastructure software",
-"about 40%",
-"VMware, security and mainframe software on subscription"
-]
-],
-"moat": "Leadership in networking chips and custom chip design, and software that sits at the heart of corporate data centers and is hard to replace.",
-"rivals": [
-"Marvell|MRVL",
-"NVIDIA (networking)|NVDA",
-"Cisco|CSCO",
-"Nutanix|NTNX"
-],
-"risks": [
-"Concentration on a few large AI customers",
-"Large debt from the VMware deal",
-"VMware customers unhappy with price increases"
-],
-"updated": "2026-11"
+ "t": "AVGO",
+ "what": "Broadcom has two large businesses: chips for networking, connectivity and AI (including custom AI chips for Google and Meta), and enterprise software, above all VMware, acquired in 2023.",
+ "customers": "Google, Meta, Apple, cloud providers, telecom operators and large enterprises (VMware).",
+ "money": [
+  [
+   "Semiconductors",
+   "about 60%",
+   "networking and switch chips, custom AI accelerators (ASICs), iPhone wireless chips"
+  ],
+  [
+   "Infrastructure software",
+   "about 40%",
+   "VMware, security and mainframe software on subscription"
+  ]
+ ],
+ "moat": "Leadership in networking chips and custom chip design, and software that sits at the heart of corporate data centers and is hard to replace.",
+ "rivals": [
+  "Marvell|MRVL",
+  "NVIDIA (networking)|NVDA",
+  "Cisco|CSCO",
+  "Nutanix|NTNX"
+ ],
+ "risks": [
+  "Concentration on a few large AI customers",
+  "Large debt from the VMware deal",
+  "VMware customers unhappy with price increases"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 24% last year and about 24% a year over three years",
+  "Operating margin of 40% with custom AI chip orders from several hyperscalers",
+  "Analysts see about 48% upside from current levels"
+ ],
+ "watch": "Custom AI accelerator orders and VMware software revenue."
 }

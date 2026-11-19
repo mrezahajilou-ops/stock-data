@@ -1,1 +1,36 @@
-{"t": "CRWD", "what": "CrowdStrike sells Falcon, a cloud platform that protects laptops, servers, cloud workloads and identities from hackers. Customers pay a subscription per module.", "customers": "Companies of all sizes and government agencies.", "money": [["Subscriptions", "almost all revenue", "Falcon modules sold per device or user"], ["Professional services", "a small part", "incident response and consulting"]], "moat": "A single lightweight agent, a huge pool of threat data that improves detection, and customers adding more modules over time.", "rivals": ["Microsoft|MSFT", "Palo Alto Networks|PANW", "SentinelOne|S", "Zscaler|ZS"], "risks": ["Competition from Microsoft's bundles", "Reputation risk after outages", "High valuation and stock-based pay"], "updated": "2026-11"}
+{
+ "t": "CRWD",
+ "what": "CrowdStrike sells Falcon, a cloud platform that protects laptops, servers, cloud workloads and identities from hackers. Customers pay a subscription per module.",
+ "customers": "Companies of all sizes and government agencies.",
+ "money": [
+  [
+   "Subscriptions",
+   "almost all revenue",
+   "Falcon modules sold per device or user"
+  ],
+  [
+   "Professional services",
+   "a small part",
+   "incident response and consulting"
+  ]
+ ],
+ "moat": "A single lightweight agent, a huge pool of threat data that improves detection, and customers adding more modules over time.",
+ "rivals": [
+  "Microsoft|MSFT",
+  "Palo Alto Networks|PANW",
+  "SentinelOne|S",
+  "Zscaler|ZS"
+ ],
+ "risks": [
+  "Competition from Microsoft's bundles",
+  "Reputation risk after outages",
+  "High valuation and stock-based pay"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 22% last year and about 29% a year over three years",
+  "Gross margin of 75% with cash of $5 billion against little debt",
+  "Customers keep adding modules, which raises revenue per customer without new wins"
+ ],
+ "watch": "Annual recurring revenue growth and module adoption per customer."
+}

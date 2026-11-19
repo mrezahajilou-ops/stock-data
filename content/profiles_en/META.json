@@ -1,35 +1,41 @@
 {
-"t": "META",
-"what": "Meta owns Facebook, Instagram, WhatsApp and Messenger; more than 3 billion people use at least one of them every day. Reality Labs works on smart glasses and virtual reality.",
-"customers": "The apps are free; the real customers are millions of advertisers, from local shops to the biggest global brands.",
-"money": [
-[
-"Advertising",
-"about 97% of revenue",
-"targeted ads in Facebook and Instagram feeds, Stories and Reels"
-],
-[
-"Reality Labs",
-"under 2%, with multi-billion annual losses",
-"Quest headsets and Ray-Ban smart glasses"
-],
-[
-"Business messaging",
-"small but growing",
-"paid WhatsApp tools for businesses"
-]
-],
-"moat": "Huge network effects, behavioral data from billions of users for ad targeting, and advanced AI for content recommendations.",
-"rivals": [
-"Alphabet (Google, YouTube)|GOOGL",
-"TikTok",
-"Snap|SNAP",
-"Amazon (advertising)|AMZN"
-],
-"risks": [
-"Very heavy AI spending and Reality Labs losses",
-"Privacy and antitrust rules, especially in Europe",
-"Total dependence on advertising, which falls in recessions"
-],
-"updated": "2026-11"
+ "t": "META",
+ "what": "Meta owns Facebook, Instagram, WhatsApp and Messenger; more than 3 billion people use at least one of them every day. Reality Labs works on smart glasses and virtual reality.",
+ "customers": "The apps are free; the real customers are millions of advertisers, from local shops to the biggest global brands.",
+ "money": [
+  [
+   "Advertising",
+   "about 97% of revenue",
+   "targeted ads in Facebook and Instagram feeds, Stories and Reels"
+  ],
+  [
+   "Reality Labs",
+   "under 2%, with multi-billion annual losses",
+   "Quest headsets and Ray-Ban smart glasses"
+  ],
+  [
+   "Business messaging",
+   "small but growing",
+   "paid WhatsApp tools for businesses"
+  ]
+ ],
+ "moat": "Huge network effects, behavioral data from billions of users for ad targeting, and advanced AI for content recommendations.",
+ "rivals": [
+  "Alphabet (Google, YouTube)|GOOGL",
+  "TikTok",
+  "Snap|SNAP",
+  "Amazon (advertising)|AMZN"
+ ],
+ "risks": [
+  "Very heavy AI spending and Reality Labs losses",
+  "Privacy and antitrust rules, especially in Europe",
+  "Total dependence on advertising, which falls in recessions"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 22% last year with a 41% operating margin",
+  "Advertising revenue per user keeps rising as its AI ranking improves targeting",
+  "It reaches more than three billion people daily across its apps"
+ ],
+ "watch": "Advertising revenue growth and capital spending on AI infrastructure."
 }

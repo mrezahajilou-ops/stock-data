@@ -1,30 +1,36 @@
 {
-"t": "HD",
-"what": "Home Depot is the largest home-improvement retailer in the US, selling tools, building materials and garden products to homeowners and professional contractors.",
-"customers": "Do-it-yourself homeowners and professional builders, roofers and contractors (a growing share after the SRS acquisition).",
-"money": [
-[
-"Store and online sales",
-"nearly all revenue",
-"building materials, tools, appliances, garden"
-],
-[
-"Pro distribution",
-"growing",
-"SRS and GMS supply to contractors"
-]
-],
-"moat": "Scale, store locations, supplier relationships and loyal professional customers.",
-"rivals": [
-"Lowe's|LOW",
-"Amazon|AMZN",
-"Walmart|WMT",
-"Local building-supply dealers"
-],
-"risks": [
-"A slow housing market and high mortgage rates",
-"Weaker home-improvement spending",
-"Tariffs on imported goods"
-],
-"updated": "2026-11"
+ "t": "HD",
+ "what": "Home Depot is the largest home-improvement retailer in the US, selling tools, building materials and garden products to homeowners and professional contractors.",
+ "customers": "Do-it-yourself homeowners and professional builders, roofers and contractors (a growing share after the SRS acquisition).",
+ "money": [
+  [
+   "Store and online sales",
+   "nearly all revenue",
+   "building materials, tools, appliances, garden"
+  ],
+  [
+   "Pro distribution",
+   "growing",
+   "SRS and GMS supply to contractors"
+  ]
+ ],
+ "moat": "Scale, store locations, supplier relationships and loyal professional customers.",
+ "rivals": [
+  "Lowe's|LOW",
+  "Amazon|AMZN",
+  "Walmart|WMT",
+  "Local building-supply dealers"
+ ],
+ "risks": [
+  "A slow housing market and high mortgage rates",
+  "Weaker home-improvement spending",
+  "Tariffs on imported goods"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Return on invested capital of 22%, exceptional for a retailer",
+  "Its professional contractor business grows faster than consumer sales",
+  "A dividend yield near 3% with a long record of increases"
+ ],
+ "watch": "Comparable sales and professional customer transaction growth."
 }

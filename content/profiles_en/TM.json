@@ -1,1 +1,42 @@
-{"t": "TM", "what": "Toyota is the world's largest carmaker by vehicles sold, with the Toyota and Lexus brands and a leading position in hybrids. It also runs a large car-finance business.", "customers": "Car buyers worldwide, served through dealers; Japan, North America and Asia are the biggest markets.", "money": [["Automotive", "most revenue", "cars, trucks and parts"], ["Financial services", "a smaller but profitable part", "loans and leases"], ["Other", "the rest", "housing, IT and other businesses"]], "moat": "A reputation for reliability, the Toyota Production System's cost discipline and a hybrid line-up few rivals can match.", "rivals": ["Volkswagen", "Hyundai", "General Motors|GM", "Ford|F", "BYD"], "risks": ["The shift to electric cars and Chinese competition", "The yen's exchange rate", "Tariffs and recalls"], "updated": "2026-11"}
+{
+ "t": "TM",
+ "what": "Toyota is the world's largest carmaker by vehicles sold, with the Toyota and Lexus brands and a leading position in hybrids. It also runs a large car-finance business.",
+ "customers": "Car buyers worldwide, served through dealers; Japan, North America and Asia are the biggest markets.",
+ "money": [
+  [
+   "Automotive",
+   "most revenue",
+   "cars, trucks and parts"
+  ],
+  [
+   "Financial services",
+   "a smaller but profitable part",
+   "loans and leases"
+  ],
+  [
+   "Other",
+   "the rest",
+   "housing, IT and other businesses"
+  ]
+ ],
+ "moat": "A reputation for reliability, the Toyota Production System's cost discipline and a hybrid line-up few rivals can match.",
+ "rivals": [
+  "Volkswagen",
+  "Hyundai",
+  "General Motors|GM",
+  "Ford|F",
+  "BYD"
+ ],
+ "risks": [
+  "The shift to electric cars and Chinese competition",
+  "The yen's exchange rate",
+  "Tariffs and recalls"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Hybrids, where it has twenty-five years of lead, are selling better than pure electric models in most markets",
+  "Cash of about $89 billion gives it enormous flexibility",
+  "A dividend yield near 3% with consistent buybacks"
+ ],
+ "watch": "Hybrid vehicle sales mix and North American pricing."
+}

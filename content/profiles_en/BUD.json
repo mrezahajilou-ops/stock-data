@@ -1,1 +1,46 @@
-{"t": "BUD", "what": "Anheuser-Busch InBev is the world's largest brewer, with Budweiser, Corona, Stella Artois, Michelob Ultra and hundreds of local brands.", "customers": "Beer drinkers in more than 150 countries, through wholesalers, shops and bars.", "money": [["Middle Americas", "a large part of profit", "Mexico, Colombia, Peru"], ["South America", "a large part", "Brazil and Argentina through Ambev"], ["North America", "a large part", "the US and Canada"], ["Europe, Africa and Asia", "the rest", "including China and South Africa"]], "moat": "Leading market shares in many countries, global brands and very high margins from scale.", "rivals": ["Heineken", "Molson Coors|TAP", "Constellation Brands|STZ", "Carlsberg"], "risks": ["Falling beer volumes in mature markets", "A heavy debt load", "Currency swings in emerging markets"], "updated": "2026-11"}
+{
+ "t": "BUD",
+ "what": "Anheuser-Busch InBev is the world's largest brewer, with Budweiser, Corona, Stella Artois, Michelob Ultra and hundreds of local brands.",
+ "customers": "Beer drinkers in more than 150 countries, through wholesalers, shops and bars.",
+ "money": [
+  [
+   "Middle Americas",
+   "a large part of profit",
+   "Mexico, Colombia, Peru"
+  ],
+  [
+   "South America",
+   "a large part",
+   "Brazil and Argentina through Ambev"
+  ],
+  [
+   "North America",
+   "a large part",
+   "the US and Canada"
+  ],
+  [
+   "Europe, Africa and Asia",
+   "the rest",
+   "including China and South Africa"
+  ]
+ ],
+ "moat": "Leading market shares in many countries, global brands and very high margins from scale.",
+ "rivals": [
+  "Heineken",
+  "Molson Coors|TAP",
+  "Constellation Brands|STZ",
+  "Carlsberg"
+ ],
+ "risks": [
+  "Falling beer volumes in mature markets",
+  "A heavy debt load",
+  "Currency swings in emerging markets"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Gross margin of 56% with the largest beer brand portfolio in the world",
+  "Debt has been reduced substantially from its post-acquisition peak",
+  "Premium brands and non-alcoholic beer grow faster than mainstream lager"
+ ],
+ "watch": "Organic volume and revenue per hectolitre, and net debt to EBITDA."
+}

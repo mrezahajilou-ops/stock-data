@@ -1,1 +1,41 @@
-{"t": "AMGN", "what": "Amgen is a biotechnology company that makes medicines for bone disease, inflammation, cancer, heart disease and rare diseases, and is developing an obesity drug.", "customers": "Patients through hospitals, clinics, pharmacies and insurers.", "money": [["General medicine", "a large part", "Prolia, Evenity, Repatha"], ["Inflammation", "a large part", "Enbrel, Otezla, Tezspire"], ["Oncology and rare disease", "the rest", "Blincyto, Xgeva and the Horizon drugs"]], "moat": "Biologic-manufacturing expertise, patents and a broad portfolio that produces a lot of cash.", "rivals": ["AbbVie|ABBV", "Eli Lilly|LLY", "Novo Nordisk|NVO", "Regeneron|REGN"], "risks": ["Patent expiries and biosimilars", "US drug-price negotiation", "Debt from acquisitions"], "updated": "2026-11"}
+{
+ "t": "AMGN",
+ "what": "Amgen is a biotechnology company that makes medicines for bone disease, inflammation, cancer, heart disease and rare diseases, and is developing an obesity drug.",
+ "customers": "Patients through hospitals, clinics, pharmacies and insurers.",
+ "money": [
+  [
+   "General medicine",
+   "a large part",
+   "Prolia, Evenity, Repatha"
+  ],
+  [
+   "Inflammation",
+   "a large part",
+   "Enbrel, Otezla, Tezspire"
+  ],
+  [
+   "Oncology and rare disease",
+   "the rest",
+   "Blincyto, Xgeva and the Horizon drugs"
+  ]
+ ],
+ "moat": "Biologic-manufacturing expertise, patents and a broad portfolio that produces a lot of cash.",
+ "rivals": [
+  "AbbVie|ABBV",
+  "Eli Lilly|LLY",
+  "Novo Nordisk|NVO",
+  "Regeneron|REGN"
+ ],
+ "risks": [
+  "Patent expiries and biosimilars",
+  "US drug-price negotiation",
+  "Debt from acquisitions"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 10% last year and about 12% a year over three years",
+  "Gross margin of 67% with a dividend yield above 2%",
+  "Its obesity medicine in late-stage trials would open a far larger market than its current portfolio"
+ ],
+ "watch": "Obesity programme trial results and the pace of debt reduction."
+}

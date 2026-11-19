@@ -1,1 +1,41 @@
-{"t": "UBER", "what": "Uber connects riders with drivers and diners with restaurants and couriers through its app, and runs a freight-matching business.", "customers": "Riders, eaters, drivers, couriers, restaurants and shippers in about 70 countries.", "money": [["Mobility", "about half of revenue and most of the profit", "ride-hailing"], ["Delivery", "about half", "Uber Eats, groceries"], ["Freight", "a small part", "matching shippers and truckers"]], "moat": "The largest network of riders and drivers, which shortens wait times and is hard for newcomers to match.", "rivals": ["Lyft|LYFT", "DoorDash|DASH", "Waymo (Alphabet)|GOOGL", "Tesla|TSLA"], "risks": ["Self-driving taxis changing the market", "Rules on driver status", "Insurance costs"], "updated": "2026-11"}
+{
+ "t": "UBER",
+ "what": "Uber connects riders with drivers and diners with restaurants and couriers through its app, and runs a freight-matching business.",
+ "customers": "Riders, eaters, drivers, couriers, restaurants and shippers in about 70 countries.",
+ "money": [
+  [
+   "Mobility",
+   "about half of revenue and most of the profit",
+   "ride-hailing"
+  ],
+  [
+   "Delivery",
+   "about half",
+   "Uber Eats, groceries"
+  ],
+  [
+   "Freight",
+   "a small part",
+   "matching shippers and truckers"
+  ]
+ ],
+ "moat": "The largest network of riders and drivers, which shortens wait times and is hard for newcomers to match.",
+ "rivals": [
+  "Lyft|LYFT",
+  "DoorDash|DASH",
+  "Waymo (Alphabet)|GOOGL",
+  "Tesla|TSLA"
+ ],
+ "risks": [
+  "Self-driving taxis changing the market",
+  "Rules on driver status",
+  "Insurance costs"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 18% last year and about 18% a year over three years",
+  "Analysts see about 47% upside from current levels",
+  "Advertising and delivery grow faster than ride-hailing and carry better margins"
+ ],
+ "watch": "Gross bookings growth and free cash flow conversion."
+}

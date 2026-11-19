@@ -1,30 +1,36 @@
 {
-"t": "CVX",
-"what": "Chevron is one of the largest integrated oil companies: it finds and produces oil and gas worldwide (upstream) and refines and sells fuels and chemicals (downstream). It acquired Hess in 2025.",
-"customers": "Refiners, utilities, industrial users, drivers at Chevron and Texaco stations, and chemical buyers.",
-"money": [
-[
-"Upstream (oil and gas production)",
-"most of the profit",
-"Permian Basin, Kazakhstan (Tengiz), Australia LNG, Guyana via Hess"
-],
-[
-"Downstream",
-"the rest",
-"refining, fuels, lubricants and chemicals"
-]
-],
-"moat": "Low-cost reserves, scale and a strong balance sheet that supports dividends through cycles.",
-"rivals": [
-"ExxonMobil|XOM",
-"Shell|SHEL",
-"ConocoPhillips|COP",
-"TotalEnergies|TTE"
-],
-"risks": [
-"Oil and gas price swings",
-"The energy transition",
-"Project and political risks abroad"
-],
-"updated": "2026-11"
+ "t": "CVX",
+ "what": "Chevron is one of the largest integrated oil companies: it finds and produces oil and gas worldwide (upstream) and refines and sells fuels and chemicals (downstream). It acquired Hess in 2025.",
+ "customers": "Refiners, utilities, industrial users, drivers at Chevron and Texaco stations, and chemical buyers.",
+ "money": [
+  [
+   "Upstream (oil and gas production)",
+   "most of the profit",
+   "Permian Basin, Kazakhstan (Tengiz), Australia LNG, Guyana via Hess"
+  ],
+  [
+   "Downstream",
+   "the rest",
+   "refining, fuels, lubricants and chemicals"
+  ]
+ ],
+ "moat": "Low-cost reserves, scale and a strong balance sheet that supports dividends through cycles.",
+ "rivals": [
+  "ExxonMobil|XOM",
+  "Shell|SHEL",
+  "ConocoPhillips|COP",
+  "TotalEnergies|TTE"
+ ],
+ "risks": [
+  "Oil and gas price swings",
+  "The energy transition",
+  "Project and political risks abroad"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "A dividend yield above 3% with decades of increases",
+  "Permian and Guyana production growth with low costs per barrel",
+  "Analysts see about 18% upside from current levels"
+ ],
+ "watch": "Permian production volumes and free cash flow after the dividend."
 }

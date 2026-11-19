@@ -1,1 +1,46 @@
-{"t": "WFC", "what": "Wells Fargo is one of the largest US banks: checking and savings accounts, mortgages, credit cards, loans to mid-sized companies and wealth management.", "customers": "US households, small and mid-sized businesses, corporations and wealthy clients.", "money": [["Consumer banking and lending", "the largest part", "deposits, mortgages, cards, auto loans"], ["Commercial banking", "a large part", "loans and services to mid-sized companies"], ["Corporate and investment banking", "a large part", "markets, advisory, commercial real estate"], ["Wealth and investment management", "the rest", "advice and brokerage"]], "moat": "A vast low-cost deposit base and branch network across the US.", "rivals": ["JPMorgan Chase|JPM", "Bank of America|BAC", "Citigroup|C", "U.S. Bancorp|USB"], "risks": ["Interest-rate moves", "Loan losses, including office real estate", "Regulatory problems returning"], "updated": "2026-11"}
+{
+ "t": "WFC",
+ "what": "Wells Fargo is one of the largest US banks: checking and savings accounts, mortgages, credit cards, loans to mid-sized companies and wealth management.",
+ "customers": "US households, small and mid-sized businesses, corporations and wealthy clients.",
+ "money": [
+  [
+   "Consumer banking and lending",
+   "the largest part",
+   "deposits, mortgages, cards, auto loans"
+  ],
+  [
+   "Commercial banking",
+   "a large part",
+   "loans and services to mid-sized companies"
+  ],
+  [
+   "Corporate and investment banking",
+   "a large part",
+   "markets, advisory, commercial real estate"
+  ],
+  [
+   "Wealth and investment management",
+   "the rest",
+   "advice and brokerage"
+  ]
+ ],
+ "moat": "A vast low-cost deposit base and branch network across the US.",
+ "rivals": [
+  "JPMorgan Chase|JPM",
+  "Bank of America|BAC",
+  "Citigroup|C",
+  "U.S. Bancorp|USB"
+ ],
+ "risks": [
+  "Interest-rate moves",
+  "Loan losses, including office real estate",
+  "Regulatory problems returning"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "The asset cap imposed by regulators has been lifted, which allows the balance sheet to grow again",
+  "Analysts see about 20% upside from current levels",
+  "Net margin of 25% with large ongoing buybacks"
+ ],
+ "watch": "Loan and deposit growth now that the asset cap is gone."
+}

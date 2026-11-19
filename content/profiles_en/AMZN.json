@@ -1,40 +1,46 @@
 {
-"t": "AMZN",
-"what": "Amazon is the largest online store in the West and owns AWS, the world's largest cloud platform. Prime, advertising, Alexa, Prime Video and Whole Foods are part of the group.",
-"customers": "Hundreds of millions of shoppers and Prime members, millions of independent sellers, and companies of every size using AWS.",
-"money": [
-[
-"Online stores",
-"about 40%",
-"goods Amazon buys and resells; thin margins"
-],
-[
-"Third-party seller services",
-"about a quarter",
-"commissions, warehousing and delivery for other sellers"
-],
-[
-"AWS (cloud)",
-"about 18% of revenue but over half of operating profit",
-"servers, storage and AI on rent"
-],
-[
-"Advertising and subscriptions",
-"about 15%",
-"high-margin ads on Amazon, Prime fees"
-]
-],
-"moat": "A logistics network that would take decades to copy, Prime membership that keeps customers loyal, and leadership in cloud computing.",
-"rivals": [
-"Walmart|WMT",
-"Microsoft (Azure)|MSFT",
-"Alphabet (Google Cloud)|GOOGL",
-"Temu, Shein and Chinese marketplaces"
-],
-"risks": [
-"Fierce competition in cloud and AI, and heavy data-center spending",
-"The FTC antitrust case",
-"Thin retail margins and sensitivity to consumer slowdowns"
-],
-"updated": "2026-11"
+ "t": "AMZN",
+ "what": "Amazon is the largest online store in the West and owns AWS, the world's largest cloud platform. Prime, advertising, Alexa, Prime Video and Whole Foods are part of the group.",
+ "customers": "Hundreds of millions of shoppers and Prime members, millions of independent sellers, and companies of every size using AWS.",
+ "money": [
+  [
+   "Online stores",
+   "about 40%",
+   "goods Amazon buys and resells; thin margins"
+  ],
+  [
+   "Third-party seller services",
+   "about a quarter",
+   "commissions, warehousing and delivery for other sellers"
+  ],
+  [
+   "AWS (cloud)",
+   "about 18% of revenue but over half of operating profit",
+   "servers, storage and AI on rent"
+  ],
+  [
+   "Advertising and subscriptions",
+   "about 15%",
+   "high-margin ads on Amazon, Prime fees"
+  ]
+ ],
+ "moat": "A logistics network that would take decades to copy, Prime membership that keeps customers loyal, and leadership in cloud computing.",
+ "rivals": [
+  "Walmart|WMT",
+  "Microsoft (Azure)|MSFT",
+  "Alphabet (Google Cloud)|GOOGL",
+  "Temu, Shein and Chinese marketplaces"
+ ],
+ "risks": [
+  "Fierce competition in cloud and AI, and heavy data-center spending",
+  "The FTC antitrust case",
+  "Thin retail margins and sensitivity to consumer slowdowns"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "AWS is the largest cloud business in the world and provides most of the operating profit",
+  "Advertising revenue grows faster than retail and carries very high margins",
+  "Retail margins keep improving as its regional delivery network matures"
+ ],
+ "watch": "AWS revenue growth and North American retail operating margin."
 }

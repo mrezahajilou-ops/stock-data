@@ -1,1 +1,46 @@
-{"t": "CAT", "what": "Caterpillar is the world's largest maker of construction and mining machinery, and also builds large engines, turbines and generators, including backup power for data centres.", "customers": "Builders, miners, energy companies and rental fleets, served through independent dealers.", "money": [["Construction industries", "the largest part", "excavators, loaders, bulldozers"], ["Energy and transportation", "a large part", "engines, turbines, generators, locomotives"], ["Resource industries", "a smaller part", "mining trucks and equipment"], ["Financial products", "the rest", "loans and leases for customers"]], "moat": "A global dealer network that sells, services and supplies parts, plus a brand and installed base that generate aftermarket revenue.", "rivals": ["Komatsu", "Deere|DE", "Volvo", "Cummins|CMI"], "risks": ["Construction and mining cycles", "Commodity prices", "Tariffs and input costs"], "updated": "2026-11"}
+{
+ "t": "CAT",
+ "what": "Caterpillar is the world's largest maker of construction and mining machinery, and also builds large engines, turbines and generators, including backup power for data centres.",
+ "customers": "Builders, miners, energy companies and rental fleets, served through independent dealers.",
+ "money": [
+  [
+   "Construction industries",
+   "the largest part",
+   "excavators, loaders, bulldozers"
+  ],
+  [
+   "Energy and transportation",
+   "a large part",
+   "engines, turbines, generators, locomotives"
+  ],
+  [
+   "Resource industries",
+   "a smaller part",
+   "mining trucks and equipment"
+  ],
+  [
+   "Financial products",
+   "the rest",
+   "loans and leases for customers"
+  ]
+ ],
+ "moat": "A global dealer network that sells, services and supplies parts, plus a brand and installed base that generate aftermarket revenue.",
+ "rivals": [
+  "Komatsu",
+  "Deere|DE",
+  "Volvo",
+  "Cummins|CMI"
+ ],
+ "risks": [
+  "Construction and mining cycles",
+  "Commodity prices",
+  "Tariffs and input costs"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Analysts see about 47% upside from current levels",
+  "Return on invested capital of 15% with a dealer network that is hard to replicate",
+  "Data centre power generation demand has become a meaningful new market for its engines"
+ ],
+ "watch": "Dealer inventory levels and Energy and Transportation orders."
+}

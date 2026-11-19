@@ -1,1 +1,41 @@
-{"t": "RTX", "what": "RTX makes aircraft engines (Pratt & Whitney), aircraft systems and parts (Collins Aerospace) and missiles, radars and air defence (Raytheon).", "customers": "Airlines, Airbus and Boeing, the US Department of Defense and allied governments.", "money": [["Collins Aerospace", "about a third", "avionics, interiors, landing systems and spare parts"], ["Pratt & Whitney", "about a third", "commercial and military engines and their servicing"], ["Raytheon", "about a third", "missiles, sensors and air defence such as Patriot"]], "moat": "An installed base of engines and parts that earns service revenue for decades, plus long defence programmes.", "rivals": ["GE Aerospace|GE", "Lockheed Martin|LMT", "Northrop Grumman|NOC", "Safran"], "risks": ["Engine recalls and repair costs", "Defence budget changes", "Supply-chain bottlenecks"], "updated": "2026-11"}
+{
+ "t": "RTX",
+ "what": "RTX makes aircraft engines (Pratt & Whitney), aircraft systems and parts (Collins Aerospace) and missiles, radars and air defence (Raytheon).",
+ "customers": "Airlines, Airbus and Boeing, the US Department of Defense and allied governments.",
+ "money": [
+  [
+   "Collins Aerospace",
+   "about a third",
+   "avionics, interiors, landing systems and spare parts"
+  ],
+  [
+   "Pratt & Whitney",
+   "about a third",
+   "commercial and military engines and their servicing"
+  ],
+  [
+   "Raytheon",
+   "about a third",
+   "missiles, sensors and air defence such as Patriot"
+  ]
+ ],
+ "moat": "An installed base of engines and parts that earns service revenue for decades, plus long defence programmes.",
+ "rivals": [
+  "GE Aerospace|GE",
+  "Lockheed Martin|LMT",
+  "Northrop Grumman|NOC",
+  "Safran"
+ ],
+ "risks": [
+  "Engine recalls and repair costs",
+  "Defence budget changes",
+  "Supply-chain bottlenecks"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 10% last year and about 10% a year over three years",
+  "Aircraft are flying more hours, which drives high-margin engine aftermarket work",
+  "European rearmament raises demand for its missile and defence systems"
+ ],
+ "watch": "Commercial aftermarket revenue and the defence backlog."
+}

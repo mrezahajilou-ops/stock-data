@@ -1,1 +1,41 @@
-{"t": "BLK", "what": "BlackRock is the world's largest asset manager. It runs index funds and ETFs under the iShares brand, active funds, private-market funds, and sells Aladdin, its risk-management software.", "customers": "Pension funds, insurers, governments, financial advisers and individual investors.", "money": [["Investment advisory and administration fees", "most revenue", "fees charged as a small percentage of assets managed"], ["Technology services", "a smaller part", "Aladdin and related software"], ["Performance fees and distribution", "the rest", "fees for beating targets and for distribution"]], "moat": "Unrivalled scale, the iShares brand and Aladdin's place at the centre of many investors' operations.", "rivals": ["Vanguard", "State Street|STT", "Blackstone|BX", "Fidelity"], "risks": ["Falling markets cut fees", "Fee compression", "Political pressure over ESG"], "updated": "2026-11"}
+{
+ "t": "BLK",
+ "what": "BlackRock is the world's largest asset manager. It runs index funds and ETFs under the iShares brand, active funds, private-market funds, and sells Aladdin, its risk-management software.",
+ "customers": "Pension funds, insurers, governments, financial advisers and individual investors.",
+ "money": [
+  [
+   "Investment advisory and administration fees",
+   "most revenue",
+   "fees charged as a small percentage of assets managed"
+  ],
+  [
+   "Technology services",
+   "a smaller part",
+   "Aladdin and related software"
+  ],
+  [
+   "Performance fees and distribution",
+   "the rest",
+   "fees for beating targets and for distribution"
+  ]
+ ],
+ "moat": "Unrivalled scale, the iShares brand and Aladdin's place at the centre of many investors' operations.",
+ "rivals": [
+  "Vanguard",
+  "State Street|STT",
+  "Blackstone|BX",
+  "Fidelity"
+ ],
+ "risks": [
+  "Falling markets cut fees",
+  "Fee compression",
+  "Political pressure over ESG"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 19% last year with a 29% operating margin",
+  "Private markets and infrastructure acquisitions raise its average fee rate",
+  "Assets under management grow with markets even without net inflows"
+ ],
+ "watch": "Net inflows by asset class and the average fee rate."
+}

@@ -1,1 +1,41 @@
-{"t": "GILD", "what": "Gilead Sciences makes antiviral medicines, above all for HIV, as well as drugs for liver disease and cancer.", "customers": "Patients through pharmacies, hospitals, insurers and government programmes.", "money": [["HIV", "most revenue", "Biktarvy, Descovy and the twice-yearly injection lenacapavir"], ["Oncology", "a smaller part", "Trodelvy and cell therapies"], ["Liver disease and other", "the rest", "hepatitis treatments, Veklury"]], "moat": "The leading HIV franchise, with patents and long-acting products that keep patients on its treatments.", "rivals": ["GSK|GSK", "Merck|MRK", "Johnson & Johnson|JNJ", "AbbVie|ABBV"], "risks": ["Heavy reliance on HIV", "Government pricing and funding", "Cancer pipeline setbacks"], "updated": "2026-11"}
+{
+ "t": "GILD",
+ "what": "Gilead Sciences makes antiviral medicines, above all for HIV, as well as drugs for liver disease and cancer.",
+ "customers": "Patients through pharmacies, hospitals, insurers and government programmes.",
+ "money": [
+  [
+   "HIV",
+   "most revenue",
+   "Biktarvy, Descovy and the twice-yearly injection lenacapavir"
+  ],
+  [
+   "Oncology",
+   "a smaller part",
+   "Trodelvy and cell therapies"
+  ],
+  [
+   "Liver disease and other",
+   "the rest",
+   "hepatitis treatments, Veklury"
+  ]
+ ],
+ "moat": "The leading HIV franchise, with patents and long-acting products that keep patients on its treatments.",
+ "rivals": [
+  "GSK|GSK",
+  "Merck|MRK",
+  "Johnson & Johnson|JNJ",
+  "AbbVie|ABBV"
+ ],
+ "risks": [
+  "Heavy reliance on HIV",
+  "Government pricing and funding",
+  "Cancer pipeline setbacks"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Gross margin of 79% with an HIV franchise that is the standard of care worldwide",
+  "Its long-acting HIV prevention injection expands treatment into prevention, a much larger population",
+  "Operating margin of 34% before one-off charges"
+ ],
+ "watch": "HIV portfolio revenue and the uptake of its long-acting prevention medicine."
+}

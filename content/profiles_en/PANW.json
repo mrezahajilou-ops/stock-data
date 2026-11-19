@@ -1,1 +1,37 @@
-{"t": "PANW", "what": "Palo Alto Networks sells cybersecurity: firewalls for networks, cloud security and AI-driven security operations software. It is pushing customers to buy all of it as one platform.", "customers": "Large companies, governments and service providers.", "money": [["Subscriptions and support", "most revenue", "recurring security services and software"], ["Product", "the rest", "firewall hardware and software licences"]], "moat": "A broad platform, a large installed base of firewalls to upsell and high switching costs once security tools are integrated.", "rivals": ["Fortinet|FTNT", "CrowdStrike|CRWD", "Zscaler|ZS", "Microsoft|MSFT", "Cisco|CSCO"], "risks": ["Fierce competition and discounting", "Slower security budgets", "A breach of its own products"], "updated": "2026-11"}
+{
+ "t": "PANW",
+ "what": "Palo Alto Networks sells cybersecurity: firewalls for networks, cloud security and AI-driven security operations software. It is pushing customers to buy all of it as one platform.",
+ "customers": "Large companies, governments and service providers.",
+ "money": [
+  [
+   "Subscriptions and support",
+   "most revenue",
+   "recurring security services and software"
+  ],
+  [
+   "Product",
+   "the rest",
+   "firewall hardware and software licences"
+  ]
+ ],
+ "moat": "A broad platform, a large installed base of firewalls to upsell and high switching costs once security tools are integrated.",
+ "rivals": [
+  "Fortinet|FTNT",
+  "CrowdStrike|CRWD",
+  "Zscaler|ZS",
+  "Microsoft|MSFT",
+  "Cisco|CSCO"
+ ],
+ "risks": [
+  "Fierce competition and discounting",
+  "Slower security budgets",
+  "A breach of its own products"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 24% last year and about 19% a year over three years",
+  "Gross margin of 70% with cash exceeding debt",
+  "Customers consolidating many security vendors onto one platform raises revenue per customer"
+ ],
+ "watch": "Next-generation security annual recurring revenue and platform consolidation wins."
+}

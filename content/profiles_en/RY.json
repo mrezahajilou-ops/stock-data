@@ -1,1 +1,41 @@
-{"t": "RY", "what": "Royal Bank of Canada is Canada's largest bank. It offers everyday banking, mortgages, wealth management, insurance and investment banking, and owns City National in the US.", "customers": "Canadian households and businesses, wealthy clients and institutions.", "money": [["Personal and commercial banking", "the largest part", "deposits, mortgages, cards and business loans in Canada"], ["Wealth management", "a large part", "advice and asset management"], ["Capital markets and insurance", "the rest", "trading, investment banking, insurance"]], "moat": "A leading share in a concentrated Canadian banking market and a large, sticky deposit base.", "rivals": ["Toronto-Dominion Bank|TD", "Bank of Montreal|BMO", "Bank of Nova Scotia|BNS", "CIBC|CM"], "risks": ["Canadian housing market and consumer debt", "Interest-rate moves", "Loan losses in a recession"], "updated": "2026-11"}
+{
+ "t": "RY",
+ "what": "Royal Bank of Canada is Canada's largest bank. It offers everyday banking, mortgages, wealth management, insurance and investment banking, and owns City National in the US.",
+ "customers": "Canadian households and businesses, wealthy clients and institutions.",
+ "money": [
+  [
+   "Personal and commercial banking",
+   "the largest part",
+   "deposits, mortgages, cards and business loans in Canada"
+  ],
+  [
+   "Wealth management",
+   "a large part",
+   "advice and asset management"
+  ],
+  [
+   "Capital markets and insurance",
+   "the rest",
+   "trading, investment banking, insurance"
+  ]
+ ],
+ "moat": "A leading share in a concentrated Canadian banking market and a large, sticky deposit base.",
+ "rivals": [
+  "Toronto-Dominion Bank|TD",
+  "Bank of Montreal|BMO",
+  "Bank of Nova Scotia|BNS",
+  "CIBC|CM"
+ ],
+ "risks": [
+  "Canadian housing market and consumer debt",
+  "Interest-rate moves",
+  "Loan losses in a recession"
+ ],
+ "updated": "2026-11",
+ "opportunities": [
+  "Revenue grew about 15% last year with a 31% net margin",
+  "The largest Canadian bank by deposits, with a protected oligopoly position",
+  "Capital markets and wealth management diversify it beyond lending"
+ ],
+ "watch": "Net interest margin and credit costs on Canadian mortgages."
+}

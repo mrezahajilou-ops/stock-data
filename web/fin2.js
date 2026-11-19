@@ -111,6 +111,9 @@
 
   // ---------------------------------------------------------------- table
   function table(cols, sub, rows, first) {
+    // hide lines with no number in any column (e.g. inventory for a bank), and section titles left empty
+    rows = rows.filter(function (r) { return r[2] === 'sec' || r[1].some(function (v) { return v !== D && v !== ''; }); });
+    rows = rows.filter(function (r, i) { return r[2] !== 'sec' || (rows[i + 1] && rows[i + 1][2] !== 'sec'); });
     var th = cols.map(function (c) { return '<th>' + B(c) + '</th>'; }).join('');
     var ts = sub.map(function (c) { return '<th>' + B(c) + '</th>'; }).join('');
     var body = rows.map(function (r) {
@@ -121,6 +124,8 @@
     return '<div class="fb-tw"><table class="fb-t"><thead><tr><th>' + T(first || 'Fiscal year') + '</th>' + th + '</tr>' + pe + '</thead><tbody>' + body + '</tbody></table></div>';
   }
   function qtable(rows, spec, first) {
+    // drop periods the source lists without any numbers
+    rows = rows.filter(function (r) { return spec.some(function (sp_) { return sp_[1] && !nn(r[sp_[1]]); }); });
     if (!rows.length) return '<p class="xnote">' + T('Not available yet.') + '</p>';
     return table(rows.map(function (r) { return mon(dd(r.end)); }), rows.map(function () { return ''; }),
       spec.map(function (s) { return [s[0], s[3] === 'sec' ? [] : rows.map(function (r) { return s[2](r[s[1]]); }), s[3]]; }), first || 'Quarter ending');

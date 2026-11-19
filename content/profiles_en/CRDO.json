@@ -1,0 +1,38 @@
+{
+ "t": "CRDO",
+ "what": "Credo Technology makes high-speed connectivity products for data centres: active electrical cables, retimers and chiplets that move data between AI accelerators and switches at very high speed with low power use.",
+ "customers": "Hyperscale cloud operators, AI infrastructure builders and networking equipment makers.",
+ "money": [
+  [
+   "Product sales",
+   "almost all of revenue",
+   "active electrical cables, retimers, optical digital signal processors and chiplets"
+  ],
+  [
+   "Intellectual property licensing",
+   "small",
+   "licensing its connectivity technology"
+  ]
+ ],
+ "moat": "Active electrical cables that deliver optical-like performance at copper cost and power, designed into AI rack architectures where power per bit is the binding constraint.",
+ "rivals": [
+  "Broadcom|AVGO",
+  "Marvell Technology|MRVL",
+  "Astera Labs|ALAB",
+  "Macom|MTSI",
+  "Semtech|SMTC"
+ ],
+ "risks": [
+  "A handful of hyperscale customers account for most of its revenue",
+  "A slowdown in AI data centre building would hit it immediately",
+  "Larger competitors can bundle connectivity with their main chip sales",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 206% last year and about 94% a year over three years",
+  "Operating margin of 33% with return on invested capital of 21%",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Quarterly revenue guidance and the degree of customer concentration.",
+ "updated": "2026-11"
+}

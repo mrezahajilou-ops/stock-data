@@ -1,0 +1,43 @@
+{
+ "t": "RF",
+ "what": "Regions Financial is a regional bank based in Birmingham, Alabama, with branches across the South, Midwest and Texas. It does consumer and commercial banking plus wealth management and capital markets.",
+ "customers": "Households and small businesses across fifteen southern and midwestern states, and corporate clients nationally.",
+ "money": [
+  [
+   "Consumer Bank",
+   "large",
+   "deposits, mortgages, car and consumer lending"
+  ],
+  [
+   "Corporate Bank",
+   "large",
+   "commercial lending, treasury management and capital markets"
+  ],
+  [
+   "Wealth Management",
+   "smaller",
+   "trust, investment and insurance services"
+  ]
+ ],
+ "moat": "Deposit share across southern markets where population and business growth are above the national average, providing cheap and stable funding.",
+ "rivals": [
+  "Truist Financial|TFC",
+  "Fifth Third Bancorp|FITB",
+  "Huntington Bancshares|HBAN",
+  "Synovus|SNV",
+  "PNC Financial|PNC"
+ ],
+ "risks": [
+  "Commercial property lending is a watched exposure across regional banking",
+  "Deposit costs rise when savers move to higher-yielding accounts",
+  "Fraud-related losses hurt results in a recent year",
+  "Regional bank capital rules are being tightened"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year with a 29% net margin",
+  "Its southern footprint grows faster than the national average",
+  "A dividend yield above 4% with consistent buybacks"
+ ],
+ "watch": "Net interest margin and commercial property credit metrics.",
+ "updated": "2026-11"
+}

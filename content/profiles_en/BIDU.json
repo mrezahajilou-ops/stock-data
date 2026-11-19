@@ -1,0 +1,43 @@
+{
+ "t": "BIDU",
+ "what": "Baidu runs China's largest search engine. It also owns iQIYI, a video streaming service, operates the Apollo Go robotaxi fleet, and sells AI cloud services built around its Ernie models.",
+ "customers": "Chinese advertisers buying search and feed advertising, enterprises buying AI cloud services, and consumers using its apps and robotaxis.",
+ "money": [
+  [
+   "Online marketing",
+   "the largest part, declining",
+   "search and feed advertising"
+  ],
+  [
+   "AI Cloud",
+   "growing fastest",
+   "cloud computing and AI model services"
+  ],
+  [
+   "iQIYI and other",
+   "meaningful",
+   "video streaming subscriptions and advertising"
+  ]
+ ],
+ "moat": "The default search habit of hundreds of millions of Chinese users, plus one of the few domestic large language model and chip stacks built independently of American suppliers.",
+ "rivals": [
+  "Tencent|TCEHY",
+  "Alibaba|BABA",
+  "ByteDance",
+  "Kuaishou",
+  "Pony.ai|PONY"
+ ],
+ "risks": [
+  "It reported a loss in the latest period after investment write-downs",
+  "Search advertising revenue is being taken by short video platforms",
+  "Chinese regulatory and geopolitical risk affects US-listed Chinese shares",
+  "Robotaxi expansion consumes cash with no profit yet"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $28 billion against $17 billion of debt",
+  "Apollo Go operates one of the largest robotaxi fleets in the world by rides"
+ ],
+ "watch": "AI Cloud revenue growth and whether advertising revenue stabilises.",
+ "updated": "2026-11"
+}

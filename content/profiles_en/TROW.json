@@ -1,0 +1,33 @@
+{
+ "t": "TROW",
+ "what": "T. Rowe Price manages money. It runs actively managed mutual funds and retirement accounts, mainly for American savers, and is one of the largest providers of target date retirement funds.",
+ "customers": "Individual savers through retirement plans and brokerages, financial advisers, and institutional clients.",
+ "money": [
+  [
+   "Investment advisory fees",
+   "almost all of revenue",
+   "fees on assets under management"
+  ]
+ ],
+ "moat": "Target date retirement funds that savers contribute to automatically every payday, which keeps money flowing in regardless of short-term performance.",
+ "rivals": [
+  "BlackRock|BLK",
+  "Vanguard",
+  "Fidelity Investments",
+  "Franklin Resources|BEN",
+  "Capital Group"
+ ],
+ "risks": [
+  "Money has been moving from active funds to index funds for a decade",
+  "Revenue grew only about 3% last year",
+  "Fee rates fall as competition pushes prices down",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Operating margin of 30% with cash of $3.8 billion against almost no debt",
+  "A dividend yield near 5% with a long record of increases",
+  "Target date funds keep receiving contributions automatically"
+ ],
+ "watch": "Net client flows and the average fee rate on assets.",
+ "updated": "2026-11"
+}

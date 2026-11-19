@@ -1,0 +1,33 @@
+{
+ "t": "RBRK",
+ "what": "Rubrik sells data security and backup software. It copies an organisation's data in a form attackers cannot alter, so that after a ransomware attack the business can be restored rather than ransomed.",
+ "customers": "Large enterprises, government agencies and healthcare organisations protecting their data.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "cloud and software subscriptions for data protection and recovery"
+  ]
+ ],
+ "moat": "Immutable backups integrated across cloud, on-premises and software-as-a-service data, where a customer's recovery plan is built around its tooling and tested against it.",
+ "rivals": [
+  "Veeam",
+  "Cohesity",
+  "Commvault|CVLT",
+  "Dell Technologies|DELL",
+  "Veritas"
+ ],
+ "risks": [
+  "It makes a significant operating loss because of large stock-based compensation",
+  "Competition in backup and data protection is intense",
+  "Analyst targets imply the shares are already fully valued",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 48% last year and about 30% a year over three years",
+  "Gross margin of 80% with cash of $1.7 billion against almost no debt",
+  "Ransomware recovery has become a board-level spending priority"
+ ],
+ "watch": "Subscription annual recurring revenue growth and progress toward profitability.",
+ "updated": "2026-11"
+}

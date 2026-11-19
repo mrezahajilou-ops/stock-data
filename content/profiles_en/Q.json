@@ -1,0 +1,38 @@
+{
+ "t": "Q",
+ "what": "Qnity makes the materials used to manufacture semiconductors and electronics: chemical mechanical planarisation slurries and pads, photoresists and specialty chemicals, and advanced packaging materials. It was separated from DuPont.",
+ "customers": "Semiconductor manufacturers and foundries, advanced packaging houses and electronics manufacturers worldwide.",
+ "money": [
+  [
+   "Semiconductor Technologies",
+   "the larger part",
+   "chemical mechanical planarisation, lithography and specialty materials"
+  ],
+  [
+   "Interconnect Solutions",
+   "large",
+   "materials for printed circuit boards and advanced packaging"
+  ]
+ ],
+ "moat": "Materials qualified into specific chip manufacturing processes, where changing supplier requires requalifying the whole production line.",
+ "rivals": [
+  "Entegris|ENTG",
+  "Shin-Etsu Chemical",
+  "JSR",
+  "Merck KGaA (EMD)",
+  "Fujifilm Electronic Materials"
+ ],
+ "risks": [
+  "Chip manufacturing demand is cyclical",
+  "Debt of about $4.5 billion from the separation",
+  "Return on invested capital of about 6% reflects the separation's cost base",
+  "It is newly independent with a short record as a standalone company"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year with a 20% operating margin",
+  "Analysts see about 47% upside from current levels",
+  "Advanced packaging for AI chips uses far more of its materials per device"
+ ],
+ "watch": "Semiconductor Technologies revenue growth and advanced packaging material demand.",
+ "updated": "2026-11"
+}

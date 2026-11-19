@@ -1,0 +1,38 @@
+{
+ "t": "LUV",
+ "what": "Southwest Airlines is a major US domestic airline. It flies only Boeing 737s, serves mostly point-to-point routes rather than hubs, and for decades let passengers check bags free and choose seats on boarding, both of which it has now changed.",
+ "customers": "American leisure and business travellers flying domestically and to nearby international destinations.",
+ "money": [
+  [
+   "Passenger",
+   "almost all of revenue",
+   "ticket revenue, now including bag and seat fees"
+  ],
+  [
+   "Other",
+   "small",
+   "loyalty programme payments from card partners and cargo"
+  ]
+ ],
+ "moat": "A single aircraft type that simplifies maintenance and crew scheduling, plus a brand built on customer goodwill, though both advantages have narrowed.",
+ "rivals": [
+  "Delta Air Lines|DAL",
+  "United Airlines|UAL",
+  "American Airlines|AAL",
+  "Spirit Airlines|SAVE",
+  "Alaska Air Group|ALK"
+ ],
+ "risks": [
+  "Operating margin of about 2% is far below its historical level and below major rivals",
+  "A December 2022 operational meltdown damaged its reputation and brought regulatory penalties",
+  "Charging for bags and assigning seats removes the differences customers chose it for",
+  "Boeing delivery delays have limited fleet growth"
+ ],
+ "opportunities": [
+  "New revenue from bag fees, assigned seating and premium rows adds billions annually",
+  "An activist investor has pushed through cost and revenue changes",
+  "Debt of about $7 billion against $3.6 billion of cash is modest for an airline"
+ ],
+ "watch": "Revenue per available seat mile and the margin gap against Delta and United.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,33 @@
+{
+ "t": "GPN",
+ "what": "Global Payments processes card payments for merchants and provides software that runs restaurants, clinics and shops. It sold its issuer processing business and bought Worldpay, making merchant payments its whole focus.",
+ "customers": "Merchants of all sizes worldwide, from single restaurants to large enterprises, often through software its systems sit inside.",
+ "money": [
+  [
+   "Merchant Solutions",
+   "almost all of revenue",
+   "payment processing, point-of-sale software and merchant services"
+  ]
+ ],
+ "moat": "Payment processing embedded inside industry-specific software that runs a business's daily operations, which makes switching processors a change to the whole workflow.",
+ "rivals": [
+  "Fiserv|FI",
+  "Adyen",
+  "Block|XYZ",
+  "Stripe",
+  "Shift4 Payments|FOUR"
+ ],
+ "risks": [
+  "It reported a loss in the latest period, largely from the divested business",
+  "Debt of about $23 billion after the Worldpay acquisition",
+  "Revenue was flat last year and has fallen about 5% a year over three years",
+  "Integrating Worldpay while divesting the issuer business is a large undertaking"
+ ],
+ "opportunities": [
+  "Analysts see about 29% upside from current levels",
+  "Operating margin of 23% with gross margin of 73%",
+  "Combining with Worldpay creates one of the largest merchant acquirers in the world"
+ ],
+ "watch": "Organic merchant revenue growth and Worldpay integration milestones.",
+ "updated": "2026-11"
+}

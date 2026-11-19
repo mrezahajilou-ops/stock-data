@@ -1,0 +1,37 @@
+{
+ "t": "AXON",
+ "what": "Axon makes the Taser and the body cameras police officers wear, and the Evidence.com software that stores and manages the footage. The hardware is the way in; the software subscription is the business.",
+ "customers": "Police departments and other law enforcement agencies, plus federal agencies, corrections, and increasingly private security and retail.",
+ "money": [
+  [
+   "Software and Sensors",
+   "the larger part",
+   "body cameras, in-car video, drones and Evidence.com subscriptions"
+  ],
+  [
+   "Taser",
+   "large",
+   "conducted energy devices and cartridges"
+  ]
+ ],
+ "moat": "An agency's entire evidence workflow runs on its software, with multi-year contracts, so replacing it means retraining officers and migrating years of footage.",
+ "rivals": [
+  "Motorola Solutions|MSI",
+  "Digital Ally|DGLY",
+  "Wrap Technologies|WRAP",
+  "Cellebrite|CLBT"
+ ],
+ "risks": [
+  "It reported an operating loss after large stock-based compensation charges",
+  "Government budget cycles determine when agencies buy",
+  "The shares trade at a very high multiple of revenue",
+  "Public scrutiny of policing technology can slow adoption"
+ ],
+ "opportunities": [
+  "Revenue grew about 33% last year and about 33% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Drones, licence plate readers and AI report writing extend it well beyond cameras"
+ ],
+ "watch": "Annual recurring revenue and the contracted future bookings balance.",
+ "updated": "2026-11"
+}

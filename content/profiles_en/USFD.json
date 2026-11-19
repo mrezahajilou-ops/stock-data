@@ -1,0 +1,32 @@
+{
+ "t": "USFD",
+ "what": "US Foods distributes food and supplies to restaurants, hospitals, schools and hotels. It is the second-largest foodservice distributor in the United States after Sysco.",
+ "customers": "Independent restaurants above all, plus chains, healthcare and education caterers and hospitality operators.",
+ "money": [
+  [
+   "Foodservice distribution",
+   "almost all of revenue",
+   "food, equipment and supplies delivered to kitchens"
+  ]
+ ],
+ "moat": "A warehouse and delivery network reaching hundreds of thousands of kitchens, with own-brand products that independent restaurants cannot buy elsewhere.",
+ "rivals": [
+  "Sysco|SYY",
+  "Performance Food Group|PFGC",
+  "Gordon Food Service",
+  "McLane (Berkshire)|BRK.B"
+ ],
+ "risks": [
+  "Net margin of about 2% is thin, as is normal in distribution",
+  "Restaurant traffic falls when consumers cut back on eating out",
+  "Debt of about $5 billion against almost no cash",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year",
+  "Independent restaurants, its most profitable customers, grow faster than chains",
+  "Own-brand products carry better margins than national brands"
+ ],
+ "watch": "Independent restaurant case growth and gross profit per case.",
+ "updated": "2026-11"
+}

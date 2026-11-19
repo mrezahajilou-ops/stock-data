@@ -1,0 +1,43 @@
+{
+ "t": "MKL",
+ "what": "Markel Group is a holding company built around specialty insurance. It underwrites risks the standard market will not take, invests the premium float in shares and bonds, and owns a group of unrelated operating businesses outright.",
+ "customers": "Businesses buying specialty insurance and reinsurance, plus the customers of the manufacturing and services businesses it owns.",
+ "money": [
+  [
+   "Insurance",
+   "the largest part",
+   "specialty property, casualty and professional lines"
+  ],
+  [
+   "Investments",
+   "meaningful, volatile",
+   "returns on an equity-heavy investment portfolio"
+  ],
+  [
+   "Markel Ventures",
+   "growing",
+   "wholly owned businesses in construction, manufacturing and consumer products"
+  ]
+ ],
+ "moat": "An underwriting culture that walks away from underpriced business, combined with a long-term equity investment approach that compounds the float.",
+ "rivals": [
+  "Berkshire Hathaway|BRK.B",
+  "W. R. Berkley|WRB",
+  "Arch Capital|ACGL",
+  "Fairfax Financial",
+  "RLI|RLI"
+ ],
+ "risks": [
+  "Its large equity portfolio means reported earnings swing with the stock market",
+  "Reserve strengthening in its reinsurance lines has hurt results",
+  "It pays no dividend",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "Markel Ventures now contributes meaningful earnings unrelated to insurance",
+  "Revenue grew about 10% a year over three years",
+  "A long record of growing book value per share"
+ ],
+ "watch": "The insurance combined ratio and growth in book value per share.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "RL",
+ "what": "Ralph Lauren designs and sells apparel, accessories, footwear, fragrance and home products under the Polo Ralph Lauren, Ralph Lauren Collection and related brands. It has spent years raising prices and cutting discounting.",
+ "customers": "Consumers in North America, Europe and Asia, through its own stores and website and selected wholesale partners.",
+ "money": [
+  [
+   "North America",
+   "the largest part",
+   "retail stores, outlets and wholesale"
+  ],
+  [
+   "Europe",
+   "large",
+   "retail and wholesale across European markets"
+  ],
+  [
+   "Asia",
+   "growing fastest",
+   "China, Japan and other Asian markets"
+  ]
+ ],
+ "moat": "A brand built over almost sixty years around a consistent American aesthetic, with enough pricing power that it can walk away from discount channels.",
+ "rivals": [
+  "Tapestry|TPR",
+  "PVH|PVH",
+  "Capri Holdings|CPRI",
+  "Burberry",
+  "Hugo Boss"
+ ],
+ "risks": [
+  "Apparel demand is discretionary and falls in a downturn",
+  "Tariffs on imported clothing raise costs",
+  "Chinese consumer demand for Western brands has been uneven",
+  "Counterfeiting and brand dilution are persistent issues"
+ ],
+ "opportunities": [
+  "Revenue grew about 15% last year with a 70% gross margin",
+  "Return on invested capital of 17% after years of reducing discounting",
+  "Asian revenue is growing much faster than North America"
+ ],
+ "watch": "Average unit retail price and Asian revenue growth.",
+ "updated": "2026-11"
+}

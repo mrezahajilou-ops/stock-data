@@ -1,0 +1,38 @@
+{
+ "t": "STZ",
+ "what": "Constellation Brands sells beer, wine and spirits in the United States. Its beer business holds the US rights to Modelo Especial, Corona and Pacifico, which is where nearly all of its profit comes from.",
+ "customers": "American beer and wine drinkers through supermarkets, convenience stores, restaurants and bars.",
+ "money": [
+  [
+   "Beer",
+   "almost all of profit",
+   "Modelo Especial, Corona Extra, Pacifico and Victoria in the US"
+  ],
+  [
+   "Wine and Spirits",
+   "smaller, shrinking",
+   "Kim Crawford, The Prisoner, Meiomi and spirits brands"
+  ]
+ ],
+ "moat": "Perpetual US rights to the fastest-growing large beer brands in the country, which it cannot lose and a competitor cannot buy.",
+ "rivals": [
+  "Anheuser-Busch InBev|BUD",
+  "Molson Coors|TAP",
+  "Heineken",
+  "Boston Beer|SAM",
+  "Diageo|DEO"
+ ],
+ "risks": [
+  "Revenue fell about 10% last year as Hispanic consumer spending weakened",
+  "Immigration enforcement has reduced going-out occasions among a core customer group",
+  "Debt of about $10 billion against almost no cash",
+  "The wine business has been shrinking and parts were sold at a loss"
+ ],
+ "opportunities": [
+  "Operating margin of 30% in beer is among the best in the industry",
+  "Modelo Especial is now the top-selling beer brand in the United States",
+  "Selling the weaker wine brands concentrates the company on its best business"
+ ],
+ "watch": "Beer depletions and shipment volumes, and Hispanic consumer spending trends.",
+ "updated": "2026-11"
+}

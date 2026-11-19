@@ -1,0 +1,43 @@
+{
+ "t": "EXPD",
+ "what": "Expeditors International arranges freight. It books space on ships and aircraft, handles customs clearance and manages supply chains for importers and exporters, but owns no ships or planes of its own.",
+ "customers": "Manufacturers, retailers and distributors moving goods internationally, especially between Asia and North America.",
+ "money": [
+  [
+   "Airfreight services",
+   "large",
+   "air cargo booking and handling"
+  ],
+  [
+   "Ocean freight and ocean services",
+   "large",
+   "container shipping arrangement"
+  ],
+  [
+   "Customs brokerage and other",
+   "large",
+   "customs clearance, warehousing and distribution"
+  ]
+ ],
+ "moat": "An asset-light model that earns a spread on freight whichever way rates move, run by a company whose staff are paid from branch profit rather than volume.",
+ "rivals": [
+  "Kuehne+Nagel",
+  "DSV",
+  "C.H. Robinson|CHRW",
+  "DHL Global Forwarding",
+  "Flexport"
+ ],
+ "risks": [
+  "Freight rates collapsed from pandemic highs, and revenue fell about 13% a year over three years",
+  "Tariffs and trade disruption change shipping patterns unpredictably",
+  "It has no long-term contracts with customers",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Return on invested capital of 27% with cash exceeding debt",
+  "Revenue grew about 4% last year as volumes stabilised",
+  "Owning no assets means it stays profitable even in the worst freight markets"
+ ],
+ "watch": "Airfreight and ocean tonnage volumes and net revenue per shipment.",
+ "updated": "2026-11"
+}

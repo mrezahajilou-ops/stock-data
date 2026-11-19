@@ -1,0 +1,43 @@
+{
+ "t": "PFG",
+ "what": "Principal Financial Group manages retirement plans, mainly for small and medium-sized American employers, and runs an asset manager and an international insurance business across Latin America and Asia.",
+ "customers": "Small and mid-sized employers offering retirement plans, individual savers, and institutional investors in its funds.",
+ "money": [
+  [
+   "Retirement and Income Solutions",
+   "the largest part",
+   "workplace retirement plans and annuities"
+  ],
+  [
+   "Principal Asset Management",
+   "large",
+   "investment management fees"
+  ],
+  [
+   "Benefits and Protection",
+   "meaningful",
+   "group life, disability and dental insurance"
+  ]
+ ],
+ "moat": "Relationships with tens of thousands of small employers, which are expensive for competitors to win one at a time but very sticky once established.",
+ "rivals": [
+  "Voya Financial|VOYA",
+  "Empower",
+  "Fidelity Investments",
+  "Prudential Financial|PRU",
+  "MetLife|MET"
+ ],
+ "risks": [
+  "Revenue fell about 3% last year and about 4% a year over three years",
+  "Fee income falls when markets fall",
+  "Asset management has seen industry-wide outflows",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "A dividend yield around 3% with consistent buybacks",
+  "Small business retirement plan coverage is expanding under state mandates",
+  "Group benefits revenue grows with employment and wages"
+ ],
+ "watch": "Retirement plan net cash flows and asset management net flows.",
+ "updated": "2026-11"
+}

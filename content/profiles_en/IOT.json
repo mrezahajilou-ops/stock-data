@@ -1,0 +1,33 @@
+{
+ "t": "IOT",
+ "what": "Samsara sells software and hardware for managing vehicle fleets and industrial equipment. Its dashboard cameras, sensors and platform track where vehicles are, how they are driven, and what equipment is doing.",
+ "customers": "Trucking and delivery fleets, construction, utilities, local government, and field service operations.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "connected operations platform subscriptions per vehicle or asset"
+  ]
+ ],
+ "moat": "Once a fleet's safety programme, insurance discounts and maintenance scheduling run on its data, removing it means losing the record and the processes built on it.",
+ "rivals": [
+  "Motive",
+  "Geotab",
+  "Trimble|TRMB",
+  "Lytx",
+  "Verizon Connect|VZ"
+ ],
+ "risks": [
+  "It still makes a small operating loss because of large stock-based compensation",
+  "Freight market weakness reduces fleet sizes and therefore subscriptions",
+  "Competition in fleet telematics is crowded",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 30% last year and about 35% a year over three years",
+  "Gross margin of 77% with strong free cash flow despite the accounting loss",
+  "Expanding beyond vehicles into equipment and site monitoring widens the market"
+ ],
+ "watch": "Annual recurring revenue and the number of customers above $100,000 a year.",
+ "updated": "2026-11"
+}

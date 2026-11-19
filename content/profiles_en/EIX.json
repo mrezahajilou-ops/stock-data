@@ -1,0 +1,32 @@
+{
+ "t": "EIX",
+ "what": "Edison International owns Southern California Edison, which delivers electricity to about 15 million people across central, coastal and southern California. It delivers power but generates relatively little of it.",
+ "customers": "Households, businesses and industry across a 50,000 square mile service area in southern California.",
+ "money": [
+  [
+   "Southern California Edison",
+   "almost all of revenue",
+   "regulated electricity delivery"
+  ]
+ ],
+ "moat": "A delivery monopoly across a large and wealthy service territory, with rates set by California regulators.",
+ "rivals": [
+  "PG&E|PCG",
+  "Sempra|SRE",
+  "San Diego Gas and Electric",
+  "Los Angeles Department of Water and Power"
+ ],
+ "risks": [
+  "Wildfire liability is the dominant risk and California law holds utilities liable even without negligence",
+  "The January 2025 Eaton fire has produced very large claims against it",
+  "Debt of about $42 billion against almost no cash",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "A dividend yield above 5%",
+  "The California wildfire fund provides a buffer against catastrophic claims",
+  "Electrification of cars and heating in California raises long-term demand"
+ ],
+ "watch": "Eaton fire claims and recovery from the wildfire fund, and undergrounding progress.",
+ "updated": "2026-11"
+}

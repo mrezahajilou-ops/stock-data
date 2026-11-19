@@ -560,7 +560,7 @@
       return '<tr><td>' + esc(a.firm || D) + '</td><td>' + esc(rating) + '</td><td>' + T(ACT[a.act] || (a.act || '')) + '</td><td>' + B(ptxt) + '</td><td>' + B(a.pt ? sp(a.pt / px - 1) : D) + '</td><td>' + sdate(dte) + '</td></tr>';
     });
     var actions = acts.length ? '<section class="card"><h2>' + T('Latest analyst actions') + '</h2><div class="fb-tw"><table class="fb-t"><thead><tr><th>' + T('Firm') + '</th><th>' + T('Rating') + '</th><th>' + T('Action') + '</th><th>' + T('Price target') + '</th><th>' + T('Upside') + '</th><th>' + T('Date') + '</th></tr></thead><tbody>' + acts.join('') + '</tbody></table></div></section>' : '';
-    return lead + '<div class="fc-2">' + priceCard + rateCard + '</div>' + chart + est + actions;
+    return '<div class="fc-root">' + lead + '<div class="fc-2">' + priceCard + rateCard + '</div>' + chart + est + actions + '</div>';
   }
 
   // ---------------------------------------------------------------- data loading

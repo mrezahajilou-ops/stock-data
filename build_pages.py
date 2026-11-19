@@ -6,8 +6,20 @@ Output: pages/pages.jsonl  - one JSON object per line: {"handle", "fields": {...
 The text is written in Persian from the same numbers and checks the interactive tool uses,
 so every page is unique, factual and indexable (it is rendered server-side by the theme).
 """
-import json, os, glob, datetime as dt
+import json, os, glob, re, datetime as dt
 from collections import defaultdict
+
+# A Latin word inside a Persian sentence flips the reading order around it, so every Latin run
+# is wrapped in Unicode isolates (FSI … PDI): the run keeps its own direction and the Persian
+# text around it stays right-to-left. Invisible characters, so they work in HTML and in Liquid.
+_LAT = re.compile(r"[A-Za-z][A-Za-z0-9&+.\-'’]*(?:[ ][A-Za-z0-9][A-Za-z0-9&+.\-'’]*)*")
+
+
+def iso(s):
+    """Isolate Latin runs in Persian text so they do not break the right-to-left order."""
+    if not s:
+        return s
+    return _LAT.sub(lambda m: '⁨' + m.group(0) + '⁩', s)
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
 SRC = os.path.join(ROOT, 'data', 'stocks')
@@ -24,10 +36,10 @@ def about(t):
     for r in p.get('rivals') or []:
         n, _, rt = str(r).partition('|')
         rv.append({'n': n.strip(), 't': rt.strip() or None})
-    return {'what': p.get('what'), 'problem': p.get('problem'), 'customers': p.get('customers'),
-            'money': [{'s': m[0], 'w': m[1] if len(m) > 1 else '', 'h': m[2] if len(m) > 2 else ''} for m in p.get('money') or []],
-            'moat': p.get('moat'), 'rivals': rv, 'risks': p.get('risks') or [],
-            'opportunities': p.get('opportunities') or [], 'watch': p.get('watch'),
+    return {'what': iso(p.get('what')), 'problem': iso(p.get('problem')), 'customers': iso(p.get('customers')),
+            'money': [{'s': iso(m[0]), 'w': iso(m[1]) if len(m) > 1 else '', 'h': iso(m[2]) if len(m) > 2 else ''} for m in p.get('money') or []],
+            'moat': iso(p.get('moat')), 'rivals': rv, 'risks': [iso(x) for x in p.get('risks') or []],
+            'opportunities': [iso(x) for x in p.get('opportunities') or []], 'watch': iso(p.get('watch')),
             'updated_fa': month_fa(p.get('updated'))}
 
 

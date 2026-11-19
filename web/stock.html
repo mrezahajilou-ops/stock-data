@@ -536,6 +536,9 @@ function applyLive(d){
 function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n))return n;var keep={'INC':'Inc.','CORP':'Corp.','CO':'Co.','LTD':'Ltd.','PLC':'PLC','LLC':'LLC','SA':'SA','NV':'NV','AG':'AG','SE':'SE','ADR':'ADR','ETF':'ETF','USA':'USA','US':'US','UK':'UK','AI':'AI','IT':'IT','DE':'de','/DE/':'','/MD/':'','/NEW/':'','/PA/':'','/TX/':''};
   return n.split(/\s+/).map(function(w){var k=w.replace(/[.,]/g,'');if(keep.hasOwnProperty(k))return keep[k];if(/^[A-Z]{1,2}$/.test(k)||/\d/.test(w)||/^[A-Z]&[A-Z]$/.test(k))return w;return w.charAt(0)+w.slice(1).toLowerCase()}).filter(Boolean).join(' ').replace(/\s+/g,' ').trim()}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+/* یک کلمه‌ی لاتین وسط جمله‌ی فارسی ترتیب راست‌به‌چپ را به هم می‌ریزد: هر تکه‌ی لاتین را با
+   جداکننده‌های یونیکد (FSI … PDI) ایزوله می‌کنیم تا جهت متن فارسی اطرافش دست‌نخورده بماند. */
+function escFa(t){return esc(String(t==null?'':t).replace(/[A-Za-z][A-Za-z0-9&+.\-'’]*(?: [A-Za-z0-9][A-Za-z0-9&+.\-'’]*)*/g,function(m){return '⁨'+m+'⁩'}))}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}
 function pct(v,d){if(v==null||!isFinite(v))return '—';if(Math.abs(v)>10)return '<span title="بیش از ۱۰۰۰٪ — پایه‌ی محاسبه خیلی کوچک است">n/m</span>';return '\u2066'+(v*100).toFixed(d==null?1:d)+'%\u2069'}
@@ -1093,17 +1096,17 @@ function loadAbout(d){
     if(cur!==d) return; var P=x[0], O=x[1]&&x[1].data, h='';
     var lnk=function(s){var m=String(s).match(/^(.*)\|([A-Z.\-]{1,6})$/);return m?'<a href="/pages/stock#'+esc(m[2])+'">'+esc(m[1])+' <bdi>('+esc(m[2])+')</bdi></a>':esc(s)};
     if(P){
-      h='<h3>'+esc(P.title||('این شرکت چه کار می‌کند؟'))+'</h3><p class="ab-lead">'+esc(P.what)+'</p>'+
+      h='<h3>'+esc(P.title||('این شرکت چه کار می‌کند؟'))+'</h3><p class="ab-lead">'+escFa(P.what)+'</p>'+
         /* one compact grid: every block the same style, no full-width cards with empty space */
         '<div class="ab-grid">'+
-        (P.problem?'<div><b>چه مشکلی را حل می‌کند؟</b><p>'+esc(P.problem)+'</p></div>':'')+
-        (P.customers?'<div><b>مشتری‌هایش کی‌اند؟</b><p>'+esc(P.customers)+'</p></div>':'')+
-        (P.moat?'<div><b>مزیت رقابتی</b><p>'+esc(P.moat)+'</p></div>':'')+
-        (P.money&&P.money.length?'<div class="ab-money-box"><b>چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+esc(m[0])+(m[1]?' <i>'+esc(m[1])+'</i>':'')+'</span>'+(m[2]?' <small>'+esc(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
-        (P.risks&&P.risks.length?'<div><b>ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
-        (P.opportunities&&P.opportunities.length?'<div><b>فرصت‌های مهم</b><ul class="ab-risk">'+P.opportunities.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
+        (P.problem?'<div><b>چه مشکلی را حل می‌کند؟</b><p>'+escFa(P.problem)+'</p></div>':'')+
+        (P.customers?'<div><b>مشتری‌هایش کی‌اند؟</b><p>'+escFa(P.customers)+'</p></div>':'')+
+        (P.moat?'<div><b>مزیت رقابتی</b><p>'+escFa(P.moat)+'</p></div>':'')+
+        (P.money&&P.money.length?'<div class="ab-money-box"><b>چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+escFa(m[0])+(m[1]?' <i>'+escFa(m[1])+'</i>':'')+'</span>'+(m[2]?' <small>'+escFa(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
+        (P.risks&&P.risks.length?'<div><b>ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+escFa(r)+'</li>'}).join('')+'</ul></div>':'')+
+        (P.opportunities&&P.opportunities.length?'<div><b>فرصت‌های مهم</b><ul class="ab-risk">'+P.opportunities.map(function(r){return '<li>'+escFa(r)+'</li>'}).join('')+'</ul></div>':'')+
         (P.rivals&&P.rivals.length?'<div><b>رقبای اصلی</b><p class="ab-riv">'+P.rivals.map(lnk).join('، ')+'</p></div>':'')+
-        (P.watch?'<div><b>چه چیزی را دنبال کنیم؟</b><p>'+esc(P.watch)+'</p></div>':'')+
+        (P.watch?'<div><b>چه چیزی را دنبال کنیم؟</b><p>'+escFa(P.watch)+'</p></div>':'')+
         '</div>'+
         '<p class="xnote">این معرفی بر اساس توضیحات رسمی شرکت و گزارش سالانه‌اش به SEC نوشته شده'+(P.updated?' (بازبینی: <bdi>'+esc(P.updated)+'</bdi>)':'')+'. سهم هر بخش از درآمد تقریبیه.'+(O&&O.web?' · <a target="_blank" rel="noopener nofollow" href="'+esc(/^https?:/.test(O.web)?O.web:'https://'+O.web)+'">سایت شرکت</a>':'')+'</p>';
     } else if(O&&O.desc){

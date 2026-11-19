@@ -1,0 +1,43 @@
+{
+ "t": "CVS",
+ "what": "CVS Health is three businesses in one: about 9,000 retail pharmacies, Caremark, one of the largest pharmacy benefit managers, and Aetna, a large health insurer. Money, medicines and patients move between the three.",
+ "customers": "Consumers filling prescriptions, employers and health plans buying pharmacy benefits, and members of Aetna health plans.",
+ "money": [
+  [
+   "Health Services (Caremark)",
+   "the largest by revenue",
+   "negotiating drug prices and processing claims for health plans and employers"
+  ],
+  [
+   "Health Care Benefits (Aetna)",
+   "large",
+   "medical, Medicare and dental insurance premiums"
+  ],
+  [
+   "Pharmacy and Consumer Wellness",
+   "large",
+   "retail pharmacy and front-of-store sales"
+  ]
+ ],
+ "moat": "Scale in drug purchasing that smaller benefit managers cannot match, combined with an insurer and a pharmacy chain that direct patients to each other.",
+ "rivals": [
+  "UnitedHealth Group|UNH",
+  "Cigna|CI",
+  "Walgreens Boots Alliance",
+  "Amazon Pharmacy|AMZN",
+  "Elevance Health|ELV"
+ ],
+ "risks": [
+  "Medicare Advantage medical costs rose faster than premiums and hurt profits badly",
+  "Politicians in both US parties have targeted pharmacy benefit managers",
+  "Retail pharmacy foot traffic is declining and stores are being closed",
+  "Debt of about $75 billion limits flexibility"
+ ],
+ "opportunities": [
+  "Repricing Medicare Advantage plans can restore insurance margins over two or three years",
+  "Owning the insurer, the benefit manager and the pharmacy allows cost control rivals cannot copy",
+  "The shares trade at a low multiple of earnings compared with health insurers generally"
+ ],
+ "watch": "The Aetna medical benefit ratio, which shows how much of each premium dollar goes out in claims.",
+ "updated": "2026-11"
+}

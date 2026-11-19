@@ -1,0 +1,37 @@
+{
+ "t": "HCA",
+ "what": "HCA Healthcare runs hospitals. It operates about 190 hospitals and more than 120 surgery centres across 19 US states and England, treating patients and billing insurers, Medicare and Medicaid.",
+ "customers": "Patients, but payment comes from commercial insurers, Medicare, Medicaid and self-paying patients.",
+ "money": [
+  [
+   "Hospital services",
+   "the large majority",
+   "inpatient admissions, emergency care and surgery"
+  ],
+  [
+   "Outpatient and ambulatory",
+   "growing",
+   "freestanding surgery and endoscopy centres and urgent care"
+  ]
+ ],
+ "moat": "Dense hospital networks in fast-growing markets like Texas and Florida, which give it negotiating power with insurers in those regions.",
+ "rivals": [
+  "Tenet Healthcare|THC",
+  "Universal Health Services|UHS",
+  "Community Health Systems|CYH",
+  "Non-profit hospital systems"
+ ],
+ "risks": [
+  "Debt of about $52 billion is high even for a hospital operator",
+  "Nursing and physician labour costs rise faster than reimbursement",
+  "Changes to Medicaid funding and state supplemental payments hit revenue directly",
+  "Uninsured patients produce bad debt that it cannot recover"
+ ],
+ "opportunities": [
+  "Population growth and ageing in its core states raise admission volumes",
+  "Shifting procedures to outpatient centres improves margins",
+  "It has used strong cash flow to buy back a very large share of its stock"
+ ],
+ "watch": "Same-facility admissions and revenue per admission, plus labour cost per patient day.",
+ "updated": "2026-11"
+}

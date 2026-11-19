@@ -1,0 +1,38 @@
+{
+ "t": "FTNT",
+ "what": "Fortinet sells network security. Its FortiGate firewalls sit at the edge of corporate networks and branch offices, and it layers cloud security, secure access and security operations software on top.",
+ "customers": "Enterprises, governments and service providers in more than 100 countries, often mid-sized organisations buying a full security package from one vendor.",
+ "money": [
+  [
+   "Product",
+   "meaningful",
+   "FortiGate firewall appliances built on its own custom chips"
+  ],
+  [
+   "Service",
+   "the larger part",
+   "security subscriptions and support attached to installed appliances"
+  ]
+ ],
+ "moat": "Custom silicon that lets its firewalls run security functions cheaper and faster than software-only rivals, plus an installed base that renews subscriptions for years.",
+ "rivals": [
+  "Palo Alto Networks|PANW",
+  "Cisco|CSCO",
+  "Check Point Software|CHKP",
+  "Zscaler|ZS",
+  "CrowdStrike|CRWD"
+ ],
+ "risks": [
+  "Firewall hardware sales are lumpy and were hit by a long inventory digestion period",
+  "Security spending is shifting toward cloud-native vendors",
+  "Competition in secure access and cloud security is intense",
+  "Growth has settled into the mid teens from much faster earlier rates"
+ ],
+ "opportunities": [
+  "Return on invested capital above 70% shows unusually efficient economics",
+  "Service subscriptions renew on an installed base of millions of devices",
+  "Secure access service edge is a new growth area where it can sell to existing customers"
+ ],
+ "watch": "Billings rather than revenue, since subscriptions are recognised over time, and unified access growth.",
+ "updated": "2026-11"
+}

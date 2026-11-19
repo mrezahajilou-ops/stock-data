@@ -1,0 +1,48 @@
+{
+ "t": "GD",
+ "what": "General Dynamics builds nuclear submarines and warships, Abrams tanks and combat vehicles, munitions, military IT systems, and Gulfstream business jets.",
+ "customers": "The US Navy and Army above all, allied governments, and corporate and private buyers of Gulfstream jets.",
+ "money": [
+  [
+   "Marine Systems",
+   "the largest part",
+   "Virginia and Columbia class submarines and naval ships"
+  ],
+  [
+   "Aerospace",
+   "large, highest margin",
+   "Gulfstream business jets and their servicing"
+  ],
+  [
+   "Technologies",
+   "large",
+   "military IT, communications and mission systems"
+  ],
+  [
+   "Combat Systems",
+   "meaningful",
+   "Abrams tanks, armoured vehicles and ammunition"
+  ]
+ ],
+ "moat": "Only two US yards can build nuclear submarines, and Gulfstream holds a strong position at the top end of business aviation.",
+ "rivals": [
+  "Lockheed Martin|LMT",
+  "RTX|RTX",
+  "Northrop Grumman|NOC",
+  "Huntington Ingalls|HII",
+  "Bombardier and Dassault in jets"
+ ],
+ "risks": [
+  "Submarine production has run behind schedule and absorbed extra cost",
+  "Business jet demand falls sharply in a downturn",
+  "Government IT contracts are competed aggressively on price",
+  "Shipyard labour shortages constrain output"
+ ],
+ "opportunities": [
+  "The US submarine programme is funded for decades and is being expanded",
+  "Ammunition demand has risen sharply with European rearmament",
+  "Gulfstream's new aircraft models are entering service and lifting deliveries"
+ ],
+ "watch": "Submarine delivery schedules and Gulfstream aircraft deliveries each quarter.",
+ "updated": "2026-11"
+}

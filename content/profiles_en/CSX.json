@@ -1,0 +1,42 @@
+{
+ "t": "CSX",
+ "what": "CSX runs a freight railroad across the eastern United States, moving coal, chemicals, cars, farm goods and intermodal containers over roughly 20,000 route miles between the Atlantic coast and the Mississippi.",
+ "customers": "Manufacturers, energy and chemical producers, carmakers, farm shippers and intermodal logistics firms.",
+ "money": [
+  [
+   "Merchandise",
+   "the largest part",
+   "chemicals, agricultural goods, metals, cars and forest products"
+  ],
+  [
+   "Intermodal",
+   "meaningful",
+   "containers and trailers moved between ports, terminals and inland markets"
+  ],
+  [
+   "Coal",
+   "declining",
+   "thermal and metallurgical coal for power plants and export"
+  ]
+ ],
+ "moat": "Track that cannot be rebuilt: rights of way through the eastern US are effectively unobtainable, leaving only two railroads serving the region.",
+ "rivals": [
+  "Norfolk Southern|NSC",
+  "Union Pacific|UNP",
+  "Trucking companies",
+  "Canadian Pacific Kansas City|CP"
+ ],
+ "risks": [
+  "Volumes have been falling as coal declines and industrial demand softens",
+  "Service problems invite shipper complaints and regulatory attention",
+  "Rail unions and safety rules raise operating costs",
+  "A proposed rail merger elsewhere in the industry could reshape competition"
+ ],
+ "opportunities": [
+  "Rail is far cheaper and lower-emission than trucking for long hauls",
+  "Industrial plants being built along its network create new freight",
+  "Operating margins above 30% mean recovering volumes would lift profit quickly"
+ ],
+ "watch": "The operating ratio and carload volumes by commodity group.",
+ "updated": "2026-11"
+}

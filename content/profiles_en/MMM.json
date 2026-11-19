@@ -1,0 +1,43 @@
+{
+ "t": "MMM",
+ "what": "3M makes industrial and consumer products built on its materials science: adhesives and tapes, abrasives, films for screens and vehicles, respirators and personal safety gear, and Post-it and Scotch consumer brands.",
+ "customers": "Manufacturers, carmakers, electronics firms, construction and safety buyers, and consumers through retailers.",
+ "money": [
+  [
+   "Safety and Industrial",
+   "the largest part",
+   "abrasives, tapes, adhesives, respirators and industrial films"
+  ],
+  [
+   "Transportation and Electronics",
+   "large",
+   "films and materials for vehicles, displays and electronics"
+  ],
+  [
+   "Consumer",
+   "smaller",
+   "Post-it, Scotch, Command and Filtrete products"
+  ]
+ ],
+ "moat": "Tens of thousands of patents and a research tradition that lets it sell small, specified components at good margins across many industries.",
+ "rivals": [
+  "Honeywell|HON",
+  "Avery Dennison|AVY",
+  "Illinois Tool Works|ITW",
+  "DuPont|DD",
+  "PPG Industries|PPG"
+ ],
+ "risks": [
+  "Legal settlements over earplugs and PFAS chemicals require payments over many years",
+  "Revenue has barely grown, about 2% in the last financial year",
+  "Industrial demand follows the manufacturing cycle",
+  "Spinning off the healthcare business removed a steadier segment"
+ ],
+ "opportunities": [
+  "Margins have improved under new management through cost cuts and portfolio pruning",
+  "Litigation liabilities are now largely settled with defined payment schedules",
+  "Operating margins near 19% leave room for improvement toward peer levels"
+ ],
+ "watch": "Organic sales growth, which has been the weak point, and free cash flow after legal payments.",
+ "updated": "2026-11"
+}

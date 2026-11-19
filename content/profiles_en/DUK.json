@@ -1,0 +1,37 @@
+{
+ "t": "DUK",
+ "what": "Duke Energy is a regulated electric and gas utility serving the Carolinas, Florida, Indiana, Ohio and Kentucky. State regulators approve what it can charge, based on the cost of its network plus an allowed return.",
+ "customers": "Households, businesses and industrial users across six states, plus natural gas customers.",
+ "money": [
+  [
+   "Electric Utilities and Infrastructure",
+   "the large majority",
+   "generation, transmission and retail electricity supply"
+  ],
+  [
+   "Gas Utilities and Infrastructure",
+   "smaller",
+   "natural gas distribution, mainly through Piedmont"
+  ]
+ ],
+ "moat": "A legal monopoly over the wires in its territories, with returns set by regulators rather than competition.",
+ "rivals": [
+  "Southern Company|SO",
+  "NextEra Energy|NEE",
+  "Dominion Energy|D",
+  "American Electric Power|AEP"
+ ],
+ "risks": [
+  "Debt of about $88 billion makes it very sensitive to interest rates",
+  "Regulators can refuse to let it recover the money it has spent",
+  "Hurricanes in the Carolinas and Florida cause repeated storm damage costs",
+  "Coal plant retirements must be paid for and replaced"
+ ],
+ "opportunities": [
+  "Data centre and manufacturing growth in the Southeast is lifting electricity demand after two flat decades",
+  "A large approved capital plan grows the asset base earnings are calculated on",
+  "A dividend paid for about a century appeals to income investors"
+ ],
+ "watch": "Rate case outcomes and the allowed return on equity in each state.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "ABNB",
+ "what": "Airbnb runs a marketplace for short-term stays. More than five million hosts list homes and rooms, guests book through the site, and Airbnb takes a fee from both sides. It has added experiences and local services on top of stays.",
+ "customers": "Travellers in over 220 countries and the individual hosts and small property managers who list with it.",
+ "money": [
+  [
+   "Stays",
+   "the large majority of revenue",
+   "service fees charged to guests and hosts on each night booked"
+  ],
+  [
+   "Experiences and services",
+   "small but new",
+   "activities, and services such as chefs and photographers offered to guests"
+  ]
+ ],
+ "moat": "Supply that hotels cannot match, built one home at a time over nearly two decades, and a brand so strong that people use it as a verb.",
+ "rivals": [
+  "Booking.com|BKNG",
+  "Expedia (Vrbo)|EXPE",
+  "Marriott Homes & Villas|MAR",
+  "Local rental platforms"
+ ],
+ "risks": [
+  "Cities keep restricting or banning short-term rentals",
+  "Growth in nights booked has slowed into the low teens",
+  "Hotel groups and Booking.com now list private homes too",
+  "Any safety or trust failure damages the brand quickly"
+ ],
+ "opportunities": [
+  "Gross margins above 80% and strong free cash flow fund large buybacks",
+  "New experiences and services can lift revenue per trip without adding homes",
+  "Expansion outside the US and Europe is still early in many markets"
+ ],
+ "watch": "Nights and experiences booked, and whether the new services generate real revenue.",
+ "updated": "2026-11"
+}

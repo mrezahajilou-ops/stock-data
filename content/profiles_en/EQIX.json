@@ -1,0 +1,37 @@
+{
+ "t": "EQIX",
+ "what": "Equinix owns data centres and rents space in them. Its value is not the building but the interconnection: inside its sites, thousands of networks, clouds and companies plug directly into each other.",
+ "customers": "Cloud providers, telecom carriers, financial firms and enterprises renting cabinets, power and cross-connects.",
+ "money": [
+  [
+   "Colocation and interconnection",
+   "the large majority",
+   "rent for space and power, plus fees for direct connections between customers"
+  ],
+  [
+   "xScale and other",
+   "smaller",
+   "large-scale capacity built for hyperscale cloud customers, often in joint ventures"
+  ]
+ ],
+ "moat": "Network effects inside the building: each new network that connects makes the site more valuable to everyone else, and customers rarely unplug.",
+ "rivals": [
+  "Digital Realty|DLR",
+  "Digital Bridge data centres",
+  "CyrusOne",
+  "Amazon Web Services|AMZN"
+ ],
+ "risks": [
+  "Building data centres consumes enormous capital, and debt stands near $24 billion",
+  "Power availability now limits where new capacity can be added",
+  "Hyperscale cloud customers build their own sites for the largest workloads",
+  "Higher interest rates raise financing costs for a capital-hungry model"
+ ],
+ "opportunities": [
+  "AI workloads increase demand for interconnection between clouds and private infrastructure",
+  "Pricing power on renewals because moving racks out is costly and risky",
+  "Joint ventures let it grow hyperscale capacity without carrying all the capital"
+ ],
+ "watch": "Cabinet utilisation, cross-connect counts and growth in adjusted funds from operations per share.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "SNOW",
+ "what": "Snowflake sells a cloud data platform. Companies load their data into it, query it, share it with partners and now build AI applications on top. Customers pay for the compute and storage they actually use.",
+ "customers": "Large and mid-sized companies in every industry, running their analytics and data warehouses on it.",
+ "money": [
+  [
+   "Product revenue",
+   "almost all of revenue",
+   "consumption-based charges for compute and storage"
+  ],
+  [
+   "Professional services",
+   "small",
+   "implementation and training"
+  ]
+ ],
+ "moat": "Data gravity: once a company's data and its queries live in Snowflake, moving them is expensive, and its data-sharing network adds value with each participant.",
+ "rivals": [
+  "Databricks",
+  "Google BigQuery|GOOGL",
+  "Amazon Redshift|AMZN",
+  "Microsoft Fabric|MSFT"
+ ],
+ "risks": [
+  "It is not profitable on reported earnings and lost about $1.1 billion over the last twelve months",
+  "Stock-based compensation is very large relative to revenue",
+  "The big cloud providers sell competing services and also host it",
+  "Consumption pricing means revenue falls immediately if customers optimise their usage"
+ ],
+ "opportunities": [
+  "Revenue is still growing around 29% a year with gross margins near 67%",
+  "AI workloads increase the amount of data companies want to store and query",
+  "Net revenue retention above 100% means existing customers keep spending more"
+ ],
+ "watch": "Product revenue growth, net revenue retention and whether free cash flow keeps improving.",
+ "updated": "2026-11"
+}

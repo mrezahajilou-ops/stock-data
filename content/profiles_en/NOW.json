@@ -1,0 +1,38 @@
+{
+ "t": "NOW",
+ "what": "ServiceNow sells software that automates workflows inside large organisations. It began with IT service desks and now runs HR, customer service, security and AI-driven processes on one platform.",
+ "customers": "Large enterprises and governments; most of its revenue comes from a few thousand big accounts.",
+ "money": [
+  [
+   "Subscription revenue",
+   "almost all of revenue",
+   "annual platform subscriptions, renewed and expanded over time"
+  ],
+  [
+   "Professional services",
+   "small",
+   "implementation and training"
+  ]
+ ],
+ "moat": "Once its platform runs the processes a company depends on daily, replacing it means rebuilding workflows across many departments, so renewal rates are very high.",
+ "rivals": [
+  "Salesforce|CRM",
+  "Microsoft|MSFT",
+  "Atlassian|TEAM",
+  "SAP|SAP",
+  "Workday|WDAY"
+ ],
+ "risks": [
+  "The shares trade at a high multiple, so any slowdown in growth is punished",
+  "Large enterprise deals can slip between quarters",
+  "Stock-based compensation is large relative to reported profit",
+  "Microsoft bundles competing capability into existing agreements"
+ ],
+ "opportunities": [
+  "Revenue has grown above 20% a year with subscription renewal rates among the best in software",
+  "AI agents give it a new product line to sell into accounts it already serves",
+  "Expanding beyond IT into HR, finance and customer service multiplies the addressable spend per client"
+ ],
+ "watch": "Current remaining performance obligations, which show contracted revenue ahead, and net new annual contract value.",
+ "updated": "2026-11"
+}

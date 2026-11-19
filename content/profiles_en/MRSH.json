@@ -1,0 +1,37 @@
+{
+ "t": "MRSH",
+ "what": "Marsh is the world's largest insurance broker. It arranges insurance and reinsurance for companies, advises on risk, and through Mercer advises on pensions and benefits. It does not take insurance risk itself.",
+ "customers": "Large and mid-sized companies, public bodies and insurers needing reinsurance.",
+ "money": [
+  [
+   "Risk and Insurance Services",
+   "the larger part",
+   "insurance broking and reinsurance broking through Guy Carpenter"
+  ],
+  [
+   "Consulting",
+   "meaningful",
+   "pension and benefits advice through Mercer, and management consulting"
+  ]
+ ],
+ "moat": "Client relationships that renew every year, data on pricing across the market, and scale that smaller brokers cannot match in complex risks.",
+ "rivals": [
+  "Aon|AON",
+  "Willis Towers Watson|WTW",
+  "Arthur J. Gallagher|AJG",
+  "Brown & Brown|BRO"
+ ],
+ "risks": [
+  "Commission income falls when insurance prices soften after a hard market",
+  "Acquisitions have added debt of about $21 billion",
+  "Consulting demand weakens in a downturn",
+  "Regulators periodically examine broker commission arrangements"
+ ],
+ "opportunities": [
+  "Revenue is largely recurring because policies renew annually",
+  "Growth in cyber, climate and political risk creates demand for advice",
+  "It takes no underwriting risk, so earnings are far steadier than an insurer's"
+ ],
+ "watch": "Underlying revenue growth, which strips out acquisitions and currency.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "ICE",
+ "what": "Intercontinental Exchange owns exchanges and market data businesses. It runs the New York Stock Exchange, energy and interest-rate futures markets, bond pricing services and most of the software used to process US mortgages.",
+ "customers": "Banks, asset managers, energy traders, listed companies and US mortgage lenders.",
+ "money": [
+  [
+   "Exchanges",
+   "the largest part",
+   "futures, options and equity trading, clearing and listings"
+  ],
+  [
+   "Fixed Income and Data Services",
+   "meaningful",
+   "bond pricing, indices and analytics"
+  ],
+  [
+   "Mortgage Technology",
+   "smaller",
+   "software that processes US mortgage applications and closings"
+  ]
+ ],
+ "moat": "Liquidity concentrated in its futures markets, and in mortgages a workflow system most US lenders already run on.",
+ "rivals": [
+  "CME Group|CME",
+  "Nasdaq|NDAQ",
+  "Cboe Global Markets|CBOE",
+  "London Stock Exchange Group"
+ ],
+ "risks": [
+  "Mortgage technology revenue depends on US housing activity, which high rates have suppressed",
+  "Acquisitions left debt of about $24 billion",
+  "Exchange volumes fall in calm markets",
+  "Regulators watch exchange and clearing fees closely"
+ ],
+ "opportunities": [
+  "Energy futures volumes have grown with volatile global gas and power markets",
+  "A recovery in US mortgage volumes would lift the most depressed part of the business",
+  "Recurring data subscriptions now make a large share of revenue predictable"
+ ],
+ "watch": "US mortgage origination volumes and energy futures open interest.",
+ "updated": "2026-11"
+}

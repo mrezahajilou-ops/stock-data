@@ -1,0 +1,42 @@
+{
+ "t": "WM",
+ "what": "Waste Management collects rubbish and recycling in North America and owns the landfills it goes into. It also captures gas from those landfills and sells it as renewable energy, and has moved into medical waste.",
+ "customers": "Households through municipal contracts, plus commercial, industrial and healthcare customers.",
+ "money": [
+  [
+   "Collection",
+   "the largest part",
+   "residential, commercial and industrial waste collection"
+  ],
+  [
+   "Landfill",
+   "high margin",
+   "disposal fees at landfills it owns"
+  ],
+  [
+   "Recycling and renewable energy",
+   "growing",
+   "sorted recyclables and gas captured from landfills"
+  ]
+ ],
+ "moat": "Landfill permits are almost impossible to obtain, so owning disposal capacity near cities is a durable advantage that collection rivals must pay to use.",
+ "rivals": [
+  "Republic Services|RSG",
+  "Waste Connections|WCN",
+  "Casella Waste Systems|CWST",
+  "Clean Harbors|CLH"
+ ],
+ "risks": [
+  "Volumes follow construction and industrial activity",
+  "Debt rose to about $23 billion after the Stericycle acquisition",
+  "Recycled commodity prices swing and affect that segment's profit",
+  "Fuel and labour costs rise faster than contracted price increases at times"
+ ],
+ "opportunities": [
+  "Prices rise with inflation under most municipal contracts, protecting margins",
+  "Renewable natural gas projects turn a waste product into high-margin energy revenue",
+  "Integrating Stericycle adds medical waste, a regulated and higher-priced service"
+ ],
+ "watch": "Core price increases against volume, and the ramp-up of renewable natural gas plants.",
+ "updated": "2026-11"
+}

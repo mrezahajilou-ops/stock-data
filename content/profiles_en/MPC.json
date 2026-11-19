@@ -1,0 +1,37 @@
+{
+ "t": "MPC",
+ "what": "Marathon Petroleum refines crude oil into petrol, diesel and jet fuel, with about three million barrels a day of capacity, and distributes those fuels. It also controls MPLX, a large pipeline and natural gas processing business.",
+ "customers": "Fuel wholesalers, retailers and commercial buyers; midstream customers shipping crude and gas.",
+ "money": [
+  [
+   "Refining and marketing",
+   "the large majority of revenue",
+   "converting crude into fuels and selling them wholesale"
+  ],
+  [
+   "Midstream (MPLX)",
+   "smaller revenue, steadier profit",
+   "pipelines, terminals and gas processing"
+  ]
+ ],
+ "moat": "Refineries that are effectively impossible to build new in the United States, plus the scale of its terminal and barge network.",
+ "rivals": [
+  "Valero Energy|VLO",
+  "Phillips 66|PSX",
+  "Exxon Mobil|XOM",
+  "Chevron|CVX"
+ ],
+ "risks": [
+  "Profit depends on refining margins, which swing violently and are outside its control",
+  "Fuel demand faces long-term pressure from electric vehicles",
+  "Refineries require heavy maintenance and unplanned outages are costly",
+  "Environmental regulation raises compliance costs"
+ ],
+ "opportunities": [
+  "Midstream earnings from MPLX are contracted and far steadier than refining",
+  "It has returned very large amounts of cash through buybacks, shrinking the share count sharply",
+  "Limited new refining capacity worldwide supports margins when demand is firm"
+ ],
+ "watch": "Refining margin per barrel by region and the pace of share repurchases.",
+ "updated": "2026-11"
+}

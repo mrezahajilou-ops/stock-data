@@ -1,0 +1,42 @@
+{
+ "t": "BNY",
+ "what": "BNY is a custody bank. It holds and administers assets for institutions, settles trades, handles corporate bond payments and manages money. It does not lend much; it is paid to safeguard and process.",
+ "customers": "Asset managers, pension funds, insurers, governments, corporations and wealthy families.",
+ "money": [
+  [
+   "Securities Services",
+   "the largest part",
+   "custody, fund accounting and asset servicing"
+  ],
+  [
+   "Market and Wealth Services",
+   "large",
+   "clearing, treasury services and payments"
+  ],
+  [
+   "Investment and Wealth Management",
+   "smaller",
+   "managing investments for institutions and wealthy clients"
+  ]
+ ],
+ "moat": "Trillions of dollars of assets sitting in its custody systems, which are deeply embedded in clients' operations and very rarely moved.",
+ "rivals": [
+  "State Street|STT",
+  "Northern Trust|NTRS",
+  "JPMorgan Chase|JPM",
+  "Citigroup|C"
+ ],
+ "risks": [
+  "Fee income falls when markets fall, because fees are charged on asset values",
+  "Interest income depends on rates and on clients leaving cash with it",
+  "Custody is a low-margin, price-competitive business",
+  "Operational errors in settlement can be costly"
+ ],
+ "opportunities": [
+  "A multi-year programme is cutting costs and lifting its return on equity",
+  "Digital assets and tokenised funds need an established custodian, a role it is pursuing",
+  "Capital returns through buybacks have been steady"
+ ],
+ "watch": "Fee revenue growth against expenses, which determines whether operating leverage is improving.",
+ "updated": "2026-11"
+}

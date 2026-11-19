@@ -1,0 +1,43 @@
+{
+ "t": "UPS",
+ "what": "UPS delivers packages. It runs an integrated air and ground network in more than 200 countries, delivering around 20 million packages a day, and also offers freight, customs brokerage and contract logistics.",
+ "customers": "Retailers and e-commerce sellers, manufacturers, healthcare companies and consumers.",
+ "money": [
+  [
+   "US Domestic Package",
+   "the largest part",
+   "ground and air delivery within the United States"
+  ],
+  [
+   "International Package",
+   "meaningful, higher margin",
+   "cross-border express and standard delivery"
+  ],
+  [
+   "Supply Chain Solutions",
+   "smaller",
+   "freight forwarding, brokerage and healthcare logistics"
+  ]
+ ],
+ "moat": "An integrated network of aircraft, hubs and drivers that took a century to build, and density that makes each additional stop cheaper.",
+ "rivals": [
+  "FedEx|FDX",
+  "DHL",
+  "Amazon Logistics|AMZN",
+  "US Postal Service",
+  "Regional parcel carriers"
+ ],
+ "risks": [
+  "Revenue has been falling as it deliberately gives up low-margin Amazon volume",
+  "The Teamsters contract raised labour costs substantially",
+  "E-commerce shippers keep pushing for lower prices",
+  "The dividend payout is high relative to current earnings"
+ ],
+ "opportunities": [
+  "Shifting the mix toward healthcare logistics and small business raises revenue per package",
+  "Network closures and automation are cutting fixed costs",
+  "A dividend yield near 6% is supported if cash flow stabilises"
+ ],
+ "watch": "US average revenue per package and whether volume stabilises after the Amazon reduction.",
+ "updated": "2026-11"
+}

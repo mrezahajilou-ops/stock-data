@@ -3,6 +3,7 @@ name: Key statistics, quarterly statements, analyst detail
 on:
   schedule:
     - cron: '50 6 * * 2-6'   # daily after US trading days: every stock, 24 parallel shards
+    - cron: '37 10 * * 2-6'  # second slot: GitHub sometimes drops a scheduled run
   workflow_dispatch:
     inputs:
       tickers:

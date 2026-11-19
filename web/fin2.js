@@ -149,10 +149,88 @@
   var P1 = function (x) { return pct(x, 1); };
 
   // ---------------------------------------------------------------- context
+  var PS_KEYS = { DilutedEPS: 1, BasicEPS: 1 }, SH_KEYS = { DilutedAverageShares: 1, BasicAverageShares: 1, OrdinarySharesNumber: 1, ShareIssued: 1 };
+  function median(a) { a = a.filter(function (x) { return x > 0 && isFinite(x); }).sort(function (x, y) { return x - y; }); return a.length ? a[Math.floor(a.length / 2)] : null; }
+  /* Companies that report in another currency (TSMC, Toyota, Alibaba, Novo…): the SEC history is already in USD per listed share,
+     but the quarterly statements and analyst estimates arrive in the home currency (and sometimes per ordinary share).
+     Scale them onto the same basis; when no reliable scale exists, leave those parts out instead of showing wrong numbers. */
+  function normalize(d, k, A) {
+    var an = d.analyst || {}, out = { k: k || {}, an: an };
+    var foreign = !!d.foreign || (d.reported_currency && d.reported_currency !== 'USD') || (an.cur && an.cur !== 'USD');
+    if (!foreign) return out;
+    var ai = (k && k.a_inc) || [], mm = [], pp = [], ss = [];
+    A.forEach(function (a) {
+      var y = match(ai, a.fy_end);
+      if (y.TotalRevenue > 0 && a.revenue > 0) mm.push(a.revenue / y.TotalRevenue);
+      if (y.DilutedEPS > 0 && a.eps_diluted > 0) pp.push(a.eps_diluted / y.DilutedEPS);
+      if (y.DilutedAverageShares > 0 && a.shares_diluted > 0) ss.push(a.shares_diluted / y.DilutedAverageShares);
+    });
+    var cal = median(mm), fx = an.fx > 0 ? 1 / an.fx : null, m = null;
+    if (fx && cal) m = (cal / fx > 0.7 && cal / fx < 1.4) ? fx : cal;
+    else m = cal || ((an.cur && an.cur !== 'USD') ? fx : null);
+    if (m && m > 0.9 && m < 1.1 && !fx) m = 1;
+    var ps = median(pp), sh = median(ss);
+    if (sh && sh > 0.98 && sh < 1.02) sh = 1;
+    if (!sh) sh = 1;
+    if (!ps && m) ps = m / sh;
+    function conv(rows) {
+      return (rows || []).map(function (r) {
+        var o = {};
+        Object.keys(r).forEach(function (key) {
+          var v = r[key];
+          if (key === 'end' || key === 'TaxRateForCalcs' || typeof v !== 'number') o[key] = v;
+          else if (PS_KEYS[key]) o[key] = ps ? v * ps : null;
+          else if (SH_KEYS[key]) o[key] = v * sh;
+          else o[key] = v * m;
+        });
+        // per-share figures on the same basis as the SEC history: converted profit / listed-share count
+        if (!nn(o.NetIncome) && o.DilutedAverageShares > 0) o.DilutedEPS = o.NetIncome / o.DilutedAverageShares;
+        if (!nn(o.NetIncome) && o.BasicAverageShares > 0) o.BasicEPS = o.NetIncome / o.BasicAverageShares;
+        return o;
+      });
+    }
+    var kk = {};
+    Object.keys(k || {}).forEach(function (key) { kk[key] = k[key]; });
+    ['q_inc', 'q_bal', 'q_cf', 'a_inc', 'a_bal', 'a_cf'].forEach(function (key) { kk[key] = m ? conv(k && k[key]) : []; });
+    // guard: if the converted last-four-quarters revenue is nowhere near the last fiscal year, the scale is not trustworthy
+    if (m && m !== 1) {
+      var qq = kk.q_inc.filter(function (r) { return !nn(r.TotalRevenue); }).sort(function (x, y) { return x.end < y.end ? -1 : 1; }).slice(-4);
+      var lastA = A[A.length - 1] || {};
+      if (qq.length === 4 && lastA.revenue > 0) {
+        var tr = qq.reduce(function (t0, r) { return t0 + r.TotalRevenue; }, 0) / lastA.revenue;
+        if (tr < 0.45 || tr > 2.3) ['q_inc', 'q_bal', 'q_cf'].forEach(function (key) { kk[key] = []; });
+      }
+    }
+    // analyst estimates: the currency label is not reliable for foreign filers, so pick the scale that lands next to the
+    // last reported year (revenue: x0.5-2.2, EPS: x0.3-3.5); when none does, leave the estimate out
+    var last = A[A.length - 1] || {};
+    function pick(val, ref, cands, lo, hi) {
+      if (nn(val) || !(ref > 0)) return null;
+      var best = null, bd = 9;
+      cands.forEach(function (c) { if (!(c > 0)) return; var q = val * c / ref; if (q >= lo && q <= hi) { var dd_ = Math.abs(Math.log(q / 1.1)); if (dd_ < bd) { bd = dd_; best = c; } } });
+      return best;
+    }
+    var rm = pick(an.r0, last.revenue, [1, fx, cal], 0.5, 2.2), em = pick(an.e0, last.eps_diluted, [1, an.ads, fx, ps], 0.3, 3.5);
+    var a2 = {};
+    Object.keys(an).forEach(function (key) { a2[key] = an[key]; });
+    ['r0', 'r1', 'qr0', 'qr1'].forEach(function (key) { if (!nn(an[key])) a2[key] = rm ? an[key] * rm : null; });
+    ['e0', 'e1', 'qe0', 'qe1'].forEach(function (key) { if (!nn(an[key])) a2[key] = em ? an[key] * em : null; });
+    kk.trend = ((k && k.trend) || []).map(function (x) {
+      var o = {}; Object.keys(x).forEach(function (key) { o[key] = x[key]; });
+      ['rev', 'eps'].forEach(function (g) {
+        if (!x[g]) return; var f = g === 'rev' ? rm : em, y = {};
+        Object.keys(x[g]).forEach(function (key) { var v = x[g][key]; y[key] = (key === 'low' || key === 'avg' || key === 'high' || key === 'yearAgo') ? (f && !nn(v) ? v * f : null) : v; });
+        o[g] = y;
+      });
+      return o;
+    });
+    out.k = kk; out.an = a2;
+    return out;
+  }
   function ctx(d, k, W) {
-    var A = (d.annual || []).slice(-10);
-    return { t: d.ticker, m: d.market || {}, A: A, R: A.slice().reverse(), tt: d.ttm || {}, an: d.analyst || {}, r: d.ratios || {},
-      q: (d.quarterly || []).filter(function (x) { return x && x.length >= 3; }), k: k || {}, W: W || [], d: d, nm: shortName(d) };
+    var A = (d.annual || []).slice(-10), n = normalize(d, k, A);
+    return { t: d.ticker, m: d.market || {}, A: A, R: A.slice().reverse(), tt: d.ttm || {}, an: n.an, r: d.ratios || {},
+      q: (d.quarterly || []).filter(function (x) { return x && x.length >= 3; }), k: n.k, W: W || [], d: d, nm: shortName(d) };
   }
   function shortName(d) {
     var n = String(d.name || d.ticker).replace(/\s*\/[a-z]+\/?$/i, '').replace(/[\/,]+$/, '').trim();
@@ -171,6 +249,10 @@
     var YT = ttmInc(k), Tt = YT[YT.length - 1] || {};
     var lastA = A[A.length - 1] || {};
     var has = !!Tt.TotalRevenue && newer(Tt.end, lastA.fy_end);
+    // some companies define revenue differently in the two sources (banks and brokers net of interest, excise taxes, pass-through costs):
+    // a TTM column next to the SEC years would not be comparable, so it stays in the TTM view only
+    var yl = match(KA, lastA.fy_end);
+    if (has && yl.TotalRevenue > 0 && lastA.revenue > 0 && Math.abs(yl.TotalRevenue / lastA.revenue - 1) > 0.06) has = false;
     var lag = !!Tt.end && tt.end && days(dd(tt.end), dd(Tt.end)) > 20;
     var yc = ycols(c), cols = (has ? ['TTM'] : []).concat(yc[0]), sub = (has ? [mon(dd(Tt.end))] : []).concat(yc[1]);
     function ser(fn, tv) { return (has ? [tv === undefined ? D : tv] : []).concat(R.map(function (a, i) { return fn(a, R[i + 1]); })); }
@@ -194,7 +276,7 @@
     }
     function tg(key) { return (!nn(Tt[key]) && P[key] > 0) ? sp(Tt[key] / P[key] - 1) : D; }
     function tv(key, f) { return (f || usd)(Tt[key]); }
-    function ka(key, f) { return function (a) { return (f || usd)(match(KA, a.fy_end)[key]); }; }
+    function ka(key, f, alt) { return function (a) { var x = match(KA, a.fy_end)[key]; if (nn(x) && alt) x = typeof alt === 'function' ? alt(a) : a[alt]; return (f || usd)(x); }; }
     var rows = [
       ['Revenue', ser(v('revenue'), tv('TotalRevenue')), ''],
       ['Revenue growth', ser(g('revenue'), tg('TotalRevenue')), 'g'],
@@ -205,8 +287,8 @@
       ['Operating income', ser(v('op_income'), tv('OperatingIncome')), 'b'],
       ['Interest expense', ser(v('interest_exp'), tv('InterestExpense')), ''],
       ['Interest & investment income', ser(ka('InterestIncome'), tv('InterestIncome')), ''],
-      ['Pretax income', ser(ka('PretaxIncome'), tv('PretaxIncome')), ''],
-      ['Income tax', ser(ka('TaxProvision'), tv('TaxProvision')), ''],
+      ['Pretax income', ser(ka('PretaxIncome', usd, 'pretax'), tv('PretaxIncome')), ''],
+      ['Income tax', ser(ka('TaxProvision', usd, 'tax'), tv('TaxProvision')), ''],
       ['Net income', ser(v('net_income'), tv('NetIncome')), 'b'],
       ['Net income growth', ser(g('net_income'), tg('NetIncome')), 'g'],
       ['Shares outstanding (diluted)', ser(function (a) { return a.shares_diluted ? (a.shares_diluted / 1e9).toFixed(2) + 'B' : D; }, tv('_sh', shr)), ''],
@@ -220,7 +302,7 @@
       ['Net margin', ser(v('net_margin', P1), tv('_nm', P1)), ''],
       ['EBITDA', ser(v('ebitda'), tv('EBITDA')), ''],
       ['EBITDA margin', ser(v('ebitda_margin', P1), tv('_em', P1)), ''],
-      ['Effective tax rate', ser(ka('TaxRateForCalcs', P1), tv('_tr', P1)), ''],
+      ['Effective tax rate', ser(ka('TaxRateForCalcs', P1, function (a) { return (a.pretax > 0 && !nn(a.tax) && a.tax / a.pretax >= 0 && a.tax / a.pretax < 0.6) ? a.tax / a.pretax : null; }), tv('_tr', P1)), ''],
       ['Stock-based compensation', ser(v('sbc'), tv('StockBasedCompensation')), '']
     ];
     // quarterly: revenue / net income from SEC, other lines from the quarterly statements
@@ -266,17 +348,20 @@
     var A = c.A, R = c.R, k = c.k, KA = k.a_bal || [], KQ = byEnd(k.q_bal);
     function S(fn) { return R.map(fn); }
     function v(key) { return S(function (a) { return usd(a[key]); }); }
-    function y(key) { return S(function (a) { return usd(match(KA, a.fy_end)[key]); }); }
+    function y(key, alt) { return S(function (a) { var x = match(KA, a.fy_end)[key]; if (nn(x) && alt) x = a[alt]; return usd(x); }); }
+    // the SEC "cash" figure includes short-term investments when the company reports them
+    function cashOnly(a) { var x = match(KA, a.fy_end).CashAndCashEquivalents; return !nn(x) ? x : (nn(a.cash) ? null : a.cash - (a.st_inv || 0)); }
+    function cashAll(a) { var yb = match(KA, a.fy_end), x = yb.CashCashEquivalentsAndShortTermInvestments; return !nn(x) ? Math.max(x, a.cash || 0) : a.cash; }
     var rows = [
-      ['Assets', [], 'sec'], ['Cash & equivalents', v('cash'), ''], ['Short-term investments', y('OtherShortTermInvestments'), ''],
-      ['Accounts receivable', y('AccountsReceivable'), ''], ['Inventory', y('Inventory'), ''], ['Total current assets', v('current_assets'), ''],
-      ['Property, plant & equipment', y('NetPPE'), ''], ['Goodwill', v('goodwill'), ''], ['Other intangible assets', v('intangibles'), ''],
-      ['Total assets', v('assets'), 'b'], ['Liabilities', [], 'sec'], ['Accounts payable', y('AccountsPayable'), ''],
+      ['Assets', [], 'sec'], ['Cash & equivalents', S(function (a) { return usd(cashOnly(a)); }), ''], ['Short-term investments', y('OtherShortTermInvestments', 'st_inv'), ''],
+      ['Accounts receivable', y('AccountsReceivable', 'recv'), ''], ['Inventory', y('Inventory', 'inventory'), ''], ['Total current assets', v('current_assets'), ''],
+      ['Property, plant & equipment', y('NetPPE', 'ppe'), ''], ['Goodwill', v('goodwill'), ''], ['Other intangible assets', v('intangibles'), ''],
+      ['Total assets', v('assets'), 'b'], ['Liabilities', [], 'sec'], ['Accounts payable', y('AccountsPayable', 'payables'), ''],
       ['Total current liabilities', v('current_liabilities'), ''], ['Total debt', v('debt'), ''], ['Total liabilities', v('liabilities'), 'b'],
-      ['Equity', [], 'sec'], ['Retained earnings', y('RetainedEarnings'), ''], ["Shareholders’ equity", v('equity'), 'b'],
-      ['Total liabilities & equity', S(function (a) { return (!nn(a.liabilities) && !nn(a.equity)) ? usd(a.liabilities + a.equity) : D; }), ''],
+      ['Equity', [], 'sec'], ['Retained earnings', y('RetainedEarnings', 'retained'), ''], ["Shareholders’ equity", v('equity'), 'b'],
+      ['Total liabilities & equity', v('assets'), ''],
       ['Key figures', [], 'sec'],
-      ['Net cash (debt)', S(function (a) { return nn(a.net_debt) ? D : usd(-a.net_debt); }), ''],
+      ['Net cash (debt)', S(function (a) { var c0 = cashAll(a); return (nn(a.debt) || nn(c0)) ? (nn(a.net_debt) ? D : usd(-a.net_debt)) : usd(c0 - a.debt); }), ''],
       ['Working capital', S(function (a) { return (!nn(a.current_assets) && !nn(a.current_liabilities)) ? usd(a.current_assets - a.current_liabilities) : D; }), ''],
       ['Book value per share', S(function (a) { return eps(a.book_value_per_share); }), ''], ['Tangible book value', y('TangibleBookValue'), ''],
       ['Shares outstanding', S(function (a) { return a.shares_out ? (a.shares_out / 1e9).toFixed(2) + 'B' : D; }), ''],
@@ -286,13 +371,14 @@
     var L = latest(k)[2], lastA = A[A.length - 1] || {};
     if (L.end && newer(L.end, lastA.fy_end)) {
       var eq = L.StockholdersEquity, debt = L.TotalDebt, cs = L.CashAndCashEquivalents, sh = L.OrdinarySharesNumber, tl = L.TotalLiabilitiesNetMinorityInterest;
+      var csAll = !nn(L.CashCashEquivalentsAndShortTermInvestments) ? L.CashCashEquivalentsAndShortTermInvestments : cs;
       rows = prepend(rows, {
         'Cash & equivalents': usd(cs), 'Short-term investments': usd(L.OtherShortTermInvestments), 'Accounts receivable': usd(L.AccountsReceivable),
         'Inventory': usd(L.Inventory), 'Total current assets': usd(L.CurrentAssets), 'Property, plant & equipment': usd(L.NetPPE), 'Goodwill': usd(L.Goodwill),
         'Other intangible assets': usd(L.OtherIntangibleAssets), 'Total assets': usd(L.TotalAssets), 'Accounts payable': usd(L.AccountsPayable),
         'Total current liabilities': usd(L.CurrentLiabilities), 'Total debt': usd(debt), 'Total liabilities': usd(tl), 'Retained earnings': usd(L.RetainedEarnings),
-        "Shareholders’ equity": usd(eq), 'Total liabilities & equity': (!nn(tl) && !nn(eq)) ? usd(tl + eq) : D,
-        'Net cash (debt)': (!nn(cs) && !nn(debt)) ? usd(cs - debt) : D, 'Working capital': usd(L.WorkingCapital),
+        "Shareholders’ equity": usd(eq), 'Total liabilities & equity': usd(L.TotalAssets),
+        'Net cash (debt)': (!nn(csAll) && !nn(debt)) ? usd(csAll - debt) : D, 'Working capital': usd(L.WorkingCapital),
         'Book value per share': (eq && sh) ? eps(eq / sh) : D, 'Tangible book value': usd(L.TangibleBookValue), 'Shares outstanding': shr(sh),
         'Current ratio': (L.CurrentAssets && L.CurrentLiabilities) ? x2(L.CurrentAssets / L.CurrentLiabilities, 2) : D,
         'Debt / equity': (!nn(debt) && eq) ? x2(debt / eq, 2) : D
@@ -324,7 +410,7 @@
       ['Operating cash flow growth', S(function (a, i) { var p = R[i + 1]; return (p && !nn(a.cfo) && p.cfo > 0) ? sp(a.cfo / p.cfo - 1) : D; }), 'g'],
       ['Investing & financing', [], 'sec'], ['Capital expenditures', ng('capex'), ''], ['Acquisitions', yf('PurchaseOfBusiness', 'acq', 1), ''],
       ['Investing cash flow', yf('InvestingCashFlow', 'icf'), 'b'], ['Dividends paid', ng('dividends'), ''], ['Share buybacks', ng('buybacks'), ''],
-      ['Debt issued', y('IssuanceOfDebt'), ''], ['Debt repaid', y('RepaymentOfDebt'), ''], ['Financing cash flow', yf('FinancingCashFlow', 'fincf'), 'b'],
+      ['Debt issued', yf('IssuanceOfDebt', 'debt_issued'), ''], ['Debt repaid', yf('RepaymentOfDebt', 'debt_repaid', 1), ''], ['Financing cash flow', yf('FinancingCashFlow', 'fincf'), 'b'],
       ['Free cash flow', [], 'sec'], ['Free cash flow', v('fcf'), 'b'], ['Free cash flow growth', S(function (a) { return sp(a.fcf_growth); }), 'g'],
       ['Free cash flow margin', S(function (a) { return pct(a.fcf_margin, 1); }), ''], ['Free cash flow per share', S(function (a) { return eps(a.fcf_per_share); }), ''],
       ['FCF / net income', S(function (a) { return x2(a.fcf_conv, 2); }), '']
@@ -361,7 +447,7 @@
     }
     return I.map(function (r) {
       var b = B[r.end] || {}, c = C[r.end] || {}, o = { end: r.end, _gm: r._gm, _om: r._om, _nm: r._nm };
-      var rv = r.TotalRevenue, ni = r.NetIncome, op = r.OperatingIncome, eq = b.StockholdersEquity, debt = b.TotalDebt, cs = b.CashAndCashEquivalents;
+      var rv = r.TotalRevenue, ni = r.NetIncome, op = r.OperatingIncome, eq = b.StockholdersEquity, debt = b.TotalDebt, cs = !nn(b.CashCashEquivalentsAndShortTermInvestments) ? b.CashCashEquivalentsAndShortTermInvestments : b.CashAndCashEquivalents;
       if (!nn(c.FreeCashFlow) && rv) o._fm = c.FreeCashFlow / rv;
       if (b.CurrentAssets && b.CurrentLiabilities) o._cr = b.CurrentAssets / b.CurrentLiabilities;
       if (!nn(debt) && eq > 0) o._de = debt / eq;
@@ -409,7 +495,7 @@
     ];
     var LT = latest(k), TI = LT[0], TC = LT[1], L = LT[2];
     if (TI.end) {
-      var rv = TI.TotalRevenue, ni = TI.NetIncome, op = TI.OperatingIncome, eq = L.StockholdersEquity, debt = L.TotalDebt, cs = L.CashAndCashEquivalents;
+      var rv = TI.TotalRevenue, ni = TI.NetIncome, op = TI.OperatingIncome, eq = L.StockholdersEquity, debt = L.TotalDebt, cs = !nn(L.CashCashEquivalentsAndShortTermInvestments) ? L.CashCashEquivalentsAndShortTermInvestments : L.CashAndCashEquivalents;
       var fcf = TC.end === TI.end ? TC.FreeCashFlow : null, tr = (!nn(TI._tr) && TI._tr >= 0 && TI._tr < 0.6) ? TI._tr : 0.21;
       var ie = TI.InterestExpense, eb = TI.EBITDA, dv = TC.end === TI.end ? Math.abs(TC.CashDividendsPaid || 0) : null;
       var fill = {

@@ -1,0 +1,37 @@
+{
+ "t": "AFL",
+ "what": "Aflac sells supplemental insurance: policies that pay cash directly to a person when they are ill or injured, on top of their main health cover. About two-thirds of its profit comes from Japan, where it is the leading cancer insurer.",
+ "customers": "Employees in Japan and the United States, usually enrolled through their workplace.",
+ "money": [
+  [
+   "Aflac Japan",
+   "the larger part of profit",
+   "cancer and medical supplemental policies sold through banks and agencies"
+  ],
+  [
+   "Aflac US",
+   "large",
+   "accident, disability, dental and critical illness policies sold at the workplace"
+  ]
+ ],
+ "moat": "Decades of brand recognition in Japan, distribution through Japan Post and banks, and a product that competitors have struggled to copy at scale.",
+ "rivals": [
+  "MetLife|MET",
+  "Unum|UNM",
+  "Dai-ichi Life",
+  "Allianz"
+ ],
+ "risks": [
+  "Revenue fell about 9% last year as the yen and policy sales weakened",
+  "Japan's ageing and shrinking population limits long-term growth",
+  "A weak yen reduces reported profit in dollars",
+  "Low Japanese interest rates compress investment income"
+ ],
+ "opportunities": [
+  "Very high profit margins on supplemental policies, about 21% of revenue",
+  "Large and consistent buybacks shrink the share count each year",
+  "US workplace sales are growing from a smaller base"
+ ],
+ "watch": "Sales growth in Japan and the yen exchange rate, which drives reported earnings.",
+ "updated": "2026-11"
+}

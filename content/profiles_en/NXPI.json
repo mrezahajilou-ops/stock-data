@@ -1,0 +1,43 @@
+{
+ "t": "NXPI",
+ "what": "NXP Semiconductors makes chips for cars, industrial equipment and secure identification. Its products run engine and battery management, in-car radar and networking, bank cards and passports.",
+ "customers": "Carmakers and their suppliers above all, plus industrial manufacturers, mobile device makers and payment card issuers.",
+ "money": [
+  [
+   "Automotive",
+   "the large majority",
+   "processors, radar, battery management and in-vehicle networking"
+  ],
+  [
+   "Industrial and Internet of Things",
+   "meaningful",
+   "microcontrollers and connectivity for factories and devices"
+  ],
+  [
+   "Mobile and communication infrastructure",
+   "smaller",
+   "secure elements for payments and network processors"
+  ]
+ ],
+ "moat": "Chips designed into vehicle platforms that stay in production for seven to ten years, with qualification cycles that keep competitors out once a design is won.",
+ "rivals": [
+  "Infineon",
+  "STMicroelectronics|STM",
+  "Texas Instruments|TXN",
+  "Renesas",
+  "onsemi|ON"
+ ],
+ "risks": [
+  "Car production volumes have been falling in Europe and North America",
+  "Revenue declined about 3% in the last financial year",
+  "Customers worked down inventory after the chip shortage, which cut orders",
+  "Tariffs and trade rules affect a business built on global supply chains"
+ ],
+ "opportunities": [
+  "Electric and software-defined vehicles need far more chip content per car",
+  "Radar and driver assistance are growing faster than the car market",
+  "Margins hold up well because designs are locked in for years"
+ ],
+ "watch": "Automotive revenue and the book-to-bill ratio, which show whether the inventory correction has ended.",
+ "updated": "2026-11"
+}

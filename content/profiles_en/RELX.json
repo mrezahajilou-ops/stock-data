@@ -1,0 +1,48 @@
+{
+ "t": "RELX",
+ "what": "RELX sells information and analytics. LexisNexis supplies legal research and risk data, Elsevier publishes scientific journals and research tools, and it also runs exhibitions and insurance analytics.",
+ "customers": "Law firms, insurers, banks, universities, researchers, hospitals and companies attending its trade shows.",
+ "money": [
+  [
+   "Risk",
+   "the largest and most profitable",
+   "identity, fraud and insurance analytics through LexisNexis Risk"
+  ],
+  [
+   "Scientific, Technical and Medical",
+   "large",
+   "Elsevier journals, databases and clinical tools"
+  ],
+  [
+   "Legal",
+   "meaningful",
+   "LexisNexis legal research and workflow tools"
+  ],
+  [
+   "Exhibitions",
+   "smaller",
+   "trade shows and conferences"
+  ]
+ ],
+ "moat": "Data assets built over decades that cannot be recreated, embedded into customers' daily workflow and renewed by subscription.",
+ "rivals": [
+  "Thomson Reuters|TRI",
+  "Clarivate|CLVT",
+  "Wolters Kluwer",
+  "Experian",
+  "Verisk Analytics|VRSK"
+ ],
+ "risks": [
+  "Open-access publishing pressures the scientific journals model",
+  "AI tools could replace some legal research work",
+  "Growth is steady but moderate",
+  "Most revenue is earned outside the United States, so currency moves matter"
+ ],
+ "opportunities": [
+  "Return on invested capital near 24% with mostly subscription revenue",
+  "It is adding AI tools to legal and scientific products at higher prices",
+  "Risk analytics grows with fraud and identity verification demand"
+ ],
+ "watch": "Underlying revenue growth by segment, especially Risk.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "APD",
+ "what": "Air Products makes industrial gases: oxygen, nitrogen, hydrogen and argon. It builds plants next to customers' refineries and factories and supplies them under contracts that run for fifteen or twenty years.",
+ "customers": "Refiners, chemical producers, steelmakers, electronics manufacturers, food processors and hospitals.",
+ "money": [
+  [
+   "Americas",
+   "the largest region",
+   "on-site gas supply, pipelines and merchant gas"
+  ],
+  [
+   "Asia",
+   "large",
+   "industrial gases for electronics and heavy industry"
+  ],
+  [
+   "Europe and Middle East",
+   "meaningful",
+   "on-site and merchant gas supply"
+  ]
+ ],
+ "moat": "On-site plants built inside customer sites under long contracts with take-or-pay terms, which makes switching supplier effectively impossible.",
+ "rivals": [
+  "Linde|LIN",
+  "Air Liquide",
+  "Messer",
+  "Nippon Sanso"
+ ],
+ "risks": [
+  "It took large write-downs on hydrogen and clean energy projects, which pushed reported operating profit negative",
+  "Several green hydrogen projects were cancelled after costs rose",
+  "Debt of about $18 billion funded that programme",
+  "New management is still resetting the capital plan"
+ ],
+ "opportunities": [
+  "The core industrial gas business remains contracted and steady under long agreements",
+  "Cancelling weak projects frees capital and should restore returns",
+  "Electronics and semiconductor fabs need large volumes of ultra-pure gases"
+ ],
+ "watch": "Capital spending discipline and whether returns on new projects recover toward the level Linde earns.",
+ "updated": "2026-11"
+}

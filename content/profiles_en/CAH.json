@@ -1,0 +1,37 @@
+{
+ "t": "CAH",
+ "what": "Cardinal Health distributes medicines to pharmacies and hospitals, and separately makes and sells its own medical products such as surgical kits, gloves and gowns.",
+ "customers": "Pharmacy chains, hospitals, surgery centres and physician practices in the United States.",
+ "money": [
+  [
+   "Pharmaceutical and Specialty Solutions",
+   "the large majority of revenue",
+   "distributing branded, generic and speciality drugs"
+  ],
+  [
+   "Global Medical Products and Distribution",
+   "smaller",
+   "its own branded medical products and medical supply distribution"
+  ]
+ ],
+ "moat": "One of three distributors handling almost all US drug volume, with a delivery network and generic sourcing scale that cannot be rebuilt.",
+ "rivals": [
+  "McKesson|MCK",
+  "Cencora|COR",
+  "Owens & Minor|OMI",
+  "Amazon Pharmacy|AMZN"
+ ],
+ "risks": [
+  "Margins are about one cent on each revenue dollar",
+  "Losing a large pharmacy contract moves results materially",
+  "The medical products business has struggled with cost inflation",
+  "Opioid settlement payments continue for years"
+ ],
+ "opportunities": [
+  "Return on invested capital near 29% because it uses little fixed capital",
+  "Speciality drug distribution and oncology services grow faster than the core",
+  "Cost programmes in medical products are improving that segment"
+ ],
+ "watch": "Segment operating profit, and whether the medical products business keeps recovering.",
+ "updated": "2026-11"
+}

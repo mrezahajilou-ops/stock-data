@@ -1,0 +1,38 @@
+{
+ "t": "BSX",
+ "what": "Boston Scientific makes devices used in less-invasive medicine: heart stents and catheters, pulsed field ablation systems for irregular heartbeat, endoscopy tools, urology devices and neuromodulation implants.",
+ "customers": "Hospitals, cardiologists, electrophysiologists and surgical centres worldwide.",
+ "money": [
+  [
+   "Cardiovascular",
+   "the largest part",
+   "interventional cardiology, electrophysiology and structural heart devices"
+  ],
+  [
+   "MedSurg",
+   "large",
+   "endoscopy, urology and neuromodulation"
+  ]
+ ],
+ "moat": "Physicians trained on specific devices and techniques, plus clinical trial data that supports reimbursement and makes substitution risky.",
+ "rivals": [
+  "Abbott|ABT",
+  "Medtronic|MDT",
+  "Edwards Lifesciences|EW",
+  "Johnson & Johnson MedTech|JNJ",
+  "Stryker|SYK"
+ ],
+ "risks": [
+  "Growth has drawn competition into pulsed field ablation, its fastest-growing product",
+  "Hospitals negotiate hard on device prices",
+  "Acquisitions have raised debt to about $12 billion",
+  "Recalls or trial setbacks in implanted devices carry long liabilities"
+ ],
+ "opportunities": [
+  "Revenue grew about 20% in the last financial year, the fastest among large device makers",
+  "Pulsed field ablation is replacing older heart ablation methods quickly",
+  "An ageing population raises procedure volumes across its categories"
+ ],
+ "watch": "Organic revenue growth in electrophysiology and whether new entrants slow it.",
+ "updated": "2026-11"
+}

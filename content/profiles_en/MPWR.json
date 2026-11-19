@@ -1,0 +1,43 @@
+{
+ "t": "MPWR",
+ "what": "Monolithic Power Systems designs power-management chips: the components that convert and regulate electricity inside servers, cars, phones and industrial equipment. It has no factories of its own.",
+ "customers": "Data centre and server makers, carmakers, industrial equipment manufacturers and consumer electronics firms.",
+ "money": [
+  [
+   "Enterprise data",
+   "the fastest-growing part",
+   "power delivery for AI servers and data centre equipment"
+  ],
+  [
+   "Automotive, industrial and communications",
+   "large",
+   "power chips for vehicles, factory equipment and networking"
+  ],
+  [
+   "Consumer and storage",
+   "smaller",
+   "power management in consumer devices"
+  ]
+ ],
+ "moat": "Proprietary process technology that puts more of the power circuit on a single chip, giving smaller and more efficient parts that are designed into products years ahead.",
+ "rivals": [
+  "Texas Instruments|TXN",
+  "Analog Devices|ADI",
+  "Infineon",
+  "onsemi|ON",
+  "Renesas"
+ ],
+ "risks": [
+  "AI server power delivery is concentrated among a few large customers",
+  "Most manufacturing and testing is done in Asia, mainly China, which carries political risk",
+  "Semiconductor demand outside data centres has been weak",
+  "The shares trade at a high multiple of earnings"
+ ],
+ "opportunities": [
+  "Revenue grew about 26% in the last financial year on AI server demand",
+  "It holds about $1.1 billion of cash and almost no debt",
+  "Each new server generation needs more power conversion content per rack"
+ ],
+ "watch": "Enterprise data revenue and whether it wins sockets in the next AI server platform.",
+ "updated": "2026-11"
+}

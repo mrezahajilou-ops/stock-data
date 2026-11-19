@@ -1,0 +1,42 @@
+{
+ "t": "URI",
+ "what": "United Rentals rents construction and industrial equipment: lifts, earthmovers, generators, trench shoring and temporary power. It is the largest equipment rental company in the world, with around 1,500 locations.",
+ "customers": "Construction contractors, industrial plants, utilities, infrastructure projects and government agencies.",
+ "money": [
+  [
+   "General rentals",
+   "the larger part",
+   "everyday construction and industrial equipment"
+  ],
+  [
+   "Specialty rentals",
+   "growing, higher margin",
+   "trench safety, power, fluid solutions and mobile storage"
+  ],
+  [
+   "Used equipment sales",
+   "smaller",
+   "selling fleet at the end of its rental life"
+  ]
+ ],
+ "moat": "A fleet worth tens of billions and a branch network that can deliver to any large job site, which regional competitors cannot match on national projects.",
+ "rivals": [
+  "Sunbelt Rentals (Ashtead)",
+  "Herc Holdings|HRI",
+  "H&E Equipment",
+  "Local rental yards"
+ ],
+ "risks": [
+  "Construction spending is cyclical and falls sharply in a downturn",
+  "Debt of about $16 billion funds the fleet",
+  "Equipment values fall when used-equipment markets soften",
+  "Interest rates affect both customers' projects and its own financing"
+ ],
+ "opportunities": [
+  "Large infrastructure, data centre and factory projects favour the only national renter",
+  "Specialty rentals grow faster and earn better margins than general equipment",
+  "Contractors increasingly rent rather than own, which shifts the market its way"
+ ],
+ "watch": "Fleet productivity and used-equipment sale prices, which signal where the cycle is.",
+ "updated": "2026-11"
+}

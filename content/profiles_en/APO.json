@@ -1,0 +1,43 @@
+{
+ "t": "APO",
+ "what": "Apollo Global Management invests in credit and private equity, and owns Athene, a retirement services company that sells annuities. The annuity money gives it permanent capital to lend, which is the engine of the whole firm.",
+ "customers": "Institutional investors in its funds, companies borrowing from its credit arm, and savers buying Athene annuities.",
+ "money": [
+  [
+   "Retirement Services",
+   "the largest by revenue",
+   "Athene annuities and the investment income on the assets backing them"
+  ],
+  [
+   "Asset Management",
+   "the core of fee earnings",
+   "management fees on credit, private equity and real asset funds"
+  ],
+  [
+   "Principal Investing",
+   "variable",
+   "its own capital invested alongside clients, and performance fees"
+  ]
+ ],
+ "moat": "Permanent capital from annuities that it never has to raise again, combined with origination platforms that create loans other investors cannot buy.",
+ "rivals": [
+  "Blackstone|BX",
+  "KKR|KKR",
+  "Ares Management|ARES",
+  "Carlyle Group|CG",
+  "Brookfield|BN"
+ ],
+ "risks": [
+  "Reported earnings swing with accounting marks on the annuity book and can show a loss",
+  "Credit losses in private lending would hit both the funds and Athene",
+  "Annuity sales depend on interest rates staying attractive to savers",
+  "Private credit is drawing heavy competition and spreads are narrowing"
+ ],
+ "opportunities": [
+  "Fee-related earnings and spread income are recurring and have grown steadily",
+  "Companies are borrowing from private lenders rather than banks, which is its core market",
+  "Origination volume keeps rising, which feeds both the funds and Athene"
+ ],
+ "watch": "Fee-related earnings and spread-related earnings, which are the recurring parts, rather than reported net income.",
+ "updated": "2026-11"
+}

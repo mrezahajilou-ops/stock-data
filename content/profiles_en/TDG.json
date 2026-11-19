@@ -1,0 +1,43 @@
+{
+ "t": "TDG",
+ "what": "TransDigm makes small, highly engineered aircraft parts: pumps, valves, latches, ignition systems and cockpit controls. Most are sole-source designs on aircraft already flying, so it sells replacements at high margins for decades.",
+ "customers": "Aircraft and engine manufacturers, airlines, repair shops and defence customers worldwide.",
+ "money": [
+  [
+   "Power and Control",
+   "the largest part",
+   "pumps, valves, ignition systems and actuators"
+  ],
+  [
+   "Airframe",
+   "large",
+   "latches, seating components, cockpit and cabin parts"
+  ],
+  [
+   "Non-aviation",
+   "small",
+   "industrial and specialty products"
+  ]
+ ],
+ "moat": "Parts that are sole-source and certified onto an aircraft type; an airline cannot buy them elsewhere without recertifying the aircraft.",
+ "rivals": [
+  "Heico|HEI",
+  "RTX|RTX",
+  "Honeywell|HON",
+  "Safran",
+  "Parker-Hannifin|PH"
+ ],
+ "risks": [
+  "Debt of about $34 billion is extremely high, used to fund buyouts and special dividends",
+  "Airlines and regulators have criticised its pricing on sole-source parts",
+  "A downturn in air travel cuts the aftermarket demand that drives profit",
+  "It depends on continuing acquisitions to grow"
+ ],
+ "opportunities": [
+  "Operating margin near 46% is among the highest in any manufacturing industry",
+  "Record flight hours drive the spare parts demand that is most of its profit",
+  "Defence aftermarket adds a second demand source"
+ ],
+ "watch": "Aftermarket revenue growth and the leverage ratio against earnings.",
+ "updated": "2026-11"
+}

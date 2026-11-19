@@ -1,0 +1,43 @@
+{
+ "t": "HOOD",
+ "what": "Robinhood runs a commission-free brokerage app. It earns money by routing orders to market makers, lending cash and shares, charging for its Gold subscription, and from crypto trading, retirement accounts and a credit card.",
+ "customers": "Individual investors in the United States and, increasingly, other countries, skewed toward younger first-time investors.",
+ "money": [
+  [
+   "Transaction-based revenue",
+   "the largest part",
+   "payments from market makers for routing options, equity and crypto orders"
+  ],
+  [
+   "Net interest revenue",
+   "large",
+   "interest on customer cash, margin lending and securities lending"
+  ],
+  [
+   "Other revenue",
+   "growing",
+   "Gold subscriptions, the credit card and matched retirement contributions"
+  ]
+ ],
+ "moat": "A brand and interface that brought a generation into investing, with the lowest cost of acquiring a new customer among US brokers.",
+ "rivals": [
+  "Charles Schwab|SCHW",
+  "Interactive Brokers|IBKR",
+  "Coinbase|COIN",
+  "Fidelity",
+  "Webull"
+ ],
+ "risks": [
+  "Revenue depends heavily on options and crypto trading, which collapse in quiet markets",
+  "Regulators have repeatedly examined payment for order flow",
+  "Interest income falls when central banks cut rates",
+  "Customers are younger and have smaller balances than at traditional brokers"
+ ],
+ "opportunities": [
+  "Revenue grew about 52% in the last financial year",
+  "Retirement accounts and the Gold subscription build recurring revenue",
+  "Expansion into prediction markets and international brokerage adds new lines"
+ ],
+ "watch": "Net deposits and Gold subscriber numbers, which show whether balances are getting stickier.",
+ "updated": "2026-11"
+}

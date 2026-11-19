@@ -1,0 +1,42 @@
+{
+ "t": "AEP",
+ "what": "American Electric Power is a regulated electricity utility serving about 5.6 million customers across eleven states, and it owns one of the largest transmission networks in the United States.",
+ "customers": "Households, businesses and industrial users in Texas, Ohio, Oklahoma, Indiana, Virginia and other states.",
+ "money": [
+  [
+   "Vertically Integrated Utilities",
+   "the largest part",
+   "generating and selling electricity in states where it owns power plants"
+  ],
+  [
+   "Transmission and Distribution",
+   "large",
+   "moving power over its wires, including its large transmission business"
+  ],
+  [
+   "Generation and Marketing",
+   "smaller",
+   "wholesale power sales"
+  ]
+ ],
+ "moat": "A regulated monopoly over the wires in its territories, with rates set to recover costs plus an allowed return on investment.",
+ "rivals": [
+  "Duke Energy|DUK",
+  "Southern Company|SO",
+  "NextEra Energy|NEE",
+  "Exelon|EXC"
+ ],
+ "risks": [
+  "Debt of about $50 billion makes it sensitive to interest rates",
+  "Regulators in eleven states each decide what it can charge",
+  "Large new transmission projects can be delayed or denied",
+  "Storms and extreme weather damage the network"
+ ],
+ "opportunities": [
+  "Data centre demand in Ohio, Texas and Indiana is driving the fastest load growth in decades",
+  "Transmission investment is the highest-return part of its business",
+  "A large approved capital plan grows the base its earnings are calculated on"
+ ],
+ "watch": "Approved rate cases and signed data centre load agreements.",
+ "updated": "2026-11"
+}

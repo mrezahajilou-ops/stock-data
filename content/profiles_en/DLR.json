@@ -1,0 +1,37 @@
+{
+ "t": "DLR",
+ "what": "Digital Realty owns data centres and leases them to cloud providers and enterprises. It operates in more than fifty metropolitan areas and offers both very large wholesale space and smaller colocation with interconnection.",
+ "customers": "Hyperscale cloud providers, large enterprises, telecom carriers and IT service companies.",
+ "money": [
+  [
+   "Data centre rental",
+   "almost all of revenue",
+   "leases for space, power and cooling, mostly on long contracts"
+  ],
+  [
+   "Interconnection",
+   "smaller, higher margin",
+   "direct connections between customers inside its buildings"
+  ]
+ ],
+ "moat": "Sites with secured power and permits in constrained markets, which take years to replace, and leases that run five to fifteen years.",
+ "rivals": [
+  "Equinix|EQIX",
+  "Amazon Web Services|AMZN",
+  "CyrusOne",
+  "Vantage Data Centers"
+ ],
+ "risks": [
+  "Building data centres consumes huge capital and debt stands near $17 billion",
+  "Power availability now limits where new capacity can be added",
+  "A few hyperscale customers take much of the new leasing",
+  "Higher interest rates raise financing costs and lower property values"
+ ],
+ "opportunities": [
+  "AI training and inference demand has pushed leasing volumes and prices to records",
+  "Rents on expiring leases are far below current market rents",
+  "Joint ventures let it build large capacity without carrying all the capital"
+ ],
+ "watch": "New leasing signed each quarter and the backlog of leases not yet started.",
+ "updated": "2026-11"
+}

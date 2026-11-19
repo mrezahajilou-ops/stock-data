@@ -1,0 +1,37 @@
+{
+ "t": "GWW",
+ "what": "W.W. Grainger distributes maintenance, repair and operating supplies: the gloves, fasteners, motors, safety gear and tools that factories, hospitals and public bodies buy repeatedly. It serves large customers through a sales force and smaller ones through the Zoro and MonotaRO websites.",
+ "customers": "Manufacturers, government agencies, hospitals, schools and contractors in North America and Japan.",
+ "money": [
+  [
+   "High-Touch Solutions",
+   "the larger part",
+   "large customers served by sales representatives and on-site inventory systems"
+  ],
+  [
+   "Endless Assortment",
+   "growing",
+   "Zoro in the US and MonotaRO in Japan, sold online without a sales force"
+  ]
+ ],
+ "moat": "Next-day availability of hundreds of thousands of items, plus inventory management systems installed inside customer plants.",
+ "rivals": [
+  "Fastenal|FAST",
+  "MSC Industrial Direct|MSM",
+  "Amazon Business|AMZN",
+  "Ferguson|FERG"
+ ],
+ "risks": [
+  "Demand follows industrial production and construction",
+  "Amazon Business competes directly on price and delivery",
+  "Tariffs raise the cost of imported goods",
+  "Growth is modest at about 5% a year"
+ ],
+ "opportunities": [
+  "Return on invested capital near 28% is exceptional for a distributor",
+  "The online businesses grow faster and need less capital",
+  "Customers keep consolidating purchases with fewer, larger suppliers"
+ ],
+ "watch": "Daily sales growth and gross margin, which shows whether price increases stick.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "FAST",
+ "what": "Fastenal supplies industrial and construction products: fasteners, tools, safety equipment and cleaning supplies. Its distinctive model is putting vending machines and stocked bins inside customers' own factories.",
+ "customers": "Manufacturers, construction contractors and government customers, mostly in North America.",
+ "money": [
+  [
+   "Fasteners",
+   "meaningful",
+   "screws, bolts and related hardware"
+  ],
+  [
+   "Safety supplies and tools",
+   "the larger part",
+   "gloves, protective equipment, cutting tools and cleaning products"
+  ]
+ ],
+ "moat": "Vending machines and managed inventory installed on customer sites, which make reordering automatic and switching suppliers disruptive.",
+ "rivals": [
+  "W.W. Grainger|GWW",
+  "MSC Industrial Direct|MSM",
+  "Amazon Business|AMZN",
+  "Applied Industrial Technologies|AIT"
+ ],
+ "risks": [
+  "Demand follows manufacturing activity, which has been weak",
+  "Growth is modest at about 9% a year",
+  "Tariffs raise the cost of imported fasteners",
+  "The shares trade at a high multiple for a distributor"
+ ],
+ "opportunities": [
+  "Return on invested capital near 29% with very little debt",
+  "Each new on-site vending installation locks in years of reorders",
+  "Customers consolidating suppliers favours the largest distributors"
+ ],
+ "watch": "Daily sales growth and the number of weighted on-site locations signed.",
+ "updated": "2026-11"
+}

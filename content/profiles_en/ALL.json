@@ -1,0 +1,37 @@
+{
+ "t": "ALL",
+ "what": "Allstate insures cars and homes in the United States, selling through its own agents, directly online and through the Esurance and National General brands. It also sells protection plans and identity protection.",
+ "customers": "US households buying car, home and renters insurance.",
+ "money": [
+  [
+   "Property-Liability",
+   "the large majority",
+   "car and home insurance premiums"
+  ],
+  [
+   "Protection Services",
+   "smaller",
+   "vehicle service contracts, identity protection and device protection"
+  ]
+ ],
+ "moat": "Brand recognition built over decades, a large agent network and claims data that supports pricing.",
+ "rivals": [
+  "Progressive|PGR",
+  "GEICO (Berkshire Hathaway)|BRK-B",
+  "Travelers|TRV",
+  "State Farm (private)"
+ ],
+ "risks": [
+  "Wildfires and severe storms produce large losses in single quarters",
+  "It lost car insurance customers while raising prices to restore profitability",
+  "Repair and medical cost inflation can outrun premium increases",
+  "State regulators can delay rate increases"
+ ],
+ "opportunities": [
+  "Several years of rate increases have restored underwriting profit",
+  "It is spending on advertising again to win back customers",
+  "Selling its employer benefits businesses raised capital for buybacks"
+ ],
+ "watch": "Policies in force, which shows whether it is growing again, and the combined ratio.",
+ "updated": "2026-11"
+}

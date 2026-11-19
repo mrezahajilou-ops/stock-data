@@ -1,0 +1,36 @@
+{
+ "t": "COR",
+ "what": "Cencora, formerly AmerisourceBergen, distributes prescription medicines to pharmacies, hospitals and doctors. It specialises in high-value speciality drugs, particularly cancer treatments, and serves manufacturers with logistics and patient services.",
+ "customers": "Pharmacy chains, hospitals, oncology practices and pharmaceutical manufacturers.",
+ "money": [
+  [
+   "US Healthcare Solutions",
+   "the large majority",
+   "distribution of branded, generic and speciality drugs in the United States"
+  ],
+  [
+   "International Healthcare Solutions",
+   "smaller",
+   "distribution in Europe and Canada, and global speciality logistics"
+  ]
+ ],
+ "moat": "Three distributors handle almost all US drug volume; the warehouse and cold-chain network for speciality medicines would cost billions to replicate.",
+ "rivals": [
+  "McKesson|MCK",
+  "Cardinal Health|CAH",
+  "Amazon Pharmacy|AMZN"
+ ],
+ "risks": [
+  "Margins are extremely thin: about one cent on each revenue dollar",
+  "A single large customer contract drives much of the volume",
+  "Opioid settlement payments continue for years",
+  "Drug pricing policy changes how distributors are paid"
+ ],
+ "opportunities": [
+  "Speciality and oncology drugs grow faster and earn better margins than ordinary distribution",
+  "GLP-1 weight-loss drugs push very large volumes through the network",
+  "Return on invested capital near 17% is high because it carries little fixed capital"
+ ],
+ "watch": "Operating profit by segment, since revenue is dominated by pass-through drug cost.",
+ "updated": "2026-11"
+}

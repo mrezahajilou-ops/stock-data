@@ -224,12 +224,12 @@
       });
       return o;
     });
-    out.k = kk; out.an = a2;
+    out.k = kk; out.an = a2; out.fx = (m && m !== 1);
     return out;
   }
   function ctx(d, k, W) {
     var A = (d.annual || []).slice(-10), n = normalize(d, k, A);
-    return { t: d.ticker, m: d.market || {}, A: A, R: A.slice().reverse(), tt: d.ttm || {}, an: n.an, r: d.ratios || {},
+    return { t: d.ticker, m: d.market || {}, A: A, R: A.slice().reverse(), tt: d.ttm || {}, an: n.an, fx: !!n.fx, r: d.ratios || {},
       q: (d.quarterly || []).filter(function (x) { return x && x.length >= 3; }), k: n.k, W: W || [], d: d, nm: shortName(d) };
   }
   function shortName(d) {
@@ -252,7 +252,7 @@
     // some companies define revenue differently in the two sources (banks and brokers net of interest, excise taxes, pass-through costs):
     // a TTM column next to the SEC years would not be comparable, so it stays in the TTM view only
     var yl = match(KA, lastA.fy_end);
-    if (has && yl.TotalRevenue > 0 && lastA.revenue > 0 && Math.abs(yl.TotalRevenue / lastA.revenue - 1) > 0.06) has = false;
+    if (has && yl.TotalRevenue > 0 && lastA.revenue > 0 && Math.abs(yl.TotalRevenue / lastA.revenue - 1) > (c.fx ? 0.2 : 0.06)) has = false;
     var lag = !!Tt.end && tt.end && days(dd(tt.end), dd(Tt.end)) > 20;
     var yc = ycols(c), cols = (has ? ['TTM'] : []).concat(yc[0]), sub = (has ? [mon(dd(Tt.end))] : []).concat(yc[1]);
     function ser(fn, tv) { return (has ? [tv === undefined ? D : tv] : []).concat(R.map(function (a, i) { return fn(a, R[i + 1]); })); }
@@ -302,7 +302,7 @@
       ['Net margin', ser(v('net_margin', P1), tv('_nm', P1)), ''],
       ['EBITDA', ser(v('ebitda'), tv('EBITDA')), ''],
       ['EBITDA margin', ser(v('ebitda_margin', P1), tv('_em', P1)), ''],
-      ['Effective tax rate', ser(ka('TaxRateForCalcs', P1, function (a) { return (a.pretax > 0 && !nn(a.tax) && a.tax / a.pretax >= 0 && a.tax / a.pretax < 0.6) ? a.tax / a.pretax : null; }), tv('_tr', P1)), ''],
+      ['Effective tax rate', ser(function (a) { var yk = match(KA, a.fy_end), pt = !nn(yk.PretaxIncome) ? yk.PretaxIncome : a.pretax, tx = !nn(yk.TaxProvision) ? yk.TaxProvision : a.tax; return (pt > 0 && !nn(tx) && Math.abs(tx / pt) < 1) ? P1(tx / pt) : D; }, tv('_tr', P1)), ''],
       ['Stock-based compensation', ser(v('sbc'), tv('StockBasedCompensation')), '']
     ];
     // quarterly: revenue / net income from SEC, other lines from the quarterly statements
@@ -355,7 +355,7 @@
     var rows = [
       ['Assets', [], 'sec'], ['Cash & equivalents', S(function (a) { return usd(cashOnly(a)); }), ''], ['Short-term investments', y('OtherShortTermInvestments', 'st_inv'), ''],
       ['Accounts receivable', y('AccountsReceivable', 'recv'), ''], ['Inventory', y('Inventory', 'inventory'), ''], ['Total current assets', v('current_assets'), ''],
-      ['Property, plant & equipment', y('NetPPE', 'ppe'), ''], ['Goodwill', v('goodwill'), ''], ['Other intangible assets', v('intangibles'), ''],
+      ['Property, plant & equipment', S(function (a) { return usd(!nn(a.ppe) ? a.ppe : match(KA, a.fy_end).NetPPE); }), ''], ['Goodwill', v('goodwill'), ''], ['Other intangible assets', v('intangibles'), ''],
       ['Total assets', v('assets'), 'b'], ['Liabilities', [], 'sec'], ['Accounts payable', y('AccountsPayable', 'payables'), ''],
       ['Total current liabilities', v('current_liabilities'), ''], ['Total debt', v('debt'), ''], ['Total liabilities', v('liabilities'), 'b'],
       ['Equity', [], 'sec'], ['Retained earnings', y('RetainedEarnings', 'retained'), ''], ["Shareholders’ equity", v('equity'), 'b'],
@@ -374,7 +374,7 @@
       var csAll = !nn(L.CashCashEquivalentsAndShortTermInvestments) ? L.CashCashEquivalentsAndShortTermInvestments : cs;
       rows = prepend(rows, {
         'Cash & equivalents': usd(cs), 'Short-term investments': usd(L.OtherShortTermInvestments), 'Accounts receivable': usd(L.AccountsReceivable),
-        'Inventory': usd(L.Inventory), 'Total current assets': usd(L.CurrentAssets), 'Property, plant & equipment': usd(L.NetPPE), 'Goodwill': usd(L.Goodwill),
+        'Inventory': usd(L.Inventory), 'Total current assets': usd(L.CurrentAssets), 'Property, plant & equipment': usd((c.d.bs && !nn(c.d.bs.ppe) && Math.abs(days(dd(c.d.bs.end), dd(L.end))) < 16 && R.some(function (a) { return !nn(a.ppe); })) ? c.d.bs.ppe : L.NetPPE), 'Goodwill': usd(L.Goodwill),
         'Other intangible assets': usd(L.OtherIntangibleAssets), 'Total assets': usd(L.TotalAssets), 'Accounts payable': usd(L.AccountsPayable),
         'Total current liabilities': usd(L.CurrentLiabilities), 'Total debt': usd(debt), 'Total liabilities': usd(tl), 'Retained earnings': usd(L.RetainedEarnings),
         "Shareholders’ equity": usd(eq), 'Total liabilities & equity': usd(L.TotalAssets),
@@ -410,7 +410,7 @@
       ['Operating cash flow growth', S(function (a, i) { var p = R[i + 1]; return (p && !nn(a.cfo) && p.cfo > 0) ? sp(a.cfo / p.cfo - 1) : D; }), 'g'],
       ['Investing & financing', [], 'sec'], ['Capital expenditures', ng('capex'), ''], ['Acquisitions', yf('PurchaseOfBusiness', 'acq', 1), ''],
       ['Investing cash flow', yf('InvestingCashFlow', 'icf'), 'b'], ['Dividends paid', ng('dividends'), ''], ['Share buybacks', ng('buybacks'), ''],
-      ['Debt issued', yf('IssuanceOfDebt', 'debt_issued'), ''], ['Debt repaid', yf('RepaymentOfDebt', 'debt_repaid', 1), ''], ['Financing cash flow', yf('FinancingCashFlow', 'fincf'), 'b'],
+      ['Debt issued', y('IssuanceOfDebt'), ''], ['Debt repaid', yf('RepaymentOfDebt', 'debt_repaid', 1), ''], ['Financing cash flow', yf('FinancingCashFlow', 'fincf'), 'b'],
       ['Free cash flow', [], 'sec'], ['Free cash flow', v('fcf'), 'b'], ['Free cash flow growth', S(function (a) { return sp(a.fcf_growth); }), 'g'],
       ['Free cash flow margin', S(function (a) { return pct(a.fcf_margin, 1); }), ''], ['Free cash flow per share', S(function (a) { return eps(a.fcf_per_share); }), ''],
       ['FCF / net income', S(function (a) { return x2(a.fcf_conv, 2); }), '']

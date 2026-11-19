@@ -1,0 +1,37 @@
+{
+ "t": "PKG",
+ "what": "Packaging Corporation of America makes containerboard and turns it into corrugated cardboard boxes. It runs paper mills and more than a hundred box plants across the United States.",
+ "customers": "Food and beverage producers, e-commerce shippers, agricultural packers and general manufacturers.",
+ "money": [
+  [
+   "Packaging",
+   "the large majority",
+   "corrugated boxes and containerboard"
+  ],
+  [
+   "Paper",
+   "small",
+   "uncoated white paper"
+  ]
+ ],
+ "moat": "Mills integrated with its own box plants, so it controls cost from pulp to finished box, with the highest margins in the US containerboard industry.",
+ "rivals": [
+  "International Paper|IP",
+  "Smurfit Westrock|SW",
+  "Georgia-Pacific",
+  "Greif|GEF"
+ ],
+ "risks": [
+  "Containerboard prices are cyclical and drive earnings",
+  "Box demand follows consumer goods volumes",
+  "Debt of about $4.4 billion",
+  "Recycled fibre and energy costs are volatile"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 12% operating margin",
+  "E-commerce shipping supports long-term box demand",
+  "A dividend yield around 2.5% with consistent increases"
+ ],
+ "watch": "Box shipments per day and containerboard pricing.",
+ "updated": "2026-11"
+}

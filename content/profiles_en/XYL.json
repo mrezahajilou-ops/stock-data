@@ -1,0 +1,48 @@
+{
+ "t": "XYL",
+ "what": "Xylem makes water technology: pumps that move water and wastewater, treatment systems, smart meters that measure consumption, and analytics for water utilities.",
+ "customers": "Municipal water and wastewater utilities, industrial water users, building services and agriculture.",
+ "money": [
+  [
+   "Water Infrastructure",
+   "large",
+   "pumps, treatment and transport for utilities"
+  ],
+  [
+   "Measurement and Control Solutions",
+   "large",
+   "smart water meters and network analytics"
+  ],
+  [
+   "Applied Water",
+   "meaningful",
+   "pumps for buildings, industry and agriculture"
+  ],
+  [
+   "Water Solutions and Services",
+   "growing",
+   "outsourced treatment and services"
+  ]
+ ],
+ "moat": "Equipment specified into municipal water systems with decades-long replacement cycles, plus smart meter networks that lock utilities into its data platform.",
+ "rivals": [
+  "Veralto|VLTO",
+  "Pentair|PNR",
+  "Grundfos",
+  "Badger Meter|BMI",
+  "Evoqua"
+ ],
+ "risks": [
+  "Municipal spending depends on government budgets and bond issuance",
+  "Return on invested capital of about 7% reflects the Evoqua acquisition's cost base",
+  "Revenue growth of about 6% is steady rather than fast",
+  "Debt of about $2.9 billion"
+ ],
+ "opportunities": [
+  "Analysts see about 32% upside from current levels",
+  "Water scarcity and ageing pipe networks drive structural investment",
+  "Smart metering backlog provides multi-year revenue visibility"
+ ],
+ "watch": "Orders and backlog in Measurement and Control Solutions.",
+ "updated": "2026-11"
+}

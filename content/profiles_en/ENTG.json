@@ -1,0 +1,43 @@
+{
+ "t": "ENTG",
+ "what": "Entegris makes the materials and handling products used inside chip factories: filters that purify chemicals and gases, specialty coatings, and the containers that carry wafers without contaminating them.",
+ "customers": "Semiconductor manufacturers and foundries, plus materials and equipment suppliers to them.",
+ "money": [
+  [
+   "Materials Solutions",
+   "the larger part",
+   "specialty chemicals, deposition materials and cleaning products"
+  ],
+  [
+   "Microcontamination Control",
+   "large",
+   "filtration and purification for chip fabrication"
+  ],
+  [
+   "Advanced Materials Handling",
+   "meaningful",
+   "wafer carriers, containers and fluid handling"
+  ]
+ ],
+ "moat": "Products qualified into specific chip manufacturing recipes, where contamination risk makes customers extremely reluctant to change supplier.",
+ "rivals": [
+  "Qnity Electronics|Q",
+  "Shin-Etsu Chemical",
+  "Merck KGaA (EMD)",
+  "Pall (Danaher)|DHR",
+  "Fujifilm"
+ ],
+ "risks": [
+  "Revenue has been roughly flat for two years",
+  "Export restrictions on China reduced a previously large market",
+  "Debt of about $3.3 billion against very little cash",
+  "Return on invested capital of about 5% after the CMC Materials acquisition"
+ ],
+ "opportunities": [
+  "Analysts see about 30% upside from current levels",
+  "Advanced chip nodes use more of its materials per wafer, so content grows faster than wafer volumes",
+  "Gross margin of 44% with a 14% operating margin"
+ ],
+ "watch": "Revenue growth against wafer starts, and China export restrictions.",
+ "updated": "2026-11"
+}

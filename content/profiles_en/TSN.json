@@ -1,0 +1,48 @@
+{
+ "t": "TSN",
+ "what": "Tyson Foods is one of the world's largest meat companies. It processes chicken, beef and pork, and makes prepared foods under brands such as Jimmy Dean, Hillshire Farm and Ball Park.",
+ "customers": "Supermarkets, restaurant chains, foodservice distributors and export buyers.",
+ "money": [
+  [
+   "Beef",
+   "the largest part of revenue",
+   "cattle processing and beef products"
+  ],
+  [
+   "Chicken",
+   "large",
+   "poultry processing, the most profitable segment recently"
+  ],
+  [
+   "Prepared Foods",
+   "large, higher margin",
+   "branded sausage, lunch meat and frozen products"
+  ],
+  [
+   "Pork and International",
+   "smaller",
+   "pork processing and overseas operations"
+  ]
+ ],
+ "moat": "Processing plants and distribution at a scale few can match, with branded prepared foods that earn more than commodity meat.",
+ "rivals": [
+  "JBS",
+  "Pilgrim's Pride|PPC",
+  "Hormel Foods|HRL",
+  "Smithfield Foods|SFD",
+  "Cargill"
+ ],
+ "risks": [
+  "Beef margins have been deeply negative because cattle supply is at multi-decade lows",
+  "Net margin of about 1% leaves no room for error",
+  "Debt of about $8.7 billion against under $1 billion of cash",
+  "Return on invested capital of about 3%"
+ ],
+ "opportunities": [
+  "Chicken margins have been strong and offset beef losses",
+  "Prepared Foods brands are far more profitable than commodity processing",
+  "The cattle cycle will eventually turn, which would restore beef margins"
+ ],
+ "watch": "Beef segment operating margin and the cattle herd rebuilding cycle.",
+ "updated": "2026-11"
+}

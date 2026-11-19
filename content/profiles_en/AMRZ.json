@@ -1,0 +1,38 @@
+{
+ "t": "AMRZ",
+ "what": "Amrize is a North American building materials company separated from Holcim. It sells cement, aggregates, ready-mixed concrete, asphalt and roofing systems, covering a building from foundation to roof.",
+ "customers": "Infrastructure and commercial contractors, roofing contractors, housebuilders and state transport agencies.",
+ "money": [
+  [
+   "Building Materials",
+   "the larger part",
+   "cement, aggregates, ready-mixed concrete and asphalt"
+  ],
+  [
+   "Building Envelope",
+   "large, higher margin",
+   "commercial and residential roofing systems"
+  ]
+ ],
+ "moat": "Cement plants and quarries close to the markets they serve, where transport cost protects each site, combined with a roofing business that sells through contractor networks.",
+ "rivals": [
+  "CRH|CRH",
+  "Vulcan Materials|VMC",
+  "Martin Marietta|MLM",
+  "Carlisle Companies|CSL",
+  "Owens Corning|OC"
+ ],
+ "risks": [
+  "Residential construction is weak while mortgage rates are high",
+  "Revenue grew only about 1% last year",
+  "Debt of about $5.6 billion against almost no cash",
+  "It is newly independent with a short record as a standalone company"
+ ],
+ "opportunities": [
+  "Operating margin of 16% with roofing earning well above the materials average",
+  "US infrastructure funding supports multi-year road and bridge demand",
+  "Data centre and manufacturing construction consumes large volumes of concrete"
+ ],
+ "watch": "Building Envelope margin and aggregates pricing.",
+ "updated": "2026-11"
+}

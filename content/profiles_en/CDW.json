@@ -1,0 +1,48 @@
+{
+ "t": "CDW",
+ "what": "CDW resells information technology to organisations. It sells hardware, software and cloud services from thousands of vendors and helps customers choose, install and manage them.",
+ "customers": "Businesses, government agencies, schools and healthcare organisations in the United States, United Kingdom and Canada.",
+ "money": [
+  [
+   "Corporate",
+   "the largest part",
+   "medium and large business customers"
+  ],
+  [
+   "Small Business",
+   "meaningful",
+   "small company customers"
+  ],
+  [
+   "Public",
+   "large",
+   "government, education and healthcare"
+  ],
+  [
+   "UK and Canada",
+   "meaningful",
+   "international operations"
+  ]
+ ],
+ "moat": "Relationships with thousands of vendors and tens of thousands of customers, where its account managers become the trusted buying channel for everything technical.",
+ "rivals": [
+  "Insight Enterprises|NSIT",
+  "SHI International",
+  "Connection|CNXN",
+  "Dell Technologies|DELL",
+  "Softcat"
+ ],
+ "risks": [
+  "Gross margin of 22% reflects a distribution business",
+  "Hardware refresh cycles are lumpy and were pulled forward during the pandemic",
+  "Debt of about $7.3 billion",
+  "Revenue has fallen about 2% a year over three years"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with return on invested capital of 15%",
+  "An ageing installed base of PCs and servers is due for replacement",
+  "Services and cloud resale earn better margins than hardware"
+ ],
+ "watch": "Net sales growth by customer segment and gross profit margin.",
+ "updated": "2026-11"
+}

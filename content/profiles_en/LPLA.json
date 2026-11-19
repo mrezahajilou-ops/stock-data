@@ -1,0 +1,43 @@
+{
+ "t": "LPLA",
+ "what": "LPL Financial is the largest independent broker-dealer in the United States. Financial advisers who want to run their own practices affiliate with it, and LPL provides the custody, technology, compliance and research behind them.",
+ "customers": "More than 32,000 financial advisers and about 1,200 financial institutions, and through them individual investors.",
+ "money": [
+  [
+   "Advisory and commission",
+   "the largest part",
+   "fees and commissions on client assets"
+  ],
+  [
+   "Interest and cash sweep",
+   "meaningful, high margin",
+   "interest earned on client cash balances"
+  ],
+  [
+   "Service and technology fees",
+   "growing",
+   "platform and technology charges to affiliated advisers"
+  ]
+ ],
+ "moat": "A platform advisers build their businesses on, where moving means re-papering every client account, plus scale that lets it offer services no small firm can.",
+ "rivals": [
+  "Raymond James|RJF",
+  "Ameriprise Financial|AMP",
+  "Cetera",
+  "Osaic",
+  "Charles Schwab|SCHW"
+ ],
+ "risks": [
+  "Falling interest rates reduce income earned on client cash",
+  "Debt of about $8 billion from acquisitions",
+  "Adviser recruitment costs rise when competition for them increases",
+  "Regulatory scrutiny of cash sweep programmes has increased across the industry"
+ ],
+ "opportunities": [
+  "Revenue grew about 37% last year and about 25% a year over three years",
+  "Analysts see about 47% upside from current levels",
+  "It keeps winning advisers from wirehouses and smaller competitors"
+ ],
+ "watch": "Net new assets and adviser headcount growth.",
+ "updated": "2026-11"
+}

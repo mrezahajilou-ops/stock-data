@@ -1,0 +1,43 @@
+{
+ "t": "JBHT",
+ "what": "J.B. Hunt is a North American transport and logistics company. Its largest business is intermodal, moving containers by rail for most of the journey and by truck at each end, which is cheaper and uses less fuel than trucking the whole way.",
+ "customers": "Retailers, manufacturers and consumer goods companies moving freight across North America.",
+ "money": [
+  [
+   "Intermodal",
+   "the largest part",
+   "containers moved by rail and delivered by truck"
+  ],
+  [
+   "Dedicated Contract Services",
+   "large, steadier",
+   "fleets operated exclusively for one customer"
+  ],
+  [
+   "Brokerage and Final Mile",
+   "meaningful",
+   "freight brokerage and heavy goods home delivery"
+  ]
+ ],
+ "moat": "A container fleet and long-standing rail partnerships that would take years to replicate, plus dedicated contracts that run for years regardless of spot freight rates.",
+ "rivals": [
+  "Hub Group|HUBG",
+  "Schneider National|SNDR",
+  "C.H. Robinson|CHRW",
+  "Knight-Swift|KNX",
+  "Union Pacific|UNP"
+ ],
+ "risks": [
+  "Freight volumes have been weak for three years",
+  "Revenue has fallen about 7% a year over three years",
+  "Intermodal pricing has been under pressure from cheap truckload rates",
+  "Brokerage has been lossmaking in the downturn"
+ ],
+ "opportunities": [
+  "Analysts see about 24% upside from current levels",
+  "Return on invested capital of 12% with low debt",
+  "Intermodal gains share from trucking when fuel prices and driver costs rise"
+ ],
+ "watch": "Intermodal volumes and revenue per load.",
+ "updated": "2026-11"
+}

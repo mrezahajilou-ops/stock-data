@@ -1,0 +1,43 @@
+{
+ "t": "DOW",
+ "what": "Dow makes basic chemicals and plastics: polyethylene for packaging, silicones for construction and electronics, and industrial intermediates used in paints, coatings and insulation.",
+ "customers": "Packaging converters, construction and infrastructure companies, car and electronics manufacturers, and consumer goods makers.",
+ "money": [
+  [
+   "Packaging and Specialty Plastics",
+   "the largest part",
+   "polyethylene and packaging resins"
+  ],
+  [
+   "Industrial Intermediates and Infrastructure",
+   "large",
+   "polyurethanes, industrial solutions and construction chemicals"
+  ],
+  [
+   "Performance Materials and Coatings",
+   "meaningful",
+   "silicones and coating materials"
+  ]
+ ],
+ "moat": "World-scale plants on the US Gulf Coast using cheap American natural gas liquids as feedstock, which gives a cost advantage over naphtha-based European and Asian producers.",
+ "rivals": [
+  "LyondellBasell|LYB",
+  "BASF",
+  "Westlake|WLK",
+  "Celanese|CE",
+  "SABIC"
+ ],
+ "risks": [
+  "It reported a loss as chemical prices fell to cycle lows",
+  "Revenue has fallen about 11% a year over three years",
+  "Debt of about $19 billion",
+  "It cut its dividend to preserve cash"
+ ],
+ "opportunities": [
+  "A dividend yield around 4.5% even after the cut",
+  "Analysts see about 16% upside from current levels",
+  "Low-cost US feedstock means it is among the last producers to lose money in a downturn"
+ ],
+ "watch": "Polyethylene spreads and whether chemical prices have bottomed.",
+ "updated": "2026-11"
+}

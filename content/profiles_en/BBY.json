@@ -1,0 +1,43 @@
+{
+ "t": "BBY",
+ "what": "Best Buy is the largest consumer electronics retailer in the United States. It sells computers, televisions, appliances and phones through about 1,000 stores and online, and provides installation and repair through its Geek Squad.",
+ "customers": "American and Canadian households buying electronics and appliances, plus small businesses.",
+ "money": [
+  [
+   "Computing and Mobile Phones",
+   "the largest part",
+   "laptops, tablets, phones and accessories"
+  ],
+  [
+   "Consumer Electronics and Appliances",
+   "large",
+   "televisions, audio, large and small appliances"
+  ],
+  [
+   "Services and other",
+   "smaller, higher margin",
+   "Geek Squad support, installation and memberships"
+  ]
+ ],
+ "moat": "Physical stores where customers can see expensive items before buying, plus installation and repair services that online sellers cannot match.",
+ "rivals": [
+  "Amazon|AMZN",
+  "Walmart|WMT",
+  "Costco Wholesale|COST",
+  "Apple|AAPL",
+  "Target|TGT"
+ ],
+ "risks": [
+  "Revenue was flat last year and has fallen about 3% a year over three years",
+  "Operating margin of about 3% is thin",
+  "Tariffs raise the cost of imported electronics",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Return on invested capital of 15% with a dividend yield near 4%",
+  "An ageing installed base of pandemic-era devices is due for replacement",
+  "Membership and services revenue is more profitable and more stable than hardware"
+ ],
+ "watch": "Comparable sales and the mix of services revenue.",
+ "updated": "2026-11"
+}

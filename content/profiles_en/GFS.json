@@ -1,0 +1,33 @@
+{
+ "t": "GFS",
+ "what": "GlobalFoundries manufactures chips designed by other companies. It focuses on specialised process technologies rather than the most advanced nodes: chips for cars, smartphones, internet-of-things devices and defence systems.",
+ "customers": "Fabless chip designers, carmakers, communications equipment companies and the US government.",
+ "money": [
+  [
+   "Foundry services",
+   "almost all of revenue",
+   "wafer manufacturing on specialty and mature process technologies"
+  ]
+ ],
+ "moat": "Manufacturing in the United States, Germany and Singapore rather than Taiwan, which customers and governments pay a premium for when supply security matters.",
+ "rivals": [
+  "Taiwan Semiconductor|TSM",
+  "United Microelectronics|UMC",
+  "SMIC",
+  "Tower Semiconductor|TSEM",
+  "Samsung Foundry"
+ ],
+ "risks": [
+  "Revenue was flat last year and has fallen about 6% a year over three years",
+  "Smartphone and industrial chip demand has been weak",
+  "Chinese foundries are adding mature-node capacity and pushing prices down",
+  "Factory utilisation drives margins and has been below capacity"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $2.3 billion exceeds its debt",
+  "Government funding supports its US and European capacity expansion"
+ ],
+ "watch": "Wafer shipments, utilisation and the share of revenue under long-term agreements.",
+ "updated": "2026-11"
+}

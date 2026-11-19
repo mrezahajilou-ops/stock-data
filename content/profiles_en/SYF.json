@@ -1,0 +1,38 @@
+{
+ "t": "SYF",
+ "what": "Synchrony Financial issues store credit cards. It partners with retailers such as Lowe's, Amazon and PayPal, running the credit programmes under their brands and keeping the loans on its own balance sheet.",
+ "customers": "American consumers using store and co-branded cards, and the retailers and healthcare providers whose programmes it runs.",
+ "money": [
+  [
+   "Interest income on card balances",
+   "the large majority",
+   "revolving credit card balances"
+  ],
+  [
+   "Retailer share arrangements and fees",
+   "meaningful",
+   "fees and profit-sharing with partner retailers"
+  ]
+ ],
+ "moat": "Multi-year exclusive programme agreements with large retailers, where the partner's customer data and the credit underwriting built around it are hard for a rival to replace.",
+ "rivals": [
+  "Bread Financial|BFH",
+  "Capital One|COF",
+  "American Express|AXP",
+  "Citigroup|C",
+  "Affirm|AFRM"
+ ],
+ "risks": [
+  "Credit losses rise when consumers come under pressure, and its customers are more credit-sensitive than most",
+  "Revenue fell about 3% last year",
+  "Losing a large retail partner would remove a meaningful share of balances",
+  "Regulatory limits on late fees and interest would hurt directly"
+ ],
+ "opportunities": [
+  "Net margin of 19% with a 26% upside implied by analyst targets",
+  "Higher interest rates widen the spread it earns on card balances",
+  "Large buybacks have shrunk the share count substantially"
+ ],
+ "watch": "Net charge-off rate and purchase volume growth.",
+ "updated": "2026-11"
+}

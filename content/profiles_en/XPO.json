@@ -1,0 +1,38 @@
+{
+ "t": "XPO",
+ "what": "XPO is a freight transportation company focused on less-than-truckload shipping in North America, where shipments from many customers share a trailer, plus a European transport business.",
+ "customers": "Manufacturers, retailers and distributors shipping pallets rather than full truckloads, about 55,000 customers in total.",
+ "money": [
+  [
+   "North American LTL",
+   "the larger part, higher margin",
+   "less-than-truckload freight through its own terminal network"
+  ],
+  [
+   "European Transportation",
+   "large",
+   "truckload, LTL and logistics across Europe"
+  ]
+ ],
+ "moat": "A terminal network and door capacity in North America that would take years and great expense to replicate, bought cheaply when a competitor failed.",
+ "rivals": [
+  "Old Dominion Freight Line|ODFL",
+  "Saia|SAIA",
+  "TFI International|TFII",
+  "FedEx Freight|FDX",
+  "ArcBest|ARCB"
+ ],
+ "risks": [
+  "Freight volumes have been weak for three years",
+  "Revenue grew only about 1% last year",
+  "Debt of about $3.8 billion against almost no cash",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Analysts see about 23% upside from current levels",
+  "Service improvements have let it raise prices per shipment faster than peers",
+  "A freight recovery would flow through to profits quickly given spare terminal capacity"
+ ],
+ "watch": "LTL tonnage, yield per hundredweight, and the operating ratio.",
+ "updated": "2026-11"
+}

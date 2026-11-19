@@ -1,0 +1,42 @@
+{
+ "t": "L",
+ "what": "Loews is a holding company controlled by the Tisch family. It owns 92% of the commercial insurer CNA Financial, the gas pipeline company Boardwalk, Loews Hotels, and a packaging business.",
+ "customers": "Businesses buying commercial insurance from CNA, gas shippers on Boardwalk's pipelines, and hotel guests.",
+ "money": [
+  [
+   "CNA Financial",
+   "the largest part",
+   "commercial property and casualty insurance"
+  ],
+  [
+   "Boardwalk Pipelines",
+   "meaningful",
+   "natural gas and liquids transport and storage"
+  ],
+  [
+   "Loews Hotels and other",
+   "smaller",
+   "hotels and packaging"
+  ]
+ ],
+ "moat": "A conservative holding company structure that buys businesses cheaply and holds them for decades, with insurance float to invest.",
+ "rivals": [
+  "Berkshire Hathaway|BRK.B",
+  "Markel Group|MKL",
+  "Chubb|CB",
+  "Travelers|TRV"
+ ],
+ "risks": [
+  "The conglomerate structure usually trades below the sum of its parts",
+  "Catastrophe losses at CNA affect the largest subsidiary",
+  "Debt of about $8.9 billion across the group",
+  "It pays a very small dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 5% last year and about 10% a year over three years",
+  "Boardwalk has benefited from rising demand for gas transport to LNG terminals",
+  "Consistent buybacks shrink the share count, raising each holder's stake in the subsidiaries"
+ ],
+ "watch": "CNA's combined ratio and Boardwalk's contracted capacity.",
+ "updated": "2026-11"
+}

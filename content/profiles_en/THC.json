@@ -1,0 +1,37 @@
+{
+ "t": "THC",
+ "what": "Tenet Healthcare runs hospitals and, through its majority-owned United Surgical Partners, a large network of ambulatory surgery centres where procedures are done without an overnight stay.",
+ "customers": "Patients and the insurers and government programmes that pay for their care, plus physicians who operate in its facilities.",
+ "money": [
+  [
+   "Ambulatory Care (USPI)",
+   "the larger part of profit",
+   "surgery centres and surgical hospitals"
+  ],
+  [
+   "Hospital Operations",
+   "the larger part of revenue",
+   "acute care hospitals, mostly in Texas, Florida and California"
+  ]
+ ],
+ "moat": "Surgery centres jointly owned with the surgeons who use them, which aligns incentives and makes the physicians unlikely to take cases elsewhere.",
+ "rivals": [
+  "HCA Healthcare|HCA",
+  "Universal Health Services|UHS",
+  "Surgery Partners|SGRY",
+  "Community Health Systems|CYH"
+ ],
+ "risks": [
+  "Debt of about $13 billion",
+  "Hospital reimbursement from government programmes is politically determined",
+  "Uninsured patients rise if health insurance subsidies expire",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Return on invested capital of 16% with a 16% operating margin",
+  "Procedures keep shifting from hospitals to lower-cost surgery centres, which is its best business",
+  "Selling hospitals to fund surgery centre expansion has improved the mix"
+ ],
+ "watch": "Ambulatory segment case growth and hospital admissions.",
+ "updated": "2026-11"
+}

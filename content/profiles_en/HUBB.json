@@ -1,0 +1,38 @@
+{
+ "t": "HUBB",
+ "what": "Hubbell makes electrical equipment. One half supplies utilities with transformers, meters, insulators and grid protection; the other makes wiring devices, lighting and enclosures for buildings and industry.",
+ "customers": "Electric utilities, data centre builders, industrial plants, and electrical contractors and distributors.",
+ "money": [
+  [
+   "Utility Solutions",
+   "the larger part",
+   "grid infrastructure, transformers, meters and protection equipment"
+  ],
+  [
+   "Electrical Solutions",
+   "large",
+   "wiring devices, enclosures and industrial controls"
+  ]
+ ],
+ "moat": "Utility products qualified into grid specifications and bought from approved vendor lists, where long lead times and reliability requirements make switching rare.",
+ "rivals": [
+  "Eaton|ETN",
+  "Schneider Electric",
+  "ABB",
+  "nVent Electric|NVT",
+  "Vertiv|VRT"
+ ],
+ "risks": [
+  "Utility spending cycles determine order flow",
+  "Debt of about $5.3 billion against very little cash",
+  "Revenue grew only about 4% last year after a strong period",
+  "Transformer lead times have normalised, reducing pricing power"
+ ],
+ "opportunities": [
+  "Return on invested capital of 15% with a 21% operating margin",
+  "Grid replacement and data centre connection drive multi-year utility investment",
+  "Analysts see about 26% upside from current levels"
+ ],
+ "watch": "Utility Solutions order growth and transformer pricing.",
+ "updated": "2026-11"
+}

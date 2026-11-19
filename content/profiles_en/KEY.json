@@ -1,0 +1,38 @@
+{
+ "t": "KEY",
+ "what": "KeyCorp is a regional bank based in Cleveland, Ohio. It serves households and businesses across the Midwest, Northeast and Pacific Northwest, and runs specialised commercial lending and investment banking in industries such as healthcare and renewable energy.",
+ "customers": "Households and small businesses in its branch markets, and middle-market companies nationally in its specialty industries.",
+ "money": [
+  [
+   "Consumer Bank",
+   "large",
+   "deposits, mortgages and consumer lending"
+  ],
+  [
+   "Commercial Bank",
+   "large",
+   "middle-market lending, investment banking and payments"
+  ]
+ ],
+ "moat": "Industry-specialist commercial banking teams that win business outside its branch footprint, plus deposit relationships in long-established Midwestern markets.",
+ "rivals": [
+  "Huntington Bancshares|HBAN",
+  "Fifth Third Bancorp|FITB",
+  "Citizens Financial|CFG",
+  "M&T Bank|MTB",
+  "PNC Financial|PNC"
+ ],
+ "risks": [
+  "Commercial property lending is a watched exposure",
+  "It took a large securities repositioning loss to reset its balance sheet",
+  "Deposit costs rise when savers move to higher-yielding accounts",
+  "Midwestern growth is slower than the Sunbelt"
+ ],
+ "opportunities": [
+  "Revenue grew sharply last year as the balance sheet reset took effect",
+  "A dividend yield around 4% with analysts seeing about 24% upside",
+  "Low-yielding securities rolling off at par lifts net interest income mechanically"
+ ],
+ "watch": "Net interest margin expansion and investment banking fee income.",
+ "updated": "2026-11"
+}

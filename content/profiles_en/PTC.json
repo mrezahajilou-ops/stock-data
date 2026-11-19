@@ -1,0 +1,38 @@
+{
+ "t": "PTC",
+ "what": "PTC makes engineering software. Creo is used to design physical products in three dimensions, Windchill manages the data and revisions behind those designs, and Codebeamer manages the software inside modern products.",
+ "customers": "Manufacturers of cars, machinery, aerospace, electronics and medical devices.",
+ "money": [
+  [
+   "Product Lifecycle Management",
+   "the larger part",
+   "Windchill, Codebeamer and service lifecycle software"
+  ],
+  [
+   "Computer-Aided Design",
+   "large",
+   "Creo and Onshape design software"
+  ]
+ ],
+ "moat": "Software holding the master record of how a product is designed and built, where migrating means converting decades of engineering data and retraining engineers.",
+ "rivals": [
+  "Dassault Systèmes",
+  "Siemens Digital Industries",
+  "Autodesk|ADSK",
+  "Ansys (Synopsys)|SNPS",
+  "Aras"
+ ],
+ "risks": [
+  "Manufacturing customers defer software spending in downturns",
+  "Analyst targets imply the shares are already fully valued",
+  "Debt of about $1.6 billion against little cash",
+  "Growth depends on moving customers to higher-priced subscriptions"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year with an 84% gross margin",
+  "Operating margin of 36% with very high subscription renewal rates",
+  "Software-defined products need exactly the lifecycle management it sells"
+ ],
+ "watch": "Annual recurring revenue growth in constant currency.",
+ "updated": "2026-11"
+}

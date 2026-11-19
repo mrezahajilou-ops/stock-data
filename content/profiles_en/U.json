@@ -1,0 +1,38 @@
+{
+ "t": "U",
+ "what": "Unity makes the game engine many mobile and independent games are built with, and runs an advertising network that helps those games find and monetise players. Advertising is the larger business.",
+ "customers": "Game developers and studios, and advertisers buying placements inside mobile games.",
+ "money": [
+  [
+   "Grow (advertising)",
+   "the larger part",
+   "in-game advertising network and monetisation tools"
+  ],
+  [
+   "Create (engine)",
+   "large",
+   "subscriptions and licences for the Unity engine"
+  ]
+ ],
+ "moat": "The engine most mobile games are built in, which gives its advertising network data and integration no outside ad network has.",
+ "rivals": [
+  "AppLovin|APP",
+  "Epic Games (Unreal)",
+  "ironSource rivals",
+  "Google AdMob|GOOGL",
+  "Meta Audience Network|META"
+ ],
+ "risks": [
+  "It makes a significant operating loss",
+  "A disastrous pricing change in 2023 damaged developer trust",
+  "Revenue grew only about 2% last year",
+  "AppLovin has outperformed it badly in mobile advertising"
+ ],
+ "opportunities": [
+  "Its rebuilt advertising model has shown improving performance",
+  "Gross margin of 74% means a revenue recovery would turn into profit quickly",
+  "Cash of about $2.6 billion exceeds its debt"
+ ],
+ "watch": "Advertising revenue growth and whether developer subscriptions stabilise.",
+ "updated": "2026-11"
+}

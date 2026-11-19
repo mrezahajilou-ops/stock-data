@@ -1,0 +1,37 @@
+{
+ "t": "NI",
+ "what": "NiSource is a regulated utility serving about 3.8 million customers across six states. Its largest businesses are Columbia Gas distribution and NIPSCO, which supplies electricity and gas in northern Indiana.",
+ "customers": "Households, businesses and industry across Indiana, Ohio, Pennsylvania, Virginia, Kentucky and Maryland.",
+ "money": [
+  [
+   "Gas Distribution",
+   "the larger part",
+   "Columbia Gas utilities across six states"
+  ],
+  [
+   "Electric Operations",
+   "large",
+   "NIPSCO electricity generation and delivery in Indiana"
+  ]
+ ],
+ "moat": "Regulated monopolies in each territory, with returns set by state commissions and demand that holds up through economic cycles.",
+ "rivals": [
+  "CenterPoint Energy|CNP",
+  "Atmos Energy|ATO",
+  "Duke Energy|DUK",
+  "Ameren|AEE"
+ ],
+ "risks": [
+  "Debt of about $18 billion against almost no cash",
+  "Replacing ageing gas pipe is a long and expensive obligation",
+  "Coal plant retirements in Indiana require replacement generation",
+  "Long-term decarbonisation policy is a risk to gas distribution"
+ ],
+ "opportunities": [
+  "Revenue grew about 23% last year with a 28% operating margin",
+  "Large data centre agreements in Indiana raise projected load growth sharply",
+  "Every approved investment adds to the base it earns a regulated return on"
+ ],
+ "watch": "Data centre load agreements in Indiana and rate case outcomes.",
+ "updated": "2026-11"
+}

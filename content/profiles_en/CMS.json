@@ -1,0 +1,42 @@
+{
+ "t": "CMS",
+ "what": "CMS Energy is a Michigan utility holding company. Its main subsidiary Consumers Energy delivers electricity and natural gas across most of the state, and it owns a small independent power business.",
+ "customers": "About 1.9 million electricity and 1.8 million gas customers across Michigan.",
+ "money": [
+  [
+   "Consumers Electric",
+   "the largest part",
+   "regulated electricity generation and delivery"
+  ],
+  [
+   "Consumers Gas",
+   "large",
+   "regulated gas distribution"
+  ],
+  [
+   "NorthStar Clean Energy",
+   "small",
+   "independent power generation"
+  ]
+ ],
+ "moat": "A regulated monopoly across most of Michigan, with rates set by the state commission.",
+ "rivals": [
+  "DTE Energy|DTE",
+  "Ameren|AEE",
+  "WEC Energy|WEC",
+  "Alliant Energy|LNT"
+ ],
+ "risks": [
+  "Debt of about $19 billion against almost no cash",
+  "Michigan regulators set allowed returns and have been demanding on reliability",
+  "Coal plant retirements require replacement generation investment",
+  "Return on invested capital of about 5%"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year with a 20% operating margin",
+  "Data centre interest in Michigan raises projected load growth",
+  "Grid reliability investment adds to the base it earns a regulated return on"
+ ],
+ "watch": "Rate case outcomes and data centre load commitments.",
+ "updated": "2026-11"
+}

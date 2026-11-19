@@ -1,0 +1,38 @@
+{
+ "t": "EG",
+ "what": "Everest Group is a Bermuda-based reinsurer and insurer. Most of its business is reinsurance, taking a share of other insurers' property and casualty risk, and it also writes specialty insurance directly.",
+ "customers": "Insurance companies buying reinsurance, and businesses buying specialty insurance directly.",
+ "money": [
+  [
+   "Reinsurance",
+   "the larger part",
+   "property catastrophe, casualty and specialty reinsurance"
+  ],
+  [
+   "Insurance",
+   "large",
+   "specialty commercial insurance written directly"
+  ]
+ ],
+ "moat": "Capital and a long underwriting record that let it write large catastrophe risks few competitors can absorb, and the discipline to shrink when prices are inadequate.",
+ "rivals": [
+  "RenaissanceRe|RNR",
+  "Arch Capital|ACGL",
+  "Munich Re",
+  "Swiss Re",
+  "Chubb|CB"
+ ],
+ "risks": [
+  "Reserve strengthening in US casualty lines hurt recent results",
+  "Catastrophe losses can be very large in any single year",
+  "Reinsurance pricing has softened after several strong years",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 13% a year over three years",
+  "Higher interest rates raise investment income on its large portfolio",
+  "A dividend yield near 2% with a record of growing book value per share"
+ ],
+ "watch": "The combined ratio, particularly casualty reserve development.",
+ "updated": "2026-11"
+}

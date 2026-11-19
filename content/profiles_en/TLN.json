@@ -1,0 +1,37 @@
+{
+ "t": "TLN",
+ "what": "Talen Energy generates and sells electricity. Its most valuable asset is the Susquehanna nuclear plant in Pennsylvania, which produces carbon-free power around the clock, exactly what data centres want.",
+ "customers": "Wholesale power markets, retail electricity customers, and data centre operators contracting for power.",
+ "money": [
+  [
+   "Nuclear generation",
+   "the largest part of value",
+   "the Susquehanna nuclear station"
+  ],
+  [
+   "Fossil generation and retail",
+   "large",
+   "gas and coal plants and retail electricity sales"
+  ]
+ ],
+ "moat": "A large nuclear plant with a data centre campus adjacent to it, a combination that cannot be replicated quickly because new nuclear takes a decade or more to build.",
+ "rivals": [
+  "Constellation Energy|CEG",
+  "Vistra|VST",
+  "NRG Energy|NRG",
+  "PSEG|PEG"
+ ],
+ "risks": [
+  "It reported a loss after hedging and restructuring effects",
+  "Debt of about $9.6 billion against little cash",
+  "Power prices are volatile and determine uncontracted earnings",
+  "Regulators have scrutinised direct data centre connections to nuclear plants"
+ ],
+ "opportunities": [
+  "Revenue grew about 22% last year",
+  "A long-term power agreement with a large technology company gives contracted nuclear revenue",
+  "Analysts see about 25% upside from current levels"
+ ],
+ "watch": "Data centre power agreements and forward power prices in its markets.",
+ "updated": "2026-11"
+}

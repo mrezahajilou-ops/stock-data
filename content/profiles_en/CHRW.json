@@ -1,0 +1,38 @@
+{
+ "t": "CHRW",
+ "what": "C.H. Robinson arranges freight. It books truck, rail, ocean and air capacity on behalf of shippers without owning the vehicles, and handles customs and supply chain management.",
+ "customers": "Manufacturers, retailers and distributors moving freight across North America and internationally.",
+ "money": [
+  [
+   "North American Surface Transportation",
+   "the larger part",
+   "truckload and less-than-truckload brokerage"
+  ],
+  [
+   "Global Forwarding",
+   "large",
+   "ocean and air freight forwarding and customs"
+  ]
+ ],
+ "moat": "A network of relationships with tens of thousands of carriers and shippers, plus pricing data from millions of shipments, which lets it match capacity faster than smaller brokers.",
+ "rivals": [
+  "Expeditors International|EXPD",
+  "XPO|XPO",
+  "RXO|RXO",
+  "Uber Freight|UBER",
+  "Flexport"
+ ],
+ "risks": [
+  "Freight brokerage margins compress when truckload capacity is abundant",
+  "Revenue has fallen about 13% a year over three years",
+  "Digital brokers compete on technology and price",
+  "Freight volumes have been weak for three years"
+ ],
+ "opportunities": [
+  "Return on invested capital of 20% with no assets to depreciate",
+  "Analysts see about 31% upside from current levels",
+  "Cost reduction and automation have lifted productivity per employee substantially"
+ ],
+ "watch": "Adjusted gross profit per transaction and truckload volumes.",
+ "updated": "2026-11"
+}

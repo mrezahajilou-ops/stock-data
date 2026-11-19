@@ -1,0 +1,33 @@
+{
+ "t": "NTNX",
+ "what": "Nutanix sells software that turns ordinary servers into a private cloud. Companies run their applications and data on it in their own data centres or across public clouds, managed through one interface.",
+ "customers": "Enterprises, government agencies, healthcare and education organisations running their own infrastructure.",
+ "money": [
+  [
+   "Subscription",
+   "almost all of revenue",
+   "software subscriptions and support, billed over multi-year terms"
+  ]
+ ],
+ "moat": "Infrastructure software that an organisation's applications and operations are built on, where migration means rebuilding how the data centre runs.",
+ "rivals": [
+  "VMware (Broadcom)|AVGO",
+  "Microsoft|MSFT",
+  "Red Hat (IBM)|IBM",
+  "Dell Technologies|DELL",
+  "Amazon Web Services|AMZN"
+ ],
+ "risks": [
+  "It competes against far larger infrastructure vendors",
+  "Growth of about 12% is moderate for a software company",
+  "Stock-based compensation is large relative to reported profit",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Broadcom's changes to VMware licensing have pushed customers to look for alternatives, which has helped it directly",
+  "Gross margin of 87% with return on invested capital of 25%",
+  "Cash of about $2.4 billion against little debt"
+ ],
+ "watch": "Annual contract value growth and new customer additions from VMware displacement.",
+ "updated": "2026-11"
+}

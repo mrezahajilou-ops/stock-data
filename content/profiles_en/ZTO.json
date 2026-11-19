@@ -1,0 +1,33 @@
+{
+ "t": "ZTO",
+ "what": "ZTO Express is one of China's largest parcel delivery companies. It moves billions of packages a year for e-commerce platforms through a network of line-haul trucks, sorting hubs and franchised local pickup and delivery outlets.",
+ "customers": "Chinese e-commerce sellers and platforms, and the consumers receiving parcels.",
+ "money": [
+  [
+   "Express delivery services",
+   "almost all of revenue",
+   "parcel sorting and line-haul transport, with local collection franchised"
+  ]
+ ],
+ "moat": "Owning the sorting hubs and long-haul fleet while franchising the local legs, which gives it scale economics on the expensive part and low fixed cost on the rest.",
+ "rivals": [
+  "YTO Express",
+  "STO Express",
+  "Yunda",
+  "J&T Global|JTEXF",
+  "SF Express"
+ ],
+ "risks": [
+  "Chinese parcel price competition has been severe and regulators have intervened to stop it",
+  "Volume growth has come at falling revenue per parcel",
+  "Chinese regulatory and geopolitical risk affects US-listed Chinese shares",
+  "Debt of about $3.3 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year with a 21% operating margin",
+  "Cash of about $4.7 billion exceeds its debt",
+  "Regulatory pressure against below-cost pricing would benefit the lowest-cost operator"
+ ],
+ "watch": "Parcel volume growth and revenue per parcel.",
+ "updated": "2026-11"
+}

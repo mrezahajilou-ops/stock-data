@@ -1,0 +1,38 @@
+{
+ "t": "LSCC",
+ "what": "Lattice Semiconductor makes small, low-power programmable logic chips. They sit in servers, communications equipment, industrial systems and cars, handling control and interface tasks that fixed-function chips cannot be reprogrammed to do.",
+ "customers": "Server and data centre equipment makers, communications infrastructure companies, industrial automation and automotive suppliers.",
+ "money": [
+  [
+   "Programmable logic devices",
+   "almost all of revenue",
+   "small field-programmable gate arrays and related silicon"
+  ],
+  [
+   "Software and IP",
+   "small",
+   "design software and licensed intellectual property"
+  ]
+ ],
+ "moat": "The lowest-power small programmable chips available, designed into systems where power and board space are tight and alternatives are far larger.",
+ "rivals": [
+  "AMD (Xilinx)|AMD",
+  "Altera",
+  "Microchip Technology|MCHP",
+  "Efinix",
+  "Gowin"
+ ],
+ "risks": [
+  "Revenue has fallen about 7% a year over three years after a severe inventory correction",
+  "Operating margin fell to about 2%",
+  "Debt of about $925 million against very little cash",
+  "The shares trade at a very high multiple of current earnings"
+ ],
+ "opportunities": [
+  "Gross margin of 68%, high for a chipmaker, means a recovery converts quickly to profit",
+  "Analysts see about 36% upside from current levels",
+  "AI server designs use its chips for power management and security control"
+ ],
+ "watch": "Revenue recovery against the inventory correction, and design wins in servers.",
+ "updated": "2026-11"
+}

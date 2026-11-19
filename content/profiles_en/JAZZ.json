@@ -1,0 +1,38 @@
+{
+ "t": "JAZZ",
+ "what": "Jazz Pharmaceuticals develops medicines for sleep disorders, epilepsy and cancer. Xywav and Xyrem for narcolepsy, Epidiolex for rare childhood epilepsy, and Rylaze for leukaemia are its main products.",
+ "customers": "Sleep specialists, neurologists and oncologists, with treatment paid for by insurers and health systems.",
+ "money": [
+  [
+   "Neuroscience",
+   "the larger part",
+   "Xywav, Xyrem and Epidiolex"
+  ],
+  [
+   "Oncology",
+   "large",
+   "Rylaze, Zepzelca and Defitelio"
+  ]
+ ],
+ "moat": "Medicines in conditions with few alternatives, distributed through restricted pharmacy programmes that make substitution difficult even after generics appear.",
+ "rivals": [
+  "Avadel Pharmaceuticals|AVDL",
+  "Takeda|TAK",
+  "Harmony Biosciences|HRMY",
+  "UCB",
+  "Bristol Myers Squibb|BMY"
+ ],
+ "risks": [
+  "It reported a loss after acquisition and impairment charges",
+  "Generic competition to Xyrem has been eroding that franchise",
+  "Debt of about $5.6 billion against $2 billion of cash",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 5% last year",
+  "Analysts see about 24% upside from current levels",
+  "Epidiolex and the oncology portfolio grow while the older sleep products decline"
+ ],
+ "watch": "Xywav and Epidiolex revenue growth and the oncology pipeline.",
+ "updated": "2026-11"
+}

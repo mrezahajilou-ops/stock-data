@@ -1,0 +1,43 @@
+{
+ "t": "DINO",
+ "what": "HF Sinclair refines crude oil into fuels, markets them through Sinclair branded stations, produces renewable diesel, makes lubricants and specialty products, and owns midstream assets.",
+ "customers": "Fuel wholesalers and branded station operators in the western United States, plus lubricant and specialty product buyers.",
+ "money": [
+  [
+   "Refining",
+   "the largest part",
+   "seven refineries in the Rockies, Southwest and Mid-Continent"
+  ],
+  [
+   "Marketing and Lubricants",
+   "large",
+   "Sinclair branded fuel and Petro-Canada lubricants"
+  ],
+  [
+   "Renewables and Midstream",
+   "meaningful",
+   "renewable diesel and pipeline assets"
+  ]
+ ],
+ "moat": "Refineries in inland western markets that are insulated from Gulf Coast competition by transport costs, combined with its own branded retail outlets.",
+ "rivals": [
+  "Valero Energy|VLO",
+  "Phillips 66|PSX",
+  "Marathon Petroleum|MPC",
+  "PBF Energy|PBF",
+  "Par Pacific|PARR"
+ ],
+ "risks": [
+  "Refining margins drive earnings and are outside its control",
+  "Revenue has fallen about 11% a year over three years",
+  "Renewable diesel economics depend on government credits",
+  "Refineries need periodic expensive maintenance shutdowns"
+ ],
+ "opportunities": [
+  "Analysts see about 35% upside from current levels",
+  "Cash of about $3.3 billion roughly matches its debt",
+  "Lubricants and specialty products earn steadier margins than refining"
+ ],
+ "watch": "Refining margin per barrel and renewable diesel profitability.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "NWS",
+ "what": "News Corp owns newspapers and information businesses: The Wall Street Journal and Dow Jones, UK and Australian newspapers, the book publisher HarperCollins, and a majority of the property site REA Group.",
+ "customers": "Subscribers to its publications and data services, advertisers, book buyers, and property searchers in Australia.",
+ "money": [
+  [
+   "Dow Jones",
+   "the largest part of profit",
+   "The Wall Street Journal, Barron's and professional information services"
+  ],
+  [
+   "Digital Real Estate Services",
+   "large",
+   "REA Group in Australia and Realtor.com"
+  ],
+  [
+   "Book Publishing",
+   "large",
+   "HarperCollins"
+  ],
+  [
+   "News Media",
+   "meaningful",
+   "UK and Australian newspapers"
+  ]
+ ],
+ "moat": "Professional information subscriptions at Dow Jones that businesses expense rather than cancel, plus REA Group's dominant position in Australian property listings.",
+ "rivals": [
+  "New York Times|NYT",
+  "Thomson Reuters|TRI",
+  "Zillow|Z",
+  "Penguin Random House",
+  "Daily Mail"
+ ],
+ "risks": [
+  "Print newspaper revenue continues to decline",
+  "Realtor.com has lost ground to Zillow",
+  "Advertising revenue is cyclical",
+  "Family control through dual-class shares limits minority influence"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "Dow Jones professional information grows at double digits with very high margins",
+  "Selling or separating lower-growth assets would surface value"
+ ],
+ "watch": "Dow Jones professional information growth and REA Group's results.",
+ "updated": "2026-11"
+}

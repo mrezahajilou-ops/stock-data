@@ -1,0 +1,42 @@
+{
+ "t": "EMA",
+ "what": "Emera is a Canadian utility holding company. It owns Tampa Electric and Peoples Gas in Florida, Nova Scotia Power, and utilities in New Mexico and the Caribbean.",
+ "customers": "About 2.6 million electricity and gas customers across Florida, Atlantic Canada, New Mexico and Caribbean islands.",
+ "money": [
+  [
+   "Florida Electric and Gas",
+   "the largest part",
+   "Tampa Electric and Peoples Gas"
+  ],
+  [
+   "Canadian Electric Utilities",
+   "large",
+   "Nova Scotia Power and others"
+  ],
+  [
+   "Other Electric Utilities and Gas",
+   "meaningful",
+   "New Mexico, Caribbean and gas transmission"
+  ]
+ ],
+ "moat": "Regulated monopolies across several jurisdictions, with Florida providing the fastest-growing customer base.",
+ "rivals": [
+  "Fortis|FTS",
+  "NextEra Energy|NEE",
+  "Duke Energy|DUK",
+  "Algonquin Power|AQN"
+ ],
+ "risks": [
+  "Debt of about $15 billion against little cash",
+  "Nova Scotia regulators capped rate increases, which hurt returns there",
+  "Hurricane damage in Florida requires recovery through later rates",
+  "Only one analyst covers it in this data and the target implies no upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 28% last year with a 22% operating margin",
+  "Florida population growth adds customers every year",
+  "A dividend yield around 4% with a long record of increases"
+ ],
+ "watch": "Florida customer growth and Nova Scotia regulatory decisions.",
+ "updated": "2026-11"
+}

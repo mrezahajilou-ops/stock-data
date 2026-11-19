@@ -1,0 +1,37 @@
+{
+ "t": "LAMR",
+ "what": "Lamar Advertising owns outdoor advertising space: billboards along American highways, digital displays, advertising in airports and on transit systems. It has operated under the Lamar name since 1902.",
+ "customers": "Local and national advertisers, from restaurants and lawyers to large consumer brands.",
+ "money": [
+  [
+   "Billboards",
+   "the large majority",
+   "static and digital roadside displays"
+  ],
+  [
+   "Logos and transit",
+   "smaller",
+   "highway logo signs and transit advertising"
+  ]
+ ],
+ "moat": "Billboard permits that local zoning laws make almost impossible to obtain today, which fixes the supply of roadside advertising space in each market.",
+ "rivals": [
+  "Outfront Media|OUT",
+  "Clear Channel Outdoor|CCO",
+  "JCDecaux",
+  "Local operators"
+ ],
+ "risks": [
+  "Advertising spending falls in a recession",
+  "Debt of about $5 billion against almost no cash",
+  "Local advertising has been weak in some categories",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Operating margin of 34% with a 67% gross margin",
+  "Converting static boards to digital raises revenue per site several times over",
+  "A dividend yield above 4% backed by stable local advertising"
+ ],
+ "watch": "Same-board revenue growth and the pace of digital conversions.",
+ "updated": "2026-11"
+}

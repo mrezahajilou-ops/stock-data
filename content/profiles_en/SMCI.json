@@ -1,0 +1,38 @@
+{
+ "t": "SMCI",
+ "what": "Super Micro Computer builds servers. It assembles systems around Nvidia and other chips, specialising in rack-scale AI servers with liquid cooling, and ships them quickly after each new chip generation launches.",
+ "customers": "Cloud providers, AI companies, enterprises and data centre operators building AI clusters.",
+ "money": [
+  [
+   "Server and storage systems",
+   "almost all of revenue",
+   "AI and general purpose servers, racks and storage"
+  ],
+  [
+   "Subsystems and accessories",
+   "small",
+   "motherboards and components"
+  ]
+ ],
+ "moat": "Speed to market with each new chip generation, built on a modular building-block design that lets it ship configurations before larger competitors finish qualifying theirs.",
+ "rivals": [
+  "Dell Technologies|DELL",
+  "Hewlett Packard Enterprise|HPE",
+  "Lenovo",
+  "Quanta",
+  "Wistron"
+ ],
+ "risks": [
+  "Gross margin of 11% is thin because the chip cost dominates the system price",
+  "Accounting concerns led to a delayed annual report and an auditor resignation in 2024",
+  "It depends heavily on chip allocation from Nvidia",
+  "Revenue is concentrated in a few very large customers"
+ ],
+ "opportunities": [
+  "Revenue grew about 78% last year and about 76% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Cash of about $6.9 billion exceeds its debt"
+ ],
+ "watch": "Gross margin per system and whether revenue growth is matched by cash generation.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "LDOS",
+ "what": "Leidos provides technology services to the US government. It runs defence and intelligence systems, airport security screening equipment, veterans' health examinations and civil agency IT.",
+ "customers": "US defence and intelligence agencies, civil government departments, the Department of Veterans Affairs, and allied governments.",
+ "money": [
+  [
+   "National Security and Digital",
+   "the largest part",
+   "defence and intelligence systems and IT"
+  ],
+  [
+   "Health and Civil",
+   "large, highest margin",
+   "veterans' disability examinations and civil agency programmes"
+  ],
+  [
+   "Commercial and International",
+   "meaningful",
+   "security detection and international defence work"
+  ]
+ ],
+ "moat": "Incumbent positions on multi-year government contracts with security clearances and programme knowledge that make recompetes hard for outsiders to win.",
+ "rivals": [
+  "Booz Allen Hamilton|BAH",
+  "CACI International|CACI",
+  "SAIC|SAIC",
+  "General Dynamics IT|GD",
+  "Accenture Federal|ACN"
+ ],
+ "risks": [
+  "US government budget decisions and shutdowns affect contract timing",
+  "Debt of about $6.6 billion",
+  "Government cost-cutting initiatives target services contractors directly",
+  "Revenue grew only about 3% last year"
+ ],
+ "opportunities": [
+  "Return on invested capital of 16% with a 12% operating margin",
+  "Analysts see about 22% upside from current levels",
+  "The veterans' health examination business has grown strongly and earns high margins"
+ ],
+ "watch": "Net bookings and the book-to-bill ratio, and health segment margins.",
+ "updated": "2026-11"
+}

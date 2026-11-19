@@ -1,0 +1,48 @@
+{
+ "t": "MGA",
+ "what": "Magna International is one of the world's largest car parts makers. It supplies body structures, seats, mirrors, powertrain components and electronics, and also builds complete vehicles under contract in Austria.",
+ "customers": "Carmakers worldwide, with the largest exposure to North American and European manufacturers.",
+ "money": [
+  [
+   "Body Exteriors and Structures",
+   "the largest part",
+   "body panels, frames and exterior systems"
+  ],
+  [
+   "Power and Vision",
+   "large",
+   "electronics, mirrors, lighting and powertrain"
+  ],
+  [
+   "Seating Systems",
+   "large",
+   "complete seating systems"
+  ],
+  [
+   "Complete Vehicles",
+   "meaningful",
+   "contract manufacturing of whole cars in Austria"
+  ]
+ ],
+ "moat": "Content designed into vehicle platforms years ahead and supplied for the model's life, plus the rare ability to assemble complete vehicles for carmakers that lack capacity.",
+ "rivals": [
+  "Aptiv|APTV",
+  "Lear|LEA",
+  "Forvia",
+  "Valeo",
+  "Adient|ADNT"
+ ],
+ "risks": [
+  "Net margin of about 2% is thin, as is normal for a car parts supplier",
+  "European car production has been falling",
+  "Revenue fell about 2% last year",
+  "Tariffs disrupt a business with plants across North America and Europe"
+ ],
+ "opportunities": [
+  "Analysts see about 17% upside from current levels",
+  "A dividend yield above 3% with a long payment record",
+  "Content per vehicle rises as cars add electronics and driver assistance"
+ ],
+ "watch": "Light vehicle production volumes in North America and Europe, and margin by segment.",
+ "updated": "2026-11"
+}

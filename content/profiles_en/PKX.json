@@ -1,0 +1,43 @@
+{
+ "t": "PKX",
+ "what": "POSCO Holdings is South Korea's largest steelmaker and one of the biggest in the world. It also owns trading, engineering and battery materials businesses, including lithium and cathode material operations.",
+ "customers": "Carmakers, shipbuilders, construction companies and appliance manufacturers in Korea and worldwide, plus battery makers.",
+ "money": [
+  [
+   "Steel",
+   "the large majority",
+   "carbon and stainless steel from Korean and overseas mills"
+  ],
+  [
+   "Trading and infrastructure",
+   "large",
+   "POSCO International trading and engineering"
+  ],
+  [
+   "Battery materials",
+   "growing, lossmaking",
+   "lithium, nickel and cathode materials"
+  ]
+ ],
+ "moat": "Integrated steel mills with among the lowest conversion costs in the world, supplying a domestic industrial base that buys locally.",
+ "rivals": [
+  "Nippon Steel",
+  "ArcelorMittal|MT",
+  "Baowu",
+  "Hyundai Steel",
+  "Nucor|NUE"
+ ],
+ "risks": [
+  "Net margin of about 1% as Chinese steel exports depress world prices",
+  "Revenue has fallen about 8% a year over three years",
+  "Battery materials investment has consumed cash with little profit so far",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Analysts see large upside from the current price",
+  "Korean governance reform is pushing large groups to raise shareholder returns",
+  "Battery materials could become valuable if electric vehicle demand reaccelerates"
+ ],
+ "watch": "Steel spreads against Chinese imports and losses in battery materials.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "ULS",
+ "what": "UL Solutions tests and certifies products for safety. The UL mark on electrical goods, appliances and industrial equipment comes from it, and it also runs inspection, advisory and software services.",
+ "customers": "Manufacturers of consumer electronics, appliances, industrial equipment, building products, and increasingly battery and renewable energy makers.",
+ "money": [
+  [
+   "Industrial",
+   "the larger part",
+   "testing and certification for industrial, energy and building products"
+  ],
+  [
+   "Consumer",
+   "large",
+   "certification for electronics, appliances and retail goods"
+  ],
+  [
+   "Software and Advisory",
+   "smaller",
+   "compliance software and advisory services"
+  ]
+ ],
+ "moat": "The UL mark is required or expected by retailers, insurers and building codes across North America, which makes certification a cost of market access rather than a choice.",
+ "rivals": [
+  "SGS",
+  "Bureau Veritas",
+  "Intertek",
+  "TÜV Rheinland",
+  "Eurofins"
+ ],
+ "risks": [
+  "Growth of about 6% is steady rather than fast",
+  "Manufacturing output drives testing volumes",
+  "Analyst coverage is relatively thin",
+  "Competitors are large and global"
+ ],
+ "opportunities": [
+  "Return on invested capital of 20% with cash roughly matching debt",
+  "Analysts see about 28% upside from current levels",
+  "Battery, electric vehicle and renewable energy certification are fast-growing categories"
+ ],
+ "watch": "Organic revenue growth and the mix shift toward higher-margin certification.",
+ "updated": "2026-11"
+}

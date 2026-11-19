@@ -1,0 +1,43 @@
+{
+ "t": "CHKP",
+ "what": "Check Point Software sells network and cloud security. Its firewalls and security gateways protect corporate networks, and it also sells cloud, email and endpoint protection managed from one console.",
+ "customers": "Enterprises, government agencies and service providers worldwide.",
+ "money": [
+  [
+   "Security subscriptions",
+   "the largest part",
+   "cloud, email and threat prevention subscriptions"
+  ],
+  [
+   "Products and licences",
+   "large",
+   "security gateway appliances"
+  ],
+  [
+   "Software updates and maintenance",
+   "large",
+   "support contracts on installed products"
+  ]
+ ],
+ "moat": "Security appliances embedded in network architectures with configurations and policies built up over years, which makes replacement a project rather than a purchase.",
+ "rivals": [
+  "Palo Alto Networks|PANW",
+  "Fortinet|FTNT",
+  "Cisco|CSCO",
+  "Zscaler|ZS",
+  "CrowdStrike|CRWD"
+ ],
+ "risks": [
+  "Growth of about 6% is far slower than its faster-growing rivals",
+  "It has lost share in next-generation firewalls to Palo Alto and Fortinet",
+  "Analyst targets imply the shares are already fully valued",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Operating margin of 30% and return on invested capital of 23%",
+  "Gross margin of 87% with cash exceeding debt",
+  "Consistent large buybacks have shrunk the share count for years"
+ ],
+ "watch": "Billings growth and the subscription share of revenue.",
+ "updated": "2026-11"
+}

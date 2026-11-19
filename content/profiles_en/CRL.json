@@ -1,0 +1,43 @@
+{
+ "t": "CRL",
+ "what": "Charles River Laboratories supports drug discovery. It supplies research animal models, runs safety testing for new medicines before human trials, and manufactures and tests biologics for drug companies.",
+ "customers": "Pharmaceutical and biotechnology companies, contract manufacturers and academic research institutions.",
+ "money": [
+  [
+   "Discovery and Safety Assessment",
+   "the largest part",
+   "preclinical safety testing and discovery services"
+  ],
+  [
+   "Research Models and Services",
+   "large",
+   "research animal models and related services"
+  ],
+  [
+   "Manufacturing Solutions",
+   "meaningful",
+   "biologics testing, cell therapy and microbial testing"
+  ]
+ ],
+ "moat": "Safety testing capacity and regulatory track record that drug companies rely on to get trials approved, where capacity is limited and switching supplier delays programmes.",
+ "rivals": [
+  "Labcorp|LH",
+  "Inotiv|NOTV",
+  "Eurofins",
+  "WuXi AppTec",
+  "ICON|ICLR"
+ ],
+ "risks": [
+  "Biotech funding weakness cut demand for preclinical services sharply",
+  "It reported a small loss after restructuring charges",
+  "Revenue has been flat over three years",
+  "Animal research faces regulatory and ethical pressure, and the US has signalled a move away from it"
+ ],
+ "opportunities": [
+  "Analysts see modest upside, with the preclinical market showing early signs of stabilising",
+  "Manufacturing and biologics testing grow faster than the core research model business",
+  "Cost reduction and capacity closures are intended to restore margins"
+ ],
+ "watch": "Net book-to-bill in Discovery and Safety Assessment, and demand from biotech clients.",
+ "updated": "2026-11"
+}

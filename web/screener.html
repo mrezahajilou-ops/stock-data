@@ -240,6 +240,18 @@
 <p class="note">امتیازها از ۰ تا ۵ و بر اساس گزارش‌های رسمی SEC و آخرین قیمت روز به‌روزرسانی حساب میشن. ابزار آموزشیه و پیشنهاد خرید یا فروش نیست.</p>
 
 <script>
+/* SCR2:START  screener v2 (shared script, loaded for every language; the English site mounts it at build time) */
+(function(){var R=document.getElementById('rzc2');if(!R||window.SCR2_CFG)return;window.SCR2_ON=1;
+var L=(document.documentElement.lang||'fa').slice(0,2).toLowerCase();if(['fa','ar','es','tr'].indexOf(L)<0)L='fa';
+var old=[].slice.call(R.querySelectorAll('.card,.bar,.tblwrap,#rzc2-more,#rzc2-cmp'));old.forEach(function(e){e.style.display='none'});
+var m=document.createElement('div');m.id='scr2';var sub=R.querySelector('.sub');if(sub&&sub.parentNode)sub.parentNode.insertBefore(m,sub.nextSibling);else R.insertBefore(m,R.firstChild);
+var free=L!=='fa';
+window.SCR2_CFG={lang:L,stockUrl:'/pages/stock#',subSel:'#rzc2 .sub',access:free||!!window.RZS_ACCESS,logged:!!window.RZS_LOGGED,subUrl:window.RZS_SUB_URL||'/products/stock-data-pro',subYearUrl:window.RZS_SUB_Y||'/products/stock-data-pro-yearly',loginUrl:'/account/login?return_url='+encodeURIComponent(location.pathname)};
+var B='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/web/',v=Math.floor(Date.now()/3e5);
+function g(f){return fetch(B+f+'?v='+v,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()})}
+Promise.all([g('scr2.css'),g('scr2_i18n_'+L+'.js'),g('scr2.js')]).then(function(x){var s=document.createElement('style');s.textContent=x[0];R.appendChild(s);[x[1],x[2]].forEach(function(c){var e=document.createElement('script');e.textContent=c;document.head.appendChild(e)})})
+.catch(function(){window.SCR2_ON=0;old.forEach(function(e){e.style.display=''});if(m.parentNode)m.parentNode.removeChild(m);if(window.RZC2_START)window.RZC2_START()})})();
+/* SCR2:END */
 /* EVENTS:START */
 window.RZ_EVENTS=window.RZ_EVENTS||'https://rz-events.mreza-hajilou.workers.dev';
 window.rzUid=function(){try{var u=localStorage.getItem('rz_uid');if(!u){u=Math.random().toString(36).slice(2,10)+Math.random().toString(36).slice(2,10);localStorage.setItem('rz_uid',u)}return u}catch(e){return ''}};
@@ -449,7 +461,7 @@ $('rzc2-csv').addEventListener('click',function(){if(!ACCESS){location.href=SUB_
 $('f-sector').addEventListener('change',function(){fillInd()});
 function fillInd(){var sec=$('f-sector').value,inds={};ROWS.forEach(function(r){if(sec&&g(r,'sector')!==sec)return;var s=g(r,'industry');if(s)inds[s]=1});var cur=$('f-industry').value;$('f-industry').innerHTML='<option value="">همه</option>'+Object.keys(inds).sort().map(function(s){return '<option'+(s===cur?' selected':'')+'>'+esc(s)+'</option>'}).join('')}
 head();
-Promise.all([loadScreener(),liveQuotes(),
+window.RZC2_START=function(){Promise.all([loadScreener(),liveQuotes(),
   fetch(API+'/sectors.json').then(function(r){return r.ok?r.json():{}}).then(function(sj){var o={};Object.keys(sj||{}).forEach(function(k){if(sj[k]&&sj[k].pe)o[k]=sj[k].pe});window.RZ_SECT_PE=o}).catch(function(){})]).then(function(x){var j=x[0], nLive=applyLiveRows(j);
   j.cols.forEach(function(c,i){C[c]=i}); ROWS=j.rows;
   var secs={};ROWS.forEach(function(r){var s=g(r,'sector');if(s)secs[s]=1});
@@ -458,7 +470,8 @@ Promise.all([loadScreener(),liveQuotes(),
   $('rzc2-asof').textContent='داده‌های مالی: \u2066'+j.as_of+'\u2069'+(nLive?' · قیمت‌ها: '+(RZQ_ST[RZQ.status]||'آخرین قیمت')+' '+liveWhen(RZQ.as_of):'')+(C.fair_up==null?' · (ستون‌های جدید بعد از به‌روزرسانی بعدی داده‌ها پر میشن)':'');
   var p=(location.hash||'').slice(1); if(p&&PRE[p])setPreset(p);
   apply();
-}).catch(function(){$('rzc2-count').textContent='بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.'});
+}).catch(function(){$('rzc2-count').textContent='بارگذاری داده‌ها ناموفق بود؛ صفحه رو دوباره باز کن.'})};
+if(!window.SCR2_ON)window.RZC2_START();
 })();
 </script>
 </div>

@@ -1,0 +1,43 @@
+{
+ "t": "STE",
+ "what": "STERIS supplies infection prevention to hospitals. It makes sterilisers and washers, sells the detergents and consumables that run in them, repairs surgical instruments, and operates facilities that sterilise medical devices for manufacturers.",
+ "customers": "Hospitals and surgery centres, medical device manufacturers, and pharmaceutical and research laboratories.",
+ "money": [
+  [
+   "Healthcare",
+   "the largest part",
+   "sterilisers, consumables, surgical instrument repair and service"
+  ],
+  [
+   "Applied Sterilization Technologies",
+   "meaningful, highest margin",
+   "contract sterilisation of medical devices"
+  ],
+  [
+   "Life Sciences",
+   "smaller",
+   "sterilisation for pharmaceutical manufacturing"
+  ]
+ ],
+ "moat": "Equipment installed in hospital sterile processing departments that runs on its own consumables and needs its service, plus contract sterilisation plants that are very hard to permit.",
+ "rivals": [
+  "Getinge",
+  "Sotera Health|SHC",
+  "Cantel rivals",
+  "Belimed",
+  "Ecolab|ECL"
+ ],
+ "risks": [
+  "Hospital capital spending can be deferred in tight budget years",
+  "Ethylene oxide sterilisation faces environmental litigation and regulation industry-wide",
+  "Debt of about $2 billion",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year and about 9% a year over three years",
+  "Surgical procedure volumes have recovered and keep growing with an ageing population",
+  "Consumables and service are the majority of revenue and recur automatically"
+ ],
+ "watch": "Procedure volume growth and Applied Sterilization Technologies capacity.",
+ "updated": "2026-11"
+}

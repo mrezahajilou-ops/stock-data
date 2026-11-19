@@ -1,0 +1,38 @@
+{
+ "t": "HPQ",
+ "what": "HP Inc. makes personal computers and printers. The printer business is the more profitable one, because customers keep buying ink and toner cartridges long after they buy the printer.",
+ "customers": "Consumers, businesses and institutions buying laptops, desktops, printers and supplies in more than 170 countries.",
+ "money": [
+  [
+   "Personal Systems",
+   "the larger part of revenue",
+   "laptops, desktops, workstations and gaming PCs"
+  ],
+  [
+   "Printing",
+   "the larger part of profit",
+   "printers and, above all, ink and toner supplies"
+  ]
+ ],
+ "moat": "An installed base of printers that consume its own cartridges, plus commercial PC relationships and service contracts with large organisations.",
+ "rivals": [
+  "Dell Technologies|DELL",
+  "Lenovo",
+  "Canon",
+  "Apple|AAPL",
+  "Epson"
+ ],
+ "risks": [
+  "Memory and component costs have risen sharply, squeezing PC margins",
+  "Printing volumes decline structurally as offices print less",
+  "Revenue has fallen about 4% a year over three years",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Return on invested capital of 28% with a dividend yield above 4%",
+  "An ageing installed base of PCs is due for replacement",
+  "Buybacks shrink the share count every year"
+ ],
+ "watch": "Printing supplies revenue and PC unit demand and pricing.",
+ "updated": "2026-11"
+}

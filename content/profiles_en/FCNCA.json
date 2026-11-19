@@ -1,0 +1,43 @@
+{
+ "t": "FCNCA",
+ "what": "First Citizens BancShares is a bank holding company that grew enormously when it acquired Silicon Valley Bank out of receivership in 2023. It combines a traditional southeastern retail bank with technology and life sciences lending.",
+ "customers": "Households and businesses across its branch network, technology and life sciences companies, and equipment finance customers nationally.",
+ "money": [
+  [
+   "General Bank",
+   "large",
+   "retail and commercial banking across the Southeast"
+  ],
+  [
+   "SVB Commercial",
+   "large",
+   "lending to technology, life sciences and venture capital firms"
+  ],
+  [
+   "Commercial Bank and Rail",
+   "meaningful",
+   "equipment finance and railcar leasing"
+  ]
+ ],
+ "moat": "The Silicon Valley Bank franchise acquired at a very favourable price, with deposit relationships across the venture-backed technology sector that no other bank has.",
+ "rivals": [
+  "M&T Bank|MTB",
+  "Western Alliance|WAL",
+  "Comerica|CMA",
+  "JPMorgan Chase|JPM",
+  "Truist Financial|TFC"
+ ],
+ "risks": [
+  "Technology and venture lending is a volatile business through cycles",
+  "Revenue fell about 2% last year",
+  "Deposit costs rise when clients move money to higher-yielding accounts",
+  "It pays only a small dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 23% a year over three years including the acquisition",
+  "Net margin of 23% with a strong capital position",
+  "Recovering venture capital activity would revive deposit and loan growth"
+ ],
+ "watch": "Deposit balances in the SVB business and credit quality in technology lending.",
+ "updated": "2026-11"
+}

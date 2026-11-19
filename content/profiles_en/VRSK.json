@@ -1,0 +1,38 @@
+{
+ "t": "VRSK",
+ "what": "Verisk sells data and analytics to insurers. It holds claims and policy data contributed by the industry itself, and sells back the models insurers use to price property risk, estimate repair costs and detect fraud.",
+ "customers": "Property and casualty insurers, reinsurers, brokers and repair networks, mostly in the United States.",
+ "money": [
+  [
+   "Underwriting",
+   "the larger part",
+   "rating, policy forms, catastrophe models and risk data"
+  ],
+  [
+   "Claims",
+   "large",
+   "repair cost estimation, fraud detection and claims analytics"
+  ]
+ ],
+ "moat": "A data pool that insurers contribute to and then pay to use, which no new entrant can recreate because the data only exists through the industry's own participation.",
+ "rivals": [
+  "CoreLogic",
+  "Moody's (RMS)|MCO",
+  "LexisNexis Risk (RELX)|RELX",
+  "Guidewire|GWRE",
+  "Duck Creek"
+ ],
+ "risks": [
+  "Its customer base is concentrated in one industry",
+  "Debt of about $4.6 billion against under $1 billion of cash",
+  "Large insurers build some analytics in-house",
+  "Growth of about 7% is steady rather than fast"
+ ],
+ "opportunities": [
+  "Operating margin of 44% and return on invested capital of 20%",
+  "Subscription revenue renews at very high rates",
+  "Analysts see about 19% upside from current levels"
+ ],
+ "watch": "Organic constant-currency revenue growth and subscription renewal rates.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "CTSH",
+ "what": "Cognizant is an information technology services company. It builds, runs and modernises the software systems of large corporations, with most of its delivery workforce in India and much of its revenue from North American clients.",
+ "customers": "Banks and insurers, healthcare and life sciences companies, retailers, manufacturers and media businesses, mostly in North America.",
+ "money": [
+  [
+   "Financial Services",
+   "large",
+   "technology services to banks and insurers"
+  ],
+  [
+   "Health Sciences",
+   "large",
+   "services to healthcare payers, providers and pharmaceutical companies"
+  ],
+  [
+   "Products and Resources",
+   "large",
+   "retail, manufacturing, energy and travel clients"
+  ],
+  [
+   "Communications, Media and Technology",
+   "meaningful",
+   "telecom and technology clients"
+  ]
+ ],
+ "moat": "Long-running contracts that embed it in clients' core operations, with an India-based delivery cost structure that US competitors cannot match directly.",
+ "rivals": [
+  "Accenture|ACN",
+  "Infosys|INFY",
+  "Tata Consultancy Services",
+  "Wipro|WIT",
+  "Capgemini"
+ ],
+ "risks": [
+  "Client technology budgets have been tight",
+  "Artificial intelligence could reduce the number of people needed per project, which is how this industry bills",
+  "US immigration policy affects its staffing model",
+  "Staff attrition rises whenever the labour market tightens"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 16% operating margin",
+  "Analysts see about 21% upside from current levels",
+  "Companies rebuilding systems around artificial intelligence need exactly this implementation work"
+ ],
+ "watch": "Bookings growth and revenue growth in constant currency.",
+ "updated": "2026-11"
+}

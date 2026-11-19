@@ -1,0 +1,43 @@
+{
+ "t": "CFG",
+ "what": "Citizens Financial Group is a regional bank based in Providence, Rhode Island, with more than 1,000 branches across 14 states in the Northeast and mid-Atlantic. It also runs a private bank and a commercial and investment banking arm.",
+ "customers": "Households and small businesses in New England and the mid-Atlantic, middle-market companies, and private banking clients.",
+ "money": [
+  [
+   "Consumer Banking",
+   "large",
+   "deposits, mortgages, student refinancing and cards"
+  ],
+  [
+   "Commercial Banking",
+   "large",
+   "middle-market lending, capital markets and treasury"
+  ],
+  [
+   "Private Bank and Wealth",
+   "growing",
+   "private banking built from teams hired after regional bank failures"
+  ]
+ ],
+ "moat": "Deposit relationships across densely populated northeastern markets, plus a private bank assembled quickly from teams that became available in 2023.",
+ "rivals": [
+  "M&T Bank|MTB",
+  "KeyCorp|KEY",
+  "Truist Financial|TFC",
+  "PNC Financial|PNC",
+  "First Republic successors"
+ ],
+ "risks": [
+  "Commercial property, especially offices, is a watched exposure",
+  "Deposit costs rise when savers move to higher-yielding accounts",
+  "Northeastern markets grow more slowly than the Sunbelt",
+  "Regional bank capital rules are being tightened"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year",
+  "Analysts see about 22% upside from current levels",
+  "The new private bank is gathering deposits and assets faster than expected"
+ ],
+ "watch": "Private bank deposit growth and commercial property credit metrics.",
+ "updated": "2026-11"
+}

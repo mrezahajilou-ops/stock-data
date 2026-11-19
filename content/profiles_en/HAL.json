@@ -1,0 +1,38 @@
+{
+ "t": "HAL",
+ "what": "Halliburton provides services to oil and gas companies: drilling fluids, directional drilling, well cementing, and above all hydraulic fracturing, where it is the largest provider in North America.",
+ "customers": "Oil and gas producers worldwide, with North American shale and Middle Eastern national oil companies the largest markets.",
+ "money": [
+  [
+   "Completion and Production",
+   "the larger part",
+   "fracturing, cementing, completion tools and chemicals"
+  ],
+  [
+   "Drilling and Evaluation",
+   "large",
+   "drilling fluids, directional drilling and wireline"
+  ]
+ ],
+ "moat": "Equipment fleets and field crews at a scale few can match, with technology in fracturing and drilling that improves well productivity measurably.",
+ "rivals": [
+  "SLB|SLB",
+  "Baker Hughes|BKR",
+  "Weatherford|WFRD",
+  "NOV|NOV",
+  "ProPetro|PUMP"
+ ],
+ "risks": [
+  "North American fracturing activity has fallen and pricing is weak",
+  "Revenue fell about 3% last year",
+  "Debt of about $8 billion",
+  "Producers are drilling fewer, more efficient wells, which reduces service intensity"
+ ],
+ "opportunities": [
+  "Analysts see about 36% upside from current levels",
+  "International and Middle Eastern work has been growing while North America has not",
+  "Electric fracturing fleets command premium pricing and lower fuel costs"
+ ],
+ "watch": "North American pressure pumping pricing and international revenue growth.",
+ "updated": "2026-11"
+}

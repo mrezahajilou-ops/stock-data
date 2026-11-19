@@ -1,0 +1,37 @@
+{
+ "t": "STRK",
+ "what": "This is a convertible preferred share issued by Strategy, formerly MicroStrategy, the company that holds bitcoin as its main asset and also sells enterprise analytics software. It pays a fixed dividend and can convert into ordinary shares.",
+ "customers": "Enterprise software customers buy the analytics products; this security is sold to investors who want income with some exposure to a bitcoin price rise.",
+ "money": [
+  [
+   "Software",
+   "almost all reported revenue",
+   "enterprise analytics licences and cloud subscriptions"
+  ],
+  [
+   "Bitcoin holdings",
+   "the main asset, not revenue",
+   "bitcoin bought with money raised from securities like this one"
+  ]
+ ],
+ "moat": "The company's advantage is its ability to raise capital at scale rather than any business moat; the software operation is small and bitcoin is available to anyone.",
+ "rivals": [
+  "Bitcoin exchange-traded funds",
+  "Marathon Digital|MARA",
+  "Riot Platforms|RIOT",
+  "Coinbase|COIN"
+ ],
+ "risks": [
+  "The dividend depends on the company continuing to raise money or sell bitcoin",
+  "About $7 billion of debt ranks ahead of this security",
+  "Large reported losses arise when bitcoin is written down",
+  "The conversion feature is only worth something if the ordinary shares rise a long way"
+ ],
+ "opportunities": [
+  "A high fixed dividend rate plus the option to convert into ordinary shares",
+  "Paid before ordinary shareholders receive anything",
+  "The bitcoin holdings currently exceed the debt and preferred obligations in value"
+ ],
+ "watch": "Bitcoin price against total obligations, the conversion price, and whether the dividend keeps being declared.",
+ "updated": "2026-11"
+}

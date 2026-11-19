@@ -1,0 +1,43 @@
+{
+ "t": "JBL",
+ "what": "Jabil designs and manufactures products for other companies across many industries: data centre hardware, medical devices, car electronics, capital equipment and consumer products.",
+ "customers": "Cloud and data centre operators, medical device companies, carmakers, semiconductor equipment makers and consumer brands.",
+ "money": [
+  [
+   "Intelligent Infrastructure",
+   "the largest and fastest growing",
+   "data centre hardware, networking and capital equipment"
+  ],
+  [
+   "Regulated Industries",
+   "large",
+   "healthcare, automotive and renewable energy manufacturing"
+  ],
+  [
+   "Connected Living and Digital Commerce",
+   "meaningful",
+   "consumer products, warehouse automation and retail"
+  ]
+ ],
+ "moat": "Engineering and manufacturing operations in many countries that customers depend on to shift production between regions as tariffs and demand change.",
+ "rivals": [
+  "Flex|FLEX",
+  "Celestica|CLS",
+  "Sanmina|SANM",
+  "Foxconn",
+  "Benchmark Electronics|BHE"
+ ],
+ "risks": [
+  "Gross margin of 9% is thin, as is normal in contract manufacturing",
+  "Customers can move volume to a rival at contract renewal",
+  "Revenue has been roughly flat over three years outside the data centre surge",
+  "Debt of about $4 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 21% last year with a return on invested capital of 22%",
+  "Analysts see large upside, with a median target well above the current price",
+  "AI data centre hardware is the fastest-growing part of its mix"
+ ],
+ "watch": "Intelligent Infrastructure revenue growth and core operating margin.",
+ "updated": "2026-11"
+}

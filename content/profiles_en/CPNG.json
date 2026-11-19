@@ -1,0 +1,38 @@
+{
+ "t": "CPNG",
+ "what": "Coupang is South Korea's largest online retailer. It owns the inventory and the delivery network, which lets it guarantee next-morning or same-day delivery across the country, and it also runs food delivery, streaming and the luxury site Farfetch.",
+ "customers": "South Korean households above all, plus Taiwanese customers and Farfetch buyers worldwide.",
+ "money": [
+  [
+   "Product commerce",
+   "the large majority",
+   "first-party retail sales and marketplace fees in Korea"
+  ],
+  [
+   "Developing offerings",
+   "growing, lossmaking",
+   "Taiwan expansion, Eats food delivery, Play streaming and Farfetch"
+  ]
+ ],
+ "moat": "A nationwide logistics network with its own drivers and warehouses, built at enormous cost, that no Korean competitor can match for delivery speed.",
+ "rivals": [
+  "Naver|NHNCF",
+  "Amazon|AMZN",
+  "Alibaba (AliExpress)|BABA",
+  "Shinsegae",
+  "Market Kurly"
+ ],
+ "risks": [
+  "It reported a loss as it invested in Taiwan and Farfetch",
+  "Net margin on the core business is about 1%",
+  "Taiwan expansion and Farfetch both consume cash",
+  "Korean regulators have scrutinised its marketplace practices"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year and about 19% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "The Korean core business is profitable and funds the expansion"
+ ],
+ "watch": "Product commerce margins and losses in the developing offerings segment.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "FOX",
+ "what": "Fox Corporation is a news and sports company. It owns Fox News, the most-watched American cable news channel, Fox Sports, the Fox broadcast network and local television stations, plus the Tubi free streaming service.",
+ "customers": "Cable and streaming distributors paying carriage fees, advertisers, and viewers of its free streaming service.",
+ "money": [
+  [
+   "Cable Network Programming",
+   "the largest part of profit",
+   "Fox News and Fox Sports affiliate fees and advertising"
+  ],
+  [
+   "Television",
+   "large",
+   "the Fox broadcast network, local stations and Tubi"
+  ],
+  [
+   "Other",
+   "small",
+   "the Fox Studio Lot and Credible"
+  ]
+ ],
+ "moat": "Live news and sports that viewers watch as it happens, which is the only television content advertisers still pay a premium for and distributors cannot drop.",
+ "rivals": [
+  "Paramount Skydance|SKYD",
+  "Warner Bros. Discovery|WBD",
+  "Comcast (NBCUniversal)|CMCSA",
+  "Netflix|NFLX",
+  "Nexstar|NXST"
+ ],
+ "risks": [
+  "Cable subscriber decline reduces the households paying carriage fees",
+  "Sports rights costs rise at every renewal",
+  "Fox News ratings depend heavily on the political cycle",
+  "Debt of about $7.6 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 5% last year",
+  "Tubi has become one of the largest free ad-supported streaming services in the US",
+  "It avoided the expensive general-entertainment streaming war its rivals entered"
+ ],
+ "watch": "Affiliate fee growth and advertising revenue at Fox News and Fox Sports.",
+ "updated": "2026-11"
+}

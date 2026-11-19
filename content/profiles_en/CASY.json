@@ -1,0 +1,43 @@
+{
+ "t": "CASY",
+ "what": "Casey's General Stores runs convenience stores across 19 mostly rural Midwestern states. It sells fuel and groceries, but it is also one of the largest pizza chains in the United States, because most stores make and sell pizza.",
+ "customers": "Rural and small-town Midwestern customers buying fuel, snacks, groceries and prepared food.",
+ "money": [
+  [
+   "Fuel",
+   "the largest part of revenue",
+   "petrol and diesel"
+  ],
+  [
+   "Prepared food and dispensed beverage",
+   "the largest part of profit",
+   "pizza, sandwiches and drinks made in store"
+  ],
+  [
+   "Grocery and general merchandise",
+   "large",
+   "packaged food, drinks and household items"
+  ]
+ ],
+ "moat": "Store locations in small towns too small for a competitor to enter profitably, where it is often the only place to buy hot food.",
+ "rivals": [
+  "Murphy USA|MUSA",
+  "7-Eleven",
+  "Circle K (Couche-Tard)",
+  "Wawa",
+  "Dollar General|DG"
+ ],
+ "risks": [
+  "Fuel margins are volatile and a large part of profit",
+  "Rural population decline limits long-term customer growth",
+  "Debt of about $2.9 billion",
+  "It pays a very small dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year",
+  "Prepared food earns far higher margins than fuel and keeps growing",
+  "Acquiring independent store groups extends its footprint cheaply"
+ ],
+ "watch": "Inside same-store sales, especially prepared food, and fuel margin per gallon.",
+ "updated": "2026-11"
+}

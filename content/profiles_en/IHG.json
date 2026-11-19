@@ -1,0 +1,43 @@
+{
+ "t": "IHG",
+ "what": "InterContinental Hotels Group franchises and manages hotels rather than owning them. Its brands include Holiday Inn, Holiday Inn Express, Crowne Plaza, InterContinental, Kimpton and Six Senses, covering roughly a million rooms.",
+ "customers": "Hotel owners who franchise its brands, and travellers who book through its system and loyalty programme.",
+ "money": [
+  [
+   "Franchise fees",
+   "the largest part",
+   "a percentage of room revenue from franchised hotels"
+  ],
+  [
+   "Management fees",
+   "large",
+   "fees for running hotels owned by others"
+  ],
+  [
+   "Owned and leased",
+   "small",
+   "a handful of hotels it owns directly"
+  ]
+ ],
+ "moat": "A booking system and loyalty programme with over 100 million members that fills rooms more cheaply than an independent hotel can, which is why owners pay for the brand.",
+ "rivals": [
+  "Marriott International|MAR",
+  "Hilton Worldwide|HLT",
+  "Wyndham Hotels|WH",
+  "Accor",
+  "Hyatt Hotels|H"
+ ],
+ "risks": [
+  "Travel demand falls in a recession and fees fall with it",
+  "Chinese hotel performance has been weak",
+  "Analyst targets imply the shares are above fair value",
+  "Debt of about $4.5 billion against under $1 billion of cash"
+ ],
+ "opportunities": [
+  "Return on invested capital of 58%, because it owns almost no property",
+  "Gross margin of 85% as the fees carry almost no cost",
+  "The room pipeline under development keeps growing without its own capital"
+ ],
+ "watch": "Revenue per available room, and net system size growth.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "ON",
+ "what": "onsemi makes power and sensing chips: silicon carbide and silicon power devices that manage electricity in electric vehicles and industrial equipment, and image sensors used in car cameras.",
+ "customers": "Carmakers and their suppliers, industrial equipment makers, and increasingly data centre power system builders.",
+ "money": [
+  [
+   "Power Solutions",
+   "the largest part",
+   "silicon carbide and silicon power devices"
+  ],
+  [
+   "Analog and Mixed Signal",
+   "large",
+   "power management and signal chips"
+  ],
+  [
+   "Intelligent Sensing",
+   "meaningful",
+   "image sensors for automotive and industrial vision"
+  ]
+ ],
+ "moat": "Silicon carbide manufacturing from its own substrates through to finished devices, a vertically integrated position very few competitors have.",
+ "rivals": [
+  "STMicroelectronics|STM",
+  "Infineon Technologies",
+  "Wolfspeed|WOLF",
+  "Texas Instruments|TXN",
+  "Rohm"
+ ],
+ "risks": [
+  "Revenue fell about 15% last year and about 10% a year over three years",
+  "Electric vehicle demand growth slowed sharply in Europe and North America",
+  "Chinese silicon carbide suppliers have pushed prices down",
+  "Operating margin collapsed to about 1%"
+ ],
+ "opportunities": [
+  "Analysts see about 39% upside from current levels",
+  "Cash of about $4.4 billion roughly matches its debt",
+  "Data centre power conversion is a new market for its silicon carbide devices"
+ ],
+ "watch": "Silicon carbide revenue and design wins, and factory utilisation.",
+ "updated": "2026-11"
+}

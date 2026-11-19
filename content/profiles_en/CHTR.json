@@ -1,0 +1,48 @@
+{
+ "t": "CHTR",
+ "what": "Charter Communications is the second-largest cable company in the United States. Under the Spectrum brand it sells broadband, television and mobile service to homes and businesses across 41 states.",
+ "customers": "About 57 million passed homes and businesses, with roughly 30 million customer relationships.",
+ "money": [
+  [
+   "Internet",
+   "the largest part of profit",
+   "residential and business broadband"
+  ],
+  [
+   "Video",
+   "large, declining",
+   "cable television packages"
+  ],
+  [
+   "Mobile",
+   "growing fastest",
+   "Spectrum Mobile, which uses Verizon's network"
+  ],
+  [
+   "Commercial and advertising",
+   "meaningful",
+   "business services and advertising sales"
+  ]
+ ],
+ "moat": "Cable plant passing tens of millions of homes, which cost decades and billions to build and which a competitor must overbuild street by street to challenge.",
+ "rivals": [
+  "Comcast|CMCSA",
+  "AT&T|T",
+  "Verizon|VZ",
+  "T-Mobile US|TMUS",
+  "Altice USA|ATUS"
+ ],
+ "risks": [
+  "Debt of about $107 billion is among the largest of any US company",
+  "Broadband subscribers have been falling as fixed wireless and fibre take share",
+  "Revenue was flat last year",
+  "It pays no dividend, using all free cash flow for buybacks and debt"
+ ],
+ "opportunities": [
+  "Spectrum Mobile is growing quickly and keeps broadband customers from leaving",
+  "Analysts see about 16% upside from current levels",
+  "Upgrading its network to higher speeds costs far less than building fibre from scratch"
+ ],
+ "watch": "Broadband subscriber net additions and mobile line growth.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "TECK",
+ "what": "Teck Resources is a Canadian miner. After selling its coal business it is focused on copper and zinc, with the large Quebrada Blanca copper mine in Chile and zinc operations in Canada and Peru.",
+ "customers": "Copper and zinc smelters and traders worldwide, mostly in Asia and Europe.",
+ "money": [
+  [
+   "Copper",
+   "the largest part",
+   "Quebrada Blanca in Chile, Highland Valley in Canada and Antamina in Peru"
+  ],
+  [
+   "Zinc",
+   "large",
+   "Red Dog in Alaska and the Trail smelter in British Columbia"
+  ]
+ ],
+ "moat": "Long-life copper and zinc deposits in stable jurisdictions, including Red Dog, one of the largest zinc mines in the world.",
+ "rivals": [
+  "Freeport-McMoRan|FCX",
+  "First Quantum Minerals",
+  "Antofagasta",
+  "Lundin Mining",
+  "Hudbay Minerals|HBM"
+ ],
+ "risks": [
+  "Quebrada Blanca cost far more and took longer to build than planned",
+  "Copper and zinc prices set earnings",
+  "Revenue fell about 15% a year over three years before last year's recovery",
+  "Only four analysts cover it in this data"
+ ],
+ "opportunities": [
+  "Revenue grew about 25% last year with a 21% operating margin",
+  "Copper demand grows with electrification and grid investment",
+  "Cash of about $4.7 billion against $6.8 billion of debt after the coal sale"
+ ],
+ "watch": "Quebrada Blanca production ramp and copper unit costs.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "MDB",
+ "what": "MongoDB makes a database built around documents rather than rows and columns, which developers often find faster to build with. Most revenue now comes from Atlas, its managed cloud version.",
+ "customers": "Software developers and companies of all sizes building applications, from startups to large enterprises.",
+ "money": [
+  [
+   "Atlas",
+   "the large majority",
+   "the managed cloud database service, billed by consumption"
+  ],
+  [
+   "Enterprise Advanced and other",
+   "smaller",
+   "self-managed licences and support"
+  ]
+ ],
+ "moat": "Once an application's data model is built around it, moving to another database means rewriting the application, so adoption at the developer level turns into long-term revenue.",
+ "rivals": [
+  "Amazon (DynamoDB, DocumentDB)|AMZN",
+  "Oracle|ORCL",
+  "Microsoft (Cosmos DB)|MSFT",
+  "PostgreSQL providers",
+  "Couchbase|BASE"
+ ],
+ "risks": [
+  "It still makes an operating loss because of large stock-based compensation",
+  "Consumption pricing means revenue falls when customers optimise spending",
+  "Cloud providers offer competing document databases",
+  "The shares trade at a high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 23% last year and about 24% a year over three years",
+  "Cash of about $2.4 billion against almost no debt",
+  "Analysts see about 38% upside from current levels"
+ ],
+ "watch": "Atlas revenue growth and net ARR expansion.",
+ "updated": "2026-11"
+}

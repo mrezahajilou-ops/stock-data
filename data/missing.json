@@ -1,37 +1,37 @@
 [
 {
 "t": "SPCX",
-"mcap": 1858976000488,
+"mcap": 1871334768464,
 "why": "no usable annual data",
 "cik": 1181412
 },
 {
 "t": "SKHY",
-"mcap": 890764749188,
+"mcap": 891985598900,
 "why": "no usable annual data",
 "cik": 2120882
 },
 {
 "t": "IBN",
-"mcap": 125588374478,
+"mcap": 125982180670,
 "why": "no companyfacts file",
 "cik": 1103838
 },
 {
 "t": "CNI",
-"mcap": 74920521000,
+"mcap": 74824569000,
 "why": "no usable annual data",
 "cik": 16868
 },
 {
 "t": "HONA",
-"mcap": 50179799002,
+"mcap": 50282834349,
 "why": "no usable annual data",
 "cik": 2089271
 },
 {
 "t": "VYLR",
-"mcap": 45523412706,
+"mcap": 45356586949,
 "why": "no usable annual data",
 "cik": 2128626
 },
@@ -43,25 +43,25 @@
 },
 {
 "t": "BSP",
-"mcap": 29966781795,
+"mcap": 29484118682,
 "why": "no usable annual data",
 "cik": 2004711
 },
 {
 "t": "ARXS",
-"mcap": 22761497907,
+"mcap": 22582748326,
 "why": "no usable annual data",
 "cik": 2093536
 },
 {
 "t": "CBRS",
-"mcap": 22028254947,
+"mcap": 21889524326,
 "why": "no usable annual data",
 "cik": 2021728
 },
 {
 "t": "CIB",
-"mcap": 20141425851,
+"mcap": 20031806164,
 "why": "no usable annual data",
 "cik": 2058897
 },
@@ -73,19 +73,19 @@
 },
 {
 "t": "PS",
-"mcap": 15136000000,
+"mcap": 15026800000,
 "why": "no usable annual data",
 "cik": 2026053
 },
 {
 "t": "MAIR",
-"mcap": 13777037800,
+"mcap": 13626064674,
 "why": "no usable annual data",
 "cik": 2098430
 },
 {
 "t": "CET",
-"mcap": 12649447078,
+"mcap": 12628874936,
 "why": "no companyfacts file",
 "cik": 18748
 },
@@ -97,7 +97,7 @@
 },
 {
 "t": "JAN",
-"mcap": 10866364179,
+"mcap": 10825506786,
 "why": "no usable annual data",
 "cik": 2100805
 },
@@ -109,7 +109,7 @@
 },
 {
 "t": "INIO",
-"mcap": 9873750000,
+"mcap": 9637500000,
 "why": "no usable annual data",
 "cik": 2109150
 },
@@ -121,13 +121,13 @@
 },
 {
 "t": "PAYP",
-"mcap": 8794667323,
+"mcap": 8748689304,
 "why": "no usable annual data",
 "cik": 2080845
 },
 {
 "t": "EAI",
-"mcap": 8694064466,
+"mcap": 8691675331,
 "why": "no usable annual data",
 "cik": 7323
 },
@@ -151,7 +151,7 @@
 },
 {
 "t": "QNT",
-"mcap": 8055555607,
+"mcap": 7745879901,
 "why": "no usable annual data",
 "cik": 2110105
 },
@@ -163,57 +163,51 @@
 },
 {
 "t": "MBGL",
-"mcap": 6683556689,
+"mcap": 6645137643,
 "why": "no usable annual data",
 "cik": 2090312
 },
 {
 "t": "OCTV",
-"mcap": 5739199907,
+"mcap": 5698934239,
 "why": "no usable annual data",
 "cik": 2083632
 },
 {
 "t": "JMKE",
-"mcap": 5704794644,
+"mcap": 5607914780,
 "why": "no usable annual data",
 "cik": 2127043
 },
 {
 "t": "OZK",
-"mcap": 5481445596,
+"mcap": 5492759209,
 "why": "no companyfacts file",
 "cik": 1569650
 },
 {
 "t": "MWH",
-"mcap": 5460987734,
+"mcap": 5441730353,
 "why": "no usable annual data",
 "cik": 2065636
 },
 {
 "t": "OGC",
-"mcap": 5303339049,
+"mcap": 5311055402,
 "why": "no usable annual data",
 "cik": 1487326
 },
 {
 "t": "AUGO",
-"mcap": 5218706154,
+"mcap": 5218286880,
 "why": "no usable annual data",
 "cik": 1468642
 },
 {
 "t": "DPC",
-"mcap": 5036038569,
+"mcap": 5016617477,
 "why": "no usable annual data",
 "cik": 2107018
-},
-{
-"t": "MDA",
-"mcap": 4459805543,
-"why": "no usable annual data",
-"cik": 1857047
 },
 {
 "t": "GEF.B",
@@ -222,14 +216,20 @@
 "cik": null
 },
 {
+"t": "MDA",
+"mcap": 4431424962,
+"why": "no usable annual data",
+"cik": 1857047
+},
+{
 "t": "OXLCZ",
-"mcap": 4366040000,
+"mcap": 4369390480,
 "why": "no usable annual data",
 "cik": 1495222
 },
 {
 "t": "OXLCM",
-"mcap": 4298336000,
+"mcap": 4284934080,
 "why": "no usable annual data",
 "cik": 1495222
 },
@@ -246,38 +246,38 @@
 "cik": 1495222
 },
 {
-"t": "ENO",
-"mcap": 4099201467,
-"why": "no companyfacts file",
-"cik": 71508
-},
-{
 "t": "OXLCL",
-"mcap": 4069166640,
+"mcap": 4058768000,
 "why": "no usable annual data",
 "cik": 1495222
 },
 {
-"t": "LFTO",
-"mcap": 4015829080,
-"why": "no usable annual data",
-"cik": 1850351
+"t": "ENO",
+"mcap": 4057525835,
+"why": "no companyfacts file",
+"cik": 71508
 },
 {
 "t": "TXR",
-"mcap": 4008084189,
+"mcap": 4027971983,
 "why": "no companyfacts file",
 "cik": 1561540
 },
 {
+"t": "LFTO",
+"mcap": 3964995801,
+"why": "no usable annual data",
+"cik": 1850351
+},
+{
 "t": "XE",
-"mcap": 3964571204,
+"mcap": 3960509144,
 "why": "no usable annual data",
 "cik": 2088896
 },
 {
 "t": "ELC",
-"mcap": 3829746434,
+"mcap": 3834011185,
 "why": "no usable annual data",
 "cik": 1348952
 },
@@ -289,27 +289,27 @@
 },
 {
 "t": "PBLS",
-"mcap": 3421513554,
+"mcap": 3409145892,
 "why": "no usable annual data",
 "cik": 1657677
 },
 {
-"t": "FRVO",
-"mcap": 3333735616,
+"t": "CII",
+"mcap": 3321122165,
 "why": "no usable annual data",
-"cik": 1853868
+"cik": 1278895
 },
 {
 "t": "PDI",
-"mcap": 3315747600,
+"mcap": 3314532150,
 "why": "no usable annual data",
 "cik": 1510599
 },
 {
-"t": "CII",
-"mcap": 3311452604,
+"t": "FRVO",
+"mcap": 3301283322,
 "why": "no usable annual data",
-"cik": 1278895
+"cik": 1853868
 },
 {
 "t": "VGNT",
@@ -319,103 +319,103 @@
 },
 {
 "t": "MSGR",
-"mcap": 2969171711,
+"mcap": 2961333030,
 "why": "no usable annual data",
 "cik": 2132873
 },
 {
-"t": "CSQ",
-"mcap": 2898904664,
-"why": "no usable annual data",
-"cik": 1275214
-},
-{
 "t": "CLBK",
-"mcap": 2892249633,
+"mcap": 2907074770,
 "why": "no usable annual data",
 "cik": 2115119
 },
 {
+"t": "CSQ",
+"mcap": 2894932473,
+"why": "no usable annual data",
+"cik": 1275214
+},
+{
 "t": "LCLN",
-"mcap": 2879361964,
+"mcap": 2881438677,
 "why": "no usable annual data",
 "cik": 1925283
 },
 {
 "t": "NAN",
-"mcap": 2856884310,
+"mcap": 2875023258,
 "why": "no usable annual data",
 "cik": 1074769
 },
 {
 "t": "VCRE",
-"mcap": 2839185606,
+"mcap": 2826516954,
 "why": "no usable annual data",
 "cik": 2124403
 },
 {
 "t": "AYA",
-"mcap": 2769992712,
+"mcap": 2755573177,
 "why": "no companyfacts file",
 "cik": 1826836
 },
 {
 "t": "VVVV",
-"mcap": 2739076119,
+"mcap": 2746375456,
 "why": "no usable annual data",
 "cik": 1907709
 },
 {
 "t": "EROK",
-"mcap": 2700754370,
+"mcap": 2673792858,
 "why": "no usable annual data",
 "cik": 2104882
 },
 {
-"t": "IOND",
-"mcap": 2659273942,
-"why": "no usable annual data",
-"cik": 2007691
-},
-{
 "t": "TOWN",
-"mcap": 2651526822,
+"mcap": 2660107815,
 "why": "not in SEC ticker map",
 "cik": null
 },
 {
+"t": "IOND",
+"mcap": 2637675778,
+"why": "no usable annual data",
+"cik": 2007691
+},
+{
 "t": "BOBS",
-"mcap": 2609563741,
+"mcap": 2599755809,
 "why": "no usable annual data",
 "cik": 2085187
 },
 {
 "t": "CSQR",
-"mcap": 2556165314,
+"mcap": 2532003387,
 "why": "no usable annual data",
 "cik": 2105398
 },
 {
-"t": "GDV",
-"mcap": 2503632510,
-"why": "no companyfacts file",
-"cik": 1260729
-},
-{
 "t": "ACCV",
-"mcap": 2476125000,
+"mcap": 2512125000,
 "why": "no usable annual data",
 "cik": 2141406
 },
 {
+"t": "GDV",
+"mcap": 2507240050,
+"why": "no companyfacts file",
+"cik": 1260729
+},
+{
 "t": "XXI",
-"mcap": 2435173796,
+"mcap": 2430168474,
 "why": "no usable annual data",
 "cik": 2070457
 },
 {
 "t": "AERO",
-"mcap": 2376766533,
+"mcap": 2346856334,
 "why": "no usable annual data",
 "cik": 1561861
 },

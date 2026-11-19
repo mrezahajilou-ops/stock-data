@@ -12,7 +12,13 @@
   function T(s) { return I18N[s] || s; }
   var RTL = LANG === 'fa' || LANG === 'ar';
   // numbers inside right-to-left text: keep "$3.64T", "-$1.2B", "+5.0%" in their own left-to-right island
-  function B(x) { return (RTL && /[\d$%]/.test(String(x))) ? '<bdi dir="ltr">' + x + '</bdi>' : x; }
+  function B(x) {
+    x = String(x);
+    if (!RTL || !/[\d$%]/.test(x) || x.indexOf('<bdi') >= 0) return x;
+    if (!/[\u0600-\u06FF]/.test(x) && x.indexOf('<') < 0) return '<bdi dir="ltr">' + x + '</bdi>';
+    // mixed text: isolate each number only
+    return x.replace(/(<[^>]*>)|([-−+]?\$?\d[\d.,]*(?:\s?[%TBMK])?(?:\s?–\s?\$?\d[\d.,]*[%TBMK]?)?)/g, function (m, tag, num) { return tag ? tag : '<bdi dir="ltr">' + num + '</bdi>'; });
+  }
   function F(s) { var a = arguments, i = 0; return T(s).replace(/%(\d)\$s|%s/g, function (_, n) { return B(n ? a[+n] : a[++i]); }); }
   var LOC = { en: 'en-US', es: 'es-ES', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
 
@@ -421,7 +427,7 @@
 
   // ---------------------------------------------------------------- key statistics summary
   var REC = { strong_buy: 'Strong buy', buy: 'Buy', hold: 'Hold', sell: 'Sell', strong_sell: 'Strong sell', underperform: 'Underperform', outperform: 'Outperform' };
-  function recName(x) { return T(REC[x] || (x ? x.charAt(0).toUpperCase() + x.slice(1) : '')); }
+  function recName(x) { if (!x || x === 'none') return D; return T(REC[x] || (x.charAt(0).toUpperCase() + x.slice(1))); }
   function grp(title, rows, lead) {
     return '<section class="ks-g"><h3>' + T(title) + '</h3>' + (lead ? '<p>' + lead + '</p>' : '') + rows.filter(function (x) { return x[1] !== null && x[1] !== D && x[1] !== '' && x[1] !== D + ' · ' + D; }).map(function (x) {
       return '<div class="ks-r"><span>' + T(x[0]) + '</span><b' + (x[2] ? ' class="' + x[2] + '"' : '') + '>' + B(x[1]) + (x[3] ? '<small>' + x[3] + '</small>' : '') + '</b></div>';
@@ -482,7 +488,8 @@
     var med = st.tgt_median, up = tgt / px - 1, rt = an.rt || [], rec = recName(an.rec), n = an.n || an.nt || 0;
     var TR = {}; (k.trend || []).forEach(function (x) { TR[x.p] = x; });
     var y0 = TR['0y'] || {}, y1 = TR['+1y'] || {};
-    var lead = '<p class="lead"><strong>' + F('%s analysts rate %s a %s, with an average 12-month price target of %s, %s %s the current price of %s.', n, nm, rec, dol(tgt), pct(Math.abs(up), 1), T(up >= 0 ? 'above' : 'below'), dol(px)) + '</strong> ' +
+    var lead = '<p class="lead"><strong>' + (rec !== D ? F('%s analysts rate %s a %s, with an average 12-month price target of %s, %s %s the current price of %s.', n, nm, rec, dol(tgt), pct(Math.abs(up), 1), T(up >= 0 ? 'above' : 'below'), dol(px))
+      : F('The average 12-month analyst price target for %s is %s, %s %s the current price of %s.', nm, dol(tgt), pct(Math.abs(up), 1), T(up >= 0 ? 'above' : 'below'), dol(px))) + '</strong> ' +
       ((lo && hi) ? F('Targets range from %s (%s) to %s (%s).', dol(lo, 0), sp(lo / px - 1), dol(hi, 0), sp(hi / px - 1)) : '') +
       ((an.r0 && an.r1) ? ' ' + F('Analysts expect revenue of %s this fiscal year and %s next year.', usd(an.r0), usd(an.r1)) : '') + '</p>';
     var span = (lo && hi && hi > lo) ? hi - lo : null;
@@ -503,7 +510,7 @@
     var trend = recs.length ? table(recs.map(function (x) { return lab[x.period] || x.period; }), recs.map(function () { return ''; }),
       FL.map(function (f, i) { return [RT[i], recs.map(function (x) { return String(x[f] || 0); }), '']; }).concat([['Total', recs.map(function (x) { return String(FL.reduce(function (s, f) { return s + (x[f] || 0); }, 0)); }), 'b']]), 'Rating') : '';
     var rev30 = an.rev30 || {};
-    var rateCard = '<section class="card"><h2>' + T('Analyst ratings') + ': ' + rec + '</h2><div class="rt-bars">' + rbars + '</div>' +
+    var rateCard = '<section class="card"><h2>' + T('Analyst ratings') + (rec !== D ? ': ' + rec : '') + '</h2><div class="rt-bars">' + rbars + '</div>' +
       (tot ? note(F('%s ratings. In the last 30 days estimates were raised %s times and lowered %s times.', tot, rev30.upLast30days || 0, rev30.downLast30days || 0)) : '') +
       (trend ? '<h3>' + T('Recommendation trend') + '</h3>' + trend : '') + '</section>';
     // financial forecast

@@ -26,7 +26,9 @@ def token():
     req = urllib.request.Request('https://%s/admin/oauth/access_token' % SHOP, data=body,
                                  headers={'Content-Type': 'application/x-www-form-urlencoded'})
     with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())['access_token']
+        j = json.loads(r.read())
+    print('granted scopes: %s' % j.get('scope'), flush=True)
+    return j['access_token']
 
 
 def gql(tok, query, variables=None):
@@ -88,7 +90,7 @@ def main():
     j = gql(tok, THEMES)
     nodes = (((j.get('data') or {}).get('themes') or {}).get('nodes') or [])
     if not nodes:
-        print('::error::no live theme found'); return 1
+        print('::error::no live theme found: %s' % json.dumps(j, ensure_ascii=False)[:600]); return 1
     tid, tname = nodes[0]['id'], nodes[0]['name']
     print('live theme: %s (%s)' % (tname, tid))
 

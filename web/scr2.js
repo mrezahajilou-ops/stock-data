@@ -279,13 +279,14 @@
   function unit(f) { return f.type === 'p' || f.type === 'y' ? 100 : 1 }      /* typed 20 (%) = stored 0.20 */
   function big(v) { if (v == null || !isFinite(v)) return '—'; var a = Math.abs(v), s = v < 0 ? '-' : ''; return ltr(s + '$' + (a >= 1e6 ? (a / 1e6).toFixed(2) + 'T' : a >= 1e3 ? (a / 1e3).toFixed(a >= 1e5 ? 0 : a >= 1e4 ? 1 : 2) + 'B' : a >= 1 ? (a >= 100 ? a.toFixed(0) : a.toFixed(1)) + 'M' : (a * 1e3).toFixed(0) + 'K')) }
   function cnt(v) { if (v == null || !isFinite(v)) return '—'; var a = Math.abs(v); return ltr(a >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : a >= 1e6 ? (v / 1e6).toFixed(a >= 1e8 ? 0 : 1) + 'M' : a >= 1e3 ? (v / 1e3).toFixed(a >= 1e5 ? 0 : 1) + 'K' : String(Math.round(v))) }
+  function pc(n) { return LANG === 'tr' ? '%' + n : n + '%' }   /* Turkish writes the percent sign first */
   function nf(v, d) { return v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) }
   function dateIn(days) { var d = new Date(TODAY.getTime() + days * 864e5); return ltr(d.toLocaleDateString(LANG === 'en' ? 'en-US' : LANG === 'fa' ? 'en-GB' : LANG === 'ar' ? 'en-GB' : LANG, { month: RTL ? 'numeric' : 'short', day: 'numeric', year: 'numeric' })) }
   function fmt(f, v, color) {
     if (v == null || (typeof v === 'number' && !isFinite(v))) return '—';
     switch (f.type) {
       case 'm': return big(v);
-      case 'p': case 'y': { var x = v * 100; if (Math.abs(x) >= 10000) return ltr((x < 0 ? '<-' : '>') + '9,999%'); var s = nf(x, Math.abs(x) >= 100 ? 0 : Math.abs(x) >= 10 ? 1 : 2) + '%'; return color ? '<span class="' + (x < 0 ? 'neg' : x > 0 ? 'pos' : '') + '">' + ltr(s) + '</span>' : ltr(s) }
+      case 'p': case 'y': { var x = v * 100; if (Math.abs(x) >= 10000) return ltr((x < 0 ? '<-' : '>') + pc('9,999')); var s = pc(nf(x, Math.abs(x) >= 100 ? 0 : Math.abs(x) >= 10 ? 1 : 2)); return color ? '<span class="' + (x < 0 ? 'neg' : x > 0 ? 'pos' : '') + '">' + ltr(s) + '</span>' : ltr(s) }
       case 'x': case 'n': return ltr(nf(v, Math.abs(v) >= 100 ? 0 : Math.abs(v) >= 10 ? 1 : 2));
       case 'pr': return ltr((v < 0 ? '-$' : '$') + nf(Math.abs(v), Math.abs(v) >= 1000 ? 0 : 2));
       case 's': return '<span class="sc" style="background:' + (v >= 4 ? '#4FA37A' : v >= 3 ? '#8FB07A' : v >= 2 ? '#C9A961' : '#C8534F') + '">' + (Math.round(v * 10) / 10) + '</span>';
@@ -301,7 +302,7 @@
   /* a condition written out: "Over 20%", "$2B to $10B" */
   function trim0(s) { return s.replace(/\.0+(?=[TBMK%]|$|<)/, '').replace(/(\.\d*[1-9])0+(?=[TBMK%]|$|<)/, '$1') }
   function pv(f, v) {
-    if (f.type === 'm') return trim0(big(v)); if (f.type === 'p' || f.type === 'y') return ltr(String(+(+v).toFixed(2)) + '%');
+    if (f.type === 'm') return trim0(big(v)); if (f.type === 'p' || f.type === 'y') return ltr(pc(String(+(+v).toFixed(2))));
     if (f.type === 'pr') return ltr((v < 0 ? '-$' : '$') + Math.abs(v)); if (f.type === 'v') return trim0(cnt(v)); if (f.type === 'sh') return trim0(cnt(v * 1e6)); if (f.type === 'd') return dateIn(v); return ltr(String(v))
   }
   function condText(f, c) {

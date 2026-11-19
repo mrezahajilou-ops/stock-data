@@ -1,0 +1,42 @@
+{
+ "t": "EVRG",
+ "what": "Evergy is a regulated utility serving Kansas and Missouri, including the Kansas City area. It generates and delivers electricity to about 1.7 million customers.",
+ "customers": "Households, businesses and industry across Kansas and Missouri.",
+ "money": [
+  [
+   "Evergy Kansas Central",
+   "large",
+   "regulated electricity in central and western Kansas"
+  ],
+  [
+   "Evergy Metro",
+   "large",
+   "regulated electricity in the Kansas City area"
+  ],
+  [
+   "Evergy Missouri West",
+   "meaningful",
+   "regulated electricity in western Missouri"
+  ]
+ ],
+ "moat": "A regulated monopoly across its service territory, with rates set by Kansas and Missouri commissions.",
+ "rivals": [
+  "Ameren|AEE",
+  "Xcel Energy|XEL",
+  "American Electric Power|AEP",
+  "OGE Energy|OGE"
+ ],
+ "risks": [
+  "Debt of about $13.5 billion against almost no cash",
+  "Kansas and Missouri regulators set allowed returns",
+  "Coal plant retirements require replacement generation investment",
+  "Revenue grew only about 2% last year"
+ ],
+ "opportunities": [
+  "Large industrial and data centre projects in Kansas have been announced in its territory",
+  "Operating margin of 26% with a dividend yield above 3%",
+  "Every approved investment raises the base it earns a regulated return on"
+ ],
+ "watch": "Industrial and data centre load commitments and rate case outcomes.",
+ "updated": "2026-11"
+}

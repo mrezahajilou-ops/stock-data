@@ -1,0 +1,43 @@
+{
+ "t": "EFX",
+ "what": "Equifax is a credit bureau. It holds credit histories on hundreds of millions of people and sells reports and scores to lenders, and through The Work Number it also holds employment and income records used to verify applicants.",
+ "customers": "Banks, card issuers, mortgage lenders, employers, landlords and government agencies.",
+ "money": [
+  [
+   "Workforce Solutions",
+   "the largest part, highest margin",
+   "income and employment verification through The Work Number"
+  ],
+  [
+   "US Information Solutions",
+   "large",
+   "consumer and commercial credit reporting"
+  ],
+  [
+   "International",
+   "meaningful",
+   "credit bureaus outside the United States"
+  ]
+ ],
+ "moat": "Payroll records contributed directly by employers, a database no competitor can assemble, which makes verification instant rather than manual.",
+ "rivals": [
+  "TransUnion|TRU",
+  "Experian",
+  "FICO|FICO",
+  "Equifax rivals in verification",
+  "LexisNexis Risk (RELX)|RELX"
+ ],
+ "risks": [
+  "Mortgage lending volumes drive a large part of demand and have been depressed",
+  "The 2017 data breach cost it heavily and data security remains the central risk",
+  "Debt of about $5.2 billion against almost no cash",
+  "Regulators have scrutinised credit bureau pricing and accuracy"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "A recovery in mortgage lending would lift the most profitable volumes",
+  "The Work Number keeps adding employer records, widening its advantage"
+ ],
+ "watch": "Workforce Solutions revenue growth and mortgage inquiry volumes.",
+ "updated": "2026-11"
+}

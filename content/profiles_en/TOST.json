@@ -1,0 +1,43 @@
+{
+ "t": "TOST",
+ "what": "Toast sells an all-in-one system for restaurants: point-of-sale terminals, payment processing, online ordering, payroll and lending. The hardware is sold near cost; payments and software are the business.",
+ "customers": "Restaurants of all sizes in the United States, from single locations to chains, and increasingly outside the US.",
+ "money": [
+  [
+   "Financial technology solutions",
+   "the largest part",
+   "payment processing on restaurant transactions"
+  ],
+  [
+   "Subscription services",
+   "growing, higher margin",
+   "software modules for ordering, payroll, marketing and inventory"
+  ],
+  [
+   "Hardware and professional services",
+   "small",
+   "terminals and installation"
+  ]
+ ],
+ "moat": "A system that runs the whole restaurant, from the kitchen display to payroll, which makes switching a disruption to daily operations rather than a vendor change.",
+ "rivals": [
+  "Block (Square)|XYZ",
+  "Fiserv (Clover)|FI",
+  "Shift4 Payments|FOUR",
+  "Olo|OLO",
+  "Lightspeed|LSPD"
+ ],
+ "risks": [
+  "Gross margin of 26% is low because payment processing costs pass through",
+  "Restaurant closures reduce locations and therefore revenue",
+  "Competition for restaurant point-of-sale is intense",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 24% last year and about 31% a year over three years",
+  "Return on invested capital of 13% with cash of $1.2 billion and almost no debt",
+  "Each new software module raises revenue per location without new customers"
+ ],
+ "watch": "Net location additions and annual recurring revenue per location.",
+ "updated": "2026-11"
+}

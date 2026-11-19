@@ -1,0 +1,42 @@
+{
+ "t": "NRG",
+ "what": "NRG Energy sells electricity and natural gas directly to about eight million residential customers and to businesses, and owns power plants to supply much of it. It also sells smart home security through Vivint.",
+ "customers": "Households and businesses buying retail electricity and gas, data centres, and wholesale power markets.",
+ "money": [
+  [
+   "Texas",
+   "the largest part",
+   "retail electricity and generation in the Texas market"
+  ],
+  [
+   "East and West",
+   "large",
+   "retail and generation in other regional markets"
+  ],
+  [
+   "Smart Home (Vivint)",
+   "meaningful",
+   "home security and automation subscriptions"
+  ]
+ ],
+ "moat": "Owning both the generation and the retail customers, so the two hedge each other naturally when wholesale power prices spike.",
+ "rivals": [
+  "Vistra|VST",
+  "Constellation Energy|CEG",
+  "Talen Energy|TLN",
+  "Exelon|EXC"
+ ],
+ "risks": [
+  "Debt of about $23 billion against almost no cash",
+  "Power prices are volatile and Texas winter storms have caused large losses before",
+  "Net margin of about 3% reflects commodity exposure",
+  "Buying a large generation portfolio adds integration risk"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Data centre demand in Texas is raising power prices and the value of existing plants",
+  "Vivint subscriptions add recurring revenue unrelated to power"
+ ],
+ "watch": "Any power agreements with data centre customers, and Texas forward power prices.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "BR",
+ "what": "Broadridge runs the plumbing of investing. It processes proxy votes and shareholder communications for most US public companies, handles trade processing for brokers, and provides technology to wealth managers.",
+ "customers": "Banks, brokers, asset and wealth managers, public companies and mutual funds.",
+ "money": [
+  [
+   "Investor Communication Solutions",
+   "the larger part",
+   "proxy distribution, shareholder communications and regulatory mailings"
+  ],
+  [
+   "Global Technology and Operations",
+   "large",
+   "trade processing, post-trade and wealth management platforms"
+  ]
+ ],
+ "moat": "A near-monopoly on US proxy distribution, built on contracts with brokers who hold shares on behalf of investors, which no competitor has been able to break.",
+ "rivals": [
+  "SS&C Technologies|SSNC",
+  "FIS|FIS",
+  "Fiserv|FI",
+  "Computershare",
+  "State Street|STT"
+ ],
+ "risks": [
+  "Growth of about 9% is steady rather than fast",
+  "Debt of about $3.6 billion against almost no cash",
+  "Regulators periodically review proxy fee structures",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Return on invested capital of 16% with recurring revenue renewing at very high rates",
+  "Growth in retail investor accounts increases the volume of communications it handles",
+  "A dividend raised every year since it was spun out of ADP"
+ ],
+ "watch": "Recurring revenue growth and closed sales.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "TPL",
+ "what": "Texas Pacific Land owns about 882,000 acres of land in West Texas, over the Permian basin. It collects royalties on oil and gas produced beneath it, sells and treats water for drilling, and leases surface rights.",
+ "customers": "Oil and gas producers drilling on its land, who pay royalties, buy water and lease surface access.",
+ "money": [
+  [
+   "Oil and gas royalties",
+   "the largest part",
+   "a share of production from wells under its land"
+  ],
+  [
+   "Water services and royalties",
+   "large",
+   "sourcing and disposal of water used in drilling"
+  ],
+  [
+   "Surface leases and easements",
+   "meaningful",
+   "pipeline easements, roads and surface use fees"
+  ]
+ ],
+ "moat": "A landholding assembled from a nineteenth-century railway grant that cannot be bought anywhere else, sitting over the most productive oil basin in North America, with no drilling costs.",
+ "rivals": [
+  "Viper Energy|VNOM",
+  "Black Stone Minerals|BSM",
+  "LandBridge|LB",
+  "Sitio Royalties|STR"
+ ],
+ "risks": [
+  "Oil and gas prices and Permian drilling activity set revenue",
+  "It has no control over when operators drill",
+  "Only two analysts cover it in this data",
+  "The shares trade at a very high multiple of earnings"
+ ],
+ "opportunities": [
+  "Operating margin of 74% and net margin of 60%, because it has almost no costs",
+  "Return on invested capital of 32% with essentially no debt",
+  "Water handling and surface leasing grow even when royalty volumes are flat"
+ ],
+ "watch": "Royalty production volumes and water services revenue.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "BNTX",
+ "what": "BioNTech is a German biotechnology company. It co-developed the first widely used COVID-19 vaccine with Pfizer, and is now spending that money on cancer immunotherapy, including mRNA cancer vaccines and antibodies.",
+ "customers": "Governments and health systems buying vaccines; future cancer medicines would be sold to oncologists and health systems.",
+ "money": [
+  [
+   "COVID-19 vaccine",
+   "the current revenue base, declining",
+   "the Pfizer-partnered vaccine"
+  ],
+  [
+   "Oncology and collaborations",
+   "the future",
+   "cancer immunotherapy programmes and partnership payments"
+  ]
+ ],
+ "moat": "mRNA manufacturing and clinical experience proven at enormous scale, plus intellectual property and partnerships with large pharmaceutical companies.",
+ "rivals": [
+  "Moderna|MRNA",
+  "Merck|MRK",
+  "Bristol Myers Squibb|BMY",
+  "Summit Therapeutics|SMMT",
+  "CureVac"
+ ],
+ "risks": [
+  "Vaccine revenue has collapsed from its peak and keeps falling",
+  "It makes a large operating loss while funding cancer research",
+  "Cancer trials are long and most programmes fail",
+  "Revenue has fallen about 43% a year over three years"
+ ],
+ "opportunities": [
+  "Cash of about $16 billion against almost no debt, an unusual war chest",
+  "A partnership with Bristol Myers Squibb on a bispecific cancer antibody brought large upfront payments",
+  "Analysts see about 36% upside from current levels"
+ ],
+ "watch": "Late-stage cancer trial readouts and the cash burn rate.",
+ "updated": "2026-11"
+}

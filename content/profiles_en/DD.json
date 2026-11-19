@@ -1,0 +1,38 @@
+{
+ "t": "DD",
+ "what": "DuPont makes specialty materials. After separating its electronics business it is focused on water filtration, protection materials such as Tyvek and Kevlar, and healthcare and industrial materials.",
+ "customers": "Water utilities and industrial water users, construction and safety equipment makers, medical device companies and industrial manufacturers.",
+ "money": [
+  [
+   "Water and Protection",
+   "the largest part",
+   "reverse osmosis membranes, Tyvek, Kevlar and Nomex"
+  ],
+  [
+   "Diversified Industrials and Healthcare",
+   "large",
+   "medical packaging, adhesives and industrial materials"
+  ]
+ ],
+ "moat": "Branded materials such as Kevlar and Tyvek that are specified by name in safety standards and building codes, which makes substitution a regulatory question rather than a purchasing one.",
+ "rivals": [
+  "3M|MMM",
+  "Honeywell|HON",
+  "Celanese|CE",
+  "Toray",
+  "Solvay"
+ ],
+ "risks": [
+  "It reported a loss after separation and impairment charges",
+  "Revenue has fallen about 19% a year over three years as businesses were spun off",
+  "Return on invested capital of about 1% after the restructuring",
+  "Construction and industrial demand has been soft"
+ ],
+ "opportunities": [
+  "Analysts see about 14% upside from current levels",
+  "Water filtration demand grows with scarcity and tightening contaminant rules",
+  "A simpler company after the electronics separation, with less debt"
+ ],
+ "watch": "Organic revenue growth in Water and Protection and operating margin.",
+ "updated": "2026-11"
+}

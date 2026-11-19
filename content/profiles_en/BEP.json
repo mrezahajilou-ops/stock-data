@@ -1,0 +1,43 @@
+{
+ "t": "BEP",
+ "what": "Brookfield Renewable owns one of the world's largest portfolios of renewable power: hydroelectric dams, wind and solar farms, and storage, across the Americas, Europe and Asia. It is managed by Brookfield and structured as a partnership.",
+ "customers": "Utilities, large corporations buying clean power under long-term agreements, and wholesale electricity markets.",
+ "money": [
+  [
+   "Hydroelectric",
+   "large, the most valuable",
+   "long-life dams with low operating costs"
+  ],
+  [
+   "Wind and solar",
+   "large, growing",
+   "onshore and offshore wind and solar farms"
+  ],
+  [
+   "Distributed energy and storage",
+   "growing",
+   "rooftop solar, storage and sustainable solutions"
+  ]
+ ],
+ "moat": "Hydroelectric assets that cannot be rebuilt and last a century, plus a development pipeline and contracts with technology companies buying clean power for data centres.",
+ "rivals": [
+  "NextEra Energy Partners|NEP",
+  "Iberdrola",
+  "Ørsted",
+  "Clearway Energy|CWEN",
+  "Enel"
+ ],
+ "risks": [
+  "Consolidated debt of about $42 billion, though most is non-recourse at the asset level",
+  "It reported a net loss because of depreciation and minority interests",
+  "Rising interest rates raise the cost of funding new projects",
+  "It is a partnership, which complicates tax reporting for some investors"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year and about 11% a year over three years",
+  "Technology companies signing long-term clean power agreements for data centres",
+  "A distribution yield above 5% with a record of annual increases"
+ ],
+ "watch": "Funds from operations per unit and new power purchase agreements signed.",
+ "updated": "2026-11"
+}

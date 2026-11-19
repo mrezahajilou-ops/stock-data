@@ -1,0 +1,47 @@
+{
+ "t": "BEKE",
+ "what": "KE Holdings runs Beike, China's largest property transaction platform. It connects buyers and sellers through Lianjia's own agencies and a network of affiliated brokerages, and has added renovation, rental management and home services.",
+ "customers": "Chinese home buyers, sellers and renters, plus the estate agents and brokerages on its platform.",
+ "money": [
+  [
+   "Existing home transactions",
+   "the largest part",
+   "commissions on second-hand home sales"
+  ],
+  [
+   "New home transactions",
+   "large",
+   "commissions from developers on new home sales"
+  ],
+  [
+   "Home renovation and furnishing",
+   "growing",
+   "renovation services"
+  ],
+  [
+   "Rental services",
+   "growing",
+   "managed rental apartments"
+  ]
+ ],
+ "moat": "A verified listings database and a commission-sharing system that makes agents from competing brokerages cooperate on the same deal, which no Chinese rival has replicated.",
+ "rivals": [
+  "Anjuke",
+  "58.com",
+  "Fang Holdings",
+  "Developer direct sales"
+ ],
+ "risks": [
+  "The Chinese property market has been weak for years",
+  "Net margin of about 3% is thin",
+  "New home sales depend on developers that are financially stressed",
+  "Chinese regulatory and geopolitical risk affects US-listed Chinese shares"
+ ],
+ "opportunities": [
+  "Revenue grew about 6% last year and about 15% a year over three years",
+  "Cash of about $8.3 billion against $1.9 billion of debt",
+  "Renovation and rental services grow regardless of transaction volumes"
+ ],
+ "watch": "Existing home transaction volume and the growth of non-transaction services.",
+ "updated": "2026-11"
+}

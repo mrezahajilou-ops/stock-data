@@ -1,0 +1,43 @@
+{
+ "t": "GH",
+ "what": "Guardant Health makes blood tests for cancer. Its tests detect tumour DNA circulating in blood, used to choose treatments, monitor for recurrence after surgery, and screen for colorectal cancer.",
+ "customers": "Oncologists and hospitals ordering tests, pharmaceutical companies using its tests in trials, and screening patients through their doctors.",
+ "money": [
+  [
+   "Precision oncology testing",
+   "the large majority",
+   "Guardant360 therapy selection and Reveal recurrence monitoring"
+  ],
+  [
+   "Screening (Shield)",
+   "growing",
+   "blood-based colorectal cancer screening"
+  ],
+  [
+   "Biopharmaceutical and development services",
+   "meaningful",
+   "testing services for drug trials"
+  ]
+ ],
+ "moat": "Years of clinical evidence and insurer coverage decisions for blood-based tumour testing, plus the regulatory approval for a blood screening test that competitors do not have.",
+ "rivals": [
+  "Natera|NTRA",
+  "Exact Sciences|EXAS",
+  "Foundation Medicine (Roche)",
+  "Illumina (Grail)|ILMN",
+  "Tempus AI|TEM"
+ ],
+ "risks": [
+  "It makes a large operating loss",
+  "Reimbursement decisions determine whether tests get paid for",
+  "Blood-based colorectal screening is less sensitive than colonoscopy, which affects guidelines",
+  "Debt of about $1.7 billion against $1 billion of cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 33% last year and about 30% a year over three years",
+  "Gross margin of 64% means volume growth converts to profit over time",
+  "Colorectal screening by blood test could reach millions who avoid colonoscopy"
+ ],
+ "watch": "Shield screening test volumes and gross margin improvement.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "WIT",
+ "what": "Wipro is an Indian information technology services company. It runs and modernises the software systems of large corporations, and provides consulting and engineering services, with most delivery staff in India.",
+ "customers": "Banks, insurers, healthcare companies, manufacturers, retailers and energy companies, mostly in North America and Europe.",
+ "money": [
+  [
+   "Americas",
+   "the largest part",
+   "technology services to US and Canadian clients"
+  ],
+  [
+   "Europe",
+   "large",
+   "services to European clients"
+  ],
+  [
+   "Asia Pacific, Middle East and Africa",
+   "meaningful",
+   "services across other regions"
+  ]
+ ],
+ "moat": "A trained workforce at Indian cost levels and multi-year contracts embedded in clients' core systems, though it has grown more slowly than its Indian peers.",
+ "rivals": [
+  "Tata Consultancy Services",
+  "Infosys|INFY",
+  "Accenture|ACN",
+  "Cognizant|CTSH",
+  "HCLTech"
+ ],
+ "risks": [
+  "Revenue fell about 5% last year and has been flat over three years",
+  "It has lagged Infosys and TCS in growth for several years",
+  "Artificial intelligence could reduce the number of people needed per project",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "A dividend yield above 4% with cash of $4.2 billion against $2.3 billion of debt",
+  "Large deal bookings have improved under new leadership",
+  "Companies rebuilding systems around artificial intelligence need this kind of implementation work"
+ ],
+ "watch": "Revenue growth in constant currency and large deal wins.",
+ "updated": "2026-11"
+}

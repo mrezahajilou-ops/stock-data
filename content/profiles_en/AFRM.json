@@ -1,0 +1,43 @@
+{
+ "t": "AFRM",
+ "what": "Affirm provides buy-now-pay-later financing. Shoppers split purchases into instalments at checkout, and Affirm earns from merchant fees and from interest on longer loans, which it funds and partly sells on.",
+ "customers": "Online and in-store shoppers, and merchants including Amazon, Walmart and Shopify sellers who offer it at checkout.",
+ "money": [
+  [
+   "Merchant network revenue",
+   "large",
+   "fees paid by merchants for offering the option"
+  ],
+  [
+   "Interest income",
+   "large",
+   "interest on longer-term instalment loans"
+  ],
+  [
+   "Servicing and gain on sale",
+   "meaningful",
+   "selling loans to funding partners and servicing them"
+  ]
+ ],
+ "moat": "Underwriting built on transaction-level data rather than credit scores, plus exclusive placements at the largest online checkouts in the United States.",
+ "rivals": [
+  "Klarna|KLAR",
+  "PayPal|PYPL",
+  "Block (Afterpay)|XYZ",
+  "Synchrony Financial|SYF",
+  "Capital One|COF"
+ ],
+ "risks": [
+  "Credit losses rise when consumers come under pressure",
+  "Debt of about $10 billion funds the loan book",
+  "Regulators have signalled tighter rules for buy-now-pay-later lending",
+  "Losing a large merchant partner would remove a meaningful share of volume"
+ ],
+ "opportunities": [
+  "Revenue grew about 32% last year and about 39% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "The Affirm Card extends it from checkout financing into everyday spending"
+ ],
+ "watch": "Gross merchandise volume growth and the delinquency rate on loans.",
+ "updated": "2026-11"
+}

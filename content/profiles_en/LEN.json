@@ -1,0 +1,43 @@
+{
+ "t": "LEN",
+ "what": "Lennar is one of the largest American homebuilders by deliveries. It builds homes across most major US markets and also originates mortgages and provides title insurance for its own buyers.",
+ "customers": "First-time and move-up home buyers across the United States.",
+ "money": [
+  [
+   "Homebuilding",
+   "almost all of revenue",
+   "homes delivered across its markets"
+  ],
+  [
+   "Financial services",
+   "smaller, high margin",
+   "mortgage origination and title services for its own buyers"
+  ],
+  [
+   "Multifamily and other",
+   "small",
+   "rental apartment development"
+  ]
+ ],
+ "moat": "Scale that lowers cost per home, and a shift to controlling land through options rather than owning it, which reduces the capital at risk in a downturn.",
+ "rivals": [
+  "D.R. Horton|DHI",
+  "PulteGroup|PHM",
+  "NVR|NVR",
+  "Toll Brothers|TOL",
+  "Meritage Homes|MTH"
+ ],
+ "risks": [
+  "High mortgage rates have slowed sales and forced heavy price incentives",
+  "Revenue fell about 4% last year",
+  "Buying down buyers' mortgage rates eats into gross margin",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "It spun off its land holdings into a separate company, making the builder lighter on capital",
+  "Debt of about $6 billion against $1.5 billion of cash is manageable",
+  "Lower mortgage rates would revive demand quickly"
+ ],
+ "watch": "New orders, deliveries, and gross margin after incentives.",
+ "updated": "2026-11"
+}

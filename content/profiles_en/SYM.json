@@ -1,0 +1,38 @@
+{
+ "t": "SYM",
+ "what": "Symbotic builds warehouse automation. Its robots move cases and pallets around distribution centres, building mixed pallets automatically for store delivery. Walmart is by far its largest customer.",
+ "customers": "Large retailers and wholesalers automating their distribution centres, led by Walmart, plus a joint venture with SoftBank.",
+ "money": [
+  [
+   "Systems",
+   "the large majority",
+   "designing, building and installing automated warehouse systems"
+  ],
+  [
+   "Software maintenance and operation services",
+   "growing",
+   "recurring support and operation of installed systems"
+  ]
+ ],
+ "moat": "A fully integrated robotics and software system proven at the scale of the world's largest retailer, which takes years to design, install and commission.",
+ "rivals": [
+  "AutoStore",
+  "Dematic (KION)",
+  "Ocado Group|OCDO",
+  "Honeywell Intelligrated|HON",
+  "GreyOrange"
+ ],
+ "risks": [
+  "Walmart accounts for the large majority of revenue, an extreme concentration",
+  "Gross margin of 19% is thin for a technology company and installations have had cost overruns",
+  "It has barely broken even and has restated results in the past",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 26% last year and about 56% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Recurring software and operation revenue grows as more systems come online"
+ ],
+ "watch": "Customer concentration, backlog, and gross margin on installations.",
+ "updated": "2026-11"
+}

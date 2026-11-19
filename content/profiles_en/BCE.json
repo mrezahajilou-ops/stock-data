@@ -1,0 +1,37 @@
+{
+ "t": "BCE",
+ "what": "BCE is Canada's largest telecom company. Through Bell it sells mobile, internet and television service, and it owns media assets including CTV and sports networks.",
+ "customers": "Canadian households and businesses buying mobile, internet and television service, plus advertisers.",
+ "money": [
+  [
+   "Bell Communication and Technology Services",
+   "the large majority",
+   "mobile, internet, television and business services"
+  ],
+  [
+   "Bell Media",
+   "smaller",
+   "television networks, radio and digital advertising"
+  ]
+ ],
+ "moat": "Fibre and mobile networks across Canada in a market with only three large operators, where building a competing network is prohibitively expensive.",
+ "rivals": [
+  "Rogers Communications|RCI",
+  "TELUS|TU",
+  "Quebecor",
+  "Cogeco"
+ ],
+ "risks": [
+  "Debt of about $29 billion against almost no cash",
+  "It cut its dividend in 2025 after years of paying out more than it earned",
+  "Canadian wireless price competition has intensified since regulators pushed for lower prices",
+  "Media advertising revenue is in structural decline"
+ ],
+ "opportunities": [
+  "Operating margin of 39% with a dividend yield above 5% even after the cut",
+  "Fibre coverage across most of its territory reduces future capital spending",
+  "Analysts see about 23% upside from current levels"
+ ],
+ "watch": "Mobile revenue per user and free cash flow against the dividend.",
+ "updated": "2026-11"
+}

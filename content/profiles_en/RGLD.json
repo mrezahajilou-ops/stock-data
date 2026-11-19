@@ -1,0 +1,37 @@
+{
+ "t": "RGLD",
+ "what": "Royal Gold buys royalties and streams on mines. It pays mining companies up front in exchange for a percentage of future production or revenue, so it earns from metal output without operating or building mines.",
+ "customers": "Metal refiners and markets; its counterparties are the mining companies whose output it has rights to.",
+ "money": [
+  [
+   "Gold royalties and streams",
+   "the large majority",
+   "interests in gold mines worldwide"
+  ],
+  [
+   "Silver and copper",
+   "meaningful",
+   "silver and copper interests, notably at Mount Milligan and Pueblo Viejo"
+  ]
+ ],
+ "moat": "A portfolio of interests in large, long-life mines bought over decades, with no exposure to rising mining costs or capital overruns.",
+ "rivals": [
+  "Franco-Nevada|FNV",
+  "Wheaton Precious Metals|WPM",
+  "Triple Flag|TFPM",
+  "Sandstorm Gold|SAND"
+ ],
+ "risks": [
+  "Profit depends on gold and other metal prices",
+  "It has no control over how its partner mines are run",
+  "A low dividend yield of under 1%",
+  "Royalty acquisition competition has pushed prices up"
+ ],
+ "opportunities": [
+  "Operating margin of 62% and net margin of 45%, because it has almost no costs",
+  "Revenue grew about 43% last year and about 20% a year over three years",
+  "Almost no debt, so cash flow can fund new royalties"
+ ],
+ "watch": "Gold-equivalent ounces earned and new royalty acquisitions.",
+ "updated": "2026-11"
+}

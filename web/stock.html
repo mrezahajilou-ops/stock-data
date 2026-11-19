@@ -536,8 +536,8 @@ function applyLive(d){
 function niceName(n){n=String(n||'');if(n!==n.toUpperCase()||!/[A-Z]{3}/.test(n))return n;var keep={'INC':'Inc.','CORP':'Corp.','CO':'Co.','LTD':'Ltd.','PLC':'PLC','LLC':'LLC','SA':'SA','NV':'NV','AG':'AG','SE':'SE','ADR':'ADR','ETF':'ETF','USA':'USA','US':'US','UK':'UK','AI':'AI','IT':'IT','DE':'de','/DE/':'','/MD/':'','/NEW/':'','/PA/':'','/TX/':''};
   return n.split(/\s+/).map(function(w){var k=w.replace(/[.,]/g,'');if(keep.hasOwnProperty(k))return keep[k];if(/^[A-Z]{1,2}$/.test(k)||/\d/.test(w)||/^[A-Z]&[A-Z]$/.test(k))return w;return w.charAt(0)+w.slice(1).toLowerCase()}).filter(Boolean).join(' ').replace(/\s+/g,' ').trim()}
 function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-/* یک کلمه‌ی لاتین وسط جمله‌ی فارسی ترتیب راست‌به‌چپ را به هم می‌ریزد: هر تکه‌ی لاتین را با
-   جداکننده‌های یونیکد (FSI … PDI) ایزوله می‌کنیم تا جهت متن فارسی اطرافش دست‌نخورده بماند. */
+/* A Latin word inside a right-to-left sentence flips the reading order around it, so every Latin
+   run is wrapped in Unicode isolates (FSI … PDI) and the sentence around it keeps its direction. */
 function escFa(t){return esc(String(t==null?'':t).replace(/[A-Za-z][A-Za-z0-9&+.\-'’]*(?: [A-Za-z0-9][A-Za-z0-9&+.\-'’]*)*/g,function(m){var tail='';while(m&&'.-\'’'.indexOf(m.charAt(m.length-1))>=0){tail=m.charAt(m.length-1)+tail;m=m.slice(0,-1)}return m?'⁨'+m+'⁩'+tail:tail}))}
 function big(v){var r=big0(v);return r==='—'?r:'\u2066'+r+'\u2069'}
 function big0(v){if(v==null||!isFinite(v))return '—';var a=Math.abs(v),s=v<0?'-':'';if(a>=1e12)return s+'$'+(a/1e12).toFixed(2)+'T';if(a>=1e9)return s+'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return s+'$'+(a/1e6).toFixed(0)+'M';return s+'$'+a.toFixed(0)}

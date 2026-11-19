@@ -2145,6 +2145,37 @@ def finish(recs, market):
         r["ratios"] = {k: r4(v) for k, v in ratios.items()}
         r["scores"] = sc
         r["checks"] = checks
+
+        # ---- gaps the filings leave behind, filled from figures already proven above ----
+        # The cover-page share count is often filed once per share class, which the fact reader skips,
+        # so a quarter of the companies carried no share count at all. Market cap / price is the
+        # exchange's own count for the same moment, so it fills the hole without inventing a number.
+        if not r["latest"].get("shares_out") and mk.get("mcap") and mk.get("price"):
+            r["latest"]["shares_out"] = int(round(mk["mcap"] / mk["price"]))
+            r["latest"]["shares_out_src"] = "market"
+        # Total debt: the newest balance sheet carries it even where the annual row does not, which is
+        # the normal case for 20-F filers whose yearly columns use IFRS tags.
+        if r["latest"].get("debt") is None and (r.get("bs") or {}).get("debt") is not None:
+            r["latest"]["debt"] = r["bs"]["debt"]
+            r["latest"]["debt_src"] = "balance_sheet"
+        # Until the next quarter is filed, the trailing twelve months ARE the fiscal year. Leaving the
+        # block empty put a dash on every TTM figure of a company that had just closed its year.
+        if not r.get("ttm"):
+            _l = r["annual"][-1]
+            _e = _l.get("fy_end")
+            # A 20-F filer reports once a year, so its last twelve months stay the fiscal year for far
+            # longer than a domestic filer's do; anything older than that is a delinquent filer and keeps
+            # the empty block rather than showing a year-old figure as current.
+            _age = days(_e, dt.date.today().isoformat()) if _e else 10 ** 6
+            if _e and (_age <= 150 or (not r.get("quarterly") and _age <= 450)):
+                r["ttm"] = {k: _l.get(k) for k in ("revenue", "net_income", "cfo", "capex", "fcf",
+                                                   "op_income", "da", "ebitda", "dividends", "gross_profit",
+                                                   "rnd", "sbc", "interest_exp", "tax", "shares_diluted",
+                                                   "buybacks")}
+                r["ttm"].update({"pretax_income": _l.get("pretax"), "eps": _l.get("eps_diluted"),
+                                 "dps": r4(safe_div(_l.get("dividends"), _l.get("shares_diluted"))),
+                                 "end": _e, "src": "fy"})
+
         with open(os.path.join(OUT, "stocks", f"{r['ticker']}.json"), "w") as f:
             json.dump(r, f, separators=(",", ":"))
         last, s = r["annual"][-1], r["summary"]

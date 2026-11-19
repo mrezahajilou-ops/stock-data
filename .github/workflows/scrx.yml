@@ -1,0 +1,56 @@
+name: Screener data (extended columns)
+
+on:
+  schedule:
+    - cron: '10 1 * * 2-6'    # after the SEC data build and the price history
+    - cron: '20 8 * * 2-6'    # after the key statistics run
+    - cron: '50 11 * * 2-6'   # after the second key statistics slot
+    - cron: '30 14 * * 0,1'   # weekend refresh (dates move every day)
+  workflow_run:
+    workflows: ["SEC data build (daily, after US close)", "Key statistics, quarterly statements, analyst detail"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrx
+  cancel-in-progress: true
+
+jobs:
+  scrx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Key statistics and price history branches
+        run: |
+          git fetch -q --depth 1 origin keystats:refs/remotes/origin/keystats prices:refs/remotes/origin/prices
+          mkdir -p /tmp/k /tmp/p
+          git archive origin/keystats | tar -x -C /tmp/k
+          git archive origin/prices | tar -x -C /tmp/p
+      - name: Build the screener files
+        run: python scrx.py /tmp/k /tmp/p /tmp/scrx
+      - name: Check the result before publishing
+        run: |
+          python - <<'PY'
+          import json
+          c = json.load(open('/tmp/scrx/core.json')); m = json.load(open('/tmp/scrx/more.json')); meta = json.load(open('/tmp/scrx/meta.json'))
+          assert len(c['rows']) > 5000 and len(c['rows']) == len(m['rows']), 'too few rows'
+          for k, least in (('price', 4500), ('mcap', 4500), ('pe', 2000), ('rev', 4500), ('r1y', 4000), ('rsi', 4500), ('beta', 4000), ('roic', 3500)):
+              assert meta['fill'].get(k, 0) >= least, 'column %s is too empty: %s' % (k, meta['fill'].get(k))
+          print('ok', meta['rows'], 'stocks')
+          PY
+      - name: Publish to branch "scrx" (single commit, no history growth)
+        run: |
+          cd /tmp/scrx
+          git init -q -b scrx
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add -A
+          git commit -qm "screener data $(date -u +%FT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" scrx:scrx

@@ -1,0 +1,43 @@
+{
+ "t": "ECHO",
+ "what": "EchoStar owns DISH satellite television, the Boost Mobile wireless network, satellite communications through Hughes, and a large holding of wireless spectrum licences. Selling much of that spectrum has reshaped the company.",
+ "customers": "Satellite and streaming television subscribers, mobile customers on Boost, and enterprise and government satellite communications users.",
+ "money": [
+  [
+   "Pay television",
+   "the largest part, declining",
+   "DISH TV and Sling streaming subscriptions"
+  ],
+  [
+   "Retail wireless",
+   "large",
+   "Boost Mobile subscribers"
+  ],
+  [
+   "Broadband and satellite services",
+   "meaningful",
+   "Hughes consumer and enterprise satellite"
+  ]
+ ],
+ "moat": "Wireless spectrum licences, which are finite and issued by the government, and which proved to be worth far more than the operating businesses around them.",
+ "rivals": [
+  "AT&T|T",
+  "Verizon|VZ",
+  "T-Mobile US|TMUS",
+  "Comcast|CMCSA",
+  "Starlink"
+ ],
+ "risks": [
+  "Satellite television subscribers decline every year",
+  "The operating businesses lost money before the spectrum sales",
+  "Debt of about $10 billion",
+  "What remains after the spectrum sales is a smaller, structurally challenged business"
+ ],
+ "opportunities": [
+  "Large gains from spectrum sales transformed the balance sheet, leaving about $14 billion of cash",
+  "Analysts see about 47% upside from current levels",
+  "Remaining spectrum holdings still have value to mobile operators"
+ ],
+ "watch": "What it does with the cash, and subscriber trends at DISH and Boost.",
+ "updated": "2026-11"
+}

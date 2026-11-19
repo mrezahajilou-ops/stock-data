@@ -1,0 +1,48 @@
+{
+ "t": "TDY",
+ "what": "Teledyne makes instruments that sense and analyse: digital cameras and imaging sensors, test and measurement equipment, marine and environmental monitoring instruments, and aerospace and defence electronics.",
+ "customers": "Defence contractors and governments, factory automation and machine vision customers, environmental agencies, and oceanographic and scientific users.",
+ "money": [
+  [
+   "Digital Imaging",
+   "the largest part",
+   "industrial and scientific cameras, infrared and X-ray imaging"
+  ],
+  [
+   "Instrumentation",
+   "large",
+   "test, marine and environmental instruments"
+  ],
+  [
+   "Aerospace and Defense Electronics",
+   "meaningful",
+   "defence electronics and avionics"
+  ],
+  [
+   "Engineered Systems",
+   "smaller",
+   "specialised engineering programmes"
+  ]
+ ],
+ "moat": "Hundreds of niche instruments where it is the leading supplier to markets too small for large competitors, sold into equipment certified around them.",
+ "rivals": [
+  "AMETEK|AME",
+  "Keysight Technologies|KEYS",
+  "FLIR rivals",
+  "Thermo Fisher Scientific|TMO",
+  "Cognex|CGNX"
+ ],
+ "risks": [
+  "Machine vision demand has been weak with industrial capital spending",
+  "Growth depends partly on continued acquisitions",
+  "Return on invested capital of about 7% reflects goodwill from past deals",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year with a 19% operating margin",
+  "Defence electronics demand has strengthened with European rearmament",
+  "Analysts see about 22% upside from current levels"
+ ],
+ "watch": "Organic order growth, especially in digital imaging.",
+ "updated": "2026-11"
+}

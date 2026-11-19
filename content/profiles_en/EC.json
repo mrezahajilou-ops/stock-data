@@ -1,0 +1,47 @@
+{
+ "t": "EC",
+ "what": "Ecopetrol is Colombia's state-controlled oil company. It produces oil and gas in Colombia and the US Permian basin, refines fuel in Colombia, and owns most of the country's oil pipelines and a large electricity transmission business.",
+ "customers": "Colombian fuel distributors, international crude buyers, and electricity users through its transmission subsidiary ISA.",
+ "money": [
+  [
+   "Exploration and Production",
+   "the largest part",
+   "Colombian and Permian basin production"
+  ],
+  [
+   "Refining and Petrochemicals",
+   "large",
+   "Colombian refineries"
+  ],
+  [
+   "Transport and Logistics",
+   "meaningful",
+   "the Colombian pipeline network"
+  ],
+  [
+   "Transmission and Toll Roads (ISA)",
+   "meaningful",
+   "electricity transmission across Latin America"
+  ]
+ ],
+ "moat": "Control of Colombia's oil infrastructure, from the wells to the pipelines to the refineries, with no domestic competitor of comparable scale.",
+ "rivals": [
+  "Petrobras|PBR",
+  "YPF|YPF",
+  "Occidental Petroleum|OXY",
+  "Parex Resources"
+ ],
+ "risks": [
+  "The Colombian government controls it and has restricted new exploration licences",
+  "Debt of about $36 billion against $5 billion of cash",
+  "Revenue fell about 10% last year with oil prices",
+  "Colombian reserves are declining and replacement has been difficult"
+ ],
+ "opportunities": [
+  "A dividend yield around 4.6%",
+  "The ISA transmission business provides regulated earnings unrelated to oil",
+  "Permian basin assets give production growth outside Colombia"
+ ],
+ "watch": "Reserve replacement, Colombian production volumes, and the government's dividend policy.",
+ "updated": "2026-11"
+}

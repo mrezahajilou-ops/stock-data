@@ -1,0 +1,43 @@
+{
+ "t": "CPAY",
+ "what": "Corpay sells corporate payment products: fuel cards for vehicle fleets, lodging payment for travelling workers, accounts payable automation, and cross-border payments and currency hedging for businesses.",
+ "customers": "Fleet operators, trucking companies, corporate finance departments and small businesses making international payments.",
+ "money": [
+  [
+   "Corporate Payments",
+   "the largest part, fastest growing",
+   "accounts payable automation and cross-border payments"
+  ],
+  [
+   "Vehicle Payments",
+   "large",
+   "fuel cards and fleet payment management"
+  ],
+  [
+   "Lodging Payments",
+   "meaningful",
+   "hotel payment for crews and insurance housing"
+  ]
+ ],
+ "moat": "Closed-loop payment networks where it controls both ends of the transaction and earns a margin on each, with spending controls customers build their processes around.",
+ "rivals": [
+  "WEX|WEX",
+  "Edenred",
+  "Fleetcor rivals",
+  "Bill Holdings|BILL",
+  "Payoneer|PAYO"
+ ],
+ "risks": [
+  "Fuel prices affect fuel card revenue directly",
+  "Debt of about $11 billion from continuous acquisitions",
+  "Cross-border payment competition from banks and fintechs is intense",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year with a 44% operating margin",
+  "Corporate payments and cross-border are growing far faster than the legacy fuel card business",
+  "Acquisitions have consistently been integrated at higher margins"
+ ],
+ "watch": "Organic revenue growth by segment, especially corporate payments.",
+ "updated": "2026-11"
+}

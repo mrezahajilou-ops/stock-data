@@ -1,0 +1,37 @@
+{
+ "t": "ATO",
+ "what": "Atmos Energy distributes natural gas to about 3.4 million customers across eight states, with Texas by far its largest market. It is purely a gas distributor and pipeline operator, with no electricity business.",
+ "customers": "Households, businesses, public authorities and industrial users, mostly in Texas, Louisiana, Mississippi and Kentucky.",
+ "money": [
+  [
+   "Distribution",
+   "the larger part",
+   "regulated gas delivery to end customers"
+  ],
+  [
+   "Pipeline and Storage",
+   "large",
+   "the intrastate Texas pipeline system"
+  ]
+ ],
+ "moat": "A regulated monopoly over gas distribution in fast-growing Texan cities, plus its own intrastate pipeline that connects supply to its own customers.",
+ "rivals": [
+  "CenterPoint Energy|CNP",
+  "ONE Gas|OGS",
+  "Southwest Gas|SWX",
+  "Spire|SR"
+ ],
+ "risks": [
+  "Debt of about $11 billion against almost no cash",
+  "Long-term decarbonisation policy is a risk to gas distribution everywhere",
+  "Rate decisions determine recoverable investment",
+  "Winter storms have caused large gas cost spikes before"
+ ],
+ "opportunities": [
+  "Operating margin of 37% with a 29% net margin",
+  "Population growth in Texas adds customers every year without needing acquisitions",
+  "Regulatory mechanisms in Texas allow faster recovery of investment than in many states"
+ ],
+ "watch": "Customer growth in Texas and rate case outcomes.",
+ "updated": "2026-11"
+}

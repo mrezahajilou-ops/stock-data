@@ -1,0 +1,43 @@
+{
+ "t": "CINF",
+ "what": "Cincinnati Financial sells property and casualty insurance to businesses and households, almost entirely through independent insurance agents rather than directly. It also holds an unusually large portfolio of common stocks.",
+ "customers": "Small and mid-sized businesses and households, reached through independent agencies across the United States.",
+ "money": [
+  [
+   "Commercial lines",
+   "the largest part",
+   "property, liability and workers' compensation for businesses"
+  ],
+  [
+   "Personal lines",
+   "large",
+   "home and car insurance, increasingly high-value homes"
+  ],
+  [
+   "Excess and surplus, life and investments",
+   "meaningful",
+   "specialty lines, life insurance and investment income"
+  ]
+ ],
+ "moat": "Long relationships with independent agents who bring it business others do not see, reinforced by a reputation for paying claims without argument.",
+ "rivals": [
+  "Travelers|TRV",
+  "Hanover Insurance|THG",
+  "Selective Insurance|SIGI",
+  "Chubb|CB",
+  "Erie Indemnity|ERIE"
+ ],
+ "risks": [
+  "Its large equity portfolio means reported earnings swing with the stock market",
+  "Catastrophe losses from storms and hail affect it heavily",
+  "Analyst targets imply the shares are already fully valued",
+  "It is more concentrated in the US Midwest than national peers"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year and about 24% a year over three years",
+  "A dividend increased every year for more than sixty years",
+  "Rising investment income from higher interest rates"
+ ],
+ "watch": "The combined ratio and premium growth through agencies.",
+ "updated": "2026-11"
+}

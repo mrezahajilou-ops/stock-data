@@ -1,0 +1,37 @@
+{
+ "t": "MCHPP",
+ "what": "This is a preferred share of Microchip Technology, which makes microcontrollers and analogue chips used in cars, industrial machines and consumer devices. It pays a fixed dividend and ranks ahead of the ordinary shares.",
+ "customers": "The company sells chips to industrial, automotive and consumer manufacturers; this security is held by investors seeking a fixed payment.",
+ "money": [
+  [
+   "Microcontrollers",
+   "the largest part",
+   "8-, 16- and 32-bit microcontrollers"
+  ],
+  [
+   "Analog and mixed signal",
+   "large",
+   "power management, interface and timing chips"
+  ]
+ ],
+ "moat": "The underlying business has tens of thousands of customers whose products stay in production for a decade or more, which supports the earnings behind this dividend.",
+ "rivals": [
+  "Texas Instruments|TXN",
+  "STMicroelectronics|STM",
+  "NXP Semiconductors|NXPI",
+  "Infineon Technologies"
+ ],
+ "risks": [
+  "The dividend is declared at the board's discretion",
+  "It ranks behind about $5.5 billion of the company's debt",
+  "The chip business went through a severe downturn, with revenue falling about 18% a year over three years",
+  "Its market price falls when long-term interest rates rise"
+ ],
+ "opportunities": [
+  "A yield well above the ordinary shares",
+  "Paid before ordinary shareholders receive anything",
+  "Revenue grew about 7% last year as the chip cycle turned"
+ ],
+ "watch": "The company's revenue recovery and continued declaration of the dividend.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "DTE",
+ "what": "DTE Energy supplies electricity and natural gas in Michigan, serving the Detroit area and much of the state. It also owns a non-utility business in renewable natural gas and industrial energy services.",
+ "customers": "About 2.3 million electricity and 1.3 million gas customers in Michigan, plus industrial energy clients.",
+ "money": [
+  [
+   "Electric",
+   "the largest part",
+   "regulated generation and delivery in southeastern Michigan"
+  ],
+  [
+   "Gas",
+   "large",
+   "regulated gas distribution across Michigan"
+  ],
+  [
+   "DTE Vantage and Energy Trading",
+   "smaller",
+   "renewable natural gas, industrial energy and trading"
+  ]
+ ],
+ "moat": "A regulated monopoly across much of Michigan, with returns set by the state commission.",
+ "rivals": [
+  "CMS Energy|CMS",
+  "Consumers Energy",
+  "Ameren|AEE",
+  "American Electric Power|AEP"
+ ],
+ "risks": [
+  "Debt of about $26 billion against almost no cash",
+  "Michigan regulators set allowed returns and have been demanding on reliability",
+  "Storm-related outages have drawn regulatory and political criticism",
+  "Heavy capital spending requires continuous financing"
+ ],
+ "opportunities": [
+  "Revenue grew about 27% last year",
+  "Data centre agreements in Michigan raise projected load growth",
+  "Grid reliability investment adds to the base it earns a regulated return on"
+ ],
+ "watch": "Data centre load commitments and rate case outcomes.",
+ "updated": "2026-11"
+}

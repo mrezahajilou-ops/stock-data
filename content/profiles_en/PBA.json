@@ -1,0 +1,42 @@
+{
+ "t": "PBA",
+ "what": "Pembina Pipeline moves and processes energy in western Canada. It owns pipelines carrying crude, condensate and natural gas liquids, gas processing plants, and an export terminal on the British Columbia coast.",
+ "customers": "Western Canadian oil and gas producers, petrochemical plants and international buyers of propane and butane.",
+ "money": [
+  [
+   "Pipelines",
+   "the largest part",
+   "crude, condensate and NGL transport"
+  ],
+  [
+   "Facilities",
+   "large",
+   "gas processing and fractionation plants"
+  ],
+  [
+   "Marketing and New Ventures",
+   "meaningful",
+   "NGL marketing and the Prince Rupert export terminal"
+  ]
+ ],
+ "moat": "Pipelines and processing plants connected directly to western Canadian production, with long-term contracts and no practical alternative route for the producers served.",
+ "rivals": [
+  "Enbridge|ENB",
+  "TC Energy|TRP",
+  "Keyera",
+  "Gibson Energy"
+ ],
+ "risks": [
+  "Debt of about $10 billion against almost no cash",
+  "Volumes depend on western Canadian drilling activity",
+  "Revenue fell about 13% a year over three years before last year's recovery",
+  "Only two analysts cover it in this data and the target implies no upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year with a 36% operating margin",
+  "A dividend yield above 4% backed by contracted cash flow",
+  "Canadian LNG exports starting up raise demand for gas gathering and processing"
+ ],
+ "watch": "Contracted volumes and new processing capacity commitments.",
+ "updated": "2026-11"
+}

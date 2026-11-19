@@ -1,0 +1,42 @@
+{
+ "t": "EME",
+ "what": "EMCOR Group is one of the largest specialty contractors in the United States. It installs and services the electrical and mechanical systems inside buildings and industrial plants: wiring, heating, ventilation, piping and fire protection.",
+ "customers": "Data centre developers, semiconductor and pharmaceutical plant builders, healthcare and institutional owners, and industrial facilities needing maintenance.",
+ "money": [
+  [
+   "Electrical construction",
+   "large",
+   "electrical system installation"
+  ],
+  [
+   "Mechanical construction",
+   "large",
+   "HVAC, plumbing and process piping"
+  ],
+  [
+   "Building services and industrial services",
+   "meaningful",
+   "facilities maintenance and refinery services"
+  ]
+ ],
+ "moat": "A skilled trade workforce at national scale, which is the binding constraint on large construction projects, plus local relationships in dozens of markets.",
+ "rivals": [
+  "Comfort Systems USA|FIX",
+  "Quanta Services|PWR",
+  "APi Group|APG",
+  "MYR Group|MYRG"
+ ],
+ "risks": [
+  "Data centre and manufacturing construction is a large share of the backlog, so a pause there would hurt",
+  "Skilled labour availability limits growth",
+  "Fixed-price contracts carry execution risk",
+  "The shares have risen a long way and trade at a high multiple for a contractor"
+ ],
+ "opportunities": [
+  "Revenue grew about 17% last year and about 15% a year over three years",
+  "Return on invested capital of 31% with cash exceeding debt",
+  "Analysts see about 35% upside from current levels"
+ ],
+ "watch": "Remaining performance obligations and operating margin by segment.",
+ "updated": "2026-11"
+}

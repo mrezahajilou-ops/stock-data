@@ -1,0 +1,32 @@
+{
+ "t": "DGX",
+ "what": "Quest Diagnostics runs clinical laboratories across the United States. It processes blood and other samples ordered by doctors, hospitals and employers, and operates thousands of patient collection sites.",
+ "customers": "Doctors and health systems ordering tests, insurers and patients paying for them, employers running workforce testing.",
+ "money": [
+  [
+   "Diagnostic Information Services",
+   "almost all of revenue",
+   "routine, advanced and specialty clinical testing"
+  ]
+ ],
+ "moat": "A national laboratory and collection network with insurer contracts, where scale makes its cost per test lower than hospital or regional laboratories.",
+ "rivals": [
+  "Labcorp|LH",
+  "Sonic Healthcare",
+  "BioReference",
+  "Hospital laboratories"
+ ],
+ "risks": [
+  "Government reimbursement for routine tests is under continual pressure",
+  "Net margin of about 9% is thin",
+  "Debt of about $6 billion against under $1 billion of cash",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year",
+  "Hospitals outsourcing laboratory work to it adds volume without new facilities",
+  "Advanced testing in oncology, neurology and women's health earns far more per test"
+ ],
+ "watch": "Organic volume growth and revenue per requisition.",
+ "updated": "2026-11"
+}

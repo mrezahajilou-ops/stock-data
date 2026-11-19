@@ -1,0 +1,38 @@
+{
+ "t": "WRB",
+ "what": "W. R. Berkley is an American insurance holding company made up of more than fifty separate businesses, each underwriting a specific type of commercial risk. It is one of the largest writers of excess and surplus lines, the insurance for risks standard insurers will not take.",
+ "customers": "Businesses buying commercial and specialty insurance, and insurers buying reinsurance.",
+ "money": [
+  [
+   "Insurance",
+   "the large majority",
+   "excess and surplus lines, admitted commercial lines and specialty personal"
+  ],
+  [
+   "Reinsurance and Monoline Excess",
+   "smaller",
+   "reinsurance and excess workers' compensation"
+  ]
+ ],
+ "moat": "Dozens of specialist underwriting teams given authority over their own niches, which lets it price risks that larger, more centralised insurers misjudge.",
+ "rivals": [
+  "Chubb|CB",
+  "Markel|MKL",
+  "RLI|RLI",
+  "Arch Capital|ACGL",
+  "Travelers|TRV"
+ ],
+ "risks": [
+  "Commercial insurance pricing has softened after several strong years",
+  "Reserve adequacy on liability policies is an industry-wide concern",
+  "Catastrophe losses can be large in any single year",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year and about 10% a year over three years",
+  "Excess and surplus lines grow when standard insurers retreat from difficult risks",
+  "A long record of growing book value per share faster than peers"
+ ],
+ "watch": "The combined ratio and net premium growth in excess and surplus lines.",
+ "updated": "2026-11"
+}

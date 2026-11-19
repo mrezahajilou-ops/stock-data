@@ -1,0 +1,43 @@
+{
+ "t": "PHG",
+ "what": "Philips makes health technology: imaging systems such as MRI and ultrasound, patient monitors, sleep and respiratory devices, and personal health products including electric toothbrushes and shavers.",
+ "customers": "Hospitals and health systems, sleep apnoea patients through providers, and consumers buying personal care products.",
+ "money": [
+  [
+   "Diagnosis and Treatment",
+   "the largest part",
+   "imaging systems, ultrasound and image-guided therapy"
+  ],
+  [
+   "Connected Care",
+   "large",
+   "patient monitoring, sleep and respiratory care"
+  ],
+  [
+   "Personal Health",
+   "meaningful",
+   "shavers, toothbrushes and mother-and-child care"
+  ]
+ ],
+ "moat": "Imaging systems installed in hospitals that generate service contracts for a decade or more, plus consumer brands with strong positions in oral care and grooming.",
+ "rivals": [
+  "Siemens Healthineers",
+  "GE HealthCare|GEHC",
+  "ResMed|RMD",
+  "Canon Medical",
+  "Procter & Gamble|PG"
+ ],
+ "risks": [
+  "The recall of its sleep apnoea devices cost billions and damaged trust",
+  "Chinese hospital purchasing has been weak",
+  "Operating margin of 8% is low for a medical technology company",
+  "Debt of about $9 billion against $3 billion of cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year",
+  "Settlement of the US sleep device litigation removed a long overhang",
+  "Service and software on the installed base are higher margin than equipment sales"
+ ],
+ "watch": "Order intake, especially in China, and the recovery of operating margin.",
+ "updated": "2026-11"
+}

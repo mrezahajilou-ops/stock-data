@@ -1,0 +1,38 @@
+{
+ "t": "COIN",
+ "what": "Coinbase is the largest cryptocurrency exchange in the United States. People and institutions buy, sell and hold crypto assets there, and it has been expanding into stock trading, stablecoins and derivatives.",
+ "customers": "Retail crypto traders, institutional investors, and companies building on its infrastructure.",
+ "money": [
+  [
+   "Transaction revenue",
+   "the largest part",
+   "trading fees from retail and institutional customers"
+  ],
+  [
+   "Subscription and services",
+   "growing, steadier",
+   "custody, staking, stablecoin revenue and the Coinbase One subscription"
+  ]
+ ],
+ "moat": "Regulatory licences and a security record that institutions underwrite, combined with the trust of US retail customers in a sector where many competitors have failed.",
+ "rivals": [
+  "Binance",
+  "Kraken",
+  "Robinhood|HOOD",
+  "Bakkt|BKKT",
+  "Fidelity Digital Assets"
+ ],
+ "risks": [
+  "Revenue rises and falls with crypto trading volumes, which are highly volatile",
+  "It reported a loss in the latest period on investment and asset write-downs",
+  "Trading fees are under pressure as competitors cut prices",
+  "Regulation of crypto in the US remains unsettled"
+ ],
+ "opportunities": [
+  "Revenue grew about 31% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Subscription and services revenue, including stablecoin income, grows regardless of trading volumes"
+ ],
+ "watch": "Trading volumes and the share of revenue from subscriptions and services.",
+ "updated": "2026-11"
+}

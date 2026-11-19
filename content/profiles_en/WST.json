@@ -1,0 +1,37 @@
+{
+ "t": "WST",
+ "what": "West Pharmaceutical Services makes the parts that keep injectable medicines sterile: rubber stoppers, seals, plungers and the systems that deliver drugs by injection. Almost every injectable medicine uses components like these.",
+ "customers": "Pharmaceutical and biotechnology companies filling injectable medicines, and generic drug manufacturers.",
+ "money": [
+  [
+   "Proprietary Products",
+   "the large majority",
+   "high-value stoppers, seals and delivery components"
+  ],
+  [
+   "Contract-Manufactured Products",
+   "smaller",
+   "devices made to customers' designs"
+  ]
+ ],
+ "moat": "Components written into a medicine's regulatory filing, so changing supplier means refiling with regulators, which almost no drug company will do.",
+ "rivals": [
+  "Datwyler",
+  "Aptar Pharma|ATR",
+  "Stevanato Group|STVN",
+  "Becton Dickinson|BDX"
+ ],
+ "risks": [
+  "Customer destocking after the pandemic reduced orders for two years",
+  "Growth of about 6% is modest",
+  "Gross margin of 36% is below its historical level",
+  "Capital spending on new capacity was made ahead of demand"
+ ],
+ "opportunities": [
+  "GLP-1 weight-loss medicines are injectables and use its components in large volumes",
+  "Return on invested capital of 13% with very little debt",
+  "High-value components grow faster and earn more than standard ones"
+ ],
+ "watch": "High-value product revenue growth and capacity utilisation.",
+ "updated": "2026-11"
+}

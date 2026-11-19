@@ -1,0 +1,38 @@
+{
+ "t": "VLTO",
+ "what": "Veralto makes instruments and consumables for water quality and for product identification. One half tests and treats water for utilities and industry; the other makes the inkjet coding systems and packaging colour software used to mark and label products.",
+ "customers": "Municipal water utilities, industrial water users, food and beverage manufacturers, and consumer goods packaging operations.",
+ "money": [
+  [
+   "Water Quality",
+   "the larger part",
+   "water analysis instruments, treatment chemicals and services"
+  ],
+  [
+   "Product Quality and Innovation",
+   "large",
+   "marking and coding systems, inks and packaging software"
+  ]
+ ],
+ "moat": "Instruments and printers that run on its own consumables and reagents, generating recurring revenue for the life of each installation.",
+ "rivals": [
+  "Xylem|XYL",
+  "Danaher|DHR",
+  "Dover|DOV",
+  "Markem-Imaje",
+  "Evoqua"
+ ],
+ "risks": [
+  "Growth of about 6% is steady rather than fast",
+  "Industrial customers defer instrument purchases in downturns",
+  "Debt of about $3 billion from the spin-off from Danaher",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Gross margin of 60% with a 23% operating margin",
+  "Return on invested capital of 17% with cash covering much of its debt",
+  "Water testing demand rises with tightening regulation on contaminants"
+ ],
+ "watch": "Core revenue growth and the share coming from recurring consumables.",
+ "updated": "2026-11"
+}

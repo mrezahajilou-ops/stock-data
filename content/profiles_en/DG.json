@@ -1,0 +1,38 @@
+{
+ "t": "DG",
+ "what": "Dollar General runs nearly 21,000 small discount stores, mostly in rural and small-town America where it is often the only general store within miles. Most of what it sells is food and household consumables.",
+ "customers": "Lower-income households in the southern, midwestern and eastern United States, plus a small operation in Mexico.",
+ "money": [
+  [
+   "Consumables",
+   "the large majority",
+   "food, cleaning products, paper goods and tobacco"
+  ],
+  [
+   "Seasonal, home and apparel",
+   "smaller, higher margin",
+   "household goods, clothing and seasonal items"
+  ]
+ ],
+ "moat": "Store locations in places too small for a supermarket, which makes it the convenient option rather than the cheapest, with a supply chain built for small-format stores.",
+ "rivals": [
+  "Dollar Tree|DLTR",
+  "Walmart|WMT",
+  "Five Below|FIVE",
+  "Aldi",
+  "Casey's General Stores|CASY"
+ ],
+ "risks": [
+  "Its core customer is under pressure from inflation and reduced food assistance",
+  "Operating margin of 5% is thin and has fallen",
+  "Theft and inventory loss have been a persistent problem",
+  "Debt of about $16 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 5% last year",
+  "A back-to-basics programme on store standards and stock availability has improved sales",
+  "Lower-income customers trading down from supermarkets benefits it in a weak economy"
+ ],
+ "watch": "Same-store sales and gross margin after shrink.",
+ "updated": "2026-11"
+}

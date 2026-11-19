@@ -1,0 +1,43 @@
+{
+ "t": "EXPE",
+ "what": "Expedia Group runs online travel booking. It owns Expedia, Hotels.com and Vrbo for holiday rentals, plus a large business-to-business arm that powers travel booking for airlines, banks and other companies.",
+ "customers": "Travellers booking hotels, flights and rentals, hotels and property owners listing with it, and corporate partners using its booking technology.",
+ "money": [
+  [
+   "Business-to-consumer",
+   "the larger part",
+   "Expedia, Hotels.com and Vrbo bookings"
+  ],
+  [
+   "Business-to-business",
+   "growing fastest",
+   "white-label travel booking for partners"
+  ],
+  [
+   "Advertising (trivago and media)",
+   "smaller",
+   "advertising and metasearch"
+  ]
+ ],
+ "moat": "Hotel supply relationships built over decades and a business-to-business platform that is hard to replicate, since partners embed it deeply in their own products.",
+ "rivals": [
+  "Booking Holdings|BKNG",
+  "Airbnb|ABNB",
+  "TripAdvisor|TRIP",
+  "Google Travel|GOOGL",
+  "Trip.com|TCOM"
+ ],
+ "risks": [
+  "Booking Holdings is larger and more profitable in Europe",
+  "Google captures travel demand before it reaches booking sites",
+  "Vrbo has lost ground to Airbnb",
+  "Travel demand falls in a recession"
+ ],
+ "opportunities": [
+  "Return on invested capital of 20% with cash roughly matching debt",
+  "Analysts see about 36% upside from current levels",
+  "The business-to-business arm grows faster and needs no marketing spending"
+ ],
+ "watch": "Gross bookings growth and business-to-business revenue share.",
+ "updated": "2026-11"
+}

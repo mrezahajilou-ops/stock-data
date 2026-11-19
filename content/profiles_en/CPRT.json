@@ -1,0 +1,37 @@
+{
+ "t": "CPRT",
+ "what": "Copart runs online auctions for damaged and salvage vehicles. Insurers send it cars written off after accidents; it stores them on its yards and auctions them to dismantlers, rebuilders and buyers worldwide.",
+ "customers": "Insurance companies and fleet owners selling vehicles, and dismantlers, rebuilders, dealers and exporters buying them.",
+ "money": [
+  [
+   "Service revenue",
+   "the large majority",
+   "auction, storage, towing and processing fees"
+  ],
+  [
+   "Vehicle sales",
+   "smaller",
+   "vehicles it buys and resells on its own account"
+  ]
+ ],
+ "moat": "Hundreds of large yards near major cities, bought as land rather than leased, where permits for new salvage yards are nearly impossible to obtain.",
+ "rivals": [
+  "IAA (RB Global)|RBA",
+  "ACV Auctions|ACVA",
+  "Manheim (Cox)",
+  "LKQ|LKQ"
+ ],
+ "risks": [
+  "Revenue was flat last year as used car values fell from their peak",
+  "Fewer accidents from safer cars would reduce long-term volumes",
+  "Insurance total-loss rates drive volume and can shift",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Operating margin of 35% and net margin of 32%, extraordinary for a physical business",
+  "Cars are more expensive to repair, so insurers write off a higher share of damaged vehicles",
+  "Cash of about $1.9 billion against almost no debt"
+ ],
+ "watch": "Unit volumes processed and average selling price per vehicle.",
+ "updated": "2026-11"
+}

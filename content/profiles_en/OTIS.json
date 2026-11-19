@@ -1,0 +1,38 @@
+{
+ "t": "OTIS",
+ "what": "Otis makes, installs, services and modernises elevators and escalators in more than 200 countries. The service contracts on roughly two million units already installed are where almost all of its profit comes from.",
+ "customers": "Building owners and managers, construction contractors and developers worldwide.",
+ "money": [
+  [
+   "Service",
+   "the large majority of profit",
+   "maintenance contracts, repairs and modernisation of installed units"
+  ],
+  [
+   "New Equipment",
+   "the larger part of revenue, thin margin",
+   "new elevators and escalators"
+  ]
+ ],
+ "moat": "Two million elevators already installed, each needing regulated inspection and maintenance for decades, which almost always goes to the manufacturer.",
+ "rivals": [
+  "Schindler",
+  "KONE",
+  "TK Elevator",
+  "Mitsubishi Electric",
+  "Hitachi"
+ ],
+ "risks": [
+  "Chinese new building has collapsed, and China was its largest new equipment market",
+  "Revenue grew only about 1% last year",
+  "Debt of about $9 billion against under $1 billion of cash",
+  "Independent service providers compete for maintenance contracts"
+ ],
+ "opportunities": [
+  "Return on invested capital of 55%, among the highest of any large industrial company",
+  "Modernising ageing elevators in Europe and North America is a growing, high-margin market",
+  "Service revenue grows with the installed base regardless of new construction"
+ ],
+ "watch": "Service portfolio growth and new equipment orders, especially in China.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "HBANP",
+ "what": "This is a preferred share of Huntington Bancshares, the Ohio regional bank. It pays a fixed dividend, ranks ahead of the bank's ordinary shares, and does not participate in the bank's growth.",
+ "customers": "The bank serves Midwestern households and businesses; this security is bought by investors who want a fixed payment.",
+ "money": [
+  [
+   "Consumer and regional banking",
+   "large",
+   "deposits, mortgages, car and equipment lending"
+  ],
+  [
+   "Commercial banking",
+   "large",
+   "corporate lending, treasury management and specialty finance"
+  ]
+ ],
+ "moat": "The bank's deposit base across Ohio and Michigan, built since 1866, funds lending cheaply and generates the earnings behind this payment.",
+ "rivals": [
+  "Fifth Third Bancorp|FITB",
+  "KeyCorp|KEY",
+  "Regions Financial|RF",
+  "Citizens Financial|CFG"
+ ],
+ "risks": [
+  "The dividend is declared at the board's discretion and can be suspended",
+  "It ranks behind all of the bank's debt",
+  "Its market price falls when long-term interest rates rise",
+  "A severe credit downturn would eventually threaten the payment"
+ ],
+ "opportunities": [
+  "A yield well above the bank's ordinary shares",
+  "Paid before ordinary shareholders receive anything",
+  "The bank's net margin of 27% gives comfortable coverage"
+ ],
+ "watch": "Huntington's capital ratios and credit losses, and continued declaration of the dividend.",
+ "updated": "2026-11"
+}

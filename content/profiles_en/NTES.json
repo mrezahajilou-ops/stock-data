@@ -1,0 +1,43 @@
+{
+ "t": "NTES",
+ "what": "NetEase is a Chinese online games company. It develops and runs games for PC and mobile, including long-running titles like Fantasy Westward Journey and Identity V, and it also runs a music streaming service and an online education business.",
+ "customers": "Players in China above all, with a growing share of revenue from games released internationally.",
+ "money": [
+  [
+   "Games and value-added services",
+   "the large majority",
+   "in-game purchases from its own titles and licensed foreign games"
+  ],
+  [
+   "Youdao",
+   "small",
+   "online education and learning devices"
+  ],
+  [
+   "Cloud Music",
+   "smaller",
+   "music streaming subscriptions and social features"
+  ]
+ ],
+ "moat": "Decades-old game franchises with loyal player bases that are expensive to replicate, and a development studio record that few Chinese rivals match.",
+ "rivals": [
+  "Tencent|TCEHY",
+  "miHoYo",
+  "Bilibili|BILI",
+  "Krafton",
+  "Electronic Arts"
+ ],
+ "risks": [
+  "Chinese regulators control game approval licences and have frozen them before",
+  "Its most profitable games are old and eventually decline",
+  "Its partnership for licensed western titles has been unstable",
+  "Being a Chinese company listed in the US carries political and delisting risk"
+ ],
+ "opportunities": [
+  "It holds about $26 billion of cash against $1.9 billion of debt",
+  "International releases reduce dependence on the Chinese regulatory environment",
+  "Operating margins above 30% with a 2.5% dividend yield are unusual for a games company"
+ ],
+ "watch": "Revenue from new game launches against the decline of its older flagship titles.",
+ "updated": "2026-11"
+}

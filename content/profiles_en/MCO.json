@@ -1,0 +1,37 @@
+{
+ "t": "MCO",
+ "what": "Moody's rates the creditworthiness of bonds and the companies that issue them, and sells risk data, analytics and software through Moody's Analytics.",
+ "customers": "Bond issuers who pay for ratings, and banks, insurers and asset managers who buy data and risk software.",
+ "money": [
+  [
+   "Moody's Investors Service",
+   "about half of revenue, highest margin",
+   "credit ratings on debt issues and issuers"
+  ],
+  [
+   "Moody's Analytics",
+   "about half, more recurring",
+   "risk data, economic research and software subscriptions"
+  ]
+ ],
+ "moat": "A bond usually needs a rating from one of two recognised agencies to be sold widely, and regulation has entrenched that position for decades.",
+ "rivals": [
+  "S&P Global|SPGI",
+  "Fitch Ratings",
+  "MSCI|MSCI",
+  "Morningstar|MORN"
+ ],
+ "risks": [
+  "Ratings revenue rises and falls with how many bonds companies issue",
+  "Regulators periodically reconsider the issuer-pays model",
+  "A sharp rise in interest rates freezes bond issuance",
+  "Analytics competes with many well-funded data providers"
+ ],
+ "opportunities": [
+  "Analytics revenue is largely subscription-based and grows regardless of issuance volumes",
+  "Private credit markets create new demand for ratings and risk assessment",
+  "Operating margins above 40% and a high return on capital support buybacks"
+ ],
+ "watch": "Global bond issuance volumes and the recurring revenue share in Analytics.",
+ "updated": "2026-11"
+}

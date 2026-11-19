@@ -1,0 +1,38 @@
+{
+ "t": "FDX",
+ "what": "FedEx delivers packages and freight worldwide. It runs an air network built around its Memphis hub for express delivery, a ground network for cheaper parcels, and a freight business for pallet-sized shipments that it is separating.",
+ "customers": "Businesses shipping goods, e-commerce retailers, healthcare companies and consumers in more than 220 countries.",
+ "money": [
+  [
+   "Federal Express",
+   "the large majority",
+   "express air, ground and international delivery, now combined into one network"
+  ],
+  [
+   "FedEx Freight",
+   "meaningful, being separated",
+   "less-than-truckload freight, to be spun off as a separate company"
+  ]
+ ],
+ "moat": "An air fleet, hubs and sorting network that cost decades and tens of billions to build, with the express network uniquely able to move urgent shipments overnight.",
+ "rivals": [
+  "UPS|UPS",
+  "DHL",
+  "Amazon Logistics|AMZN",
+  "XPO|XPO",
+  "US Postal Service"
+ ],
+ "risks": [
+  "Industrial freight demand has been weak for several years",
+  "Fuel costs and aircraft maintenance are large and variable",
+  "The end of low-value import duty exemptions reduced a profitable flow of small parcels",
+  "Separating FedEx Freight removes a high-margin business"
+ ],
+ "opportunities": [
+  "Combining the express and ground networks is cutting billions of fixed costs",
+  "Spinning off Freight may let the market value both parts more highly",
+  "Higher-value healthcare and international shipments improve the revenue mix"
+ ],
+ "watch": "Cost savings delivered from the network consolidation and average revenue per package.",
+ "updated": "2026-11"
+}

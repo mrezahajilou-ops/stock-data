@@ -1,0 +1,43 @@
+{
+ "t": "TRV",
+ "what": "Travelers is a large American property and casualty insurer. It covers businesses against property damage, liability and workers' compensation, and households for homes and cars.",
+ "customers": "Businesses of all sizes through independent agents and brokers, plus individual homeowners and drivers.",
+ "money": [
+  [
+   "Business Insurance",
+   "the largest part",
+   "commercial property, liability and workers' compensation"
+  ],
+  [
+   "Bond and Specialty Insurance",
+   "smaller, high margin",
+   "surety bonds and management liability"
+  ],
+  [
+   "Personal Insurance",
+   "large",
+   "home and car insurance for households"
+  ]
+ ],
+ "moat": "More than 170 years of claims data, deep relationships with independent agents, and the scale to absorb large catastrophe losses.",
+ "rivals": [
+  "Chubb|CB",
+  "Progressive|PGR",
+  "Allstate|ALL",
+  "Hartford Insurance|HIG",
+  "AIG|AIG"
+ ],
+ "risks": [
+  "Hurricanes, wildfires and storms can produce very large losses in a single quarter",
+  "Reserves set aside for liability claims can prove insufficient as court awards rise",
+  "Commercial insurance pricing softens when competitors chase growth",
+  "Investment income depends on interest rates"
+ ],
+ "opportunities": [
+  "Years of commercial rate increases are still earning through into results",
+  "Investment income has risen with higher bond yields on its large portfolio",
+  "It has returned capital steadily through dividends and buybacks"
+ ],
+ "watch": "The combined ratio excluding catastrophes, and reserve development each quarter.",
+ "updated": "2026-11"
+}

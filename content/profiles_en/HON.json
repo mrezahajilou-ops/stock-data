@@ -1,0 +1,48 @@
+{
+ "t": "HON",
+ "what": "Honeywell makes aerospace components, building control systems, industrial automation and advanced materials. It is preparing to split into separate aerospace, automation and advanced materials companies.",
+ "customers": "Aircraft and engine makers, airlines, building owners, warehouse operators, refiners and chemical producers.",
+ "money": [
+  [
+   "Aerospace Technologies",
+   "the largest segment",
+   "avionics, engines, auxiliary power units and aftermarket parts"
+  ],
+  [
+   "Building Automation",
+   "large",
+   "building control, fire and security systems"
+  ],
+  [
+   "Industrial Automation",
+   "large",
+   "warehouse automation, sensors and process controls"
+  ],
+  [
+   "Energy and Sustainability Solutions",
+   "meaningful",
+   "refining catalysts, process technology and specialty materials"
+  ]
+ ],
+ "moat": "Aerospace parts certified onto aircraft that fly for thirty years, producing high-margin spare part and repair revenue that cannot be competed away.",
+ "rivals": [
+  "RTX|RTX",
+  "Emerson Electric|EMR",
+  "Johnson Controls|JCI",
+  "Siemens",
+  "GE Aerospace|GE"
+ ],
+ "risks": [
+  "Splitting into three companies is a large, multi-year reorganisation",
+  "Growth has been modest at about 2% a year over three years",
+  "Warehouse automation orders fell sharply after the e-commerce boom",
+  "Industrial demand in Europe and China has been weak"
+ ],
+ "opportunities": [
+  "Aerospace aftermarket demand is strong as airlines fly older aircraft longer",
+  "Separating the segments can let each be valued and managed on its own",
+  "Operating margins above 22% give room to invest while still returning cash"
+ ],
+ "watch": "Aerospace organic growth and the timetable for the separations.",
+ "updated": "2026-11"
+}

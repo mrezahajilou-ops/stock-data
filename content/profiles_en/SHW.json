@@ -1,0 +1,43 @@
+{
+ "t": "SHW",
+ "what": "Sherwin-Williams makes and sells paint and coatings. It runs about five thousand of its own stores selling mainly to professional painters, supplies retailers such as Lowe's, and sells industrial coatings for cars, packaging and machinery.",
+ "customers": "Professional painting contractors above all, plus homeowners, carmakers, packaging producers and industrial manufacturers.",
+ "money": [
+  [
+   "Paint Stores Group",
+   "the largest part",
+   "its own North American stores serving professional painters"
+  ],
+  [
+   "Consumer Brands Group",
+   "smaller",
+   "paint sold through retailers and in Europe and Latin America"
+  ],
+  [
+   "Performance Coatings Group",
+   "large",
+   "industrial, automotive and packaging coatings worldwide"
+  ]
+ ],
+ "moat": "A store network that delivers to job sites the same day, which contractors rely on, and that no rival can build quickly.",
+ "rivals": [
+  "PPG Industries|PPG",
+  "Behr (Masco)|MAS",
+  "AkzoNobel",
+  "RPM International|RPM",
+  "Axalta Coating Systems|AXTA"
+ ],
+ "risks": [
+  "Housing turnover is weak, which reduces repainting demand",
+  "Growth has been slow at about 2% a year",
+  "Raw material costs, mainly petrochemicals, move with oil prices",
+  "Debt of about $14 billion after years of buybacks and acquisitions"
+ ],
+ "opportunities": [
+  "Pricing has held even when volumes fell, which protects margins",
+  "Professional contractors are a stickier customer base than do-it-yourself buyers",
+  "A recovery in housing transactions would lift repaint volumes"
+ ],
+ "watch": "Same-store sales in the Paint Stores Group, the core of its profit.",
+ "updated": "2026-11"
+}

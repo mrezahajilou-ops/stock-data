@@ -1,0 +1,37 @@
+{
+ "t": "CI",
+ "what": "The Cigna Group is built around Evernorth, one of the three largest US pharmacy benefit managers, which negotiates drug prices for health plans and runs specialty and mail-order pharmacies. It also sells employer health insurance through Cigna Healthcare.",
+ "customers": "Employers and health plans buying pharmacy benefits, and employers and individuals buying health insurance.",
+ "money": [
+  [
+   "Evernorth Health Services",
+   "the large majority of revenue",
+   "pharmacy benefit management, specialty pharmacy and care services"
+  ],
+  [
+   "Cigna Healthcare",
+   "meaningful",
+   "employer medical insurance in the US and international health cover"
+  ]
+ ],
+ "moat": "Scale in drug purchasing that only two rivals match, and multi-year contracts with large employers that are disruptive to change.",
+ "rivals": [
+  "CVS Health|CVS",
+  "UnitedHealth Group|UNH",
+  "Elevance Health|ELV",
+  "Humana|HUM"
+ ],
+ "risks": [
+  "Politicians in both US parties have proposed restricting pharmacy benefit managers",
+  "Specialty drug costs, especially weight-loss medicines, pressure margins",
+  "Profit margin is about two cents on each revenue dollar",
+  "Losing one very large pharmacy contract moves results materially"
+ ],
+ "opportunities": [
+  "It exited Medicare Advantage, the part of the industry causing peers the most trouble",
+  "Weight-loss and specialty drugs push large volumes through Evernorth",
+  "Strong free cash flow funds large and continuing buybacks"
+ ],
+ "watch": "Evernorth adjusted operating income and the medical care ratio at Cigna Healthcare.",
+ "updated": "2026-11"
+}

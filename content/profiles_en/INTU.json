@@ -1,0 +1,48 @@
+{
+ "t": "INTU",
+ "what": "Intuit makes financial software. TurboTax prepares US tax returns, QuickBooks runs the books for small businesses, Credit Karma shows consumers their credit and offers them loans, and Mailchimp handles marketing emails.",
+ "customers": "About 93 million consumers, small and mid-market businesses, and the accountants who serve them.",
+ "money": [
+  [
+   "Small Business and Self-Employed",
+   "the largest part",
+   "QuickBooks subscriptions, payroll, payments and Mailchimp"
+  ],
+  [
+   "Consumer",
+   "large",
+   "TurboTax, concentrated in the US tax season"
+  ],
+  [
+   "Credit Karma",
+   "meaningful",
+   "fees from lenders when consumers take offers"
+  ],
+  [
+   "ProTax",
+   "smaller",
+   "software for professional tax preparers"
+  ]
+ ],
+ "moat": "Once a business keeps its books in QuickBooks, moving years of records and retraining its accountant is painful; TurboTax carries prior-year data forward the same way.",
+ "rivals": [
+  "H&R Block|HRB",
+  "Xero",
+  "Sage Group",
+  "Block (Square)|XYZ",
+  "Free IRS filing options"
+ ],
+ "risks": [
+  "Any government move toward free direct tax filing threatens TurboTax",
+  "Consumer tax revenue is concentrated in a few months each year",
+  "Credit Karma income depends on lenders' appetite to make loans",
+  "Competition in small business accounting is intensifying"
+ ],
+ "opportunities": [
+  "Moving upmarket into mid-sized businesses raises revenue per customer substantially",
+  "Payments and payroll attached to QuickBooks grow faster than the software itself",
+  "AI assistants that do bookkeeping work are being sold as a higher-priced tier"
+ ],
+ "watch": "Online ecosystem revenue growth and TurboTax units during the tax season.",
+ "updated": "2026-11"
+}

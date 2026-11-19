@@ -1,0 +1,37 @@
+{
+ "t": "ROST",
+ "what": "Ross Stores sells branded clothing and home goods at discount prices. It buys excess inventory from brands and other retailers opportunistically and sells it through about 1,900 Ross stores and the smaller dd's DISCOUNTS chain.",
+ "customers": "Value-seeking US shoppers, with dd's DISCOUNTS aimed at lower-income households.",
+ "money": [
+  [
+   "Ross Dress for Less",
+   "the large majority",
+   "apparel, accessories, footwear and home fashions at discount prices"
+  ],
+  [
+   "dd's DISCOUNTS",
+   "smaller",
+   "a lower price point chain in moderate-income neighbourhoods"
+  ]
+ ],
+ "moat": "Buying relationships with thousands of vendors built over decades, and the scale to take entire excess lots that smaller retailers cannot absorb.",
+ "rivals": [
+  "TJX Companies|TJX",
+  "Burlington Stores|BURL",
+  "Target|TGT",
+  "Shein and online discounters"
+ ],
+ "risks": [
+  "Its model depends on other retailers over-ordering, which varies by cycle",
+  "Tariffs raise the cost of imported goods",
+  "Wage increases in stores pressure margins",
+  "It does not sell online, which limits reach"
+ ],
+ "opportunities": [
+  "Shoppers trade down to discounters when budgets tighten, which helps it in a weak economy",
+  "Store expansion continues across underserved US markets",
+  "It holds $4.3 billion of cash and buys back stock consistently"
+ ],
+ "watch": "Comparable store sales and merchandise gross margin.",
+ "updated": "2026-11"
+}

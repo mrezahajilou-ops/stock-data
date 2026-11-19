@@ -1,0 +1,42 @@
+{
+ "t": "NSC",
+ "what": "Norfolk Southern runs a freight railroad across the eastern United States, moving coal, chemicals, cars, metals and intermodal containers over about 19,000 route miles from the Atlantic coast to the Midwest.",
+ "customers": "Manufacturers, chemical and energy producers, carmakers and intermodal logistics companies.",
+ "money": [
+  [
+   "Merchandise",
+   "the largest part",
+   "chemicals, agriculture, metals, automotive and forest products"
+  ],
+  [
+   "Intermodal",
+   "meaningful",
+   "containers and trailers moved for logistics companies and ports"
+  ],
+  [
+   "Coal",
+   "declining",
+   "thermal and export metallurgical coal"
+  ]
+ ],
+ "moat": "Rights of way across the eastern US that could not be assembled again, leaving only two railroads serving the region.",
+ "rivals": [
+  "CSX|CSX",
+  "Union Pacific|UNP",
+  "Canadian Pacific Kansas City|CP",
+  "Trucking companies"
+ ],
+ "risks": [
+  "Revenue has been flat as coal declines and industrial demand softens",
+  "The 2023 East Palestine derailment left large costs and regulatory scrutiny",
+  "Rail mergers elsewhere could change the competitive map",
+  "Service problems invite shipper complaints and regulatory action"
+ ],
+ "opportunities": [
+  "Cost discipline has lifted operating margins back above 35%",
+  "New industrial plants along its network create fresh freight",
+  "Rail remains far cheaper than trucking for long-distance bulk movement"
+ ],
+ "watch": "The operating ratio and intermodal volumes.",
+ "updated": "2026-11"
+}

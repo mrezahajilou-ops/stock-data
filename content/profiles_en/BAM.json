@@ -1,0 +1,33 @@
+{
+ "t": "BAM",
+ "what": "Brookfield Asset Management invests other people's money in real assets: infrastructure, renewable power, property, private equity and credit. It manages over a trillion dollars and earns fees for doing so.",
+ "customers": "More than 2,400 institutional clients including pension funds, sovereign wealth funds, insurers and endowments.",
+ "money": [
+  [
+   "Fee revenue",
+   "almost all of revenue",
+   "management fees on committed capital, plus performance fees"
+  ]
+ ],
+ "moat": "A century of operating experience in physical assets, which lets it buy and run infrastructure and property that financial buyers cannot manage themselves.",
+ "rivals": [
+  "Blackstone|BX",
+  "KKR|KKR",
+  "Apollo Global Management|APO",
+  "Ares Management|ARES",
+  "Macquarie Asset Management"
+ ],
+ "risks": [
+  "Higher interest rates reduce the value of long-lived infrastructure and property",
+  "Fundraising slows when investors are already heavily committed to private assets",
+  "Performance fees are unpredictable and depend on exits",
+  "It is closely tied to Brookfield Corporation, which complicates the ownership structure"
+ ],
+ "opportunities": [
+  "Fee-bearing capital has been growing steadily and fees are paid on committed, not invested, money",
+  "Energy transition and data centre infrastructure need exactly the capital it raises",
+  "It carries effectively no debt at the manager level and pays out most of its earnings"
+ ],
+ "watch": "Fee-bearing capital and fee-related earnings, which are the recurring part.",
+ "updated": "2026-11"
+}

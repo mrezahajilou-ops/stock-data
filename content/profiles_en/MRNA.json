@@ -1,0 +1,38 @@
+{
+ "t": "MRNA",
+ "what": "Moderna develops medicines and vaccines based on messenger RNA. Its Covid vaccine made it briefly very profitable; it now sells Covid and RSV vaccines while spending heavily on a pipeline in flu, cancer and rare disease.",
+ "customers": "Governments and health systems buying vaccines, and pharmacies in commercial markets.",
+ "money": [
+  [
+   "Covid-19 vaccine",
+   "the largest part, declining",
+   "Spikevax, now a commercial seasonal product rather than a government contract"
+  ],
+  [
+   "RSV and other vaccines",
+   "small",
+   "mResvia and newer approvals"
+  ]
+ ],
+ "moat": "A messenger RNA platform and manufacturing capability that can move from genetic sequence to a candidate vaccine in weeks, which few companies can match.",
+ "rivals": [
+  "Pfizer|PFE",
+  "BioNTech|BNTX",
+  "Novavax|NVAX",
+  "GSK|GSK",
+  "Sanofi|SNY"
+ ],
+ "risks": [
+  "Revenue fell about 40% in the last financial year as Covid demand collapsed",
+  "It lost about $2.8 billion over the last twelve months and is burning cash",
+  "Vaccination rates in the US have fallen and policy is less supportive",
+  "Its pipeline must deliver an approval that sells before cash runs low"
+ ],
+ "opportunities": [
+  "It holds about $5.2 billion of cash against only $1.2 billion of debt, which buys time",
+  "Costs are being cut sharply to reach break-even with a smaller revenue base",
+  "Its individualised cancer vaccine with Merck is in late-stage trials, a potentially large market"
+ ],
+ "watch": "Cash burn each quarter against the balance, and late-stage trial readouts in flu and oncology.",
+ "updated": "2026-11"
+}

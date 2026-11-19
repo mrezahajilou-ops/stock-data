@@ -1,0 +1,38 @@
+{
+ "t": "TGT",
+ "what": "Target is a US general merchandise retailer with about 1,950 large stores. It sells clothing, home goods, beauty products and groceries, with a focus on its own brands and on same-day fulfilment from stores.",
+ "customers": "US households, mainly suburban shoppers, in store and through its app and same-day services.",
+ "money": [
+  [
+   "Discretionary merchandise",
+   "large",
+   "apparel, home, beauty, toys and electronics"
+  ],
+  [
+   "Food and essentials",
+   "large",
+   "groceries, household items and pet supplies"
+  ]
+ ],
+ "moat": "Store locations within quick reach of most US consumers that double as fulfilment centres, plus own brands that cannot be price-compared elsewhere.",
+ "rivals": [
+  "Walmart|WMT",
+  "Costco Wholesale|COST",
+  "Amazon|AMZN",
+  "TJX Companies|TJX",
+  "Dollar General|DG"
+ ],
+ "risks": [
+  "Sales have fallen for three years as discretionary spending weakened",
+  "Walmart has taken share among higher-income shoppers",
+  "Theft and shrink have raised costs",
+  "Operating margin near 5% leaves little room for error"
+ ],
+ "opportunities": [
+  "Same-day delivery and drive-up pickup grow faster than store sales and use existing assets",
+  "Its retail media advertising business earns high margins on existing traffic",
+  "A recovery in discretionary spending would lift margins quickly from a low base"
+ ],
+ "watch": "Comparable sales, especially in discretionary categories, and operating margin.",
+ "updated": "2026-11"
+}

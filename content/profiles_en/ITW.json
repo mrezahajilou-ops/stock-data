@@ -1,0 +1,48 @@
+{
+ "t": "ITW",
+ "what": "Illinois Tool Works makes industrial products through 88 decentralised divisions: car parts, commercial food equipment, welding gear, testing instruments, specialty adhesives and packaging materials.",
+ "customers": "Carmakers, restaurants and food retailers, construction firms, electronics manufacturers and industrial buyers worldwide.",
+ "money": [
+  [
+   "Automotive OEM",
+   "large",
+   "fasteners and components built into vehicles"
+  ],
+  [
+   "Food Equipment",
+   "large",
+   "commercial ovens, mixers, dishwashers and service"
+  ],
+  [
+   "Test & Measurement and Electronics",
+   "large",
+   "instruments and electronics assembly materials"
+  ],
+  [
+   "Welding, Polymers & Fluids, Construction, Specialty",
+   "the rest",
+   "welding equipment, adhesives, construction fasteners and specialty products"
+  ]
+ ],
+ "moat": "Thousands of patented, specified components sold at good margins into applications where the part is cheap but failure is expensive.",
+ "rivals": [
+  "Parker-Hannifin|PH",
+  "Dover|DOV",
+  "Emerson Electric|EMR",
+  "Lincoln Electric|LECO",
+  "3M|MMM"
+ ],
+ "risks": [
+  "Revenue has been flat for three years as industrial demand stalled",
+  "Car production volumes are falling in Europe and North America",
+  "Construction activity depends on interest rates",
+  "Growth depends on end markets it cannot influence"
+ ],
+ "opportunities": [
+  "Return on invested capital near 27% and operating margins near 26% are among the best in industry",
+  "Its decentralised model lets divisions raise prices quickly when costs rise",
+  "Consistent cash generation funds dividends raised for decades and steady buybacks"
+ ],
+ "watch": "Organic revenue growth, which has been the weak point, by segment.",
+ "updated": "2026-11"
+}

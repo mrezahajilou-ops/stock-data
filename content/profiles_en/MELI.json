@@ -1,0 +1,38 @@
+{
+ "t": "MELI",
+ "what": "MercadoLibre runs Latin America's largest online marketplace and its largest fintech business. Mercado Libre sells goods across 18 countries, Mercado Pago handles payments, lending and digital accounts, and Mercado Envíos delivers the parcels.",
+ "customers": "Shoppers and merchants across Latin America, especially Brazil, Mexico and Argentina, and users of its payment and credit services.",
+ "money": [
+  [
+   "Commerce",
+   "the larger part",
+   "marketplace commissions, shipping fees and advertising"
+  ],
+  [
+   "Fintech",
+   "growing fast",
+   "payment processing, credit to consumers and merchants, and digital accounts"
+  ]
+ ],
+ "moat": "The largest logistics network in a region where delivery is hard, combined with a payment system most buyers and sellers already use.",
+ "rivals": [
+  "Amazon|AMZN",
+  "Sea Limited|SE",
+  "Nubank|NU",
+  "Shopee",
+  "Local retailers and banks"
+ ],
+ "risks": [
+  "Its credit book grows quickly and losses rise when economies weaken",
+  "Argentine inflation and currency moves distort reported results",
+  "Debt has risen to about $16 billion to fund the credit business",
+  "Competition from Amazon and Asian marketplaces is increasing"
+ ],
+ "opportunities": [
+  "Revenue has grown about 39% a year for three years",
+  "Latin American e-commerce and digital payments are far less penetrated than in the US or China",
+  "Advertising on the marketplace is high-margin revenue from existing traffic"
+ ],
+ "watch": "Credit portfolio growth against non-performing loans, and commerce take rate.",
+ "updated": "2026-11"
+}

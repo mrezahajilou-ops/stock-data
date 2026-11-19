@@ -1,0 +1,37 @@
+{
+ "t": "WMB",
+ "what": "Williams owns natural gas pipelines. Its Transco system runs from Texas to New York and is the largest gas pipeline in the United States, carrying roughly a third of the country's natural gas, and it also gathers and processes gas at the wellhead.",
+ "customers": "Electric utilities and power producers, gas distributors, industrial users and liquefied natural gas export terminals.",
+ "money": [
+  [
+   "Transmission and Gulf of Mexico",
+   "the largest part",
+   "Transco and Northwest Pipeline capacity sold under long-term contracts"
+  ],
+  [
+   "Northeast and West gathering",
+   "large",
+   "gathering and processing gas in the Marcellus, Utica and western basins"
+  ]
+ ],
+ "moat": "Pipeline rights of way that are effectively impossible to obtain again, and long-term contracts that pay for reserved capacity whether or not gas actually flows.",
+ "rivals": [
+  "Kinder Morgan|KMI",
+  "Energy Transfer|ET",
+  "Enbridge|ENB",
+  "ONEOK|OKE"
+ ],
+ "risks": [
+  "Debt of about $30 billion is large relative to earnings",
+  "New pipeline projects face long permitting fights and legal challenges",
+  "Gathering volumes depend on drilling activity it does not control",
+  "Rising interest rates raise the cost of refinancing"
+ ],
+ "opportunities": [
+  "Electricity demand from data centres is driving new gas-fired power plants on its system",
+  "Capacity on Transco is contracted years ahead, giving unusually steady cash flow",
+  "Liquefied natural gas exports from the Gulf Coast pull more gas through its lines"
+ ],
+ "watch": "Newly contracted pipeline expansion projects and the share of earnings coming from fee-based contracts.",
+ "updated": "2026-11"
+}

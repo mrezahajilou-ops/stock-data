@@ -1,0 +1,37 @@
+{
+ "t": "ORLY",
+ "what": "O'Reilly Automotive sells car parts. It runs more than 6,000 stores serving both professional repair shops and people fixing their own cars, and keeps a deep inventory close to customers so a mechanic can get a part within the hour.",
+ "customers": "Independent repair shops and service chains, plus consumers doing their own repairs.",
+ "money": [
+  [
+   "Professional service providers",
+   "roughly half",
+   "parts sold to repair shops, delivered quickly from local stores and hubs"
+  ],
+  [
+   "Do-it-yourself customers",
+   "roughly half",
+   "parts and accessories sold directly to consumers"
+  ]
+ ],
+ "moat": "A distribution network of hubs and stores that can deliver an unusual part the same day, which online sellers cannot match for urgent repairs.",
+ "rivals": [
+  "AutoZone|AZO",
+  "Advance Auto Parts|AAP",
+  "Genuine Parts|GPC",
+  "Amazon|AMZN"
+ ],
+ "risks": [
+  "Electric vehicles need fewer replacement parts over time",
+  "Debt of about $10 billion was taken on to fund buybacks",
+  "Mild weather reduces failures and therefore demand",
+  "Growth depends on opening new stores in a maturing market"
+ ],
+ "opportunities": [
+  "The average US vehicle is older than ever, which raises repair demand",
+  "Return on invested capital near 35% is exceptional for a retailer",
+  "It has shrunk its share count heavily through continuous buybacks"
+ ],
+ "watch": "Comparable store sales split between professional and do-it-yourself customers.",
+ "updated": "2026-11"
+}

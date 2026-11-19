@@ -1,0 +1,42 @@
+{
+ "t": "KMI",
+ "what": "Kinder Morgan owns energy infrastructure: about 66,000 miles of natural gas pipelines, terminals that store fuels and chemicals, and carbon dioxide used for enhanced oil recovery.",
+ "customers": "Utilities and power producers, gas producers, refiners, liquefied natural gas exporters and chemical companies.",
+ "money": [
+  [
+   "Natural Gas Pipelines",
+   "the large majority",
+   "transporting and storing gas under long-term capacity contracts"
+  ],
+  [
+   "Terminals and Products Pipelines",
+   "meaningful",
+   "storing and moving refined fuels, chemicals and crude"
+  ],
+  [
+   "CO2 and energy transition",
+   "smaller",
+   "carbon dioxide supply and enhanced oil recovery"
+  ]
+ ],
+ "moat": "Pipeline corridors and permits that would be nearly impossible to obtain today, with revenue mostly from reserved capacity rather than volumes.",
+ "rivals": [
+  "Williams Companies|WMB",
+  "Energy Transfer|ET",
+  "ONEOK|OKE",
+  "Enbridge|ENB"
+ ],
+ "risks": [
+  "Debt of about $33 billion is large relative to earnings",
+  "New pipeline projects face long permitting and legal battles",
+  "Returns on capital are modest at around 6%",
+  "Refined product volumes face long-term pressure from electric vehicles"
+ ],
+ "opportunities": [
+  "Gas demand from data centre power plants and liquefied natural gas exports is rising",
+  "About two-thirds of earnings come from take-or-pay style contracts",
+  "A dividend yield near 4% is covered by stable contracted cash flow"
+ ],
+ "watch": "New project backlog and the share of earnings under fixed-fee contracts.",
+ "updated": "2026-11"
+}

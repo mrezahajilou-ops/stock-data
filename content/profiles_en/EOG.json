@@ -1,0 +1,38 @@
+{
+ "t": "EOG",
+ "what": "EOG Resources drills for oil and natural gas in the United States, mainly in the Permian, Eagle Ford and Delaware basins, and also in Trinidad. It is known for keeping drilling costs among the lowest in the industry.",
+ "customers": "Refiners, gas processors and commodity traders buying crude, natural gas liquids and natural gas.",
+ "money": [
+  [
+   "Crude oil and condensate",
+   "the largest part",
+   "oil sold at market prices from US onshore basins"
+  ],
+  [
+   "Natural gas and liquids",
+   "meaningful",
+   "gas and natural gas liquids from the same wells, plus Trinidad gas"
+  ]
+ ],
+ "moat": "Large acreage positions acquired early and cheaply, with internal drilling technology that lowers cost per barrel below most competitors.",
+ "rivals": [
+  "ConocoPhillips|COP",
+  "Devon Energy|DVN",
+  "Diamondback Energy|FANG",
+  "Pioneer (Exxon Mobil)|XOM",
+  "Occidental Petroleum|OXY"
+ ],
+ "risks": [
+  "Profit depends on oil and gas prices it does not control",
+  "Shale wells decline quickly, so it must keep drilling to hold production flat",
+  "Environmental regulation raises costs and limits permitting",
+  "Revenue fell about 4% in the last financial year on lower prices"
+ ],
+ "opportunities": [
+  "Low break-even costs mean it stays profitable at prices that hurt competitors",
+  "It holds $5.7 billion of cash against $7.9 billion of debt, unusually strong for the sector",
+  "It returns most free cash flow through dividends and buybacks"
+ ],
+ "watch": "Production growth against capital spending, and the break-even oil price it quotes.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "SLB",
+ "what": "SLB, formerly Schlumberger, is the largest oilfield services company. It provides the technology and crews that find, drill and produce oil and gas: seismic imaging, drilling systems, well completion and production chemistry.",
+ "customers": "National oil companies and international energy producers, with a large share of revenue outside North America.",
+ "money": [
+  [
+   "Reservoir performance and well construction",
+   "the larger part",
+   "drilling, evaluation and completion services"
+  ],
+  [
+   "Production systems and digital",
+   "growing",
+   "production equipment, software and data services"
+  ]
+ ],
+ "moat": "Technology and an engineering workforce in nearly every producing country, which national oil companies rely on for complex offshore and deepwater work.",
+ "rivals": [
+  "Halliburton|HAL",
+  "Baker Hughes|BKR",
+  "Weatherford International|WFRD",
+  "TechnipFMC|FTI"
+ ],
+ "risks": [
+  "Spending by oil producers is cyclical and fell in North America",
+  "Revenue declined about 2% in the last financial year",
+  "Middle East and offshore projects are concentrated among few customers",
+  "Long-term oil demand faces pressure from the energy transition"
+ ],
+ "opportunities": [
+  "International and offshore work, where it is strongest, holds up better than US shale",
+  "Its digital and software business carries far higher margins than field services",
+  "The ChampionX acquisition adds production chemicals, a steadier revenue stream"
+ ],
+ "watch": "International revenue growth and the digital segment's share of profit.",
+ "updated": "2026-11"
+}

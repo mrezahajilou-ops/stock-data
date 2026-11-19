@@ -1,0 +1,38 @@
+{
+ "t": "KKR",
+ "what": "KKR is an alternative asset manager. It raises money from pension funds and insurers, buys companies, infrastructure, property and credit with it, and earns management fees plus a share of the profits. It also owns the insurer Global Atlantic.",
+ "customers": "Pension funds, sovereign wealth funds, insurers and wealthy individuals investing in its funds.",
+ "money": [
+  [
+   "Asset management",
+   "the core",
+   "management fees, transaction fees and a share of investment profits"
+  ],
+  [
+   "Insurance",
+   "large",
+   "Global Atlantic annuities and the investment income on its assets"
+  ]
+ ],
+ "moat": "A fifty-year record that lets it raise very large funds, with capital locked up for a decade, and relationships that give it first look at deals.",
+ "rivals": [
+  "Blackstone|BX",
+  "Apollo Global Management|APO",
+  "Carlyle Group|CG",
+  "Ares Management|ARES",
+  "Brookfield Asset Management|BAM"
+ ],
+ "risks": [
+  "Performance fees are lumpy and depend on selling investments at a profit",
+  "Higher interest rates make leveraged buyouts harder and exits slower",
+  "Private credit losses would hit both the funds and the insurance balance sheet",
+  "Reported earnings swing with the value it assigns to unsold investments"
+ ],
+ "opportunities": [
+  "Fee-paying assets under management keep rising, which is the steady part of earnings",
+  "Insurance provides permanent capital that does not have to be raised again",
+  "Individual investors are a large, barely tapped source of new money"
+ ],
+ "watch": "Fee-related earnings, the recurring part, rather than total reported profit.",
+ "updated": "2026-11"
+}

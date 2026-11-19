@@ -1,0 +1,42 @@
+{
+ "t": "RSG",
+ "what": "Republic Services collects rubbish and recycling across the United States and Canada, and owns the landfills, transfer stations and recycling centres it sends the material to, plus a growing hazardous waste business.",
+ "customers": "Municipalities under long-term contracts, plus commercial, industrial and construction customers.",
+ "money": [
+  [
+   "Collection",
+   "the largest part",
+   "residential, small-container and large-container collection"
+  ],
+  [
+   "Disposal and transfer",
+   "high margin",
+   "landfill and transfer station fees, including from third-party haulers"
+  ],
+  [
+   "Recycling and environmental solutions",
+   "growing",
+   "recycled commodities, hazardous waste and renewable energy from landfill gas"
+  ]
+ ],
+ "moat": "Landfill permits that are almost impossible to obtain, which forces competing haulers to pay it for disposal.",
+ "rivals": [
+  "Waste Management|WM",
+  "Waste Connections|WCN",
+  "Casella Waste Systems|CWST",
+  "Clean Harbors|CLH"
+ ],
+ "risks": [
+  "Volume growth depends on construction and industrial activity",
+  "Debt of about $14 billion is typical for the sector but limits flexibility",
+  "Recycled commodity prices swing and affect that segment",
+  "Labour and fuel costs can outpace contracted price increases"
+ ],
+ "opportunities": [
+  "Contracts include inflation-linked price increases, which protects margins",
+  "Polymer recycling centres and renewable natural gas projects add higher-margin revenue",
+  "Acquiring small local haulers steadily adds route density"
+ ],
+ "watch": "Core pricing against volume and the ramp-up of its polymer and renewable gas facilities.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "CP",
+ "what": "Canadian Pacific Kansas City is the only railway running from Canada through the United States into Mexico. It moves grain, potash, chemicals, cars, energy products and intermodal containers over about 20,000 route miles.",
+ "customers": "Grain and fertiliser shippers, carmakers, energy and chemical producers, and intermodal logistics companies.",
+ "money": [
+  [
+   "Bulk",
+   "large",
+   "grain, potash, coal and fertiliser"
+  ],
+  [
+   "Merchandise",
+   "large",
+   "chemicals, energy, cars, forest and metal products"
+  ],
+  [
+   "Intermodal",
+   "meaningful",
+   "containers moving between ports and inland markets"
+  ]
+ ],
+ "moat": "The only single-line rail route linking the three countries of North America, which cannot be duplicated and avoids interchanging freight with another railway.",
+ "rivals": [
+  "Canadian National Railway|CNI",
+  "Union Pacific|UNP",
+  "CSX|CSX",
+  "Norfolk Southern|NSC",
+  "Trucking"
+ ],
+ "risks": [
+  "Mexican trade policy and tariffs directly affect its cross-border advantage",
+  "Grain volumes depend on harvests and weather",
+  "Debt of about $18 billion remains from the Kansas City Southern merger",
+  "Canadian rail labour disputes have halted operations before"
+ ],
+ "opportunities": [
+  "Cross-border traffic between Mexico and Canada is still being built out after the merger",
+  "Companies moving production to Mexico create new freight on its network",
+  "Operating margins near 37% are among the best in the industry"
+ ],
+ "watch": "Volume growth in cross-border lanes and the operating ratio.",
+ "updated": "2026-11"
+}

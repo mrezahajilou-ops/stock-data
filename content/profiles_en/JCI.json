@@ -1,0 +1,38 @@
+{
+ "t": "JCI",
+ "what": "Johnson Controls makes building systems: heating and cooling equipment, chillers for data centres and large buildings, fire detection and suppression, security systems, and the software that ties them together.",
+ "customers": "Owners and operators of commercial buildings, data centres, hospitals, schools and industrial plants.",
+ "money": [
+  [
+   "Building Solutions",
+   "the large majority",
+   "HVAC equipment, fire and security systems, installation and service by region"
+  ],
+  [
+   "Global Products",
+   "meaningful",
+   "equipment sold through distributors and contractors"
+  ]
+ ],
+ "moat": "Equipment installed in buildings that need parts and servicing for twenty years, and systems that must be certified and maintained by approved technicians.",
+ "rivals": [
+  "Carrier Global|CARR",
+  "Trane Technologies|TT",
+  "Honeywell|HON",
+  "Siemens",
+  "Schneider Electric"
+ ],
+ "risks": [
+  "It has lagged peers on margins and has been restructuring for years",
+  "Commercial construction follows the economic cycle",
+  "Selling its residential HVAC joint venture removed a profitable business",
+  "Execution under new management still has to be proved"
+ ],
+ "opportunities": [
+  "Data centre cooling is a large and fast-growing market for its chillers",
+  "Service contracts on installed equipment are recurring and higher margin",
+  "A simpler portfolio focused on commercial buildings should lift margins toward peers"
+ ],
+ "watch": "Organic order growth and the service backlog, plus margin progress against Trane and Carrier.",
+ "updated": "2026-11"
+}

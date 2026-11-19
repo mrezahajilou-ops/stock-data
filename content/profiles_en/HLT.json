@@ -1,0 +1,38 @@
+{
+ "t": "HLT",
+ "what": "Hilton franchises and manages hotels. It owns almost none of the roughly 9,000 properties carrying its brands; owners pay it a share of room revenue for the brand, the booking system and the Hilton Honors loyalty programme.",
+ "customers": "Hotel owners and developers paying fees, and travellers booking through its brands.",
+ "money": [
+  [
+   "Franchise and licensing fees",
+   "the largest part",
+   "a percentage of room revenue plus loyalty and credit-card fees"
+  ],
+  [
+   "Management fees",
+   "smaller",
+   "running hotels on behalf of owners"
+  ]
+ ],
+ "moat": "A loyalty programme with hundreds of millions of members that fills rooms, which is why owners choose its flags over independent operation.",
+ "rivals": [
+  "Marriott International|MAR",
+  "Hyatt|H",
+  "InterContinental Hotels|IHG",
+  "Wyndham Hotels|WH",
+  "Airbnb|ABNB"
+ ],
+ "risks": [
+  "Travel demand falls sharply in a recession",
+  "US hotel pricing has flattened after the post-pandemic recovery",
+  "Owners can move to a competing brand at contract renewal",
+  "New hotel construction slows when financing is expensive"
+ ],
+ "opportunities": [
+  "Asset-light economics give a return on capital near 24% with little investment",
+  "The development pipeline adds rooms and fees funded by other people's capital",
+  "Credit-card and loyalty revenue is stable and growing"
+ ],
+ "watch": "Net unit growth and revenue per available room.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "CDNS",
+ "what": "Cadence makes the software chip designers use. Its tools lay out transistors, verify that a design works before it is manufactured, and simulate how the finished chip and system will behave. It also licenses ready-made design blocks.",
+ "customers": "Semiconductor companies, cloud providers designing their own chips, and carmakers and aerospace firms designing electronics.",
+ "money": [
+  [
+   "Core electronic design automation",
+   "the large majority",
+   "design, verification and layout software licensed on multi-year contracts"
+  ],
+  [
+   "Intellectual property",
+   "growing",
+   "pre-built design blocks customers drop into their chips"
+  ],
+  [
+   "System design and analysis",
+   "growing",
+   "simulation of circuit boards, packaging, airflow and multiphysics"
+  ]
+ ],
+ "moat": "Only three companies can supply the full toolchain. Designs, scripts and engineers' expertise are built around its tools, and a chip project cannot change tools mid-stream.",
+ "rivals": [
+  "Synopsys|SNPS",
+  "Siemens EDA",
+  "Ansys (Synopsys)|SNPS",
+  "Keysight Technologies|KEYS"
+ ],
+ "risks": [
+  "Export restrictions on sales to China have cut a meaningful market",
+  "A handful of large chipmakers account for much of revenue",
+  "The shares trade at a high multiple of earnings",
+  "Semiconductor design budgets fall in a chip downturn"
+ ],
+ "opportunities": [
+  "Every AI chip programme, including custom silicon from cloud companies, needs its tools",
+  "Most revenue is recurring under multi-year licences, which makes it unusually predictable",
+  "Simulation software extends it beyond chips into whole systems"
+ ],
+ "watch": "Backlog and recurring revenue growth, plus any change in China export rules.",
+ "updated": "2026-11"
+}

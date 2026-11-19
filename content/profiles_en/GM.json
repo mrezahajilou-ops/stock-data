@@ -1,0 +1,43 @@
+{
+ "t": "GM",
+ "what": "General Motors designs and builds vehicles, mostly trucks and large SUVs sold in North America under Chevrolet, GMC, Buick and Cadillac. It also runs GM Financial, which finances those vehicles, and Cruise's self-driving technology work.",
+ "customers": "North American retail buyers and fleets above all, plus customers in China through joint ventures and other international markets.",
+ "money": [
+  [
+   "GM North America",
+   "the large majority of profit",
+   "trucks, SUVs and cars sold in the US, Canada and Mexico"
+  ],
+  [
+   "GM Financial",
+   "meaningful",
+   "loans and leases on the vehicles it sells"
+  ],
+  [
+   "GM International",
+   "small",
+   "China joint ventures and other markets"
+  ]
+ ],
+ "moat": "Dealer networks, truck plants and brand loyalty in full-size pickups, the most profitable segment of the US market, where only three companies compete seriously.",
+ "rivals": [
+  "Ford Motor|F",
+  "Stellantis|STLA",
+  "Toyota Motor|TM",
+  "Tesla|TSLA",
+  "Rivian|RIVN"
+ ],
+ "risks": [
+  "Profit is concentrated in full-size trucks and SUVs sold in one market",
+  "Tariffs on imported parts and vehicles raise costs",
+  "Electric vehicle losses continue while demand growth has slowed",
+  "Total debt of about $133 billion mostly supports GM Financial but is still large"
+ ],
+ "opportunities": [
+  "It has cut electric vehicle spending and refocused on profitable trucks",
+  "Buybacks have reduced the share count substantially",
+  "Software and subscription services could add margin on vehicles already sold"
+ ],
+ "watch": "North American operating margin and US pickup market share.",
+ "updated": "2026-11"
+}

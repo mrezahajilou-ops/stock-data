@@ -1,0 +1,37 @@
+{
+ "t": "AJG",
+ "what": "Arthur J. Gallagher is an insurance broker. It arranges property and casualty cover and employee benefits for companies, brokers reinsurance for insurers, and administers claims for self-insured employers.",
+ "customers": "Small and mid-sized companies above all, plus public bodies and insurers needing reinsurance.",
+ "money": [
+  [
+   "Brokerage",
+   "the large majority",
+   "commissions and fees for placing insurance and reinsurance"
+  ],
+  [
+   "Risk Management",
+   "smaller",
+   "third-party claims administration for self-insured clients"
+  ]
+ ],
+ "moat": "A relationship business where mid-sized clients renew every year, and a long record of acquiring small local brokers and keeping their customers.",
+ "rivals": [
+  "Marsh|MRSH",
+  "Aon|AON",
+  "Willis Towers Watson|WTW",
+  "Brown & Brown|BRO"
+ ],
+ "risks": [
+  "Commission income falls when insurance prices soften",
+  "It has taken on about $13 billion of debt for acquisitions",
+  "Return on invested capital is low because of the price paid for those acquisitions",
+  "Integrating dozens of small brokers every year carries execution risk"
+ ],
+ "opportunities": [
+  "Revenue grew about 21% in the last financial year, mostly through acquisition",
+  "Thousands of small brokers remain available to buy in a fragmented market",
+  "Brokerage takes no underwriting risk, so earnings are steadier than an insurer's"
+ ],
+ "watch": "Organic revenue growth separate from acquisitions, and the pace of deals.",
+ "updated": "2026-11"
+}

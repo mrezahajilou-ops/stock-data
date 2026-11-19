@@ -1,0 +1,38 @@
+{
+ "t": "VRT",
+ "what": "Vertiv makes the power and cooling equipment inside data centres: uninterruptible power supplies, switchgear, busways, air and liquid cooling systems, and the service network that maintains them.",
+ "customers": "Hyperscale cloud and AI data centre operators, colocation providers, telecom networks and industrial sites.",
+ "money": [
+  [
+   "Americas",
+   "the largest region",
+   "power and cooling equipment and services for North and South America"
+  ],
+  [
+   "Asia Pacific and EMEA",
+   "meaningful",
+   "the same products outside the Americas"
+  ]
+ ],
+ "moat": "Equipment specified into data centre designs years ahead, a global service network, and liquid cooling know-how that AI racks now require.",
+ "rivals": [
+  "Eaton|ETN",
+  "Schneider Electric",
+  "ABB",
+  "Munters",
+  "Super Micro Computer|SMCI"
+ ],
+ "risks": [
+  "Orders are concentrated among a few very large cloud customers",
+  "A pause in AI capital spending would hit it immediately",
+  "Competitors are expanding capacity for the same demand",
+  "The shares price in continued rapid growth"
+ ],
+ "opportunities": [
+  "Revenue grew about 28% in the last financial year as AI data centre building accelerated",
+  "Liquid cooling for high-density AI racks is a new product category where it is early",
+  "Service revenue on installed equipment grows with the base and carries better margins"
+ ],
+ "watch": "Orders and backlog, which lead revenue, and the book-to-bill ratio.",
+ "updated": "2026-11"
+}

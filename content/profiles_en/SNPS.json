@@ -1,0 +1,42 @@
+{
+ "t": "SNPS",
+ "what": "Synopsys makes software for designing chips, licenses pre-built design blocks that chipmakers put into their products, and since buying Ansys also sells simulation software for physical engineering.",
+ "customers": "Semiconductor companies, cloud providers designing custom silicon, carmakers, and now engineering firms using simulation.",
+ "money": [
+  [
+   "Design Automation",
+   "the larger part",
+   "chip design, verification and manufacturing software"
+  ],
+  [
+   "Design IP",
+   "large",
+   "ready-made interface and processor blocks licensed to chipmakers"
+  ],
+  [
+   "Simulation and Analysis",
+   "new",
+   "Ansys physics simulation for structures, fluids and electromagnetics"
+  ]
+ ],
+ "moat": "Its tools and intellectual property blocks are designed into chip projects that run for years, and the industry depends on only two or three suppliers.",
+ "rivals": [
+  "Cadence Design Systems|CDNS",
+  "Siemens EDA",
+  "Keysight Technologies|KEYS",
+  "Arm Holdings|ARM"
+ ],
+ "risks": [
+  "The Ansys acquisition added about $11 billion of debt and depressed reported returns",
+  "Export restrictions limit sales to Chinese customers",
+  "Integration of a large acquisition takes management attention",
+  "Revenue is concentrated among a few very large chipmakers"
+ ],
+ "opportunities": [
+  "Every new AI chip design, from cloud providers and startups alike, needs its tools and blocks",
+  "Combining chip design with physical simulation lets it sell into whole-system engineering",
+  "Recurring licence revenue gives multi-year visibility"
+ ],
+ "watch": "Backlog growth and progress on the Ansys integration and debt reduction.",
+ "updated": "2026-11"
+}

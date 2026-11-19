@@ -1,0 +1,48 @@
+{
+ "t": "NOC",
+ "what": "Northrop Grumman builds military aircraft, space systems and defence electronics. It is the prime contractor for the B-21 Raider bomber and the Sentinel intercontinental missile programme, and it makes satellites, radars and solid rocket motors.",
+ "customers": "The US Department of Defense and intelligence agencies above all, plus allied governments.",
+ "money": [
+  [
+   "Space Systems",
+   "large",
+   "satellites, launch vehicles and the Sentinel missile programme"
+  ],
+  [
+   "Mission Systems",
+   "large",
+   "radars, sensors and electronic warfare"
+  ],
+  [
+   "Aeronautics Systems",
+   "large",
+   "the B-21 bomber, Global Hawk and other aircraft"
+  ],
+  [
+   "Defense Systems",
+   "smaller",
+   "ammunition, rocket motors and sustainment"
+  ]
+ ],
+ "moat": "Classified programmes and security clearances that take years to obtain, plus sole-source positions on strategic systems like the B-21 and Sentinel.",
+ "rivals": [
+  "Lockheed Martin|LMT",
+  "RTX|RTX",
+  "General Dynamics|GD",
+  "Boeing Defense|BA",
+  "L3Harris Technologies|LHX"
+ ],
+ "risks": [
+  "The fixed-price B-21 contract produced a loss of over a billion dollars",
+  "The Sentinel missile programme has run far over its original budget",
+  "Almost all revenue comes from US government budget decisions",
+  "Space launch competition from newer entrants is intensifying"
+ ],
+ "opportunities": [
+  "The B-21 moves into production lots where terms are better than the development phase",
+  "Solid rocket motor and munitions demand has risen sharply",
+  "Allied defence budgets in Europe and Asia are expanding"
+ ],
+ "watch": "B-21 production margins and the resolution of Sentinel programme restructuring.",
+ "updated": "2026-11"
+}

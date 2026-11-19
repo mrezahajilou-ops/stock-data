@@ -1,0 +1,38 @@
+{
+ "t": "DASH",
+ "what": "DoorDash delivers food and groceries. Customers order through its app, couriers collect from restaurants and shops, and it takes a fee from the merchant and the customer. It owns Wolt in Europe and has acquired Deliveroo.",
+ "customers": "Consumers ordering delivery, restaurants and retailers listing on the platform, and couriers who make the deliveries.",
+ "money": [
+  [
+   "Marketplaces",
+   "the large majority",
+   "commissions and fees from orders on DoorDash, Wolt and Deliveroo"
+  ],
+  [
+   "Commerce Platform and advertising",
+   "growing",
+   "white-label delivery software for merchants and advertising on the app"
+  ]
+ ],
+ "moat": "Density in each city: more couriers mean faster delivery, which brings more customers, which brings more merchants, and rivals must subsidise heavily to break in.",
+ "rivals": [
+  "Uber Eats|UBER",
+  "Instacart|CART",
+  "Grubhub",
+  "Just Eat Takeaway",
+  "Amazon|AMZN"
+ ],
+ "risks": [
+  "Laws reclassifying couriers as employees would raise costs sharply",
+  "Operating margin is thin at about 5% despite large scale",
+  "Integrating Deliveroo across Europe is a substantial undertaking",
+  "Consumers cut delivery spending first when budgets tighten"
+ ],
+ "opportunities": [
+  "Revenue has grown about 28% a year for three years",
+  "Grocery and retail delivery raise order frequency and basket size",
+  "Advertising on the app is high-margin revenue from traffic it already has"
+ ],
+ "watch": "Total orders and gross order value, plus whether operating margin keeps widening.",
+ "updated": "2026-11"
+}

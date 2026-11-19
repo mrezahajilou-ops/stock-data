@@ -1,0 +1,38 @@
+{
+ "t": "FCX",
+ "what": "Freeport-McMoRan mines copper. Its largest assets are the Grasberg mine in Indonesia, one of the biggest copper and gold deposits in the world, and copper mines in Arizona, New Mexico and South America.",
+ "customers": "Copper smelters, refiners and metal traders; gold is sold into bullion markets.",
+ "money": [
+  [
+   "Copper",
+   "the large majority of revenue",
+   "mining, milling and smelting at North American, South American and Indonesian operations"
+  ],
+  [
+   "Gold and molybdenum",
+   "meaningful",
+   "gold from Grasberg and molybdenum from US mines"
+  ]
+ ],
+ "moat": "Ore bodies of a scale and grade that cannot be replaced: Grasberg in particular has no close equivalent anywhere.",
+ "rivals": [
+  "Southern Copper|SCCO",
+  "BHP|BHP",
+  "Rio Tinto|RIO",
+  "Teck Resources|TECK",
+  "Antofagasta"
+ ],
+ "risks": [
+  "Profit moves directly with the copper price",
+  "Indonesian government ownership and export rules affect Grasberg",
+  "An incident at Grasberg disrupted production and showed the concentration risk",
+  "Mining cost inflation has reduced margins across the industry"
+ ],
+ "opportunities": [
+  "Copper demand is rising with grids, data centres and electric vehicles while new supply is scarce",
+  "Leaching technology is recovering extra copper from existing waste at low cost",
+  "Gold production alongside copper adds revenue when gold prices are high"
+ ],
+ "watch": "Copper production volumes and unit net cash costs, plus the restart schedule at Grasberg.",
+ "updated": "2026-11"
+}

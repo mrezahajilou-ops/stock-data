@@ -1,0 +1,38 @@
+{
+ "t": "RVTY",
+ "what": "Revvity makes life science tools and diagnostics. It supplies reagents and instruments for laboratory research, and runs newborn screening and genetic testing businesses used by health systems worldwide.",
+ "customers": "Pharmaceutical and biotechnology research laboratories, academic institutions, and hospitals running newborn and genetic screening.",
+ "money": [
+  [
+   "Life Sciences",
+   "the larger part",
+   "reagents, instruments and software for research"
+  ],
+  [
+   "Diagnostics",
+   "large",
+   "newborn screening, immunodiagnostics and applied genomics"
+  ]
+ ],
+ "moat": "Newborn screening programmes run under government contracts in many countries, where its instruments and reagents are the installed standard.",
+ "rivals": [
+  "Thermo Fisher Scientific|TMO",
+  "Danaher|DHR",
+  "Agilent Technologies|A",
+  "Bio-Rad Laboratories|BIO",
+  "Qiagen|QGEN"
+ ],
+ "risks": [
+  "Pharmaceutical research spending has been weak for two years",
+  "Revenue has fallen about 5% a year over three years after divestitures",
+  "Chinese demand for laboratory equipment has been weak",
+  "Debt of about $2.8 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year as the research market stabilised",
+  "Newborn screening revenue is contracted and recurs regardless of research budgets",
+  "Recurring reagents and consumables are the majority of revenue"
+ ],
+ "watch": "Organic revenue growth and demand from pharmaceutical customers.",
+ "updated": "2026-11"
+}

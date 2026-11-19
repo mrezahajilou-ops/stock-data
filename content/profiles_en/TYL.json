@@ -1,0 +1,38 @@
+{
+ "t": "TYL",
+ "what": "Tyler Technologies makes software for local and state government: court case management, property appraisal and tax, public safety dispatch, permitting, and payment processing for government services.",
+ "customers": "City and county governments, courts, school districts, state agencies and federal bodies across the United States.",
+ "money": [
+  [
+   "Software subscriptions and licences",
+   "the larger part",
+   "cloud and on-premises software for government functions"
+  ],
+  [
+   "Services and payments",
+   "large",
+   "implementation services and transaction fees on government payments"
+  ]
+ ],
+ "moat": "Software that runs a county's courts, property records or emergency dispatch, where replacing it means migrating decades of legal and property records under public scrutiny.",
+ "rivals": [
+  "Oracle|ORCL",
+  "Accela",
+  "CentralSquare",
+  "Conduent|CNDT",
+  "Thomson Reuters|TRI"
+ ],
+ "risks": [
+  "Government procurement cycles are slow and budget-dependent",
+  "The shares trade at a high multiple of earnings",
+  "Return on invested capital of about 7% reflects acquisition goodwill",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year with contracts that renew almost automatically",
+  "Moving customers from on-premises licences to cloud subscriptions raises revenue per client",
+  "Payment processing on government transactions is a growing, high-margin stream"
+ ],
+ "watch": "Subscription revenue growth and cloud transition progress.",
+ "updated": "2026-11"
+}

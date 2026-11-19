@@ -1,0 +1,38 @@
+{
+ "t": "MAS",
+ "what": "Masco makes home improvement products: Behr paint sold through Home Depot, Delta and Hansgrohe taps and showers, and related plumbing and decorative products.",
+ "customers": "Home improvement retailers, plumbing wholesalers, builders and professional contractors.",
+ "money": [
+  [
+   "Plumbing Products",
+   "the larger part",
+   "Delta and Hansgrohe taps, showers and plumbing fittings"
+  ],
+  [
+   "Decorative Architectural Products",
+   "large",
+   "Behr and Kilz paint and related products"
+  ]
+ ],
+ "moat": "Behr's exclusive position in Home Depot, the largest paint retail channel in the United States, and Delta's position with plumbers and builders.",
+ "rivals": [
+  "Sherwin-Williams|SHW",
+  "Fortune Brands|FBIN",
+  "Kohler",
+  "Moen (Fortune Brands)|FBIN",
+  "PPG Industries|PPG"
+ ],
+ "risks": [
+  "Repair and remodelling activity has been weak with high mortgage rates",
+  "Revenue has fallen about 4% a year over three years",
+  "Tariffs raise the cost of imported plumbing products",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "Return on invested capital of 31%, very high for a building products company",
+  "Operating margin of 16% maintained through a weak demand period",
+  "A recovery in house moves would lift paint and fixture demand quickly"
+ ],
+ "watch": "Volume trends in paint and plumbing, and gross margin after tariffs.",
+ "updated": "2026-11"
+}

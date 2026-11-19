@@ -1,0 +1,38 @@
+{
+ "t": "RBA",
+ "what": "RB Global runs marketplaces for used commercial assets. Ritchie Bros auctions heavy construction equipment and trucks, and IAA auctions damaged and salvage vehicles for insurers.",
+ "customers": "Construction and transport companies buying and selling used equipment, and insurance companies disposing of written-off vehicles.",
+ "money": [
+  [
+   "Commercial Construction and Transportation",
+   "the larger part",
+   "equipment and truck auctions and marketplace fees"
+  ],
+  [
+   "Automotive (IAA)",
+   "large",
+   "salvage vehicle auctions for insurers"
+  ]
+ ],
+ "moat": "Auction yards, buyer networks and transaction data built over sixty years, which produce the price discovery that makes sellers choose it.",
+ "rivals": [
+  "Copart|CPRT",
+  "IronPlanet rivals",
+  "Alex Lyon",
+  "ACV Auctions|ACVA",
+  "Euro Auctions"
+ ],
+ "risks": [
+  "Debt of about $4.7 billion from the IAA acquisition",
+  "Used equipment prices fell from pandemic highs, reducing fee revenue",
+  "IAA integration has taken longer than expected",
+  "Return on invested capital of about 6% reflects acquisition goodwill"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year and about 38% a year over three years including the acquisition",
+  "Analysts see about 38% upside from current levels",
+  "Combining construction and salvage auctions spreads fixed yard and technology costs"
+ ],
+ "watch": "Gross transaction value and service revenue take rate.",
+ "updated": "2026-11"
+}

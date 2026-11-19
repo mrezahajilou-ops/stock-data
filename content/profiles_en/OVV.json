@@ -1,0 +1,43 @@
+{
+ "t": "OVV",
+ "what": "Ovintiv is an oil and gas producer with operations in the Permian basin, the Anadarko basin in Oklahoma, and the Montney in western Canada. It produces both oil and natural gas.",
+ "customers": "Refiners, gas processors and crude buyers in North America.",
+ "money": [
+  [
+   "Permian",
+   "the largest part",
+   "oil-weighted production in Texas and New Mexico"
+  ],
+  [
+   "Montney",
+   "large",
+   "Canadian natural gas and condensate"
+  ],
+  [
+   "Anadarko and other",
+   "meaningful",
+   "Oklahoma and Uinta basin production"
+  ]
+ ],
+ "moat": "A multi-basin position that lets it shift capital between oil and gas depending on which is better priced, which single-basin producers cannot do.",
+ "rivals": [
+  "Devon Energy|DVN",
+  "Diamondback Energy|FANG",
+  "Coterra Energy|CTRA",
+  "APA Corporation|APA",
+  "Canadian Natural Resources|CNQ"
+ ],
+ "risks": [
+  "Oil and gas prices set earnings",
+  "Revenue has fallen about 15% a year over three years",
+  "Debt of about $5 billion against almost no cash",
+  "Shale wells decline quickly, so drilling must continue just to hold production"
+ ],
+ "opportunities": [
+  "Analysts see about 34% upside from current levels",
+  "Canadian LNG exports raise the value of its Montney gas",
+  "Multi-basin flexibility lets it direct capital to whichever commodity is stronger"
+ ],
+ "watch": "Well costs, production mix between oil and gas, and free cash flow.",
+ "updated": "2026-11"
+}

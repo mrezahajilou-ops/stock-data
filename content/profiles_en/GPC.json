@@ -1,0 +1,38 @@
+{
+ "t": "GPC",
+ "what": "Genuine Parts distributes replacement parts. Through NAPA it supplies car parts to repair shops and stores across North America and Europe, and through Motion it supplies bearings, belts and industrial components to factories.",
+ "customers": "Independent repair garages, NAPA stores, fleet operators, and industrial maintenance teams.",
+ "money": [
+  [
+   "Automotive Parts",
+   "the larger part",
+   "NAPA branded distribution in North America, Europe and Australasia"
+  ],
+  [
+   "Industrial Parts",
+   "large, higher margin",
+   "Motion industrial components and services"
+  ]
+ ],
+ "moat": "Distribution centres and stores placed so a mechanic or a factory can get a part the same day, which is what customers pay for rather than the lowest price.",
+ "rivals": [
+  "AutoZone|AZO",
+  "O'Reilly Automotive|ORLY",
+  "Advance Auto Parts|AAP",
+  "Applied Industrial Technologies|AIT",
+  "W.W. Grainger|GWW"
+ ],
+ "risks": [
+  "Net margin collapsed to near zero after restructuring and legal charges",
+  "Industrial demand has been soft and automotive margins compressed",
+  "Debt of about $6.4 billion",
+  "Return on invested capital of about 2% after the charges"
+ ],
+ "opportunities": [
+  "A dividend yield around 3.5% with a very long record of increases",
+  "The average age of vehicles keeps rising, which raises repair demand",
+  "Cost reduction programmes are intended to restore margins from a low base"
+ ],
+ "watch": "Comparable sales in both segments and whether operating margin recovers.",
+ "updated": "2026-11"
+}

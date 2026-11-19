@@ -1,0 +1,37 @@
+{
+ "t": "WES",
+ "what": "Western Midstream gathers, processes and transports natural gas, crude oil and produced water, mostly in the Delaware basin and the Rockies. Occidental Petroleum is its largest customer and controlling holder.",
+ "customers": "Oil and gas producers, principally Occidental Petroleum, plus third-party producers in its basins.",
+ "money": [
+  [
+   "Gathering and processing",
+   "the large majority",
+   "gas gathering, processing and crude and water gathering"
+  ],
+  [
+   "Transportation",
+   "meaningful",
+   "pipeline transport of gas and liquids"
+  ]
+ ],
+ "moat": "Gathering systems physically connected to wells under long-term contracts with minimum volume commitments, which cannot be bypassed once laid.",
+ "rivals": [
+  "Targa Resources|TRGP",
+  "EnLink Midstream",
+  "DT Midstream|DTM",
+  "ONEOK|OKE"
+ ],
+ "risks": [
+  "Debt of about $9 billion against almost no cash",
+  "Occidental controls it and is also its biggest customer, which limits minority influence",
+  "Volumes depend on Delaware basin drilling activity",
+  "It is a partnership, which complicates tax reporting for some investors"
+ ],
+ "opportunities": [
+  "A distribution yield around 9% backed by fee-based contracts",
+  "Operating margin of 42% with a 31% net margin",
+  "Produced water handling grows with every new Permian well drilled"
+ ],
+ "watch": "Throughput volumes and distribution coverage.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "PAA",
+ "what": "Plains All American gathers, transports and stores crude oil. It owns pipelines running from the Permian basin to the Gulf Coast and to storage hubs, and also handles natural gas liquids in Canada.",
+ "customers": "Oil producers, refiners and marketers who pay to move and store crude oil and liquids.",
+ "money": [
+  [
+   "Crude Oil",
+   "the large majority",
+   "pipelines, gathering, storage and marketing"
+  ],
+  [
+   "Natural Gas Liquids",
+   "meaningful",
+   "Canadian NGL fractionation and marketing"
+  ]
+ ],
+ "moat": "Gathering systems connected directly to Permian wells feeding its own long-haul pipelines, a position competitors would have to build from scratch across private land.",
+ "rivals": [
+  "Enterprise Products Partners|EPD",
+  "Energy Transfer|ET",
+  "MPLX|MPLX",
+  "ONEOK|OKE"
+ ],
+ "risks": [
+  "Debt of about $10 billion",
+  "Volumes depend on Permian drilling activity",
+  "Revenue has fallen about 8% a year over three years as crude prices came down",
+  "It is a partnership, which complicates tax reporting for some investors"
+ ],
+ "opportunities": [
+  "A distribution yield near 7% backed by fee-based contracts",
+  "Operating margin on fee-based activity is steady regardless of oil prices",
+  "Permian production growth keeps raising volumes through its system"
+ ],
+ "watch": "Permian gathered volumes and distributable cash flow coverage.",
+ "updated": "2026-11"
+}

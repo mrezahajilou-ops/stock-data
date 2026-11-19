@@ -1,0 +1,42 @@
+{
+ "t": "BALL",
+ "what": "Ball Corporation makes aluminium beverage cans. It is one of the largest can makers in the world, supplying beer, soft drink and energy drink companies across the Americas, Europe and Asia.",
+ "customers": "Brewers, soft drink and energy drink companies, and beverage bottlers worldwide.",
+ "money": [
+  [
+   "Beverage Packaging North and Central America",
+   "the largest part",
+   "aluminium cans for the US and Mexican markets"
+  ],
+  [
+   "Beverage Packaging EMEA",
+   "large",
+   "cans across Europe, the Middle East and Africa"
+  ],
+  [
+   "Beverage Packaging South America",
+   "meaningful",
+   "cans for Brazil and neighbouring markets"
+  ]
+ ],
+ "moat": "Can plants built next to customers' filling lines, because cans are bulky and expensive to ship, which effectively locks in the local supply relationship.",
+ "rivals": [
+  "Crown Holdings|CCK",
+  "Ardagh Metal Packaging|AMBP",
+  "Can-Pack",
+  "CANPACK rivals"
+ ],
+ "risks": [
+  "Beverage volumes have been soft as consumers cut back",
+  "Debt of about $7.4 billion against little cash",
+  "Aluminium costs are volatile, though mostly passed through",
+  "It sold its aerospace business, removing a diversifying earnings stream"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year",
+  "Cans keep taking share from glass and plastic on environmental grounds",
+  "Selling the aerospace business funded large buybacks"
+ ],
+ "watch": "Can shipment volumes by region and aluminium cost pass-through.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "SBS",
+ "what": "Sabesp supplies water and sewerage to São Paulo state in Brazil, serving tens of millions of people. It was privatised in 2024, with the state government retaining a minority stake.",
+ "customers": "Households, businesses and municipalities across São Paulo state.",
+ "money": [
+  [
+   "Water supply",
+   "the larger part",
+   "treated water delivered to customers"
+  ],
+  [
+   "Sewerage",
+   "large",
+   "wastewater collection and treatment"
+  ]
+ ],
+ "moat": "A monopoly over water and sewerage in Brazil's richest and most populous state, with tariffs set by a regulator under a long concession.",
+ "rivals": [
+  "Aegea Saneamento",
+  "Iguá Saneamento",
+  "BRK Ambiental",
+  "Municipal utilities"
+ ],
+ "risks": [
+  "Brazilian regulatory and political intervention in tariffs is a persistent risk",
+  "Debt of about $8 billion",
+  "Drought reduces water availability and has forced rationing before",
+  "Large investment obligations to extend sewerage coverage"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% a year over three years",
+  "Privatisation has allowed cost reductions that were impossible under state control",
+  "Analysts see about 37% upside, with a dividend yield near 6%"
+ ],
+ "watch": "Tariff reviews, operating cost reduction, and sewerage coverage targets.",
+ "updated": "2026-11"
+}

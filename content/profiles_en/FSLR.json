@@ -1,0 +1,33 @@
+{
+ "t": "FSLR",
+ "what": "First Solar makes solar panels using cadmium telluride thin film rather than the silicon used by almost everyone else. It is the largest solar manufacturer headquartered in the United States and sells mostly to utility-scale projects.",
+ "customers": "Utility-scale solar developers and independent power producers, mainly in the United States and India.",
+ "money": [
+  [
+   "Module sales",
+   "almost all of revenue",
+   "thin-film solar modules sold under multi-year contracts"
+  ]
+ ],
+ "moat": "A manufacturing technology no Chinese competitor uses, which keeps it outside the silicon price war and qualifies its panels for US content-based tax credits.",
+ "rivals": [
+  "JinkoSolar|JKS",
+  "Canadian Solar|CSIQ",
+  "Trina Solar",
+  "LONGi",
+  "Qcells"
+ ],
+ "risks": [
+  "US clean energy tax policy determines much of the economics and has been changed before",
+  "Utility-scale project timing can shift, delaying deliveries",
+  "It pays no dividend",
+  "Silicon panel prices have collapsed, which pressures pricing even where it does not compete directly"
+ ],
+ "opportunities": [
+  "Revenue grew about 24% last year and about 26% a year over three years",
+  "Operating margin of 31% with cash of $1.6 billion and almost no debt",
+  "Analysts see large upside, with a contracted backlog stretching years out"
+ ],
+ "watch": "The contracted backlog, average selling price per watt, and US policy on tax credits.",
+ "updated": "2026-11"
+}

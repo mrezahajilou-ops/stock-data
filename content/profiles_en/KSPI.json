@@ -1,0 +1,42 @@
+{
+ "t": "KSPI",
+ "what": "Kaspi.kz runs the dominant digital platform in Kazakhstan. Its app combines payments, a marketplace for goods and services, and consumer lending, used by most adults in the country, and it has expanded into Turkey.",
+ "customers": "Kazakh consumers and merchants, and increasingly Turkish users through the acquired Hepsiburada marketplace.",
+ "money": [
+  [
+   "Payments",
+   "large, high margin",
+   "transaction fees on card and app payments"
+  ],
+  [
+   "Marketplace",
+   "large",
+   "commissions on goods and services sold through the app"
+  ],
+  [
+   "Fintech",
+   "the largest part of profit",
+   "consumer lending through the app"
+  ]
+ ],
+ "moat": "A single app that most Kazakhs use daily for payments, shopping and borrowing, which gives it transaction data no bank or retailer in the country can match.",
+ "rivals": [
+  "Halyk Bank",
+  "Freedom Holding|FRHC",
+  "Wildberries",
+  "Trendyol"
+ ],
+ "risks": [
+  "It depends almost entirely on one small country's economy",
+  "Kazakh regulatory or political change could affect it quickly",
+  "Turkish expansion is a large and unfamiliar market",
+  "Consumer lending losses would rise in a downturn"
+ ],
+ "opportunities": [
+  "Return on invested capital of 69% and an operating margin of 53%, exceptional figures",
+  "Revenue grew about 60% last year and about 47% a year over three years",
+  "A dividend yield above 6% alongside that growth"
+ ],
+ "watch": "Kazakh transaction volumes and the Turkish expansion's losses.",
+ "updated": "2026-11"
+}

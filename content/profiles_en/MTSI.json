@@ -1,0 +1,43 @@
+{
+ "t": "MTSI",
+ "what": "MACOM makes radio frequency and optical semiconductors. Its chips go into defence radar and electronic warfare systems, data centre optical links, and telecom infrastructure.",
+ "customers": "Defence contractors, data centre and optical module makers, and telecom equipment manufacturers.",
+ "money": [
+  [
+   "Industrial and Defense",
+   "the largest part",
+   "radar, electronic warfare and industrial radio frequency components"
+  ],
+  [
+   "Data Center",
+   "growing fastest",
+   "optical drivers, transimpedance amplifiers and laser components"
+  ],
+  [
+   "Telecom",
+   "meaningful",
+   "optical and wireless infrastructure components"
+  ]
+ ],
+ "moat": "Compound semiconductor manufacturing and defence qualifications that take years to obtain, combined with optical components designed into data centre modules.",
+ "rivals": [
+  "Qorvo|QRVO",
+  "Analog Devices|ADI",
+  "Broadcom|AVGO",
+  "Coherent|COHR",
+  "Semtech|SMTC"
+ ],
+ "risks": [
+  "Defence programme timing is lumpy and budget-dependent",
+  "Data centre optical demand depends on a few large customers",
+  "The shares trade at a high multiple of earnings",
+  "Telecom infrastructure spending has been weak"
+ ],
+ "opportunities": [
+  "Revenue grew about 37% last year and about 27% a year over three years",
+  "Operating margin of 23% with cash exceeding debt",
+  "Analysts see about 44% upside from current levels"
+ ],
+ "watch": "Data centre revenue growth and the defence order backlog.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "GIB",
+ "what": "CGI is a Canadian information technology and business consulting company. It builds and runs software systems for governments, banks, insurers and utilities, with a model of owning client relationships locally.",
+ "customers": "Governments, financial institutions, utilities, manufacturers and health organisations, mostly in Canada, the United States and Europe.",
+ "money": [
+  [
+   "Managed IT and business process services",
+   "the larger part",
+   "running clients' systems and processes under long contracts"
+  ],
+  [
+   "Systems integration and consulting",
+   "large",
+   "building and implementing systems"
+  ]
+ ],
+ "moat": "Long-term outsourcing contracts with governments and regulated industries, where security clearances and institutional knowledge make switching slow and risky.",
+ "rivals": [
+  "Accenture|ACN",
+  "Capgemini",
+  "Cognizant|CTSH",
+  "Infosys|INFY",
+  "Atos"
+ ],
+ "risks": [
+  "Government budget cycles determine contract timing",
+  "Revenue grew only about 4% last year",
+  "Artificial intelligence may reduce the people-hours a contract requires",
+  "Only three analysts cover it in this data"
+ ],
+ "opportunities": [
+  "Net margin of 11% is strong for an IT services company",
+  "A long record of acquiring regional IT firms and raising their margins",
+  "Cash of about $1.1 billion against $2 billion of debt is manageable"
+ ],
+ "watch": "Bookings as a share of revenue and organic growth in constant currency.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "CW",
+ "what": "Curtiss-Wright makes engineered products for demanding environments: nuclear reactor components for navy submarines and power stations, aircraft actuation and sensors, and industrial valves and pumps.",
+ "customers": "The US Navy and defence contractors, nuclear power operators, commercial aircraft manufacturers and industrial customers.",
+ "money": [
+  [
+   "Aerospace and Industrial",
+   "large",
+   "actuation, sensors and industrial equipment"
+  ],
+  [
+   "Defense Electronics",
+   "large, highest margin",
+   "embedded computing and electronics for defence platforms"
+  ],
+  [
+   "Naval and Power",
+   "large",
+   "submarine and aircraft carrier components and nuclear plant equipment"
+  ]
+ ],
+ "moat": "Components qualified into navy submarine and nuclear plant programmes, where the approval process takes years and the supplier base is deliberately narrow.",
+ "rivals": [
+  "BWX Technologies|BWXT",
+  "Moog|MOG.A",
+  "HEICO|HEI",
+  "TransDigm|TDG",
+  "Parker Hannifin|PH"
+ ],
+ "risks": [
+  "US defence budget decisions drive a large part of revenue",
+  "Nuclear programme timing is lumpy",
+  "It pays only a small dividend",
+  "The shares trade at a high multiple after a strong run"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year and about 11% a year over three years",
+  "Analysts see about 38% upside from current levels",
+  "Submarine building rates and small modular reactor development both raise demand"
+ ],
+ "watch": "Naval and Power orders and the overall backlog.",
+ "updated": "2026-11"
+}

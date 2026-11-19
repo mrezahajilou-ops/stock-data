@@ -1,0 +1,43 @@
+{
+ "t": "CF",
+ "what": "CF Industries makes nitrogen fertiliser. It converts natural gas into ammonia and then into urea and other nitrogen products at large plants in North America, and is building low-carbon ammonia capacity.",
+ "customers": "Farmers through distributors, industrial users of ammonia, and increasingly buyers of low-carbon ammonia as a fuel.",
+ "money": [
+  [
+   "Ammonia",
+   "large",
+   "anhydrous ammonia sold directly"
+  ],
+  [
+   "Granular urea and UAN",
+   "large",
+   "solid and liquid nitrogen fertilisers"
+  ],
+  [
+   "Other nitrogen products",
+   "meaningful",
+   "industrial nitrogen and diesel exhaust fluid"
+  ]
+ ],
+ "moat": "Plants using cheap North American natural gas, which gives it a large and persistent cost advantage over European and Asian producers using imported gas.",
+ "rivals": [
+  "Nutrien|NTR",
+  "Yara International",
+  "OCI",
+  "Mosaic|MOS",
+  "Koch Fertilizer"
+ ],
+ "risks": [
+  "Nitrogen prices are cyclical and set earnings",
+  "Revenue fell about 14% a year over three years before last year's recovery",
+  "European producers restarting capacity would increase supply",
+  "Natural gas price spikes would compress its cost advantage"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year with a 32% operating margin",
+  "Return on invested capital of 22% with cash close to debt",
+  "Low-carbon ammonia could become a shipping and power fuel, a new market"
+ ],
+ "watch": "Nitrogen prices, natural gas costs, and the low-carbon ammonia project.",
+ "updated": "2026-11"
+}

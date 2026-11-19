@@ -1,0 +1,43 @@
+{
+ "t": "MLM",
+ "what": "Martin Marietta supplies construction aggregates: crushed stone, sand and gravel from around 400 quarries, plus cement, ready-mixed concrete and asphalt. Aggregates produce the large majority of its profit.",
+ "customers": "State transport departments building roads, infrastructure contractors, commercial developers and housebuilders.",
+ "money": [
+  [
+   "Aggregates",
+   "the large majority of profit",
+   "crushed stone, sand and gravel across 28 states"
+  ],
+  [
+   "Cement and ready-mixed concrete",
+   "meaningful",
+   "Texas cement plants and concrete"
+  ],
+  [
+   "Asphalt and paving",
+   "smaller",
+   "asphalt production and road paving"
+  ]
+ ],
+ "moat": "Quarries near the places that need the rock. Aggregates are too heavy to haul far economically, so each quarry has a local advantage that new permits rarely challenge.",
+ "rivals": [
+  "Vulcan Materials|VMC",
+  "CRH|CRH",
+  "Summit Materials",
+  "Heidelberg Materials",
+  "Knife River|KNF"
+ ],
+ "risks": [
+  "Debt of about $13 billion against almost no cash after acquisitions",
+  "Residential construction is weak while mortgage rates are high",
+  "Infrastructure volumes depend on government budgets",
+  "Return on invested capital of about 7% reflects the price paid for recent deals"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year with a 23% operating margin",
+  "Aggregate prices have risen faster than costs for several years running",
+  "US infrastructure funding supports multi-year road and bridge demand"
+ ],
+ "watch": "Aggregates pricing and shipment volumes.",
+ "updated": "2026-11"
+}

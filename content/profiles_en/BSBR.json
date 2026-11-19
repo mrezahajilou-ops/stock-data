@@ -1,0 +1,42 @@
+{
+ "t": "BSBR",
+ "what": "Banco Santander Brasil is the Brazilian arm of the Spanish bank Santander and one of the largest private banks in Brazil. It offers current accounts, cards, car loans, mortgages and corporate banking.",
+ "customers": "Brazilian households, small businesses and corporations.",
+ "money": [
+  [
+   "Retail banking",
+   "the largest part",
+   "deposits, cards, personal and car loans"
+  ],
+  [
+   "Wholesale banking",
+   "large",
+   "corporate lending, trade finance and treasury"
+  ],
+  [
+   "Insurance and services",
+   "meaningful",
+   "insurance distribution and fees"
+  ]
+ ],
+ "moat": "Scale in a concentrated Brazilian banking market, with the backing and funding access of a large European parent.",
+ "rivals": [
+  "Itaú Unibanco|ITUB",
+  "Banco Bradesco|BBD",
+  "Nu Holdings|NU",
+  "Banco do Brasil"
+ ],
+ "risks": [
+  "Brazilian interest rates and unemployment drive credit losses",
+  "Car lending, where it is strong, is one of the most loss-prone categories",
+  "Digital banks have taken share in payments and cards",
+  "The parent's priorities can override minority shareholders'"
+ ],
+ "opportunities": [
+  "A dividend yield above 8%",
+  "Analysts see about 33% upside from current levels",
+  "Brazilian credit penetration is still low relative to developed markets"
+ ],
+ "watch": "The non-performing loan ratio and return on equity.",
+ "updated": "2026-11"
+}

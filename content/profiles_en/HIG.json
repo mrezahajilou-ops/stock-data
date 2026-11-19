@@ -1,0 +1,43 @@
+{
+ "t": "HIG",
+ "what": "The Hartford is an American insurer. It sells property and casualty insurance to businesses, especially small and mid-sized ones, personal car and home insurance through the AARP partnership, and group disability and life insurance to employers.",
+ "customers": "Small and mid-sized businesses, employers buying group benefits, and older American consumers through AARP.",
+ "money": [
+  [
+   "Business Insurance",
+   "the largest part",
+   "commercial property, liability and workers' compensation"
+  ],
+  [
+   "Personal Insurance",
+   "meaningful",
+   "car and home insurance, largely through AARP"
+  ],
+  [
+   "Employee Benefits",
+   "meaningful",
+   "group disability and life insurance"
+  ]
+ ],
+ "moat": "A century of workers' compensation claims data that lets it price small business risk more accurately than newer entrants, plus the exclusive AARP relationship.",
+ "rivals": [
+  "Travelers|TRV",
+  "Chubb|CB",
+  "CNA Financial|CNA",
+  "Allstate|ALL",
+  "Progressive|PGR"
+ ],
+ "risks": [
+  "Catastrophe losses from storms and wildfires are rising",
+  "Commercial insurance pricing has softened after several strong years",
+  "Reserve adequacy on older liability policies is an industry-wide concern",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 14% net margin",
+  "Small business insurance is its most profitable line and has been growing",
+  "Higher interest rates raise the income earned on its investment portfolio"
+ ],
+ "watch": "The combined ratio in Business Insurance and premium growth.",
+ "updated": "2026-11"
+}

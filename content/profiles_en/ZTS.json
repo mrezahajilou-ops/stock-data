@@ -1,0 +1,38 @@
+{
+ "t": "ZTS",
+ "what": "Zoetis is the largest animal health company in the world. It makes medicines, vaccines and diagnostics for pets and farm animals, with pet products such as the dermatitis treatments Apoquel and Cytopoint and the pain treatment Librela driving growth.",
+ "customers": "Veterinary practices, livestock producers and pet owners through vets, across about 100 countries.",
+ "money": [
+  [
+   "Companion animal",
+   "the larger part, faster growing",
+   "dermatology, pain, parasiticides and vaccines for pets"
+  ],
+  [
+   "Livestock",
+   "large",
+   "vaccines and medicines for cattle, pigs, poultry and fish"
+  ]
+ ],
+ "moat": "Veterinarian prescribing habits and clinical data built over decades, in a market where approval takes years and most products are sold through vets rather than retail.",
+ "rivals": [
+  "Elanco Animal Health|ELAN",
+  "Merck Animal Health|MRK",
+  "Boehringer Ingelheim",
+  "IDEXX Laboratories|IDXX",
+  "Dechra"
+ ],
+ "risks": [
+  "Growth slowed to about 2% last year as vet visit volumes flattened",
+  "Questions raised about side effects of the pain treatment Librela hurt its momentum",
+  "Generic competition is emerging for older parasiticides",
+  "Debt of about $9 billion against $1.5 billion of cash"
+ ],
+ "opportunities": [
+  "Operating margin of 38% and return on invested capital of 22%",
+  "Pet owners keep spending on animal health even when cutting other budgets",
+  "A pipeline of new companion animal products in pain and dermatology"
+ ],
+ "watch": "Companion animal revenue growth and Librela prescription trends.",
+ "updated": "2026-11"
+}

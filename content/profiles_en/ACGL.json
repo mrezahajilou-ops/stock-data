@@ -1,0 +1,43 @@
+{
+ "t": "ACGL",
+ "what": "Arch Capital is a Bermuda-based insurer and reinsurer. It writes specialty insurance for businesses, reinsurance for other insurers, and mortgage insurance that protects lenders against homeowner default.",
+ "customers": "Businesses buying specialty cover, insurance companies buying reinsurance, and mortgage lenders.",
+ "money": [
+  [
+   "Reinsurance",
+   "the largest part",
+   "property, casualty and specialty reinsurance"
+  ],
+  [
+   "Insurance",
+   "large",
+   "specialty commercial insurance"
+  ],
+  [
+   "Mortgage",
+   "meaningful, very profitable",
+   "US and international mortgage insurance"
+  ]
+ ],
+ "moat": "The discipline to shrink when prices are bad and grow sharply when they are good, which few insurers manage, built on a management team with a long record.",
+ "rivals": [
+  "RenaissanceRe|RNR",
+  "Everest Group|EG",
+  "Chubb|CB",
+  "Markel|MKL",
+  "Munich Re"
+ ],
+ "risks": [
+  "Reinsurance pricing has softened after several very strong years",
+  "Catastrophe losses can be large in any single year",
+  "Mortgage insurance losses would rise if US house prices fell",
+  "It pays no regular dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year and about 28% a year over three years",
+  "Mortgage insurance has run at exceptionally low loss rates",
+  "A 22% net margin with a record of growing book value per share"
+ ],
+ "watch": "The combined ratio and the pricing cycle in reinsurance.",
+ "updated": "2026-11"
+}

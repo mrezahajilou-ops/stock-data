@@ -1,0 +1,38 @@
+{
+ "t": "ALC",
+ "what": "Alcon makes eye care products. One half sells the equipment and intraocular lenses used in cataract and vision correction surgery; the other sells contact lenses and eye drops. It was spun out of Novartis in 2019.",
+ "customers": "Eye surgeons and hospitals, optometrists, and consumers buying contact lenses and dry-eye drops.",
+ "money": [
+  [
+   "Surgical",
+   "the larger part",
+   "cataract equipment, intraocular lenses and surgical consumables"
+  ],
+  [
+   "Vision Care",
+   "large",
+   "contact lenses and ocular health products"
+  ]
+ ],
+ "moat": "Surgical equipment placed in operating theatres that then consumes its own lenses and disposables, with surgeons trained on its systems.",
+ "rivals": [
+  "Johnson & Johnson Vision|JNJ",
+  "Bausch + Lomb|BLCO",
+  "CooperVision|COO",
+  "Carl Zeiss Meditec",
+  "Essilor Luxottica"
+ ],
+ "risks": [
+  "Cataract procedure volumes depend on hospital capacity and reimbursement",
+  "Return on invested capital of about 4% is low for a medical device company",
+  "Chinese government procurement has pushed down lens prices",
+  "Debt of about $5 billion against $2 billion of cash"
+ ],
+ "opportunities": [
+  "The population needing cataract surgery grows every year as people live longer",
+  "Premium intraocular lenses, paid for privately, earn far more than standard ones",
+  "Gross margin of 55% with steady mid-single-digit growth"
+ ],
+ "watch": "Surgical equipment placements and premium lens adoption rates.",
+ "updated": "2026-11"
+}

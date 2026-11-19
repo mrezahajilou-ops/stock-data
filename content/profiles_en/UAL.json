@@ -1,0 +1,37 @@
+{
+ "t": "UAL",
+ "what": "United Airlines is one of the largest airlines in the world, with the most comprehensive route network of any North American carrier and hubs in Chicago, Denver, Houston, Newark, San Francisco, Los Angeles and Washington.",
+ "customers": "Leisure and business travellers, corporate accounts, cargo shippers and credit card holders through its loyalty programme.",
+ "money": [
+  [
+   "Passenger",
+   "the large majority",
+   "ticket revenue, increasingly weighted to premium cabins"
+  ],
+  [
+   "Loyalty, cargo and other",
+   "meaningful, high margin",
+   "MileagePlus payments from card partners, cargo and maintenance"
+  ]
+ ],
+ "moat": "Hub positions and international route authorities, particularly across the Pacific and Atlantic, that competitors cannot replicate without slots and treaty rights.",
+ "rivals": [
+  "Delta Air Lines|DAL",
+  "American Airlines|AAL",
+  "Southwest Airlines|LUV",
+  "Alaska Air Group|ALK"
+ ],
+ "risks": [
+  "Debt of about $34 billion",
+  "Fuel prices move earnings sharply",
+  "Airlines are highly cyclical and fixed costs are large",
+  "Newark congestion and air traffic control shortages have caused repeated disruption"
+ ],
+ "opportunities": [
+  "Analysts see about 42% upside from current levels",
+  "Premium cabin and loyalty revenue grow faster and are steadier than economy fares",
+  "Limited new aircraft deliveries across the industry restrain capacity growth"
+ ],
+ "watch": "Revenue per available seat mile and premium cabin revenue growth.",
+ "updated": "2026-11"
+}

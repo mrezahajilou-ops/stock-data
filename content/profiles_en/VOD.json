@@ -1,0 +1,48 @@
+{
+ "t": "VOD",
+ "what": "Vodafone is a telecom operator. After selling its Spanish and Italian businesses it is focused on Germany, the United Kingdom, other European markets, Turkey and Africa, where Vodacom and M-Pesa mobile money are important.",
+ "customers": "Mobile and broadband customers across Europe and Africa, plus businesses buying connectivity and internet-of-things services.",
+ "money": [
+  [
+   "Germany",
+   "the largest part",
+   "mobile and cable broadband"
+  ],
+  [
+   "Other Europe",
+   "large",
+   "the United Kingdom, Turkey, Portugal and others"
+  ],
+  [
+   "Africa (Vodacom)",
+   "growing",
+   "mobile service and M-Pesa payments"
+  ],
+  [
+   "Business services",
+   "meaningful",
+   "enterprise connectivity and internet of things"
+  ]
+ ],
+ "moat": "Spectrum and networks across many countries, plus M-Pesa, which is the payment system much of East Africa runs on.",
+ "rivals": [
+  "Deutsche Telekom|DTEGY",
+  "Orange|ORAN",
+  "Telefónica|TEF",
+  "BT Group",
+  "MTN Group"
+ ],
+ "risks": [
+  "It reported a large loss in the latest period after impairments",
+  "Debt of about $58 billion",
+  "German cable customers were lost after a change in apartment-block TV rules",
+  "The dividend was cut in 2024"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year",
+  "The merger with Three in the United Kingdom creates a stronger number-one mobile operator there",
+  "African mobile money grows far faster than European telecom"
+ ],
+ "watch": "German service revenue returning to growth and net debt reduction.",
+ "updated": "2026-11"
+}

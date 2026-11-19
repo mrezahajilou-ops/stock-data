@@ -1,0 +1,37 @@
+{
+ "t": "HBANM",
+ "what": "This is a preferred share of Huntington Bancshares, a regional bank based in Columbus, Ohio, serving households and businesses across the Midwest. Preferred shares pay a fixed dividend and rank ahead of ordinary shares, but do not share in the bank's growth.",
+ "customers": "The bank serves Midwestern households, small businesses and corporate clients; the preferred shares are bought by income investors.",
+ "money": [
+  [
+   "Consumer and business banking",
+   "large",
+   "deposits, mortgages, car and equipment lending"
+  ],
+  [
+   "Commercial banking",
+   "large",
+   "corporate lending, treasury management and specialty finance"
+  ]
+ ],
+ "moat": "Huntington's deposit share across Ohio, Michigan and neighbouring states, built since 1866, provides the cheap funding that supports the dividend on securities like this one.",
+ "rivals": [
+  "Fifth Third Bancorp|FITB",
+  "KeyCorp|KEY",
+  "Regions Financial|RF",
+  "Truist Financial|TFC"
+ ],
+ "risks": [
+  "The dividend can be suspended by the board without triggering default",
+  "Preferred shares rank behind all of the bank's debt",
+  "Rising interest rates reduce the market price of a fixed-rate preferred",
+  "Bank credit losses would eventually threaten the payment"
+ ],
+ "opportunities": [
+  "A dividend yield well above the bank's ordinary shares",
+  "Payment ranks ahead of ordinary shareholders",
+  "Huntington's revenue grew about 11% last year with a 27% net margin"
+ ],
+ "watch": "The bank's capital ratios and whether the preferred dividend keeps being declared.",
+ "updated": "2026-11"
+}

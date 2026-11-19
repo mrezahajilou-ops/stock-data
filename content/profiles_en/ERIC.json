@@ -1,0 +1,48 @@
+{
+ "t": "ERIC",
+ "what": "Ericsson makes mobile network equipment: radio base stations, antennas and the software that runs mobile networks, plus enterprise services and patent licensing. It is Swedish and one of only three large Western suppliers.",
+ "customers": "Mobile operators worldwide, with North America its largest market, plus enterprises and handset makers paying patent royalties.",
+ "money": [
+  [
+   "Networks",
+   "the largest part",
+   "radio access network equipment and software"
+  ],
+  [
+   "Cloud Software and Services",
+   "large",
+   "core networks, operations software and services"
+  ],
+  [
+   "Enterprise",
+   "smaller",
+   "private networks and the Vonage communications platform"
+  ],
+  [
+   "IPR licensing",
+   "small, very high margin",
+   "patent royalties"
+  ]
+ ],
+ "moat": "Patents essential to mobile standards that earn royalties from every handset maker, plus deep integration into operators' networks that makes swapping suppliers a multi-year project.",
+ "rivals": [
+  "Nokia|NOK",
+  "Huawei",
+  "Samsung",
+  "ZTE",
+  "Cisco|CSCO"
+ ],
+ "risks": [
+  "Mobile operator capital spending has been weak worldwide",
+  "The Vonage acquisition was written down heavily",
+  "Revenue has been flat over three years",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Revenue grew about 14% last year with a 16% operating margin",
+  "Return on invested capital of 20% after restructuring",
+  "Patent licensing provides high-margin revenue regardless of equipment sales"
+ ],
+ "watch": "Networks segment sales in North America and operating margin.",
+ "updated": "2026-11"
+}

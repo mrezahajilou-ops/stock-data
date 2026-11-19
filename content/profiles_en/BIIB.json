@@ -1,0 +1,48 @@
+{
+ "t": "BIIB",
+ "what": "Biogen develops medicines for neurological disease. Its established business is multiple sclerosis treatments; its future depends on Leqembi for Alzheimer's, Spinraza for spinal muscular atrophy, and Skyclarys for a rare neurological disorder.",
+ "customers": "Neurologists, hospitals, health systems and insurers worldwide.",
+ "money": [
+  [
+   "Multiple sclerosis",
+   "the largest part, declining",
+   "Tecfidera, Tysabri, Vumerity and related products"
+  ],
+  [
+   "Rare disease",
+   "growing",
+   "Spinraza, Skyclarys and Qalsody"
+  ],
+  [
+   "Alzheimer's (Leqembi)",
+   "early",
+   "shared with Eisai"
+  ],
+  [
+   "Biosimilars and contract manufacturing",
+   "smaller",
+   "biosimilar products and manufacturing for others"
+  ]
+ ],
+ "moat": "Deep expertise in neurology and manufacturing for complex biological medicines, with rare-disease products that have few alternatives.",
+ "rivals": [
+  "Eli Lilly|LLY",
+  "Novartis|NVS",
+  "Roche",
+  "Sanofi|SNY",
+  "Alnylam Pharmaceuticals|ALNY"
+ ],
+ "risks": [
+  "Multiple sclerosis revenue keeps falling as older medicines lose exclusivity",
+  "Leqembi uptake has been slow because of the testing and monitoring Alzheimer's treatment requires",
+  "Revenue has been roughly flat for three years",
+  "It pays no dividend and return on invested capital is about 5%"
+ ],
+ "opportunities": [
+  "Gross margin of 76% means any revenue recovery flows through quickly",
+  "A subcutaneous form of Leqembi would make Alzheimer's treatment far easier to deliver",
+  "Cost cutting has protected profit while revenue stalled"
+ ],
+ "watch": "Leqembi prescriptions and the rate of decline in multiple sclerosis sales.",
+ "updated": "2026-11"
+}

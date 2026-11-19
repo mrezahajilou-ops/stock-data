@@ -1,0 +1,43 @@
+{
+ "t": "TER",
+ "what": "Teradyne makes the machines that test chips after they are manufactured, checking each one works before it is shipped. It also owns Universal Robots and Mobile Industrial Robots, which make collaborative factory robots.",
+ "customers": "Chipmakers and their assembly partners, electronics manufacturers, and factories buying robots.",
+ "money": [
+  [
+   "Semiconductor Test",
+   "the largest part",
+   "testers for logic, memory and analogue chips"
+  ],
+  [
+   "Robotics",
+   "smaller",
+   "collaborative robot arms and autonomous mobile robots"
+  ],
+  [
+   "System Test and Wireless",
+   "meaningful",
+   "storage, defence and wireless test"
+  ]
+ ],
+ "moat": "Test platforms that chipmakers qualify into their production flows, where the cost of switching testers mid-product-life is prohibitive.",
+ "rivals": [
+  "Advantest",
+  "Cohu|COHU",
+  "Keysight Technologies|KEYS",
+  "FormFactor|FORM",
+  "Universal Robots rivals"
+ ],
+ "risks": [
+  "Chip test demand is cyclical and swung hard in recent years",
+  "Revenue has been flat over three years",
+  "The robotics business has grown more slowly than expected",
+  "Smartphone test demand depends on a small number of customers"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "AI chips are large and complex, which raises test time and therefore tester demand",
+  "Return on invested capital of 19% with almost no debt"
+ ],
+ "watch": "Semiconductor test orders, especially for AI and high-performance computing chips.",
+ "updated": "2026-11"
+}

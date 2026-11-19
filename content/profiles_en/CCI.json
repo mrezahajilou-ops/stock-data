@@ -1,0 +1,37 @@
+{
+ "t": "CCI",
+ "what": "Crown Castle owns more than 40,000 mobile phone towers across the United States and leases space on them to mobile operators. It has agreed to sell its fibre and small cell business to focus on towers alone.",
+ "customers": "The large US mobile operators, which lease antenna space under long-term contracts.",
+ "money": [
+  [
+   "Towers",
+   "almost all of continuing profit",
+   "long-term leases of antenna space to mobile operators"
+  ],
+  [
+   "Fibre and small cells",
+   "being sold",
+   "fibre routes and small cell nodes"
+  ]
+ ],
+ "moat": "Tower sites with planning permission and existing tenants, where adding a second or third operator to the same structure costs almost nothing and nearly all of it is profit.",
+ "rivals": [
+  "American Tower|AMT",
+  "SBA Communications|SBAC",
+  "DigitalBridge|DBRG",
+  "Vertical Bridge"
+ ],
+ "risks": [
+  "Debt of about $23 billion against almost no cash",
+  "Mobile operator consolidation means fewer tenants per tower",
+  "It cut its dividend when it restructured around towers",
+  "Revenue has fallen about 15% a year over three years as the fibre business was wound down"
+ ],
+ "opportunities": [
+  "Gross margin of 97% on tower leases, because the structure is already built",
+  "Selling the fibre business raises cash to cut debt",
+  "Leases typically include annual price increases written into the contract"
+ ],
+ "watch": "Organic tower revenue growth and the completion of the fibre sale.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,47 @@
+{
+ "t": "IX",
+ "what": "ORIX is a Japanese financial conglomerate. It leases equipment, provides corporate finance, invests in private equity and real estate, runs an asset management business, owns a regional bank and an insurer, and even operates airports and renewable energy projects.",
+ "customers": "Japanese small and medium businesses, corporate borrowers, insurance policyholders and institutional investors worldwide.",
+ "money": [
+  [
+   "Corporate Financial Services and Maintenance Leasing",
+   "large",
+   "equipment leasing and lending in Japan"
+  ],
+  [
+   "Real Estate and Environment",
+   "large",
+   "property and renewable energy"
+  ],
+  [
+   "Insurance and Banking",
+   "large",
+   "life insurance and ORIX Bank"
+  ],
+  [
+   "Investment and Operations, Overseas",
+   "large",
+   "private equity, asset management and overseas businesses"
+  ]
+ ],
+ "moat": "A long record of recycling capital between very different businesses, backed by relationships with Japanese small firms that few foreign competitors can reach.",
+ "rivals": [
+  "Mitsubishi HC Capital",
+  "Sumitomo Mitsui Finance and Leasing",
+  "Mitsui & Co|MITSY",
+  "Brookfield|BN"
+ ],
+ "risks": [
+  "The conglomerate structure makes it hard to value and often trades at a discount",
+  "Return on invested capital of about 3% reflects a balance-sheet-heavy business",
+  "Japanese rate rises raise its own funding costs",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year with a 13% net margin",
+  "Asset sales regularly release gains it can return to shareholders",
+  "Japanese corporate governance reform is pushing companies to simplify and return capital"
+ ],
+ "watch": "Segment profit by business and the pace of asset recycling.",
+ "updated": "2026-11"
+}

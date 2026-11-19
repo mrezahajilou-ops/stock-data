@@ -1,0 +1,43 @@
+{
+ "t": "MTD",
+ "what": "Mettler-Toledo makes precision instruments: laboratory balances, pipettes, titrators and analytical instruments, industrial weighing and inspection systems for factories, and retail scales for supermarkets.",
+ "customers": "Pharmaceutical and chemical laboratories, food and packaging manufacturers, and retailers.",
+ "money": [
+  [
+   "Laboratory Instruments",
+   "the largest part",
+   "balances, pipettes, titration and analytical instruments"
+  ],
+  [
+   "Industrial",
+   "large",
+   "factory weighing, product inspection and transport logistics"
+  ],
+  [
+   "Food Retail",
+   "small",
+   "supermarket scales and labelling"
+  ]
+ ],
+ "moat": "Instruments embedded in regulated laboratory and factory procedures, with a direct sales and service force that competitors with distributors cannot match.",
+ "rivals": [
+  "Thermo Fisher Scientific|TMO",
+  "Sartorius",
+  "Agilent Technologies|A",
+  "Waters|WAT",
+  "Danaher|DHR"
+ ],
+ "risks": [
+  "Pharmaceutical and chemical customers cut instrument spending sharply in recent years",
+  "Chinese demand has been weak",
+  "Revenue has been roughly flat over three years",
+  "Analyst targets imply the shares are already fully valued"
+ ],
+ "opportunities": [
+  "Gross margin of 59% with a long record of raising prices above inflation",
+  "Service and consumables provide recurring revenue through downturns",
+  "It has shrunk its share count consistently through buybacks"
+ ],
+ "watch": "Order growth by region, especially China, and laboratory instrument demand.",
+ "updated": "2026-11"
+}

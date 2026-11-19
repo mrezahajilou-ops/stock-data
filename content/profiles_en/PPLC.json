@@ -1,0 +1,42 @@
+{
+ "t": "PPLC",
+ "what": "PPL delivers electricity in Pennsylvania, Kentucky, Virginia and Rhode Island, delivers gas in Kentucky and Rhode Island, and generates power in Kentucky. It is a regulated utility holding company.",
+ "customers": "Households, businesses and industrial users across four states.",
+ "money": [
+  [
+   "Pennsylvania Regulated",
+   "large",
+   "electricity delivery to about 1.4 million customers"
+  ],
+  [
+   "Kentucky Regulated",
+   "large",
+   "electricity and gas, including generation"
+  ],
+  [
+   "Rhode Island Regulated",
+   "meaningful",
+   "electricity and gas delivery"
+  ]
+ ],
+ "moat": "Delivery monopolies in each state, with returns set by regulators and demand that does not depend on the economy as much as most businesses.",
+ "rivals": [
+  "Exelon|EXC",
+  "FirstEnergy|FE",
+  "Dominion Energy|D",
+  "Duke Energy|DUK"
+ ],
+ "risks": [
+  "Debt of about $20 billion",
+  "Return on invested capital of about 5% is low, as is normal for a regulated utility",
+  "Rate case decisions determine recoverable investment",
+  "Pennsylvania and Kentucky regulators have different and sometimes conflicting priorities"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year with a 24% operating margin",
+  "Data centre requests in Pennsylvania and Kentucky raise long-term demand",
+  "Capital investment plans keep increasing the base it earns on"
+ ],
+ "watch": "Data centre connection agreements and rate case outcomes.",
+ "updated": "2026-11"
+}

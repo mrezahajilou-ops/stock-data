@@ -1,0 +1,32 @@
+{
+ "t": "RVMD",
+ "what": "Revolution Medicines develops cancer medicines that target RAS, a protein mutated in many of the hardest cancers to treat, including most pancreatic cancer. Its lead compounds are in late-stage trials and it has no approved product yet.",
+ "customers": "None yet for medicines; its future customers would be oncologists and health systems.",
+ "money": [
+  [
+   "Collaboration and other",
+   "minimal",
+   "it has essentially no product revenue"
+  ]
+ ],
+ "moat": "A chemistry approach to inhibiting RAS in its active state, an area many companies have tried and failed at for forty years, protected by patents and trial data.",
+ "rivals": [
+  "Amgen|AMGN",
+  "Mirati (Bristol Myers Squibb)|BMY",
+  "Eli Lilly|LLY",
+  "Roche"
+ ],
+ "risks": [
+  "It has no approved product and loses close to $2 billion a year",
+  "Late-stage trials can fail, and the shares would fall very sharply if they did",
+  "It will need to raise more money or partner before any launch",
+  "Large pharmaceutical companies are working on the same target"
+ ],
+ "opportunities": [
+  "Pancreatic cancer has very few effective treatments, so an approval would meet a real gap",
+  "Cash of about $3.7 billion funds it for several years",
+  "Analysts see large upside, reflecting the size of the opportunity if trials succeed"
+ ],
+ "watch": "Late-stage trial readouts in pancreatic and lung cancer, and the cash runway.",
+ "updated": "2026-11"
+}

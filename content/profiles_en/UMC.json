@@ -1,0 +1,33 @@
+{
+ "t": "UMC",
+ "what": "United Microelectronics is a Taiwanese contract chipmaker. It manufactures chips designed by other companies, focusing on mature process nodes rather than the leading edge: the chips used in displays, power management, connectivity and cars.",
+ "customers": "Fabless chip designers, consumer electronics companies, carmakers and industrial customers worldwide.",
+ "money": [
+  [
+   "Foundry services",
+   "almost all of revenue",
+   "wafer manufacturing on mature and specialty process nodes"
+  ]
+ ],
+ "moat": "Depreciated factories running mature processes at low cost, where customers qualify a design once and keep producing it for years.",
+ "rivals": [
+  "Taiwan Semiconductor|TSM",
+  "GlobalFoundries|GFS",
+  "SMIC",
+  "Tower Semiconductor|TSEM",
+  "Vanguard International"
+ ],
+ "risks": [
+  "Chinese foundries are adding mature-node capacity and pushing prices down",
+  "Consumer electronics demand has been weak",
+  "Revenue has fallen about 3% a year over three years",
+  "Taiwan concentration carries geopolitical risk"
+ ],
+ "opportunities": [
+  "Cash of about $5 billion exceeds its debt",
+  "A dividend yield near 3%, unusual for a chipmaker",
+  "Specialty processes for displays and power management are less exposed to price competition than plain logic"
+ ],
+ "watch": "Factory utilisation and average selling price per wafer.",
+ "updated": "2026-11"
+}

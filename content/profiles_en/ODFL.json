@@ -1,0 +1,33 @@
+{
+ "t": "ODFL",
+ "what": "Old Dominion Freight Line is a trucking company specialising in less-than-truckload freight, where shipments from many customers share one trailer. It runs its own terminal network and is known for the best service record in the industry.",
+ "customers": "Manufacturers, retailers and distributors shipping pallets rather than full truckloads across the United States.",
+ "money": [
+  [
+   "Less-than-truckload services",
+   "almost all of revenue",
+   "freight moved through its terminal network"
+  ]
+ ],
+ "moat": "A terminal network built over decades with spare capacity bought ahead of demand, and a damage and on-time record that lets it charge more than competitors.",
+ "rivals": [
+  "XPO|XPO",
+  "Saia|SAIA",
+  "TFI International|TFII",
+  "FedEx Freight|FDX",
+  "ArcBest|ARCB"
+ ],
+ "risks": [
+  "Freight volumes have fallen for three years in the industry downturn",
+  "Revenue fell about 5% last year",
+  "Its fixed terminal costs do not shrink when volumes do",
+  "It trades at a high multiple relative to other trucking companies"
+ ],
+ "opportunities": [
+  "Return on invested capital of 23% with an operating margin of 25%, both the best in the industry",
+  "Almost no debt: about $20 million against $466 million of cash",
+  "A freight recovery would flow through to profits quickly given spare terminal capacity"
+ ],
+ "watch": "Tonnage per day and revenue per hundredweight.",
+ "updated": "2026-11"
+}

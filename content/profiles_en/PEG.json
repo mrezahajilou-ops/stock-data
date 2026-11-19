@@ -1,0 +1,37 @@
+{
+ "t": "PEG",
+ "what": "Public Service Enterprise Group delivers electricity and gas to most of New Jersey through PSE&G, and owns a fleet of nuclear power stations that sell electricity into the regional market.",
+ "customers": "About 2.3 million electricity and 1.9 million gas customers in New Jersey, plus wholesale power buyers.",
+ "money": [
+  [
+   "PSE&G (regulated utility)",
+   "the largest part",
+   "electricity and gas delivery in New Jersey"
+  ],
+  [
+   "PSEG Power and other",
+   "meaningful",
+   "nuclear generation sold into the PJM market"
+  ]
+ ],
+ "moat": "A delivery monopoly across New Jersey plus nuclear plants that produce carbon-free power around the clock, which is exactly what data centres want.",
+ "rivals": [
+  "Consolidated Edison|ED",
+  "Exelon|EXC",
+  "Constellation Energy|CEG",
+  "Dominion Energy|D"
+ ],
+ "risks": [
+  "Debt of about $24 billion against almost no cash",
+  "Power prices determine the earnings of the nuclear fleet",
+  "New Jersey regulators set the utility's allowed return",
+  "Capacity market rules in PJM change and can swing nuclear economics"
+ ],
+ "opportunities": [
+  "Revenue grew about 18% last year",
+  "Data centre interest in contracted nuclear power could produce long-term agreements at good prices",
+  "Regulated investment keeps raising the base it earns a return on"
+ ],
+ "watch": "Any power agreement with a data centre customer, and PJM capacity prices.",
+ "updated": "2026-11"
+}

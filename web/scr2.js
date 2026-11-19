@@ -11,7 +11,7 @@
   var BASE = CFG.data || 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/scrx';
   var QUOTES = CFG.quotes || 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/quotes/quotes.json';
   var STOCK = CFG.stockUrl || '/stock/#';
-  var PAGE = 50, LS = 'scr2_' + LANG + '_';
+  var PAGE = 50, LS = 'scr2_' + LANG + '_', NLOC = LANG === 'es' ? 'de-DE' : LANG === 'tr' ? 'tr-TR' : 'en-US';   /* thousands separator of the count */
   var ACCESS = CFG.access !== false, FREE = CFG.freeRows || 10;   /* members-only sites show the first rows and a subscribe box */
   function L(s) { var a = arguments, t = W[s] != null ? W[s] : s; if (a.length < 2) return t; return t.replace(/%([12])/g, function (m, i) { var v = a[+i]; if (v == null) return m; if (LANG === 'fa' && /^[\d,]+$/.test(String(v))) v = String(v).replace(/\d/g, function (d) { return String.fromCharCode(0x06F0 + +d) }).replace(/,/g, '\u066C'); return v }) }
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] }) }
@@ -421,9 +421,9 @@
       h += '<tr' + (!ACCESS && ri >= FREE ? ' class="s2-lockrow"' : '') + '><td class="nm"><a href="' + STOCK + esc(t) + '" title="' + esc(r[C.n]) + '"><small>' + esc(t) + '</small><span>' + esc(r[C.n]) + '</span></a></td>' + CL.map(function (k) { var f = F[k], v = g(r, k); return '<td' + (f.type === 'c' ? ' class="tx"' : '') + '>' + (C[k] == null ? '…' : fmt(f, v, COLORED.test(k))) + '</td>' }).join('') + '</tr>'
     });
     $('#s2-body').innerHTML = h || '<tr><td class="s2-none" colspan="' + (CL.length + 1) + '">' + esc(L('No stock matches all of these filters. Loosen or remove one.')) + '</td></tr>';
-    $('#s2-count').textContent = L(view.length === 1 ? '%1 stock' : '%1 stocks', view.length.toLocaleString('en-US'));
-    if (!ACCESS) $('#s2-more').innerHTML = view.length > FREE ? '<div class="s2-wall"><b>' + esc(L('%1 more stocks match these filters', (view.length - FREE).toLocaleString('en-US'))) + '</b><p>' + esc(L('WALL_TEXT')) + '</p><a class="s2-btn" href="' + esc(CFG.subUrl || '#') + '">' + esc(L('WALL_MONTHLY')) + '</a> <a class="s2-btn alt" href="' + esc(CFG.subYearUrl || CFG.subUrl || '#') + '">' + esc(L('WALL_YEARLY')) + '</a>' + (CFG.logged ? '' : ' <a class="s2-btn ghost" href="' + esc(CFG.loginUrl || '#') + '">' + esc(L('WALL_LOGIN')) + '</a>') + '</div>' : '';
-    else $('#s2-more').innerHTML = view.length > shown ? '<button type="button" class="s2-btn ghost" id="s2-mb">' + esc(L('Show %1 more', Math.min(PAGE, view.length - shown))) + '</button> <button type="button" class="s2-btn ghost" id="s2-ma">' + esc(L('Show all %1', view.length.toLocaleString('en-US'))) + '</button>' : '';
+    $('#s2-count').textContent = L(view.length === 1 ? '%1 stock' : '%1 stocks', view.length.toLocaleString(NLOC));
+    if (!ACCESS) $('#s2-more').innerHTML = view.length > FREE ? '<div class="s2-wall"><b>' + esc(L('%1 more stocks match these filters', (view.length - FREE).toLocaleString(NLOC))) + '</b><p>' + esc(L('WALL_TEXT')) + '</p><a class="s2-btn" href="' + esc(CFG.subUrl || '#') + '">' + esc(L('WALL_MONTHLY')) + '</a> <a class="s2-btn alt" href="' + esc(CFG.subYearUrl || CFG.subUrl || '#') + '">' + esc(L('WALL_YEARLY')) + '</a>' + (CFG.logged ? '' : ' <a class="s2-btn ghost" href="' + esc(CFG.loginUrl || '#') + '">' + esc(L('WALL_LOGIN')) + '</a>') + '</div>' : '';
+    else $('#s2-more').innerHTML = view.length > shown ? '<button type="button" class="s2-btn ghost" id="s2-mb">' + esc(L('Show %1 more', Math.min(PAGE, view.length - shown))) + '</button> <button type="button" class="s2-btn ghost" id="s2-ma">' + esc(L('Show all %1', view.length.toLocaleString(NLOC))) + '</button>' : '';
     mark(); fn(); tabs()
   }
   function fn() { var n = active.filter(function (k) { return cond[k] }).length; $('#s2-fn').textContent = n ? '(' + n + ')' : '' }

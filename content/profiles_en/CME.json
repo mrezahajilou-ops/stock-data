@@ -1,0 +1,37 @@
+{
+ "t": "CME",
+ "what": "CME Group runs futures and options exchanges. It owns the markets where interest-rate, equity-index, energy, metals and agricultural futures trade, and it clears those trades itself, standing between buyer and seller.",
+ "customers": "Banks, hedge funds, asset managers, commodity producers and active traders worldwide.",
+ "money": [
+  [
+   "Clearing and transaction fees",
+   "the large majority",
+   "a fee on each contract traded and cleared"
+  ],
+  [
+   "Market data and information",
+   "smaller, high margin",
+   "licensing price data and analytics"
+  ]
+ ],
+ "moat": "Liquidity concentrates in one venue: traders go where other traders already are, and open positions can only be closed on the same exchange, which makes moving nearly impossible.",
+ "rivals": [
+  "Intercontinental Exchange|ICE",
+  "Nasdaq|NDAQ",
+  "Cboe Global Markets|CBOE",
+  "Eurex"
+ ],
+ "risks": [
+  "Volumes fall when markets are calm, and the company does not control volatility",
+  "Competitors have tried to launch rival futures venues with lower fees",
+  "Regulatory changes to clearing or margin rules affect the model",
+  "Growth is slow in a mature market"
+ ],
+ "opportunities": [
+  "Operating margins above 60% mean extra volume drops almost straight to profit",
+  "Interest-rate uncertainty keeps hedging demand high",
+  "It pays a regular dividend plus a variable annual dividend from surplus cash"
+ ],
+ "watch": "Average daily volume by product group, particularly interest-rate futures.",
+ "updated": "2026-11"
+}

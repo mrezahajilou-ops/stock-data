@@ -1,0 +1,37 @@
+{
+ "t": "STX",
+ "what": "Seagate makes hard disk drives. Its drives store the bulk of the world's data in cloud data centres, where capacity per dollar matters more than speed. New HAMR technology lets it put far more data on each disk.",
+ "customers": "Cloud and hyperscale data centre operators first, then enterprises and consumer electronics makers.",
+ "money": [
+  [
+   "Data centre drives",
+   "the large majority of revenue",
+   "high-capacity nearline drives for cloud and enterprise storage"
+  ],
+  [
+   "Other storage",
+   "smaller",
+   "drives and systems for edge, video surveillance and consumer use"
+  ]
+ ],
+ "moat": "Only two companies still make hard drives at scale, with factories and head technology that would take years and billions to recreate.",
+ "rivals": [
+  "Western Digital|WDC",
+  "Sandisk|SNDK",
+  "Samsung Electronics",
+  "Kioxia"
+ ],
+ "risks": [
+  "Hard drive demand has historically been deeply cyclical, with sharp down years",
+  "Flash memory keeps taking share in applications where speed matters",
+  "A few cloud customers make up much of demand",
+  "HAMR production has to ramp cleanly to keep its cost advantage"
+ ],
+ "opportunities": [
+  "AI data centres need enormous low-cost capacity, which is exactly what hard drives provide",
+  "Only two suppliers means pricing has held up unusually well in this cycle",
+  "HAMR drives raise capacity per unit, which lifts both revenue and margin"
+ ],
+ "watch": "Exabytes shipped and average price per terabyte, and how fast HAMR drives reach volume.",
+ "updated": "2026-11"
+}

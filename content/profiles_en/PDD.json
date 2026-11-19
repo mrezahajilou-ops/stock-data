@@ -1,0 +1,38 @@
+{
+ "t": "PDD",
+ "what": "PDD Holdings runs Pinduoduo, a Chinese shopping app known for very low prices and group buying, and Temu, the international marketplace that ships low-cost goods from Chinese sellers to shoppers abroad.",
+ "customers": "Chinese consumers on Pinduoduo and shoppers in the US, Europe and other markets on Temu; merchants who pay for advertising and transaction services.",
+ "money": [
+  [
+   "Online marketing services",
+   "the larger part",
+   "advertising paid by merchants to be shown to shoppers"
+  ],
+  [
+   "Transaction services",
+   "growing",
+   "commissions and fees on sales, including Temu"
+  ]
+ ],
+ "moat": "Enormous scale in low-price goods, direct links to Chinese manufacturers, and an app designed around social sharing that keeps customer acquisition costs low.",
+ "rivals": [
+  "Alibaba|BABA",
+  "JD.com|JD",
+  "Amazon|AMZN",
+  "Shein",
+  "Douyin e-commerce"
+ ],
+ "risks": [
+  "Temu depends on cross-border shipping rules; the end of low-value duty exemptions raised its costs",
+  "US scrutiny of Chinese apps and goods is a continuing political risk",
+  "Chinese consumer spending has been weak",
+  "It discloses less about Temu's economics than investors would like"
+ ],
+ "opportunities": [
+  "It holds net cash of about $68 billion, more than half its market value",
+  "Margins remain high despite heavy spending on merchant support",
+  "Temu continues to add markets outside the United States"
+ ],
+ "watch": "Transaction services revenue, which reflects Temu, and the company's spending on merchant subsidies.",
+ "updated": "2026-11"
+}

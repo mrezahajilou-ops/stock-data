@@ -1,0 +1,42 @@
+{
+ "t": "SO",
+ "what": "Southern Company is a regulated electric and gas utility in the southeastern United States. Alabama Power, Georgia Power and Mississippi Power supply electricity to homes and businesses, and Southern Company Gas distributes natural gas.",
+ "customers": "Households, businesses and industrial users in Georgia, Alabama, Mississippi and gas customers in several states.",
+ "money": [
+  [
+   "Regulated electric utilities",
+   "the large majority",
+   "electricity generation, transmission and retail supply in the Southeast"
+  ],
+  [
+   "Southern Company Gas",
+   "meaningful",
+   "natural gas distribution"
+  ],
+  [
+   "Southern Power",
+   "smaller",
+   "wholesale generation sold under long-term contracts"
+  ]
+ ],
+ "moat": "A legal monopoly in its service territory, with prices set by state regulators to cover costs plus an allowed return on the money it invests.",
+ "rivals": [
+  "Duke Energy|DUK",
+  "NextEra Energy|NEE",
+  "Dominion Energy|D",
+  "American Electric Power|AEP"
+ ],
+ "risks": [
+  "Debt of more than $70 billion makes it sensitive to interest rates",
+  "State regulators decide whether it can recover its investments through bills",
+  "Large construction projects have run badly over budget before, as at Plant Vogtle",
+  "Storms and extreme weather damage the network"
+ ],
+ "opportunities": [
+  "Data centre construction in Georgia is driving the fastest electricity demand growth in decades",
+  "Every approved investment in the grid raises the earnings base it is allowed to charge for",
+  "A dividend raised for more than two decades supports the shares"
+ ],
+ "watch": "Approved rate cases and the size of the capital plan, which together set earnings growth.",
+ "updated": "2026-11"
+}

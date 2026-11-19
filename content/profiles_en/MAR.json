@@ -1,0 +1,43 @@
+{
+ "t": "MAR",
+ "what": "Marriott franchises and manages hotels rather than owning them. It licenses about thirty brands, from Ritz-Carlton to Courtyard, to hotel owners who pay it fees, and it runs the Bonvoy loyalty programme that fills those rooms.",
+ "customers": "Hotel owners and developers who pay franchise and management fees; travellers who book through its brands and loyalty programme.",
+ "money": [
+  [
+   "Franchise fees",
+   "the largest part",
+   "a share of room revenue from hotels owned by others"
+  ],
+  [
+   "Management fees",
+   "meaningful",
+   "running hotels for owners for a fee"
+  ],
+  [
+   "Other",
+   "smaller",
+   "loyalty programme, credit-card partnerships and residential branding"
+  ]
+ ],
+ "moat": "The largest hotel loyalty programme, which gives owners a reason to carry its brands, and a global pipeline of roughly 4,100 hotels under development.",
+ "rivals": [
+  "Hilton|HLT",
+  "Hyatt|H",
+  "InterContinental Hotels|IHG",
+  "Airbnb|ABNB",
+  "Accor"
+ ],
+ "risks": [
+  "Travel demand falls sharply in recessions and crises",
+  "It earns a share of room revenue, so weak pricing hits it directly",
+  "Chinese travel demand has been slow to recover",
+  "Owners can switch brands when contracts expire"
+ ],
+ "opportunities": [
+  "Owning almost no hotels means high returns on capital and little capital spending",
+  "Credit-card and loyalty fees are stable revenue that does not depend on room rates",
+  "The development pipeline adds rooms and fees without company investment"
+ ],
+ "watch": "Revenue per available room across regions and net rooms growth.",
+ "updated": "2026-11"
+}

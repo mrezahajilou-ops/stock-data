@@ -1,0 +1,38 @@
+{
+ "t": "BKNG",
+ "what": "Booking Holdings runs the world's largest online travel agency. Booking.com, Priceline, Agoda, KAYAK and OpenTable connect travellers with hotels, flights, cars and restaurants, and it takes a commission on each booking.",
+ "customers": "Travellers worldwide, and the hotels, apartments and travel operators that list with it.",
+ "money": [
+  [
+   "Accommodation bookings",
+   "the large majority",
+   "commission on hotel and alternative-accommodation reservations"
+  ],
+  [
+   "Other travel and advertising",
+   "smaller",
+   "flights, car rental, restaurants and advertising revenue"
+  ]
+ ],
+ "moat": "The largest supply of bookable properties and the largest audience, which reinforce each other: hosts list where the travellers are and travellers search where the choice is widest.",
+ "rivals": [
+  "Airbnb|ABNB",
+  "Expedia|EXPE",
+  "Trip.com|TCOM",
+  "Google Travel|GOOGL",
+  "Marriott and hotel direct booking"
+ ],
+ "risks": [
+  "Travel demand collapses in a recession, a pandemic or a security crisis",
+  "Google controls much of the traffic it buys and can change search results",
+  "European regulators have targeted its contract terms with hotels",
+  "Marketing spending is enormous and rises when competition intensifies"
+ ],
+ "opportunities": [
+  "Return on invested capital near 50% means growth needs very little new money",
+  "Alternative accommodation and the connected-trip strategy add bookings per customer",
+  "Almost all free cash flow is returned through buybacks, shrinking the share count"
+ ],
+ "watch": "Room nights booked, which shows volume growth before currency and price effects.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,32 @@
+{
+ "t": "SNDK",
+ "what": "Sandisk makes NAND flash memory, the chips used in solid-state drives, memory cards and phones. It was spun out of Western Digital in 2025 and runs manufacturing jointly with Kioxia in Japan.",
+ "customers": "Cloud and enterprise data centre operators, phone and PC makers, and retail buyers of memory cards and drives.",
+ "money": [
+  [
+   "Flash memory and solid-state drives",
+   "effectively all of revenue",
+   "NAND chips, enterprise and client SSDs, memory cards"
+  ]
+ ],
+ "moat": "Flash fabs cost tens of billions to build, and its long-running joint venture with Kioxia shares that cost across two companies.",
+ "rivals": [
+  "Samsung Electronics",
+  "SK hynix",
+  "Micron Technology|MU",
+  "Kioxia"
+ ],
+ "risks": [
+  "Memory is the most cyclical part of the chip industry: prices and profits swing violently",
+  "It depends on a joint venture it does not fully control",
+  "A single downturn can erase several years of profit",
+  "It is a young standalone company without a long track record"
+ ],
+ "opportunities": [
+  "AI storage demand has pushed flash prices sharply higher, lifting revenue about 175% in the last year",
+  "High-capacity enterprise SSDs are a faster-growing, better-priced segment",
+  "Low debt means it can withstand a downcycle better than in the past"
+ ],
+ "watch": "NAND contract prices and whether supply discipline among the handful of producers holds.",
+ "updated": "2026-11"
+}

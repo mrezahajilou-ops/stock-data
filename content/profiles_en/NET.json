@@ -1,0 +1,33 @@
+{
+ "t": "NET",
+ "what": "Cloudflare runs a global network that sits in front of websites and applications. It blocks attacks, speeds up delivery, provides corporate network security and increasingly runs customers' code and AI workloads at the edge.",
+ "customers": "Websites and apps of every size, from free users to large enterprises; corporate IT and security teams.",
+ "money": [
+  [
+   "Subscription services",
+   "effectively all of revenue",
+   "security, performance and developer platform subscriptions, mostly annual contracts"
+  ]
+ ],
+ "moat": "A network present in hundreds of cities that would be very expensive to reproduce, plus the data advantage of seeing a large share of the world's internet traffic.",
+ "rivals": [
+  "Akamai Technologies|AKAM",
+  "Fastly|FSLY",
+  "Amazon Web Services|AMZN",
+  "Zscaler|ZS",
+  "Palo Alto Networks|PANW"
+ ],
+ "risks": [
+  "It is not yet profitable on reported earnings and lost about $239 million over the last twelve months",
+  "The shares trade at a very high multiple of revenue, which leaves no room for a growth slowdown",
+  "Large cloud providers bundle competing services",
+  "Winning large enterprise contracts takes long sales cycles"
+ ],
+ "opportunities": [
+  "Revenue has grown about 30% a year while gross margins stay around 75%",
+  "The developer platform and AI inference at the edge open markets beyond security",
+  "Large customers spending over $100,000 a year are the fastest-growing group"
+ ],
+ "watch": "Dollar-based net retention and the number of large customers, which show whether existing accounts keep expanding.",
+ "updated": "2026-11"
+}

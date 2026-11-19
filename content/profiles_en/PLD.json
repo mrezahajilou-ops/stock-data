@@ -1,0 +1,42 @@
+{
+ "t": "PLD",
+ "what": "Prologis owns warehouses. It is the largest industrial landlord in the world, renting distribution space near major cities to retailers, logistics firms and manufacturers, and it manages property funds for outside investors.",
+ "customers": "Retailers, parcel and logistics companies, manufacturers and e-commerce firms renting space; institutional investors in its funds.",
+ "money": [
+  [
+   "Rental income",
+   "the large majority",
+   "rent on warehouses it owns directly"
+  ],
+  [
+   "Strategic capital",
+   "smaller",
+   "fees for managing warehouse funds for institutional investors"
+  ],
+  [
+   "Development",
+   "variable",
+   "building new warehouses and selling or keeping them"
+  ]
+ ],
+ "moat": "Land near large cities where new warehouse permits are hard to obtain, and a portfolio so large that national customers can rent from it everywhere at once.",
+ "rivals": [
+  "Segro",
+  "GLP",
+  "EastGroup Properties|EGP",
+  "First Industrial Realty|FR"
+ ],
+ "risks": [
+  "Warehouse rents stopped rising after a glut of new supply following the pandemic boom",
+  "Higher interest rates raise financing costs and lower property values",
+  "Tenants scale back space when consumer demand weakens",
+  "Debt of about $35 billion is normal for a landlord but limits flexibility"
+ ],
+ "opportunities": [
+  "Rents on leases signed years ago are far below current market rents, so renewals still lift income",
+  "It is converting some land to data centres, where demand and rents are higher",
+  "Falling interest rates would lift property values and lower refinancing costs"
+ ],
+ "watch": "Occupancy and the gap between expiring and new rents, which drives growth without buying anything.",
+ "updated": "2026-11"
+}

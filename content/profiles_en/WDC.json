@@ -1,0 +1,37 @@
+{
+ "t": "WDC",
+ "what": "Western Digital makes hard disk drives for data centres. After spinning off its flash memory business as Sandisk in 2025, it is now focused on high-capacity drives that store cloud and AI data cheaply.",
+ "customers": "Cloud and hyperscale data centre operators, enterprise storage vendors and video surveillance firms.",
+ "money": [
+  [
+   "Data centre drives",
+   "the large majority",
+   "high-capacity nearline hard drives for cloud storage"
+  ],
+  [
+   "Client and consumer",
+   "smaller",
+   "drives for PCs, external storage and surveillance"
+  ]
+ ],
+ "moat": "One of only two remaining hard drive makers at scale, with factories, patents and head technology that cannot be rebuilt quickly.",
+ "rivals": [
+  "Seagate Technology|STX",
+  "Sandisk|SNDK",
+  "Samsung Electronics",
+  "Kioxia"
+ ],
+ "risks": [
+  "Hard drive demand has swung sharply between boom and bust in past cycles",
+  "Flash storage continues to take share in applications where speed matters",
+  "Demand is concentrated among a few cloud buyers",
+  "It is a smaller company after the Sandisk separation"
+ ],
+ "opportunities": [
+  "AI data centres need bulk storage at the lowest cost per terabyte, which favours hard drives",
+  "Only two suppliers has kept pricing firm through this cycle",
+  "Revenue grew about 36% in the last financial year with very high margins"
+ ],
+ "watch": "Exabytes shipped and pricing per terabyte, plus progress on next-generation recording technology.",
+ "updated": "2026-11"
+}

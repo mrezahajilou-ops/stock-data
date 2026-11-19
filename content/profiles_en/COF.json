@@ -1,0 +1,43 @@
+{
+ "t": "COF",
+ "what": "Capital One is a US bank built around credit cards. It lends to consumers who use its cards, finances car purchases, takes deposits online, and since buying Discover it also owns a payments network that competes with Visa and Mastercard.",
+ "customers": "US consumers and small businesses; merchants and card issuers using the Discover network.",
+ "money": [
+  [
+   "Credit card",
+   "the largest part",
+   "interest and fees on card balances, plus interchange"
+  ],
+  [
+   "Consumer banking",
+   "large",
+   "car loans and online deposit accounts"
+  ],
+  [
+   "Commercial banking",
+   "smaller",
+   "lending to mid-sized businesses"
+  ]
+ ],
+ "moat": "Decades of credit data used to price risk, a national deposit base gathered online without branches, and now ownership of a payments network.",
+ "rivals": [
+  "American Express|AXP",
+  "JPMorgan Chase|JPM",
+  "Synchrony Financial|SYF",
+  "Visa|V",
+  "Mastercard|MA"
+ ],
+ "risks": [
+  "Card lending is concentrated in customers whose finances suffer first in a downturn",
+  "Charge-offs rise quickly when unemployment increases",
+  "Integrating Discover is a large, multi-year undertaking",
+  "Regulators scrutinise card fees and late-fee rules"
+ ],
+ "opportunities": [
+  "Owning the Discover network lets it keep fees that previously went to Visa and Mastercard",
+  "Revenue rose about 37% in the last financial year as Discover was consolidated",
+  "Cost savings from the merger are still being realised"
+ ],
+ "watch": "Net charge-off rates on cards and progress moving its own card volume onto the Discover network.",
+ "updated": "2026-11"
+}

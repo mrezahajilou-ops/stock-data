@@ -1,0 +1,37 @@
+{
+ "t": "NEM",
+ "what": "Newmont is the world's largest gold miner, with operations across the Americas, Africa, Australia and Papua New Guinea. It also produces copper, silver, lead and zinc from the same mines.",
+ "customers": "Refiners and bullion markets for gold; smelters and traders for copper and other metals.",
+ "money": [
+  [
+   "Gold",
+   "the large majority of revenue",
+   "production from mines in twelve countries"
+  ],
+  [
+   "Copper and other metals",
+   "meaningful",
+   "copper, silver, lead and zinc recovered alongside gold"
+  ]
+ ],
+ "moat": "A portfolio of very large, long-life mines in mostly stable jurisdictions, and reserves of more than 100 million ounces that would take decades to replace.",
+ "rivals": [
+  "Barrick Mining|B",
+  "Agnico Eagle Mines|AEM",
+  "Kinross Gold|KGC",
+  "Gold Fields|GFI"
+ ],
+ "risks": [
+  "Profit depends on the gold price, which the company does not control",
+  "Mining cost inflation has eaten into margins across the industry",
+  "Operations in Papua New Guinea, Ghana and Argentina carry political risk",
+  "Integrating the Newcrest acquisition involved selling several mines"
+ ],
+ "opportunities": [
+  "A high gold price has lifted revenue about 21% and produced large free cash flow",
+  "Selling smaller mines concentrates the portfolio on the best assets",
+  "Copper output grows with gold mining and benefits from electrification demand"
+ ],
+ "watch": "All-in sustaining cost per ounce, which shows how much of a high gold price it keeps.",
+ "updated": "2026-11"
+}

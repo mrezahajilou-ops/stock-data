@@ -1,0 +1,43 @@
+{
+ "t": "ADP",
+ "what": "ADP processes payroll and runs human-resources systems for companies. It calculates pay, withholds and files taxes, handles benefits and, for smaller firms, acts as the legal co-employer that takes on insurance and compliance.",
+ "customers": "More than a million businesses, from very small firms to multinationals, mainly in the United States.",
+ "money": [
+  [
+   "Employer Services",
+   "the larger part",
+   "payroll, tax filing, time tracking and HR software by subscription"
+  ],
+  [
+   "Professional Employer Organization",
+   "meaningful",
+   "taking on payroll, benefits and insurance for small businesses as co-employer"
+  ],
+  [
+   "Interest on client funds",
+   "smaller but high margin",
+   "interest earned on tax and payroll money held briefly before it is paid out"
+  ]
+ ],
+ "moat": "Payroll is painful and risky to switch, tax filing in every US jurisdiction is hard to replicate, and decades of data make its systems accurate.",
+ "rivals": [
+  "Paychex|PAYX",
+  "Paycom|PAYC",
+  "Workday|WDAY",
+  "Paylocity|PCTY",
+  "Intuit QuickBooks Payroll|INTU"
+ ],
+ "risks": [
+  "Revenue tracks employment: a recession cuts the number of paid employees it processes",
+  "Interest on client funds falls when central banks cut rates",
+  "Newer cloud rivals compete hard for mid-sized companies",
+  "Pricing power is limited in a mature market"
+ ],
+ "opportunities": [
+  "Recurring subscription revenue and very high returns on capital make earnings unusually predictable",
+  "The co-employer business keeps winning small firms that cannot manage benefits alone",
+  "Decades of consecutive dividend increases support the shares"
+ ],
+ "watch": "Employment growth at its client base and the pace of new business bookings.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "SNY",
+ "what": "Sanofi is a French pharmaceutical company. Its largest product by far is Dupixent, a medicine for eczema, asthma and related inflammatory diseases, and it is also one of the world's largest vaccine makers.",
+ "customers": "Health systems, insurers and governments; vaccines are often bought under national programmes.",
+ "money": [
+  [
+   "Specialty care",
+   "the largest part",
+   "Dupixent and other immunology, rare disease and oncology medicines"
+  ],
+  [
+   "Vaccines",
+   "large",
+   "flu, meningitis, polio and travel vaccines"
+  ],
+  [
+   "General medicines",
+   "declining",
+   "older established products including diabetes treatments"
+  ]
+ ],
+ "moat": "Dupixent's position in several large inflammatory diseases, vaccine manufacturing that takes years to build and license, and global regulatory reach.",
+ "rivals": [
+  "AstraZeneca|AZN",
+  "GSK|GSK",
+  "Merck|MRK",
+  "Pfizer|PFE",
+  "Regeneron|REGN"
+ ],
+ "risks": [
+  "Dupixent dominates growth, so any setback matters disproportionately",
+  "It shares Dupixent economics with Regeneron",
+  "Several late-stage trials have disappointed in recent years",
+  "US and European price controls keep pressure on margins"
+ ],
+ "opportunities": [
+  "Dupixent keeps adding approved uses, each opening a new patient group",
+  "A heavy pipeline in immunology could produce the next growth driver",
+  "Separating its consumer health business leaves a more focused company"
+ ],
+ "watch": "Dupixent sales growth and the results of its late-stage immunology trials.",
+ "updated": "2026-11"
+}

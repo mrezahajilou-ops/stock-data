@@ -63,14 +63,55 @@ def section(text, start_pats, end_pats, limit):
     return best[:limit].rsplit(" ", 1)[0]
 
 
+def prose(text, limit, skip=2500):
+    """Fallback when the headings cannot be matched: the first real paragraphs of the document.
+    Table-of-contents lines, headings and page numbers are short, so only long lines are kept."""
+    lines = [ln for ln in text[skip:].split("\n") if len(ln) > 150]
+    out = "\n".join(lines).strip()
+    return out[:limit].rsplit(" ", 1)[0] if len(out) > 1500 else ""
+
+
 def extract(text, form):
     if form.startswith("10-K"):
-        biz = section(text, [r"\n\s*item\s*1\s*[.:\-–—]?\s*business\b"], [r"\n\s*item\s*1a\s*[.:\-–—]?\s*risk", r"\n\s*item\s*1b\b", r"\n\s*item\s*2\s*[.:\-–—]?\s*properties"], 9000)
-        risk = section(text, [r"\n\s*item\s*1a\s*[.:\-–—]?\s*risk\s*factors\b"], [r"\n\s*item\s*1b\b", r"\n\s*item\s*1c\b", r"\n\s*item\s*2\s*[.:\-–—]?\s*properties"], 7000)
+        starts = [r"\n\s*items?\s*1\s*(?:and\s*2\s*)?[.:\-–—]?\s*(?:and\s*2\s*[.:\-–—]?\s*)?business\b",
+                  r"\n\s*item\s*1\s*[.:\-–—]?\s*(?:our\s+|the\s+)?business\b",
+                  r"\n\s*item\s*1\s*[.:\-–—]?\s*description\s+of\s+(?:the\s+)?business\b"]
+        ends = [r"\n\s*item\s*1a\s*[.:\-–—]?\s*risk", r"\n\s*item\s*1b\b", r"\n\s*item\s*2\s*[.:\-–—]?\s*properties", r"\n\s*item\s*3\s*[.:\-–—]?\s*legal"]
+        biz = section(text, starts, ends, 9000)
+        risk = section(text, [r"\n\s*items?\s*1a\s*[.:\-–—]?\s*risk\s*factors\b", r"\n\s*risk\s+factors\s*\n"],
+                       [r"\n\s*item\s*1b\b", r"\n\s*item\s*1c\b", r"\n\s*item\s*2\s*[.:\-–—]?\s*properties", r"\n\s*item\s*3\s*[.:\-–—]?\s*legal"], 7000)
     else:   # 20-F / 40-F
-        biz = section(text, [r"\n\s*item\s*4\s*[.:\-–—]?\s*information\s+on\s+the\s+company\b", r"\n\s*(?:b\.\s*)?business\s+overview\b"], [r"\n\s*item\s*4a\b", r"\n\s*item\s*5\s*[.:\-–—]?\s*operating", r"\n\s*c\.\s*organizational\s+structure"], 9000)
-        risk = section(text, [r"\n\s*(?:d\.\s*)?risk\s+factors\b"], [r"\n\s*item\s*4\s*[.:\-–—]?\s*information\s+on", r"\n\s*item\s*4\b"], 7000)
+        biz = section(text, [r"\n\s*item\s*4\s*[.:\-–—]?\s*information\s+on\s+the\s+company\b", r"\n\s*(?:b\.\s*)?business\s+overview\b",
+                             r"\n\s*(?:our\s+)?business\s*\n", r"\n\s*description\s+of\s+(?:the\s+)?business\b"],
+                      [r"\n\s*item\s*4a\b", r"\n\s*item\s*5\s*[.:\-–—]?\s*operating", r"\n\s*c\.\s*organizational\s+structure"], 9000)
+        risk = section(text, [r"\n\s*(?:d\.\s*)?risk\s+factors\b"], [r"\n\s*item\s*4\s*[.:\-–—]?\s*information\s+on", r"\n\s*item\s*4\b", r"\n\s*item\s*5\b"], 7000)
+    if not biz:
+        biz = prose(text, 9000)
     return biz, risk
+
+
+def biggest_doc(cik, acc, skip_doc):
+    """The largest .htm document of the same filing, which for a cover-page filing holds the annual report."""
+    base = "https://www.sec.gov/Archives/edgar/data/%d/%s/" % (cik, acc.replace("-", ""))
+    raw = fetch(base + "index.json")
+    if not raw:
+        return None
+    try:
+        items = json.loads(raw)["directory"]["item"]
+    except Exception:
+        return None
+    best, size = None, 0
+    for it in items:
+        name = it.get("name") or ""
+        if not name.lower().endswith((".htm", ".html")) or name == skip_doc:
+            continue
+        try:
+            n = int(it.get("size") or 0)
+        except Exception:
+            n = 0
+        if n > size:
+            best, size = name, n
+    return (base + best) if (best and size > 200_000) else None
 
 
 def one(t, cik):
@@ -98,7 +139,20 @@ def one(t, cik):
     raw = fetch(url)
     if not raw:
         return None
-    biz, risk = extract(to_text(raw), r["form"][pick])
+    text = to_text(raw)
+    biz, risk = extract(text, r["form"][pick])
+    if len(biz) < 1500 or len(text) < 60000:
+        # some filings (often 40-F and 20-F) carry a short cover document and the annual report as an exhibit
+        alt = biggest_doc(cik, acc, doc)
+        if alt:
+            time.sleep(0.15)
+            raw2 = fetch(alt)
+            if raw2:
+                t2 = to_text(raw2)
+                if len(t2) > len(text):
+                    b2, r2 = extract(t2, r["form"][pick])
+                    if len(b2) > len(biz):
+                        url, biz, risk = alt, b2, (r2 or risk)
     return {"t": t, "cik": cik, "form": r["form"][pick], "filed": r["filingDate"][pick], "period": (r.get("reportDate") or [""] * (pick + 1))[pick],
             "url": url, "business": biz, "risks": risk}
 

@@ -1,0 +1,38 @@
+{
+ "t": "UI",
+ "what": "Ubiquiti makes networking equipment: wireless access points, switches, routers and security cameras under the UniFi brand. It sells almost entirely online and through distributors with very little sales force, which is why its margins are unusual.",
+ "customers": "Internet service providers, small and medium businesses, network installers and home enthusiasts worldwide.",
+ "money": [
+  [
+   "Enterprise Technology",
+   "the larger part",
+   "UniFi switches, access points, cameras and door access"
+  ],
+  [
+   "Service Provider Technology",
+   "smaller",
+   "wireless broadband equipment for internet providers"
+  ]
+ ],
+ "moat": "A community of installers and enthusiasts who learn its software and recommend it, which replaces the sales and marketing cost that competitors carry.",
+ "rivals": [
+  "Cisco|CSCO",
+  "HPE (Aruba)|HPE",
+  "Netgear|NTGR",
+  "TP-Link",
+  "Juniper (Mist)"
+ ],
+ "risks": [
+  "Very few analysts cover it and the founder controls most of the shares",
+  "Supply chain and tariff exposure on hardware made in Asia",
+  "Enterprise customers may prefer vendors with formal support contracts",
+  "The shares trade at a high multiple after a large rise"
+ ],
+ "opportunities": [
+  "Return on invested capital of 63% and a 36% operating margin, extraordinary for hardware",
+  "Revenue grew about 27% last year",
+  "Almost no debt against $845 million of cash"
+ ],
+ "watch": "Enterprise Technology revenue growth and gross margin.",
+ "updated": "2026-11"
+}

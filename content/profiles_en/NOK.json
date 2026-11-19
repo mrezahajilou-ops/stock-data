@@ -1,0 +1,48 @@
+{
+ "t": "NOK",
+ "what": "Nokia makes telecom network equipment: mobile base stations, optical and IP routing gear for fixed networks, and it licenses its patents to phone makers. It no longer makes phones itself.",
+ "customers": "Mobile operators worldwide, fixed broadband providers, large enterprises, and handset makers paying patent licences.",
+ "money": [
+  [
+   "Network Infrastructure",
+   "large",
+   "optical, IP routing and fixed broadband equipment"
+  ],
+  [
+   "Mobile Networks",
+   "large",
+   "radio access equipment for mobile operators"
+  ],
+  [
+   "Cloud and Network Services",
+   "meaningful",
+   "core network and software"
+  ],
+  [
+   "Nokia Technologies",
+   "small, very high margin",
+   "patent licensing"
+  ]
+ ],
+ "moat": "Patents essential to mobile standards, which earn royalties regardless of whose equipment is sold, plus one of only three Western suppliers operators can choose.",
+ "rivals": [
+  "Ericsson|ERIC",
+  "Huawei",
+  "Ciena|CIEN",
+  "Cisco|CSCO",
+  "Samsung"
+ ],
+ "risks": [
+  "Mobile operator capital spending has been weak for two years",
+  "Operating margin of about 4% is thin",
+  "It competes against Huawei on price in markets that allow it",
+  "Revenue fell about 3% a year over three years before last year's recovery"
+ ],
+ "opportunities": [
+  "Revenue grew about 17% last year",
+  "Optical and IP equipment is being bought by data centre operators, a new customer type",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Network Infrastructure orders from data centre customers and patent licensing renewals.",
+ "updated": "2026-11"
+}

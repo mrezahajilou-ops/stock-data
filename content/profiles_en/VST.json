@@ -1,0 +1,37 @@
+{
+ "t": "VST",
+ "what": "Vistra generates electricity and sells it directly to customers. It owns gas, coal, nuclear and solar plants across the United States, and retail brands such as TXU Energy that sell power to households. Its nuclear plants have become valuable as data centres look for round-the-clock clean power.",
+ "customers": "Households and businesses buying retail electricity, plus wholesale power markets and large data centre customers.",
+ "money": [
+  [
+   "Retail",
+   "large",
+   "electricity sold directly to homes and businesses"
+  ],
+  [
+   "Generation",
+   "large",
+   "power sold from its gas, nuclear, coal and solar fleet"
+  ]
+ ],
+ "moat": "Owning both the generation and the retail customers, which hedges it naturally: when wholesale prices spike the generation earns more, and the retail book is already supplied.",
+ "rivals": [
+  "Constellation Energy|CEG",
+  "NRG Energy|NRG",
+  "Talen Energy|TLN",
+  "NextEra Energy|NEE"
+ ],
+ "risks": [
+  "Debt of about $21 billion",
+  "Power prices are volatile and winter storms have caused large losses in Texas before",
+  "Net margin of about 5% reflects commodity exposure",
+  "The shares have risen a long way on data centre expectations"
+ ],
+ "opportunities": [
+  "Analysts see large upside, with a median target well above the current price",
+  "Nuclear capacity is in demand from data centres wanting carbon-free power around the clock",
+  "Texas electricity demand is growing faster than anywhere in the country"
+ ],
+ "watch": "Power purchase agreements signed with data centre customers and forward power prices.",
+ "updated": "2026-11"
+}

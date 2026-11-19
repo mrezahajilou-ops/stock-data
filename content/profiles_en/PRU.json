@@ -1,0 +1,48 @@
+{
+ "t": "PRU",
+ "what": "Prudential Financial sells life insurance, annuities and retirement products in the United States, Japan and emerging markets, and runs PGIM, an asset manager with over $1.6 trillion under management.",
+ "customers": "Individuals buying life insurance and annuities, employers arranging group benefits and pension transfers, and institutions investing through PGIM.",
+ "money": [
+  [
+   "PGIM",
+   "large, capital-light",
+   "asset management fees"
+  ],
+  [
+   "Retirement Strategies",
+   "large",
+   "annuities and pension risk transfer"
+  ],
+  [
+   "Group Insurance and Individual Life",
+   "meaningful",
+   "workplace and individual life insurance"
+  ],
+  [
+   "International",
+   "large",
+   "insurance in Japan and emerging markets"
+  ]
+ ],
+ "moat": "A balance sheet large enough to take on corporate pension obligations, a business where very few competitors can participate.",
+ "rivals": [
+  "MetLife|MET",
+  "Corebridge Financial|CRBG",
+  "Principal Financial|PFG",
+  "Manulife Financial|MFC",
+  "Lincoln National|LNC"
+ ],
+ "risks": [
+  "Falling interest rates reduce the income earned on invested premiums",
+  "Japanese operations expose it to yen movements",
+  "Revenue fell about 14% last year on insurance accounting effects",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "A dividend yield above 4.5% with a long increase record",
+  "Pension risk transfer demand continues as companies offload obligations",
+  "PGIM earns fees without consuming insurance capital"
+ ],
+ "watch": "PGIM net flows and the sales of annuities and pension transfers.",
+ "updated": "2026-11"
+}

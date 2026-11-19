@@ -1,0 +1,38 @@
+{
+ "t": "KR",
+ "what": "Kroger is one of the largest grocers in the United States, with around 2,700 supermarkets under Kroger, Ralphs, Fred Meyer and other local names, plus pharmacies and fuel stations. Its own-brand products and retail advertising business are increasingly important.",
+ "customers": "American grocery shoppers, mostly in the Midwest, South and West.",
+ "money": [
+  [
+   "Supermarket sales",
+   "almost all of revenue",
+   "groceries, fresh food, own brands, pharmacy and fuel"
+  ],
+  [
+   "Retail media and other",
+   "small but high margin",
+   "advertising sold to suppliers using its shopper data"
+  ]
+ ],
+ "moat": "Store density and distribution in its regions, plus own-brand products that customers cannot buy elsewhere.",
+ "rivals": [
+  "Walmart|WMT",
+  "Albertsons|ACI",
+  "Costco Wholesale|COST",
+  "Amazon (Whole Foods)|AMZN",
+  "Publix"
+ ],
+ "risks": [
+  "Net margin of about 1% leaves almost no room for error",
+  "The blocked Albertsons merger cost years of management attention and a large fee",
+  "Walmart and Costco compete hard on price",
+  "Debt of about $23 billion against very little cash"
+ ],
+ "opportunities": [
+  "Retail media advertising earns high margins on data it already has",
+  "Own-brand products are more profitable than national brands",
+  "Grocery demand is stable through recessions"
+ ],
+ "watch": "Identical-store sales excluding fuel, and digital sales growth.",
+ "updated": "2026-11"
+}

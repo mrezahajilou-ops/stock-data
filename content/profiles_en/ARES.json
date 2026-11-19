@@ -1,0 +1,48 @@
+{
+ "t": "ARES",
+ "what": "Ares Management invests money for institutions in private credit, private equity, real estate and infrastructure. Private credit, lending directly to companies instead of through banks, is its largest and best-known business.",
+ "customers": "Pension funds, insurers, sovereign wealth funds and increasingly wealthy individuals investing in its funds.",
+ "money": [
+  [
+   "Credit",
+   "the largest part",
+   "direct lending, liquid credit and alternative credit"
+  ],
+  [
+   "Real Assets",
+   "large",
+   "real estate and infrastructure funds"
+  ],
+  [
+   "Private Equity",
+   "meaningful",
+   "buyout and growth investing"
+  ],
+  [
+   "Secondaries and other",
+   "smaller",
+   "secondary fund purchases and wealth products"
+  ]
+ ],
+ "moat": "A twenty-five year lending record that institutions underwrite, and fund structures that lock capital up for years, so fee income is unusually predictable.",
+ "rivals": [
+  "Blackstone|BX",
+  "Apollo Global Management|APO",
+  "KKR|KKR",
+  "Blue Owl Capital|OWL",
+  "Brookfield|BN"
+ ],
+ "risks": [
+  "Private credit losses would rise in a recession and have not been tested in one at this scale",
+  "Net margin of about 9% looks low because consolidated funds inflate revenue",
+  "Fundraising slows when institutions are over-allocated to private assets",
+  "Competition has compressed lending spreads"
+ ],
+ "opportunities": [
+  "Revenue grew about 44% last year",
+  "Fee-paying assets under management keep growing, which is what drives earnings",
+  "Wealthy individual investors are a large new source of capital"
+ ],
+ "watch": "Fee-paying assets under management and fee-related earnings growth.",
+ "updated": "2026-11"
+}

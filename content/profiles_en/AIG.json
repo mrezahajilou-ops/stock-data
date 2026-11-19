@@ -1,0 +1,43 @@
+{
+ "t": "AIG",
+ "what": "American International Group is a property and casualty insurer. After selling its life and retirement business it now focuses on commercial insurance for large companies, specialty lines such as marine and aviation, and personal insurance for high-net-worth clients.",
+ "customers": "Large corporations, specialty risk buyers, and wealthy individuals insuring homes, art and yachts.",
+ "money": [
+  [
+   "North America Commercial",
+   "large",
+   "property, casualty and specialty insurance for US companies"
+  ],
+  [
+   "International Commercial",
+   "large",
+   "commercial insurance outside the United States"
+  ],
+  [
+   "Global Personal",
+   "meaningful",
+   "high-net-worth personal insurance and travel"
+  ]
+ ],
+ "moat": "Underwriting capacity and a global licence network that lets it insure risks few others will take, built on data from decades of claims.",
+ "rivals": [
+  "Chubb|CB",
+  "Travelers|TRV",
+  "Zurich Insurance",
+  "Allianz",
+  "Berkshire Hathaway|BRK.B"
+ ],
+ "risks": [
+  "Catastrophe losses from hurricanes and wildfires can be very large",
+  "Commercial insurance pricing has softened after several strong years",
+  "Revenue has fallen as businesses were sold",
+  "Reserve strengthening on old policies has hurt it before"
+ ],
+ "opportunities": [
+  "A much simpler company after exiting life and retirement",
+  "Underwriting discipline has improved the combined ratio markedly",
+  "Large buybacks have shrunk the share count substantially"
+ ],
+ "watch": "The combined ratio and commercial insurance pricing.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "NTRA",
+ "what": "Natera makes genetic tests from blood samples. Its main products screen pregnancies for chromosomal conditions, test transplanted organs for rejection, and detect traces of tumour DNA in cancer patients after surgery.",
+ "customers": "Obstetricians, oncologists and transplant centres, with testing paid for by insurers and health systems.",
+ "money": [
+  [
+   "Women's health",
+   "large",
+   "non-invasive prenatal and carrier screening"
+  ],
+  [
+   "Oncology (Signatera)",
+   "growing fastest",
+   "molecular residual disease testing after cancer treatment"
+  ],
+  [
+   "Organ health",
+   "meaningful",
+   "transplant rejection testing"
+  ]
+ ],
+ "moat": "A tumour-informed test built from each patient's own cancer, backed by clinical evidence and insurer coverage decisions that took years to win.",
+ "rivals": [
+  "Guardant Health|GH",
+  "Exact Sciences|EXAS",
+  "Illumina|ILMN",
+  "Myriad Genetics|MYGN",
+  "Labcorp|LH"
+ ],
+ "risks": [
+  "It still loses money at the operating line",
+  "Insurer reimbursement decisions determine whether tests get paid for",
+  "Competitors are launching similar cancer monitoring tests",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 36% last year and about 41% a year over three years",
+  "Signatera volumes keep rising as oncologists adopt residual disease testing",
+  "Cash of about $1.1 billion against little debt funds the growth"
+ ],
+ "watch": "Signatera test volumes and gross margin as the mix shifts to oncology.",
+ "updated": "2026-11"
+}

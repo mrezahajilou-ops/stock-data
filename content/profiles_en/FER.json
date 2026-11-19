@@ -1,0 +1,43 @@
+{
+ "t": "FER",
+ "what": "Ferrovial builds and owns infrastructure. It holds a large stake in the 407 toll motorway around Toronto and in managed lanes in Texas and Virginia, owns a share of Heathrow-area airports and others, and runs a construction business that builds the projects.",
+ "customers": "Drivers paying tolls, air passengers and airlines, and governments awarding construction and concession contracts.",
+ "money": [
+  [
+   "Toll roads",
+   "the largest part of profit",
+   "the 407 ETR in Toronto and managed lanes in Texas and Virginia"
+  ],
+  [
+   "Construction",
+   "the largest part of revenue, thin margin",
+   "civil engineering and building projects"
+  ],
+  [
+   "Airports",
+   "growing",
+   "stakes in airports in the United Kingdom and elsewhere"
+  ]
+ ],
+ "moat": "Toll concessions with decades left to run on roads that cannot be duplicated, where it sets prices within contractual limits.",
+ "rivals": [
+  "Vinci",
+  "ACS",
+  "Atlantia",
+  "Transurban",
+  "Skanska"
+ ],
+ "risks": [
+  "Construction margins are thin and projects can go wrong",
+  "Debt of about $12 billion sits against long-dated concession assets",
+  "Toll traffic falls in a recession",
+  "Analyst coverage here is thin"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year",
+  "Managed lanes in Texas and Virginia raise prices with congestion and have grown faster than forecast",
+  "The 407 concession runs to 2098 and raises tolls each year"
+ ],
+ "watch": "Traffic and toll revenue on the 407 and the US managed lanes.",
+ "updated": "2026-11"
+}

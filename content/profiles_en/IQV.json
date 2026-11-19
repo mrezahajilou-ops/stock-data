@@ -1,0 +1,43 @@
+{
+ "t": "IQV",
+ "what": "IQVIA runs clinical trials for drug companies and sells them data and analytics about prescriptions and markets. It is the largest contract research organisation in the world and also the largest provider of pharmaceutical market data.",
+ "customers": "Pharmaceutical and biotechnology companies of all sizes, plus medical device makers and healthcare providers.",
+ "money": [
+  [
+   "Research and Development Solutions",
+   "the larger part",
+   "running clinical trials for drug companies"
+  ],
+  [
+   "Technology and Analytics Solutions",
+   "large",
+   "prescription data, market analytics and software"
+  ],
+  [
+   "Contract Sales and Medical Solutions",
+   "smaller",
+   "outsourced sales and medical affairs teams"
+  ]
+ ],
+ "moat": "Decades of prescription and claims data that no competitor can assemble, combined with the trial infrastructure that uses it to find patients faster.",
+ "rivals": [
+  "ICON|ICLR",
+  "Thermo Fisher (PPD)|TMO",
+  "Fortrea|FTRE",
+  "Medpace|MEDP",
+  "Veeva Systems|VEEV"
+ ],
+ "risks": [
+  "Debt of about $16 billion against $2 billion of cash",
+  "Biotech funding weakness has reduced small-customer trial bookings",
+  "Large pharmaceutical companies have cut research spending",
+  "Cancelled trials reduce the backlog that converts into revenue"
+ ],
+ "opportunities": [
+  "Analysts see about 22% upside from current levels",
+  "A multi-year backlog gives revenue visibility",
+  "Its data business earns high margins and is hard to replicate"
+ ],
+ "watch": "Net new business bookings and the book-to-bill ratio.",
+ "updated": "2026-11"
+}

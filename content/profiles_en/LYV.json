@@ -1,0 +1,43 @@
+{
+ "t": "LYV",
+ "what": "Live Nation is the largest live music company in the world. It promotes concerts and festivals, owns or books hundreds of venues, manages artists, and owns Ticketmaster, which sells the tickets.",
+ "customers": "Concert-goers, artists and their managers, venues, and sponsors.",
+ "money": [
+  [
+   "Concerts",
+   "the largest part of revenue, thin margin",
+   "promoting shows and festivals worldwide"
+  ],
+  [
+   "Ticketing",
+   "the largest part of profit",
+   "Ticketmaster fees on tickets sold"
+  ],
+  [
+   "Sponsorship and Advertising",
+   "smaller, high margin",
+   "brand sponsorship of tours, festivals and venues"
+  ]
+ ],
+ "moat": "Control of all three sides at once: the artists, the venues and the ticketing, so each side reinforces the others.",
+ "rivals": [
+  "AEG Presents",
+  "Eventbrite|EB",
+  "SeatGeek",
+  "StubHub|STUB",
+  "Sphere Entertainment|SPHR"
+ ],
+ "risks": [
+  "The US Department of Justice has sued to break up the company over Ticketmaster",
+  "Ticketing fees attract political and regulatory attention worldwide",
+  "Debt of about $12 billion",
+  "Net margin is around 2% because concert promotion itself barely makes money"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year and about 15% a year over three years",
+  "Demand for live events has stayed strong across price points",
+  "New stadium and amphitheatre projects raise high-margin venue revenue"
+ ],
+ "watch": "Concert attendance, ticketing volumes, and the antitrust case.",
+ "updated": "2026-11"
+}

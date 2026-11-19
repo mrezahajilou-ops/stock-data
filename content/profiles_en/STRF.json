@@ -1,0 +1,37 @@
+{
+ "t": "STRF",
+ "what": "Strategy, formerly MicroStrategy, holds bitcoin as its main asset. It raises money by issuing shares and fixed-income securities and uses it to buy more bitcoin. It also still sells the enterprise analytics software the company was built on.",
+ "customers": "Enterprise software customers for its analytics products; investors are the real audience for the bitcoin strategy.",
+ "money": [
+  [
+   "Software",
+   "almost all reported revenue",
+   "enterprise analytics licences and cloud subscriptions"
+  ],
+  [
+   "Bitcoin holdings",
+   "not revenue, but the main asset",
+   "bitcoin bought with proceeds from share and debt issuance"
+  ]
+ ],
+ "moat": "None in the usual sense: the software is a small legacy business, and anyone can buy bitcoin. Its advantage is access to capital markets at scale.",
+ "rivals": [
+  "Bitcoin exchange-traded funds",
+  "Marathon Digital|MARA",
+  "Coinbase|COIN",
+  "Riot Platforms|RIOT"
+ ],
+ "risks": [
+  "The share price is driven by the bitcoin price, with borrowed money amplifying both directions",
+  "Large reported losses come from writing down bitcoin when its price falls",
+  "Debt of about $7 billion must be serviced regardless of the bitcoin price",
+  "The software business is small and barely growing"
+ ],
+ "opportunities": [
+  "Bitcoin price rises flow through to the value of its holdings with leverage",
+  "It can issue shares above the value of the bitcoin per share, which adds bitcoin per share",
+  "Software revenue, while small, funds some operating costs"
+ ],
+ "watch": "Bitcoin per share, the amount of debt outstanding, and the premium to the value of its holdings.",
+ "updated": "2026-11"
+}

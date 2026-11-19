@@ -1,0 +1,43 @@
+{
+ "t": "COHR",
+ "what": "Coherent makes lasers, optical transceivers and the engineered materials behind them. Data centre optics for AI networks have become its fastest-growing business, alongside industrial lasers and telecom components.",
+ "customers": "Cloud and AI data centre operators, network equipment makers, industrial manufacturers, carmakers and semiconductor firms.",
+ "money": [
+  [
+   "Datacom and telecom",
+   "the largest part",
+   "optical transceivers and components for networks"
+  ],
+  [
+   "Industrial",
+   "large",
+   "lasers for cutting, welding and semiconductor processing"
+  ],
+  [
+   "Materials",
+   "meaningful",
+   "silicon carbide and engineered materials"
+  ]
+ ],
+ "moat": "Vertical integration from the crystal and the laser chip up to the finished module, which few optical companies can match.",
+ "rivals": [
+  "Lumentum|LITE",
+  "Broadcom|AVGO",
+  "Fabrinet|FN",
+  "Marvell Technology|MRVL",
+  "Applied Optoelectronics|AAOI"
+ ],
+ "risks": [
+  "Debt of about $4 billion from the II-VI and Coherent merger",
+  "Optical transceiver prices fall as volumes rise",
+  "Revenue is concentrated in a few very large cloud customers",
+  "Return on invested capital of about 5% is still low after the merger"
+ ],
+ "opportunities": [
+  "Revenue grew about 23% last year",
+  "Analysts see large upside, with a median target well above the current price",
+  "AI networks need faster optics every generation, which raises content per rack"
+ ],
+ "watch": "Datacom revenue growth and gross margin improvement.",
+ "updated": "2026-11"
+}

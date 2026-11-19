@@ -1,0 +1,38 @@
+{
+ "t": "WDAY",
+ "what": "Workday makes cloud software for managing people and money: human resources, payroll, recruiting, and financial accounting and planning, used by over 11,500 organisations.",
+ "customers": "Large enterprises, universities, hospitals and government bodies, mostly in North America and Europe.",
+ "money": [
+  [
+   "Subscription services",
+   "almost all of revenue",
+   "HR and finance software subscriptions"
+  ],
+  [
+   "Professional services",
+   "smaller",
+   "implementation and training"
+  ]
+ ],
+ "moat": "Systems that hold a company's entire employee and financial record, where replacing them means re-implementing payroll and accounting across the organisation.",
+ "rivals": [
+  "SAP|SAP",
+  "Oracle|ORCL",
+  "ADP|ADP",
+  "Ceridian (Dayforce)|DAY",
+  "Paycom|PAYC"
+ ],
+ "risks": [
+  "Operating margin of 8% is low because stock-based compensation is very large",
+  "Large enterprise deals are slow and can slip between quarters",
+  "Finance software adoption has been slower than HR",
+  "It pays no dividend and trades at a high multiple of profit"
+ ],
+ "opportunities": [
+  "Revenue grew about 13% last year with subscription revenue renewing at very high rates",
+  "The finance side is much less penetrated than HR and is the bigger long-term market",
+  "Cash roughly matches debt, with strong free cash flow"
+ ],
+ "watch": "Subscription revenue backlog growth and operating margin excluding stock compensation.",
+ "updated": "2026-11"
+}

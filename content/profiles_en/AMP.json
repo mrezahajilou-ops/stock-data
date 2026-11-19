@@ -1,0 +1,43 @@
+{
+ "t": "AMP",
+ "what": "Ameriprise Financial is a wealth management firm. About 10,000 financial advisers manage money for American households, and it also runs the Columbia Threadneedle asset manager and sells insurance and annuities.",
+ "customers": "Mass-affluent and high-net-worth American households, plus institutional investors in its funds.",
+ "money": [
+  [
+   "Advice and Wealth Management",
+   "the largest part of profit",
+   "fees on client assets managed by its advisers"
+  ],
+  [
+   "Asset Management",
+   "large",
+   "Columbia Threadneedle funds"
+  ],
+  [
+   "Retirement and Protection Solutions",
+   "meaningful",
+   "annuities and life insurance"
+  ]
+ ],
+ "moat": "Adviser relationships with clients who rarely move, and the scale to offer advisers technology and products that keep them from joining a rival.",
+ "rivals": [
+  "LPL Financial|LPLA",
+  "Raymond James|RJF",
+  "Charles Schwab|SCHW",
+  "Morgan Stanley|MS",
+  "Edward Jones"
+ ],
+ "risks": [
+  "Fee revenue falls when markets fall",
+  "Asset management has seen persistent outflows industry-wide",
+  "Interest earned on client cash drops when rates fall",
+  "Annuity liabilities are long-dated and rate-sensitive"
+ ],
+ "opportunities": [
+  "Return on invested capital of 57% with a 26% operating margin",
+  "Client assets have grown steadily through adviser recruitment",
+  "Large and consistent buybacks shrink the share count"
+ ],
+ "watch": "Net new client assets in wealth management and adviser headcount.",
+ "updated": "2026-11"
+}

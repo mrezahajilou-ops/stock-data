@@ -1,0 +1,43 @@
+{
+ "t": "SE",
+ "what": "Sea Limited runs three businesses in Southeast Asia and Brazil: Shopee, the region's largest e-commerce marketplace; Monee, its digital lending and payments arm; and Garena, the games studio behind Free Fire.",
+ "customers": "Online shoppers and sellers across Southeast Asia, Taiwan and Brazil; borrowers using its credit products; and mobile gamers worldwide.",
+ "money": [
+  [
+   "E-commerce (Shopee)",
+   "the largest part",
+   "marketplace commissions, advertising and logistics fees"
+  ],
+  [
+   "Digital Financial Services (Monee)",
+   "growing fastest, high margin",
+   "consumer and seller lending, payments"
+  ],
+  [
+   "Digital Entertainment (Garena)",
+   "meaningful",
+   "Free Fire and other games"
+  ]
+ ],
+ "moat": "Shopee's lead in markets where logistics are hard, with its own delivery network and a lending business that uses its own marketplace data to underwrite.",
+ "rivals": [
+  "Alibaba (Lazada)|BABA",
+  "TikTok Shop",
+  "MercadoLibre|MELI",
+  "Grab|GRAB",
+  "Tokopedia"
+ ],
+ "risks": [
+  "TikTok Shop competes aggressively on price in its core markets",
+  "Consumer lending exposes it to credit losses in a downturn",
+  "Brazilian expansion is expensive",
+  "Free Fire revenue depends on one ageing game"
+ ],
+ "opportunities": [
+  "Revenue grew about 36% last year and about 23% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Lending earns far higher margins than e-commerce and is growing faster"
+ ],
+ "watch": "Shopee order growth and take rate, and the loan book's non-performing ratio.",
+ "updated": "2026-11"
+}

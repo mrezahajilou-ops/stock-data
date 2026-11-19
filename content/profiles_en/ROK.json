@@ -1,0 +1,43 @@
+{
+ "t": "ROK",
+ "what": "Rockwell Automation makes the control systems that run factories: programmable controllers, drives, sensors, safety systems and the software that ties them together, sold mainly under the Allen-Bradley brand.",
+ "customers": "Food and beverage, car, life sciences, semiconductor, warehousing and energy manufacturers, mostly in North America.",
+ "money": [
+  [
+   "Intelligent Devices",
+   "the largest part",
+   "drives, motion control, safety and industrial components"
+  ],
+  [
+   "Software and Control",
+   "large, highest margin",
+   "controllers, visualisation and industrial software"
+  ],
+  [
+   "Lifecycle Services",
+   "meaningful",
+   "maintenance, consulting and system integration"
+  ]
+ ],
+ "moat": "Allen-Bradley equipment is the North American factory standard, and engineers trained on its programming environment design new plants around it.",
+ "rivals": [
+  "Siemens",
+  "Schneider Electric",
+  "ABB",
+  "Emerson Electric|EMR",
+  "Honeywell|HON"
+ ],
+ "risks": [
+  "Factory capital spending has been weak for two years",
+  "Revenue has been flat over three years",
+  "Tariffs and supply chain shifts affect customers' investment decisions",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Return on invested capital of 23% with a 50% gross margin",
+  "Reshoring of manufacturing to North America is exactly its market",
+  "Revenue grew about 8% last year as orders recovered"
+ ],
+ "watch": "Order growth and the book-to-bill ratio.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "ED",
+ "what": "Consolidated Edison delivers electricity, gas and steam to New York City and Westchester County. It does not generate most of the power: it owns the wires, pipes and the steam system that heats much of Manhattan.",
+ "customers": "About 3.5 million electricity customers and over a million gas customers in New York City and the surrounding area.",
+ "money": [
+  [
+   "CECONY electric",
+   "the largest part",
+   "electricity delivery in New York City and Westchester"
+  ],
+  [
+   "CECONY gas and steam",
+   "large",
+   "gas distribution and the Manhattan steam system"
+  ],
+  [
+   "Orange and Rockland, transmission",
+   "smaller",
+   "a neighbouring utility and transmission projects"
+  ]
+ ],
+ "moat": "A legal monopoly over the energy networks of the densest city in the United States, where building anything competing is impossible.",
+ "rivals": [
+  "Public Service Enterprise|PEG",
+  "National Grid|NGG",
+  "Exelon|EXC",
+  "Avangrid"
+ ],
+ "risks": [
+  "Debt of about $26 billion against almost no cash",
+  "New York regulators set the returns it may earn and have pushed back on rate requests",
+  "Underground work in New York City is extremely expensive",
+  "Analyst targets imply the shares are above fair value"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year",
+  "New York's electrification targets require very large network investment, which raises the base it earns a return on",
+  "A dividend raised every year for five decades"
+ ],
+ "watch": "Rate case outcomes in New York and the approved return on equity.",
+ "updated": "2026-11"
+}

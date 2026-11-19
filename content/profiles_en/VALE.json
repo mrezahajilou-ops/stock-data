@@ -1,0 +1,38 @@
+{
+ "t": "VALE",
+ "what": "Vale is one of the world's largest iron ore producers, mining in Brazil and shipping mostly to Chinese steelmakers. It also produces nickel and copper, and is one of the largest nickel producers outside Russia.",
+ "customers": "Chinese and other Asian steelmakers, plus battery, stainless steel and electrical customers for nickel and copper.",
+ "money": [
+  [
+   "Iron Solutions",
+   "the large majority of profit",
+   "iron ore and pellets from Brazilian mines"
+  ],
+  [
+   "Energy Transition Metals",
+   "meaningful",
+   "nickel and copper from Canada, Brazil and Indonesia"
+  ]
+ ],
+ "moat": "Some of the highest-grade iron ore in the world, which steelmakers pay a premium for because it produces less waste and emissions.",
+ "rivals": [
+  "Rio Tinto|RIO",
+  "BHP|BHP",
+  "Fortescue",
+  "Anglo American",
+  "Glencore"
+ ],
+ "risks": [
+  "Chinese steel demand drives the iron ore price and therefore its earnings",
+  "Liabilities from the Brumadinho and Mariana dam disasters continue to cost money",
+  "Brazilian politics affect it as a nationally significant company",
+  "Net margin fell to about 6% after charges"
+ ],
+ "opportunities": [
+  "A dividend yield above 8% when iron ore prices hold up",
+  "Analysts see large upside, with a median target well above the current price",
+  "Copper and nickel expansion diversifies it away from iron ore"
+ ],
+ "watch": "Iron ore shipment volumes and the realised price per tonne.",
+ "updated": "2026-11"
+}

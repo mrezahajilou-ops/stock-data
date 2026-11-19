@@ -1,0 +1,43 @@
+{
+ "t": "YUM",
+ "what": "Yum! Brands owns KFC, Taco Bell, Pizza Hut and Habit Burger. It franchises almost all of its roughly 61,000 restaurants, so it collects a percentage of sales rather than running the restaurants itself.",
+ "customers": "Franchisees who own and operate the restaurants, and through them fast-food customers in more than 155 countries.",
+ "money": [
+  [
+   "KFC",
+   "the largest part",
+   "the largest brand by units, mostly outside the United States"
+  ],
+  [
+   "Taco Bell",
+   "the most profitable",
+   "almost entirely US, with the strongest sales growth"
+  ],
+  [
+   "Pizza Hut",
+   "meaningful, weakest",
+   "pizza delivery and dine-in worldwide"
+  ]
+ ],
+ "moat": "Brands people recognise everywhere, with a franchise model that earns a royalty on sales without the capital cost of owning restaurants.",
+ "rivals": [
+  "McDonald's|MCD",
+  "Restaurant Brands International|QSR",
+  "Domino's Pizza|DPZ",
+  "Chipotle Mexican Grill|CMG",
+  "Jollibee"
+ ],
+ "risks": [
+  "Debt of about $13 billion, typical of a franchised model but still large",
+  "Pizza Hut has lost share for years in several markets",
+  "Franchisee profitability determines how fast new restaurants open",
+  "Geopolitical boycotts have hurt KFC sales in some markets"
+ ],
+ "opportunities": [
+  "Return on invested capital of 33% and a 31% operating margin",
+  "Taco Bell keeps outgrowing the rest of US fast food",
+  "Franchising means revenue grows without the company funding new restaurants"
+ ],
+ "watch": "Taco Bell US same-store sales and net new restaurant openings.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,43 @@
+{
+ "t": "HMC",
+ "what": "Honda makes cars, motorcycles and power equipment. It is the largest motorcycle maker in the world by volume, and motorcycles are far more profitable for it than cars. In cars it is strongest in North America and Japan.",
+ "customers": "Car buyers in North America, Japan and Asia; motorcycle buyers above all in India, Indonesia, Vietnam and Brazil.",
+ "money": [
+  [
+   "Automobile",
+   "the largest part of revenue",
+   "cars and light trucks, with North America the biggest market"
+  ],
+  [
+   "Motorcycle",
+   "the largest part of profit",
+   "motorcycles and scooters, mostly in Asia"
+  ],
+  [
+   "Power products and other",
+   "smaller",
+   "generators, marine engines and financial services"
+  ]
+ ],
+ "moat": "A motorcycle business with dominant share across Asian markets where scooters are basic transport, earning margins that car makers cannot reach.",
+ "rivals": [
+  "Toyota|TM",
+  "Nissan",
+  "Hero MotoCorp",
+  "Yamaha",
+  "General Motors|GM"
+ ],
+ "risks": [
+  "It reported a loss in the latest period after charges",
+  "Revenue fell about 6% last year",
+  "US tariffs on imported vehicles raise costs",
+  "Chinese carmakers are taking share in Asian markets where it has been strong"
+ ],
+ "opportunities": [
+  "Motorcycles keep growing in India and Southeast Asia with high margins",
+  "Cash of about $36 billion exceeds its debt",
+  "Hybrid vehicles, where it has long experience, are selling better than pure electric models in the US"
+ ],
+ "watch": "Motorcycle unit sales and whether the automobile business returns to profit.",
+ "updated": "2026-11"
+}

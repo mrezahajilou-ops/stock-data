@@ -1,0 +1,48 @@
+{
+ "t": "FMX",
+ "what": "FEMSA is a Mexican company built around two things: OXXO, the largest convenience store chain in Latin America with over 24,000 stores, and Coca-Cola FEMSA, the biggest Coca-Cola bottler in the world by volume.",
+ "customers": "Mexican and Latin American shoppers buying daily essentials at OXXO, and retailers and consumers buying Coca-Cola products.",
+ "money": [
+  [
+   "Proximity Americas (OXXO)",
+   "the largest part of profit",
+   "convenience stores in Mexico, Colombia, Chile, Peru and Brazil"
+  ],
+  [
+   "Coca-Cola FEMSA",
+   "the largest part of revenue",
+   "bottling across Latin America"
+  ],
+  [
+   "Health and Fuel",
+   "smaller",
+   "pharmacies and petrol stations"
+  ],
+  [
+   "Digital",
+   "small",
+   "the Spin financial services app"
+  ]
+ ],
+ "moat": "OXXO store density in Mexico, where it is often the only shop within walking distance, and exclusive Coca-Cola bottling territories.",
+ "rivals": [
+  "Walmart de México",
+  "Arca Continental",
+  "Grupo Bimbo",
+  "Alsea",
+  "Oxxo imitators"
+ ],
+ "risks": [
+  "Net margin of about 2% reflects thin retail and bottling margins",
+  "Mexican consumer spending is sensitive to remittances and employment",
+  "Debt of about $13 billion",
+  "Sugar taxes and regulation affect the drinks business"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year",
+  "OXXO is still opening stores at a steady pace across Latin America",
+  "The Spin payments app turns store traffic into financial services customers"
+ ],
+ "watch": "OXXO same-store sales and new store openings.",
+ "updated": "2026-11"
+}

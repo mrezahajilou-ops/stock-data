@@ -1,0 +1,43 @@
+{
+ "t": "CARR",
+ "what": "Carrier Global makes heating, air conditioning and refrigeration equipment. It sells air conditioners and heat pumps for homes and buildings, refrigerated transport units under Carrier Transicold, and German heating systems through Viessmann.",
+ "customers": "Homeowners through contractors, commercial building owners, supermarkets and food distributors, and truck and container fleets.",
+ "money": [
+  [
+   "Americas HVAC",
+   "the largest part",
+   "residential and commercial heating and cooling in North America"
+  ],
+  [
+   "Europe HVAC",
+   "large",
+   "Viessmann heat pumps and boilers"
+  ],
+  [
+   "Transportation refrigeration",
+   "meaningful",
+   "Carrier Transicold truck, trailer and container units"
+  ]
+ ],
+ "moat": "Contractor relationships and installed equipment that is replaced with the same brand, plus distribution that reaches tens of thousands of installers.",
+ "rivals": [
+  "Trane Technologies|TT",
+  "Lennox International|LII",
+  "Daikin",
+  "Johnson Controls|JCI",
+  "AAON|AAON"
+ ],
+ "risks": [
+  "It reported a loss in the latest twelve months after charges relating to disposals",
+  "European heat pump demand fell sharply when subsidies were cut",
+  "Revenue fell about 3% last year",
+  "Debt of about $12 billion remains from the Viessmann purchase"
+ ],
+ "opportunities": [
+  "Analysts see about 30% upside from current levels",
+  "New US refrigerant rules force equipment replacement across the installed base",
+  "Data centre cooling is a growing commercial market"
+ ],
+ "watch": "Americas HVAC volumes and European heat pump demand.",
+ "updated": "2026-11"
+}

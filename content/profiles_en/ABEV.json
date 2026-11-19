@@ -1,0 +1,47 @@
+{
+ "t": "ABEV",
+ "what": "Ambev is the largest brewer in Latin America, part of the AB InBev group. It brews Skol, Brahma and Antarctica in Brazil, Quilmes in Argentina, and bottles Pepsi products across several countries.",
+ "customers": "Bars, restaurants, supermarkets and small shops across Brazil, Argentina, Central America, the Caribbean and Canada.",
+ "money": [
+  [
+   "Brazil beer",
+   "the largest part",
+   "Skol, Brahma, Antarctica and premium imports"
+  ],
+  [
+   "Brazil non-alcoholic",
+   "meaningful",
+   "Pepsi and Gatorade bottling"
+  ],
+  [
+   "Latin America South and Central America",
+   "large",
+   "Argentina, Bolivia, Paraguay and Central America"
+  ],
+  [
+   "Canada",
+   "smaller",
+   "Labatt"
+  ]
+ ],
+ "moat": "Distribution reaching over a million small shops in Brazil, built over decades, which no new brewer can replicate.",
+ "rivals": [
+  "Heineken",
+  "Molson Coors|TAP",
+  "Grupo Petrópolis",
+  "Constellation Brands|STZ"
+ ],
+ "risks": [
+  "Brazilian consumer spending drives beer volumes",
+  "Argentine inflation and currency devaluation distort results",
+  "Competition from Heineken has taken share in Brazilian premium beer",
+  "Barley and aluminium costs are volatile"
+ ],
+ "opportunities": [
+  "Return on invested capital of 20% with a 26% operating margin",
+  "Almost no debt: about $462 million against $3.7 billion of cash",
+  "A dividend yield around 5% paid from strong cash generation"
+ ],
+ "watch": "Brazilian beer volumes and revenue per hectolitre.",
+ "updated": "2026-11"
+}

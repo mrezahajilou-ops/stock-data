@@ -156,36 +156,6 @@
     </div>
   </div>
 
-  {%- if d.about -%}
-  {%- assign ab = d.about -%}
-  <div class="card ab">
-    <h2>{{ label | escape }} چه کار می‌کند؟</h2>
-    <p class="lead">{{ ab.what | escape }}</p>
-    <div class="g3">
-      {%- if ab.problem != blank -%}<div><b>چه مشکلی را حل می‌کند</b><p>{{ ab.problem | escape }}</p></div>{%- endif -%}
-      {%- if ab.customers != blank -%}<div><b>مشتری‌هایش چه کسانی هستند</b><p>{{ ab.customers | escape }}</p></div>{%- endif -%}
-      {%- if ab.moat != blank -%}<div><b>مزیت رقابتی</b><p>{{ ab.moat | escape }}</p></div>{%- endif -%}
-    </div>
-    {%- if ab.money.size > 0 -%}
-    <h3>از کجا پول درمی‌آورد</h3>
-    <div class="mn">
-      {%- for m in ab.money -%}<div><p class="hd" style="margin:0"><b>{{ m.s | escape }}</b>{%- if m.w != blank -%}<em>{{ m.w | escape }}</em>{%- endif -%}</p>{%- if m.h != blank -%}<span>{{ m.h | escape }}</span>{%- endif -%}</div>{%- endfor -%}
-    </div>
-    {%- endif -%}
-    {%- if ab.rivals.size > 0 -%}
-    <h3>رقبای اصلی</h3>
-    <div class="chips">
-      {%- for r in ab.rivals -%}{%- if r.t -%}<a href="/pages/stocks/{{ r.t | downcase }}">{{ r.n | escape }}<b>{{ r.t }}</b></a>{%- else -%}<span>{{ r.n | escape }}</span>{%- endif -%}{%- endfor -%}
-    </div>
-    {%- endif -%}
-    {%- if ab.risks.size > 0 -%}
-    <h3>ریسک‌های اصلی کسب‌وکار</h3>
-    <ul>{%- for r in ab.risks -%}<li>{{ r | escape }}</li>{%- endfor -%}</ul>
-    {%- endif -%}
-    <p class="meta" style="margin:12px 0 0">بر اساس بخش «Business» گزارش سالانه‌ی رسمی شرکت (10-K){% if ab.updated_fa %} · بازبینی {{ ab.updated_fa }}{% endif %}</p>
-  </div>
-  {%- endif -%}
-
   <div class="two">
     <div class="card"><h2>✅ نقاط قوت</h2>
       {%- if d.strengths.size > 0 -%}<ul class="ck ok">{%- for s in d.strengths -%}<li>{{ s | escape }}</li>{%- endfor -%}</ul>{%- else -%}<p class="meta">موردی پیدا نشد.</p>{%- endif -%}
@@ -224,6 +194,44 @@
       </tbody>
     </table></div>
     <p class="meta" style="margin:8px 0 0">منبع: گزارش‌های رسمی شرکت به کمیسیون بورس آمریکا (SEC EDGAR). صورت‌های مالی کامل ۱۰ ساله در <a href="/pages/stock#{{ t | escape }}">تحلیل کامل</a>.</p>
+  </div>
+  {%- endif -%}
+
+  {%- if d.about -%}
+  {%- assign ab = d.about -%}
+  <div class="card ab">
+    <h2>{{ label | escape }} چه کار می‌کند؟</h2>
+    <p class="lead">{{ ab.what | escape }}</p>
+    <div class="g3">
+      {%- if ab.problem != blank -%}<div><b>چه مشکلی را حل می‌کند</b><p>{{ ab.problem | escape }}</p></div>{%- endif -%}
+      {%- if ab.customers != blank -%}<div><b>مشتری‌هایش چه کسانی هستند</b><p>{{ ab.customers | escape }}</p></div>{%- endif -%}
+      {%- if ab.moat != blank -%}<div><b>مزیت رقابتی</b><p>{{ ab.moat | escape }}</p></div>{%- endif -%}
+    </div>
+    {%- if ab.money.size > 0 -%}
+    <h3>از کجا پول درمی‌آورد</h3>
+    <div class="mn">
+      {%- for m in ab.money -%}<div><p class="hd" style="margin:0"><b>{{ m.s | escape }}</b>{%- if m.w != blank -%}<em>{{ m.w | escape }}</em>{%- endif -%}</p>{%- if m.h != blank -%}<span>{{ m.h | escape }}</span>{%- endif -%}</div>{%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- if ab.rivals.size > 0 -%}
+    <h3>رقبای اصلی</h3>
+    <div class="chips">
+      {%- for r in ab.rivals -%}{%- if r.t -%}<a href="/pages/stocks/{{ r.t | downcase }}">{{ r.n | escape }}<b>{{ r.t }}</b></a>{%- else -%}<span>{{ r.n | escape }}</span>{%- endif -%}{%- endfor -%}
+    </div>
+    {%- endif -%}
+    {%- if ab.risks.size > 0 -%}
+    <h3>ریسک‌های اصلی کسب‌وکار</h3>
+    <ul>{%- for r in ab.risks -%}<li>{{ r | escape }}</li>{%- endfor -%}</ul>
+    {%- endif -%}
+    {%- if ab.opportunities.size > 0 -%}
+    <h3>فرصت‌های اصلی</h3>
+    <ul>{%- for o in ab.opportunities -%}<li>{{ o | escape }}</li>{%- endfor -%}</ul>
+    {%- endif -%}
+    {%- if ab.watch != blank -%}
+    <h3>چه چیزی را دنبال کنیم؟</h3>
+    <p>{{ ab.watch | escape }}</p>
+    {%- endif -%}
+    <p class="meta" style="margin:12px 0 0">بر اساس بخش «Business» گزارش سالانه‌ی رسمی شرکت (10-K){% if ab.updated_fa %} · بازبینی {{ ab.updated_fa }}{% endif %}</p>
   </div>
   {%- endif -%}
 

@@ -1101,7 +1101,9 @@ function loadAbout(d){
         (P.moat?'<div><b>مزیت رقابتی</b><p>'+esc(P.moat)+'</p></div>':'')+
         (P.money&&P.money.length?'<div class="ab-money-box"><b>چطور پول درمی‌آورد؟</b><ul class="ab-money">'+P.money.map(function(m){return '<li><span>'+esc(m[0])+(m[1]?' <i>'+esc(m[1])+'</i>':'')+'</span>'+(m[2]?' <small>'+esc(m[2])+'</small>':'')+'</li>'}).join('')+'</ul></div>':'')+
         (P.risks&&P.risks.length?'<div><b>ریسک‌های مهم</b><ul class="ab-risk">'+P.risks.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
+        (P.opportunities&&P.opportunities.length?'<div><b>فرصت‌های مهم</b><ul class="ab-risk">'+P.opportunities.map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul></div>':'')+
         (P.rivals&&P.rivals.length?'<div><b>رقبای اصلی</b><p class="ab-riv">'+P.rivals.map(lnk).join('، ')+'</p></div>':'')+
+        (P.watch?'<div><b>چه چیزی را دنبال کنیم؟</b><p>'+esc(P.watch)+'</p></div>':'')+
         '</div>'+
         '<p class="xnote">این معرفی بر اساس توضیحات رسمی شرکت و گزارش سالانه‌اش به SEC نوشته شده'+(P.updated?' (بازبینی: <bdi>'+esc(P.updated)+'</bdi>)':'')+'. سهم هر بخش از درآمد تقریبیه.'+(O&&O.web?' · <a target="_blank" rel="noopener nofollow" href="'+esc(/^https?:/.test(O.web)?O.web:'https://'+O.web)+'">سایت شرکت</a>':'')+'</p>';
     } else if(O&&O.desc){

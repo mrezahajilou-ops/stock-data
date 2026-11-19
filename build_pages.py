@@ -26,7 +26,9 @@ def about(t):
         rv.append({'n': n.strip(), 't': rt.strip() or None})
     return {'what': p.get('what'), 'problem': p.get('problem'), 'customers': p.get('customers'),
             'money': [{'s': m[0], 'w': m[1] if len(m) > 1 else '', 'h': m[2] if len(m) > 2 else ''} for m in p.get('money') or []],
-            'moat': p.get('moat'), 'rivals': rv, 'risks': p.get('risks') or [], 'updated_fa': month_fa(p.get('updated'))}
+            'moat': p.get('moat'), 'rivals': rv, 'risks': p.get('risks') or [],
+            'opportunities': p.get('opportunities') or [], 'watch': p.get('watch'),
+            'updated_fa': month_fa(p.get('updated'))}
 
 
 def trading_day(d):

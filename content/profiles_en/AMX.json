@@ -1,0 +1,47 @@
+{
+ "t": "AMX",
+ "what": "América Móvil is the largest mobile operator in Latin America. Founded by Carlos Slim, it serves hundreds of millions of customers in Mexico, Brazil, Colombia and across the region under the Telcel and Claro brands, and also sells fixed broadband and pay television.",
+ "customers": "Households and businesses across Mexico, Brazil, Colombia, Argentina, Central America and parts of Europe.",
+ "money": [
+  [
+   "Mexico wireless and wireline",
+   "the largest part of profit",
+   "Telcel mobile and Telmex fixed services"
+  ],
+  [
+   "Brazil",
+   "large",
+   "Claro mobile, broadband and pay television"
+  ],
+  [
+   "Other Latin America",
+   "large",
+   "operations across the region"
+  ],
+  [
+   "Europe",
+   "smaller",
+   "Austria and neighbouring markets"
+  ]
+ ],
+ "moat": "Spectrum and network scale in markets where it often has the largest share, built over three decades and difficult to attack.",
+ "rivals": [
+  "Telefónica|TEF",
+  "Millicom|TIGO",
+  "Liberty Latin America|LILA",
+  "TIM Brasil"
+ ],
+ "risks": [
+  "Mexican regulators have historically imposed rules on it as the dominant operator",
+  "Currency moves across many Latin American markets affect reported results",
+  "Net margin of about 9% is modest for a telecom operator",
+  "Debt of about $37 billion against little cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year",
+  "Fibre broadband is being rolled out across Mexico and Brazil",
+  "Prepaid customers are steadily converting to higher-value postpaid plans"
+ ],
+ "watch": "Mexican mobile service revenue and postpaid subscriber growth.",
+ "updated": "2026-11"
+}

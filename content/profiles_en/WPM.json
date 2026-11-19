@@ -1,0 +1,37 @@
+{
+ "t": "WPM",
+ "what": "Wheaton Precious Metals does not mine. It pays miners cash up front for the right to buy a share of their future gold and silver at a fixed low price, then sells that metal at market prices. This is called streaming.",
+ "customers": "Refiners and bullion markets; its counterparties are the mining companies it funds.",
+ "money": [
+  [
+   "Gold streams",
+   "the larger part",
+   "contracted gold deliveries from partner mines"
+  ],
+  [
+   "Silver and other streams",
+   "large",
+   "silver, palladium and cobalt deliveries"
+  ]
+ ],
+ "moat": "Contracts signed when metal prices were low, which fix its cost per ounce for the life of a mine, so rising prices flow almost entirely to profit.",
+ "rivals": [
+  "Franco-Nevada|FNV",
+  "Royal Gold|RGLD",
+  "Triple Flag|TFPM",
+  "Osisko Gold Royalties|OR"
+ ],
+ "risks": [
+  "Profit depends on gold and silver prices",
+  "Its partner mines may produce less than expected, and it has no operational control",
+  "The shares trade at a high multiple of earnings compared with miners",
+  "A low dividend yield of under 1%"
+ ],
+ "opportunities": [
+  "Net margin of 64% and operating margin of 68% because it has no mining costs",
+  "Revenue grew about 80% last year as metal prices rose",
+  "Almost no debt, so cash flow can fund new streams"
+ ],
+ "watch": "Gold-equivalent ounces delivered and new stream agreements signed.",
+ "updated": "2026-11"
+}

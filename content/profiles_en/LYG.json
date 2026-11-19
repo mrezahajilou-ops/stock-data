@@ -1,0 +1,43 @@
+{
+ "t": "LYG",
+ "what": "Lloyds Banking Group is Britain's largest retail bank. It owns Lloyds Bank, Halifax and Bank of Scotland, holds the biggest share of UK mortgages, and also runs the insurer Scottish Widows.",
+ "customers": "UK households, savers, mortgage borrowers, small businesses and corporate clients.",
+ "money": [
+  [
+   "Retail",
+   "the largest part",
+   "current accounts, mortgages, cards and consumer lending"
+  ],
+  [
+   "Commercial Banking",
+   "large",
+   "business lending, transaction banking and markets"
+  ],
+  [
+   "Insurance, Pensions and Investments",
+   "meaningful",
+   "Scottish Widows life, pensions and investments"
+  ]
+ ],
+ "moat": "The largest base of UK current accounts, which cost almost nothing and fund the biggest mortgage book in the country.",
+ "rivals": [
+  "NatWest Group|NWG",
+  "Barclays|BCS",
+  "HSBC|HSBC",
+  "Santander UK",
+  "Nationwide"
+ ],
+ "risks": [
+  "It is almost entirely exposed to the UK economy",
+  "An investigation into motor finance commissions has required large provisions",
+  "Mortgage competition has compressed margins",
+  "Bank levies and taxes in the UK are high"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year",
+  "Its structural hedge keeps rolling into higher-yielding positions, lifting income for several years",
+  "A dividend yield above 4% with large buybacks on top"
+ ],
+ "watch": "Net interest margin and the final cost of the motor finance review.",
+ "updated": "2026-11"
+}

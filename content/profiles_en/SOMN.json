@@ -1,0 +1,42 @@
+{
+ "t": "SOMN",
+ "what": "Southern Company is one of the largest US utilities. Through Alabama Power, Georgia Power and Mississippi Power it generates and delivers electricity across the Southeast, and it also owns natural gas utilities serving millions of customers.",
+ "customers": "Households, businesses and data centre operators in Georgia, Alabama and Mississippi, and gas customers in several states.",
+ "money": [
+  [
+   "Traditional electric operating companies",
+   "the largest part",
+   "regulated electricity generation and delivery in three states"
+  ],
+  [
+   "Southern Company Gas",
+   "large",
+   "regulated gas distribution utilities"
+  ],
+  [
+   "Southern Power",
+   "smaller",
+   "contracted generation sold at wholesale"
+  ]
+ ],
+ "moat": "Regulated monopolies in fast-growing southeastern states, with rates set by state commissions rather than competitors.",
+ "rivals": [
+  "Duke Energy|DUK",
+  "Dominion Energy|D",
+  "NextEra Energy|NEE",
+  "American Electric Power|AEP"
+ ],
+ "risks": [
+  "Debt of about $74 billion against under $1 billion of cash",
+  "The Vogtle nuclear expansion ran years late and billions over budget",
+  "Regulators decide how much of each investment it may recover",
+  "Heavy capital spending requires continuous financing"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year",
+  "Data centre and manufacturing growth in Georgia raises electricity demand",
+  "The completed Vogtle reactors now earn a return instead of consuming cash"
+ ],
+ "watch": "Georgia load growth from data centres and rate case outcomes.",
+ "updated": "2026-11"
+}

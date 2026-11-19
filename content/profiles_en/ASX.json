@@ -1,0 +1,37 @@
+{
+ "t": "ASX",
+ "what": "ASE Technology is the world's largest provider of semiconductor packaging and testing. Chipmakers send finished wafers to its plants, where they are cut, packaged into usable chips, tested and shipped. It also assembles electronic modules for customers.",
+ "customers": "Chip designers and foundries, including most of the large fabless companies, plus electronics manufacturers.",
+ "money": [
+  [
+   "Assembly, Testing and Materials",
+   "the larger part",
+   "packaging and testing services for semiconductor makers"
+  ],
+  [
+   "Electronic Manufacturing Services",
+   "large, lower margin",
+   "module and system assembly"
+  ]
+ ],
+ "moat": "Scale and advanced packaging capability at a point in the chip supply chain where only a few companies can serve the largest customers.",
+ "rivals": [
+  "Amkor Technology|AMKR",
+  "JCET",
+  "Powertech Technology",
+  "Taiwan Semiconductor|TSM"
+ ],
+ "risks": [
+  "Gross margin of about 18% is thin because the business is capital-heavy",
+  "Chip demand is cyclical and packaging orders move with it",
+  "Taiwan concentration carries geopolitical risk",
+  "Debt of about $12 billion against $3 billion of cash"
+ ],
+ "opportunities": [
+  "Revenue grew about 13% last year",
+  "AI chips need advanced packaging, the fastest-growing and highest-margin part of its work",
+  "Analysts see large upside, though coverage is thin with only two estimates"
+ ],
+ "watch": "Advanced packaging revenue and utilisation rates at its plants.",
+ "updated": "2026-11"
+}

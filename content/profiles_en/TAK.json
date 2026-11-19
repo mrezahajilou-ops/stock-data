@@ -1,0 +1,48 @@
+{
+ "t": "TAK",
+ "what": "Takeda is Japan's largest pharmaceutical company. It focuses on gastrointestinal and inflammatory disease, rare diseases, neuroscience, oncology and plasma-derived therapies, and became global after buying Shire.",
+ "customers": "Health systems, hospitals, insurers and governments in Japan, the United States and Europe.",
+ "money": [
+  [
+   "Gastrointestinal and Inflammation",
+   "the largest part",
+   "Entyvio for inflammatory bowel disease and related medicines"
+  ],
+  [
+   "Plasma-Derived Therapies",
+   "large",
+   "immunoglobulins and plasma products"
+  ],
+  [
+   "Rare Diseases and Neuroscience",
+   "large",
+   "hereditary angioedema, enzyme replacement and ADHD medicines"
+  ],
+  [
+   "Oncology",
+   "meaningful",
+   "blood cancer medicines"
+  ]
+ ],
+ "moat": "Plasma collection and manufacturing, which takes years to build and is hard to copy, plus rare-disease medicines with few alternatives.",
+ "rivals": [
+  "AbbVie|ABBV",
+  "Johnson & Johnson|JNJ",
+  "CSL",
+  "Astellas",
+  "Sanofi|SNY"
+ ],
+ "risks": [
+  "It reported a small net loss margin last year after impairment and amortisation charges",
+  "Revenue fell about 8% as older medicines lost exclusivity",
+  "Debt of about $29 billion against under $3 billion of cash, left from the Shire purchase",
+  "Vyvanse for ADHD now faces generic competition in the US"
+ ],
+ "opportunities": [
+  "A late-stage pipeline in inflammatory bowel disease, narcolepsy and celiac disease",
+  "Plasma therapy demand grows steadily and supply is constrained industry-wide",
+  "Cost programmes are intended to restore margins as the pipeline arrives"
+ ],
+ "watch": "Late-stage trial results and whether revenue returns to growth as new medicines launch.",
+ "updated": "2026-11"
+}

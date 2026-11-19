@@ -1,0 +1,42 @@
+{
+ "t": "IDXX",
+ "what": "IDEXX Laboratories sells diagnostics for pets. Veterinary clinics buy its analysers and then keep buying the test slides and cartridges that run on them, and it also operates reference laboratories and practice management software.",
+ "customers": "Veterinary practices worldwide, plus livestock, poultry, dairy and water testing customers.",
+ "money": [
+  [
+   "Companion Animal Group",
+   "almost all of revenue",
+   "in-clinic analysers, consumables, reference lab services and software"
+  ],
+  [
+   "Water",
+   "small",
+   "testing for drinking water safety"
+  ],
+  [
+   "Livestock, Poultry and Dairy",
+   "small",
+   "herd health and food safety testing"
+  ]
+ ],
+ "moat": "Instruments placed in clinics that only run its own consumables, with multi-year agreements, so each placement locks in years of recurring sales.",
+ "rivals": [
+  "Zoetis|ZTS",
+  "Heska (Mars)",
+  "Antech (Mars)",
+  "Mars Veterinary Health"
+ ],
+ "risks": [
+  "Veterinary clinic visit volumes have been flat as pet owners economise",
+  "A high valuation leaves little room for disappointment",
+  "Mars-owned competitors are integrated with large clinic chains",
+  "Analyst targets imply only modest upside"
+ ],
+ "opportunities": [
+  "Return on invested capital near 50% is exceptional",
+  "Recurring consumable and lab revenue is about 85% of the total",
+  "New analyser platforms raise the test menu and revenue per clinic"
+ ],
+ "watch": "Clinical visit growth at US veterinary practices and new instrument placements.",
+ "updated": "2026-11"
+}

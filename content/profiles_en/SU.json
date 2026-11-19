@@ -1,0 +1,42 @@
+{
+ "t": "SU",
+ "what": "Suncor Energy is a Canadian integrated oil company. It mines and upgrades oil sands bitumen in Alberta, refines it in Canada, and sells fuel through the Petro-Canada service station network.",
+ "customers": "Canadian motorists through Petro-Canada stations, refiners and crude buyers in North America.",
+ "money": [
+  [
+   "Oil Sands",
+   "the largest part",
+   "mining, in-situ production and upgrading in Alberta"
+  ],
+  [
+   "Refining and Marketing",
+   "large",
+   "four refineries and the Petro-Canada retail network"
+  ],
+  [
+   "Exploration and Production",
+   "smaller",
+   "offshore Canada and international production"
+  ]
+ ],
+ "moat": "Owning the barrel from the mine to the petrol pump, so it captures the refining margin when crude prices are weak and the production margin when they are strong.",
+ "rivals": [
+  "Canadian Natural Resources|CNQ",
+  "Cenovus Energy|CVE",
+  "Imperial Oil|IMO",
+  "Husky"
+ ],
+ "risks": [
+  "Oil sands operations had years of safety and reliability problems before a management change",
+  "Canadian heavy crude trades at a discount to world prices",
+  "Carbon costs in Canada rise over time",
+  "Oil prices set earnings"
+ ],
+ "opportunities": [
+  "Reliability and cost performance have improved markedly since 2023",
+  "Petro-Canada gives a steady retail margin that pure producers lack",
+  "Net margin of 11% with low debt relative to cash flow"
+ ],
+ "watch": "Oil sands production and upgrader utilisation rates.",
+ "updated": "2026-11"
+}

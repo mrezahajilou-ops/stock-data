@@ -1,0 +1,47 @@
+{
+ "t": "MFC",
+ "what": "Manulife Financial is a Canadian insurer. It sells life and health insurance and manages retirement money in Canada, the United States under the John Hancock brand, and across Asia, where it has one of the largest footprints of any Western insurer.",
+ "customers": "Individuals buying life, health and retirement products, and institutions using its asset management arm.",
+ "money": [
+  [
+   "Asia",
+   "the largest growth engine",
+   "life and health insurance in Hong Kong, Japan and Southeast Asia"
+  ],
+  [
+   "Canada",
+   "large",
+   "insurance, group benefits and banking"
+  ],
+  [
+   "US (John Hancock)",
+   "large",
+   "life insurance and long-term care policies"
+  ],
+  [
+   "Global Wealth and Asset Management",
+   "meaningful",
+   "fee income from managed money"
+  ]
+ ],
+ "moat": "Distribution agreements and agent networks in Asian markets that took decades to build, and the scale to carry long-dated insurance risk.",
+ "rivals": [
+  "Sun Life Financial|SLF",
+  "Prudential plc|PUK",
+  "AIA Group",
+  "Great-West Lifeco"
+ ],
+ "risks": [
+  "Legacy US long-term care policies have needed repeated reserve increases",
+  "Insurance accounting makes reported revenue volatile and hard to read",
+  "Interest rate moves change the value of long-dated liabilities",
+  "Analyst coverage in this data is thin and the single target implies downside"
+ ],
+ "opportunities": [
+  "Asian insurance sales grow faster than in developed markets",
+  "Reinsurance deals have removed some legacy long-term care risk",
+  "Fee income from wealth management is capital-light"
+ ],
+ "watch": "Asian new business value and long-term care reserve assumptions.",
+ "updated": "2026-11"
+}

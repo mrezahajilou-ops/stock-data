@@ -1,0 +1,47 @@
+{
+ "t": "TRP",
+ "what": "TC Energy owns natural gas pipelines across North America, including the system that carries most of Canada's gas to markets, plus Mexican pipelines and power generation. It spun off its oil pipeline business as South Bow.",
+ "customers": "Gas producers, utilities, power generators and industrial users in Canada, the United States and Mexico.",
+ "money": [
+  [
+   "Canadian Natural Gas Pipelines",
+   "large",
+   "the NGTL system and Canadian Mainline"
+  ],
+  [
+   "US Natural Gas Pipelines",
+   "large",
+   "Columbia and ANR systems in the US Northeast and Midwest"
+  ],
+  [
+   "Mexico Natural Gas Pipelines",
+   "meaningful",
+   "long-haul pipelines serving Mexican power generation"
+  ],
+  [
+   "Power and Energy Solutions",
+   "smaller",
+   "nuclear and gas-fired generation"
+  ]
+ ],
+ "moat": "Pipeline corridors that would be impossible to build today, with capacity contracted on regulated or long-term terms.",
+ "rivals": [
+  "Enbridge|ENB",
+  "Williams Companies|WMB",
+  "Pembina Pipeline|PBA",
+  "Kinder Morgan|KMI"
+ ],
+ "risks": [
+  "Debt of about $44 billion against under $1 billion of cash",
+  "The Coastal GasLink project ran far over budget",
+  "Large projects face long permitting and indigenous consultation processes",
+  "Rising rates raise the cost of refinancing"
+ ],
+ "opportunities": [
+  "Revenue grew about 16% last year with a 53% operating margin",
+  "Gas demand from power generation and liquefied natural gas exports is growing",
+  "A dividend yield near 4% backed by contracted cash flow"
+ ],
+ "watch": "Project costs against budget and the debt-to-EBITDA ratio.",
+ "updated": "2026-11"
+}

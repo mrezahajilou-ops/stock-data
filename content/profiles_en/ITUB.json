@@ -1,0 +1,42 @@
+{
+ "t": "ITUB",
+ "what": "Itaú Unibanco is the largest private bank in Latin America. It serves Brazilian households and companies with accounts, cards, loans and investments, and runs investment banking and asset management across the region.",
+ "customers": "Brazilian retail customers, small businesses, corporations, and clients in Chile, Argentina, Colombia and Uruguay.",
+ "money": [
+  [
+   "Retail banking",
+   "the largest part",
+   "deposits, credit cards, personal and payroll loans"
+  ],
+  [
+   "Wholesale banking",
+   "large",
+   "corporate lending, investment banking and treasury"
+  ],
+  [
+   "Insurance and services",
+   "meaningful",
+   "insurance, pensions and asset management fees"
+  ]
+ ],
+ "moat": "Scale in a concentrated banking market, where a handful of banks hold most Brazilian deposits, plus brand trust built over a century.",
+ "rivals": [
+  "Banco Bradesco|BBD",
+  "Nu Holdings|NU",
+  "Banco do Brasil",
+  "Banco Santander Brasil|BSBR"
+ ],
+ "risks": [
+  "Brazilian interest rates swing widely and move both margins and loan losses",
+  "Digital banks have taken market share in payments and cards",
+  "The Brazilian currency affects dollar-based returns",
+  "Political cycles affect state-owned competitors' pricing"
+ ],
+ "opportunities": [
+  "Return on equity above 20% is among the highest of any large bank in the world",
+  "High Brazilian rates lift income earned on its deposits",
+  "Analysts see meaningful upside to the current price"
+ ],
+ "watch": "Return on equity and the non-performing loan ratio.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "IMO",
+ "what": "Imperial Oil is a Canadian integrated oil company, about 70% owned by Exxon Mobil. It produces oil sands and conventional crude in Alberta, runs three refineries, and sells fuel through Esso and Mobil stations across Canada.",
+ "customers": "Canadian motorists and fuel distributors, refiners and petrochemical buyers.",
+ "money": [
+  [
+   "Upstream",
+   "the largest part",
+   "Kearl and Cold Lake oil sands and Syncrude interest"
+  ],
+  [
+   "Downstream",
+   "large",
+   "three Canadian refineries and the Esso and Mobil retail network"
+  ],
+  [
+   "Chemicals",
+   "small",
+   "polyethylene and solvents"
+  ]
+ ],
+ "moat": "Oil sands assets with decades of reserves combined with Canadian refineries and a retail network, backed by Exxon's technical support.",
+ "rivals": [
+  "Suncor Energy|SU",
+  "Canadian Natural Resources|CNQ",
+  "Cenovus Energy|CVE",
+  "Parkland"
+ ],
+ "risks": [
+  "Exxon Mobil's majority ownership limits minority shareholder influence",
+  "Canadian heavy crude discounts affect realised prices",
+  "Carbon regulation raises long-term oil sands costs",
+  "Analyst coverage here is thin and the single target implies downside"
+ ],
+ "opportunities": [
+  "Return on invested capital near 13% with very low debt of about $3 billion",
+  "Kearl production costs have fallen for several years running",
+  "Consistent buybacks shrink the share count"
+ ],
+ "watch": "Kearl unit costs and refinery utilisation.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "TRGP",
+ "what": "Targa Resources gathers and processes natural gas, mostly from the Permian basin, separates out natural gas liquids, transports them to the Gulf Coast, fractionates them into propane, butane and ethane, and exports them.",
+ "customers": "Permian oil and gas producers, petrochemical plants, and international buyers of propane and butane.",
+ "money": [
+  [
+   "Gathering and Processing",
+   "the larger part",
+   "gathering systems and processing plants in the Permian and other basins"
+  ],
+  [
+   "Logistics and Transportation",
+   "large",
+   "NGL pipelines, fractionation and the Galena Park export terminal"
+  ]
+ ],
+ "moat": "Gathering systems physically connected to wells in the Permian, plus its own pipeline to its own fractionators and export dock, so one molecule pays it several times.",
+ "rivals": [
+  "ONEOK|OKE",
+  "Enterprise Products Partners|EPD",
+  "Energy Transfer|ET",
+  "Williams Companies|WMB"
+ ],
+ "risks": [
+  "Debt of about $20 billion against almost no cash",
+  "Volumes depend on Permian drilling activity",
+  "Some contracts expose it to commodity price swings",
+  "Heavy capital spending on new plants and pipelines"
+ ],
+ "opportunities": [
+  "Permian gas volumes keep rising as oil production grows",
+  "Return on invested capital near 13% is strong for a midstream company",
+  "Propane and butane exports to Asia grow with petrochemical demand"
+ ],
+ "watch": "Permian inlet volumes and NGL export volumes.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,48 @@
+{
+ "t": "BCS",
+ "what": "Barclays is a British bank with two halves: a UK retail and business bank, and a global investment bank strong in fixed income trading and debt underwriting. It is also one of the largest credit card issuers in the United States.",
+ "customers": "UK households and businesses, global corporations and institutional investors, and US credit card holders through retail partnerships.",
+ "money": [
+  [
+   "Investment Bank",
+   "the largest part of revenue",
+   "trading, debt and equity underwriting and advisory"
+  ],
+  [
+   "Barclays UK",
+   "large",
+   "UK current accounts, mortgages and cards"
+  ],
+  [
+   "US Consumer Bank",
+   "meaningful",
+   "co-branded credit cards with US retailers"
+  ],
+  [
+   "Private Bank and Wealth",
+   "smaller",
+   "wealth management"
+  ]
+ ],
+ "moat": "One of only a few non-American banks with real scale in global fixed income trading, alongside a protected UK retail deposit base.",
+ "rivals": [
+  "HSBC|HSBC",
+  "NatWest Group|NWG",
+  "Lloyds Banking Group|LYG",
+  "Deutsche Bank|DB",
+  "JPMorgan Chase|JPM"
+ ],
+ "risks": [
+  "Trading revenue is volatile and consumes capital",
+  "UK regulators ring-fence the retail bank, limiting how capital moves",
+  "US card losses rise when American consumers come under pressure",
+  "Past conduct issues have brought repeated fines"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year",
+  "A multi-year plan to return capital through buybacks is well under way",
+  "Analysts see about 30% upside to the current price"
+ ],
+ "watch": "Return on tangible equity and investment bank revenue against US rivals.",
+ "updated": "2026-11"
+}

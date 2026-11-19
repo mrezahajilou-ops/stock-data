@@ -1,0 +1,43 @@
+{
+ "t": "PCAR",
+ "what": "Paccar builds heavy trucks under the Kenworth, Peterbilt and DAF brands, and makes its own engines. It also sells parts through a large dealer network and runs a finance arm that lends to truck buyers.",
+ "customers": "Truck fleets, owner-operators and leasing companies in North America, Europe and Australia.",
+ "money": [
+  [
+   "Truck",
+   "the largest part",
+   "Kenworth, Peterbilt and DAF heavy and medium trucks"
+  ],
+  [
+   "Parts",
+   "smaller but far more profitable",
+   "aftermarket parts through dealers"
+  ],
+  [
+   "Financial Services",
+   "smaller",
+   "loans and leases to truck buyers"
+  ]
+ ],
+ "moat": "Premium brands that hold resale value, a dealer network owner-operators rely on, and a parts business that earns money for the twenty-year life of each truck.",
+ "rivals": [
+  "Daimler Truck",
+  "Traton",
+  "Volvo Group",
+  "Cummins|CMI",
+  "Navistar"
+ ],
+ "risks": [
+  "Truck orders fell sharply last year and revenue dropped about 16%",
+  "Freight rates and trucking profitability drive demand",
+  "Emission rule changes pull demand forward and then leave a gap",
+  "Tariffs raise the cost of imported components"
+ ],
+ "opportunities": [
+  "Parts revenue holds up when new truck sales fall, cushioning the cycle",
+  "Almost no debt at the industrial company, with return on invested capital near 12%",
+  "Analysts see about 20% upside, with a cyclical recovery expected"
+ ],
+ "watch": "North American Class 8 truck orders and parts revenue growth.",
+ "updated": "2026-11"
+}

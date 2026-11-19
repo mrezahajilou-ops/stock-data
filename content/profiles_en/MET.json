@@ -1,0 +1,48 @@
+{
+ "t": "MET",
+ "what": "MetLife is one of the largest life insurers in the world. Its biggest business is group benefits: the life, dental, disability and accident insurance that American employers provide to staff. It also sells retirement products and insurance across Asia and Latin America.",
+ "customers": "Employers buying group benefits for staff, individuals buying insurance and annuities, and institutional clients.",
+ "money": [
+  [
+   "Group Benefits",
+   "the largest part",
+   "workplace life, dental, disability and accident insurance in the US"
+  ],
+  [
+   "Retirement and Income Solutions",
+   "large",
+   "pension risk transfer, annuities and stable value products"
+  ],
+  [
+   "Asia",
+   "large",
+   "insurance in Japan, Korea and other Asian markets"
+  ],
+  [
+   "Latin America and EMEA",
+   "meaningful",
+   "insurance across those regions"
+  ]
+ ],
+ "moat": "Employer relationships that renew year after year, and an investment portfolio large enough to earn spreads that smaller insurers cannot.",
+ "rivals": [
+  "Prudential Financial|PRU",
+  "Aflac|AFL",
+  "Unum|UNM",
+  "Manulife Financial|MFC",
+  "Principal Financial|PFG"
+ ],
+ "risks": [
+  "Insurance earnings depend on claims experience, which can turn sharply",
+  "Falling interest rates reduce the income earned on invested premiums",
+  "Its investment portfolio includes commercial property loans",
+  "Currency moves in Japan and Latin America affect results"
+ ],
+ "opportunities": [
+  "Group benefits is steady and grows with employment and wages",
+  "Pension risk transfer demand rises as companies offload pension obligations",
+  "Return on invested capital near 10% with large ongoing buybacks"
+ ],
+ "watch": "Group benefits claims ratio and net investment income.",
+ "updated": "2026-11"
+}

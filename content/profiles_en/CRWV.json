@@ -1,0 +1,33 @@
+{
+ "t": "CRWV",
+ "what": "CoreWeave rents out computing power for artificial intelligence. It builds data centres filled with graphics processors and leases that capacity to AI labs and enterprises under multi-year contracts.",
+ "customers": "AI research labs, large technology companies and enterprises training and running AI models.",
+ "money": [
+  [
+   "Cloud compute",
+   "almost all of revenue",
+   "GPU capacity, storage and networking sold under contract"
+  ]
+ ],
+ "moat": "Data centre capacity and GPU supply secured ahead of a shortage, with software tuned for large training clusters that general-purpose clouds were not built for.",
+ "rivals": [
+  "Nebius Group|NBIS",
+  "Amazon Web Services|AMZN",
+  "Microsoft Azure|MSFT",
+  "Google Cloud|GOOGL",
+  "Lambda Labs"
+ ],
+ "risks": [
+  "Debt of about $66 billion funds data centre and equipment purchases, an enormous figure",
+  "It makes a large net loss while building out capacity",
+  "A handful of customers account for most of its contracted revenue",
+  "GPUs depreciate quickly and the contracts must repay them before they do"
+ ],
+ "opportunities": [
+  "Revenue grew about 168% last year",
+  "A contracted backlog stretching years out gives revenue visibility",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Contracted backlog, customer concentration, and how new capacity is financed.",
+ "updated": "2026-11"
+}

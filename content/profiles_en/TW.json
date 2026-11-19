@@ -1,0 +1,43 @@
+{
+ "t": "TW",
+ "what": "Tradeweb runs electronic marketplaces for bonds and other fixed income products. Institutions that used to trade government bonds, corporate bonds and interest rate swaps by telephone now do it on its platforms.",
+ "customers": "Asset managers, hedge funds, insurers, central banks, banks and retail brokerages, more than 3,000 clients in total.",
+ "money": [
+  [
+   "Rates",
+   "the largest part",
+   "government bonds, mortgage-backed securities and swaps"
+  ],
+  [
+   "Credit",
+   "large, growing",
+   "corporate bonds and credit derivatives"
+  ],
+  [
+   "Money markets, equities and market data",
+   "meaningful",
+   "repo, exchange-traded funds and data"
+  ]
+ ],
+ "moat": "Liquidity that attracts more liquidity: once enough dealers and buyers quote on a platform, trading moves there and stays.",
+ "rivals": [
+  "MarketAxess|MKTX",
+  "Bloomberg",
+  "Intercontinental Exchange|ICE",
+  "CME Group|CME",
+  "BGC Group|BGC"
+ ],
+ "risks": [
+  "Trading volumes fall in quiet markets",
+  "Analyst targets imply the shares are already fully valued",
+  "Competition for electronic corporate bond trading is intense",
+  "Pricing per trade falls as volumes migrate to electronic venues"
+ ],
+ "opportunities": [
+  "Revenue grew about 19% last year and about 20% a year over three years",
+  "Operating margin of 41% with cash of $2.1 billion and almost no debt",
+  "Fixed income trading is still far less electronic than equities, so the shift has years to run"
+ ],
+ "watch": "Average daily volume by asset class and the revenue capture per million traded.",
+ "updated": "2026-11"
+}

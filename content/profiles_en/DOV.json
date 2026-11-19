@@ -1,0 +1,53 @@
+{
+ "t": "DOV",
+ "what": "Dover is a diversified manufacturer. It makes refrigeration systems for supermarkets, fuel dispensers and car wash equipment, industrial pumps, marking and coding printers, and components for biopharmaceutical production.",
+ "customers": "Supermarkets and food retailers, fuel station operators, industrial processors, pharmaceutical manufacturers and waste handlers.",
+ "money": [
+  [
+   "Engineered Products",
+   "large",
+   "vehicle service, waste handling and industrial automation"
+  ],
+  [
+   "Clean Energy and Fueling",
+   "large",
+   "fuel dispensers, cryogenic components and car wash"
+  ],
+  [
+   "Pumps and Process Solutions",
+   "large, highest margin",
+   "industrial pumps, polymer processing and biopharma components"
+  ],
+  [
+   "Imaging and Identification",
+   "meaningful",
+   "marking, coding and digital printing"
+  ],
+  [
+   "Climate and Sustainability",
+   "meaningful",
+   "commercial refrigeration and heat exchangers"
+  ]
+ ],
+ "moat": "Leading positions in many small niches where it is the standard supplier, with aftermarket parts and service on installed equipment.",
+ "rivals": [
+  "Illinois Tool Works|ITW",
+  "IDEX|IEX",
+  "Ingersoll Rand|IR",
+  "Emerson Electric|EMR",
+  "AMETEK|AME"
+ ],
+ "risks": [
+  "Revenue has been roughly flat over three years",
+  "Industrial and European demand has been weak",
+  "Growth depends partly on continuing acquisitions",
+  "Return on invested capital of about 10% is moderate"
+ ],
+ "opportunities": [
+  "Revenue grew about 4% last year with a 40% gross margin",
+  "Biopharmaceutical components and data centre cooling are faster-growing niches",
+  "Analysts see about 18% upside from current levels"
+ ],
+ "watch": "Organic order growth and bookings in Pumps and Process Solutions.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "BBD",
+ "what": "Banco Bradesco is one of Brazil's largest private banks. It serves tens of millions of customers through branches and digital channels, and owns Bradesco Seguros, the country's biggest insurer.",
+ "customers": "Brazilian households, small and medium businesses, corporations, and insurance policyholders.",
+ "money": [
+  [
+   "Banking",
+   "the larger part",
+   "deposits, cards, personal and business lending"
+  ],
+  [
+   "Insurance and pensions",
+   "large",
+   "Bradesco Seguros life, health and general insurance"
+  ]
+ ],
+ "moat": "A branch and agent network reaching deep into Brazil, including places digital banks do not serve, plus the largest insurance operation in the country.",
+ "rivals": [
+  "Itaú Unibanco|ITUB",
+  "Nu Holdings|NU",
+  "Banco do Brasil",
+  "Banco Santander Brasil|BSBR"
+ ],
+ "risks": [
+  "Credit losses rose sharply in recent years, more than at its main rival",
+  "Digital banks have taken share in payments and cards",
+  "Brazilian interest rates and unemployment drive loan performance",
+  "Its branch cost base is heavy relative to digital competitors"
+ ],
+ "opportunities": [
+  "A dividend yield above 9%",
+  "Analysts see large upside, with a median target well above the current price",
+  "The insurance business earns steady profits independent of lending"
+ ],
+ "watch": "The non-performing loan ratio and return on equity against Itaú.",
+ "updated": "2026-11"
+}

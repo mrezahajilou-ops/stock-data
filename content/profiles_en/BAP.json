@@ -1,0 +1,47 @@
+{
+ "t": "BAP",
+ "what": "Credicorp is Peru's largest financial group. It owns Banco de Crédito del Perú, the country's biggest bank, plus insurance, pension fund management, investment banking and the Yape mobile payments app used by most Peruvian adults.",
+ "customers": "Peruvian households, small businesses and corporations, plus Bolivian, Chilean and Colombian clients.",
+ "money": [
+  [
+   "Universal banking",
+   "the largest part",
+   "Banco de Crédito deposits, lending and payments"
+  ],
+  [
+   "Insurance and pensions",
+   "large",
+   "Pacífico insurance and Prima pension funds"
+  ],
+  [
+   "Microfinance",
+   "meaningful",
+   "Mibanco lending to small and informal businesses"
+  ],
+  [
+   "Investment banking and wealth",
+   "smaller",
+   "Credicorp Capital"
+  ]
+ ],
+ "moat": "The leading bank in a country where a few institutions hold most deposits, with Yape giving it a payments network that reaches far beyond its branch customers.",
+ "rivals": [
+  "Intercorp Financial|IFS",
+  "BBVA Perú",
+  "Scotiabank Perú|BNS",
+  "Nubank|NU"
+ ],
+ "risks": [
+  "Peruvian political instability has been persistent",
+  "Revenue fell about 13% last year",
+  "Microfinance lending has higher loss rates in downturns",
+  "Commodity prices drive the Peruvian economy and therefore credit quality"
+ ],
+ "opportunities": [
+  "Net margin of 29% with return on equity among the highest of Latin American banks",
+  "Yape is turning a payments app into a lending and commerce platform",
+  "A dividend yield above 4% with analysts seeing about 24% upside"
+ ],
+ "watch": "Yape monetisation and the non-performing loan ratio in microfinance.",
+ "updated": "2026-11"
+}

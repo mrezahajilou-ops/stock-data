@@ -1,0 +1,38 @@
+{
+ "t": "PPG",
+ "what": "PPG makes paints and coatings: automotive paint applied in car factories and body shops, protective coatings for ships, bridges and aircraft, industrial coatings, and architectural paint sold in several markets.",
+ "customers": "Carmakers and body shops, aerospace and marine customers, industrial manufacturers, and painting contractors.",
+ "money": [
+  [
+   "Performance Coatings",
+   "the larger part",
+   "refinish, aerospace, protective, marine and architectural coatings"
+  ],
+  [
+   "Industrial Coatings",
+   "large",
+   "automotive original equipment, packaging and industrial coatings"
+  ]
+ ],
+ "moat": "Coatings qualified into carmakers' and aircraft manufacturers' production processes, where changing supplier means requalification and risk to the finish.",
+ "rivals": [
+  "Sherwin-Williams|SHW",
+  "AkzoNobel",
+  "Axalta Coating Systems|AXTA",
+  "RPM International|RPM",
+  "BASF"
+ ],
+ "risks": [
+  "Revenue was flat last year and roughly flat over three years",
+  "European industrial demand has been weak",
+  "Car production volumes have been falling in Europe",
+  "Raw material costs are volatile"
+ ],
+ "opportunities": [
+  "Gross margin of 41% with a 14% operating margin",
+  "Aerospace coatings demand is strong with aircraft production rising",
+  "Cost reduction and portfolio disposals have simplified the company"
+ ],
+ "watch": "Organic volume growth by segment and raw material costs.",
+ "updated": "2026-11"
+}

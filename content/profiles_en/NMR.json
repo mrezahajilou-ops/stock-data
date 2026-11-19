@@ -1,0 +1,43 @@
+{
+ "t": "NMR",
+ "what": "Nomura is Japan's largest investment bank and brokerage. It serves Japanese retail investors through a nationwide branch network, manages assets, and runs a global wholesale business in trading and investment banking.",
+ "customers": "Japanese individual investors, Japanese and international corporations, and institutional investors worldwide.",
+ "money": [
+  [
+   "Wholesale",
+   "the largest part",
+   "global trading, investment banking and advisory"
+  ],
+  [
+   "Retail (Wealth Management)",
+   "large",
+   "brokerage and wealth advice to Japanese households"
+  ],
+  [
+   "Investment Management",
+   "meaningful",
+   "asset management fees"
+  ]
+ ],
+ "moat": "A retail branch network and brand trusted by Japanese savers, in a country where a very large pool of household cash is slowly moving into investments.",
+ "rivals": [
+  "Daiwa Securities",
+  "Mitsubishi UFJ|MUFG",
+  "Goldman Sachs|GS",
+  "Morgan Stanley|MS",
+  "SBI Securities"
+ ],
+ "risks": [
+  "Trading revenue is volatile and consumes capital",
+  "Revenue fell about 6% last year",
+  "Its overseas wholesale business has been loss-making in past years",
+  "Only one analyst covers it in this data"
+ ],
+ "opportunities": [
+  "Japanese households are shifting savings from cash into investments, helped by tax-free investment accounts",
+  "Rising Japanese interest rates revive bond trading activity",
+  "Net margin of 8% with a growing asset management business"
+ ],
+ "watch": "Wholesale division profitability and retail client asset inflows.",
+ "updated": "2026-11"
+}

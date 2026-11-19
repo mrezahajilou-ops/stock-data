@@ -1,0 +1,32 @@
+{
+ "t": "VRSN",
+ "what": "VeriSign operates the .com and .net domain name registries. Every .com domain in the world is registered through its database, and it charges a fee for each one, each year, under a contract with the US government and ICANN.",
+ "customers": "Domain registrars such as GoDaddy, which resell domains to the businesses and individuals who use them.",
+ "money": [
+  [
+   "Registry services",
+   "almost all of revenue",
+   "annual fees on .com and .net domain registrations"
+  ]
+ ],
+ "moat": "A contract granting it exclusive operation of .com, the most valuable namespace on the internet, with a renewal presumption and permitted price increases written in.",
+ "rivals": [
+  "Identity Digital",
+  "GoDaddy Registry|GDDY",
+  "Country-code registries",
+  "New generic top-level domains"
+ ],
+ "risks": [
+  "The total number of .com domains has been roughly flat for several years",
+  "Its contract terms are set by government and ICANN, not the market",
+  "Debt of about $1.8 billion against under $500 million of cash",
+  "Growth of about 6% comes mostly from price increases"
+ ],
+ "opportunities": [
+  "Operating margin of 68% and net margin of 50%, among the highest of any public company",
+  "Contracted price increases provide revenue growth without any new customers",
+  "It buys back shares consistently, so earnings per share rise faster than revenue"
+ ],
+ "watch": "Domain name base growth and the permitted price increase schedule.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,42 @@
+{
+ "t": "CNP",
+ "what": "CenterPoint Energy delivers electricity in the Houston area and natural gas across six states. Houston's growth and its exposure to hurricanes both define the business.",
+ "customers": "About 2.9 million electricity customers around Houston and 4.5 million gas customers across Texas, Indiana, Minnesota, Ohio and Louisiana.",
+ "money": [
+  [
+   "Houston Electric",
+   "the largest part",
+   "regulated electricity delivery in and around Houston"
+  ],
+  [
+   "Natural Gas Distribution",
+   "large",
+   "regulated gas delivery across six states"
+  ],
+  [
+   "Indiana Electric",
+   "meaningful",
+   "regulated electricity in southern Indiana"
+  ]
+ ],
+ "moat": "A delivery monopoly in one of the fastest-growing metropolitan areas in the United States, with rates set by Texas regulators.",
+ "rivals": [
+  "Sempra (Oncor)|SRE",
+  "Entergy|ETR",
+  "Atmos Energy|ATO",
+  "Vistra|VST"
+ ],
+ "risks": [
+  "Debt of about $23 billion",
+  "Hurricane Beryl outages drew heavy political and regulatory criticism",
+  "Texas regulators determine how much storm hardening investment it can recover",
+  "Return on invested capital of about 5%"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year",
+  "Houston population and data centre growth drive the strongest load forecasts in its history",
+  "Grid resilience investment adds to the base it earns a regulated return on"
+ ],
+ "watch": "Houston load growth and approval of resilience spending.",
+ "updated": "2026-11"
+}

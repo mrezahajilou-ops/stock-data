@@ -1,0 +1,38 @@
+{
+ "t": "ZM",
+ "what": "Zoom sells video meeting software, and has built a wider communications platform around it: cloud telephone service, contact centre software, events and an AI assistant.",
+ "customers": "Businesses of all sizes, schools, government bodies and individual users worldwide.",
+ "money": [
+  [
+   "Enterprise",
+   "the larger part",
+   "business subscriptions to meetings, phone and contact centre"
+  ],
+  [
+   "Online",
+   "large",
+   "self-service subscriptions by individuals and small businesses"
+  ]
+ ],
+ "moat": "A product that became the default verb for video calls, with reliability and simplicity that keeps users even where a competitor is bundled for free.",
+ "rivals": [
+  "Microsoft Teams|MSFT",
+  "Google Meet|GOOGL",
+  "Cisco Webex|CSCO",
+  "RingCentral|RNG",
+  "Five9|FIVN"
+ ],
+ "risks": [
+  "Growth has slowed to about 4% a year",
+  "Microsoft includes Teams with Office licences that most businesses already pay for",
+  "Individual subscriber numbers decline as offices return",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Cash of about $7.2 billion against almost no debt",
+  "Analysts see about 31% upside from current levels",
+  "Cloud telephone and contact centre products grow much faster than meetings"
+ ],
+ "watch": "Enterprise revenue growth and seats on Zoom Phone and Contact Center.",
+ "updated": "2026-11"
+}

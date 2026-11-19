@@ -1,0 +1,42 @@
+{
+ "t": "FWONK",
+ "what": "This tracking stock represents Liberty Media's Formula One business. Formula One owns the commercial rights to the world championship: it sells the television rights, race hosting fees and trackside sponsorship for every grand prix.",
+ "customers": "Broadcasters and streaming services, race promoters and governments hosting races, sponsors, and fans buying tickets and hospitality.",
+ "money": [
+  [
+   "Media rights",
+   "the largest part",
+   "television and streaming rights worldwide"
+  ],
+  [
+   "Race promotion",
+   "large",
+   "fees paid by circuits and governments to host a grand prix"
+  ],
+  [
+   "Sponsorship and other",
+   "large",
+   "trackside and title sponsorship, hospitality and licensing"
+  ]
+ ],
+ "moat": "A sport with no substitute: there is one Formula One world championship, and the teams, circuits and audience are all contracted to it.",
+ "rivals": [
+  "Liberty Media (MotoGP)",
+  "Formula E",
+  "NASCAR",
+  "Major sports leagues"
+ ],
+ "risks": [
+  "Debt of about $5.5 billion",
+  "Race hosting fees depend on governments willing to subsidise events",
+  "Media rights are renegotiated in large blocks, so a weak renewal matters for years",
+  "The tracking stock structure complicates ownership"
+ ],
+ "opportunities": [
+  "Revenue grew about 23% last year and about 12% a year over three years",
+  "American interest in the sport has risen sharply, which lifts US media and sponsorship value",
+  "New races and expanded calendars add hosting fees"
+ ],
+ "watch": "Media rights renewals and the number of races on the calendar.",
+ "updated": "2026-11"
+}

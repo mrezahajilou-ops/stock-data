@@ -1,0 +1,42 @@
+{
+ "t": "CCJ",
+ "what": "Cameco is one of the world's largest uranium producers. It mines uranium in Canada and Kazakhstan, converts and fabricates nuclear fuel, and owns 49% of Westinghouse, which services and builds nuclear reactors.",
+ "customers": "Nuclear utilities worldwide, which buy uranium and fuel services under long-term contracts.",
+ "money": [
+  [
+   "Uranium",
+   "the largest part",
+   "production from Cigar Lake, McArthur River and the Inkai joint venture"
+  ],
+  [
+   "Fuel Services",
+   "meaningful",
+   "conversion and fuel fabrication"
+  ],
+  [
+   "Westinghouse",
+   "growing",
+   "reactor servicing, fuel and new-build engineering, held at 49%"
+  ]
+ ],
+ "moat": "High-grade Canadian uranium deposits that are among the richest in the world, plus Western supply at a time when utilities want to avoid Russian material.",
+ "rivals": [
+  "Kazatomprom",
+  "Orano",
+  "NexGen Energy|NXE",
+  "Uranium Energy|UEC"
+ ],
+ "risks": [
+  "Uranium prices are volatile and the market is thin",
+  "Kazakh joint venture production depends on a politically complex partner",
+  "Net margin and returns are modest relative to the share price",
+  "The shares trade at a very high multiple of current earnings"
+ ],
+ "opportunities": [
+  "Revenue grew about 17% last year and about 23% a year over three years",
+  "Analysts see large upside, with a median target well above the current price",
+  "Reactor life extensions, restarts and new builds are all adding to long-term uranium demand"
+ ],
+ "watch": "Contracted uranium volumes and prices, and Westinghouse earnings.",
+ "updated": "2026-11"
+}

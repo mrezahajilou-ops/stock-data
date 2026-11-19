@@ -1,0 +1,37 @@
+{
+ "t": "FE",
+ "what": "FirstEnergy delivers electricity to more than six million customers across Ohio, Pennsylvania, West Virginia, Maryland and New Jersey, and owns over 24,000 miles of transmission lines.",
+ "customers": "Households, businesses and industry across five Midwestern and mid-Atlantic states.",
+ "money": [
+  [
+   "Distribution",
+   "the largest part",
+   "regulated electricity delivery across its utilities"
+  ],
+  [
+   "Integrated and Stand-Alone Transmission",
+   "large",
+   "regulated transmission investment"
+  ]
+ ],
+ "moat": "Delivery monopolies across five states with returns set by regulators, including federally regulated transmission that earns a formula-based return.",
+ "rivals": [
+  "American Electric Power|AEP",
+  "Exelon|EXC",
+  "PPL|PPL",
+  "Duquesne Light"
+ ],
+ "risks": [
+  "Debt of about $28 billion against almost no cash",
+  "A bribery scandal in Ohio led to criminal charges and continuing litigation",
+  "Ohio regulators have been reviewing its rates and governance",
+  "Return on invested capital of about 5%"
+ ],
+ "opportunities": [
+  "Revenue grew about 12% last year",
+  "Transmission investment earns steady federally regulated returns",
+  "Data centre interest in Ohio and Pennsylvania raises long-term load growth"
+ ],
+ "watch": "Ohio regulatory and legal outcomes, and transmission investment growth.",
+ "updated": "2026-11"
+}

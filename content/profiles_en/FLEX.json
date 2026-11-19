@@ -1,0 +1,43 @@
+{
+ "t": "FLEX",
+ "what": "Flex builds products for other companies: it designs, manufactures and manages the supply chain for electronics across data centres, cars, medical devices and industrial equipment, in about 30 countries.",
+ "customers": "Cloud and data centre operators, carmakers, medical device companies and industrial manufacturers.",
+ "money": [
+  [
+   "Reliability Solutions",
+   "large",
+   "automotive, medical and industrial manufacturing"
+  ],
+  [
+   "Agility Solutions",
+   "large",
+   "consumer, communications and lifestyle products"
+  ],
+  [
+   "Data centre power and cooling",
+   "growing fastest",
+   "power racks, busbars and cooling for AI data centres"
+  ]
+ ],
+ "moat": "Factories and supply chain operations across many countries that customers rely on to move production between regions as tariffs and demand shift.",
+ "rivals": [
+  "Jabil|JBL",
+  "Celestica|CLS",
+  "Sanmina|SANM",
+  "Foxconn",
+  "Vertiv|VRT"
+ ],
+ "risks": [
+  "Gross margin of 9% is thin, as is normal in contract manufacturing",
+  "Customers can move production to a rival at contract renewal",
+  "Revenue has been roughly flat over three years",
+  "Debt of about $6 billion"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year",
+  "Analysts see large upside, with a median target well above the current price",
+  "Data centre power and cooling products earn far better margins than ordinary assembly"
+ ],
+ "watch": "Data centre revenue growth and operating margin by segment.",
+ "updated": "2026-11"
+}

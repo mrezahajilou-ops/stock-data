@@ -1,0 +1,43 @@
+{
+ "t": "AER",
+ "what": "AerCap is the world's largest aircraft leasing company. It buys aircraft, engines and helicopters and leases them to airlines, which prefer leasing to tying up capital in planes. It owns or manages about 3,500 assets.",
+ "customers": "Airlines worldwide, which lease narrowbody and widebody aircraft, regional jets, freighters and engines.",
+ "money": [
+  [
+   "Aircraft leasing",
+   "the large majority",
+   "lease rentals on owned aircraft"
+  ],
+  [
+   "Engines and helicopters",
+   "meaningful",
+   "engine leasing through Shannon Engine Support and helicopter leasing"
+  ],
+  [
+   "Asset sales and management",
+   "meaningful",
+   "gains on selling aircraft and fees for managing others' fleets"
+  ]
+ ],
+ "moat": "Scale that gives it the best order positions with Boeing and Airbus and the lowest funding costs in the industry, in a business where cost of capital is the whole game.",
+ "rivals": [
+  "Air Lease|AL",
+  "SMBC Aviation Capital",
+  "Avolon",
+  "BOC Aviation",
+  "Willis Lease Finance|WLFC"
+ ],
+ "risks": [
+  "Debt of about $43 billion, though that is normal for a leasing company",
+  "Airline failures leave it repossessing aircraft",
+  "Interest rate rises raise its funding costs faster than lease rates reset",
+  "It lost a large fleet to the Russian seizure after 2022"
+ ],
+ "opportunities": [
+  "Aircraft shortages from Boeing and Airbus delays have pushed lease rates sharply higher",
+  "Net margin of 44% with consistent gains on aircraft sales",
+  "Large buybacks have shrunk the share count substantially"
+ ],
+ "watch": "Lease rate factors on new placements and book value per share.",
+ "updated": "2026-11"
+}

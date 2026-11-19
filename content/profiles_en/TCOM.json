@@ -1,0 +1,43 @@
+{
+ "t": "TCOM",
+ "what": "Trip.com Group is China's largest online travel company. It books hotels, flights and packages for Chinese travellers through Trip.com and Ctrip, and owns Skyscanner, the flight metasearch site used worldwide.",
+ "customers": "Chinese domestic and outbound travellers, plus international users of Trip.com and Skyscanner.",
+ "money": [
+  [
+   "Accommodation reservation",
+   "the largest part",
+   "hotel bookings"
+  ],
+  [
+   "Transportation ticketing",
+   "large",
+   "flights and rail tickets"
+  ],
+  [
+   "Packaged tours and corporate travel",
+   "meaningful",
+   "tours and business travel management"
+  ]
+ ],
+ "moat": "The dominant booking position in the Chinese travel market, with hotel supply relationships and a customer base that is hard for foreign platforms to reach.",
+ "rivals": [
+  "Booking Holdings|BKNG",
+  "Meituan",
+  "Expedia Group|EXPE",
+  "Airbnb|ABNB",
+  "Fliggy (Alibaba)|BABA"
+ ],
+ "risks": [
+  "Chinese consumer spending has been uneven",
+  "Chinese regulatory and geopolitical risk affects US-listed Chinese shares",
+  "Outbound travel recovery depends on flight capacity and visa policy",
+  "Meituan competes aggressively in domestic hotel booking"
+ ],
+ "opportunities": [
+  "Revenue grew about 22% last year and about 45% a year over three years",
+  "Operating margin of 25% with cash of $12 billion against $4 billion of debt",
+  "Chinese outbound travel is still below pre-2020 levels, leaving room to recover"
+ ],
+ "watch": "Outbound travel bookings and international platform growth.",
+ "updated": "2026-11"
+}

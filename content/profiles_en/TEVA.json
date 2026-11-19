@@ -1,0 +1,43 @@
+{
+ "t": "TEVA",
+ "what": "Teva is the world's largest maker of generic medicines, and also sells branded products: Austedo for movement disorders, Ajovy for migraine and Uzedy for schizophrenia. It is Israeli and sells in 57 markets.",
+ "customers": "Pharmacies, wholesalers, hospitals and health systems worldwide.",
+ "money": [
+  [
+   "Generic medicines",
+   "the larger part",
+   "off-patent medicines across the US, Europe and other markets"
+  ],
+  [
+   "Innovative medicines",
+   "growing, higher margin",
+   "Austedo, Ajovy and Uzedy"
+  ],
+  [
+   "Other",
+   "smaller",
+   "active pharmaceutical ingredients and distribution"
+  ]
+ ],
+ "moat": "The scale to manufacture thousands of generic products at low cost, plus branded medicines with patent protection that fund the business.",
+ "rivals": [
+  "Sandoz",
+  "Viatris|VTRS",
+  "Amneal Pharmaceuticals|AMRX",
+  "Sun Pharmaceutical",
+  "Dr Reddy's|RDY"
+ ],
+ "risks": [
+  "Debt of about $17 billion against $4 billion of cash, left from the Actavis purchase",
+  "It pays no dividend while repaying that debt",
+  "Generic drug pricing in the United States is under constant pressure",
+  "Opioid litigation settlements continue to consume cash"
+ ],
+ "opportunities": [
+  "Austedo has been growing quickly and is the main profit engine",
+  "A late-stage pipeline in immunology and neuroscience",
+  "Biosimilars are a higher-margin area where it has scale"
+ ],
+ "watch": "Austedo revenue growth and the pace of debt reduction.",
+ "updated": "2026-11"
+}

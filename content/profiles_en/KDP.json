@@ -1,0 +1,43 @@
+{
+ "t": "KDP",
+ "what": "Keurig Dr Pepper sells drinks in North America. It owns Dr Pepper, 7UP, Snapple, Canada Dry and Mott's, the Keurig single-serve coffee system and the pods that go in it, and the energy brand Ghost.",
+ "customers": "Supermarkets, convenience stores, restaurants and households buying coffee pods and brewers.",
+ "money": [
+  [
+   "US Refreshment Beverages",
+   "the largest part",
+   "Dr Pepper, Canada Dry, 7UP and energy drinks"
+  ],
+  [
+   "US Coffee",
+   "large",
+   "Keurig brewers and K-Cup pods"
+  ],
+  [
+   "International",
+   "smaller",
+   "Mexico, Canada and other markets"
+  ]
+ ],
+ "moat": "Brands people ask for by name, plus the Keurig installed base: each brewer sold creates years of pod sales.",
+ "rivals": [
+  "Coca-Cola|KO",
+  "PepsiCo|PEP",
+  "Monster Beverage|MNST",
+  "Celsius Holdings|CELH",
+  "Nestlé"
+ ],
+ "risks": [
+  "Debt of about $26 billion is high relative to earnings",
+  "Coffee pod volumes have been declining as at-home coffee demand normalised",
+  "Green coffee prices rose sharply, squeezing the coffee margin",
+  "Plans to split the company have created uncertainty"
+ ],
+ "opportunities": [
+  "Dr Pepper has been taking share and is now a top-two US soft drink brand",
+  "Revenue grew about 8% last year",
+  "Energy drinks through Ghost and distribution deals grow faster than soft drinks"
+ ],
+ "watch": "Coffee segment volumes and margins, and Dr Pepper market share.",
+ "updated": "2026-11"
+}

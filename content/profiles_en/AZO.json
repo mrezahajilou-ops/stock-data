@@ -1,0 +1,37 @@
+{
+ "t": "AZO",
+ "what": "AutoZone sells car parts and accessories through nearly 8,000 stores in the United States, Mexico and Brazil. Alongside walk-in customers it supplies repair garages, which is its faster-growing business.",
+ "customers": "People repairing their own cars, and professional repair shops buying parts for same-day delivery.",
+ "money": [
+  [
+   "Retail (do-it-yourself)",
+   "the larger part",
+   "parts, batteries, oil and accessories sold in store"
+  ],
+  [
+   "Commercial (do-it-for-me)",
+   "growing faster",
+   "parts delivered to independent repair garages"
+  ]
+ ],
+ "moat": "Store density and distribution that put almost any part within hours of a mechanic, which a part sold online next day cannot match.",
+ "rivals": [
+  "O'Reilly Automotive|ORLY",
+  "Advance Auto Parts|AAP",
+  "Genuine Parts|GPC",
+  "Amazon|AMZN"
+ ],
+ "risks": [
+  "Debt of about $13 billion against almost no cash, because it borrows to buy back shares",
+  "It pays no dividend, returning cash only through buybacks",
+  "Mexican and Brazilian expansion carries currency risk",
+  "Electric vehicles need fewer replacement parts over time"
+ ],
+ "opportunities": [
+  "Return on invested capital of 29% is exceptional for a retailer",
+  "The average age of cars on American roads keeps rising, which raises repair demand",
+  "Commercial sales to garages are growing faster than the retail side"
+ ],
+ "watch": "Same-store sales growth, especially in the commercial business.",
+ "updated": "2026-11"
+}

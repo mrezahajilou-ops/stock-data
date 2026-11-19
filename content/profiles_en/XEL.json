@@ -1,0 +1,37 @@
+{
+ "t": "XEL",
+ "what": "Xcel Energy is a regulated utility supplying electricity and natural gas to around 3.8 million electricity customers in Minnesota, Colorado, Texas and neighbouring states. It is one of the largest owners of wind generation in the United States.",
+ "customers": "Households, businesses and industrial users across eight states in the Midwest and Southwest.",
+ "money": [
+  [
+   "Regulated electric",
+   "the largest part",
+   "generation, transmission and delivery of electricity"
+  ],
+  [
+   "Regulated natural gas",
+   "smaller",
+   "gas distribution to homes and businesses"
+  ]
+ ],
+ "moat": "A legal monopoly in its service territories, with returns set by state regulators rather than competition.",
+ "rivals": [
+  "WEC Energy|WEC",
+  "Ameren|AEE",
+  "Alliant Energy|LNT",
+  "CMS Energy|CMS"
+ ],
+ "risks": [
+  "Debt of about $40 billion makes it very sensitive to interest rates",
+  "Wildfire liability in Colorado and Texas has become a real risk for utilities",
+  "Return on invested capital of about 4% is low, as is normal for a regulated utility",
+  "Rate case outcomes determine how much of each investment it recovers"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year",
+  "Data centre and electrification demand is raising load growth after years of flat demand",
+  "Every approved investment adds to the base it earns a regulated return on"
+ ],
+ "watch": "Rate case decisions and progress on wildfire mitigation spending.",
+ "updated": "2026-11"
+}

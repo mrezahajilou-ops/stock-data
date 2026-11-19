@@ -1,0 +1,38 @@
+{
+ "t": "WAB",
+ "what": "Wabtec makes the equipment that runs freight and passenger railways: locomotives, braking systems, signalling, and the aftermarket parts and services that keep them running. George Westinghouse invented the air brake that started the company in 1869.",
+ "customers": "Freight railways in North America and worldwide, passenger transit authorities, and mining companies.",
+ "money": [
+  [
+   "Freight",
+   "the larger part",
+   "locomotives, components, digital systems and aftermarket services"
+  ],
+  [
+   "Transit",
+   "large",
+   "braking, doors and systems for passenger trains and metros"
+  ]
+ ],
+ "moat": "Safety-critical equipment that is certified into railway operations and then serviced for decades, with an installed base that generates recurring parts revenue.",
+ "rivals": [
+  "Siemens Mobility",
+  "Alstom",
+  "Knorr-Bremse",
+  "Trinity Industries|TRN",
+  "Greenbrier|GBX"
+ ],
+ "risks": [
+  "Freight rail volumes have been soft, which delays locomotive orders",
+  "Debt of about $7 billion against under $500 million of cash",
+  "Transit projects depend on government budgets",
+  "Return on invested capital of about 8% is modest"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year with a backlog stretching years out",
+  "Aftermarket parts and services are about half of freight revenue and far steadier than new builds",
+  "Railway operators are modernising ageing locomotive fleets"
+ ],
+ "watch": "The order backlog and freight segment margin.",
+ "updated": "2026-11"
+}

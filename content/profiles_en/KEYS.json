@@ -1,0 +1,38 @@
+{
+ "t": "KEYS",
+ "what": "Keysight Technologies makes electronic test and measurement equipment: the instruments and software engineers use to design and verify wireless networks, semiconductors, aerospace systems and data centre hardware.",
+ "customers": "Telecom equipment makers and carriers, semiconductor companies, aerospace and defence contractors, and car manufacturers.",
+ "money": [
+  [
+   "Communications Solutions",
+   "the larger part",
+   "test for wireless, networking and data centre equipment"
+  ],
+  [
+   "Electronic Industrial Solutions",
+   "large",
+   "test for semiconductors, automotive and general electronics"
+  ]
+ ],
+ "moat": "Measurement standards that engineers design against, built on decades of Hewlett-Packard heritage, with software and calibration that lock in laboratories.",
+ "rivals": [
+  "Rohde & Schwarz",
+  "Anritsu",
+  "National Instruments (Emerson)|EMR",
+  "Teradyne|TER",
+  "Viavi Solutions|VIAV"
+ ],
+ "risks": [
+  "Telecom equipment spending has been weak for two years",
+  "Revenue has been flat over three years",
+  "Semiconductor test demand is cyclical",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Analysts see about 40% upside from current levels",
+  "AI data centre and high-speed interconnect testing is a growing market",
+  "Gross margin of 62% with a strong net cash position"
+ ],
+ "watch": "Order growth in communications test and the book-to-bill ratio.",
+ "updated": "2026-11"
+}

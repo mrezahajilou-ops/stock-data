@@ -1,0 +1,38 @@
+{
+ "t": "ADSK",
+ "what": "Autodesk makes design software. AutoCAD, Revit and Inventor are used by architects, engineers, builders and manufacturers to design buildings, products and infrastructure, and Maya is used in film and games.",
+ "customers": "Architecture and engineering firms, construction companies, manufacturers, and media and entertainment studios.",
+ "money": [
+  [
+   "Design",
+   "the large majority",
+   "AutoCAD, Revit, Inventor and related subscriptions"
+  ],
+  [
+   "Make",
+   "growing",
+   "construction and manufacturing workflow software such as Autodesk Construction Cloud"
+  ]
+ ],
+ "moat": "File formats and workflows that entire industries are trained on, so switching means retraining staff and converting years of drawings.",
+ "rivals": [
+  "Dassault Systèmes",
+  "Siemens Digital Industries",
+  "Bentley Systems|BSY",
+  "Trimble|TRMB",
+  "PTC|PTC"
+ ],
+ "risks": [
+  "Construction and manufacturing customers cut software spending in a downturn",
+  "An activist investor has pushed for higher margins and board change",
+  "Competitors are strong in specific verticals",
+  "The shares trade at a high multiple of earnings"
+ ],
+ "opportunities": [
+  "Revenue grew about 18% last year with a 91% gross margin",
+  "Moving customers to direct billing raises the revenue Autodesk keeps per seat",
+  "Construction software is a large market still mostly run on spreadsheets and paper"
+ ],
+ "watch": "Billings growth and free cash flow margin.",
+ "updated": "2026-11"
+}

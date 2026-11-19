@@ -1,0 +1,33 @@
+{
+ "t": "VMRK",
+ "what": "This company owns and manages apartment buildings in large American cities. Its properties are concentrated in dense coastal and Sunbelt markets where renters are typically higher-income professionals.",
+ "customers": "Apartment renters in major metropolitan areas, on leases typically of one year.",
+ "money": [
+  [
+   "Rental income",
+   "almost all of revenue",
+   "apartment rents and associated fees"
+  ]
+ ],
+ "moat": "Buildings in locations where new apartment supply is restricted by land scarcity and planning rules, so existing stock holds pricing power.",
+ "rivals": [
+  "AvalonBay Communities|AVB",
+  "Essex Property Trust|ESS",
+  "UDR|UDR",
+  "Camden Property Trust|CPT",
+  "Mid-America Apartment|MAA"
+ ],
+ "risks": [
+  "New apartment supply in Sunbelt markets has held down rents",
+  "Debt of about $6 billion against almost no cash",
+  "Rent control rules in some of its markets limit increases",
+  "Property values fall when interest rates rise"
+ ],
+ "opportunities": [
+  "High mortgage rates keep would-be buyers renting for longer",
+  "Coastal markets have very little new supply under construction",
+  "A dividend yield above 4% backed by lease income"
+ ],
+ "watch": "Same-store rent growth and occupancy, and new supply in its markets.",
+ "updated": "2026-11"
+}

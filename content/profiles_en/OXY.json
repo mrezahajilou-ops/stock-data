@@ -1,0 +1,43 @@
+{
+ "t": "OXY",
+ "what": "Occidental Petroleum produces oil and gas, mainly in the Permian basin, the Gulf of Mexico and the Middle East. It also owns the chemicals business OxyChem and is building direct air capture plants that remove carbon dioxide from the atmosphere.",
+ "customers": "Refiners and crude buyers, industrial chemicals customers, and companies buying carbon removal credits.",
+ "money": [
+  [
+   "Oil and Gas",
+   "the largest part",
+   "Permian, Rockies, Gulf of Mexico and Middle East production"
+  ],
+  [
+   "Chemical (OxyChem)",
+   "meaningful, steadier",
+   "chlorine, caustic soda and vinyls"
+  ],
+  [
+   "Midstream and Marketing",
+   "smaller",
+   "gathering, processing and marketing"
+  ]
+ ],
+ "moat": "A very large contiguous Permian acreage position, acquired through the Anadarko and CrownRock deals, with decades of drilling inventory.",
+ "rivals": [
+  "ConocoPhillips|COP",
+  "Diamondback Energy|FANG",
+  "EOG Resources|EOG",
+  "Devon Energy|DVN",
+  "Chevron|CVX"
+ ],
+ "risks": [
+  "Debt of about $13 billion remains from the Anadarko purchase",
+  "Warren Buffett's Berkshire holds preferred shares that absorb cash before common holders",
+  "Oil prices set earnings",
+  "Direct air capture is expensive and unproven at scale"
+ ],
+ "opportunities": [
+  "Permian well productivity and cost per barrel keep improving",
+  "Analysts see about 30% upside from current levels",
+  "OxyChem provides earnings that do not move with the oil price"
+ ],
+ "watch": "Debt reduction and Permian production per well.",
+ "updated": "2026-11"
+}

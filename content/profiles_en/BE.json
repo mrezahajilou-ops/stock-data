@@ -1,0 +1,38 @@
+{
+ "t": "BE",
+ "what": "Bloom Energy makes solid-oxide fuel cells that generate electricity on site from natural gas, biogas or hydrogen, without burning it. Data centres buy them to get power quickly when the grid cannot connect them fast enough.",
+ "customers": "Data centre operators, utilities, manufacturers, hospitals and retailers needing reliable on-site power.",
+ "money": [
+  [
+   "Product and installation",
+   "the larger part",
+   "fuel cell energy servers and their installation"
+  ],
+  [
+   "Service and electricity",
+   "growing",
+   "maintenance contracts and power sold under agreements"
+  ]
+ ],
+ "moat": "A fuel cell that can be installed in months rather than the years a grid connection takes, with a manufacturing base that competitors have not matched at scale.",
+ "rivals": [
+  "Caterpillar|CAT",
+  "Cummins|CMI",
+  "GE Vernova|GEV",
+  "Plug Power|PLUG",
+  "FuelCell Energy|FCEL"
+ ],
+ "risks": [
+  "It lost money in each of the last four financial years, turning profitable only recently",
+  "Government incentives affect project economics",
+  "Demand depends on data centre construction continuing at its current pace",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 37% last year and the trailing twelve months show a profit",
+  "Data centres cannot wait years for grid connections, which is exactly the gap this fills",
+  "Cash of about $2.5 billion roughly matches its debt"
+ ],
+ "watch": "Product backlog and whether gross margin keeps improving as volumes rise.",
+ "updated": "2026-11"
+}

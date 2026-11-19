@@ -1,0 +1,42 @@
+{
+ "t": "SRE",
+ "what": "Sempra owns regulated utilities in California and Texas, plus liquefied natural gas export terminals. In California it owns San Diego Gas and Electric and SoCalGas; in Texas it owns most of Oncor, the state's largest electricity delivery network.",
+ "customers": "Californian and Texan households and businesses through its utilities, and international buyers of liquefied natural gas.",
+ "money": [
+  [
+   "Sempra California",
+   "large",
+   "SDG&E electricity and SoCalGas gas distribution"
+  ],
+  [
+   "Sempra Texas",
+   "large and growing",
+   "its 80% interest in Oncor"
+  ],
+  [
+   "Sempra Infrastructure",
+   "meaningful",
+   "LNG export terminals and Mexican energy infrastructure"
+  ]
+ ],
+ "moat": "Regulated networks in two of the fastest-growing US states, plus LNG export capacity that is sold out under long-term contracts.",
+ "rivals": [
+  "Edison International|EIX",
+  "PG&E|PCG",
+  "CenterPoint Energy|CNP",
+  "Cheniere Energy|LNG"
+ ],
+ "risks": [
+  "Debt of about $35 billion against under $1 billion of cash",
+  "California wildfire liability is a persistent risk for utilities there",
+  "LNG projects are very large and exposed to cost overruns",
+  "Mexican infrastructure assets carry political risk"
+ ],
+ "opportunities": [
+  "Texas electricity demand is growing faster than anywhere in the country, which drives Oncor's investment",
+  "Analysts see about 25% upside to the current price",
+  "LNG exports under long-term contracts add earnings outside the regulated business"
+ ],
+ "watch": "Oncor capital spending approvals and LNG project construction progress.",
+ "updated": "2026-11"
+}

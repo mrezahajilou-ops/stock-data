@@ -1,0 +1,53 @@
+{
+ "t": "GRMN",
+ "what": "Garmin makes GPS-based devices: running and diving watches, cycling computers, aviation avionics, marine chartplotters and in-car systems. Aviation and marine are smaller but far more profitable than consumer wearables.",
+ "customers": "Runners, cyclists, divers and hikers; private aircraft owners and manufacturers; boat builders and boaters.",
+ "money": [
+  [
+   "Fitness",
+   "large",
+   "running and smartwatches, cycling computers"
+  ],
+  [
+   "Outdoor",
+   "large, high margin",
+   "adventure watches, handhelds and satellite communicators"
+  ],
+  [
+   "Aviation",
+   "meaningful, high margin",
+   "avionics for private and business aircraft"
+  ],
+  [
+   "Marine",
+   "meaningful",
+   "chartplotters, sonar and autopilot systems"
+  ],
+  [
+   "Auto OEM",
+   "smaller",
+   "in-car systems supplied to carmakers"
+  ]
+ ],
+ "moat": "Certified aviation avionics that take years to approve, and sports watches with an ecosystem of training data that users do not want to abandon.",
+ "rivals": [
+  "Apple|AAPL",
+  "Polar",
+  "Suunto",
+  "Honeywell|HON",
+  "Raymarine (Teledyne)|TDY"
+ ],
+ "risks": [
+  "Apple competes directly in smartwatches with far greater scale",
+  "Consumer electronics demand is discretionary",
+  "Auto OEM contracts are low-margin and concentrated",
+  "Tariffs affect a company that manufactures in Taiwan"
+ ],
+ "opportunities": [
+  "Revenue grew about 15% last year with a 26% operating margin",
+  "Aviation and marine give it high-margin businesses that consumer brands lack",
+  "Almost no debt: about $196 million against $2.3 billion of cash"
+ ],
+ "watch": "Outdoor and fitness segment growth and aviation order rates.",
+ "updated": "2026-11"
+}

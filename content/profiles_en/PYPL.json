@@ -1,0 +1,38 @@
+{
+ "t": "PYPL",
+ "what": "PayPal processes digital payments. It runs the PayPal checkout button used by hundreds of millions of consumers, the Venmo app in the United States, and Braintree, which handles payments behind the scenes for large online merchants.",
+ "customers": "Online shoppers, merchants of all sizes, and large platforms using Braintree's payment processing.",
+ "money": [
+  [
+   "Transaction revenue",
+   "almost all",
+   "fees on payments processed through PayPal, Venmo and Braintree"
+  ],
+  [
+   "Other value-added services",
+   "smaller",
+   "credit products, interest on balances and merchant services"
+  ]
+ ],
+ "moat": "A two-sided network of 439 million accounts and millions of merchants, where consumers trust a checkout that does not share their card details.",
+ "rivals": [
+  "Block|XYZ",
+  "Adyen",
+  "Stripe",
+  "Apple Pay|AAPL",
+  "Shopify Payments|SHOP"
+ ],
+ "risks": [
+  "Braintree processes large volumes at very thin margins, which dilutes profitability",
+  "Apple Pay and Shop Pay compete directly at checkout",
+  "Active account growth has stalled",
+  "Analyst targets imply the shares are roughly fairly valued"
+ ],
+ "opportunities": [
+  "Return on invested capital of 15% with an 18% operating margin",
+  "Venmo is being monetised through debit cards and merchant checkout",
+  "Large buybacks shrink the share count each year"
+ ],
+ "watch": "Branded checkout volume growth and transaction margin dollars.",
+ "updated": "2026-11"
+}

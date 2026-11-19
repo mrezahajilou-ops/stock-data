@@ -1,0 +1,37 @@
+{
+ "t": "ETR",
+ "what": "Entergy is a regulated utility supplying electricity in Louisiana, Arkansas, Mississippi and Texas, and gas in New Orleans and Baton Rouge. Its territory has attracted large industrial and data centre projects.",
+ "customers": "Households, businesses and heavy industry along the Gulf Coast, including petrochemical plants and new data centres.",
+ "money": [
+  [
+   "Utility",
+   "almost all of revenue",
+   "regulated electricity generation and delivery in four states"
+  ],
+  [
+   "Entergy Wholesale Commodities",
+   "small and shrinking",
+   "legacy non-regulated generation"
+  ]
+ ],
+ "moat": "A regulated monopoly in a region where industrial power demand is growing faster than almost anywhere else in the country.",
+ "rivals": [
+  "Southern Company|SO",
+  "CenterPoint Energy|CNP",
+  "American Electric Power|AEP",
+  "NextEra Energy|NEE"
+ ],
+ "risks": [
+  "Debt of about $33 billion against $4 billion of cash",
+  "Hurricanes regularly damage its network and cost billions to repair",
+  "Louisiana and Mississippi regulators set the returns it may earn",
+  "Heavy capital spending needs continuous financing"
+ ],
+ "opportunities": [
+  "Revenue grew about 9% last year",
+  "Large data centre and industrial projects in Louisiana and Mississippi raise long-term demand",
+  "Storm cost recovery mechanisms let it recover much of hurricane damage over time"
+ ],
+ "watch": "Industrial and data centre load growth and rate case outcomes.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "CVE",
+ "what": "Cenovus Energy is a Canadian integrated oil company. It produces oil sands and conventional crude in Alberta, and refines it in Canada and the United States, so it earns both the production and the refining margin.",
+ "customers": "Refiners and crude buyers in North America, and fuel distributors through its Canadian refineries and retail network.",
+ "money": [
+  [
+   "Upstream",
+   "the larger part",
+   "oil sands, conventional oil and offshore production"
+  ],
+  [
+   "Downstream",
+   "large",
+   "Canadian and US refineries"
+  ]
+ ],
+ "moat": "Long-life oil sands reserves with low decline rates, paired with refining capacity that is often worth most when crude prices are weakest.",
+ "rivals": [
+  "Suncor Energy|SU",
+  "Canadian Natural Resources|CNQ",
+  "Imperial Oil|IMO",
+  "MEG Energy"
+ ],
+ "risks": [
+  "US refineries have had repeated operational problems",
+  "Canadian heavy crude discounts affect realised prices",
+  "Revenue has fallen about 10% a year over three years with oil prices",
+  "Analyst coverage here is thin, with only two estimates"
+ ],
+ "opportunities": [
+  "Debt has fallen substantially, allowing larger buybacks",
+  "Analysts see about 38% upside from current levels",
+  "The Trans Mountain pipeline expansion improves access to Pacific markets"
+ ],
+ "watch": "US refinery utilisation and net debt.",
+ "updated": "2026-11"
+}

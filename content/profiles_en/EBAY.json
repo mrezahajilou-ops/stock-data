@@ -1,0 +1,38 @@
+{
+ "t": "EBAY",
+ "what": "eBay runs an online marketplace. It does not own the goods: buyers and sellers transact and eBay takes a fee. It has moved toward categories where its format works best, such as collectibles, car parts, refurbished electronics and luxury watches.",
+ "customers": "Individual and small-business sellers, and buyers looking for used, rare or hard-to-find items.",
+ "money": [
+  [
+   "Marketplace fees",
+   "almost all of revenue",
+   "transaction fees on goods sold"
+  ],
+  [
+   "Advertising and other",
+   "growing",
+   "promoted listings and payments services"
+  ]
+ ],
+ "moat": "Depth of supply in categories where items are one of a kind, which cannot be replicated by a retailer holding stock.",
+ "rivals": [
+  "Amazon|AMZN",
+  "Etsy|ETSY",
+  "Mercari",
+  "Poshmark",
+  "Facebook Marketplace|META"
+ ],
+ "risks": [
+  "Total goods sold on the platform has grown very slowly for years",
+  "Amazon and social marketplaces compete for both buyers and sellers",
+  "Debt of about $6 billion against $1 billion of cash",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "Operating margin of 21% and return on invested capital of 17% are strong",
+  "Advertising revenue grows faster than the marketplace itself",
+  "Focused categories such as watches and car parts are growing while the rest is flat"
+ ],
+ "watch": "Gross merchandise volume growth and advertising revenue as a share of the total.",
+ "updated": "2026-11"
+}

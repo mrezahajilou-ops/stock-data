@@ -1,0 +1,38 @@
+{
+ "t": "LITE",
+ "what": "Lumentum makes optical and photonic components: the lasers, transceivers and switches that carry data as light. AI data centres have become its main growth driver, alongside telecom networks and industrial lasers.",
+ "customers": "Cloud and AI data centre operators, network equipment makers, telecom carriers and industrial manufacturers.",
+ "money": [
+  [
+   "Components",
+   "the larger part",
+   "lasers, photonic chips and optical components"
+  ],
+  [
+   "Systems",
+   "large and growing fast",
+   "optical transceiver modules and optical circuit switching"
+  ]
+ ],
+ "moat": "Indium phosphide laser manufacturing, which very few companies in the world can do at volume and quality, at the exact point where AI clusters need more bandwidth.",
+ "rivals": [
+  "Coherent|COHR",
+  "Marvell Technology|MRVL",
+  "Broadcom|AVGO",
+  "Fabrinet|FN",
+  "Applied Optoelectronics|AAOI"
+ ],
+ "risks": [
+  "Revenue is concentrated in a handful of very large cloud customers",
+  "Optical component pricing falls steadily as volumes rise",
+  "A slowdown in AI data centre building would hit it directly",
+  "The shares have risen sharply and price in continued rapid growth"
+ ],
+ "opportunities": [
+  "Revenue grew about 83% in the last financial year",
+  "Faster 1.6 terabit modules and optical switching open larger markets inside the data centre",
+  "Cash of about $2 billion exceeds its debt"
+ ],
+ "watch": "Quarterly revenue guidance and gross margin as new products ramp.",
+ "updated": "2026-11"
+}

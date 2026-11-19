@@ -1,0 +1,38 @@
+{
+ "t": "MDLN",
+ "what": "Medline is the largest supplier of medical and surgical products in the United States. It manufactures its own gloves, gowns, drapes, wound care and exam supplies, and also runs the distribution network that delivers them to hospitals.",
+ "customers": "Hospitals, surgery centres, physician offices, nursing homes and home care providers.",
+ "money": [
+  [
+   "Medline Brand",
+   "the larger part, higher margin",
+   "its own manufactured medical and surgical products"
+  ],
+  [
+   "Supply Chain Solutions",
+   "large",
+   "distribution of its own and third-party products to care settings"
+  ]
+ ],
+ "moat": "Owning both the products and the distribution network, so it can guarantee supply when hospitals most need it, backed by long-term contracts with hospital groups.",
+ "rivals": [
+  "Cardinal Health|CAH",
+  "Owens & Minor|OMI",
+  "Becton Dickinson|BDX",
+  "McKesson|MCK",
+  "Henry Schein|HSIC"
+ ],
+ "risks": [
+  "Net margin of about 4% is thin, as is normal in distribution",
+  "Debt of about $13 billion remains from the private equity buyout before its listing",
+  "Hospital cost pressure limits price increases",
+  "Tariffs raise the cost of products made abroad"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year",
+  "Its own-brand products earn far more than distributing other companies' goods",
+  "Hospitals increasingly want a single supplier that can guarantee supply after pandemic shortages"
+ ],
+ "watch": "Medline Brand revenue as a share of the total, and operating margin.",
+ "updated": "2026-11"
+}

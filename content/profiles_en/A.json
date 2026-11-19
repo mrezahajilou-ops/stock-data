@@ -1,0 +1,43 @@
+{
+ "t": "A",
+ "what": "Agilent Technologies makes laboratory instruments and the consumables and software around them: chromatographs, mass spectrometers, cell analysis tools and diagnostic reagents used in pharmaceutical, chemical, food and environmental laboratories.",
+ "customers": "Pharmaceutical and biotechnology companies, contract research organisations, chemical and energy companies, academic laboratories and clinical diagnostics providers.",
+ "money": [
+  [
+   "Life Sciences and Diagnostics Markets",
+   "the largest part",
+   "liquid chromatography, mass spectrometry, pathology reagents"
+  ],
+  [
+   "Applied Markets",
+   "large",
+   "instruments for chemical, energy, food and environmental testing"
+  ],
+  [
+   "Agilent CrossLab",
+   "large, recurring",
+   "consumables, parts and service contracts"
+  ]
+ ],
+ "moat": "Instruments validated into regulated laboratory methods, where changing supplier means revalidating procedures with regulators.",
+ "rivals": [
+  "Thermo Fisher Scientific|TMO",
+  "Waters|WAT",
+  "Danaher|DHR",
+  "Bruker|BRKR",
+  "Shimadzu"
+ ],
+ "risks": [
+  "Pharmaceutical customers cut instrument spending sharply in the last two years",
+  "Chinese demand for laboratory equipment has been weak",
+  "Revenue has been flat over three years",
+  "Analyst targets imply limited upside"
+ ],
+ "opportunities": [
+  "About half of revenue is recurring consumables and service, which holds up when instrument sales fall",
+  "Operating margin of 21% with return on invested capital of 13%",
+  "A recovery in pharmaceutical capital spending would lift instrument orders"
+ ],
+ "watch": "Instrument order growth and demand in China.",
+ "updated": "2026-11"
+}

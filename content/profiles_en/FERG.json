@@ -1,0 +1,38 @@
+{
+ "t": "FERG",
+ "what": "Ferguson is North America's largest distributor of plumbing and heating products. It supplies pipes, valves, fittings, heating and air conditioning equipment, and bathroom and kitchen fixtures to contractors and builders from a network of branches and distribution centres.",
+ "customers": "Plumbing and heating contractors, commercial builders, industrial customers, water utilities and homeowners through showrooms.",
+ "money": [
+  [
+   "Residential",
+   "the larger part",
+   "plumbing, HVAC and fixtures for homes"
+  ],
+  [
+   "Non-residential",
+   "large",
+   "commercial, industrial, civil and fire protection"
+  ]
+ ],
+ "moat": "Branch density and inventory depth that let a contractor pick up almost any part the same day, which online sellers cannot match for job-site urgency.",
+ "rivals": [
+  "Watsco|WSO",
+  "Core & Main|CNM",
+  "SiteOne Landscape Supply|SITE",
+  "Reece",
+  "W.W. Grainger|GWW"
+ ],
+ "risks": [
+  "Residential construction and remodelling are weak while mortgage rates are high",
+  "Net margin of about 6% is thin, as is usual in distribution",
+  "Debt of about $8 billion against under $500 million of cash",
+  "Commodity price deflation in pipe and fittings reduces revenue"
+ ],
+ "opportunities": [
+  "Return on invested capital of 17% is high for a distributor",
+  "Data centre and infrastructure construction raises non-residential demand",
+  "Its own-brand products carry higher margins than the goods it resells"
+ ],
+ "watch": "Organic revenue growth split between residential and non-residential.",
+ "updated": "2026-11"
+}

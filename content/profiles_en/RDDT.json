@@ -1,0 +1,38 @@
+{
+ "t": "RDDT",
+ "what": "Reddit runs a network of over 100,000 online communities where users post, discuss and vote on content. It makes money from advertising placed alongside those discussions, and from licensing its archive to AI companies for model training.",
+ "customers": "Advertisers buying placements, AI companies licensing data, and users, who pay nothing.",
+ "money": [
+  [
+   "Advertising",
+   "the large majority",
+   "advertising sold against its communities"
+  ],
+  [
+   "Data licensing and other",
+   "meaningful, high margin",
+   "licensing content to AI companies and user subscriptions"
+  ]
+ ],
+ "moat": "Twenty years of human discussion organised by topic, which cannot be recreated and which has become unusually valuable as training data and as a source search engines surface.",
+ "rivals": [
+  "Meta Platforms|META",
+  "Pinterest|PINS",
+  "Snap|SNAP",
+  "X",
+  "Discord"
+ ],
+ "risks": [
+  "Advertising revenue depends on a small number of large advertisers and on search traffic",
+  "Google algorithm changes can swing its user traffic sharply",
+  "Moderation is done by volunteers, which creates content and community risk",
+  "The shares trade at a very high multiple of revenue"
+ ],
+ "opportunities": [
+  "Revenue grew about 69% last year and about 49% a year over three years",
+  "Gross margin of 91% with cash of $3 billion and almost no debt",
+  "Analysts see large upside, with a median target well above the current price"
+ ],
+ "watch": "Daily active unique visitors and advertising revenue per user.",
+ "updated": "2026-11"
+}

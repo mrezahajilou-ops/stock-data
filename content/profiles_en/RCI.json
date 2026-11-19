@@ -1,0 +1,42 @@
+{
+ "t": "RCI",
+ "what": "Rogers Communications is one of Canada's largest telecom companies. It sells mobile, internet and television service, owns cable networks across Ontario and other provinces, and holds large sports assets including the Toronto Blue Jays.",
+ "customers": "Canadian households and businesses buying wireless, internet and television, plus advertisers and sports fans.",
+ "money": [
+  [
+   "Wireless",
+   "the largest part",
+   "mobile service and device sales"
+  ],
+  [
+   "Cable",
+   "large",
+   "internet and television over its cable network"
+  ],
+  [
+   "Media and sports",
+   "meaningful",
+   "Sportsnet, the Blue Jays and radio"
+  ]
+ ],
+ "moat": "Spectrum and cable networks in Canada's most populous province, in a market with only three large operators, plus sports rights that cannot be replicated.",
+ "rivals": [
+  "BCE|BCE",
+  "TELUS|TU",
+  "Quebecor",
+  "Cogeco"
+ ],
+ "risks": [
+  "Debt of about $33 billion, much of it from the Shaw acquisition",
+  "Canadian wireless price competition has intensified",
+  "Media advertising is in structural decline",
+  "Only three analysts cover it in this data"
+ ],
+ "opportunities": [
+  "Revenue grew about 11% last year and about 12% a year over three years",
+  "Operating margin of 45% with return on invested capital of 15%",
+  "Buying full control of Maple Leaf Sports adds valuable sports assets"
+ ],
+ "watch": "Wireless subscriber growth and net debt reduction.",
+ "updated": "2026-11"
+}

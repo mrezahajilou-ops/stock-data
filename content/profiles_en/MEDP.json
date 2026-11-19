@@ -1,0 +1,33 @@
+{
+ "t": "MEDP",
+ "what": "Medpace runs clinical trials for small and mid-sized biotechnology companies. Unlike larger contract research organisations it keeps all services in-house and assigns a single team to a programme from start to finish.",
+ "customers": "Small and mid-sized biotechnology, pharmaceutical and medical device companies, mostly without their own trial infrastructure.",
+ "money": [
+  [
+   "Clinical development services",
+   "almost all of revenue",
+   "full-service clinical trial design, management and laboratory work"
+  ]
+ ],
+ "moat": "A fully integrated model that avoids the handoffs larger rivals rely on, giving small biotechs a single accountable team, which has produced consistently faster trial delivery.",
+ "rivals": [
+  "IQVIA|IQV",
+  "ICON|ICLR",
+  "Fortrea|FTRE",
+  "Parexel",
+  "Syneos Health"
+ ],
+ "risks": [
+  "Its customers are small biotechs, whose funding dries up when capital markets close",
+  "Trial cancellations reduce the backlog that converts into revenue",
+  "Analyst targets imply the shares are already fully valued",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Return on invested capital of 75%, exceptional for any company",
+  "Revenue grew about 20% last year and about 20% a year over three years",
+  "Cash of about $705 million against almost no debt funds large buybacks"
+ ],
+ "watch": "Net new business awards and the book-to-bill ratio.",
+ "updated": "2026-11"
+}

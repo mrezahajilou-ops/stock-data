@@ -1,0 +1,43 @@
+{
+ "t": "ITT",
+ "what": "ITT makes engineered components: pumps and valves for industrial and energy use, brake pads and shock absorbers for cars, and connectors for aerospace, defence and rail.",
+ "customers": "Chemical and energy processors, carmakers and their suppliers, aerospace and defence contractors, and rail operators.",
+ "money": [
+  [
+   "Motion Technologies",
+   "the largest part",
+   "brake pads, shock absorbers and sealing for vehicles and rail"
+  ],
+  [
+   "Industrial Process",
+   "large",
+   "pumps and valves for chemical, energy and general industry"
+  ],
+  [
+   "Connect and Control Technologies",
+   "meaningful",
+   "connectors and control components for aerospace and defence"
+  ]
+ ],
+ "moat": "Components qualified into vehicle and industrial platforms, especially brake pads approved by carmakers, which are then supplied for the model's life.",
+ "rivals": [
+  "Flowserve|FLS",
+  "Parker Hannifin|PH",
+  "Brembo",
+  "TE Connectivity|TEL",
+  "Dover|DOV"
+ ],
+ "risks": [
+  "European car production, a large market for its brake business, has been falling",
+  "Industrial project spending is cyclical",
+  "Debt of about $2.9 billion",
+  "Raw material costs are volatile"
+ ],
+ "opportunities": [
+  "Revenue grew about 8% last year and about 10% a year over three years",
+  "Analysts see about 22% upside from current levels",
+  "Aftermarket brake pads and pump parts grow regardless of new vehicle or plant builds"
+ ],
+ "watch": "Organic order growth and Motion Technologies margins.",
+ "updated": "2026-11"
+}

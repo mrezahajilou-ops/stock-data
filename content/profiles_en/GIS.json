@@ -1,0 +1,48 @@
+{
+ "t": "GIS",
+ "what": "General Mills makes packaged food. Cheerios, Nature Valley, Betty Crocker, Pillsbury, Yoplait in some markets, Häagen-Dazs internationally, and Blue Buffalo pet food are among its brands.",
+ "customers": "Supermarket and club store shoppers in North America and internationally, plus pet owners and foodservice customers.",
+ "money": [
+  [
+   "North America Retail",
+   "the largest part",
+   "cereal, snacks, baking and meals sold through grocers"
+  ],
+  [
+   "Pet",
+   "large, higher growth",
+   "Blue Buffalo pet food"
+  ],
+  [
+   "North America Foodservice",
+   "meaningful",
+   "food sold to restaurants and institutions"
+  ],
+  [
+   "International",
+   "meaningful",
+   "Häagen-Dazs and other brands outside North America"
+  ]
+ ],
+ "moat": "Brands with decades of shelf presence and household habit, plus manufacturing and distribution scale that private label competitors partly match but national rivals do not.",
+ "rivals": [
+  "Kellanova|K",
+  "Post Holdings|POST",
+  "Kraft Heinz|KHC",
+  "Nestlé Purina",
+  "Private label"
+ ],
+ "risks": [
+  "It reported a loss after writing down the value of brands",
+  "Revenue has fallen about 3% a year over three years as volumes decline",
+  "Consumers have shifted to cheaper own-brand products",
+  "Debt of about $13 billion against almost no cash"
+ ],
+ "opportunities": [
+  "A dividend yield around 7%",
+  "Pet food grows faster than packaged food and is more defensible",
+  "Gross margin of 34% leaves room for cost reduction"
+ ],
+ "watch": "Organic volume trends and pet segment growth.",
+ "updated": "2026-11"
+}

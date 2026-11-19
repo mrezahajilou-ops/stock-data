@@ -1,0 +1,48 @@
+{
+ "t": "SNA",
+ "what": "Snap-on makes professional tools. Its best-known business sells high-end hand tools and diagnostic equipment to vehicle mechanics from vans that visit workshops weekly, often financed by Snap-on's own credit arm.",
+ "customers": "Vehicle repair technicians and workshops, plus aerospace, military, mining and manufacturing customers.",
+ "money": [
+  [
+   "Tools Group",
+   "the largest part",
+   "hand tools and tool storage sold through the mobile van network"
+  ],
+  [
+   "Repair Systems and Information",
+   "large",
+   "diagnostic equipment, repair data and workshop equipment"
+  ],
+  [
+   "Commercial and Industrial",
+   "meaningful",
+   "tools for aerospace, military and industry"
+  ],
+  [
+   "Financial Services",
+   "smaller, high margin",
+   "lending to technicians buying tools"
+  ]
+ ],
+ "moat": "A franchised van network that visits mechanics at work every week, builds personal relationships and extends credit, which no catalogue or online seller replicates.",
+ "rivals": [
+  "Stanley Black & Decker|SWK",
+  "Matco (Vontier)|VNT",
+  "Mac Tools",
+  "Bosch",
+  "Harbor Freight"
+ ],
+ "risks": [
+  "Technicians defer buying expensive tools when their own income is uncertain",
+  "Revenue grew only about 1% last year",
+  "Credit losses in its financing arm rise in downturns",
+  "Electric vehicles need different and in some cases fewer tools"
+ ],
+ "opportunities": [
+  "Operating margin of 26% and return on invested capital of 14%",
+  "A dividend yield around 2.7% with a long record of increases",
+  "Cash exceeds debt, unusual for a company with a lending arm"
+ ],
+ "watch": "Tools Group organic sales and credit quality in the finance arm.",
+ "updated": "2026-11"
+}

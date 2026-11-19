@@ -1,0 +1,37 @@
+{
+ "t": "LNT",
+ "what": "Alliant Energy is a regulated utility serving Iowa and Wisconsin. It generates and delivers electricity and distributes natural gas to about 1.5 million customers.",
+ "customers": "Households, businesses, farms and a growing number of data centres across Iowa and Wisconsin.",
+ "money": [
+  [
+   "Iowa utility",
+   "large",
+   "regulated electricity and gas in Iowa"
+  ],
+  [
+   "Wisconsin utility",
+   "large",
+   "regulated electricity and gas in Wisconsin"
+  ]
+ ],
+ "moat": "Regulated monopolies in two Midwestern states, with returns set by state commissions and demand that holds through economic cycles.",
+ "rivals": [
+  "WEC Energy|WEC",
+  "Ameren|AEE",
+  "Xcel Energy|XEL",
+  "MidAmerican (Berkshire)|BRK.B"
+ ],
+ "risks": [
+  "Debt of about $11 billion against almost no cash",
+  "Return on invested capital of about 4% is low, as is normal for a regulated utility",
+  "Rate decisions determine recoverable investment",
+  "Large data centre customers concentrate demand with a few counterparties"
+ ],
+ "opportunities": [
+  "Revenue grew about 10% last year with a 24% operating margin",
+  "Large data centre projects in Iowa and Wisconsin raise projected load growth sharply",
+  "A dividend yield around 3% with consistent increases"
+ ],
+ "watch": "Data centre load commitments and rate case outcomes.",
+ "updated": "2026-11"
+}

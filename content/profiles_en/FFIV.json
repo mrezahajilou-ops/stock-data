@@ -1,0 +1,43 @@
+{
+ "t": "FFIV",
+ "what": "F5 makes software and hardware that sits in front of applications: load balancers that spread traffic across servers, and security products that protect applications and the interfaces between them.",
+ "customers": "Large enterprises, banks, telecom operators and service providers running business-critical applications.",
+ "money": [
+  [
+   "Software",
+   "growing",
+   "subscriptions and licences for application delivery and security"
+  ],
+  [
+   "Systems",
+   "large",
+   "hardware appliances"
+  ],
+  [
+   "Global services",
+   "large, recurring",
+   "maintenance and support contracts"
+  ]
+ ],
+ "moat": "Application delivery configurations built into the architecture of enterprise systems, where replacing them risks breaking the applications that run the business.",
+ "rivals": [
+  "Citrix (Cloud Software)",
+  "Akamai Technologies|AKAM",
+  "Cloudflare|NET",
+  "Radware|RDWR",
+  "A10 Networks|ATEN"
+ ],
+ "risks": [
+  "Hardware refresh cycles are lumpy",
+  "Cloud-native load balancing from the hyperscalers competes with its traditional products",
+  "Growth of about 11% is modest for a software company",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Gross margin of 82% with return on invested capital of 16%",
+  "Analysts see about 37% upside from current levels",
+  "Securing application programming interfaces is a growing market where it has a natural position"
+ ],
+ "watch": "Software revenue growth as a share of the total, and systems refresh demand.",
+ "updated": "2026-11"
+}

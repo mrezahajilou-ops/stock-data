@@ -1,0 +1,38 @@
+{
+ "t": "SWKS",
+ "what": "Skyworks Solutions makes radio frequency chips: the components that let phones and devices connect to mobile and Wi-Fi networks. Apple has historically been its largest customer by a wide margin.",
+ "customers": "Smartphone makers, especially Apple, plus automotive, industrial and infrastructure equipment manufacturers.",
+ "money": [
+  [
+   "Mobile",
+   "the larger part",
+   "radio frequency front-end modules for smartphones"
+  ],
+  [
+   "Broad Markets",
+   "large",
+   "connectivity chips for automotive, industrial, infrastructure and home devices"
+  ]
+ ],
+ "moat": "Radio frequency design and filter manufacturing that is difficult to replicate, with content designed into phone platforms years in advance.",
+ "rivals": [
+  "Qorvo|QRVO",
+  "Broadcom|AVGO",
+  "Qualcomm|QCOM",
+  "Murata",
+  "Apple in-house|AAPL"
+ ],
+ "risks": [
+  "Extreme customer concentration with Apple, which is bringing more components in-house",
+  "Revenue fell about 3% last year and about 6% a year over three years",
+  "Operating margin fell to about 5%",
+  "It suspended its dividend after a merger agreement"
+ ],
+ "opportunities": [
+  "Broad Markets revenue is less concentrated and growing",
+  "Cash of about $2.6 billion roughly matches its debt",
+  "Combining with Qorvo would create a much larger radio frequency supplier"
+ ],
+ "watch": "Content per phone at its largest customer and Broad Markets growth.",
+ "updated": "2026-11"
+}

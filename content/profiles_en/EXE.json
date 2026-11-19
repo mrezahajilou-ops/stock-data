@@ -1,0 +1,32 @@
+{
+ "t": "EXE",
+ "what": "Expand Energy is the largest natural gas producer in the United States by volume, formed from the merger of Chesapeake Energy and Southwestern Energy. It drills in the Appalachian and Haynesville shales.",
+ "customers": "Utilities, industrial users, liquefied natural gas exporters and power generators.",
+ "money": [
+  [
+   "Natural gas and liquids",
+   "almost all of revenue",
+   "production from Appalachia and the Haynesville basin in Louisiana"
+  ]
+ ],
+ "moat": "Haynesville acreage sits close to Gulf Coast LNG export terminals, which gives its gas the shortest route to the highest-priced market.",
+ "rivals": [
+  "EQT|EQT",
+  "Coterra Energy|CTRA",
+  "Antero Resources|AR",
+  "Range Resources|RRC"
+ ],
+ "risks": [
+  "Natural gas prices are volatile and set earnings",
+  "Debt of about $4.6 billion against almost no cash",
+  "Gas production can be shut in when prices fall, which it has done before",
+  "Pipeline capacity constraints affect realised prices"
+ ],
+ "opportunities": [
+  "Revenue grew sharply last year as gas prices recovered and the merger completed",
+  "Analysts see about 45% upside from current levels",
+  "LNG export and data centre power demand are both raising US gas consumption"
+ ],
+ "watch": "Realised gas price against benchmark and production volumes.",
+ "updated": "2026-11"
+}

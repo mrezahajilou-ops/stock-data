@@ -1,0 +1,42 @@
+{
+ "t": "BCH",
+ "what": "Banco de Chile is one of Chile's largest banks, founded in 1893 and part-owned by Citigroup and the Luksic family. It does retail, commercial and corporate banking across the country.",
+ "customers": "Chilean households, small businesses and large corporations.",
+ "money": [
+  [
+   "Retail banking",
+   "the largest part",
+   "deposits, mortgages, consumer loans and cards"
+  ],
+  [
+   "Wholesale banking",
+   "large",
+   "corporate lending and treasury"
+  ],
+  [
+   "Treasury and other",
+   "meaningful",
+   "investment income and trading"
+  ]
+ ],
+ "moat": "One of the strongest deposit franchises in a concentrated Chilean banking market, with a conservative lending record through several commodity cycles.",
+ "rivals": [
+  "Banco Santander Chile|BSAC",
+  "BCI",
+  "Itaú Chile",
+  "Scotiabank Chile|BNS"
+ ],
+ "risks": [
+  "Chilean economic growth depends heavily on copper prices",
+  "Revenue fell about 2% last year",
+  "Chilean inflation-linked assets mean results swing with inflation",
+  "Political debate over pension and banking reform creates uncertainty"
+ ],
+ "opportunities": [
+  "Net margin of 40%, among the highest of any listed bank",
+  "A dividend yield above 5%",
+  "Chilean interest rates have stabilised, supporting lending margins"
+ ],
+ "watch": "Net interest margin and the non-performing loan ratio.",
+ "updated": "2026-11"
+}

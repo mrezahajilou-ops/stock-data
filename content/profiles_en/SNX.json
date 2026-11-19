@@ -1,0 +1,38 @@
+{
+ "t": "SNX",
+ "what": "TD Synnex distributes information technology. It buys hardware, software and cloud services from vendors and sells them on to resellers and solution providers, who serve the end customers.",
+ "customers": "Value-added resellers, managed service providers, system integrators and retailers worldwide.",
+ "money": [
+  [
+   "Endpoint Solutions",
+   "large",
+   "PCs, mobile devices, printers and peripherals"
+  ],
+  [
+   "Advanced Solutions",
+   "large",
+   "servers, storage, networking, software and cloud"
+  ]
+ ],
+ "moat": "Relationships with thousands of vendors and over 150,000 resellers, plus the credit and logistics that let small resellers sell enterprise technology they could not finance alone.",
+ "rivals": [
+  "Ingram Micro|INGM",
+  "Arrow Electronics|ARW",
+  "ScanSource|SCSC",
+  "CDW|CDW",
+  "Also Holding"
+ ],
+ "risks": [
+  "Gross margin of 7% is extremely thin, typical of distribution",
+  "Net margin of about 1% leaves no room for error",
+  "Debt of about $5.5 billion",
+  "Vendors can sell directly to large customers, bypassing distribution"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year",
+  "Analysts see about 46% upside from current levels",
+  "AI server and data centre hardware flowing through distribution adds volume"
+ ],
+ "watch": "Gross billings growth and gross margin percentage.",
+ "updated": "2026-11"
+}

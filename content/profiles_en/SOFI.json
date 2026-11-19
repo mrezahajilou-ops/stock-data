@@ -1,0 +1,43 @@
+{
+ "t": "SOFI",
+ "what": "SoFi is a digital bank. It began by refinancing student loans and now offers current accounts, personal loans, mortgages, investing and credit cards through one app, and also sells its banking technology to other companies.",
+ "customers": "Younger American professionals banking, borrowing and investing through its app, plus fintech companies using its technology platform.",
+ "money": [
+  [
+   "Lending",
+   "the largest part",
+   "personal loans, student loan refinancing and mortgages"
+  ],
+  [
+   "Financial Services",
+   "growing fastest",
+   "deposits, cards, investing and insurance"
+  ],
+  [
+   "Technology Platform",
+   "meaningful",
+   "Galileo and Technisys banking technology sold to others"
+  ]
+ ],
+ "moat": "A bank licence combined with an app that cross-sells several products to the same customer, which lowers the cost of acquiring each additional product to nearly nothing.",
+ "rivals": [
+  "Chime|CHYM",
+  "LendingClub|LC",
+  "Robinhood|HOOD",
+  "Ally Financial|ALLY",
+  "JPMorgan Chase|JPM"
+ ],
+ "risks": [
+  "Credit losses on personal loans rise when consumers come under pressure",
+  "Debt of about $4 billion funds the loan book",
+  "It has only recently become consistently profitable",
+  "It pays no dividend"
+ ],
+ "opportunities": [
+  "Revenue grew about 35% last year and about 32% a year over three years",
+  "Analysts see about 49% upside from current levels",
+  "Deposit growth lowers its funding cost, which is the key advantage over non-bank lenders"
+ ],
+ "watch": "Member growth, deposit balances and the personal loan charge-off rate.",
+ "updated": "2026-11"
+}

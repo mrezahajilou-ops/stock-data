@@ -1,0 +1,38 @@
+{
+ "t": "WWD",
+ "what": "Woodward makes control systems for aircraft and engines: fuel systems and actuators for jet engines and airframes, and controls for industrial gas turbines, engines and power generation.",
+ "customers": "Jet engine and airframe manufacturers, airlines, industrial turbine makers and heavy equipment producers.",
+ "money": [
+  [
+   "Aerospace",
+   "the larger part",
+   "fuel systems, actuation and controls for commercial and defence aircraft"
+  ],
+  [
+   "Industrial",
+   "large",
+   "controls for gas turbines, engines and power generation"
+  ]
+ ],
+ "moat": "Components certified into engine and aircraft programmes, which are then supplied and serviced for the decades those platforms stay in production and in service.",
+ "rivals": [
+  "Honeywell|HON",
+  "Safran",
+  "Parker Hannifin|PH",
+  "Moog|MOG.A",
+  "Collins Aerospace (RTX)|RTX"
+ ],
+ "risks": [
+  "Aerospace build rates depend on Boeing and Airbus delivery schedules",
+  "Industrial demand from China trucks has been weak",
+  "It pays only a small dividend",
+  "Supply chain constraints have limited deliveries"
+ ],
+ "opportunities": [
+  "Revenue grew about 7% last year and about 14% a year over three years",
+  "Return on invested capital of 15% with low debt",
+  "Gas turbine demand for data centre power is lifting the industrial side"
+ ],
+ "watch": "Aerospace aftermarket revenue and industrial turbine orders.",
+ "updated": "2026-11"
+}

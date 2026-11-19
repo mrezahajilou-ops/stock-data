@@ -1,0 +1,42 @@
+{
+ "t": "VIV",
+ "what": "Telefônica Brasil, which trades as Vivo, is Brazil's largest telecom operator. It sells mobile service, fibre broadband and television, and has been expanding into digital services and payments.",
+ "customers": "Brazilian households and businesses buying mobile, broadband and television services.",
+ "money": [
+  [
+   "Mobile",
+   "the largest part",
+   "postpaid and prepaid wireless service"
+  ],
+  [
+   "Fixed broadband and television",
+   "large",
+   "fibre internet and pay television"
+  ],
+  [
+   "Digital services and B2B",
+   "growing",
+   "cloud, security and financial services for businesses"
+  ]
+ ],
+ "moat": "The largest mobile subscriber base in Brazil and the widest fibre footprint, built over decades in a market with only three large operators.",
+ "rivals": [
+  "TIM Brasil|TIMB",
+  "Claro (América Móvil)|AMX",
+  "Oi",
+  "Starlink"
+ ],
+ "risks": [
+  "Brazilian consumer spending and inflation affect prepaid customers directly",
+  "Currency movements affect dollar-based returns",
+  "Fibre overbuilding by smaller regional operators has increased competition",
+  "Regulatory decisions on spectrum and pricing affect economics"
+ ],
+ "opportunities": [
+  "A dividend yield above 8%",
+  "Prepaid customers steadily converting to higher-value postpaid plans",
+  "Analysts see about 15% upside from current levels"
+ ],
+ "watch": "Postpaid subscriber growth and revenue per user.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,33 @@
+{
+ "t": "FDXF",
+ "what": "FedEx Freight is the largest less-than-truckload carrier in North America, spun out of FedEx as a separate company. It moves pallet-sized shipments from many customers on shared trailers through its own terminal network.",
+ "customers": "Manufacturers, retailers and distributors shipping freight too large for parcel and too small for a full truck.",
+ "money": [
+  [
+   "Less-than-truckload freight",
+   "almost all of revenue",
+   "shipments moved through its terminal network"
+  ]
+ ],
+ "moat": "A national terminal network and the service record that comes with it, in an industry where adding capacity means buying scarce industrial land near cities.",
+ "rivals": [
+  "Old Dominion Freight Line|ODFL",
+  "XPO|XPO",
+  "Saia|SAIA",
+  "TFI International|TFII",
+  "ArcBest|ARCB"
+ ],
+ "risks": [
+  "Freight volumes have been weak across the industry for three years",
+  "Revenue fell about 1% last year",
+  "Debt of about $6.3 billion taken on at the spin-off",
+  "It is newly independent with a short record as a standalone company"
+ ],
+ "opportunities": [
+  "Analysts see about 13% upside from current levels",
+  "Operating independently allows pricing and network decisions that suited the parent less well",
+  "A freight recovery would flow through to profits quickly given spare capacity"
+ ],
+ "watch": "Tonnage per day, revenue per hundredweight, and the operating ratio.",
+ "updated": "2026-11"
+}

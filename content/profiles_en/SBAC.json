@@ -1,0 +1,42 @@
+{
+ "t": "SBAC",
+ "what": "SBA Communications owns and leases mobile phone towers. Operators rent space on its structures to hang antennas, under long leases with annual price increases built in. It operates in the United States, Latin America and Africa.",
+ "customers": "Mobile network operators in the United States, Brazil, other Latin American countries, South Africa and Tanzania.",
+ "money": [
+  [
+   "Domestic site leasing",
+   "the largest part",
+   "US tower leases to mobile operators"
+  ],
+  [
+   "International site leasing",
+   "large",
+   "towers in Latin America and Africa"
+  ],
+  [
+   "Site development",
+   "small",
+   "construction and installation services"
+  ]
+ ],
+ "moat": "Tower sites with planning permission and existing tenants, where adding a second or third operator to the same structure costs almost nothing and is nearly all profit.",
+ "rivals": [
+  "American Tower|AMT",
+  "Crown Castle|CCI",
+  "Vantage Towers",
+  "IHS Holding|IHS"
+ ],
+ "risks": [
+  "Debt of about $13 billion against little cash",
+  "Mobile operator consolidation reduces the number of potential tenants per tower",
+  "Brazilian and African currency movements affect international revenue",
+  "US carrier capital spending has been restrained"
+ ],
+ "opportunities": [
+  "Operating margin of 48% and net margin of 37%",
+  "Analysts see about 32% upside from current levels",
+  "Leases include contractual annual price increases regardless of new tenants"
+ ],
+ "watch": "Organic tower leasing revenue growth and tenant additions per tower.",
+ "updated": "2026-11"
+}

@@ -351,17 +351,20 @@
     function y(key, alt) { return S(function (a) { var x = match(KA, a.fy_end)[key]; if (nn(x) && alt) x = a[alt]; return usd(x); }); }
     // the SEC "cash" figure includes short-term investments when the company reports them
     function cashOnly(a) { var x = match(KA, a.fy_end).CashAndCashEquivalents; return !nn(x) ? x : (nn(a.cash) ? null : a.cash - (a.st_inv || 0)); }
+    // the SEC tags miss part of the borrowings for some filers (IFRS bond lines, bank funding): when the second source shows
+    // more than twice as much, use it
+    function debtOf(a) { var x = match(KA, a.fy_end).TotalDebt; return (!nn(x) && (nn(a.debt) || a.debt < 0.5 * x)) ? x : a.debt; }
     function cashAll(a) { var yb = match(KA, a.fy_end), x = yb.CashCashEquivalentsAndShortTermInvestments; return !nn(x) ? Math.max(x, a.cash || 0) : a.cash; }
     var rows = [
       ['Assets', [], 'sec'], ['Cash & equivalents', S(function (a) { return usd(cashOnly(a)); }), ''], ['Short-term investments', y('OtherShortTermInvestments', 'st_inv'), ''],
       ['Accounts receivable', y('AccountsReceivable', 'recv'), ''], ['Inventory', y('Inventory', 'inventory'), ''], ['Total current assets', v('current_assets'), ''],
       ['Property, plant & equipment', S(function (a) { return usd(!nn(a.ppe) ? a.ppe : match(KA, a.fy_end).NetPPE); }), ''], ['Goodwill', v('goodwill'), ''], ['Other intangible assets', v('intangibles'), ''],
       ['Total assets', v('assets'), 'b'], ['Liabilities', [], 'sec'], ['Accounts payable', y('AccountsPayable', 'payables'), ''],
-      ['Total current liabilities', v('current_liabilities'), ''], ['Total debt', v('debt'), ''], ['Total liabilities', v('liabilities'), 'b'],
+      ['Total current liabilities', v('current_liabilities'), ''], ['Total debt', S(function (a) { return usd(debtOf(a)); }), ''], ['Total liabilities', v('liabilities'), 'b'],
       ['Equity', [], 'sec'], ['Retained earnings', y('RetainedEarnings', 'retained'), ''], ["Shareholders’ equity", v('equity'), 'b'],
       ['Total liabilities & equity', v('assets'), ''],
       ['Key figures', [], 'sec'],
-      ['Net cash (debt)', S(function (a) { var c0 = cashAll(a); return (nn(a.debt) || nn(c0)) ? (nn(a.net_debt) ? D : usd(-a.net_debt)) : usd(c0 - a.debt); }), ''],
+      ['Net cash (debt)', S(function (a) { var c0 = cashAll(a); var db = debtOf(a); return (nn(db) || nn(c0)) ? (nn(a.net_debt) ? D : usd(-a.net_debt)) : usd(c0 - db); }), ''],
       ['Working capital', S(function (a) { return (!nn(a.current_assets) && !nn(a.current_liabilities)) ? usd(a.current_assets - a.current_liabilities) : D; }), ''],
       ['Book value per share', S(function (a) { return eps(a.book_value_per_share); }), ''], ['Tangible book value', y('TangibleBookValue'), ''],
       ['Shares outstanding', S(function (a) { return a.shares_out ? (a.shares_out / 1e9).toFixed(2) + 'B' : D; }), ''],

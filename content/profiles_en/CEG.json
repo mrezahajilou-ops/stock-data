@@ -1,0 +1,37 @@
+{
+ "t": "CEG",
+ "what": "Constellation Energy is the largest producer of carbon-free electricity in the United States. It owns the biggest fleet of nuclear power stations in the country and sells that power to businesses, utilities and, increasingly, data centre operators.",
+ "customers": "Large commercial and industrial users, utilities, and retail electricity customers; increasingly technology companies buying power for data centres.",
+ "money": [
+  [
+   "Generation",
+   "the core of profit",
+   "electricity from nuclear, plus some gas, hydro, wind and solar"
+  ],
+  [
+   "Retail and wholesale supply",
+   "large by revenue",
+   "selling electricity and gas to businesses and households"
+  ]
+ ],
+ "moat": "Nuclear plants that cannot be replicated: new ones take a decade or more to licence and build, while its existing fleet produces round-the-clock carbon-free power.",
+ "rivals": [
+  "Vistra|VST",
+  "NRG Energy|NRG",
+  "NextEra Energy|NEE",
+  "Talen Energy|TLN"
+ ],
+ "risks": [
+  "Power prices are set by markets it does not control",
+  "Nuclear plants carry operational and regulatory risk, and an outage is expensive",
+  "Federal support such as production tax credits can change",
+  "It paid a high price for the Calpine acquisition and took on debt"
+ ],
+ "opportunities": [
+  "Data centre operators are signing long-term contracts for carbon-free power at premium prices",
+  "Nuclear output is valued more highly as clean, always-on electricity becomes scarce",
+  "Licence extensions and uprates add output with little new capital"
+ ],
+ "watch": "New long-term power agreements with data centre customers and the prices in them.",
+ "updated": "2026-11"
+}

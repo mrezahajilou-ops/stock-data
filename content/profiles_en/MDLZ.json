@@ -1,0 +1,43 @@
+{
+ "t": "MDLZ",
+ "what": "Mondelez International makes snacks. Its brands include Oreo, Cadbury, Milka, Toblerone, Ritz and LU, sold in more than 150 countries, with chocolate and biscuits the core of the business.",
+ "customers": "Consumers through supermarkets, convenience stores and e-commerce worldwide, with a large share of sales in emerging markets.",
+ "money": [
+  [
+   "Chocolate",
+   "the largest category",
+   "Cadbury, Milka, Toblerone and Côte d'Or"
+  ],
+  [
+   "Biscuits and baked snacks",
+   "large",
+   "Oreo, Ritz, LU, belVita and Tate's"
+  ],
+  [
+   "Other",
+   "smaller",
+   "gum and candy, cheese and grocery, powdered beverages"
+  ]
+ ],
+ "moat": "Brands with a century of recognition, shelf space in millions of shops, and distribution reach in emerging markets built over decades.",
+ "rivals": [
+  "Nestlé",
+  "Hershey|HSY",
+  "PepsiCo|PEP",
+  "Ferrero",
+  "General Mills|GIS"
+ ],
+ "risks": [
+  "Cocoa prices rose to record levels and squeezed chocolate margins hard",
+  "Price increases have begun to reduce the volume consumers buy",
+  "Supermarket own-label snacks take share when budgets tighten",
+  "Currency moves in emerging markets reduce reported results"
+ ],
+ "opportunities": [
+  "Cocoa prices falling back would restore margins quickly",
+  "Emerging markets provide volume growth as incomes rise",
+  "Its brands allow price increases that smaller snack makers cannot pass on"
+ ],
+ "watch": "Volume growth separately from price, and the cocoa cost outlook management gives.",
+ "updated": "2026-11"
+}

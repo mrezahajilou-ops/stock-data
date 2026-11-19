@@ -1,0 +1,42 @@
+{
+ "t": "TT",
+ "what": "Trane Technologies makes heating, ventilation and air conditioning systems for commercial buildings and homes under the Trane brand, and refrigeration units for lorries and shipping containers under Thermo King.",
+ "customers": "Owners and operators of commercial buildings, schools, hospitals and data centres; homeowners; food transport and cold chain operators.",
+ "money": [
+  [
+   "Americas",
+   "the large majority",
+   "commercial and residential HVAC and transport refrigeration in North and South America"
+  ],
+  [
+   "EMEA",
+   "smaller",
+   "HVAC and Thermo King in Europe, the Middle East and Africa"
+  ],
+  [
+   "Asia Pacific",
+   "smaller",
+   "HVAC and transport refrigeration in Asia"
+  ]
+ ],
+ "moat": "An installed base of equipment that needs servicing and parts for fifteen to twenty years, sold through a dealer network that is hard to replicate.",
+ "rivals": [
+  "Carrier Global|CARR",
+  "Johnson Controls|JCI",
+  "Lennox International|LII",
+  "Daikin"
+ ],
+ "risks": [
+  "Commercial construction follows the economic cycle",
+  "Residential HVAC demand depends on housing activity and weather",
+  "Refrigerant regulations force product redesigns",
+  "Transport refrigeration tracks the weak freight market"
+ ],
+ "opportunities": [
+  "Data centre cooling is a fast-growing, high-value application for commercial HVAC",
+  "Service revenue on the installed base grows steadily and carries higher margins",
+  "Return on invested capital above 20% is unusual for an industrial manufacturer"
+ ],
+ "watch": "Commercial HVAC bookings in the Americas and the size of the service backlog.",
+ "updated": "2026-11"
+}

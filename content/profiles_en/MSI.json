@@ -1,0 +1,37 @@
+{
+ "t": "MSI",
+ "what": "Motorola Solutions supplies the radio systems emergency services use, along with the software, body cameras, licence plate readers and command-centre systems built around them. It is not the phone company of the same name.",
+ "customers": "Police, fire and ambulance services, defence ministries, schools, hospitals and large enterprises in over 100 countries.",
+ "money": [
+  [
+   "Products and Systems Integration",
+   "the larger part",
+   "two-way radio networks, body cameras and video security hardware"
+  ],
+  [
+   "Software and Services",
+   "growing, higher margin",
+   "command centre software, maintenance and subscription services"
+  ]
+ ],
+ "moat": "Public safety radio networks are built once and kept for decades, and the agencies that use them cannot risk switching mid-service.",
+ "rivals": [
+  "Axon Enterprise|AXON",
+  "L3Harris Technologies|LHX",
+  "Hytera",
+  "Verint Systems|VRNT"
+ ],
+ "risks": [
+  "Revenue depends on government budgets at national and local level",
+  "Axon competes aggressively in video and evidence management",
+  "Growth is steady but moderate in a mature radio market",
+  "Debt of about $11 billion was used partly for acquisitions"
+ ],
+ "opportunities": [
+  "Software and services revenue is recurring and grows faster than hardware",
+  "Video security and licence plate recognition extend it into new budgets",
+  "Return on invested capital near 19% supports continuing buybacks"
+ ],
+ "watch": "Software and services revenue growth and the size of the order backlog.",
+ "updated": "2026-11"
+}

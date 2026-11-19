@@ -1,0 +1,43 @@
+{
+ "t": "MNST",
+ "what": "Monster Beverage sells energy drinks. It develops and markets the brands, and Coca-Cola's bottlers handle most of the distribution. Monster Energy is its main brand, alongside Reign, Bang and the Monster Brewing alcohol range.",
+ "customers": "Consumers buying from convenience stores, supermarkets and online; distribution runs mainly through Coca-Cola bottlers.",
+ "money": [
+  [
+   "Monster Energy Drinks",
+   "the large majority",
+   "Monster Energy and its many variants"
+  ],
+  [
+   "Strategic Brands",
+   "smaller",
+   "energy brands acquired from Coca-Cola such as NOS and Full Throttle"
+  ],
+  [
+   "Alcohol Brands",
+   "small",
+   "craft beer and flavoured malt beverages"
+  ]
+ ],
+ "moat": "Brand strength in a category where shelf space is contested, plus access to the Coca-Cola bottling system, which a new entrant cannot buy.",
+ "rivals": [
+  "Celsius Holdings|CELH",
+  "Red Bull",
+  "Coca-Cola|KO",
+  "PepsiCo (Rockstar)|PEP",
+  "Keurig Dr Pepper|KDP"
+ ],
+ "risks": [
+  "Celsius and newer brands have taken share in the United States",
+  "Regulators periodically examine caffeine content and marketing to young people",
+  "The alcohol business has performed poorly and has been written down",
+  "Aluminium and ingredient costs affect margins"
+ ],
+ "opportunities": [
+  "It carries no debt and about $3.7 billion of cash",
+  "International markets are still under-penetrated compared with the US",
+  "Price increases have held and gross margins have recovered"
+ ],
+ "watch": "US convenience store scanner data for Monster's market share against Celsius and Red Bull.",
+ "updated": "2026-11"
+}

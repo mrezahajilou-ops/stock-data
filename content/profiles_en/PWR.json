@@ -1,0 +1,42 @@
+{
+ "t": "PWR",
+ "what": "Quanta Services builds and maintains electricity and energy infrastructure. Its crews string transmission lines, build substations, connect renewable projects and lay pipelines across North America and Australia.",
+ "customers": "Electric and gas utilities, renewable energy developers, data centre operators and pipeline companies.",
+ "money": [
+  [
+   "Electric Power",
+   "the largest segment",
+   "transmission and distribution lines, substations and grid hardening"
+  ],
+  [
+   "Renewable Energy",
+   "large",
+   "building solar, wind and battery projects"
+  ],
+  [
+   "Underground and Infrastructure",
+   "smaller",
+   "pipelines and underground utility work"
+  ]
+ ],
+ "moat": "Trained line crews are scarce, and utilities use a short list of contractors able to work safely on live high-voltage systems at scale.",
+ "rivals": [
+  "MYR Group|MYRG",
+  "MasTec|MTZ",
+  "Primoris Services|PRIM",
+  "EMCOR Group|EME"
+ ],
+ "risks": [
+  "Margins are thin, about 4% of revenue, so cost overruns hurt",
+  "Work depends on utility capital budgets and regulatory approvals",
+  "Fixed-price contracts carry execution risk",
+  "Skilled labour shortages can cap how much work it can take"
+ ],
+ "opportunities": [
+  "Grid investment is rising sharply to connect data centres and renewable generation",
+  "Revenue has grown about 20% a year for three years and the backlog is at record levels",
+  "Owning its own training academies eases the labour constraint rivals face"
+ ],
+ "watch": "Total backlog and the book-to-bill ratio, plus margin in the Electric Power segment.",
+ "updated": "2026-11"
+}

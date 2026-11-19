@@ -1,0 +1,42 @@
+{
+ "t": "CTAS",
+ "what": "Cintas rents uniforms and supplies to businesses. It delivers clean uniforms, floor mats, mops and restroom supplies on a weekly route, and sells first aid, safety and fire protection services alongside them.",
+ "customers": "More than a million businesses of every size in the United States, Canada and Latin America.",
+ "money": [
+  [
+   "Uniform Rental and Facility Services",
+   "the large majority",
+   "weekly rental and cleaning of uniforms, mats and towels"
+  ],
+  [
+   "First Aid and Safety Services",
+   "growing",
+   "restocking first aid cabinets, safety products and training"
+  ],
+  [
+   "Fire Protection and Other",
+   "smaller",
+   "extinguisher and sprinkler inspection and service"
+  ]
+ ],
+ "moat": "Route density: once a lorry already stops on a street, adding a customer costs almost nothing, which no new entrant can match.",
+ "rivals": [
+  "UniFirst|UNF",
+  "Aramark|ARMK",
+  "Vestis|VSTS",
+  "Alsco"
+ ],
+ "risks": [
+  "Revenue tracks employment at its customers, since it bills per uniformed worker",
+  "Growth is steady but modest in a mature market",
+  "The shares trade at a high multiple of earnings",
+  "Energy and labour costs affect route profitability"
+ ],
+ "opportunities": [
+  "Return on invested capital above 25% and consistent price increases make it unusually profitable",
+  "Many businesses still handle uniforms in-house, which is the main source of new customers",
+  "First aid and fire protection cross-sell into existing routes at higher margins"
+ ],
+ "watch": "Organic revenue growth and incremental margin, which show whether route density keeps improving.",
+ "updated": "2026-11"
+}

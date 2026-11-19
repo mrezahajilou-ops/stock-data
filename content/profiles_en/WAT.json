@@ -1,0 +1,38 @@
+{
+ "t": "WAT",
+ "what": "Waters makes the instruments laboratories use to find out exactly what is in a sample: liquid chromatography and mass spectrometry systems, the columns and chemicals they consume, and the software that runs them.",
+ "customers": "Pharmaceutical and biotech laboratories above all, plus food safety, environmental and materials testing labs.",
+ "money": [
+  [
+   "Instruments",
+   "meaningful",
+   "chromatography and mass spectrometry systems"
+  ],
+  [
+   "Chemistry consumables and service",
+   "the larger part of profit",
+   "columns, reagents and service contracts bought repeatedly"
+  ]
+ ],
+ "moat": "Instruments validated into regulated drug-manufacturing processes, which cannot be swapped without re-validation, and the consumables that only work with them.",
+ "rivals": [
+  "Agilent Technologies|A",
+  "Thermo Fisher Scientific|TMO",
+  "Bruker|BRKR",
+  "Shimadzu",
+  "Danaher|DHR"
+ ],
+ "risks": [
+  "Pharmaceutical customers cut instrument spending sharply in downturns",
+  "Chinese demand has been weak and is subject to government stimulus decisions",
+  "The combination with Becton Dickinson's biosciences unit is a large integration",
+  "Reported net income was depressed by one-off items in the last period"
+ ],
+ "opportunities": [
+  "Recurring consumables and service revenue is over half of sales and far steadier than instruments",
+  "Regulated pharmaceutical manufacturing requires continuous testing regardless of the economic cycle",
+  "Replacement demand builds after several weak instrument years"
+ ],
+ "watch": "Instrument orders, which lead revenue, and recurring revenue growth.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,37 @@
+{
+ "t": "AMT",
+ "what": "American Tower owns communications towers and leases space on them to mobile operators. One tower can carry several tenants, and each additional tenant adds revenue with almost no extra cost. It also owns data centres through CoreSite.",
+ "customers": "Mobile network operators worldwide, broadcasters, government agencies and, through CoreSite, enterprises needing interconnection.",
+ "money": [
+  [
+   "Property (towers)",
+   "about 97% of revenue",
+   "long-term leases on tower space, with contractual annual rent increases"
+  ],
+  [
+   "Data centres",
+   "smaller",
+   "CoreSite interconnection facilities in the United States"
+  ]
+ ],
+ "moat": "Towers are planned, permitted and built once; zoning makes new sites hard to add, and carriers sign leases of five to ten years with built-in escalators.",
+ "rivals": [
+  "Crown Castle|CCI",
+  "SBA Communications|SBAC",
+  "Cellnex",
+  "IHS Towers|IHS"
+ ],
+ "risks": [
+  "Debt of about $45 billion makes it sensitive to interest rates",
+  "Carrier consolidation removes tenants, as happened with Sprint in the US",
+  "Emerging market operations carry currency and payment risk",
+  "Carrier capital spending has slowed after the 5G build-out"
+ ],
+ "opportunities": [
+  "Lease escalators raise rent each year regardless of new construction",
+  "Adding a tenant to an existing tower has very high incremental margin",
+  "CoreSite data centres grow with demand for interconnection"
+ ],
+ "watch": "Organic tenant billings growth, which strips out currency and acquisitions.",
+ "updated": "2026-11"
+}

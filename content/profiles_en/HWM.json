@@ -1,0 +1,47 @@
+{
+ "t": "HWM",
+ "what": "Howmet Aerospace makes engineered metal parts for aircraft: jet engine turbine blades and structural castings, fastening systems that hold airframes together, and forged aluminium wheels for heavy trucks.",
+ "customers": "Jet engine makers, aircraft manufacturers, defence programmes and commercial truck fleets.",
+ "money": [
+  [
+   "Engine Products",
+   "the largest segment",
+   "turbine blades, vanes and castings for jet engines"
+  ],
+  [
+   "Fastening Systems",
+   "large",
+   "specialty fasteners for airframes and engines"
+  ],
+  [
+   "Engineered Structures",
+   "meaningful",
+   "titanium and aluminium structural parts"
+  ],
+  [
+   "Forged Wheels",
+   "smaller",
+   "aluminium wheels for commercial trucks"
+  ]
+ ],
+ "moat": "Parts qualified for specific engine and aircraft programmes, where requalifying a supplier takes years and regulatory approval.",
+ "rivals": [
+  "Precision Castparts (Berkshire Hathaway)|BRK-B",
+  "RTX|RTX",
+  "Safran",
+  "Carpenter Technology|CRS"
+ ],
+ "risks": [
+  "Demand depends on Boeing and Airbus build rates, which have slipped repeatedly",
+  "Commercial truck wheel demand is in a freight downturn",
+  "It is concentrated in a narrow set of aerospace programmes",
+  "Raw material costs for titanium and nickel alloys fluctuate"
+ ],
+ "opportunities": [
+  "Engine aftermarket spare parts carry the highest margins and grow with flight hours",
+  "Record air traffic forces airlines to maintain older engines, lifting spares demand",
+  "Margins have expanded steadily as pricing improved"
+ ],
+ "watch": "Engine Products revenue and the aftermarket share within it.",
+ "updated": "2026-11"
+}

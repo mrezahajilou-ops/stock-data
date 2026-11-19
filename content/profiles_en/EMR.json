@@ -1,0 +1,43 @@
+{
+ "t": "EMR",
+ "what": "Emerson Electric sells industrial automation. It supplies the control systems, valves, measurement instruments and software that run refineries, chemical plants, power stations and factories, and it owns most of the engineering software firm Aspen Technology.",
+ "customers": "Process industries such as oil, gas, chemicals and pharmaceuticals, plus discrete manufacturers and power producers.",
+ "money": [
+  [
+   "Final Control and Measurement",
+   "the larger part",
+   "valves, regulators, sensors and analytical instruments"
+  ],
+  [
+   "Control Systems and Software",
+   "large",
+   "distributed control systems and industrial software including AspenTech"
+  ],
+  [
+   "Discrete and Safety",
+   "smaller",
+   "automation for factory production lines"
+  ]
+ ],
+ "moat": "Control systems that run a plant for twenty years and are replaced only during rare shutdowns, which gives it long service and upgrade revenue.",
+ "rivals": [
+  "Honeywell|HON",
+  "Siemens",
+  "ABB",
+  "Rockwell Automation|ROK",
+  "Schneider Electric"
+ ],
+ "risks": [
+  "Capital spending by oil, gas and chemical customers is cyclical",
+  "Growth has been modest at about 5% a year",
+  "Acquiring the rest of AspenTech used significant capital",
+  "Industrial demand in China and Europe has been soft"
+ ],
+ "opportunities": [
+  "Plant operators are investing in automation software to cut labour and energy costs",
+  "Its software business carries far higher margins than hardware",
+  "Liquefied natural gas and power projects are a large source of new orders"
+ ],
+ "watch": "Underlying orders growth, which leads revenue by two to three quarters.",
+ "updated": "2026-11"
+}

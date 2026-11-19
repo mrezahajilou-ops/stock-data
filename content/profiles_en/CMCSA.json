@@ -1,0 +1,39 @@
+{
+ "t": "CMCSA",
+ "what": "Comcast sells broadband, mobile and television service in the United States under Xfinity and in Europe under Sky. It also owns NBCUniversal: the NBC network, Universal film studios, the Peacock streaming service and Universal theme parks.",
+ "customers": "Households and businesses buying internet and TV, advertisers, cinema audiences and theme park visitors.",
+ "money": [
+  [
+   "Connectivity and Platforms",
+   "the larger part and most of the profit",
+   "broadband, wireless, video and voice under Xfinity, Sky and Comcast Business"
+  ],
+  [
+   "Content and Experiences",
+   "large",
+   "NBCUniversal television, film, Peacock and theme parks"
+  ]
+ ],
+ "moat": "Cable networks already run past most homes in its footprint; building a competing network costs billions, and broadband is the service households cancel last.",
+ "rivals": [
+  "Charter Communications|CHTR",
+  "AT&T|T",
+  "Verizon|VZ",
+  "T-Mobile US|TMUS",
+  "Netflix|NFLX",
+  "Walt Disney|DIS"
+ ],
+ "risks": [
+  "Broadband subscribers are falling as fixed wireless and fibre take share",
+  "Debt of about $87 billion is large even for a cable company",
+  "Peacock loses money against much larger streaming rivals",
+  "Theme parks are discretionary spending that falls in a recession"
+ ],
+ "opportunities": [
+  "Xfinity Mobile adds revenue per household at low incremental cost",
+  "The new Epic Universe park in Orlando adds capacity and admissions",
+  "A dividend yield above 5% and heavy buybacks return most free cash flow"
+ ],
+ "watch": "Net broadband subscriber additions, the number investors react to most.",
+ "updated": "2026-11"
+}

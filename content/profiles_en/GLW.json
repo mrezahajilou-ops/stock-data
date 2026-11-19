@@ -1,0 +1,52 @@
+{
+ "t": "GLW",
+ "what": "Corning makes specialty glass and ceramics. It supplies optical fibre and cable for telecom and data centres, cover glass for phones and laptops, glass substrates for displays, and ceramic filters that clean vehicle exhaust.",
+ "customers": "Telecom carriers and data centre builders, phone and TV makers, carmakers and pharmaceutical companies.",
+ "money": [
+  [
+   "Optical Communications",
+   "the largest segment",
+   "optical fibre, cable and connectivity for carriers and data centres"
+  ],
+  [
+   "Display Technologies",
+   "large",
+   "glass substrates for televisions and monitors"
+  ],
+  [
+   "Specialty Materials",
+   "meaningful",
+   "Gorilla Glass for phones and laptops"
+  ],
+  [
+   "Environmental Technologies",
+   "meaningful",
+   "ceramic substrates and filters for vehicle exhaust"
+  ],
+  [
+   "Life Sciences",
+   "smaller",
+   "laboratory glassware and pharmaceutical packaging"
+  ]
+ ],
+ "moat": "Glass and ceramic processes developed over 175 years that competitors cannot copy quickly, and designs specified into customers' products years in advance.",
+ "rivals": [
+  "AGC",
+  "Nippon Electric Glass",
+  "Prysmian",
+  "CommScope|COMM"
+ ],
+ "risks": [
+  "Display glass prices fall over time and the TV market is mature",
+  "Smartphone demand is cyclical and concentrated among a few customers",
+  "Capital spending on new glass plants is heavy",
+  "Vehicle exhaust products shrink as electric cars take share"
+ ],
+ "opportunities": [
+  "AI data centres need enormous quantities of optical fibre, and that segment grew sharply",
+  "Its Springboard plan targets several billion dollars of added sales from existing capacity",
+  "Solar manufacturing in the US is a new market it is entering"
+ ],
+ "watch": "Optical Communications revenue, especially the enterprise and data centre portion.",
+ "updated": "2026-11"
+}

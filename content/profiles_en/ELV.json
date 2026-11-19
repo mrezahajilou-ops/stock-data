@@ -1,0 +1,38 @@
+{
+ "t": "ELV",
+ "what": "Elevance Health is one of the largest US health insurers, operating Blue Cross Blue Shield plans in 14 states. It also runs Carelon, which provides pharmacy benefits and care services to its own members and to others.",
+ "customers": "Employers buying group coverage, individuals on exchange plans, and Medicare and Medicaid members.",
+ "money": [
+  [
+   "Health Benefits",
+   "the large majority of revenue",
+   "commercial, Medicare Advantage and Medicaid insurance premiums"
+  ],
+  [
+   "Carelon",
+   "growing",
+   "pharmacy benefits, behavioural health and care management services"
+  ]
+ ],
+ "moat": "Exclusive Blue Cross Blue Shield licences in its states, which give it the largest provider networks and the lowest negotiated prices there.",
+ "rivals": [
+  "UnitedHealth Group|UNH",
+  "CVS Health (Aetna)|CVS",
+  "Cigna|CI",
+  "Centene|CNC",
+  "Molina Healthcare|MOH"
+ ],
+ "risks": [
+  "Medicaid members who stayed on after the pandemic turned out to be sicker and costlier than expected",
+  "Medical costs have risen faster than premiums across the industry",
+  "Government decides Medicare and Medicaid payment rates",
+  "Profit margins are thin: about three cents on each revenue dollar"
+ ],
+ "opportunities": [
+  "Premiums are being repriced upward as contracts renew, which usually restores margins over about two years",
+  "Carelon lets it keep services profit that would otherwise go to outside vendors",
+  "The shares trade at a low multiple of earnings compared with their own history"
+ ],
+ "watch": "The benefit expense ratio, which shows the share of premiums paid out in claims.",
+ "updated": "2026-11"
+}

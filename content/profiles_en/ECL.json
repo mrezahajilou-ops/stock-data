@@ -1,0 +1,47 @@
+{
+ "t": "ECL",
+ "what": "Ecolab sells cleaning, sanitising and water treatment programmes. It supplies the chemicals, the dispensing equipment and the service staff that keep restaurants, hotels, hospitals and factories clean and their water systems running.",
+ "customers": "Restaurants, hotels, hospitals, food processors, breweries, data centres and heavy industry in most countries.",
+ "money": [
+  [
+   "Global Industrial",
+   "the largest part",
+   "water treatment, paper and food processing chemicals"
+  ],
+  [
+   "Global Institutional and Specialty",
+   "large",
+   "cleaning and sanitising for restaurants, hotels and healthcare"
+  ],
+  [
+   "Global Healthcare and Life Sciences",
+   "smaller",
+   "infection prevention and pharmaceutical hygiene"
+  ],
+  [
+   "Pest Elimination",
+   "smaller",
+   "pest control for commercial customers"
+  ]
+ ],
+ "moat": "Service technicians who visit customer sites regularly, equipment installed on the customer's premises, and programmes written into food safety audits.",
+ "rivals": [
+  "Diversey",
+  "Solenis",
+  "Rentokil Initial|RTO",
+  "Veolia"
+ ],
+ "risks": [
+  "Growth has been slow at about 2% in the last financial year",
+  "Raw material and energy costs feed directly into margins",
+  "Restaurant and hotel demand follows consumer spending",
+  "Water treatment competes with large industrial gas and chemical groups"
+ ],
+ "opportunities": [
+  "Data centre cooling needs large volumes of treated water, a new and growing market for it",
+  "Pricing has outpaced raw material costs, lifting gross margins",
+  "Customers under water scarcity rules need its efficiency programmes"
+ ],
+ "watch": "Organic sales growth and gross margin, which show whether pricing is still ahead of costs.",
+ "updated": "2026-11"
+}

@@ -1,0 +1,38 @@
+{
+ "t": "ADBE",
+ "what": "Adobe makes creative and document software: Photoshop, Illustrator, Premiere and Acrobat, sold as subscriptions, plus marketing and analytics software for large companies.",
+ "customers": "Designers, photographers, video editors, students and businesses of all sizes; large enterprises for its marketing software.",
+ "money": [
+  [
+   "Digital Media",
+   "the large majority",
+   "Creative Cloud and Document Cloud subscriptions"
+  ],
+  [
+   "Digital Experience",
+   "meaningful",
+   "marketing, analytics and commerce software for enterprises"
+  ]
+ ],
+ "moat": "Its file formats and tools are the professional standard, taught in schools and embedded in agency workflows, so switching costs are high across whole teams.",
+ "rivals": [
+  "Canva",
+  "Figma|FIG",
+  "Salesforce|CRM",
+  "Microsoft|MSFT",
+  "Open-source and AI image tools"
+ ],
+ "risks": [
+  "Generative AI tools let non-designers produce work that once needed Photoshop",
+  "Canva and Figma have taken share at the lower and collaborative ends",
+  "Growth has slowed to about 11% a year",
+  "The market has repriced the shares to a much lower multiple on AI concerns"
+ ],
+ "opportunities": [
+  "Gross margins near 89% and return on capital near 39% leave room to invest and still return cash",
+  "Its Firefly AI models are trained on licensed content, which matters to corporate customers",
+  "Document Cloud and Acrobat keep growing as a separate, large business"
+ ],
+ "watch": "Net new digital media annualised recurring revenue, the measure management guides to.",
+ "updated": "2026-11"
+}

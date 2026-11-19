@@ -1,0 +1,37 @@
+{
+ "t": "SPG",
+ "what": "Simon Property Group owns shopping malls and outlet centres. It is the largest mall landlord in the United States, collecting rent from retailers in its properties and taking stakes in some retail brands.",
+ "customers": "Retailers and restaurant operators leasing space; shoppers visiting its centres.",
+ "money": [
+  [
+   "Rental income",
+   "the large majority",
+   "base rent plus a share of tenant sales at malls and outlets"
+  ],
+  [
+   "Other income",
+   "smaller",
+   "management fees, and investments in retail brands and international centres"
+  ]
+ ],
+ "moat": "Class A malls in dense, wealthy catchment areas that cannot be rebuilt and that remain the best physical location for many brands.",
+ "rivals": [
+  "Macerich|MAC",
+  "Tanger|SKT",
+  "Brookfield Properties",
+  "Online retail generally"
+ ],
+ "risks": [
+  "Department store anchors keep closing and leave large empty space",
+  "Debt of about $29 billion is high relative to its equity",
+  "Retail bankruptcies remove tenants quickly",
+  "Weaker malls in its portfolio face structural decline"
+ ],
+ "opportunities": [
+  "Occupancy and rents at its best centres have recovered above pre-pandemic levels",
+  "Redeveloping anchor space into restaurants, gyms and housing raises income",
+  "A dividend yield around 4% is covered by cash flow"
+ ],
+ "watch": "Occupancy, the spread between expiring and new rents, and tenant sales per square foot.",
+ "updated": "2026-11"
+}

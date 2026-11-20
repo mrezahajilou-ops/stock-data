@@ -1,7 +1,7 @@
 /* ETF section. Index: every fund in one scrollable box. Click a row -> that fund's own deep page.
    Free on the Persian site: the S&P 500 funds. Everything else needs Stock Pro. */
 var EAPI = (window.RZS_API || 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data') + '/etfs';
-var FREE = {VOO: 1, IVV: 1, SPY: 1, SPLG: 1, RSP: 1};
+var FREE = {VOO: 1, IVV: 1, SPY: 1, SPYM: 1, RSP: 1};
 var ACC = !!window.RZS_ACCESS;
 var SUB = window.RZS_SUB_URL || '/products/stock-data-pro';
 var SUBY = window.RZS_SUB_Y || '/products/stock-data-pro-yearly';

@@ -175,7 +175,7 @@ ETFS = [
                   'a thousand companies. Broader than IJR and cheaper, but it includes '
                   'loss-making companies that the S&P small-cap index excludes.',
          ucits=dict(name='A UCITS ETF tracking a US small-cap index')),
-    dict(t='SPLG', name='SPDR Portfolio S&P 500 ETF', issuer='State Street', index='S&P 500',
+    dict(t='SPYM', name='State Street SPDR Portfolio S&P 500 ETF', issuer='State Street', index='S&P 500',
          since=2005, cls='equity', focus='US large cap',
          idea='State Street’s cheap S&P 500 fund, built for holding rather than trading.',
          strategy='The same index as SPY in a modern fund structure at a far lower cost. State '

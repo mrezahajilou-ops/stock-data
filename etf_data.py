@@ -341,7 +341,7 @@ def history(sym, years=6):
 
 def history_alt(sym, years=6):
     """Fallback daily closes, tried in order. Nasdaq's historical endpoint answers for nothing at
-    all on a few listings (SPLG), which left those funds with no price and no returns."""
+    all on a few listings (SPYM, formerly SPLG), which left those funds with no price and no returns."""
     for fn in (history_yahoo, history_stooq):
         try:
             out = fn(sym, years)
@@ -399,7 +399,7 @@ def history_stooq(sym, years=6):
 
 
 def last_price(sym):
-    """Just the latest price, for a listing whose history endpoint returns nothing (SPLG)."""
+    """Just the latest price, for a listing whose history endpoint returns nothing (SPYM, formerly SPLG)."""
     for cls in ('etf', 'stocks'):
         b = fetch('https://api.nasdaq.com/api/quote/%s/info?assetclass=%s' % (sym, cls), NASDAQ_HDR)
         if not b:

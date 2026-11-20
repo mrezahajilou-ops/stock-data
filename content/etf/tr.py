@@ -190,7 +190,7 @@ T = {
         'ABD piyasasının kümülatif değerce alt dilimini, binden fazla şirketle kapsıyor. IJR’den daha '
         'geniş ve daha ucuz, ama S&P’nin küçük şirket endeksinin dışarıda bıraktığı zarar eden '
         'şirketleri de içeriyor.'),
- 'SPLG': ('State Street’in ucuz S&P 500 fonu: işlem için değil, elde tutmak için.',
+ 'SPYM': ('State Street’in ucuz S&P 500 fonu: işlem için değil, elde tutmak için.',
           'SPY ile aynı endeks, modern bir fon yapısında ve çok daha düşük maliyetle. State Street bunu '
           'tam da SPY’nin trust yapısı uzun vadeli yatırımcı için cazip olmadığı için çıkardı. SPY’den '
           'daha düşük işlem hacmi var; bu da yalnızca büyük hacimle işlem yapıyorsanız önemli.'),

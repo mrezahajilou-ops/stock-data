@@ -177,7 +177,7 @@ T = {
         'Cubre el tramo inferior del mercado estadounidense por valor acumulado, con más de mil '
         'empresas. Más amplio que IJR y más barato, pero incluye empresas en pérdidas que el índice '
         'de pequeñas de S&P deja fuera.'),
- 'SPLG': ('El S&P 500 barato de State Street, pensado para mantener y no para operar.',
+ 'SPYM': ('El S&P 500 barato de State Street, pensado para mantener y no para operar.',
           'El mismo índice que SPY en una estructura de fondo moderna y a un coste mucho menor. State '
           'Street lo lanzó precisamente porque la estructura de trust de SPY lo hacía poco atractivo '
           'para el largo plazo. Menos volumen que SPY, lo que solo importa si se opera en tamaño.'),

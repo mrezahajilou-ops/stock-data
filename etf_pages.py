@@ -9,9 +9,34 @@ A language pack supplies: UI strings, the per-fund text, the URL for a stock pag
 the country list that edition should answer for, and — for the right-to-left editions — a wrapper
 that keeps Latin tickers from flipping the sentence around them.
 """
-import json, os, datetime as dt, html as H
+import json, os, re, datetime as dt, html as H
 
 import etf_country
+
+# A run of Latin letters, digits and the punctuation that belongs inside a name or a figure.
+_LAT = re.compile(r"[A-Za-z0-9][A-Za-z0-9&.,'’\-/%+]*(?:\s+[A-Za-z0-9][A-Za-z0-9&.,'’\-/%+]*)*")
+
+
+def make_iso():
+    """Isolate Latin runs inside right-to-left prose.
+
+    Written with the Unicode isolate characters rather than <bdi> markup because this text is HTML
+    escaped after it comes back: any tag would be printed instead of applied. A full stop that ends
+    the Arabic or Persian sentence is pushed back outside the isolate, otherwise it jumps to the
+    wrong side of the line.
+    """
+    def iso(s):
+        if not s:
+            return s
+
+        def wrap(m):
+            run, tail = m.group(0), ''
+            while run and run[-1] in ".-'’,":
+                tail = run[-1] + tail
+                run = run[:-1]
+            return '\u2068' + run + '\u2069' + tail if run else m.group(0)
+        return _LAT.sub(wrap, s)
+    return iso
 
 TODAY = dt.date.today()
 e = lambda s: H.escape(str(s if s is not None else ''), quote=True)
@@ -70,7 +95,7 @@ def sret(v, p):
 
 def ltr(s, p):
     """A ticker, a price or anything else Latin, kept from reordering the line around it."""
-    return '<bdi dir="ltr">%s</bdi>' % e(s) if p.rtl else e(s)
+    return '<bdi dir="ltr" class="ltr">%s</bdi>' % e(s) if p.rtl else e(s)
 
 
 def bars(rows, p):

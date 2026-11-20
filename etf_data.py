@@ -31,6 +31,13 @@ TODAY = dt.date.today()
 _last_sec = [0.0]
 
 
+def days(a, b):
+    try:
+        return (dt.date.fromisoformat(b[:10]) - dt.date.fromisoformat(a[:10])).days
+    except Exception:
+        return 10 ** 6
+
+
 def fetch(url, hdr=None, timeout=90, tries=3, rng=None):
     h = dict(hdr or {'User-Agent': UA, 'Accept': '*/*'})
     if rng:
@@ -114,7 +121,17 @@ def stock(t):
 
 # ---------------------------------------------------------------- holdings: SEC N-PORT
 
-def series_accessions(cik, series, want=4):
+CACHE = os.path.join(OUT, '_series_cache.json')
+
+
+def _cache():
+    try:
+        return json.load(open(CACHE))
+    except Exception:
+        return {}
+
+
+def series_accessions(cik, series, want=4, cache=None):
     """Recent NPORT-P accession numbers for one fund series.
 
     A trust files one report per series under the same CIK, and the submissions index does not say
@@ -132,9 +149,20 @@ def series_accessions(cik, series, want=4):
             raw = re.findall(r'/Archives/edgar/data/\d+/(\d{18})[/\-]', txt)
             accs = ['%s-%s-%s' % (a[:10], a[10:12], a[12:]) for a in raw]
     if accs:
+        print('      series feed -> %d accessions' % len(accs))
         return list(dict.fromkeys(accs))[:want]
 
+    # Reports are filed quarterly, so a hit found last week is still the right one this week. Without
+    # this the walk below runs for every fund on every run and the whole build takes the best part of
+    # an hour; iShares alone files well over a thousand reports under one CIK.
+    if cache is not None:
+        hit = cache.get(series)
+        if hit and hit.get('acc') and days(hit.get('found') or '2000-01-01', TODAY.isoformat()) < 75:
+            print('      cached accession %s' % hit['acc'])
+            return [hit['acc']]
+
     # Fallback: walk the trust's own NPORT-P filings and read just enough of each to see the series.
+    print('      series feed empty, scanning the trust\'s filings')
     b = fetch('https://data.sec.gov/submissions/CIK%010d.json' % int(cik), SEC_HDR)
     if not b:
         return []
@@ -147,6 +175,8 @@ def series_accessions(cik, series, want=4):
                      % (int(cik), acc.replace('-', ''), acc), SEC_HDR, rng=6000)
         if head and series.encode() in head:
             out.append(acc)
+            if cache is not None and len(out) == 1:
+                cache[series] = dict(acc=acc, found=TODAY.isoformat())
             if len(out) >= want:
                 break
     return out
@@ -187,8 +217,8 @@ def parse_nport(xml):
     return as_of[:10], rows
 
 
-def nport_holdings(cik, series):
-    for acc in series_accessions(cik, series):
+def nport_holdings(cik, series, cache=None):
+    for acc in series_accessions(cik, series, cache=cache):
         a = acc.replace('-', '')
         idx = fetch('https://www.sec.gov/Archives/edgar/data/%d/%s/index.json' % (int(cik), a), SEC_HDR)
         if not idx:
@@ -396,14 +426,14 @@ def weighted(holdings, by_name, by_ticker):
 
 # ---------------------------------------------------------------- per-fund build
 
-def build_one(e, by_ticker, by_name):
+def build_one(e, by_ticker, by_name, cache=None):
     t = e['t']
     hist = history(t)
     as_of, holds, src = (None, [], None)
     if t == 'SPY' or e['issuer'] == 'State Street':
         as_of, holds, src = ssga_holdings(t)
     if not holds and e.get('cik') and e.get('series'):
-        as_of, holds, src = nport_holdings(e['cik'], e['series'])
+        as_of, holds, src = nport_holdings(e['cik'], e['series'], cache)
     rec = dict(
         t=t, name=e['name'], issuer=e['issuer'], index=e['index'], since=e['since'],
         cls=e['cls'], focus=e['focus'], idea=e['idea'], strategy=e['strategy'], ucits=e['ucits'],
@@ -463,13 +493,14 @@ def main():
                           dict(cik=row[ix['cik']], series=row[ix['seriesId']]))
     print('SEC fund map:', len(mf), 'tickers')
 
+    cache = _cache()
     index, failed = [], []
     for e in etf_list.ETFS:
         if only and e['t'] not in only:
             continue
         e = dict(e, **(mf.get(e['t']) or {}))
         try:
-            rec = build_one(e, by_ticker, by_name)
+            rec = build_one(e, by_ticker, by_name, cache)
         except Exception as ex:
             print('  %-5s FAILED %s: %s' % (e['t'], type(ex).__name__, str(ex)[:120]))
             failed.append(e['t'])
@@ -487,6 +518,7 @@ def main():
                           covered=(rec.get('weighted') or {}).get('covered_pct'),
                           pe=(rec.get('weighted') or {}).get('pe'),
                           holdings_n=(rec.get('weighted') or {}).get('holdings_n')))
+    json.dump(cache, open(CACHE, 'w'), separators=(',', ':'))
     json.dump(dict(built=TODAY.isoformat(), etfs=index),
               open(os.path.join(OUT, 'index.json'), 'w'), separators=(',', ':'))
     print('wrote', len(index), 'ETFs to', OUT)

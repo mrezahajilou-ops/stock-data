@@ -1,0 +1,53 @@
+name: Earnings releases (text of each company's own release)
+
+on:
+  schedule:
+    - cron: '20 12-23 * * 1-5'   # weekdays, half an hour after each earnings-history run
+    - cron: '20 6 * * *'
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: 'Only these tickers (space separated), whatever their report date'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: earnings-pr
+  cancel-in-progress: false
+
+jobs:
+  releases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            earnings_pr.py
+            .github/workflows
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reported figures and dates
+        run: git clone -q --depth 1 -b earnings "https://github.com/${{ github.repository }}" earnings
+      - name: Releases already fetched
+        run: git clone -q --depth 1 -b earnings-pr "https://github.com/${{ github.repository }}" out || mkdir -p out
+      - name: Fetch
+        run: |
+          # the SEC contact header: the same value the earnings-history job already sends
+          export SEC_USER_AGENT="$(grep -m1 'SEC_USER_AGENT:' .github/workflows/earnings.yml | sed 's/^[^"]*"//; s/"[^"]*$//')"
+          python earnings_pr.py ${{ inputs.tickers }}
+      - name: Publish to branch "earnings-pr"
+        run: |
+          cd out
+          rm -rf .git
+          git init -q -b earnings-pr
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add -A
+          git commit -qm "Earnings releases $(date -u +%FT%RZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" earnings-pr:earnings-pr

@@ -781,6 +781,33 @@ def build_company(cik, entry, facts):
     ends = pick_fy_ends(series)
     if len(ends) < 2 or not (series["revenue"] or series["net_income"]):
         return None
+
+    # A filer that tags revenue in thousands against a USD unit reports a figure a thousand times too
+    # large, and nothing downstream notices: Tigo Energy carried $103 billion of revenue on $78 million
+    # of assets. No company sells a hundred times its own balance sheet in a year unless it is passing
+    # money through (a broker, an exchange), so where dividing the whole series by a thousand brings it
+    # back into a possible range, the unit was the error.
+    _ra = [(v, nearest(series["assets"], e)) for e, v in series["revenue"].items()]
+    _ra = [(v, A) for v, A in _ra if v and A and A > 0]
+    if _ra and all(v / A > 100 for v, A in _ra) and all(v / 1000 / A < 12 for v, A in _ra):
+        for e in list(series["revenue"]):
+            if series["revenue"][e]:
+                series["revenue"][e] = series["revenue"][e] / 1000.0
+        meta["revenue_scaled"] = True
+
+    # Operating cash flow of essentially zero in a year the company earned a solid profit is not a
+    # result, it is a fact we failed to read: Centene showed $154M against $8.0B the year before.
+    # Where the year stands alone against its own neighbours, "unknown" is the honest figure.
+    for _e, _c in list(series["cfo"].items()):
+        _rev, _ni = nearest(series["revenue"], _e), nearest(series["net_income"], _e)
+        if _c is None or not _rev or _rev < 3e8 or _ni is None:
+            continue
+        if abs(_c) < 0.005 * _rev and _ni > 0.02 * _rev and any(
+                abs(v) > 0.03 * (nearest(series["revenue"], e2) or 0)
+                for e2, v in series["cfo"].items() if e2 != _e and v is not None):
+            del series["cfo"][_e]
+            meta.setdefault("cfo_dropped", []).append(_e)
+
     has_debt = bool(series["debt_lt"] or series["debt_st"] or series["debt_total"])
     # total revenue: a high-priority tag can hold only a component (fee income of a bank or REIT, Owl Rock's
     # "Revenues"), so take the largest total-revenue tag per year; banks: net interest income + non-interest income
@@ -860,7 +887,12 @@ def build_company(cik, entry, facts):
         ppe = g("ppe")
         A0, L0 = g("assets"), (g("liabilities") or (g("liab_eq") - (g("equity_total") or equity or 0) if g("liab_eq") else None))
         financial = bool(A0 and L0 and L0 / A0 > 0.8)  # banks, insurers, mortgage REITs: balance sheet is mostly liabilities
-        asset_light = (ppe is not None and A0 and ppe < 0.05 * A0) or (ppe is None and financial)
+        # A missing capital spending line means "never tagged", not "spends nothing". Reading it as
+        # zero is right for a bank or an asset manager and wrong for anyone who owns plant: it turned
+        # operating cash flow straight into "free cash flow" and overstated it by the whole capital
+        # budget (a water utility whose plant is tagged as utility plant, a rental fleet, a ride-hailing
+        # app). So the balance sheet has to look like a financial's before the line is read as zero.
+        asset_light = financial and (ppe is None or (A0 and ppe < 0.01 * A0))
         if capex is None and not has_capex and cfo is not None and asset_light:
             capex, fcf = 0.0, cfo  # no capital spending line at all (banks, insurers, asset managers)
         da = g("da")
@@ -1110,6 +1142,8 @@ def build_company(cik, entry, facts):
         "currency": "USD", "reported_currency": meta.get("currency", "USD"),
         "foreign": bool((meta.get("forms") or set()) & {"20-F", "20-F/A", "40-F", "40-F/A"}),
         "fx_approx": bool(meta.get("fx_approx")), "source": "SEC EDGAR XBRL (companyfacts)",
+        "revenue_scaled": bool(meta.get("revenue_scaled")) or None,
+        "cfo_dropped": (meta.get("cfo_dropped") or None),
         "updated": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "latest": {k: last[k] for k in ("fy", "fy_end", "revenue", "net_income", "fcf", "eps_diluted",
                                          "shares_diluted", "shares_out", "cash", "debt", "equity",
@@ -2187,6 +2221,16 @@ def finish(recs, market):
                 r["ttm"].update({"pretax_income": _l.get("pretax"), "eps": _l.get("eps_diluted"),
                                  "dps": r4(safe_div(_l.get("dividends"), _l.get("shares_diluted"))),
                                  "end": _e, "src": "fy"})
+
+        # ---- a figure that was published while contradicting the one beside it ----
+        # Where our own quarterly EPS disagreed with the independent figure, the P/E above was
+        # rebuilt from the independent one on purpose, but the EPS row kept our number, so the page
+        # showed a price/earnings ratio that did not divide into the earnings per share beside it.
+        # ADRs were the worst of it: EPS per local share against a P/E per receipt.
+        _pe, _px, _te = ratios.get("pe"), mk.get("price"), (r.get("ttm") or {}).get("eps")
+        if _pe and _pe > 0 and _px and _te and _te > 0 and abs(_px / _pe / _te - 1) > 0.05:
+            r["ttm"]["eps"] = r4(_px / _pe)
+            r["ttm"]["eps_src"] = "consensus"
 
         with open(os.path.join(OUT, "stocks", f"{r['ticker']}.json"), "w") as f:
             json.dump(r, f, separators=(",", ":"))

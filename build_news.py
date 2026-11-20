@@ -6,6 +6,18 @@ import json, os
 from build_guides import CSS, faq_block, chips
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.getcwd())
+
+def _fc_link(t, label='پیش‌بینی تحلیلگرها'):
+    """Link the forecast page only when it exists (forecast pages cover the larger stocks only)."""
+    global _FC
+    if _FC is None:
+        try:
+            _FC = {p['handle'] for p in json.load(open(os.path.join(os.environ.get('GITHUB_WORKSPACE', os.getcwd()), 'pages', 'forecasts.json')))}
+        except Exception:
+            _FC = set()
+    h = t.lower().replace('.', '-') + '-forecast'
+    return (' · <a href="/pages/%s">%s</a>' % (h, label)) if h in _FC else ''
+_FC = None
 OUT = os.path.join(ROOT, 'pages', 'news.json')
 NV = [('/pages/stocks/nvda', 'تحلیل سهام انویدیا'), ('/blogs/news/jensen-huang-resigns', 'استعفای جنسن هوانگ'),
       ('/blogs/news/jensen-huang-biography', 'زندگی‌نامه‌ی جنسن هوانگ'), ('/blogs/news/what-nvidia-does', 'انویدیا چه کار می‌کند؟'),
@@ -357,8 +369,8 @@ def top5_article():
                      + ('<ul>%s</ul>' % ''.join(met) if met else '')
                      + ('<p><strong>مزیت رقابتی:</strong> %s</p>' % e(p['moat']) if p.get('moat') else '')
                      + ('<p><strong>ریسک اصلی:</strong> %s</p>' % e(p['risks'][0] if isinstance(p['risks'], list) else p['risks']) if p.get('risks') else '')
-                     + '<p><a href="/pages/stocks/%s">تحلیل کامل %s</a> · <a href="/pages/%s-forecast">پیش‌بینی تحلیلگرها</a></p>'
-                     % (x['t'].lower(), nm, x['t'].lower().replace('.', '-')))
+                     + '<p><a href="/pages/stocks/%s">تحلیل کامل %s</a>%s</p>'
+                     % (x['t'].lower(), nm, _fc_link(x['t'])))
     names = '، '.join(x.get('fa') or x['en'] for x in top)
     body = ('<p class="upd">به‌روزرسانی: %s · این فهرست هر روز خودکار به‌روز می‌شود</p>' % date_fa(TODAY)
             + '<p>سهام آنالیز به هر شرکت بورس آمریکا در پنج بخش امتیاز می‌دهد: <strong>ارزش</strong> (ارزان یا گران بودن)، <strong>آینده</strong> (رشد پیش‌بینی‌شده)، '
@@ -558,8 +570,8 @@ def ai_stocks_article():
                      + '<p class="sc5">%s</p>' % sc
                      + ('<p>%s.</p>' % '؛ '.join(met) if met else '')
                      + ('<p><strong>ریسک اصلی:</strong> %s</p>' % e(p['risks'][0] if isinstance(p['risks'], list) else p['risks']) if p.get('risks') else '')
-                     + '<p><a href="/pages/stocks/%s">تحلیل کامل</a> · <a href="/pages/%s-forecast">پیش‌بینی تحلیلگرها</a></p>'
-                     % (x['t'].lower(), x['t'].lower().replace('.', '-')))
+                     + '<p><a href="/pages/stocks/%s">تحلیل کامل</a>%s</p>'
+                     % (x['t'].lower(), _fc_link(x['t'])))
     names = '، '.join(FAN.get(x['t']) or _short_en(x['en']) for x in top[:5])
     body = ('<p class="upd">به‌روزرسانی: %s · این فهرست هر روز خودکار به‌روز می‌شود</p>' % date_fa(TODAY)
             + '<p>هوش مصنوعی بزرگ‌ترین موج سرمایه‌گذاری این دهه در بورس آمریکاست. اما «سهام هوش مصنوعی» یک گروه یکدست نیست. '

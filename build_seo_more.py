@@ -5,7 +5,19 @@
 - <a>-vs-<b>               X یا Y؟ مقایسه‌ی سهام (100 pairs: the largest companies of the same industry)
 - all-stocks, stocks-<l>   A–Z index of every stock page (internal links for Google)
 """
-import itertools, re
+import itertools, re, json, os
+
+def _fc_link(t, label='پیش‌بینی تحلیلگرها'):
+    """Link the forecast page only when it exists (forecast pages cover the larger stocks only)."""
+    global _FC
+    if _FC is None:
+        try:
+            _FC = {p['handle'] for p in json.load(open(os.path.join(os.environ.get('GITHUB_WORKSPACE', os.getcwd()), 'pages', 'forecasts.json')))}
+        except Exception:
+            _FC = set()
+    h = t.lower().replace('.', '-') + '-forecast'
+    return (' · <a href="/pages/%s">%s</a>' % (h, label)) if h in _FC else ''
+_FC = None
 
 from build_pages import fa, pct, FA_SECTOR
 from build_guides import (CSS, DIS, TOOLS, TODAY, date_fa, e, nm_html, label, table, signed, faq_block, chips, git_json,
@@ -128,8 +140,8 @@ def history_pages(U, recs, n=300):
                 + '<h2>درآمد، سود و سود هر سهم %s در %s سال</h2>' % (e(fan), fa(len(A)))
                 + table(head, rows)
                 + '<p class="upd">عددها از گزارش‌های سالانه‌ی رسمی شرکت (فرم 10-K) و به دلار آمریکاست؛ قیمت پایان سال برای تقسیم سهام تعدیل شده است.</p>'
-                + '<p><a href="/pages/stocks/%s">تحلیل کامل و امتیاز %s</a> · <a href="/pages/%s-forecast">پیش‌بینی تحلیلگرها</a></p>'
-                % (t.lower(), e(fan), t.lower().replace('.', '-')))
+                + '<p><a href="/pages/stocks/%s">تحلیل کامل و امتیاز %s</a>%s</p>'
+                % (t.lower(), e(fan), _fc_link(t)))
         qa = [('درآمد %s در سال %s چقدر بود؟' % (fan, hi), '%s دلار.' % short_usd(a1['revenue'])),
               ('سود %s در سال %s چقدر بود؟' % (fan, hi), 'سود خالص %s دلار و سود هر سهم %s دلار.' % (short_usd(a1.get('net_income')), num(a1.get('eps_diluted'), 2)))]
         if cagr is not None:

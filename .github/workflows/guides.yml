@@ -44,11 +44,11 @@ jobs:
           git fetch -q --depth 1 origin prices:refs/remotes/origin/prices || true
       - name: Build pages
         run: |
+          python build_forecasts.py   # first: other pages link a forecast only if it exists
           python build_guides.py
           if [ -f build_earnings.py ]; then python build_earnings.py; fi
           python build_explainers.py
           python build_news.py
-          python build_forecasts.py
           python build_seo_blocks.py
       - name: Restore change cache
         if: ${{ !inputs.full }}

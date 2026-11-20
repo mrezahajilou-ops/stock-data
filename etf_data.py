@@ -338,6 +338,22 @@ def history(sym, years=6):
     return sorted(out)
 
 
+def last_price(sym):
+    """Just the latest price, for a listing whose history endpoint returns nothing (SPLG)."""
+    for cls in ('etf', 'stocks'):
+        b = fetch('https://api.nasdaq.com/api/quote/%s/info?assetclass=%s' % (sym, cls), NASDAQ_HDR)
+        if not b:
+            continue
+        try:
+            d = ((json.loads(b).get('data') or {}).get('primaryData') or {})
+            v = str(d.get('lastSalePrice') or '').replace('$', '').replace(',', '')
+            if v:
+                return float(v)
+        except Exception:
+            continue
+    return None
+
+
 def ret_over(series, days):
     """Price return over a window, as a fraction. None when the history does not reach back."""
     if len(series) < 2:
@@ -444,7 +460,7 @@ def build_one(e, by_ticker, by_name, cache=None):
     rec = dict(
         t=t, name=e['name'], issuer=e['issuer'], index=e['index'], since=e['since'],
         cls=e['cls'], focus=e['focus'], idea=e['idea'], strategy=e['strategy'], ucits=e['ucits'],
-        price=(hist[-1][1] if hist else None),
+        price=(hist[-1][1] if hist else last_price(t)),
         price_date=(hist[-1][0] if hist else None),
         chart=monthly(hist),
         returns=dict(m1=ret_over(hist, 30), m3=ret_over(hist, 91), ytd=None,

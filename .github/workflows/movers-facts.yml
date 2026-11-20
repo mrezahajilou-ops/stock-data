@@ -1,0 +1,52 @@
+name: Big movers - what the company filed that day
+
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Trading day (YYYY-MM-DD)'
+        required: true
+      tickers:
+        description: 'Tickers (space separated)'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: movers-facts
+  cancel-in-progress: false
+
+jobs:
+  facts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            earnings_pr.py
+            movers_facts.py
+            .github/workflows
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Facts already fetched
+        run: git clone -q --depth 1 -b movers-facts "https://github.com/${{ github.repository }}" out || mkdir -p out
+      - name: Fetch
+        run: |
+          export SEC_USER_AGENT="$(grep -m1 'SEC_USER_AGENT:' .github/workflows/earnings.yml | sed 's/^[^"]*"//; s/"[^"]*$//')"
+          # keep only the last ten days
+          find out/mv -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | head -n -10 | xargs -r rm -rf
+          python movers_facts.py ${{ inputs.day }} ${{ inputs.tickers }}
+      - name: Publish to branch "movers-facts"
+        run: |
+          cd out
+          rm -rf .git
+          git init -q -b movers-facts
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add -A
+          git commit -qm "Mover facts $(date -u +%FT%RZ)"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" movers-facts:movers-facts

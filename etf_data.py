@@ -327,12 +327,34 @@ def history(sym, years=6):
         if rows:
             break
     if not rows:
-        return []
+        return history_stooq(sym, years)
     out = []
     for x in rows:
         try:
             m, d, y = x['date'].split('/')
             out.append(['%s-%s-%s' % (y, m, d), float(str(x['close']).replace('$', '').replace(',', ''))])
+        except Exception:
+            continue
+    out = sorted(out)
+    return out if out else history_stooq(sym, years)
+
+
+def history_stooq(sym, years=6):
+    """Fallback daily closes. Nasdaq's historical endpoint answers for nothing at all on a few
+    listings (SPLG), which left those funds with no price and no returns at all."""
+    frm = (TODAY - dt.timedelta(days=int(365.25 * years)))
+    url = ('https://stooq.com/q/d/l/?s=%s.us&d1=%s&d2=%s&i=d'
+           % (sym.lower(), frm.strftime('%Y%m%d'), TODAY.strftime('%Y%m%d')))
+    b = fetch(url)
+    if not b:
+        return []
+    out = []
+    for line in b.decode('utf-8', 'replace').splitlines()[1:]:
+        p = line.split(',')
+        if len(p) < 5 or not p[0][:4].isdigit():
+            continue
+        try:
+            out.append([p[0], float(p[4])])
         except Exception:
             continue
     return sorted(out)
@@ -351,7 +373,8 @@ def last_price(sym):
                 return float(v)
         except Exception:
             continue
-    return None
+    h = history_stooq(sym, 1)
+    return h[-1][1] if h else None
 
 
 def ret_over(series, days):

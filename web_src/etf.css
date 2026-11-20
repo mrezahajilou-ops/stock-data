@@ -15,6 +15,8 @@
 #ID .lockbox{border:1.5px solid var(--gold);border-radius:18px;padding:22px;max-width:520px;margin:26px auto;text-align:center;background:var(--panel)}
 #ID .lockbox h3{font-size:18px;margin:0 0 6px;color:#fff}
 #ID .lockbox p{color:var(--muted);font-size:14px;margin:6px 0 14px;line-height:1.9}
+#ID .sa-etf th:first-child,#ID .sa-etf td:first-child{width:auto}
+#ID .sa-etf td,#ID .sa-etf th{border-bottom:1px solid #1c1f28;text-align:start}
 #ID .sa-etf{max-width:var(--max);margin:0 auto;padding:0 16px}
 #ID .sa-etf .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);padding:18px 20px;margin:16px 0}
 #ID .sa-etf .card h2{margin:0 0 10px;font-size:20px}
@@ -42,78 +44,78 @@
 #ID .sa-etf .kv b{font-size:17px}
 #ID .sa-etf details{border-top:1px solid var(--line);padding:9px 0}
 #ID .sa-etf details summary{cursor:pointer;font-weight:700}
-.etfchart{margin:18px 0 6px}
-.etfchart figcaption,.etfline figcaption{font-size:12.5px;color:var(--muted);margin-top:6px}
-.etfbars,.etfline svg{width:100%;height:auto;display:block}
-.etfbars .ax{stroke:var(--line);stroke-width:1}
-.etfbars .bp{fill:var(--green)}
-.etfbars .bn{fill:#d98080}
-.etfbars .tk{fill:var(--text);font-size:10.5px;font-weight:700}
-.etfbars .vl{fill:var(--muted);font-size:10px}
-.etfline .ln{fill:none;stroke:var(--gold);stroke-width:2}
-.etfline .ar{fill:rgba(201,169,97,.11);stroke:none}
-.etfline .yl,.etfline .xl{fill:var(--muted);font-size:10px}
-.etfline .yl{text-anchor:end}
-.etfline .xl{text-anchor:middle}
-.etfgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
-.etfcard{display:block;background:var(--row);border:1px solid var(--line);border-radius:var(--r-row);padding:12px 14px;text-decoration:none;color:inherit}
-.etfcard:hover{border-color:var(--gold)}
-.etfcard .r1{display:flex;align-items:baseline;gap:8px}
-.etfcard .r1 b{font-size:16px;color:var(--gold)}
-.etfcard .r1 span{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.etfcard p{margin:7px 0 10px;font-size:13.5px;line-height:1.7}
-.etfcard .r2{display:flex;align-items:center;gap:10px;font-size:13px}
-.etfcard .r2 em{font-style:normal;font-weight:700}
-.etfcard .r2 i{font-style:normal;color:var(--muted);margin-inline-start:auto}
-.etftbl,table.hold,table.ctry{width:100%;border-collapse:collapse;font-size:14px}
-.etftbl th,.etftbl td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
-.etftbl th:first-child,.etftbl td:first-child{text-align:right;white-space:normal}
-.etftbl a{color:inherit;text-decoration:none}
-.etftbl a b{color:var(--gold)}
-table.hold th,table.hold td{padding:7px 12px;border-bottom:1px solid var(--line)}
-table.hold .hw{text-align:left;white-space:nowrap}
-table.hold .hw i{display:inline-block;width:84px;height:7px;border-radius:99px;background:var(--line);overflow:hidden;vertical-align:middle;margin-inline-end:8px}
-table.hold .hw i b{display:block;height:100%;background:var(--gold)}
-table.ctry th,table.ctry td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
-table.ctry th{white-space:nowrap;font-weight:700;width:120px}
-table.ctry td:first-of-type{white-space:nowrap;font-weight:700;width:170px}
-table.ctry td.yes{color:var(--green)}
-table.ctry td.no{color:#d98080}
-table.ctry td.mid{color:var(--gold)}
-.secbars{display:grid;gap:7px;margin-top:10px}
-.secbars div{display:grid;grid-template-columns:150px 1fr 56px;align-items:center;gap:10px;font-size:13.5px}
-.secbars i{display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
-.secbars i b{display:block;height:100%;background:var(--gold)}
-.secbars em{font-style:normal;text-align:left;color:var(--muted)}
+#ID .etfchart{margin:18px 0 6px}
+#ID .etfchart figcaption,#ID .etfline figcaption{font-size:12.5px;color:var(--muted);margin-top:6px}
+#ID .etfbars,#ID .etfline svg{width:100%;height:auto;display:block}
+#ID .etfbars .ax{stroke:var(--line);stroke-width:1}
+#ID .etfbars .bp{fill:var(--green)}
+#ID .etfbars .bn{fill:#d98080}
+#ID .etfbars .tk{fill:var(--text);font-size:10.5px;font-weight:700}
+#ID .etfbars .vl{fill:var(--muted);font-size:10px}
+#ID .etfline .ln{fill:none;stroke:var(--gold);stroke-width:2}
+#ID .etfline .ar{fill:rgba(201,169,97,.11);stroke:none}
+#ID .etfline .yl,#ID .etfline .xl{fill:var(--muted);font-size:10px}
+#ID .etfline .yl{text-anchor:end}
+#ID .etfline .xl{text-anchor:middle}
+#ID .etfgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+#ID .etfcard{display:block;background:var(--row);border:1px solid var(--line);border-radius:var(--r-row);padding:12px 14px;text-decoration:none;color:inherit}
+#ID .etfcard:hover{border-color:var(--gold)}
+#ID .etfcard .r1{display:flex;align-items:baseline;gap:8px}
+#ID .etfcard .r1 b{font-size:16px;color:var(--gold)}
+#ID .etfcard .r1 span{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ID .etfcard p{margin:7px 0 10px;font-size:13.5px;line-height:1.7}
+#ID .etfcard .r2{display:flex;align-items:center;gap:10px;font-size:13px}
+#ID .etfcard .r2 em{font-style:normal;font-weight:700}
+#ID .etfcard .r2 i{font-style:normal;color:var(--muted);margin-inline-start:auto}
+#ID .etftbl,#ID table.hold,#ID table.ctry{width:100%;border-collapse:collapse;font-size:14px}
+#ID .etftbl th,#ID .etftbl td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+#ID .etftbl th:first-child,#ID .etftbl td:first-child{text-align:right;white-space:normal}
+#ID .etftbl a{color:inherit;text-decoration:none}
+#ID .etftbl a b{color:var(--gold)}
+#ID table.hold th,#ID table.hold td{padding:7px 12px;border-bottom:1px solid var(--line)}
+#ID table.hold .hw{text-align:left;white-space:nowrap}
+#ID table.hold .hw i{display:inline-block;width:84px;height:7px;border-radius:99px;background:var(--line);overflow:hidden;vertical-align:middle;margin-inline-end:8px}
+#ID table.hold .hw i b{display:block;height:100%;background:var(--gold)}
+#ID table.ctry th,#ID table.ctry td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+#ID table.ctry th{white-space:nowrap;font-weight:700;width:120px}
+#ID table.ctry td:first-of-type{white-space:nowrap;font-weight:700;width:170px}
+#ID table.ctry td.yes{color:var(--green)}
+#ID table.ctry td.no{color:#d98080}
+#ID table.ctry td.mid{color:var(--gold)}
+#ID .secbars{display:grid;gap:7px;margin-top:10px}
+#ID .secbars div{display:grid;grid-template-columns:150px 1fr 56px;align-items:center;gap:10px;font-size:13.5px}
+#ID .secbars i{display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+#ID .secbars i b{display:block;height:100%;background:var(--gold)}
+#ID .secbars em{font-style:normal;text-align:left;color:var(--muted)}
 @media(max-width:700px){
-  .etfgrid{grid-template-columns:1fr}
-  .secbars div{grid-template-columns:104px 1fr 50px;gap:8px;font-size:12.5px}
-  table.hold .hw i{width:46px;margin-inline-end:6px}
-  .etftbl th,.etftbl td{padding:7px 8px;font-size:13px}
-  table.ctry th{width:84px}table.ctry td:first-of-type{width:100px;white-space:normal}
+  #ID .etfgrid{grid-template-columns:1fr}
+  #ID .secbars div{grid-template-columns:104px 1fr 50px;gap:8px;font-size:12.5px}
+  #ID table.hold .hw i{width:46px;margin-inline-end:6px}
+  #ID .etftbl th,#ID .etftbl td{padding:7px 8px;font-size:13px}
+  #ID table.ctry th{width:84px}#ID table.ctry td:first-of-type{width:100px;white-space:normal}
   #ID .sa-etf .top{display:block}
   #ID .sa-etf .top h1{font-size:22px}
 }
-/* the index box: all fifty funds in one scrollable table, each row a link */
+#ID /* the index box: all fifty funds in one scrollable table,#ID each row a link */
 .etfbox .tw{margin-top:4px}
-.etftbl tbody tr{cursor:pointer}
-.etftbl td.nm{min-width:230px}
-.etftbl td.nm a{display:block;text-decoration:none;color:inherit}
-.etftbl td.nm b{color:var(--gold);margin-inline-end:7px}
-.etftbl td.nm span{color:var(--text)}
-.etftbl td.nm i{display:block;font-style:normal;color:var(--muted);font-size:12.5px;margin-top:2px}
-.etftbl td.ty{color:var(--muted);white-space:nowrap}
-.etftbl thead th{position:sticky;top:0;background:var(--panel);z-index:1}
+#ID .etftbl tbody tr{cursor:pointer}
+#ID .etftbl td.nm{min-width:230px}
+#ID .etftbl td.nm a{display:block;text-decoration:none;color:inherit}
+#ID .etftbl td.nm b{color:var(--gold);margin-inline-end:7px}
+#ID .etftbl td.nm span{color:var(--text)}
+#ID .etftbl td.nm i{display:block;font-style:normal;color:var(--muted);font-size:12.5px;margin-top:2px}
+#ID .etftbl td.ty{color:var(--muted);white-space:nowrap}
+#ID .etftbl thead th{position:sticky;top:0;background:var(--panel);z-index:1}
 @media(max-width:700px){
-  .etftbl td.nm{min-width:190px}
-  .etftbl td.nm i{font-size:12px}
+  #ID .etftbl td.nm{min-width:190px}
+  #ID .etftbl td.nm i{font-size:12px}
 }
-/* keep every row one line tall so fifty funds can be scanned, and the columns stay aligned */
+#ID /* keep every row one line tall so fifty funds can be scanned,#ID and the columns stay aligned */
 .etftbl td.nm a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
-.etftbl td.nm i{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
-.etftbl td.nm{min-width:0}
-@media(max-width:700px){.etftbl td.nm a,.etftbl td.nm i{max-width:180px}}
-/* a long Latin run inside Arabic prose must be allowed to wrap: the UCITS fund names are long
+#ID .etftbl td.nm i{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+#ID .etftbl td.nm{min-width:0}
+@media(max-width:700px){#ID .etftbl td.nm a,#ID .etftbl td.nm i{max-width:180px}}
+#ID /* a long Latin run inside Arabic prose must be allowed to wrap: the UCITS fund names are long
    enough that nowrap pushed the whole page to 715px on a phone */
-#ID .sa-etf bdi.ltr{white-space:normal}
+.sa-etf bdi.ltr{white-space:normal}
 #ID .sa-etf .etftbl bdi.ltr,#ID .sa-etf .tk bdi.ltr{white-space:nowrap}

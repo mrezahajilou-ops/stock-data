@@ -339,7 +339,7 @@ def index_page(idx, recs, p):
 
     body = ('<article class="sa-list sa-etf"><h1>%s</h1><p class="sub">%s %s</p>'
             '<p class="lead">%s</p><p>%s</p>%s%s<p class="dis">%s</p></article>'
-            % (e(p.L('h1')), e(p.L('sub')), TODAY.strftime('%Y-%m'), e(p.L('lead')), e(p.L('intro')),
+            % (e(p.L('h1')), e(p.L('sub')), ltr(TODAY.strftime('%Y-%m'), p), e(p.L('lead')), e(p.L('intro')),
                bars(rows, p), box, e(p.L('dis'))))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},

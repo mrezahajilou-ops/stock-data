@@ -119,3 +119,8 @@
    enough that nowrap pushed the whole page to 715px on a phone */
 .sa-etf bdi.ltr{white-space:normal}
 #ID .sa-etf .etftbl bdi.ltr,#ID .sa-etf .tk bdi.ltr{white-space:nowrap}
+/* Persian shell: let a long fund name wrap instead of being cut. In a right-to-left cell the
+   ellipsis lands on the START of the English name, which hides the part people read first. */
+#ID .etftbl td.nm a,#ID .etftbl td.nm i{max-width:none;white-space:normal;overflow:visible;text-overflow:clip}
+#ID .etftbl td.nm{min-width:210px}
+@media(max-width:700px){#ID .etftbl td.nm{min-width:150px}#ID .etftbl td.nm a,#ID .etftbl td.nm i{max-width:none}#ID .etftbl td.ty{white-space:normal}}

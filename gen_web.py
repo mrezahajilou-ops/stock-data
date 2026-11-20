@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(ROOT, 'web')
 
 TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
-        ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('compare', '/pages/compare', 'مقایسه'),
+        ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('etf', '/pages/etf', 'صندوق‌های ETF'), ('compare', '/pages/compare', 'مقایسه'),
         ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'), ('top30', '/pages/top-30', '۳۰ سهم برتر'),
         ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا'), ('book', '/pages/book', 'کتاب')]
 
@@ -337,6 +337,19 @@ def portfolio_page():
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzp'), nav('portfolio'), JS, js)
 
 
+def etf_page():
+    src = os.path.join(ROOT, 'web_src')
+    css = CSS + open(os.path.join(src, 'etf.css'), encoding='utf-8').read()
+    js = (open(os.path.join(src, 'etf_fa.js'), encoding='utf-8').read() + '\n' +
+          open(os.path.join(src, 'etf.js'), encoding='utf-8').read())
+    return ('<div id="rzf" dir="rtl">\n<style>%s</style>\n%s\n<h1>۵۰ صندوق ETF بزرگ دنیا</h1>\n'
+            '<p class="sub">هر پنجاه صندوق در یک جدول: نوع، بازدهی یک سال، میانگین سالانه، تعداد شرکت‌های داخلش، '
+            'P/E امروز و میانگین P/E تاریخی. روی هر کدام بزنی، صفحه‌ی کامل همان صندوق با ترکیب سهام و وزن‌ها باز می‌شود. '
+            '<span id="rzf-asof"></span></p>\n'
+            '<div id="rzf-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
+            '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzf'), nav('etf'), JS, js)
+
+
 def superinvestors_page():
     src = os.path.join(ROOT, 'web_src')
     css = CSS + open(os.path.join(src, 'superinvestors.css'), encoding='utf-8').read()
@@ -382,6 +395,7 @@ HOME_TOOLS = [   # (icon, url, title, description, tier)  tier: '' = free, 'pro'
     ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.', 'اسم سهم‌ها قفل'),
     ('🧮', '/pages/screener', 'غربالگر سهام', 'بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.', '۱۰ ردیف رایگان'),
     ('📐', '/pages/dcf', 'ماشین‌حساب DCF', 'ارزش ذاتی سهم رو با فرض‌های خودت حساب کن.', '۳ سهم رایگان'),
+    ('🧺', '/pages/etf', 'صندوق‌های ETF', '۵۰ صندوق بزرگ دنیا: ترکیب سهام، وزن‌ها، بازدهی و P/E محاسبه‌شده.', 'صندوق‌های S&P 500 رایگان'),
     ('🦈', '/pages/superinvestors', 'سوپر سرمایه‌گذارها', 'پورتفوی بافت، اکمن، بری و بیش از ۸۰ مدیر افسانه‌ای.', 'بافت رایگان'),
     ('⚖️', '/pages/compare', 'مقایسه', 'دو تا چهار سهم رو کنار هم ببین.', 'pro'),
     ('📒', '/pages/my-portfolio', 'دفترچه سهام من', 'پورتفوی خودت رو اضافه کن و سود و زیانش رو ببین.', 'pro'),
@@ -446,6 +460,7 @@ def myportfolio_page():
 
 def main():
     pages = {
+        'etf.html': etf_page(),
         'my-portfolio.html': myportfolio_page(),
         'superinvestors.html': superinvestors_page(),
         'top-30.html': top30_page(),

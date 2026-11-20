@@ -1,0 +1,59 @@
+/* ETF section (/pages/etf). Index = one scrollable box with all 50 funds; click a row for the deep page. */
+#rzf .etfbox{padding:0;overflow:hidden}
+#rzf .etfhd{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+#rzf .etfhd .f{display:flex;gap:6px;flex-wrap:wrap}
+#rzf .etfhd input{width:220px;max-width:46vw}
+#rzf .etfscroll{max-height:68vh;min-height:360px;overflow:auto;-webkit-overflow-scrolling:touch}
+#rzf .etftbl{border-collapse:separate;border-spacing:0;width:100%;table-layout:auto;font-size:14px}
+#rzf .etftbl th{position:sticky;top:0;z-index:3;background:var(--card2);color:var(--mut);font-size:12px;font-weight:800;
+  padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
+#rzf .etftbl th.on{color:var(--ac)}
+#rzf .etftbl th:first-child{text-align:right}
+#rzf .etftbl td{padding:9px 10px;border-bottom:1px solid #1c1f28;white-space:nowrap;vertical-align:middle}
+#rzf .etftbl tbody tr{cursor:pointer}
+#rzf .etftbl tbody tr:hover td{background:var(--card2)}
+#rzf .etftbl tbody tr.lk td{opacity:.62}
+#rzf .etftbl .nm{display:flex;flex-direction:column;gap:1px;min-width:150px;white-space:normal}
+#rzf .etftbl .nm b{direction:ltr;unicode-bidi:isolate;color:var(--ac);font-size:14.5px}
+#rzf .etftbl .nm span{color:var(--mut);font-size:12.5px;line-height:1.5}
+#rzf .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:12px;color:var(--mut)}
+#rzf .lock{color:var(--ac);font-size:12.5px}
+#rzf .etftbl td.n{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums}
+
+#rzf .back{background:none;border:0;color:var(--ac);font-weight:800;font-size:14.5px;cursor:pointer;padding:0;margin-bottom:10px}
+#rzf .dhead{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:4px}
+#rzf .dhead .px{direction:ltr;unicode-bidi:isolate;font-family:var(--serif,Georgia,serif);font-size:30px;font-weight:600;color:#fff;line-height:1.1}
+#rzf .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+#rzf .kv>div{background:var(--card2);border-radius:12px;padding:10px 12px}
+#rzf .kv .k{color:var(--mut);font-size:12.5px;display:block;margin-bottom:2px}
+#rzf .kv .v{direction:ltr;unicode-bidi:isolate;font-size:18px;font-weight:800;color:#fff;display:block}
+#rzf .bars{display:grid;gap:8px}
+#rzf .bars .r{display:grid;grid-template-columns:132px 1fr 72px;gap:10px;align-items:center;font-size:13.5px}
+#rzf .bars .r .lb{color:var(--mut);white-space:normal;line-height:1.45}
+#rzf .bars .r .tr{background:#1c1f28;border-radius:999px;height:9px;overflow:hidden}
+#rzf .bars .r .tr b{display:block;height:100%;background:var(--ac);border-radius:999px}
+#rzf .bars .r .vl{direction:ltr;unicode-bidi:isolate;text-align:left;color:#fff;font-weight:700}
+#rzf .spark{width:100%;height:120px;display:block}
+#rzf .hold{width:100%;border-collapse:collapse;font-size:13.5px}
+#rzf .hold th{color:var(--mut);font-size:12px;font-weight:800;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+#rzf .hold td{padding:7px 8px;border-bottom:1px solid #1c1f28}
+#rzf .hold td.n{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
+#rzf .hold a{direction:ltr;unicode-bidi:isolate;font-weight:800}
+#rzf .holdwrap{max-height:420px;overflow:auto}
+#rzf .ltr{direction:ltr;unicode-bidi:isolate;white-space:normal}
+
+#rzf .plk{position:relative;border-radius:16px;overflow:hidden;min-height:340px}
+#rzf .plk-b{filter:blur(7px);opacity:.4;pointer-events:none;user-select:none}
+#rzf .plk-c{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:38px 14px}
+#rzf .plk-box{background:var(--card);border:1.5px solid var(--ac);border-radius:18px;padding:20px;max-width:460px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+#rzf .plk-box h3{font-size:18px;margin:0 0 4px}
+#rzf .plk-box p{color:var(--mut);font-size:14px;margin:6px 0 14px;line-height:1.8}
+
+@media (max-width:760px){
+  #rzf .etfscroll{max-height:none}
+  #rzf .etftbl{font-size:13px}
+  #rzf .etftbl th,#rzf .etftbl td{padding:8px 6px}
+  #rzf .etftbl .hm{display:none}
+  #rzf .bars .r{grid-template-columns:92px 1fr 62px;font-size:12.5px}
+  #rzf .dhead .px{font-size:25px}
+}

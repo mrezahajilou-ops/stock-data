@@ -74,11 +74,20 @@ def main():
             if d > today.isoformat():
                 continue
             for e in rows:
-                if e.get('act') is not None:
-                    continue
                 try:
                     q = json.load(open(os.path.join(EP, e['t'] + '.json'))).get('q') or []
                 except Exception:
+                    continue
+                # one set of numbers on every page: where the earnings feed has this report, the calendar shows its time
+                # of day (Nasdaq drops it once the report is out) and its surprise (worked out from the unrounded estimate)
+                for x in q[:2]:
+                    if x.get('d') and abs((dt.date.fromisoformat(x['d']) - dt.date.fromisoformat(d)).days) <= 4:
+                        if e.get('time', 'na') == 'na' and x.get('tm') in ('pre', 'after'):
+                            e['time'] = x['tm']
+                        if e.get('act') is not None and x.get('act') is not None and abs(e['act'] - x['act']) < 0.006 and x.get('f') is not None and x.get('sur') is not None:
+                            e['f'], e['sur'] = x['f'], x['sur']
+                        break
+                if e.get('act') is not None:
                     continue
                 for x in q[:2]:
                     if x.get('act') is None or not x.get('d'):

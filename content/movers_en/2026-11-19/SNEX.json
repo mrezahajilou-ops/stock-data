@@ -1,0 +1,24 @@
+{
+ "t": "SNEX",
+ "d": "2026-11-19",
+ "pct": -26.71,
+ "close": 39.45,
+ "prev": 53.83,
+ "kind": "earnings",
+ "headline": "StoneX fell 27% after quarterly profit came in well below what analysts expected",
+ "summary": "StoneX reported fiscal fourth-quarter earnings of $0.66 per share against roughly $0.92 expected. Revenue grew 12% but net income slipped 2% as interest and pay costs rose faster than revenue.",
+ "why": [
+  "StoneX Group published results for its fiscal fourth quarter after the market closed on November 18. Net operating revenues rose 12% to $655.2 million, but net income fell 2% to $84.2 million and diluted earnings per share fell 6% to $0.66. Analysts had expected about $0.92, so the company missed by more than a quarter.",
+  "The reason profit did not follow revenue is visible in the cost lines. Interest expense rose 28% to $524 million and variable compensation rose 17%, both faster than revenue, and the share count was about 5% higher than a year earlier after the company’s largest acquisition. Return on equity fell to 11.6% from 15.2%.",
+  "The full year was a record — net income of $525.4 million, up 72% — and management stressed that the acquisition was integrated on schedule. The market looked instead at the direction of the latest quarter: a business whose earnings had been growing 50% or more for the year reported a decline in the most recent three months."
+ ],
+ "context": [
+  "StoneX earns money from trading volumes, market volatility and the interest it earns on client balances. That makes its quarterly profit lumpier than a typical financial company’s. A miss of this size in a stock priced for continued fast growth produces an outsized move."
+ ],
+ "src": [
+  {
+   "title": "StoneX fiscal 2026 fourth-quarter results (SEC filing)",
+   "url": "https://www.sec.gov/Archives/edgar/data/913760/000091376026000044/snex2026er_exhq4roll.htm"
+  }
+ ]
+}

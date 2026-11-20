@@ -1,7 +1,7 @@
 """The day's big movers: companies worth $2B+ whose share price closed 10% or more up or down.
 
 Reads the daily closes on the `prices` branch (unpacked into PRICES_DIR) and data/stocks for names and market values,
-and writes out/movers/<date>.json: [{t, n, pct, close, prev, mcap, sector, earn}] sorted by size of move. `earn` is the
+and writes data/movers/raw/<date>.json: [{t, n, pct, close, prev, mcap, sector, earn}] sorted by size of move. `earn` is the
 date of an earnings report on that day or the day before, when there was one (from EARN_DIR, the `earnings` branch).
 
 The explanation of each move (what happened and why) is written afterwards from the news and the company's own
@@ -56,8 +56,8 @@ def main():
         rows.append(dict(t=t, n=st.get('name'), pct=round(pct, 2), close=close, prev=prev, prev_day=d[i - 1][0], mcap=mc,
                          sector=st.get('sector'), industry=st.get('industry'), earn=earn))
     rows.sort(key=lambda r: -abs(r['pct']))
-    os.makedirs('out/movers', exist_ok=True)
-    json.dump(rows, open('out/movers/%s.json' % day, 'w'), ensure_ascii=False, indent=0)
+    os.makedirs('data/movers/raw', exist_ok=True)
+    json.dump(rows, open('data/movers/raw/%s.json' % day, 'w'), ensure_ascii=False, indent=0)
     for r in rows:
         print('%-6s %+7.2f%%  %8.2f <- %8.2f  $%5.1fB  %s%s' % (r['t'], r['pct'], r['close'], r['prev'], r['mcap'] / 1e9, (r['n'] or '')[:38], ('  [earnings %s]' % r['earn']) if r['earn'] else ''))
     print(len(rows), 'movers on', day)

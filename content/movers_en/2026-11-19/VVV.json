@@ -1,0 +1,24 @@
+{
+ "t": "VVV",
+ "d": "2026-11-19",
+ "pct": 10.4,
+ "close": 36.84,
+ "prev": 33.37,
+ "kind": "earnings",
+ "headline": "Valvoline gained 10% after same-store sales rose 9.4% and it guided to another year of growth",
+ "summary": "Valvoline’s fiscal fourth-quarter sales grew 22% with same-store sales up 9.4%, its 20th straight year of same-store growth, and it forecast fiscal 2027 same-store growth of 5% to 7% with up to 220 new stores.",
+ "why": [
+  "Valvoline reported results for its fiscal fourth quarter on November 19. Sales grew 22% to $554 million and system-wide same-store sales rose 9.4%. For the full year, sales grew 21% to $2.1 billion, same-store sales rose 7.9% and system-wide store sales passed $4 billion for the first time.",
+  "Earnings were less impressive than sales: adjusted EPS for the quarter was $0.42, down 7% and in line with estimates, as higher product costs weighed on profit. Adjusted EBITDA still rose 10% to $144 million, and the store count grew 15% over the year to 2,517.",
+  "What moved the shares was the outlook. Valvoline expects system-wide same-store sales growth of 5% to 7% in fiscal 2027, 190 to 220 new stores and net revenues of $2.25 billion to $2.35 billion. The outlook assumes product costs stay elevated and supply stays stable, and still calls for another year of growth."
+ ],
+ "context": [
+  "Since selling its lubricants business, Valvoline has been a pure quick-service oil-change chain, a business that grows by adding stores and raising the average ticket. Twenty consecutive years of same-store growth, through recessions and the pandemic, is the reason it is valued as a steady compounder rather than a cyclical."
+ ],
+ "src": [
+  {
+   "title": "Valvoline fiscal 2026 fourth-quarter results (SEC filing)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1674910/000167491026000080/q42026earningsrelease.htm"
+  }
+ ]
+}

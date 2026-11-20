@@ -1,0 +1,28 @@
+{
+ "t": "SLS",
+ "d": "2026-11-19",
+ "pct": -17.21,
+ "close": 14.86,
+ "prev": 17.95,
+ "kind": "offering",
+ "headline": "SELLAS fell another 17% as it raises $150 million after its 156% jump on leukemia trial data",
+ "summary": "SELLAS shares more than doubled on November 17 when its cancer vaccine succeeded in a pivotal trial, and the company announced a $150 million share sale the same evening. The stock has been falling since as investors absorb the new shares.",
+ "why": [
+  "On November 17, SELLAS Life Sciences said its immunotherapy galinpepimut-S met the main goal of the pivotal Phase 3 REGAL trial in acute myeloid leukemia, cutting the risk of death by 41%, with median survival of 24.0 months against 14.7 months for the best available treatment. The shares rose 156% that day, from $7.47 to $19.15.",
+  "After the close the same day, the company announced an underwritten public offering of $150 million of new shares, with an option for underwriters to buy $22.5 million more. Selling new stock straight after a surge is standard practice for a biotech that needs cash to file for approval and prepare a launch, but it adds supply and is priced at a discount.",
+  "The shares fell 6% on November 18 and a further 17% on November 19, to $14.86 — still roughly double where they stood before the data. Nothing new about the drug was announced on the day; the decline is the offering being absorbed and early buyers taking profits."
+ ],
+ "context": [
+  "The trial result removes the largest risk, but not all of it. The study was relatively small, the statistical margin was not wide (p=0.035), and the company still has to agree with the FDA on what a filing requires. SELLAS has said it plans to meet the agency while preparing its application."
+ ],
+ "src": [
+  {
+   "title": "SELLAS announces Phase 3 REGAL results (SEC filing)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1390478/000110465926128825/tm2629947d1_ex99-1.htm"
+  },
+  {
+   "title": "SELLAS announces proposed $150 million offering",
+   "url": "https://ir.sellaslifesciences.com/news/News-Details/2026/SELLAS-Life-Sciences-Announces-Proposed-150-0-Million-Underwritten-Public-Offering/default.aspx"
+  }
+ ]
+}

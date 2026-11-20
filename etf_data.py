@@ -369,6 +369,27 @@ def ret_over(series, days):
     return round(end_p / start_p - 1, 4)
 
 
+def cagr_years(series):
+    """How many years of price history we actually have, which the average return has to be labelled with."""
+    if len(series) < 2:
+        return None
+    d0 = dt.date.fromisoformat(series[0][0])
+    d1 = dt.date.fromisoformat(series[-1][0])
+    y = (d1 - d0).days / 365.25
+    return round(y, 1) if y >= 1 else None
+
+
+def cagr(series):
+    """Average return a year over the history we hold — not since the fund launched, and labelled so."""
+    y = cagr_years(series)
+    if not y or not series[0][1] or not series[-1][1]:
+        return None
+    try:
+        return round((series[-1][1] / series[0][1]) ** (1 / y) - 1, 4)
+    except Exception:
+        return None
+
+
 def monthly(series):
     """One close per month, for a chart that does not need 1,500 points."""
     seen, out = set(), []
@@ -465,6 +486,7 @@ def build_one(e, by_ticker, by_name, cache=None):
         chart=monthly(hist),
         returns=dict(m1=ret_over(hist, 30), m3=ret_over(hist, 91), ytd=None,
                      y1=ret_over(hist, 365), y3=ret_over(hist, 1095), y5=ret_over(hist, 1826)),
+        cagr=cagr(hist), cagr_years=cagr_years(hist),
         holdings_as_of=as_of, holdings_source=src,
         built=TODAY.isoformat(),
     )
@@ -500,8 +522,9 @@ def build_one(e, by_ticker, by_name, cache=None):
         ser = sorted(ser)[-2000:]
         json.dump(ser, open(hf, 'w'), separators=(',', ':'))
         rec['pe_history_n'] = len(ser)
+        rec['pe_since'] = ser[0][0]
         pes = [x[1] for x in ser if x[1]]
-        if len(pes) >= 20:
+        if len(pes) >= 20:      # about a month of trading days; an 'average' of three is not one
             rec['pe_avg'] = round(sum(pes) / len(pes), 2)
             rec['pe_hi'] = max(pes)
             rec['pe_lo'] = min(pes)
@@ -547,8 +570,10 @@ def main():
         index.append(dict(t=e['t'], name=e['name'], issuer=e['issuer'], cls=e['cls'],
                           focus=e['focus'], idea=e['idea'], price=rec['price'],
                           y1=rec['returns']['y1'], y3=rec['returns']['y3'], ytd=rec['returns']['ytd'],
+                          cagr=rec.get('cagr'), cagr_years=rec.get('cagr_years'),
                           covered=(rec.get('weighted') or {}).get('covered_pct'),
                           pe=(rec.get('weighted') or {}).get('pe'),
+                          pe_avg=rec.get('pe_avg'), pe_n=rec.get('pe_history_n'), pe_since=rec.get('pe_since'),
                           holdings_n=(rec.get('weighted') or {}).get('holdings_n')))
     json.dump(cache, open(CACHE, 'w'), separators=(',', ':'))
     json.dump(dict(built=TODAY.isoformat(), etfs=index),

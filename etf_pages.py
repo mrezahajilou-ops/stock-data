@@ -284,53 +284,58 @@ def detail(sd, rec, spy, p, sector_labels=None):
 
 
 def index_page(idx, recs, p):
+    """One box holding all fifty funds, each row clickable through to its own page."""
     rows = idx.get('etfs') or []
+    rows = sorted(rows, key=lambda r: -(r.get('y1') if r.get('y1') is not None else -9))
+    focus = p.ui.get('focus_labels') or {}
+    # A fund's name is its issuer plus the index it tracks, and both are proper nouns. Rather than
+    # invent translations of brand names, each edition supplies the grammar that joins them.
+    pat = p.ui.get('name_pattern') or '%(issuer)s %(index)s'
+    since = next((r.get('pe_since') for r in rows if r.get('pe_since')), None)
 
-    def card(r):
+    def cell_pct(v):
+        return sret(v, p)
+
+    body_rows = []
+    for r in rows:
         w = (recs.get(r['t']) or {}).get('weighted') or {}
         idea = (p.text.get(r['t']) or (r.get('idea'), ''))[0]
-        return ('<a class="etfcard" href="%s"><div class="r1"><b>%s</b><span>%s</span></div>'
-                '<p>%s</p><div class="r2"><em>$%s</em>%s%s</div></a>'
-                % (p.u(r['t']), e(r['t']), ltr(r['name'], p), e(p.iso(idea)),
-                   _num(r.get('price'), 2), sret(r.get('y1'), p),
-                   ('<i>%s %s</i>' % (e(p.L('pe')), _num(w.get('pe'), 1))) if w.get('pe') else ''))
+        rec = recs.get(r['t']) or {}
+        local = pat % dict(issuer=rec.get('issuer') or r.get('issuer') or '',
+                           index=rec.get('index') or '')
+        body_rows.append(
+            '<tr onclick="location.href=\'%s\'">'
+            '<td class="nm"><a href="%s"><b>%s</b><span>%s</span></a>%s</td>'
+            '<td class="ty">%s</td>'
+            '<td>%s</td><td>%s</td>'
+            '<td>%s</td><td>%s</td><td>%s</td></tr>'
+            % (p.u(r['t']), p.u(r['t']), e(r['t']), ltr(r['name'], p),
+               ('<i>%s</i>' % e(p.iso(local))) if local else ('<i>%s</i>' % e(p.iso(idea))),
+               e(focus.get(r.get('focus'), r.get('focus') or '')),
+               cell_pct(r.get('y1')), cell_pct(r.get('cagr')),
+               _num(r.get('holdings_n'), 0) if r.get('holdings_n') else '—',
+               _num(w.get('pe'), 1) if w.get('pe') else '—',
+               _num(r.get('pe_avg'), 1) if r.get('pe_avg') else '—'))
 
-    secs, seen = [], set()
-    for label, focuses in p.ui['groups']:
-        part = [r for r in rows if r.get('focus') in focuses]
-        seen.update(r['t'] for r in part)
-        if not part:
-            continue
-        part.sort(key=lambda r: -(r.get('y1') if r.get('y1') is not None else -9))
-        secs.append('<section class="card"><h2>%s</h2><div class="etfgrid">%s</div></section>'
-                    % (e(label), ''.join(card(r) for r in part)))
-    rest = [r for r in rows if r['t'] not in seen]
-    if rest:
-        secs.append('<section class="card"><h2>%s</h2><div class="etfgrid">%s</div></section>'
-                    % (e(p.L('other')), ''.join(card(r) for r in rest)))
-
-    tbl = ('<section class="card"><h2>%s</h2><div class="tw"><table class="etftbl">'
-           '<thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>'
-           '<tbody>%s</tbody></table></div><p class="note">%s</p></section>'
-           % (e(p.L('all50')), e(p.L('fundcol')), e(p.L('price')), e(p.L('y1')), e(p.L('y3')),
-              e(p.L('pe')), e(p.L('holdings')),
-              ''.join('<tr><td><a href="%s"><b>%s</b> %s</a></td><td>$%s</td><td>%s</td><td>%s</td>'
-                      '<td>%s</td><td>%s</td></tr>'
-                      % (p.u(r['t']), e(r['t']), ltr(r['name'], p), _num(r.get('price'), 2),
-                         sret(r.get('y1'), p), sret(r.get('y3'), p),
-                         _num((recs.get(r['t'], {}).get('weighted') or {}).get('pe'), 1)
-                         if (recs.get(r['t'], {}).get('weighted') or {}).get('pe') else '—',
-                         _num(r.get('holdings_n'), 0) if r.get('holdings_n') else '—')
-                      for r in sorted(rows, key=lambda x: -(x.get('y1') if x.get('y1') is not None else -9))),
-              e(p.L('note_tbl'))))
+    box = ('<section class="card etfbox"><div class="tw"><table class="etftbl">'
+           '<thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>'
+           '<tbody>%s</tbody></table></div><p class="note">%s</p>'
+           '<p class="note">%s</p></section>'
+           % (e(p.L('fundcol')), e(p.L('type')), e(p.L('y1')), e(p.L('avg_yr')),
+              e(p.L('holdings')), e(p.ui.get('pe_short') or p.L('pe')), e(p.L('pe_avg')),
+              ''.join(body_rows), e(p.L('note_tbl')),
+              e(p.L('note_peavg', since=p.fdate(since)) if since else p.L('note_peavg_none'))))
 
     body = ('<article class="sa-list sa-etf"><h1>%s</h1><p class="sub">%s %s</p>'
-            '<p class="lead">%s</p><p>%s</p>%s%s%s<p class="dis">%s</p></article>'
+            '<p class="lead">%s</p><p>%s</p>%s%s<p class="dis">%s</p></article>'
             % (e(p.L('h1')), e(p.L('sub')), TODAY.strftime('%Y-%m'), e(p.L('lead')), e(p.L('intro')),
-               bars(rows, p), tbl, ''.join(secs), e(p.L('dis'))))
+               bars(rows, p), box, e(p.L('dis'))))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
-        {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()}]}]
+        {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()}]},
+        {'@context': 'https://schema.org', '@type': 'ItemList',
+         'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': '%s (%s)' % (r['name'], r['t']),
+                              'url': p.site + p.u(r['t'])} for i, r in enumerate(rows)]}]
     return dict(url=p.u(), title=p.L('i_title')[:62], desc=p.L('i_desc')[:300], html=body, ld=ld)
 
 

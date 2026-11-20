@@ -306,3 +306,16 @@ T = {
           'أموالاً أسرع من أي إطلاق صندوق في التاريخ. والأصل الأساسي لا يولّد تدفقاً نقدياً، فلا يوجد '
           'ما يُقاس عليه في التقييم.'),
 }
+
+# columns of the index box: the type tag, the localised name grammar and the P/E note
+UI.update({
+    'type': 'النوع',
+    'avg_yr': 'المتوسط السنوي',
+    'pe_avg': 'متوسط المضاعف',
+    'name_pattern': '%(index)s من %(issuer)s',
+    'note_peavg': 'لا أحد ينشر مضاعف ربحية تاريخياً لصندوق، لأنه يعتمد على ما كان الصندوق يملكه في حينه. لذلك بدأنا تسجيل مضاعفنا في %(since)s، ويبدأ عمود المتوسط بالامتلاء بعد أن يتراكم نحو شهر من البيانات.',
+    'note_peavg_none': 'عمود متوسط المضاعف يمتلئ تدريجياً مع تسجيلنا لقيمة كل يوم.',
+    'focus_labels': {'US large cap': 'كبرى أمريكية', 'US total market': 'السوق الأمريكية كاملة', 'US large cap growth': 'نمو أمريكي', 'US mega cap growth': 'نمو فائق الحجم', 'US large cap value': 'قيمة أمريكية', 'US quality factor': 'جودة أمريكية', 'US dividend': 'توزيعات أمريكية', 'US dividend growth': 'نمو التوزيعات', 'US mid cap': 'متوسطة أمريكية', 'US small cap': 'صغيرة أمريكية', 'developed ex-US': 'متقدمة خارج أمريكا', 'global ex-US': 'عالمي خارج أمريكا', 'global': 'عالمي', 'emerging markets': 'أسواق ناشئة', 'Europe': 'أوروبا', 'technology': 'تقنية', 'semiconductors': 'أشباه موصلات', 'financials': 'مالية', 'healthcare': 'رعاية صحية', 'energy': 'طاقة', 'industrials': 'صناعة', 'real estate': 'عقار', 'US investment grade bonds': 'سندات أمريكية', 'international bonds': 'سندات دولية', 'gold': 'ذهب', 'bitcoin': 'بتكوين'},
+})
+
+UI['pe_short'] = 'المضاعف'

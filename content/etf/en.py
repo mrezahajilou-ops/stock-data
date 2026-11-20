@@ -74,3 +74,17 @@ UI = dict(
 )
 
 T = {}   # English per-fund text comes from etf_list.py
+
+# columns of the index box: the type tag, the localised name grammar and the P/E note
+UI.update({
+    'type': 'Type',
+    'avg_yr': 'Average a year',
+    'pe_avg': 'Average P/E',
+    'name_pattern': '%(issuer)s %(index)s',
+    'note_peavg': 'Nobody publishes a historical price/earnings ratio for a fund, because it depends on what the fund held at the time. So we started recording ours on %(since)s. The average column fills in once there is about a month of it.',
+    'note_peavg_none': 'The average price/earnings column fills in as we record each day’s figure.',
+    'focus_labels': {},
+})
+
+UI['pe_short'] = 'P/E'
+UI['focus_labels'] = {'US large cap': 'US large cap', 'US total market': 'US total market', 'US large cap growth': 'US growth', 'US mega cap growth': 'US mega-cap growth', 'US large cap value': 'US value', 'US quality factor': 'US quality', 'US dividend': 'US dividend', 'US dividend growth': 'Dividend growth', 'US mid cap': 'US mid cap', 'US small cap': 'US small cap', 'developed ex-US': 'Developed ex-US', 'global ex-US': 'Global ex-US', 'global': 'Global', 'emerging markets': 'Emerging markets', 'Europe': 'Europe', 'technology': 'Technology', 'semiconductors': 'Semiconductors', 'financials': 'Financials', 'healthcare': 'Healthcare', 'energy': 'Energy', 'industrials': 'Industrials', 'real estate': 'Real estate', 'US investment grade bonds': 'US bonds', 'international bonds': 'International bonds', 'gold': 'Gold', 'bitcoin': 'Bitcoin'}

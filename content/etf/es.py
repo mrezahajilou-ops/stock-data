@@ -377,3 +377,16 @@ UI.update({
     'w_Venezuela': 'Los controles de cambio y las sanciones hacen muy difícil abrir y fondear una '
                    'cuenta de inversión en el exterior.',
 })
+
+# columns of the index box: the type tag, the localised name grammar and the P/E note
+UI.update({
+    'type': 'Tipo',
+    'avg_yr': 'Media anual',
+    'pe_avg': 'PER medio',
+    'name_pattern': '%(index)s de %(issuer)s',
+    'note_peavg': 'Nadie publica un PER histórico de un fondo, porque depende de lo que el fondo tuviera dentro en cada momento. Por eso empezamos a registrar el nuestro el %(since)s. La columna de la media se rellena cuando haya alrededor de un mes de datos.',
+    'note_peavg_none': 'La columna del PER medio se rellena a medida que registramos la cifra de cada día.',
+    'focus_labels': {'US large cap': 'Grandes EE. UU.', 'US total market': 'Todo el mercado EE. UU.', 'US large cap growth': 'Crecimiento EE. UU.', 'US mega cap growth': 'Megacaps crecimiento', 'US large cap value': 'Valor EE. UU.', 'US quality factor': 'Calidad EE. UU.', 'US dividend': 'Dividendo EE. UU.', 'US dividend growth': 'Dividendo creciente', 'US mid cap': 'Medianas EE. UU.', 'US small cap': 'Pequeñas EE. UU.', 'developed ex-US': 'Desarrollados sin EE. UU.', 'global ex-US': 'Global sin EE. UU.', 'global': 'Global', 'emerging markets': 'Emergentes', 'Europe': 'Europa', 'technology': 'Tecnología', 'semiconductors': 'Semiconductores', 'financials': 'Financieras', 'healthcare': 'Salud', 'energy': 'Energía', 'industrials': 'Industria', 'real estate': 'Inmobiliario', 'US investment grade bonds': 'Bonos EE. UU.', 'international bonds': 'Bonos internacionales', 'gold': 'Oro', 'bitcoin': 'Bitcoin'},
+})
+
+UI['pe_short'] = 'PER'

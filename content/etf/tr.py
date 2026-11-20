@@ -329,3 +329,16 @@ T = {
           'kaldırıyor; tarihteki hiçbir ETF lansmanından daha hızlı para toplamasının sebebi tam olarak '
           'bu. Dayanak varlık nakit akışı üretmiyor, yani onu değerleyecek bir şey yok.'),
 }
+
+# columns of the index box: the type tag, the localised name grammar and the P/E note
+UI.update({
+    'type': 'Tür',
+    'avg_yr': 'Yıllık ortalama',
+    'pe_avg': 'Ortalama F/K',
+    'name_pattern': '%(issuer)s %(index)s',
+    'note_peavg': 'Bir fonun geçmiş F/K’sını kimse yayımlamıyor, çünkü o fonun o tarihte ne tuttuğuna bağlı. Bu yüzden kendi kaydımızı %(since)s tarihinde başlattık. Ortalama sütunu yaklaşık bir aylık veri birikince dolmaya başlıyor.',
+    'note_peavg_none': 'Ortalama F/K sütunu, her günün değerini kaydettikçe doluyor.',
+    'focus_labels': {'US large cap': 'ABD büyük', 'US total market': 'Tüm ABD piyasası', 'US large cap growth': 'ABD büyüme', 'US mega cap growth': 'Mega büyüme', 'US large cap value': 'ABD değer', 'US quality factor': 'ABD kalite', 'US dividend': 'ABD temettü', 'US dividend growth': 'Temettü büyümesi', 'US mid cap': 'ABD orta', 'US small cap': 'ABD küçük', 'developed ex-US': 'Gelişmiş, ABD hariç', 'global ex-US': 'Global, ABD hariç', 'global': 'Global', 'emerging markets': 'Gelişmekte olan', 'Europe': 'Avrupa', 'technology': 'Teknoloji', 'semiconductors': 'Yarı iletken', 'financials': 'Finans', 'healthcare': 'Sağlık', 'energy': 'Enerji', 'industrials': 'Sanayi', 'real estate': 'Gayrimenkul', 'US investment grade bonds': 'ABD tahvil', 'international bonds': 'Uluslararası tahvil', 'gold': 'Altın', 'bitcoin': 'Bitcoin'},
+})
+
+UI['pe_short'] = 'F/K'

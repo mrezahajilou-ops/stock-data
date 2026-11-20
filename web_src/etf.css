@@ -56,7 +56,9 @@
   #rzf .etftbl th,#rzf .etftbl td{padding:8px 6px}
   #rzf .etftbl .hm{display:none}
   #rzf .etftbl .nm .mo{display:block}
-  #rzf .etftbl .nm{min-width:112px}
+  #rzf .etftbl .nm{min-width:96px}
+  #rzf .etftbl th{white-space:normal;line-height:1.35;font-size:11px}
+  #rzf .etftbl th,#rzf .etftbl td{padding:8px 4px}
   #rzf .bars .r{grid-template-columns:92px 1fr 62px;font-size:12.5px}
   #rzf .dhead .px{font-size:25px}
 }

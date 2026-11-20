@@ -125,16 +125,28 @@ def release(cik, day):
             files = [x['name'] for x in json.loads(idx)['directory']['item']]
         except Exception:
             continue
-        ex = [n for n in files if re.search(r'(?i)(ex[-_]?99|exhibit99|ex991|press|earn|release)', n)
-              and n.lower().endswith(('.htm', '.html', '.txt'))]
-        ex.sort(key=lambda n: (0 if re.search(r'(?i)99[-_.d]?1(?!\d)', n) else 1, len(n)))
-        for n in (ex[:3] or ([primary] if primary else [])):
+        docs = [n for n in files if n.lower().endswith(('.htm', '.html', '.txt'))
+                and not re.match(r'(?i)(R\d+\.htm|.*index.*|.*-index-headers.*)$', n)]
+
+        def rank(n):
+            named = bool(re.search(r'(?i)(ex[-_]?99|exhibit99|ex991|press|earn|release|result)', n))
+            first = bool(re.search(r'(?i)99[-_.d]?1(?!\d)', n))
+            return (n == primary, not named, not first, len(n))
+        best = None
+        for n in sorted(docs, key=rank)[:6]:
             raw = get(base + n)
             if not raw:
                 continue
             txt = text_of(raw)
-            if len(txt) > 1500 and re.search(r'(?i)(revenue|net income|earnings|quarter)', txt):
+            if len(txt) < 1500 or not re.search(r'(?i)(revenue|net income|earnings|quarter)', txt):
+                continue
+            cover = 'Check the appropriate box' in txt[:6000] or 'CURRENT REPORT' in txt[:1500]
+            if not cover:
                 return form, filed, base + n, txt[:70000]
+            if best is None:
+                best = (form, filed, base + n, txt[:70000])
+        if best and form == '6-K':
+            return best
     return None
 
 

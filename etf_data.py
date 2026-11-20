@@ -422,6 +422,27 @@ def build_one(e, by_ticker, by_name):
             rec['returns']['ytd'] = round(jan[-1][1] / prev[-1][1] - 1, 4)
     if holds:
         rec['weighted'] = weighted(holds, by_name, by_ticker)   # sets h['t'] on each holding
+        # A fund's historical P/E cannot be fetched from anywhere: it depends on what the fund held
+        # at the time, and nobody publishes that series. So we start one. Each day's weighted figure
+        # is appended here, and after a few months the pages can show where today sits against the
+        # fund's own history rather than against nothing.
+        hp = os.path.join(OUT, 'history')
+        os.makedirs(hp, exist_ok=True)
+        hf = os.path.join(hp, t + '.json')
+        try:
+            ser = json.load(open(hf))
+        except Exception:
+            ser = []
+        ser = [x for x in ser if x[0] != TODAY.isoformat()]
+        ser.append([TODAY.isoformat(), rec['weighted'].get('pe'), rec.get('price')])
+        ser = sorted(ser)[-2000:]
+        json.dump(ser, open(hf, 'w'), separators=(',', ':'))
+        rec['pe_history_n'] = len(ser)
+        pes = [x[1] for x in ser if x[1]]
+        if len(pes) >= 20:
+            rec['pe_avg'] = round(sum(pes) / len(pes), 2)
+            rec['pe_hi'] = max(pes)
+            rec['pe_lo'] = min(pes)
     rec['holdings'] = [{k: v for k, v in h.items() if k in ('name', 'pct', 't')} for h in holds[:60]]
     return rec
 

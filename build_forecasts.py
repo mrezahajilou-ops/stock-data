@@ -153,6 +153,7 @@ def main():
                + '<h2>بیشتر</h2>' + chips([('/pages/top-30', '۳۰ سهم برتر به انتخاب تحلیلگرها'), ('/pages/guides', 'فهرست‌های آماده‌ی سهام'), ('/pages/stock', 'تحلیل سهام')])
                + '<p class="dis">اعداد از میانگین پیش‌بینی تحلیلگرهاست و توصیه‌ی خرید یا فروش نیست.</p></div>')
     pages.append(hub)
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(pages, open(OUT, 'w'), ensure_ascii=False)
     print('forecast pages', len(pages))
 

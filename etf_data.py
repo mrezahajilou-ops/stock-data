@@ -21,6 +21,7 @@ import urllib.request, urllib.error, urllib.parse
 import etf_list
 
 OUT = os.environ.get('ETF_OUT', 'data/etfs')
+MIN_COVER = 85.0   # below this share of the fund's weight, our figures describe a slice, not the fund
 STOCKS = 'data/stocks'
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'
 SEC_UA = os.environ.get('SEC_UA', 'stockanaliz.com research contact@stockanaliz.com')
@@ -312,14 +313,20 @@ def ssga_holdings(ticker):
 
 def history(sym, years=6):
     frm = (TODAY - dt.timedelta(days=int(365.25 * years))).isoformat()
-    url = ('https://api.nasdaq.com/api/quote/%s/historical?assetclass=etf&fromdate=%s&todate=%s&limit=9999'
-           % (sym, frm, TODAY.isoformat()))
-    b = fetch(url, NASDAQ_HDR)
-    if not b:
-        return []
-    try:
-        rows = (((json.loads(b).get('data') or {}).get('tradesTable') or {}).get('rows')) or []
-    except Exception:
+    rows = []
+    for cls in ('etf', 'stocks'):          # a few listings answer only for one of the two
+        url = ('https://api.nasdaq.com/api/quote/%s/historical?assetclass=%s&fromdate=%s&todate=%s&limit=9999'
+               % (sym, cls, frm, TODAY.isoformat()))
+        b = fetch(url, NASDAQ_HDR)
+        if not b:
+            continue
+        try:
+            rows = (((json.loads(b).get('data') or {}).get('tradesTable') or {}).get('rows')) or []
+        except Exception:
+            rows = []
+        if rows:
+            break
+    if not rows:
         return []
     out = []
     for x in rows:
@@ -451,11 +458,20 @@ def build_one(e, by_ticker, by_name, cache=None):
         if jan and prev and prev[-1][1]:
             rec['returns']['ytd'] = round(jan[-1][1] / prev[-1][1] - 1, 4)
     if holds:
-        rec['weighted'] = weighted(holds, by_name, by_ticker)   # sets h['t'] on each holding
-        # A fund's historical P/E cannot be fetched from anywhere: it depends on what the fund held
-        # at the time, and nobody publishes that series. So we start one. Each day's weighted figure
-        # is appended here, and after a few months the pages can show where today sits against the
-        # fund's own history rather than against nothing.
+        w = weighted(holds, by_name, by_ticker)                 # sets h['t'] on each holding
+        if e['cls'] != 'equity':
+            # the match is only meaningful for shares: a bond fund's holdings are that company's
+            # debt, and rolling our equity figures onto it would invent a P/E that cannot exist
+            w = dict(holdings_n=w['holdings_n'], covered_pct=None, covered_n=None, not_equity=True)
+        elif (w.get('covered_pct') or 0) < MIN_COVER:
+            w = dict(holdings_n=w['holdings_n'], covered_pct=w['covered_pct'],
+                     covered_n=w['covered_n'], thin=True)
+        rec['weighted'] = w
+
+    # A fund's historical P/E cannot be fetched from anywhere: it depends on what the fund held at
+    # the time, and nobody publishes that series. So we start one. Each day's figure is appended, and
+    # after a few months the pages can show where today sits against the fund's own range.
+    if (rec.get('weighted') or {}).get('pe'):
         hp = os.path.join(OUT, 'history')
         os.makedirs(hp, exist_ok=True)
         hf = os.path.join(hp, t + '.json')
@@ -464,7 +480,7 @@ def build_one(e, by_ticker, by_name, cache=None):
         except Exception:
             ser = []
         ser = [x for x in ser if x[0] != TODAY.isoformat()]
-        ser.append([TODAY.isoformat(), rec['weighted'].get('pe'), rec.get('price')])
+        ser.append([TODAY.isoformat(), rec['weighted']['pe'], rec.get('price')])
         ser = sorted(ser)[-2000:]
         json.dump(ser, open(hf, 'w'), separators=(',', ':'))
         rec['pe_history_n'] = len(ser)

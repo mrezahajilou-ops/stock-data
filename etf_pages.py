@@ -47,9 +47,14 @@ class Pack:
     def u(self, t=None):
         return self.base if not t else '%s%s/' % (self.base, t.lower())
 
-    def L(self, k, *a):
+    def L(self, k, **kw):
+        """A label, with named fields.
+
+        Named rather than positional because translations reorder: Turkish puts the total before the
+        count where English puts it after, and a positional '%d' then lands on a string.
+        """
         s = self.ui.get(k, k)
-        return (s % a) if a else s
+        return (s % kw) if kw else s
 
 
 # ---------------------------------------------------------------- pieces of a page
@@ -117,7 +122,7 @@ def line(series, p, h=170):
                  for i, y in yrs[::max(1, len(yrs) // 6)])
     return ('<figure class="etfline"><svg viewBox="0 0 %d %d" dir="ltr" role="img"><path d="%s" class="ar"/>'
             '<path d="%s" class="ln"/>%s%s</svg><figcaption>%s</figcaption></figure>'
-            % (w, h, area, d, ticks, xl, e(p.L('linecap', pts[0][0][:4]))))
+            % (w, h, area, d, ticks, xl, e(p.L('linecap', year=pts[0][0][:4]))))
 
 
 def sectors(sd, holds, p, labels=None):
@@ -146,7 +151,7 @@ def sectors(sd, holds, p, labels=None):
 def where(rec, p):
     u = rec.get('ucits') or {}
     alt, nm, note = u.get('ticker'), u.get('name') or '', u.get('note') or ''
-    body = '<p>%s</p>' % p.L('priips', ltr(rec['t'], p))
+    body = '<p>%s</p>' % p.L('priips', fund=ltr(rec['t'], p))
     if alt or nm:
         body += '<p><b>%s</b> %s %s</p>' % (e(p.L('in_europe')),
                                             ltr('%s — %s' % (alt, nm) if (alt and nm) else (alt or nm), p),
@@ -200,18 +205,19 @@ def detail(sd, rec, spy, p, sector_labels=None):
     fund = ''
     if w.get('not_equity'):
         fund = ('<section class="card"><h2>%s</h2><p>%s</p></section>'
-                % (e(p.L('no_pe_h')), e(p.L('no_pe_bond', _num(w.get('holdings_n'), 0)))))
+                % (e(p.L('no_pe_h')), e(p.L('no_pe_bond', n=_num(w.get('holdings_n'), 0)))))
     elif w.get('thin'):
         fund = ('<section class="card"><h2>%s</h2><p>%s</p></section>'
                 % (e(p.L('no_pe_h')),
-                   e(p.L('no_pe_thin', _num(w.get('holdings_n'), 0), _pct((w.get('covered_pct') or 0) / 100, 0)))))
+                   e(p.L('no_pe_thin', n=_num(w.get('holdings_n'), 0),
+                         cov=_pct((w.get('covered_pct') or 0) / 100, 0)))))
     elif w.get('pe'):
         cmpr = ''
         if spy and (spy.get('weighted') or {}).get('pe') and t != 'SPY':
             sp = spy['weighted']['pe']
             diff = w['pe'] / sp - 1
-            cmpr = '<p>%s</p>' % p.L('vs_sp', _num(sp, 1), _pct(abs(diff), 0),
-                                     p.L('more_exp') if diff > 0 else p.L('cheaper'))
+            cmpr = '<p>%s</p>' % p.L('vs_sp', sp=_num(sp, 1), diff=_pct(abs(diff), 0),
+                                     dir=p.L('more_exp') if diff > 0 else p.L('cheaper'))
         rows = [(p.L('pe'), _num(w.get('pe'), 1)), (p.L('ps'), _num(w.get('ps'), 2)),
                 (p.L('growth'), _pct(w['revenue_growth'], 1) if w.get('revenue_growth') is not None else '—'),
                 (p.L('margin'), _pct(w['net_margin'], 1) if w.get('net_margin') is not None else '—'),
@@ -220,8 +226,8 @@ def detail(sd, rec, spy, p, sector_labels=None):
         fund = ('<section class="card"><h2>%s</h2><div class="kv">%s</div>%s<p class="note">%s</p></section>'
                 % (e(p.L('fund')),
                    ''.join('<div><span>%s</span><b>%s</b></div>' % (e(a), b) for a, b in rows), cmpr,
-                   e(p.L('note_pe', _pct((w.get('covered_pct') or 0) / 100, 1),
-                         _num(w.get('covered_n'), 0), _num(w.get('holdings_n'), 0)))))
+                   e(p.L('note_pe', cov=_pct((w.get('covered_pct') or 0) / 100, 1),
+                         n=_num(w.get('covered_n'), 0), total=_num(w.get('holdings_n'), 0)))))
 
     holds = rec.get('holdings') or []
     tbl = ''
@@ -238,8 +244,8 @@ def detail(sd, rec, spy, p, sector_labels=None):
                '<p class="note">%s</p></section>'
                % (e(p.L('holds')), e(p.L('company')), e(p.L('weight')), rows,
                   sectors(sd, holds, p, sector_labels),
-                  e(p.L('note_holds', len(top), _num(w.get('holdings_n'), 0),
-                        (' · ' + p.fdate(rec['holdings_as_of'])) if rec.get('holdings_as_of') else ''))))
+                  e(p.L('note_holds', n=len(top), total=_num(w.get('holdings_n'), 0),
+                        asof=(' · ' + p.fdate(rec['holdings_as_of'])) if rec.get('holdings_as_of') else ''))))
 
     body = ('<article class="sa-list sa-etf">%s%s%s%s%s%s<p class="dis">%s</p></article>'
             % (head, about, fund, perf, tbl, where(rec, p), e(p.L('dis'))))
@@ -247,7 +253,8 @@ def detail(sd, rec, spy, p, sector_labels=None):
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
         {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()},
         {'@type': 'ListItem', 'position': 3, 'name': '%s (%s)' % (nm, t), 'item': p.site + p.u(t)}]}]
-    return dict(url=p.u(t), title=p.L('d_title', t)[:62], desc=p.L('d_desc', nm, t, idea)[:300],
+    return dict(url=p.u(t), title=p.L('d_title', t=t)[:62],
+                desc=p.L('d_desc', name=nm, t=t, idea=idea)[:300],
                 html=body, ld=ld)
 
 

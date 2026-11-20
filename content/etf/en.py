@@ -21,13 +21,13 @@ UI = dict(
     growth='Revenue growth, last year', margin='Net margin', score='Our average score',
     holdings='Holdings',
     chartcap='One-year price return, every fund on this page. Click a bar to open it.',
-    linecap='Price since %s. Dividends are not included.',
+    linecap='Price since %(year)s. Dividends are not included.',
     note_ret='Price return only. A fund that pays dividends returned more than this; one that '
              'accumulates them did not.',
     note_pe='Not taken from the fund. Each holding is matched to our own page for that company and '
             'the figures are weighted by the fund’s own weights, so they are built from the same '
-            'filings as the rest of this site. We cover %s of this fund by weight (%s of %s positions).',
-    note_holds='Top %d of %s positions, from the fund’s own published holdings%s. Company names that '
+            'filings as the rest of this site. We cover %(cov)s of this fund by weight (%(n)s of %(total)s positions).',
+    note_holds='Top %(n)d of %(total)s positions, from the fund’s own published holdings%(asof)s. Company names that '
                'link through have a full page on this site.',
     note_ctry='The general position, not advice about any particular broker or about tax. Where a '
               'fund cannot be bought it is the European document rule doing it, not the broker.',
@@ -39,19 +39,19 @@ UI = dict(
     no_pe_bond='This fund does not own shares in companies, so there are no earnings to divide the '
                'price by. What matters for it instead is what it lends to and for how long: credit '
                'quality and duration for a bond fund, and the price of the thing itself for gold or '
-               'bitcoin. It holds %s positions.',
-    no_pe_thin='Our company data covers companies listed in the United States. This fund holds %s '
-               'positions and only %s of its weight is in companies we cover, so a price/earnings '
+               'bitcoin. It holds %(n)s positions.',
+    no_pe_thin='Our company data covers companies listed in the United States. This fund holds %(n)s '
+               'positions and only %(cov)s of its weight is in companies we cover, so a price/earnings '
                'ratio built from that part would describe a slice of the fund rather than the fund. '
                'We would rather leave it out than print a number that looks like an answer. The '
                'holdings and weights below are the fund’s own.',
-    priips='%s is domiciled in the United States. US funds do not publish the key information '
+    priips='%(fund)s is domiciled in the United States. US funds do not publish the key information '
            'document that European rules require, so a retail investor in the European Union or the '
            'United Kingdom cannot buy it — the order is simply refused, whatever broker they use. '
            'Investors in most of Latin America, the Middle East, Turkey and much of Asia can buy it '
            'through an international broker, subject to their own local rules.',
     in_europe='If you are in Europe:',
-    vs_sp='The S&P 500 on the same measure is %s times, so this fund is %s %s.',
+    vs_sp='The S&P 500 on the same measure is %(sp)s times, so this fund is %(diff)s %(dir)s.',
     more_exp='more expensive', cheaper='cheaper',
     shariah='Shariah-screened alternative',
     dis='Holdings from each fund’s own filings with the SEC; company figures from SEC filings, '
@@ -59,9 +59,9 @@ UI = dict(
     i_title='The 50 Biggest ETFs: Holdings, P/E and Returns',
     i_desc='The fifty largest ETFs in the world with their holdings, weights and one-year returns, '
            'and a price/earnings ratio worked out from the companies each one actually holds.',
-    d_title='%s ETF: holdings, P/E and returns',
-    d_desc='%s (%s) holdings, weights and returns, with a price/earnings ratio built from the '
-           'companies it actually holds. %s',
+    d_title='%(t)s ETF: holdings, P/E and returns',
+    d_desc='%(name)s (%(t)s) holdings, weights and returns, with a price/earnings ratio built from '
+           'the companies it actually holds. %(idea)s',
     groups=[
         ('Core US market', ['US large cap', 'US total market']),
         ('Growth and value', ['US large cap growth', 'US mega cap growth', 'US large cap value', 'US quality factor']),

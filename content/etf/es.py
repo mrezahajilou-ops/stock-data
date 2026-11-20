@@ -17,8 +17,8 @@ UI = dict(
     in_europe='Si estás en Europa:',
     more_exp='más caro', cheaper='más barato',
     shariah='Alternativa conforme a la sharía',
-    vs_sp='El S&P 500 en la misma medida está a %s veces, así que este fondo es un %s %s.',
-    priips='%s está domiciliado en Estados Unidos. Los fondos estadounidenses no publican el '
+    vs_sp='El S&P 500 en la misma medida está a %(sp)s veces, así que este fondo es un %(diff)s %(dir)s.',
+    priips='%(fund)s está domiciliado en Estados Unidos. Los fondos estadounidenses no publican el '
            'documento de datos fundamentales que exige la norma europea, así que un inversor '
            'minorista de la Unión Europea o del Reino Unido no puede comprarlo: la orden se rechaza, '
            'con el bróker que sea. En buena parte de Latinoamérica, Oriente Medio, Turquía y Asia sí '
@@ -30,9 +30,9 @@ UI = dict(
     i_title='Los 50 ETF más grandes: cartera, PER y rentabilidad',
     i_desc='Los cincuenta ETF más grandes del mundo con su cartera, sus pesos y su rentabilidad a un '
            'año, y un PER calculado con las empresas que cada uno tiene realmente dentro.',
-    d_title='ETF %s: cartera, PER y rentabilidad',
-    d_desc='%s (%s): cartera, pesos y rentabilidad, con un PER calculado a partir de las empresas que '
-           'tiene dentro. %s',
+    d_title='ETF %(t)s: cartera, PER y rentabilidad',
+    d_desc='%(name)s (%(t)s): cartera, pesos y rentabilidad, con un PER calculado a partir de las '
+           'empresas que tiene dentro. %(idea)s',
     h1='Los 50 ETF más grandes del mundo',
     sub='Cartera, pesos y valoración · actualizado',
     lead='Los cincuenta fondos cotizados más grandes del mundo, con para qué sirve cada uno, qué '
@@ -54,13 +54,13 @@ UI = dict(
     y1='1 año', y3='3 años', ytd='En el año', m1='Último mes', m3='3 meses', y5='5 años',
     price='Precio', pe='PER', holdings='Posiciones',
     chartcap='Rentabilidad del último año, todos los fondos de esta página. Pulsa una barra para abrirlo.',
-    linecap='Precio desde %s. No incluye dividendos.',
+    linecap='Precio desde %(year)s. No incluye dividendos.',
     note_ret='Solo rentabilidad por precio. Un fondo que reparte dividendos rindió más que esto; '
              'uno que los acumula, no.',
     note_pe='No lo tomamos del fondo. Cada posición se cruza con nuestra ficha de esa empresa y las '
             'cifras se ponderan con los pesos del propio fondo, de modo que salen de los mismos '
-            'informes que el resto de la web. Cubrimos el %s del fondo por peso (%s de %s posiciones).',
-    note_holds='Las %d mayores de %s posiciones, de la cartera publicada por el fondo%s. Los nombres '
+            'informes que el resto de la web. Cubrimos el %(cov)s del fondo por peso (%(n)s de %(total)s posiciones).',
+    note_holds='Las %(n)d mayores de %(total)s posiciones, de la cartera publicada por el fondo%(asof)s. Los nombres '
                'que enlazan tienen ficha completa en esta web.',
     note_ctry='La situación general, no un consejo sobre un bróker concreto ni sobre impuestos. '
               'Cuando un fondo no se puede comprar, lo impide la norma europea del documento de '
@@ -68,9 +68,9 @@ UI = dict(
     no_pe_bond='Este fondo no tiene acciones de empresas, así que no hay beneficios entre los que '
                'dividir el precio. Lo que importa en él es a quién presta y a qué plazo: calidad '
                'crediticia y duración en un fondo de bonos, y el precio del propio activo en el oro '
-               'o el bitcoin. Tiene %s posiciones.',
+               'o el bitcoin. Tiene %(n)s posiciones.',
     no_pe_thin='Nuestros datos de empresas cubren compañías cotizadas en Estados Unidos. Este fondo '
-               'tiene %s posiciones y solo el %s de su peso está en empresas que cubrimos, así que un '
+               'tiene %(n)s posiciones y solo el %(cov)s de su peso está en empresas que cubrimos, así que un '
                'PER calculado con esa parte describiría un trozo del fondo y no el fondo. Preferimos '
                'omitirlo antes que publicar un número que parece una respuesta. La cartera y los '
                'pesos de abajo sí son los del propio fondo.',

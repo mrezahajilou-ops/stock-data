@@ -171,74 +171,127 @@
 @media(max-width:360px){#rzf .acctbar{gap:4px}#rzf .acctbar .qk,#rzf .acctbar .acct{font-size:11px;padding:3px 7px}}
 #rzf .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
 #rzf .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
-/* ETF section (/pages/etf). Index = one scrollable box with all 50 funds; click a row for the deep page. */
-#rzf .etfbox{padding:0;overflow:hidden}
-#rzf .etfhd{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
-#rzf .etfhd .f{display:flex;gap:6px;flex-wrap:wrap}
-#rzf .etfhd input{width:220px;max-width:46vw}
-#rzf .etfscroll{max-height:68vh;min-height:360px;overflow:auto;-webkit-overflow-scrolling:touch}
-#rzf .etftbl{border-collapse:separate;border-spacing:0;width:100%;table-layout:auto;font-size:14px}
-#rzf .etftbl th{position:sticky;top:0;z-index:3;background:var(--card2);color:var(--mut);font-size:12px;font-weight:800;
-  padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
-#rzf .etftbl th.on{color:var(--ac)}
-#rzf .etftbl th:first-child{text-align:right}
-#rzf .etftbl td{padding:9px 10px;border-bottom:1px solid #1c1f28;white-space:nowrap;vertical-align:middle}
-#rzf .etftbl tbody tr{cursor:pointer}
-#rzf .etftbl tbody tr:hover td{background:var(--card2)}
-#rzf .etftbl tbody tr.lk td{opacity:.62}
-#rzf .etftbl .nm{display:flex;flex-direction:column;gap:1px;min-width:150px;white-space:normal}
-#rzf .etftbl .nm b{direction:ltr;unicode-bidi:isolate;color:var(--ac);font-size:14.5px}
-#rzf .etftbl .nm span{color:var(--mut);font-size:12.5px;line-height:1.5}
-#rzf .etftbl .nm .mo{display:none;font-size:11.5px;color:#6f747e}
-#rzf .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:12px;color:var(--mut)}
-#rzf .lock{color:var(--ac);font-size:12.5px}
-#rzf .etftbl td.n{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums}
-
-#rzf .back{background:none;border:0;color:var(--ac);font-weight:800;font-size:14.5px;cursor:pointer;padding:0;margin-bottom:10px}
-#rzf .dhead{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:4px}
-#rzf .dhead .px{direction:ltr;unicode-bidi:isolate;font-family:var(--serif,Georgia,serif);font-size:30px;font-weight:600;color:#fff;line-height:1.1}
-#rzf .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-#rzf .kv>div{background:var(--card2);border-radius:12px;padding:10px 12px}
-#rzf .kv .k{color:var(--mut);font-size:12.5px;display:block;margin-bottom:2px}
-#rzf .kv .v{direction:ltr;unicode-bidi:isolate;font-size:18px;font-weight:800;color:#fff;display:block}
-#rzf .bars{display:grid;gap:8px}
-#rzf .bars .r{display:grid;grid-template-columns:132px 1fr 72px;gap:10px;align-items:center;font-size:13.5px}
-#rzf .bars .r .lb{color:var(--mut);white-space:normal;line-height:1.45}
-#rzf .bars .r .tr{background:#1c1f28;border-radius:999px;height:9px;overflow:hidden}
-#rzf .bars .r .tr b{display:block;height:100%;background:var(--ac);border-radius:999px}
-#rzf .bars .r .vl{direction:ltr;unicode-bidi:isolate;text-align:left;color:#fff;font-weight:700}
-#rzf .spark{width:100%;height:120px;display:block}
-#rzf .hold{width:100%;border-collapse:collapse;font-size:13.5px}
-#rzf .hold th{color:var(--mut);font-size:12px;font-weight:800;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
-#rzf .hold td{padding:7px 8px;border-bottom:1px solid #1c1f28}
-#rzf .hold td.n{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
-#rzf .hold a{direction:ltr;unicode-bidi:isolate;font-weight:800}
-#rzf .holdwrap{max-height:420px;overflow:auto}
-#rzf .ltr{direction:ltr;unicode-bidi:isolate;white-space:normal}
-
-#rzf .plk{position:relative;border-radius:16px;overflow:hidden;min-height:340px}
-#rzf .plk-b{filter:blur(7px);opacity:.4;pointer-events:none;user-select:none}
-#rzf .plk-c{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:38px 14px}
-#rzf .plk-box{background:var(--card);border:1.5px solid var(--ac);border-radius:18px;padding:20px;max-width:460px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.55)}
-#rzf .plk-box h3{font-size:18px;margin:0 0 4px}
-#rzf .plk-box p{color:var(--mut);font-size:14px;margin:6px 0 14px;line-height:1.8}
-
-@media (max-width:760px){
-  #rzf .etfscroll{max-height:none}
-  #rzf .etftbl{font-size:13px}
-  #rzf .etftbl th,#rzf .etftbl td{padding:8px 6px}
-  #rzf .etftbl .hm{display:none}
-  #rzf .etftbl .nm .mo{display:block}
-  #rzf .etftbl .nm{min-width:96px}
-  #rzf .etftbl th{white-space:normal;line-height:1.35;font-size:11px}
-  #rzf .etftbl th,#rzf .etftbl td{padding:8px 4px}
-  #rzf .bars .r{grid-template-columns:92px 1fr 62px;font-size:12.5px}
-  #rzf .dhead .px{font-size:25px}
+/* ETF section (/pages/etf). The pages themselves are built by etf_pages.py (the same code as the
+   English site) and loaded as fragments; this is that section's stylesheet, scoped to the Persian shell. */
+#rzf{--max:1500px;--panel:#15181F;--row:#101318;--line:#262B36;--text:#E8E4DA;--muted:#8A8F99;--gold:#C9A961;
+  --green:#4FBF7F;--r-panel:16px;--r-row:12px;--serif:'Fraunces',Georgia,serif}
+#rzf .sa-etf{padding:0;color:var(--text);line-height:1.9}
+#rzf .sa-etf h1{font-size:26px;font-weight:900;color:#fff;margin:6px 0 2px}
+#rzf .sa-etf>.sub{color:var(--muted);font-size:14px;margin:0 0 12px}
+#rzf .sa-etf p{margin:0 0 10px;font-size:15px}
+#rzf .sa-etf a{color:var(--gold);text-decoration:none}
+#rzf .sa-etf table{border-collapse:collapse;width:100%;table-layout:auto!important;margin:0}
+#rzf .sa-etf th,#rzf .sa-etf td{white-space:normal}
+#rzf .sa-etf bdi.ltr{direction:ltr;unicode-bidi:isolate;white-space:normal}
+#rzf .sa-etf .etftbl tr.lk td{opacity:.6}
+#rzf .back{background:none;border:0;color:var(--gold);font-weight:800;font-size:14.5px;cursor:pointer;padding:0;margin:0 0 6px}
+#rzf .lockbox{border:1.5px solid var(--gold);border-radius:18px;padding:22px;max-width:520px;margin:26px auto;text-align:center;background:var(--panel)}
+#rzf .lockbox h3{font-size:18px;margin:0 0 6px;color:#fff}
+#rzf .lockbox p{color:var(--muted);font-size:14px;margin:6px 0 14px;line-height:1.9}
+#rzf .sa-etf{max-width:var(--max);margin:0 auto;padding:0 16px}
+#rzf .sa-etf .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);padding:18px 20px;margin:16px 0}
+#rzf .sa-etf .card h2{margin:0 0 10px;font-size:20px}
+#rzf .sa-etf .card h3{margin:18px 0 6px;font-size:16px}
+#rzf .sa-etf .lead{font-size:17px}
+#rzf .sa-etf .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+#rzf .sa-etf .dis{font-size:12.5px;color:var(--muted);margin:18px 0 28px}
+#rzf .sa-etf .crumbs{font-size:13px;color:var(--muted);margin:10px 0}
+#rzf .sa-etf .crumbs a{color:var(--muted)}
+#rzf .sa-etf .top{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin:6px 0 4px}
+#rzf .sa-etf .top h1{margin:0;font-size:26px}
+#rzf .sa-etf .top .sub{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+#rzf .sa-etf .px b{font-family:var(--serif);font-size:26px}
+#rzf .sa-etf .px span{display:block;font-size:13px;color:var(--muted)}
+#rzf .sa-etf .up{color:var(--green)}
+#rzf .sa-etf .dn{color:#d98080}
+#rzf .sa-etf .mut{color:var(--muted)}
+#rzf .sa-etf .tk,#rzf .sa-etf .tk2{color:var(--muted);font-weight:600}
+#rzf .sa-etf .tk{font-size:15px}
+#rzf .sa-etf .tk2{font-size:12px}
+#rzf .sa-etf .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--line);border-radius:var(--r-row)}
+#rzf .sa-etf .kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+#rzf .sa-etf .kv div{background:var(--row);border:1px solid var(--line);border-radius:var(--r-row);padding:9px 12px}
+#rzf .sa-etf .kv span{display:block;font-size:12.5px;color:var(--muted)}
+#rzf .sa-etf .kv b{font-size:17px}
+#rzf .sa-etf details{border-top:1px solid var(--line);padding:9px 0}
+#rzf .sa-etf details summary{cursor:pointer;font-weight:700}
+.etfchart{margin:18px 0 6px}
+.etfchart figcaption,.etfline figcaption{font-size:12.5px;color:var(--muted);margin-top:6px}
+.etfbars,.etfline svg{width:100%;height:auto;display:block}
+.etfbars .ax{stroke:var(--line);stroke-width:1}
+.etfbars .bp{fill:var(--green)}
+.etfbars .bn{fill:#d98080}
+.etfbars .tk{fill:var(--text);font-size:10.5px;font-weight:700}
+.etfbars .vl{fill:var(--muted);font-size:10px}
+.etfline .ln{fill:none;stroke:var(--gold);stroke-width:2}
+.etfline .ar{fill:rgba(201,169,97,.11);stroke:none}
+.etfline .yl,.etfline .xl{fill:var(--muted);font-size:10px}
+.etfline .yl{text-anchor:end}
+.etfline .xl{text-anchor:middle}
+.etfgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+.etfcard{display:block;background:var(--row);border:1px solid var(--line);border-radius:var(--r-row);padding:12px 14px;text-decoration:none;color:inherit}
+.etfcard:hover{border-color:var(--gold)}
+.etfcard .r1{display:flex;align-items:baseline;gap:8px}
+.etfcard .r1 b{font-size:16px;color:var(--gold)}
+.etfcard .r1 span{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.etfcard p{margin:7px 0 10px;font-size:13.5px;line-height:1.7}
+.etfcard .r2{display:flex;align-items:center;gap:10px;font-size:13px}
+.etfcard .r2 em{font-style:normal;font-weight:700}
+.etfcard .r2 i{font-style:normal;color:var(--muted);margin-inline-start:auto}
+.etftbl,table.hold,table.ctry{width:100%;border-collapse:collapse;font-size:14px}
+.etftbl th,.etftbl td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.etftbl th:first-child,.etftbl td:first-child{text-align:right;white-space:normal}
+.etftbl a{color:inherit;text-decoration:none}
+.etftbl a b{color:var(--gold)}
+table.hold th,table.hold td{padding:7px 12px;border-bottom:1px solid var(--line)}
+table.hold .hw{text-align:left;white-space:nowrap}
+table.hold .hw i{display:inline-block;width:84px;height:7px;border-radius:99px;background:var(--line);overflow:hidden;vertical-align:middle;margin-inline-end:8px}
+table.hold .hw i b{display:block;height:100%;background:var(--gold)}
+table.ctry th,table.ctry td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+table.ctry th{white-space:nowrap;font-weight:700;width:120px}
+table.ctry td:first-of-type{white-space:nowrap;font-weight:700;width:170px}
+table.ctry td.yes{color:var(--green)}
+table.ctry td.no{color:#d98080}
+table.ctry td.mid{color:var(--gold)}
+.secbars{display:grid;gap:7px;margin-top:10px}
+.secbars div{display:grid;grid-template-columns:150px 1fr 56px;align-items:center;gap:10px;font-size:13.5px}
+.secbars i{display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.secbars i b{display:block;height:100%;background:var(--gold)}
+.secbars em{font-style:normal;text-align:left;color:var(--muted)}
+@media(max-width:700px){
+  .etfgrid{grid-template-columns:1fr}
+  .secbars div{grid-template-columns:104px 1fr 50px;gap:8px;font-size:12.5px}
+  table.hold .hw i{width:46px;margin-inline-end:6px}
+  .etftbl th,.etftbl td{padding:7px 8px;font-size:13px}
+  table.ctry th{width:84px}table.ctry td:first-of-type{width:100px;white-space:normal}
+  #rzf .sa-etf .top{display:block}
+  #rzf .sa-etf .top h1{font-size:22px}
 }
+/* the index box: all fifty funds in one scrollable table, each row a link */
+.etfbox .tw{margin-top:4px}
+.etftbl tbody tr{cursor:pointer}
+.etftbl td.nm{min-width:230px}
+.etftbl td.nm a{display:block;text-decoration:none;color:inherit}
+.etftbl td.nm b{color:var(--gold);margin-inline-end:7px}
+.etftbl td.nm span{color:var(--text)}
+.etftbl td.nm i{display:block;font-style:normal;color:var(--muted);font-size:12.5px;margin-top:2px}
+.etftbl td.ty{color:var(--muted);white-space:nowrap}
+.etftbl thead th{position:sticky;top:0;background:var(--panel);z-index:1}
+@media(max-width:700px){
+  .etftbl td.nm{min-width:190px}
+  .etftbl td.nm i{font-size:12px}
+}
+/* keep every row one line tall so fifty funds can be scanned, and the columns stay aligned */
+.etftbl td.nm a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.etftbl td.nm i{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.etftbl td.nm{min-width:0}
+@media(max-width:700px){.etftbl td.nm a,.etftbl td.nm i{max-width:180px}}
+/* a long Latin run inside Arabic prose must be allowed to wrap: the UCITS fund names are long
+   enough that nowrap pushed the whole page to 715px on a phone */
+#rzf .sa-etf bdi.ltr{white-space:normal}
+#rzf .sa-etf .etftbl bdi.ltr,#rzf .sa-etf .tk bdi.ltr{white-space:nowrap}
 </style>
 <div class="acctbar"><a class="qk qhome" href="/">🏠 صفحه اصلی</a><a class="qk qcont" href="/pages/contest-portfolio">🏆 مسابقه</a><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a class="on" href="/pages/etf">صندوق‌های ETF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
-<h1>۵۰ صندوق ETF بزرگ دنیا</h1>
-<p class="sub">هر پنجاه صندوق در یک جدول: نوع، بازدهی یک سال، میانگین سالانه، تعداد شرکت‌های داخلش، P/E امروز و میانگین P/E تاریخی. روی هر کدام بزنی، صفحه‌ی کامل همان صندوق با ترکیب سهام و وزن‌ها باز می‌شود. <span id="rzf-asof"></span></p>
 <div id="rzf-main"><div class="card empty">در حال بارگذاری…</div></div>
 <script>
 (function(){
@@ -293,424 +346,46 @@ function wlSet(a){try{localStorage.setItem('rz_watch',JSON.stringify(a))}catch(e
 function alGet(){try{return JSON.parse(localStorage.getItem('rz_alerts')||'{}')}catch(e){return {}}}
 function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(e){}}
 
-/* Persian copy for the 50 biggest ETFs (web/etf.html, /pages/etf on sahamanaliz.com).
-   Written in Persian for an Iranian reader, not translated word for word. No figures here:
-   price, returns, holdings and ratios all come from data/etfs/*.json, rebuilt daily by etf_data.py.
-   n = Persian name, i = one line (what it is for), s = how it actually works. */
-var FA_CLS = {equity: 'سهام', bond: 'اوراق قرضه', commodity: 'کالا', crypto: 'رمزارز'};
-
-var FA_FOCUS = {
-  'US large cap': 'شرکت‌های بزرگ آمریکا',
-  'US total market': 'کل بازار آمریکا',
-  'US large cap growth': 'شرکت‌های بزرگ رشدی آمریکا',
-  'US large cap value': 'شرکت‌های بزرگ ارزشی آمریکا',
-  'US dividend': 'سود نقدی آمریکا',
-  'US dividend growth': 'رشد سود نقدی آمریکا',
-  'US small cap': 'شرکت‌های کوچک آمریکا',
-  'US mid cap': 'شرکت‌های متوسط آمریکا',
-  'US mega cap growth': 'غول‌های رشدی آمریکا',
-  'US quality factor': 'فاکتور کیفیت آمریکا',
-  'developed ex-US': 'کشورهای توسعه‌یافته بدون آمریکا',
-  'global ex-US': 'کل جهان بدون آمریکا',
-  'emerging markets': 'بازارهای نوظهور',
-  'global': 'کل جهان',
-  'Europe': 'اروپا',
-  'technology': 'فناوری',
-  'semiconductors': 'نیمه‌هادی',
-  'financials': 'مالی و بانکی',
-  'healthcare': 'سلامت و دارو',
-  'energy': 'انرژی',
-  'industrials': 'صنعتی',
-  'real estate': 'املاک',
-  'US investment grade bonds': 'اوراق قرضه درجه‌یک آمریکا',
-  'international bonds': 'اوراق قرضه بین‌المللی',
-  'gold': 'طلا',
-  'bitcoin': 'بیت‌کوین'
-};
-
-var FA = {
-VOO: {n: 'صندوق اس‌اند‌پی ۵۰۰ ونگارد',
-  i: 'پانصد شرکت بزرگ آمریکا، با یکی از پایین‌ترین کارمزدهای دنیا.',
-  s: 'هر پانصد شرکت شاخص اس‌اند‌پی ۵۰۰ را به نسبت ارزش بازارشان نگه می‌دارد؛ یعنی هرچه شرکت بزرگ‌تر باشد سهم بیشتری از صندوق دارد. هیچ مدیری انتخاب نمی‌کند چه بخرد؛ ترکیب صندوق دقیقاً همان چیزی است که کمیته‌ی شاخص تعیین می‌کند. نتیجه این است که امروز وزن چند شرکت بزرگ فناوری در آن بسیار سنگین است، و این را باید بدانید: «پانصد شرکت» در عمل یعنی چند شرکت خیلی بزرگ به‌علاوه‌ی چهارصد و چند شرکت کوچک‌تر.'},
-IVV: {n: 'صندوق هسته‌ای اس‌اند‌پی ۵۰۰ آی‌شیرز',
-  i: 'همان پانصد شرکت VOO، از مدیر دیگری، با همان هزینه.',
-  s: 'شاخص و روش دقیقاً مثل VOO است و تفاوت بازدهی‌شان در طول سال از خطای گرد کردن بیشتر نمی‌شود. تنها فرق واقعی مدیر صندوق است: بلک‌راک به‌جای ونگارد. انتخاب بین این دو تقریباً اهمیتی ندارد؛ آنچه اهمیت دارد این است که هر دو همان شاخص را می‌خرند.'},
-SPY: {n: 'صندوق اس‌اند‌پی ۵۰۰ اس‌پی‌دی‌آر',
-  i: 'اولین صندوق اس‌اند‌پی ۵۰۰ دنیا و پرمعامله‌ترین اوراق بهادار جهان.',
-  s: 'قدیمی‌ترین صندوق قابل معامله‌ی آمریکا، ساخته‌شده در ۱۹۹۳، و هنوز هم بیشترین حجم معامله را در کل بازارهای دنیا دارد. ساختار حقوقی‌اش قدیمی است و همین باعث می‌شود کارمزدش کمی از VOO و IVV بالاتر باشد و سود نقدی را فوری دوباره سرمایه‌گذاری نکند. برای معامله‌گرها و برای بازار آپشن بهترین انتخاب است؛ برای کسی که می‌خواهد ده سال نگه دارد، VOO یا SPYM منطقی‌تر است.'},
-VTI: {n: 'صندوق کل بازار سهام ونگارد',
-  i: 'عملاً تمام شرکت‌های بورسی آمریکا در یک صندوق.',
-  s: 'به‌جای پانصد شرکت بزرگ، چند هزار شرکت آمریکایی را از بزرگ‌ترین تا خیلی کوچک نگه می‌دارد. چون وزن‌دهی بر اساس ارزش بازار است، بازدهی‌اش در عمل خیلی نزدیک به اس‌اند‌پی ۵۰۰ درمی‌آید؛ هزاران شرکت کوچک روی هم وزن کمی دارند. تفاوتش وقتی خودش را نشان می‌دهد که شرکت‌های کوچک دوره‌ی خوبی داشته باشند.'},
-QQQ: {n: 'صندوق نزدک ۱۰۰ اینوسکو',
-  i: 'صد شرکت بزرگ غیرمالی نزدک؛ در عمل شرط‌بندی روی فناوری بزرگ.',
-  s: 'شاخصش قاعده‌ی عجیبی دارد: صد شرکت بزرگ نزدک، به شرط اینکه مالی نباشند. این قاعده‌ی مالی بودن ربطی به تحلیل ندارد و فقط میراث تاریخی شاخص است، اما نتیجه‌اش این است که بانک‌ها حذف می‌شوند و وزن فناوری به‌شدت بالا می‌رود. این صندوق سبد متنوع نیست؛ تمرکز بالایی روی چند شرکت دارد و باید با همین نگاه خریده شود.'},
-VUG: {n: 'صندوق سهام رشدی ونگارد',
-  i: 'نیمه‌ی پررشدتر شرکت‌های بزرگ آمریکا، بر اساس تعریفی قاعده‌مند از رشد.',
-  s: 'شرکت‌های بزرگ آمریکا را بر اساس معیارهایی مثل رشد فروش، رشد سود و نسبت‌های ارزش‌گذاری به دو نیمه‌ی رشدی و ارزشی تقسیم می‌کند و نیمه‌ی رشدی را می‌خرد. در عمل یعنی وزن سنگین فناوری و شرکت‌های مصرفی بزرگ. دوره‌هایی هست که این سبک سال‌ها از بازار جلو می‌افتد و دوره‌هایی که سال‌ها عقب می‌ماند.'},
-VTV: {n: 'صندوق سهام ارزشی ونگارد',
-  i: 'نیمه‌ی ارزان‌تر شرکت‌های بزرگ آمریکا؛ یعنی بانک، سلامت و صنعت.',
-  s: 'روی دیگر سکه‌ی VUG است: همان جهان شرکت‌های بزرگ، اما نیمه‌ای که نسبت قیمت به سود و قیمت به ارزش دفتری پایین‌تری دارد. ترکیبش عمدتاً بانک، بیمه، شرکت‌های دارویی بزرگ، انرژی و صنعت است و سود نقدی‌اش معمولاً از بازار بیشتر است. اگر VUG و VTV را با هم بخرید، تقریباً به همان اس‌اند‌پی ۵۰۰ می‌رسید.'},
-VIG: {n: 'صندوق رشد سود نقدی ونگارد',
-  i: 'شرکت‌هایی که دست‌کم ده سال پشت سر هم سود نقدی‌شان را بالا برده‌اند.',
-  s: 'به‌جای اینکه دنبال بالاترین سود نقدی باشد، دنبال شرکت‌هایی است که ده سال پیاپی سودشان را افزایش داده‌اند. این یک فیلتر کیفیت است نه فیلتر بازدهی: شرکتی که ده سال بدون وقفه سود نقدی را بالا برده، معمولاً جریان نقد پایدار و ترازنامه‌ی سالمی دارد. به همین دلیل بازدهی سود نقدی‌اش متوسط است اما کیفیت سبدش بالاست.'},
-SCHD: {n: 'صندوق سهام سود نقدی آمریکا چارلز شواب',
-  i: 'صد شرکت سودده که نه فقط بر اساس سود نقدی، بلکه بر اساس سلامت ترازنامه هم غربال شده‌اند.',
-  s: 'اول شرکت‌هایی را که ده سال پیاپی سود نقدی داده‌اند جدا می‌کند، بعد آن‌ها را بر اساس بازده حقوق صاحبان سهام، نسبت بدهی به جریان نقد و رشد سود نقدی رتبه می‌دهد و صد تای برتر را نگه می‌دارد. همین مرحله‌ی دوم است که آن را از صندوق‌های معمولی سود نقدی جدا می‌کند: بازدهی نقدی بالا اغلب نشانه‌ی شرکت در دردسر است، و این فیلتر جلوی بخشی از آن دام را می‌گیرد.'},
-VYM: {n: 'صندوق سود نقدی بالای ونگارد',
-  i: 'نیمه‌ی پرسودتر بازار آمریکا از نظر سود نقدی، وزن‌دهی‌شده بر اساس اندازه.',
-  s: 'ساده‌ترین روش ممکن را به کار می‌برد: شرکت‌های آمریکایی را بر اساس بازدهی سود نقدی مرتب می‌کند و نیمه‌ی بالایی را بر اساس ارزش بازار نگه می‌دارد. هیچ فیلتر کیفیتی ندارد، پس شرکت‌هایی که سود نقدی‌شان فقط به این دلیل بالاست که قیمت سهمشان سقوط کرده هم وارد سبد می‌شوند. در عوض بسیار متنوع است و کارمزدش بسیار پایین.'},
-DGRO: {n: 'صندوق هسته‌ای رشد سود نقدی آی‌شیرز',
-  i: 'شرکت‌های آمریکایی با پنج سال افزایش سود نقدی و جا برای ادامه دادن.',
-  s: 'شرط ورودش از VIG آسان‌تر است (پنج سال به‌جای ده سال) ولی شرط دیگری اضافه می‌کند: نسبت سود نقدی به سود شرکت نباید بیش از حد بالا باشد، یعنی شرکت باید جا داشته باشد که سال بعد هم سود نقدی را بالا ببرد. همین باعث می‌شود سبدش از VIG کمی متنوع‌تر و بازدهی نقدی‌اش کمی بیشتر باشد.'},
-IWF: {n: 'صندوق راسل ۱۰۰۰ رشدی آی‌شیرز',
-  i: 'نیمه‌ی رشدی هزار شرکت بزرگ آمریکا، بر اساس تعریف راسل.',
-  s: 'همان ایده‌ی VUG با شاخصی دیگر. راسل هزار شرکت بزرگ آمریکا را بر اساس نسبت قیمت به ارزش دفتری و پیش‌بینی رشد به دو نیمه تقسیم می‌کند؛ این صندوق نیمه‌ی رشدی را می‌خرد. یک شرکت می‌تواند هم‌زمان بخشی در صندوق رشدی و بخشی در صندوق ارزشی داشته باشد، چون راسل اجازه‌ی تقسیم می‌دهد.'},
-IWD: {n: 'صندوق راسل ۱۰۰۰ ارزشی آی‌شیرز',
-  i: 'نیمه‌ی ارزشی هزار شرکت بزرگ آمریکا.',
-  s: 'روی دیگر IWF. شرکت‌هایی با نسبت قیمت به ارزش دفتری پایین‌تر و انتظار رشد کمتر؛ یعنی بانک‌ها، شرکت‌های انرژی، صنعت و بخشی از سلامت. تفاوتش با VTV بیشتر در جزئیات روش شاخص است تا در نتیجه؛ هر دو به یک جای مشابه می‌رسند.'},
-IWM: {n: 'صندوق راسل ۲۰۰۰ آی‌شیرز',
-  i: 'دو هزار شرکت کوچک آمریکایی؛ رایج‌ترین نماینده‌ی سهام کوچک آمریکا.',
-  s: 'شرکت‌های رتبه‌ی ۱۰۰۱ تا ۳۰۰۰ بازار آمریکا را نگه می‌دارد. هیچ فیلتری برای سودآوری ندارد، و این مهم است: بخش قابل توجهی از شرکت‌های داخل آن زیان‌ده هستند. به همین دلیل IWM معمولاً پرنوسان‌تر از بازار است و در رکودها بیشتر از اس‌اند‌پی ۵۰۰ افت می‌کند. بیشترین کاربردش برای معامله‌گرهاست که با آن روی وضعیت اقتصاد داخلی آمریکا موضع می‌گیرند.'},
-IJH: {n: 'صندوق هسته‌ای اس‌اند‌پی میان‌رده آی‌شیرز',
-  i: 'چهارصد شرکت متوسط آمریکایی، بین اس‌اند‌پی ۵۰۰ و شرکت‌های کوچک.',
-  s: 'شاخص اس‌اند‌پی ۴۰۰ را دنبال می‌کند و نکته‌ی مهمش فیلتر سودآوری است: کمیته‌ی اس‌اند‌پی شرکت را فقط وقتی وارد شاخص می‌کند که سابقه‌ی سود داشته باشد. همین یک قاعده باعث شده بازدهی بلندمدت شاخص‌های اس‌اند‌پی برای شرکت‌های متوسط و کوچک از معادل‌های راسل بهتر باشد.'},
-IJR: {n: 'صندوق هسته‌ای اس‌اند‌پی کوچک آی‌شیرز',
-  i: 'ششصد شرکت کوچک آمریکایی، غربال‌شده بر اساس سودآوری.',
-  s: 'شاخص اس‌اند‌پی ۶۰۰ را می‌خرد. تفاوت اصلی‌اش با IWM همان فیلتر سودآوری است: شرکتی که پول درنمی‌آورد وارد شاخص نمی‌شود. در بلندمدت همین فیلتر ساده تفاوت محسوسی در بازدهی ساخته است، و اگر قرار باشد بین دو صندوق سهام کوچک انتخاب کنید، دلیل منطقی به نفع این یکی است.'},
-VO: {n: 'صندوق شرکت‌های متوسط ونگارد',
-  i: 'شرکت‌های متوسط آمریکایی، تعریف‌شده بر اساس جایگاهشان در ارزش کل بازار.',
-  s: 'به‌جای شمردن شرکت‌ها، لایه‌ای از ارزش کل بازار آمریکا را برمی‌دارد که به شرکت‌های متوسط تعلق دارد. نتیجه‌اش سبدی بزرگ‌تر و متنوع‌تر از IJH است، بدون فیلتر سودآوری. کارمزدش بسیار پایین است.'},
-VB: {n: 'صندوق شرکت‌های کوچک ونگارد',
-  i: 'شرکت‌های کوچک آمریکایی، بدون هیچ شرطی برای سودده بودن.',
-  s: 'همان منطق VO یک پله پایین‌تر: لایه‌ی کوچک بازار آمریکا، با هزاران شرکت. چون فیلتر سودآوری ندارد، از نظر کیفیت به IWM نزدیک‌تر است تا به IJR، ولی متنوع‌تر و ارزان‌تر از هر دو.'},
-SPYM: {n: 'صندوق پرتفوی اس‌اند‌پی ۵۰۰ اس‌پی‌دی‌آر',
-  i: 'نسخه‌ی ارزان اس‌تریت‌استریت از اس‌اند‌پی ۵۰۰، ساخته‌شده برای نگه داشتن نه معامله کردن.',
-  s: 'همان شاخص SPY با ساختار حقوقی مدرن و کارمزد بسیار پایین‌تر. اس‌تریت‌استریت آن را دقیقاً برای کسانی ساخت که می‌خواهند بلندمدت نگه دارند و نیازی به نقدشوندگی فوق‌العاده‌ی SPY ندارند. قیمت هر واحدش هم پایین‌تر است، که برای خریدهای کوچک و منظم مفید است.'},
-RSP: {n: 'صندوق اس‌اند‌پی ۵۰۰ هم‌وزن اینوسکو',
-  i: 'همان پانصد شرکت، اما هر کدام با وزن برابر.',
-  s: 'به‌جای وزن‌دهی بر اساس اندازه، به هر پانصد شرکت وزن یکسان می‌دهد و هر سه ماه دوباره متعادل می‌کند. نتیجه‌اش این است که بزرگ‌ترین شرکت‌های فناوری سهم کوچکی دارند و شرکت‌های متوسط‌تر سهم بزرگ‌تری. وقتی رشد بازار فقط از چند غول می‌آید این صندوق عقب می‌ماند، و وقتی بازار پهن‌تر می‌شود جلو می‌افتد. مقایسه‌ی RSP با VOO یکی از بهترین راه‌ها برای فهمیدن این است که رشد بازار واقعی است یا فقط مال چند سهم.'},
-QUAL: {n: 'صندوق فاکتور کیفیت ام‌اس‌سی‌آی آمریکا آی‌شیرز',
-  i: 'شرکت‌های آمریکایی با بازده بالا، سود باثبات و بدهی کم.',
-  s: 'سه معیار را می‌سنجد: بازده حقوق صاحبان سهام، پایداری رشد سود و نسبت بدهی. شرکت‌هایی که در هر سه خوب هستند وزن بیشتری می‌گیرند. ایده‌ی پشت آن ساده است: شرکت باکیفیت در دوران خوب کمی عقب‌تر می‌ماند و در دوران بد کمتر افت می‌کند. این فاکتور از معدود فاکتورهایی است که در پژوهش‌های بلندمدت به‌طور مداوم جواب داده.'},
-MGK: {n: 'صندوق غول‌های رشدی ونگارد',
-  i: 'فقط بزرگ‌ترین شرکت‌های رشدی آمریکا؛ متمرکزترین راه برای داشتن آن‌ها.',
-  s: 'حتی از VUG هم متمرکزتر است: فقط لایه‌ی بالایی شرکت‌های رشدی، یعنی چند ده شرکت غول. اگر عقیده‌تان این است که بزرگ‌ترین شرکت‌های فناوری آمریکا همچنان برنده می‌مانند، این مستقیم‌ترین بیان آن عقیده است. در عوض تنوع بسیار کمی دارد و باید با همین آگاهی خریده شود.'},
-VV: {n: 'صندوق شرکت‌های بزرگ ونگارد',
-  i: 'بخش بزرگ بازار آمریکا، تعریف‌شده با اندازه نه با رأی یک کمیته.',
-  s: 'تفاوتش با VOO ظریف اما واقعی است: اس‌اند‌پی ۵۰۰ را یک کمیته انتخاب می‌کند و شرط سودآوری دارد، اما VV صرفاً لایه‌ی بزرگ بازار را بر اساس ارزش می‌گیرد. برای همین شرکت‌هایی را دارد که هنوز وارد اس‌اند‌پی ۵۰۰ نشده‌اند. بازدهی‌شان در عمل بسیار نزدیک است.'},
-ITOT: {n: 'صندوق هسته‌ای کل بازار آمریکا آی‌شیرز',
-  i: 'کل بازار سهام آمریکا در یک صندوق، از بلک‌راک.',
-  s: 'معادل VTI از بلک‌راک: چند هزار شرکت آمریکایی از بزرگ‌ترین تا کوچک‌ترین، وزن‌دهی‌شده بر اساس ارزش بازار. انتخاب بین ITOT و VTI تقریباً بی‌اهمیت است؛ هر دو همان کار را با همان هزینه می‌کنند.'},
-SCHX: {n: 'صندوق شرکت‌های بزرگ آمریکا چارلز شواب',
-  i: 'هفتصد و پنجاه شرکت بزرگ آمریکا، با یکی از پایین‌ترین هزینه‌های موجود.',
-  s: 'کمی پهن‌تر از اس‌اند‌پی ۵۰۰ است و شرکت‌های بزرگ بیشتری را در بر می‌گیرد، با کارمزدی که جزو کمترین‌های بازار است. برای کسی که حسابش نزد شواب است انتخاب طبیعی است؛ برای بقیه تفاوت معناداری با VOO ندارد.'},
-VEA: {n: 'صندوق کشورهای توسعه‌یافته ونگارد',
-  i: 'شرکت‌های کشورهای توسعه‌یافته بیرون از آمریکا: اروپا، ژاپن، کانادا، استرالیا.',
-  s: 'سهام شرکت‌های بزرگ و متوسط کشورهای ثروتمند غیر از آمریکا. اگر کل سبدتان آمریکایی است، این رایج‌ترین راه برای متنوع کردن آن است. دو نکته را بدانید: اول اینکه ریسک ارز دارید، چون این شرکت‌ها به ین و یورو و پوند درآمد دارند؛ دوم اینکه ترکیب صنعتی‌اش با آمریکا فرق دارد و وزن بانک و صنعت در آن بیشتر و وزن فناوری کمتر است.'},
-VXUS: {n: 'صندوق کل سهام بین‌المللی ونگارد',
-  i: 'عملاً تمام شرکت‌های بورسی جهان بیرون از آمریکا.',
-  s: 'هم کشورهای توسعه‌یافته و هم بازارهای نوظهور را با هم دارد، و شرکت‌های کوچک را هم شامل می‌شود؛ یعنی چند هزار شرکت در یک صندوق. اگر یک صندوق بخواهید که همه‌ی دنیای غیرآمریکایی را پوشش بدهد، همین است. VTI به‌علاوه‌ی VXUS تقریباً برابر با کل بازار سهام جهان است.'},
-IEFA: {n: 'صندوق هسته‌ای ای‌اِی‌اف‌ای آی‌شیرز',
-  i: 'اروپا، استرالیا و خاور دور توسعه‌یافته؛ معیار استاندارد سرمایه‌گذاری بین‌المللی.',
-  s: 'شاخص ام‌اس‌سی‌آی ای‌اِی‌اف‌ای را دنبال می‌کند و برخلاف برادر قدیمی‌ترش EFA، شرکت‌های کوچک را هم در بر می‌گیرد. کارمزدش از EFA کمتر است و برای نگه‌داشتن بلندمدت انتخاب بهتری است.'},
-VWO: {n: 'صندوق بازارهای نوظهور ونگارد',
-  i: 'شرکت‌های کشورهای در حال توسعه، با غلبه‌ی چین، هند و تایوان.',
-  s: 'سهام بازارهای نوظهور، اما با یک تفاوت مهم: شاخص FTSE کره‌ی جنوبی را کشور توسعه‌یافته می‌داند، پس کره در این صندوق نیست. بخش بزرگی از وزنش روی چین است، و همین باعث می‌شود بازدهی‌اش به تصمیم‌های سیاسی پکن حساس باشد. ریسک ارز، ریسک سیاسی و ریسک حاکمیت شرکتی در این دسته واقعی است، نه نظری.'},
-IEMG: {n: 'صندوق هسته‌ای بازارهای نوظهور آی‌شیرز',
-  i: 'بازارهای نوظهور بر اساس تعریف ام‌اس‌سی‌آی، که کره‌ی جنوبی را هم شامل می‌شود.',
-  s: 'همان دسته‌ی VWO با یک تفاوت تعیین‌کننده: ام‌اس‌سی‌آی کره‌ی جنوبی را بازار نوظهور می‌داند، پس سامسونگ و شرکت‌های بزرگ کره در این صندوق هستند و در VWO نیستند. اگر بین این دو انتخاب می‌کنید، در واقع دارید درباره‌ی کره تصمیم می‌گیرید.'},
-EFA: {n: 'صندوق ای‌اِی‌اف‌ای ام‌اس‌سی‌آی آی‌شیرز',
-  i: 'اولین صندوق بزرگ بازارهای توسعه‌یافته‌ی بین‌المللی؛ فقط شرکت‌های بزرگ و متوسط.',
-  s: 'قدیمی‌تر و گران‌تر از IEFA است و شرکت‌های کوچک را ندارد. هنوز حجم معاملات بالایی دارد چون معامله‌گرها و بازار آپشن از آن استفاده می‌کنند، اما برای نگه داشتن بلندمدت IEFA منطقی‌تر است.'},
-VT: {n: 'صندوق کل سهام جهان ونگارد',
-  i: 'کل بازار سهام قابل سرمایه‌گذاری کره‌ی زمین، در یک صندوق.',
-  s: 'آمریکا، کشورهای توسعه‌یافته و بازارهای نوظهور را با هم و به نسبت ارزش واقعی‌شان نگه می‌دارد. اگر فقط یک صندوق سهام می‌خواهید بخرید و دیگر به آن دست نزنید، این صادقانه‌ترین گزینه است: هیچ تصمیمی درباره‌ی اینکه کدام کشور بهتر است نمی‌گیرد. چون امروز آمریکا بخش بزرگی از ارزش بازار جهان است، وزن آمریکا در آن سنگین است و این انتخاب نیست، واقعیت بازار است.'},
-VGK: {n: 'صندوق اروپای ونگارد',
-  i: 'شرکت‌های اروپایی، از بریتانیا و سوئیس تا کشورهای شمال اروپا.',
-  s: 'فقط اروپا، شامل بریتانیا و سوئیس. ترکیبش بسیار متفاوت از آمریکاست: داروسازهای بزرگ، بانک‌ها، شرکت‌های کالاهای لوکس و صنعت. سود نقدی شرکت‌های اروپایی معمولاً از آمریکا بیشتر است و نسبت‌های ارزش‌گذاری‌شان پایین‌تر، که سال‌هاست دلیل اصلی جذابیت و هم‌زمان دلیل اصلی عقب‌ماندگی‌شان بوده.'},
-VEU: {n: 'صندوق کل جهان بدون آمریکا ونگارد',
-  i: 'همه‌ی دنیا غیر از آمریکا، فقط شرکت‌های بزرگ و متوسط.',
-  s: 'تقریباً همان VXUS، با این تفاوت که شرکت‌های کوچک را ندارد. اگر بین این دو مردد هستید، VXUS پوشش کامل‌تری می‌دهد و تفاوت هزینه‌شان ناچیز است.'},
-VGT: {n: 'صندوق فناوری اطلاعات ونگارد',
-  i: 'شرکت‌های فناوری آمریکا، از جمله سازنده‌های سخت‌افزار و تراشه.',
-  s: 'کل بخش فناوری آمریکا را می‌خرد، که شامل نرم‌افزار، نیمه‌هادی، سخت‌افزار و خدمات فناوری می‌شود. توجه کنید که بر اساس تعریف رسمی بخش‌ها، گوگل و متا و آمازون فناوری محسوب نمی‌شوند و در این صندوق نیستند؛ آن‌ها در بخش‌های ارتباطات و مصرفی طبقه‌بندی شده‌اند. پس «صندوق فناوری» دقیقاً آن چیزی نیست که بیشتر مردم تصور می‌کنند.'},
-XLK: {n: 'صندوق بخش فناوری اس‌پی‌دی‌آر',
-  i: 'فقط شرکت‌های فناوری داخل اس‌اند‌پی ۵۰۰.',
-  s: 'همان بخش فناوری، اما محدود به شرکت‌های داخل اس‌اند‌پی ۵۰۰؛ یعنی فقط شرکت‌های بزرگ. وزن دو سه شرکت اول در آن بسیار سنگین است، تا حدی که بازدهی صندوق عملاً بازدهی همان چند شرکت است. این را باید قبل از خرید دانست.'},
-SMH: {n: 'صندوق نیمه‌هادی ون‌اِک',
-  i: 'بیست و پنج شرکت بزرگ تراشه؛ متمرکزترین راه برای سوار شدن بر چرخه‌ی نیمه‌هادی.',
-  s: 'فقط بیست و پنج شرکت، با وزن سنگین روی چند نام اول. برخلاف SOXX شرکت‌های غیرآمریکایی مثل تی‌اس‌ام‌سی و ای‌اس‌ام‌اِل را هم دارد، که از قضا دو حلقه‌ی حیاتی زنجیره‌ی تراشه هستند. صنعت نیمه‌هادی به‌شدت چرخه‌ای است: سال‌های بسیار خوب و سال‌های بسیار بد دارد و این صندوق هر دو را با شدت منعکس می‌کند.'},
-SOXX: {n: 'صندوق نیمه‌هادی آی‌شیرز',
-  i: 'سی شرکت نیمه‌هادی بورس آمریکا، کمی پخش‌تر از SMH.',
-  s: 'سی شرکت به‌جای بیست و پنج، با سقف وزن کمی سخت‌گیرانه‌تر، پس تمرکزش از SMH کمتر است. هر دو همان چرخه را دنبال می‌کنند و تفاوت بازدهی‌شان بیشتر به وزن چند شرکت خاص برمی‌گردد تا به استراتژی.'},
-XLF: {n: 'صندوق بخش مالی اس‌پی‌دی‌آر',
-  i: 'بانک‌ها، بیمه‌ها و شرکت‌های پرداخت داخل اس‌اند‌پی ۵۰۰.',
-  s: 'بخش مالی آمریکا در یک صندوق. نکته‌ی مهم این است که این بخش یکدست نیست: بانک بزرگ، بیمه، شرکت پرداخت و مدیر دارایی رفتارهای کاملاً متفاوتی دارند. بانک‌ها به نرخ بهره و کیفیت وام‌ها حساسند، بیمه‌ها به حوادث طبیعی، و شرکت‌های پرداخت بیشتر شبیه فناوری رفتار می‌کنند.'},
-XLV: {n: 'صندوق بخش سلامت اس‌پی‌دی‌آر',
-  i: 'سلامت بزرگ آمریکا: داروساز، تجهیزات پزشکی، بیمه‌ی درمان و توزیع.',
-  s: 'بزرگ‌ترین شرکت‌های سلامت داخل اس‌اند‌پی ۵۰۰. این بخش از نظر تاریخی دفاعی است چون مردم در رکود هم دارو می‌خرند، اما ریسک اصلی‌اش سیاسی است: قیمت‌گذاری دارو و قوانین بیمه‌ی درمان در آمریکا همیشه موضوع دعوای سیاسی است و می‌تواند یک‌شبه سودآوری را تغییر بدهد.'},
-XLE: {n: 'صندوق بخش انرژی اس‌پی‌دی‌آر',
-  i: 'نفت و گاز آمریکا، با غلبه‌ی دو غول بزرگ.',
-  s: 'شرکت‌های نفت و گاز داخل اس‌اند‌پی ۵۰۰، با تمرکز بسیار بالا روی دو شرکت اول. بازدهی‌اش عملاً تابع قیمت نفت است و با بقیه‌ی بازار همبستگی کمی دارد، که همین باعث می‌شود در تورم و شوک‌های انرژی نقش بیمه را بازی کند. در عوض در بلندمدت پرنوسان است و گذار انرژی ریسک ساختاری‌اش است.'},
-XLI: {n: 'صندوق بخش صنعتی اس‌پی‌دی‌آر',
-  i: 'صنعت آمریکا: هوافضا، راه‌آهن، ماشین‌آلات و هلدینگ‌های بزرگ.',
-  s: 'بخش صنعتی اس‌اند‌پی ۵۰۰، از سازنده‌های هواپیما و تجهیزات نظامی تا راه‌آهن و شرکت‌های حمل‌ونقل. این بخش آینه‌ی اقتصاد واقعی است: وقتی سرمایه‌گذاری شرکت‌ها و تجارت رونق دارد خوب کار می‌کند و در رکود زودتر از بقیه ضربه می‌خورد.'},
-VNQ: {n: 'صندوق املاک ونگارد',
-  i: 'املاک آمریکا، از طریق صندوق‌های سرمایه‌گذاری املاک بورسی.',
-  s: 'به‌جای خریدن ساختمان، سهام شرکت‌هایی را می‌خرد که ساختمان دارند: انبار، مرکز داده، آنتن مخابراتی، آپارتمان، مرکز خرید و بیمارستان. این شرکت‌ها قانوناً باید بیشتر سودشان را نقدی تقسیم کنند، پس سود نقدی‌اش بالاست. حساس‌ترین متغیرش نرخ بهره است: وقتی نرخ بالا می‌رود هم هزینه‌ی وام این شرکت‌ها بیشتر می‌شود و هم جذابیت سود نقدی‌شان کمتر.'},
-VHT: {n: 'صندوق سلامت ونگارد',
-  i: 'کل بخش سلامت آمریکا، شامل شرکت‌های کوچک‌تر زیست‌فناوری.',
-  s: 'پهن‌تر از XLV است و صدها شرکت کوچک‌تر زیست‌فناوری را هم در بر می‌گیرد. همین باعث می‌شود نوسانش کمی بیشتر و تمرکزش روی غول‌های دارویی کمتر باشد. اگر می‌خواهید کل بخش سلامت را داشته باشید نه فقط بزرگ‌ترین‌ها، این گزینه کامل‌تر است.'},
-BND: {n: 'صندوق کل بازار اوراق قرضه ونگارد',
-  i: 'کل بازار اوراق قرضه‌ی درجه‌یک آمریکا: دولتی، رهنی و شرکتی با هم.',
-  s: 'هزاران ورقه‌ی قرضه‌ی آمریکایی با رتبه‌ی اعتباری خوب را نگه می‌دارد. اوراق قرضه در سبد نقش ترمز را دارند نه موتور: بازدهی‌شان محدود است اما وقتی سهام سقوط می‌کند معمولاً نوسان کل سبد را کم می‌کنند. ریسک اصلی‌شان نرخ بهره است؛ وقتی نرخ بالا می‌رود قیمت اوراق موجود پایین می‌آید، و سال ۲۰۲۲ نشان داد این افت می‌تواند بزرگ باشد.'},
-AGG: {n: 'صندوق هسته‌ای اوراق قرضه‌ی آمریکا آی‌شیرز',
-  i: 'همان بازار اوراق قرضه‌ی BND، از بلک‌راک.',
-  s: 'شاخص و ترکیبش تقریباً مثل BND است و تفاوت بازدهی‌شان ناچیز. انتخاب بین این دو عملاً انتخاب بین دو مدیر است، نه بین دو استراتژی.'},
-BNDX: {n: 'صندوق کل اوراق قرضه‌ی بین‌المللی ونگارد',
-  i: 'اوراق قرضه‌ی درجه‌یک بیرون از آمریکا، با ریسک ارز پوشش‌داده‌شده.',
-  s: 'اوراق قرضه‌ی دولت‌ها و شرکت‌های بزرگ خارج از آمریکا را می‌خرد و بعد ریسک ارز را با قرارداد پوشش می‌دهد. این پوشش ارزی نکته‌ی اصلی است: بدون آن، نوسان ارز بر بازدهی اوراق غلبه می‌کرد و دیگر نقش آرام‌کننده‌ی سبد را بازی نمی‌کرد.'},
-GLD: {n: 'صندوق طلای اس‌پی‌دی‌آر',
-  i: 'طلای فیزیکی در خزانه‌ای در لندن، تقسیم‌شده به سهام.',
-  s: 'شمش طلای واقعی را در خزانه نگه می‌دارد و هر واحد صندوق نماینده‌ی مقدار مشخصی طلاست. سود یا بهره‌ای نمی‌دهد و درآمدی تولید نمی‌کند؛ بازدهی‌اش فقط از تغییر قیمت طلا می‌آید. کارمزد سالانه از خود طلا کسر می‌شود، پس مقدار طلای پشت هر واحد هر سال کمی کم می‌شود.'},
-IAU: {n: 'صندوق طلای آی‌شیرز',
-  i: 'همان طلای فیزیکی GLD، با هزینه‌ی سالانه‌ی کمتر.',
-  s: 'ساختارش مثل GLD است اما کارمزد سالانه‌اش کمتر، و قیمت هر واحدش پایین‌تر. برای نگه‌داشتن بلندمدت همین تفاوت کارمزد در طول سال‌ها جمع می‌شود و به نفع IAU است. GLD فقط برای معامله‌ی کوتاه‌مدت و بازار آپشن برتری دارد.'},
-IBIT: {n: 'صندوق بیت‌کوین آی‌شیرز',
-  i: 'بیت‌کوین نگهداری‌شده نزد یک امین، قابل خرید و فروش مثل سهم.',
-  s: 'بیت‌کوین واقعی را نزد یک نگهدارنده‌ی حرفه‌ای می‌خرد و واحدهایش در بورس معامله می‌شود، پس خریدار نیازی به کیف پول و کلید خصوصی ندارد. این مسئله‌ی نگهداری را حل می‌کند و هیچ‌چیز دیگری را: نوسان بیت‌کوین همان است که بود و افت‌های بیش از پنجاه درصد در تاریخ کوتاهش بارها اتفاق افتاده. این دارایی با فاصله پرریسک‌ترین چیزی است که در این فهرست می‌بینید.'}
-};
-
-/* ETF section. Index: every fund in one scrollable box. Click a row -> that fund's own deep page.
-   Free on the Persian site: the S&P 500 funds. Everything else needs Stock Pro. */
-var EAPI = (window.RZS_API || 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/data') + '/etfs';
+var NAMES={"VOO": "صندوق اس‌اند‌پی ۵۰۰ ونگارد", "IVV": "صندوق هسته‌ای اس‌اند‌پی ۵۰۰ آی‌شیرز", "SPY": "صندوق اس‌اند‌پی ۵۰۰ اس‌پی‌دی‌آر", "VTI": "صندوق کل بازار سهام ونگارد", "QQQ": "صندوق نزدک ۱۰۰ اینوسکو", "VUG": "صندوق سهام رشدی ونگارد", "VTV": "صندوق سهام ارزشی ونگارد", "VIG": "صندوق رشد سود نقدی ونگارد", "SCHD": "صندوق سهام سود نقدی آمریکا چارلز شواب", "VYM": "صندوق سود نقدی بالای ونگارد", "DGRO": "صندوق هسته‌ای رشد سود نقدی آی‌شیرز", "IWF": "صندوق راسل ۱۰۰۰ رشدی آی‌شیرز", "IWD": "صندوق راسل ۱۰۰۰ ارزشی آی‌شیرز", "IWM": "صندوق راسل ۲۰۰۰ آی‌شیرز", "IJH": "صندوق هسته‌ای اس‌اند‌پی میان‌رده آی‌شیرز", "IJR": "صندوق هسته‌ای اس‌اند‌پی کوچک آی‌شیرز", "VO": "صندوق شرکت‌های متوسط ونگارد", "VB": "صندوق شرکت‌های کوچک ونگارد", "SPYM": "صندوق پرتفوی اس‌اند‌پی ۵۰۰ اس‌پی‌دی‌آر", "RSP": "صندوق اس‌اند‌پی ۵۰۰ هم‌وزن اینوسکو", "QUAL": "صندوق فاکتور کیفیت ام‌اس‌سی‌آی آمریکا آی‌شیرز", "MGK": "صندوق غول‌های رشدی ونگارد", "VV": "صندوق شرکت‌های بزرگ ونگارد", "ITOT": "صندوق هسته‌ای کل بازار آمریکا آی‌شیرز", "SCHX": "صندوق شرکت‌های بزرگ آمریکا چارلز شواب", "VEA": "صندوق کشورهای توسعه‌یافته ونگارد", "VXUS": "صندوق کل سهام بین‌المللی ونگارد", "IEFA": "صندوق هسته‌ای ای‌اِی‌اف‌ای آی‌شیرز", "VWO": "صندوق بازارهای نوظهور ونگارد", "IEMG": "صندوق هسته‌ای بازارهای نوظهور آی‌شیرز", "EFA": "صندوق ای‌اِی‌اف‌ای ام‌اس‌سی‌آی آی‌شیرز", "VT": "صندوق کل سهام جهان ونگارد", "VGK": "صندوق اروپای ونگارد", "VEU": "صندوق کل جهان بدون آمریکا ونگارد", "VGT": "صندوق فناوری اطلاعات ونگارد", "XLK": "صندوق بخش فناوری اس‌پی‌دی‌آر", "SMH": "صندوق نیمه‌هادی ون‌اِک", "SOXX": "صندوق نیمه‌هادی آی‌شیرز", "XLF": "صندوق بخش مالی اس‌پی‌دی‌آر", "XLV": "صندوق بخش سلامت اس‌پی‌دی‌آر", "XLE": "صندوق بخش انرژی اس‌پی‌دی‌آر", "XLI": "صندوق بخش صنعتی اس‌پی‌دی‌آر", "VNQ": "صندوق املاک ونگارد", "VHT": "صندوق سلامت ونگارد", "BND": "صندوق کل بازار اوراق قرضه ونگارد", "AGG": "صندوق هسته‌ای اوراق قرضه‌ی آمریکا آی‌شیرز", "BNDX": "صندوق کل اوراق قرضه‌ی بین‌المللی ونگارد", "GLD": "صندوق طلای اس‌پی‌دی‌آر", "IAU": "صندوق طلای آی‌شیرز", "IBIT": "صندوق بیت‌کوین آی‌شیرز"};
+/* Thin loader for the ETF section. Each page is an HTML fragment built by etf_fa_web.py with
+   etf_pages.py (the builder the English site uses), under web/etf/. Address: #etf/ = the list,
+   #etf/voo/ = one fund. Free on the Persian site: the S&P 500 funds; the rest needs Stock Pro. */
+var FBASE = 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/web/etf/';
 var FREE = {VOO: 1, IVV: 1, SPY: 1, SPYM: 1, RSP: 1};
 var ACC = !!window.RZS_ACCESS;
-var SUB = window.RZS_SUB_URL || '/products/stock-data-pro';
-var SUBY = window.RZS_SUB_Y || '/products/stock-data-pro-yearly';
-var IDX = null, SORT = 'd_cagr', DIR = -1, Q = '', CACHE = {};
-
-function open_(t) { return ACC || !!FREE[t]; }
-function fa(t, k) { var o = FA[t]; return o && o[k] ? o[k] : ''; }
-function cls_(c) { return FA_CLS[c] || c || '—'; }
-function foc(f) { return FA_FOCUS[f] || f || ''; }
-function sgn(v, d) { if (v == null || !isFinite(v)) return '—'; var s = (v * 100).toFixed(d == null ? 1 : d) + '%'; return v > 0 ? '+' + s : s; }
-function cl(v) { return v == null || !isFinite(v) ? '' : (v > 0 ? ' style="color:#4FA37A"' : (v < 0 ? ' style="color:#C8534F"' : '')); }
-function ltr(s) { return '<span class="ltr">' + esc(s) + '</span>'; }
-
-/* ------------------------------------------------------------------ index */
-var COLS = [
-  ['d_name', 'صندوق', 0],
-  ['d_cls', 'نوع', 1],
-  ['d_y1', 'بازدهی یک سال', 0],
-  ['d_cagr', 'میانگین سالانه', 0],
-  ['d_n', 'تعداد سهام', 1],
-  ['d_pe', 'P/E امروز', 0],
-  ['d_peavg', 'میانگین P/E تاریخی', 0]
-];
-
-function val(e, k) {
-  if (k === 'd_name') return e.t;
-  if (k === 'd_cls') return cls_(e.cls);
-  if (k === 'd_y1') return e.y1 == null ? -99 : e.y1;
-  if (k === 'd_cagr') return e.cagr == null ? -99 : e.cagr;
-  if (k === 'd_n') return e.holdings_n == null ? -1 : e.holdings_n;
-  if (k === 'd_pe') return e.pe == null ? -1 : e.pe;
-  if (k === 'd_peavg') return e.pe_avg == null ? -1 : e.pe_avg;
-  return 0;
-}
-
-function rows() {
-  var l = (IDX.etfs || []).slice();
-  if (Q) {
-    var q = Q.toLowerCase();
-    l = l.filter(function (e) {
-      return e.t.toLowerCase().indexOf(q) >= 0 || (e.name || '').toLowerCase().indexOf(q) >= 0 ||
-        fa(e.t, 'n').indexOf(Q) >= 0 || cls_(e.cls).indexOf(Q) >= 0 || foc(e.focus).indexOf(Q) >= 0;
-    });
-  }
-  l.sort(function (a, b) {
-    var x = val(a, SORT), y = val(b, SORT);
-    if (typeof x === 'string') return DIR * x.localeCompare(y);
-    return DIR * (x - y);
-  });
-  return l;
-}
-
-function drawIndex() {
-  var l = rows(), h = '';
-  h += '<div class="card etfbox"><div class="etfhd">' +
-    '<div><b style="font-size:15px">' + (IDX.etfs || []).length + ' صندوق بزرگ دنیا</b>' +
-    '<div class="mut" style="font-size:12.5px">روی هر ردیف بزن تا صفحه‌ی کامل همان صندوق باز شود</div></div>' +
-    '<div class="f"><input id="rzf-q" placeholder="جستجو: نماد، اسم یا نوع…" value="' + esc(Q) + '" autocomplete="off"></div>' +
-    '</div><div class="etfscroll"><table class="etftbl"><thead><tr>';
-  COLS.forEach(function (c) {
-    h += '<th data-k="' + c[0] + '" class="' + (SORT === c[0] ? 'on' : '') + (c[2] ? ' hm' : '') + '">' + c[1] +
-      (SORT === c[0] ? (DIR < 0 ? ' ↓' : ' ↑') : '') + '</th>';
-  });
-  h += '</tr></thead><tbody>';
-  if (!l.length) h += '<tr><td colspan="7" class="empty">چیزی پیدا نشد.</td></tr>';
-  l.forEach(function (e) {
-    var op = open_(e.t);
-    h += '<tr data-t="' + e.t + '"' + (op ? '' : ' class="lk"') + '>' +
-      '<td><div class="nm"><b>' + e.t + (op ? '' : ' <span class="lock">🔒</span>') + '</b>' +
-      '<span>' + esc(fa(e.t, 'n') || e.name) + '</span>' +
-      '<span class="mo">' + esc(cls_(e.cls)) + ' · ' + esc(foc(e.focus)) +
-      (e.holdings_n == null ? '' : ' · ' + e.holdings_n + ' شرکت') + '</span></div></td>' +
-      '<td class="hm"><span class="tag">' + esc(cls_(e.cls)) + '</span> <span class="mut" style="font-size:12px">' + esc(foc(e.focus)) + '</span></td>' +
-      '<td class="n"' + cl(e.y1) + '>' + sgn(e.y1) + '</td>' +
-      '<td class="n"' + cl(e.cagr) + '>' + sgn(e.cagr) + '</td>' +
-      '<td class="n hm">' + (e.holdings_n == null ? '—' : e.holdings_n) + '</td>' +
-      '<td class="n">' + (e.pe == null ? '—' : x1(e.pe)) + '</td>' +
-      '<td class="n hm">' + (e.pe_avg == null ? '—' : x1(e.pe_avg)) + '</td>' +
-      '</tr>';
-  });
-  h += '</tbody></table></div></div>';
-  h += '<p class="note">ستون P/E را خودمان از شرکت‌های داخل هر صندوق حساب می‌کنیم، با همان وزن‌هایی که خود صندوق دارد و همان اعدادی که در صفحه‌ی تحلیل سهم می‌بینی. وقتی صندوق سهام ندارد یا بیشتر شرکت‌هایش خارج از آمریکا هستند، این ستون خالی می‌ماند. ستون میانگین P/E تاریخی از روزی که شروع به ثبت کرده‌ایم پر می‌شود؛ هیچ‌جای دنیا این عدد برای ETF منتشر نمی‌شود چون به ترکیب صندوق در همان روز بستگی دارد.</p>';
-  if (!ACC) h += lockNote();
-  $('rzf-main').innerHTML = h;
-  var q = $('rzf-q');
-  if (q) q.oninput = function () { Q = this.value.trim(); var p = this.selectionStart; drawIndex(); var n = $('rzf-q'); if (n) { n.focus(); try { n.setSelectionRange(p, p) } catch (e) {} } };
-}
-
-function lockNote() {
-  return '<div class="card" style="border-color:var(--ac)"><h3>🔒 صندوق‌های اس‌اند‌پی ۵۰۰ برای همه باز است</h3>' +
-    '<p class="mut" style="font-size:14px;margin:0 0 12px">صفحه‌ی کامل بقیه‌ی صندوق‌ها — ترکیب سهام و وزن‌ها، نمودار قیمت، بازدهی دوره‌ای و نسبت‌های محاسبه‌شده — برای مشترکین استاک پرو باز است.</p>' +
+var SUB = window.RZS_SUB_URL || '/products/stock-data-pro', SUBY = window.RZS_SUB_Y || '/products/stock-data-pro-yearly';
+var FCACHE = {};
+function tick() { var m = (location.hash || '').match(/#etf\/([A-Za-z.]+)/); return m ? m[1].toUpperCase() : ''; }
+function lockBox(t) {
+  return '<button class="back" data-back>◀ برگشت به فهرست ۵۰ صندوق</button><div class="lockbox"><h3>🔒 ' + esc(NAMES[t] || t) +
+    ' <bdi dir="ltr">(' + esc(t) + ')</bdi></h3><p>صفحه‌ی کامل این صندوق — ترکیب سهام و وزن‌ها، نمودار قیمت، بازدهی دوره‌ای، ' +
+    'ارزش‌گذاری شرکت‌های داخلش و اینکه از کدام کشور می‌شود خریدش — برای مشترکین استاک پرو باز است. صندوق‌های اس‌اند‌پی ۵۰۰ برای همه باز است.</p>' +
     '<a class="btn" href="' + SUB + '">اشتراک ماهانه</a> <a class="btn ghost" href="' + SUBY + '">اشتراک سالانه</a></div>';
 }
-
-/* ----------------------------------------------------------------- detail */
-function spark(ch) {
-  if (!ch || ch.length < 3) return '';
-  var v = ch.map(function (p) { return p[1] }), mn = Math.min.apply(null, v), mx = Math.max.apply(null, v), W = 600, H = 120, pad = 6;
-  if (mx - mn < 1e-9) mx = mn + 1;
-  var d = v.map(function (y, i) {
-    var x = pad + i * (W - 2 * pad) / (v.length - 1), yy = H - pad - (y - mn) / (mx - mn) * (H - 2 * pad);
-    return (i ? 'L' : 'M') + x.toFixed(1) + ' ' + yy.toFixed(1);
-  }).join(' ');
-  var up = v[v.length - 1] >= v[0], c = up ? '#4FA37A' : '#C8534F';
-  return '<svg class="spark" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" aria-hidden="true">' +
-    '<path d="' + d + '" fill="none" stroke="' + c + '" stroke-width="2.5" stroke-linejoin="round"/></svg>';
+function mark(box) {
+  if (ACC) return;
+  [].forEach.call(box.querySelectorAll('.etftbl tbody tr'), function (tr) {
+    var a = tr.querySelector('a[href^="#etf/"]'); if (!a) return;
+    var t = a.getAttribute('href').replace('#etf/', '').replace('/', '').toUpperCase();
+    if (!FREE[t]) { tr.className = 'lk'; var b = tr.querySelector('b'); if (b && b.textContent.indexOf('🔒') < 0) b.insertAdjacentText('beforeend', ' 🔒'); }
+  });
 }
-
-function barRow(lb, v, mx) {
-  var w = (v == null || !isFinite(v) || !mx) ? 0 : Math.max(0, Math.min(100, v / mx * 100));
-  return '<div class="r"><div class="lb">' + esc(lb) + '</div><div class="tr"><b style="width:' + w.toFixed(1) + '%"></b></div>' +
-    '<div class="vl">' + (v == null ? '—' : v.toFixed(2) + '%') + '</div></div>';
+function show(html, isIndex) {
+  var box = $('rzf-main'); box.innerHTML = html;
+  if (isIndex) mark(box);
+  [].forEach.call(box.querySelectorAll('[data-back]'), function (b) { b.onclick = function () { location.hash = '#etf/' } });
 }
-
-function detail(t, d) {
-  var w = d.weighted || {}, r = d.returns || {}, h = '';
-  h += '<button class="back" id="rzf-back">◀ برگشت به فهرست ۵۰ صندوق</button>';
-  h += '<div class="card"><div class="dhead"><div>' +
-    '<h1 style="margin:0 0 2px"><span class="ltr">' + esc(t) + '</span> — ' + esc(fa(t, 'n') || d.name) + '</h1>' +
-    '<p class="sub" style="margin:0">' + ltr(d.name) + ' · ' + esc(cls_(d.cls)) + ' · ' + esc(foc(d.focus)) +
-    (d.issuer ? ' · ' + ltr(d.issuer) : '') + (d.since ? ' · از سال ' + d.since : '') + '</p></div>' +
-    '<div style="text-align:left"><div class="px">$' + (d.price == null ? '—' : d.price.toFixed(2)) + '</div>' +
-    '<div class="mut" style="font-size:12.5px;direction:ltr;unicode-bidi:isolate">' + esc(d.price_date || '') + '</div></div></div>';
-  if (fa(t, 'i')) h += '<p style="font-size:15.5px;margin:12px 0 0">' + esc(fa(t, 'i')) + '</p>';
-  h += '</div>';
-
-  if (d.chart && d.chart.length > 2) h += '<div class="card"><h3>نمودار قیمت</h3>' + spark(d.chart) +
-    '<p class="note">از ' + esc(d.chart[0][0]) + ' تا ' + esc(d.chart[d.chart.length - 1][0]) + '</p></div>';
-
-  h += '<div class="card"><h3>بازدهی</h3><div class="kv">' +
-    kvi('یک ماه', sgn(r.m1), r.m1) + kvi('سه ماه', sgn(r.m3), r.m3) + kvi('از ابتدای سال', sgn(r.ytd), r.ytd) +
-    kvi('یک سال', sgn(r.y1), r.y1) + kvi('سه سال', sgn(r.y3), r.y3) + kvi('پنج سال', sgn(r.y5), r.y5) +
-    kvi('میانگین سالانه' + (d.cagr_years ? ' (' + d.cagr_years + ' سال)' : ''), sgn(d.cagr), d.cagr) +
-    '</div><p class="note">بازدهی‌ها بر اساس قیمت است و سود نقدی پرداخت‌شده در آن حساب نشده؛ برای صندوق‌های پرسود نقدی بازدهی کل از این عدد بیشتر است.</p></div>';
-
-  if (w.covered_pct != null && w.pe != null) {
-    h += '<div class="card"><h3>شرکت‌های داخل صندوق، روی هم</h3><div class="kv">' +
-      kvi('P/E وزنی', x1(w.pe)) + kvi('قیمت به فروش', x1(w.ps)) +
-      kvi('رشد فروش یک سال', sgn(w.revenue_growth)) + kvi('حاشیه سود خالص', sgn(w.net_margin)) +
-      kvi('میانگین امتیاز ما', x1(w.score)) + kvi('وزن شرکت‌های سودده', w.profitable_weight == null ? '—' : w.profitable_weight.toFixed(1) + '%') +
-      '</div><p class="note">این اعداد از روی ' + (w.covered_n || 0) + ' شرکت از ' + (w.holdings_n || 0) +
-      ' شرکت داخل صندوق حساب شده، که روی هم ' + (w.covered_pct == null ? '—' : w.covered_pct.toFixed(1)) +
-      ' درصد وزن صندوق را می‌سازند' + (d.pe_history_n && d.pe_history_n < 20 ? '؛ میانگین تاریخی P/E از ' + esc(d.pe_since || '') + ' در حال جمع شدن است' : '') + '.</p></div>';
-  } else if (w.not_equity) {
-    h += '<div class="card"><h3>چرا اینجا P/E نیست</h3><p class="mut" style="font-size:14px;margin:0">این صندوق سهام شرکت نگه نمی‌دارد، پس نسبت قیمت به سود برایش معنا ندارد. بازدهی‌اش از قیمت خود دارایی پشت صندوق می‌آید، نه از سود شرکت‌ها.</p></div>';
-  } else if (w.thin) {
-    h += '<div class="card"><h3>چرا اینجا P/E نیست</h3><p class="mut" style="font-size:14px;margin:0">بیشتر شرکت‌های داخل این صندوق خارج از آمریکا هستند و ما آن‌ها را پوشش نمی‌دهیم، پس عددی که در می‌آمد فقط بخش کوچکی از صندوق را نشان می‌داد. ترجیح دادیم عدد نادرست ندهیم.</p></div>';
-  }
-
-  if (fa(t, 's')) h += '<div class="card"><h3>چطور کار می‌کند</h3><p style="font-size:15px;margin:0">' + esc(fa(t, 's')) + '</p></div>';
-
-  if (d.holdings && d.holdings.length) {
-    var mx = d.holdings[0].pct || 1;
-    h += '<div class="card"><h3>بزرگ‌ترین دارایی‌های صندوق</h3><div class="holdwrap"><table class="hold"><thead><tr>' +
-      '<th>شرکت</th><th>نماد</th><th>وزن</th></tr></thead><tbody>';
-    d.holdings.forEach(function (x) {
-      h += '<tr><td class="ltr">' + esc(x.name) + '</td><td class="n">' +
-        (x.t ? '<a href="/pages/stock#' + esc(x.t) + '">' + esc(x.t) + '</a>' : '—') + '</td>' +
-        '<td class="n">' + (x.pct == null ? '—' : x.pct.toFixed(2) + '%') + '</td></tr>';
-    });
-    h += '</tbody></table></div><p class="note">ترکیب صندوق از گزارش رسمی ' +
-      (d.holdings_as_of ? 'تاریخ ' + esc(d.holdings_as_of) : '') + ' به کمیسیون بورس آمریکا؛ روی نماد هر شرکتی که پوشش می‌دهیم بزن تا تحلیل کاملش را ببینی.</p></div>';
-    void mx;
-  }
-
-  if (d.ucits && d.ucits.ticker) {
-    h += '<div class="card"><h3>اگر در اروپا هستی</h3><p style="font-size:14.5px;margin:0 0 6px">' +
-      ltr(d.name) + ' در آمریکا ثبت شده و صندوق‌های آمریکایی آن برگه‌ی اطلاعاتی را که قانون اروپا می‌خواهد منتشر نمی‌کنند، پس سفارش خرید یک سرمایه‌گذار خرد در اتحادیه‌ی اروپا یا بریتانیا رد می‌شود — با هر کارگزاری. معادل اروپایی‌اش این است:</p>' +
-      '<p style="margin:0"><b>' + ltr(d.ucits.ticker) + '</b> — ' + ltr(d.ucits.name) + '</p>' +
-      (d.ucits.note ? '<p class="mut" style="font-size:13.5px;margin:6px 0 0">' + ltr(d.ucits.note) + '</p>' : '') +
-      '<p class="note">در ترکیه، خاورمیانه و بیشتر آسیا معمولاً می‌شود همان صندوق آمریکایی را از طریق کارگزار بین‌المللی خرید، با قوانین هر کشور.</p></div>';
-  }
-  h += '<p class="note">این صفحه آموزشی است و توصیه‌ی خرید یا فروش نیست. قیمت‌ها به دلار آمریکاست.</p>';
-  return h;
-}
-
-function kvi(k, v, col) {
-  return '<div><span class="k">' + esc(k) + '</span><span class="v"' + (col === undefined ? '' : cl(col)) + '>' + v + '</span></div>';
-}
-
-function showDetail(t) {
-  if (!open_(t)) { showLocked(t); return; }
-  $('rzf-main').innerHTML = '<div class="card empty">در حال بارگذاری…</div>';
-  if (CACHE[t]) { paint(t, CACHE[t]); return; }
-  fetch(EAPI + '/' + t + '.json').then(function (r) { if (!r.ok) throw 0; return r.json() })
-    .then(function (d) { CACHE[t] = d; paint(t, d) })
-    .catch(function () { $('rzf-main').innerHTML = '<div class="card empty">اطلاعات این صندوق الان در دسترس نیست. چند لحظه بعد دوباره امتحان کن.<br><br><button class="btn ghost" id="rzf-back">برگشت به فهرست</button></div>'; bind(); });
-}
-
-function paint(t, d) { $('rzf-main').innerHTML = detail(t, d); bind(); try { window.scrollTo({top: $('rzf').offsetTop - 20, behavior: 'smooth'}) } catch (e) {} }
-
-function showLocked(t) {
-  var e = (IDX.etfs || []).filter(function (x) { return x.t === t })[0] || {t: t, name: t};
-  var fake = {name: e.name, cls: e.cls, focus: e.focus, issuer: e.issuer, price: e.price,
-    returns: {y1: e.y1, y3: e.y3, ytd: e.ytd}, cagr: e.cagr, cagr_years: e.cagr_years,
-    weighted: {pe: e.pe, covered_pct: e.covered, covered_n: 0, holdings_n: e.holdings_n}};
-  $('rzf-main').innerHTML = '<button class="back" id="rzf-back">◀ برگشت به فهرست ۵۰ صندوق</button>' +
-    '<div class="plk"><div class="plk-b">' + detail(t, fake).replace(/<button class="back"[^<]*<\/button>/, '') + '</div>' +
-    '<div class="plk-c"><div class="plk-box"><h3>🔒 ' + esc(fa(t, 'n') || e.name) + '</h3>' +
-    '<p>صفحه‌ی کامل این صندوق — ترکیب سهام و وزن‌ها، نمودار قیمت، بازدهی دوره‌ای و نسبت‌های محاسبه‌شده — برای مشترکین استاک پرو باز است. صندوق‌های اس‌اند‌پی ۵۰۰ برای همه باز است.</p>' +
-    '<a class="btn" href="' + SUB + '">اشتراک ماهانه</a> <a class="btn ghost" href="' + SUBY + '">اشتراک سالانه</a></div></div></div>';
-  bind();
-}
-
-function bind() { var b = $('rzf-back'); if (b) b.onclick = function () { location.hash = '#etf'; go() }; }
-
-/* ------------------------------------------------------------------- wire */
-document.addEventListener('click', function (ev) {
-  var th = ev.target.closest && ev.target.closest('#rzf .etftbl th');
-  if (th && th.dataset.k) { if (SORT === th.dataset.k) DIR = -DIR; else { SORT = th.dataset.k; DIR = th.dataset.k === 'd_name' ? 1 : -1 } drawIndex(); return; }
-  var tr = ev.target.closest && ev.target.closest('#rzf .etftbl tbody tr');
-  if (tr && tr.dataset.t) { location.hash = '#etf/' + tr.dataset.t; }
-});
-
 function go() {
-  if (!IDX) return;
-  var m = (location.hash || '').match(/#etf\/([A-Za-z.]+)/);
-  if (m) showDetail(m[1].toUpperCase()); else drawIndex();
+  var t = tick(), name = t ? t.toLowerCase() : 'index';
+  if (t && !ACC && !FREE[t]) { show(lockBox(t)); window.scrollTo(0, $('rzf').offsetTop - 10); return; }
+  if (FCACHE[name]) { show(FCACHE[name], !t); if (t) window.scrollTo(0, $('rzf').offsetTop - 10); return; }
+  $('rzf-main').innerHTML = '<div class="card empty">در حال بارگذاری…</div>';
+  fetch(FBASE + name + '.html?v=' + Math.floor(Date.now() / 300000)).then(function (r) { if (!r.ok) throw 0; return r.text() })
+    .then(function (h) { FCACHE[name] = h; if (name === (tick() ? tick().toLowerCase() : 'index')) { show(h, !t); if (t) window.scrollTo(0, $('rzf').offsetTop - 10); } })
+    .catch(function () { show('<div class="card empty">این صفحه الان در دسترس نیست؛ چند لحظه بعد دوباره امتحان کن.<br><br><button class="btn ghost" data-back>برگشت به فهرست</button></div>') });
 }
 window.addEventListener('hashchange', go);
-
-fetch(EAPI + '/index.json').then(function (r) { return r.json() }).then(function (j) {
-  IDX = j;
-  var a = $('rzf-asof'); if (a && j.built) a.textContent = 'به‌روزرسانی: ' + j.built;
-  go();
-}).catch(function () { $('rzf-main').innerHTML = '<div class="card empty">فهرست صندوق‌ها الان در دسترس نیست؛ چند لحظه بعد صفحه رو دوباره باز کن.</div>' });
+go();
 
 })();
 </script>

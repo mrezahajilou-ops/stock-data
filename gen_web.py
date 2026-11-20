@@ -338,14 +338,14 @@ def portfolio_page():
 
 
 def etf_page():
+    """Shell only: nav, stylesheet and a loader. The pages are fragments from etf_fa_web.py."""
+    import importlib.util as _iu, json as _json
     src = os.path.join(ROOT, 'web_src')
+    sp = _iu.spec_from_file_location('etf_lang_fa', os.path.join(ROOT, 'content', 'etf', 'fa.py'))
+    lang = _iu.module_from_spec(sp); sp.loader.exec_module(lang)
     css = CSS + open(os.path.join(src, 'etf.css'), encoding='utf-8').read()
-    js = (open(os.path.join(src, 'etf_fa.js'), encoding='utf-8').read() + '\n' +
-          open(os.path.join(src, 'etf.js'), encoding='utf-8').read())
-    return ('<div id="rzf" dir="rtl">\n<style>%s</style>\n%s\n<h1>۵۰ صندوق ETF بزرگ دنیا</h1>\n'
-            '<p class="sub">هر پنجاه صندوق در یک جدول: نوع، بازدهی یک سال، میانگین سالانه، تعداد شرکت‌های داخلش، '
-            'P/E امروز و میانگین P/E تاریخی. روی هر کدام بزنی، صفحه‌ی کامل همان صندوق با ترکیب سهام و وزن‌ها باز می‌شود. '
-            '<span id="rzf-asof"></span></p>\n'
+    js = 'var NAMES=' + _json.dumps(lang.NAMES, ensure_ascii=False) + ';\n' + open(os.path.join(src, 'etf.js'), encoding='utf-8').read()
+    return ('<div id="rzf" dir="rtl">\n<style>%s</style>\n%s\n'
             '<div id="rzf-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzf'), nav('etf'), JS, js)
 

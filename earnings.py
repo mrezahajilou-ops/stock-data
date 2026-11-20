@@ -246,6 +246,30 @@ def main():
     want = want[:MAX_NEW_DAYS]
     touched = set()
     pending = []   # reported in the last days but Nasdaq has no actual EPS yet
+    # Nasdaq gives the time of day of a report (before the open / after the close) only until the report is out; afterwards
+    # the field is empty. Without it the reaction cannot tell the first trading day after the report, so the time is kept
+    # here from the days before the report (state['tm'], "TICKER|date" -> pre|after) and reused once Nasdaq drops it.
+    tmk = state.setdefault('tm', {})
+    for k in range(1, 4):
+        d2 = TODAY + dt.timedelta(days=k)
+        if d2.weekday() >= 5:
+            continue
+        for r in cal_day(d2.isoformat()) or []:
+            t2 = (r.get('symbol') or '').strip().upper().replace('.', '-').replace('/', '-')
+            if TIME.get(r.get('time')):
+                tmk['%s|%s' % (t2, d2.isoformat())] = TIME[r['time']]
+        time.sleep(0.35)
+    old_keys = [k2 for k2 in tmk if k2.split('|')[1] < (TODAY - dt.timedelta(days=30)).isoformat()]
+    for k2 in old_keys:
+        del tmk[k2]
+
+    def when(t, ds, r):
+        v = TIME.get(r.get('time'))
+        if v:
+            tmk['%s|%s' % (t, ds)] = v
+            return v
+        return tmk.get('%s|%s' % (t, ds), 'na')
+
     for ds in want:
         rows = cal_day(ds)
         if rows is None:
@@ -260,14 +284,17 @@ def main():
                 if (TODAY - dt.date.fromisoformat(ds)).days <= 4 and ds <= TODAY.isoformat():
                     pending.append((ds, t, r))
                 continue
-            rec = {'d': ds, 'tm': TIME.get(r.get('time'), 'na'), 'q': r.get('fiscalQuarterEnding'), 'act': act,
+            rec = {'d': ds, 'tm': when(t, ds, r), 'q': r.get('fiscalQuarterEnding'), 'act': act,
                    'f': num(r.get('epsForecast')), 'sur': num(r.get('surprise')), 'ly': num(r.get('lastYearEPS'))}
             e = db.setdefault(t, {'t': t, 'q': []})
             old = [x for x in e['q'] if x.get('q') == rec['q']]
             if old:
                 for k2 in ('act', 'f', 'sur', 'ly', 'tm', 'd'):
-                    if rec.get(k2) is not None:
-                        old[0][k2] = rec[k2]
+                    if rec.get(k2) is None or (k2 == 'tm' and rec[k2] == 'na' and old[0].get('tm') in ('pre', 'after')):
+                        continue      # a known time of day is never replaced by "unknown"
+                    if k2 in ('tm', 'd') and old[0].get(k2) != rec[k2]:
+                        old[0].pop('rx', None)      # the reaction depends on both: work it out again
+                    old[0][k2] = rec[k2]
             else:
                 e['q'].append(rec)
             touched.add(t)
@@ -285,7 +312,7 @@ def main():
         f = num(r.get('epsForecast'))
         if f is None:
             f = y.get('f')
-        rec = {'d': ds, 'tm': TIME.get(r.get('time'), 'na'), 'q': r.get('fiscalQuarterEnding'), 'act': y['act'], 'f': f,
+        rec = {'d': ds, 'tm': when(t, ds, r), 'q': r.get('fiscalQuarterEnding'), 'act': y['act'], 'f': f,
                'sur': round((y['act'] - f) / abs(f) * 100, 2) if f else None, 'ly': num(r.get('lastYearEPS')), 'src': 'yahoo'}
         if y.get('rev'):
             rec['rev'] = y['rev']
@@ -293,6 +320,10 @@ def main():
         old = [x for x in e['q'] if x.get('q') == rec['q']]
         if old:
             if old[0].get('act') is None or old[0].get('src') == 'yahoo':
+                if rec.get('tm') == 'na' and old[0].get('tm') in ('pre', 'after'):
+                    rec.pop('tm')
+                elif rec.get('tm') != old[0].get('tm'):
+                    old[0].pop('rx', None)
                 old[0].update({k2: v for k2, v in rec.items() if v is not None})
         else:
             e['q'].append(rec)
@@ -301,6 +332,63 @@ def main():
     print('calendar days read: %d, companies updated: %d (yahoo fallback: %d of %d pending)' % (len(want), len(touched), nya, len(pending)))
 
     # 2) price reaction + revenue for records that miss them (recent ones keep trying for 75 days)
+    # time of day from the SEC: once a report is out Nasdaq no longer says whether it came before the open or after the
+    # close, and without that the reaction would have to span two trading days. The moment the SEC accepted the company's
+    # 8-K with its results (item 2.02) tells it. A few hundred companies per run; each report is looked up once.
+    def filed_when(cik):
+        b = sec('https://data.sec.gov/submissions/CIK%010d.json' % int(cik))
+        try:
+            rec = (json.loads(b).get('filings') or {}).get('recent') or {}
+        except Exception:
+            return None
+        from zoneinfo import ZoneInfo
+        ny, out = ZoneInfo('America/New_York'), []
+        forms, items, acc = rec.get('form') or [], rec.get('items') or [], rec.get('acceptanceDateTime') or []
+        for i, f in enumerate(forms):
+            if f != '8-K' or i >= len(items) or i >= len(acc) or '2.02' not in (items[i] or ''):
+                continue
+            try:
+                u = dt.datetime.fromisoformat(acc[i].replace('Z', '+00:00')).astimezone(ny)
+            except Exception:
+                continue
+            out.append((u.date(), 'after' if (u.hour, u.minute) >= (16, 0) else 'pre'))
+        return out
+
+    def need_tm(x):
+        return x.get('tm', 'na') == 'na' and not x.get('tmno') and (TODAY - dt.date.fromisoformat(x['d'])).days <= 400
+    ntm, t1 = 0, time.time()
+    for t in [t for t, e in db.items() if any(need_tm(x) for x in e['q'])][:int(os.environ.get('TM_PER_RUN') or 400)]:
+        try:
+            cik = json.load(open(os.path.join(STOCKS, t + '.json'))).get('cik')
+        except Exception:
+            cik = None
+        fl = filed_when(cik) if cik else None
+        if fl is None and cik:
+            continue                      # the SEC did not answer: try again next run
+        for x in db[t]['q']:
+            if not need_tm(x):
+                continue
+            d0, tm = dt.date.fromisoformat(x['d']), None
+            for fd, w in fl or []:
+                gap = (fd - d0).days
+                if gap == 0:
+                    tm = w
+                elif -3 <= gap < 0 and w == 'after':
+                    tm = 'pre'            # released after the close of the trading day before: the reaction is on the report date
+                elif 0 < gap <= 3 and w == 'pre':
+                    tm = 'after'
+                if tm:
+                    break
+            if tm:
+                x['tm'] = tm
+                x.pop('rx', None)
+                x.pop('rxno', None)
+                ntm += 1
+            else:
+                x['tmno'] = 1
+        if time.time() - t1 > 600:
+            break
+    print('time of day found from SEC filings: %d reports' % ntm)
     need_rx = [t for t, e in db.items() if any(x.get('rx') is None and (TODAY - dt.date.fromisoformat(x['d'])).days <= 400
                                               and not x.get('rxno') for x in e['q'])]
     need_rev = [t for t, e in db.items() if any(x.get('rev') is None and not x.get('revno') for x in e['q'])]

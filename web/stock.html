@@ -784,6 +784,7 @@ function render(d){
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
   h+='<div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="card" id="rzs-an" style="display:none"></div></div>';
+  h+='<div class="card" id="rzs-mv" style="display:none"></div>';
   h+='<div class="wide2"><div class="card" id="rzs-si" style="display:none"></div><div class="card" id="rzs-earn" style="display:none"></div></div>';
   h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
@@ -819,7 +820,7 @@ function render(d){
   loadExtras(d);
   loadAbout(d);
   loadSI(d);
-  loadEarn(d);
+  loadEarn(d);loadMove(d);
   loadVal(d);
   drawRN(d);
   drawAnalyst(d);
@@ -926,6 +927,17 @@ function erNote(n){var P=function(a){return (a||[]).map(function(p){return '<p c
     (n.results&&n.results.length?'<h5>نتایج گزارش</h5>'+P(n.results):'')+(n.mgmt&&n.mgmt.length?'<h5>مدیریت چه گفت</h5>'+P(n.mgmt):'')+
     (n.view&&n.view.length?'<h5>دیدگاه تحلیلی ما</h5>'+P(n.view):'')+(n.watch?'<h5>چه چیزی را زیر نظر بگیریم</h5><p class="ernp">'+esc(n.watch)+'</p>':'')+
     (n.src?'<p class="xnote"><a href="'+esc(n.src)+'" target="_blank" rel="noopener nofollow">متن گزارش شرکت</a></p>':'')+'</details>'}
+/* A big one-day move (10% or more) and what caused it: data/movers/<lang>/<T>.json on main, written from the company's
+   own announcements the next morning. Shown for two weeks after the move. */
+function loadMove(d){var box=$('rzs-mv');if(!box)return;var t=d.ticker;
+  fetch(XRAW+'/main/data/movers/'+ERL+'/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/900000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){
+    var m=j&&j.moves&&j.moves[0];if(!m||(Date.now()-new Date(m.d+'T21:00:00Z'))>15*864e5)return;
+    var P=function(a){return (a||[]).map(function(p){return '<p class="ernp">'+esc(p)+'</p>'}).join('')},up=m.pct>=0;
+    box.innerHTML='<div class="axhead"><h3 style="margin:0">چه اتفاقی افتاد؟</h3><span class="mut2" style="font-size:13px">'+eD(m.d)+'</span></div>'+
+      '<h4 class="erh"><bdi dir="ltr" class="'+(up?'up':'dn')+'">'+(up?'+':'')+m.pct.toFixed(1)+'%</bdi> · '+esc(m.headline)+'</h4><p class="ernp">'+esc(m.summary)+'</p>'+
+      '<details class="erd"><summary class="lnk">جزئیات بیشتر ▾</summary>'+P(m.why)+P(m.context)+
+      ((m.src||[]).length?'<p class="xnote">'+m.src.map(function(x){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener nofollow">'+esc(x.title)+'</a>'}).join(' · ')+'</p>':'')+'</details>';
+    box.style.display=''})}
 function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker,vv='?v='+Math.floor(Date.now()/900000);
   Promise.all([fetch(XRAW+'/earnings/e/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
     fetch(XRAW+'/main/data/earnings_notes/'+ERL+'/'+encodeURIComponent(t)+'.json'+vv).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(R){var j=R[0],NT=(R[1]&&R[1].notes)||[];

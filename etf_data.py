@@ -327,7 +327,7 @@ def history(sym, years=6):
         if rows:
             break
     if not rows:
-        return history_stooq(sym, years)
+        return history_alt(sym, years)
     out = []
     for x in rows:
         try:
@@ -336,12 +336,50 @@ def history(sym, years=6):
         except Exception:
             continue
     out = sorted(out)
-    return out if out else history_stooq(sym, years)
+    return out if out else history_alt(sym, years)
+
+
+def history_alt(sym, years=6):
+    """Fallback daily closes, tried in order. Nasdaq's historical endpoint answers for nothing at
+    all on a few listings (SPLG), which left those funds with no price and no returns."""
+    for fn in (history_yahoo, history_stooq):
+        try:
+            out = fn(sym, years)
+        except Exception:
+            out = []
+        if len(out) > 30:
+            return out
+    return []
+
+
+def history_yahoo(sym, years=6):
+    url = ('https://query1.finance.yahoo.com/v8/finance/chart/%s?range=%dy&interval=1d'
+           % (urllib.parse.quote(sym), max(1, int(years))))
+    b = fetch(url, {'User-Agent': UA, 'Accept': 'application/json'})
+    if not b:
+        return []
+    try:
+        r = (json.loads(b).get('chart') or {}).get('result') or []
+        if not r:
+            return []
+        ts = r[0].get('timestamp') or []
+        ind = (r[0].get('indicators') or {})
+        px = ((ind.get('adjclose') or [{}])[0].get('adjclose')
+              or (ind.get('quote') or [{}])[0].get('close') or [])
+    except Exception:
+        return []
+    out = []
+    for t, v in zip(ts, px):
+        if v is None:
+            continue
+        try:
+            out.append([dt.datetime.utcfromtimestamp(int(t)).date().isoformat(), float(v)])
+        except Exception:
+            continue
+    return sorted(out)
 
 
 def history_stooq(sym, years=6):
-    """Fallback daily closes. Nasdaq's historical endpoint answers for nothing at all on a few
-    listings (SPLG), which left those funds with no price and no returns at all."""
     frm = (TODAY - dt.timedelta(days=int(365.25 * years)))
     url = ('https://stooq.com/q/d/l/?s=%s.us&d1=%s&d2=%s&i=d'
            % (sym.lower(), frm.strftime('%Y%m%d'), TODAY.strftime('%Y%m%d')))
@@ -373,7 +411,7 @@ def last_price(sym):
                 return float(v)
         except Exception:
             continue
-    h = history_stooq(sym, 1)
+    h = history_alt(sym, 1)
     return h[-1][1] if h else None
 
 

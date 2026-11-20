@@ -72,6 +72,12 @@
 "cik": 2058897
 },
 {
+"t": "BIP",
+"mcap": 19375054658,
+"why": "no companyfacts file",
+"cik": 2155396
+},
+{
 "t": "LEN.B",
 "mcap": 18461058546,
 "why": "not in SEC ticker map",

@@ -175,7 +175,8 @@ def main():
                 have = json.load(open(path, encoding='utf-8'))
             except Exception:
                 have = None
-        if not (have and have.get('d') == d and have.get('text')):
+        cover = bool(have and 'Check the appropriate box' in (have.get('text') or '')[:6000])
+        if only or cover or not (have and have.get('d') == d and have.get('text')):
             r = release(cik, d)
             if r:
                 form, filed, url, txt = r

@@ -88,3 +88,5 @@ UI.update({
 
 UI['pe_short'] = 'P/E'
 UI['focus_labels'] = {'US large cap': 'US large cap', 'US total market': 'US total market', 'US large cap growth': 'US growth', 'US mega cap growth': 'US mega-cap growth', 'US large cap value': 'US value', 'US quality factor': 'US quality', 'US dividend': 'US dividend', 'US dividend growth': 'Dividend growth', 'US mid cap': 'US mid cap', 'US small cap': 'US small cap', 'developed ex-US': 'Developed ex-US', 'global ex-US': 'Global ex-US', 'global': 'Global', 'emerging markets': 'Emerging markets', 'Europe': 'Europe', 'technology': 'Technology', 'semiconductors': 'Semiconductors', 'financials': 'Financials', 'healthcare': 'Healthcare', 'energy': 'Energy', 'industrials': 'Industrials', 'real estate': 'Real estate', 'US investment grade bonds': 'US bonds', 'international bonds': 'International bonds', 'gold': 'Gold', 'bitcoin': 'Bitcoin'}
+
+UCITS = {}   # already English

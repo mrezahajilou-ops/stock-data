@@ -56,7 +56,7 @@ class Pack:
     """Everything that differs between the five editions."""
 
     def __init__(self, lang, ui, text, base, stock_url, site, rtl=False, iso=None,
-                 countries=None, fdate=None, shariah=False):
+                 countries=None, fdate=None, shariah=False, ucits=None):
         self.lang = lang
         self.ui = ui                 # dict of labels
         self.text = text             # {ticker: (idea, strategy)}
@@ -68,6 +68,9 @@ class Pack:
         self.countries = countries or etf_country.GROUPS.get(lang, [])
         self.fdate = fdate or (lambda s: str(s or ''))
         self.shariah = shariah
+        # the European-alternative notes are written in etf_list.py in English; each edition
+        # supplies its own wording for them, keyed by the English string
+        self.ucits = ucits or {}
 
     def u(self, t=None):
         return self.base if not t else '%s%s/' % (self.base, t.lower())
@@ -175,12 +178,20 @@ def sectors(sd, holds, p, labels=None):
 
 def where(rec, p):
     u = rec.get('ucits') or {}
-    alt, nm, note = u.get('ticker'), u.get('name') or '', u.get('note') or ''
+    tr = p.ucits
+    alt = u.get('ticker')
+    nm = tr.get(u.get('name') or '', u.get('name') or '')
+    note = tr.get(u.get('note') or '', u.get('note') or '')
     body = '<p>%s</p>' % p.L('priips', fund=ltr(rec['t'], p))
     if alt or nm:
-        body += '<p><b>%s</b> %s %s</p>' % (e(p.L('in_europe')),
-                                            ltr('%s — %s' % (alt, nm) if (alt and nm) else (alt or nm), p),
-                                            e(note))
+        # the ticker is Latin and must not reorder the line; the description is in the page's own
+        # language and must not be forced into a Latin run, which is what broke the Arabic layout
+        bits = []
+        if alt:
+            bits.append(ltr(alt, p))
+        if nm:
+            bits.append(e(p.iso(nm)) if p.rtl else e(nm))
+        body += '<p><b>%s</b> %s %s</p>' % (e(p.L('in_europe')), ' — '.join(bits), e(p.iso(note)) if p.rtl else e(note))
     rows = []
     for c in p.countries:
         info = etf_country.COUNTRIES.get(c)

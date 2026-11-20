@@ -15,7 +15,7 @@ to the page for that company.
 
 Output: data/etfs/<TICKER>.json and data/etfs/index.json.
 """
-import json, os, re, sys, time, io, zipfile, datetime as dt
+import json, os, re, sys, time, io, zipfile, html as _html, datetime as dt
 import urllib.request, urllib.error, urllib.parse
 
 import etf_list
@@ -126,10 +126,11 @@ def series_accessions(cik, series, want=4):
     b = fetch(url, SEC_HDR)
     accs = []
     if b:
-        accs = re.findall(r'accession-n(?:umber|u?mber)?>\s*([\d-]{18,20})\s*<', b.decode('utf-8', 'replace'))
+        txt = b.decode('utf-8', 'replace')
+        accs = re.findall(r'<accession-n\w+>\s*([\d-]{18,20})\s*<', txt)
         if not accs:
-            accs = re.findall(r'/Archives/edgar/data/\d+/(\d{18})/', b.decode('utf-8', 'replace'))
-            accs = ['%s-%s-%s' % (a[:10], a[10:12], a[12:]) for a in accs]
+            raw = re.findall(r'/Archives/edgar/data/\d+/(\d{18})[/\-]', txt)
+            accs = ['%s-%s-%s' % (a[:10], a[10:12], a[12:]) for a in raw]
     if accs:
         return list(dict.fromkeys(accs))[:want]
 
@@ -141,7 +142,7 @@ def series_accessions(cik, series, want=4):
     forms = rec.get('form') or []
     cands = [rec['accessionNumber'][i] for i in range(len(forms)) if forms[i].startswith('NPORT-P')]
     out = []
-    for acc in cands[:120]:
+    for acc in cands[:400]:
         head = fetch('https://www.sec.gov/Archives/edgar/data/%d/%s/%s-index-headers.html'
                      % (int(cik), acc.replace('-', ''), acc), SEC_HDR, rng=6000)
         if head and series.encode() in head:
@@ -177,7 +178,7 @@ def parse_nport(xml):
         if pct <= 0:
             continue
         iso = re.search(r'<isin\s+value="([^"]+)"', blk)
-        rows.append(dict(name=re.sub(r'\s+', ' ', name).strip(),
+        rows.append(dict(name=re.sub(r'\s+', ' ', _html.unescape(name)).strip(),
                          pct=round(pct, 4),
                          usd=float(val) if val and re.match(r'^-?[\d.]+$', val) else None,
                          isin=iso.group(1) if iso else None,
@@ -412,7 +413,6 @@ def build_one(e, by_ticker, by_name):
         returns=dict(m1=ret_over(hist, 30), m3=ret_over(hist, 91), ytd=None,
                      y1=ret_over(hist, 365), y3=ret_over(hist, 1095), y5=ret_over(hist, 1826)),
         holdings_as_of=as_of, holdings_source=src,
-        holdings=[{k: v for k, v in h.items() if k in ('name', 'pct', 't')} for h in holds[:60]],
         built=TODAY.isoformat(),
     )
     if hist:
@@ -421,7 +421,8 @@ def build_one(e, by_ticker, by_name):
         if jan and prev and prev[-1][1]:
             rec['returns']['ytd'] = round(jan[-1][1] / prev[-1][1] - 1, 4)
     if holds:
-        rec['weighted'] = weighted(holds, by_name, by_ticker)
+        rec['weighted'] = weighted(holds, by_name, by_ticker)   # sets h['t'] on each holding
+    rec['holdings'] = [{k: v for k, v in h.items() if k in ('name', 'pct', 't')} for h in holds[:60]]
     return rec
 
 

@@ -10,6 +10,29 @@ Las cifras no están aquí. Precio, rentabilidad, cartera y ratios se calculan c
 """
 
 UI = dict(
+    home='Inicio', etfs='ETF', other='Otros', fundcol='Fondo',
+    ps='Precio / ventas', growth='Crecimiento de ventas, último año',
+    margin='Margen neto', score='Nuestra puntuación media',
+    no_pe_h='Por qué aquí no hay PER',
+    in_europe='Si estás en Europa:',
+    more_exp='más caro', cheaper='más barato',
+    shariah='Alternativa conforme a la sharía',
+    vs_sp='El S&P 500 en la misma medida está a %s veces, así que este fondo es un %s %s.',
+    priips='%s está domiciliado en Estados Unidos. Los fondos estadounidenses no publican el '
+           'documento de datos fundamentales que exige la norma europea, así que un inversor '
+           'minorista de la Unión Europea o del Reino Unido no puede comprarlo: la orden se rechaza, '
+           'con el bróker que sea. En buena parte de Latinoamérica, Oriente Medio, Turquía y Asia sí '
+           'se puede comprar a través de un bróker internacional, con las reglas locales de cada país.',
+    note_tbl='La columna del PER se calcula con las empresas que tiene cada fondo, ponderadas por los '
+             'pesos del propio fondo y con las mismas cifras que nuestras fichas de acciones. Queda '
+             'en blanco cuando el fondo no tiene acciones y cuando está formado sobre todo por '
+             'empresas cotizadas fuera de Estados Unidos, que no cubrimos.',
+    i_title='Los 50 ETF más grandes: cartera, PER y rentabilidad',
+    i_desc='Los cincuenta ETF más grandes del mundo con su cartera, sus pesos y su rentabilidad a un '
+           'año, y un PER calculado con las empresas que cada uno tiene realmente dentro.',
+    d_title='ETF %s: cartera, PER y rentabilidad',
+    d_desc='%s (%s): cartera, pesos y rentabilidad, con un PER calculado a partir de las empresas que '
+           'tiene dentro. %s',
     h1='Los 50 ETF más grandes del mundo',
     sub='Cartera, pesos y valoración · actualizado',
     lead='Los cincuenta fondos cotizados más grandes del mundo, con para qué sirve cada uno, qué '
@@ -308,3 +331,49 @@ T = {
           'ningún lanzamiento de ETF de la historia. El activo subyacente no genera flujo de caja, así '
           'que no hay nada contra lo que valorarlo.'),
 }
+
+# Los países por los que pregunta este lector, con la respuesta en español. La norma europea no es
+# una prohibición al fondo: es que falta un documento, y por eso el bróker rechaza la orden. En
+# México y Argentina la respuesta es otra, porque los mismos fondos cotizan localmente.
+UI.update({
+    's_blocked': 'No se puede comprar',
+    's_open': 'Se puede comprar',
+    's_local': 'Se puede comprar, y además cotiza localmente',
+    's_hard': 'Permitido, pero difícil en la práctica',
+    's_sanctions': 'No accesible',
+    'c_Spain': 'España', 'c_Mexico': 'México', 'c_Argentina': 'Argentina', 'c_Chile': 'Chile',
+    'c_Colombia': 'Colombia', 'c_Peru': 'Perú', 'c_Uruguay': 'Uruguay', 'c_Ecuador': 'Ecuador',
+    'c_Costa Rica': 'Costa Rica', 'c_Panama': 'Panamá',
+    'c_Dominican Republic': 'República Dominicana', 'c_Guatemala': 'Guatemala',
+    'c_Bolivia': 'Bolivia', 'c_Venezuela': 'Venezuela',
+    'w_Spain': 'La norma europea exige un documento de datos fundamentales en una lengua oficial de '
+               'la UE antes de vender un producto empaquetado a un minorista. Las gestoras '
+               'estadounidenses no lo elaboran, así que la orden se rechaza: con cualquier bróker, '
+               'no solo con el tuyo. El fondo europeo que se indica arriba sigue el mismo índice y sí '
+               'se vende con ese documento.',
+    'w_Mexico': 'Los ETF estadounidenses cotizan en el Sistema Internacional de Cotizaciones de la '
+                'Bolsa Mexicana, así que se compran en pesos con una casa de bolsa mexicana y sin '
+                'abrir cuenta en el extranjero. También se llega a ellos en dólares con un bróker '
+                'internacional.',
+    'w_Argentina': 'Los grandes ETF estadounidenses cotizan en Buenos Aires como CEDEAR —'
+                   'certificados locales que representan al valor extranjero— y se compran en pesos. '
+                   'Comprar el fondo en sí exige una cuenta en dólares en el exterior, y ahí entran '
+                   'las reglas locales sobre la compra de divisa.',
+    'w_Chile': 'No se aplica ninguna restricción europea. Las corredoras locales dan acceso al '
+               'mercado estadounidense y los brókeres internacionales aceptan residentes, así que el '
+               'fondo se compra en dólares.',
+    'w_Colombia': 'Accesible con comisionistas locales que ofrecen mercado global y con brókeres '
+                  'internacionales. El obstáculo es el coste de convertir y sacar los pesos, no el '
+                  'fondo.',
+    'w_Peru': 'Accesible con sociedades agentes de bolsa que ofrecen mercados extranjeros y con '
+              'brókeres internacionales. No se aplica ninguna restricción al estilo europeo.',
+    'w_Uruguay': 'No se aplica ninguna restricción europea; los brókeres internacionales aceptan residentes.',
+    'w_Ecuador': 'La economía está dolarizada, lo que elimina el paso de la divisa; accesible con brókeres internacionales.',
+    'w_Costa Rica': 'No se aplica ninguna restricción europea; accesible con brókeres internacionales.',
+    'w_Panama': 'No se aplica ninguna restricción europea; accesible con brókeres internacionales.',
+    'w_Dominican Republic': 'No se aplica ninguna restricción europea; accesible con brókeres internacionales.',
+    'w_Guatemala': 'No se aplica ninguna restricción europea; accesible con brókeres internacionales.',
+    'w_Bolivia': 'El acceso a divisa extranjera está restringido, y ese es el obstáculo, no el fondo.',
+    'w_Venezuela': 'Los controles de cambio y las sanciones hacen muy difícil abrir y fondear una '
+                   'cuenta de inversión en el exterior.',
+})

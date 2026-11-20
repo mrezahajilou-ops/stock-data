@@ -131,7 +131,7 @@
 @media (max-width:560px){#rzs .pw{padding:26px 18px}#rzs .pw-plans{grid-template-columns:1fr}}
 #rzs .charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (min-width:1450px){#rzs .charts{grid-template-columns:repeat(4,1fr)}#rzs .charts .card h3{font-size:14px}}
-#rzs .wide2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}#rzs .wide2>*{min-width:0}
+#rzs .wide2{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}#rzs .wide2>*{min-width:0}#rzs .erh{font-size:16px;font-weight:800;margin:10px 0 4px;color:#fff;line-height:1.6}#rzs .erd{margin:6px 0 8px}#rzs .erd h5{font-size:14px;font-weight:800;color:var(--ac);margin:12px 0 2px}#rzs .erold{border-top:1px solid var(--line);margin-top:10px;padding-top:8px}#rzs .wide2:has(>.card[style*="display:none"])>.card,#rzs .wide2:has(>.card[style*="display: none"])>.card{grid-column:1/-1}
 @media (max-width:1199px){#rzs .wide2{grid-template-columns:1fr}}
 #rzs svg{width:100%;height:auto;display:block}
 #rzs .tblwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
@@ -784,7 +784,7 @@ function render(d){
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
   h+='<div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="card" id="rzs-an" style="display:none"></div></div>';
-  h+='<div class="card" id="rzs-si" style="display:none"></div>';
+  h+='<div class="wide2"><div class="card" id="rzs-si" style="display:none"></div><div class="card" id="rzs-earn" style="display:none"></div></div>';
   h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
      '<div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="/pages/dcf#'+esc(d.ticker)+'">محاسبه‌ی ارزش ذاتی (DCF) ←</a><a class="btn ghost" href="/pages/screener">سهم‌های مشابه در غربالگر</a></div></div></div>';
@@ -810,7 +810,6 @@ function render(d){
   h+='<div class="two"><div class="card" id="rzs-news"><h3>آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
-  h+='<div class="card" id="rzs-earn" style="display:none"></div>';
   $('rzs-main').innerHTML=h;
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
@@ -918,9 +917,20 @@ function eD(d){try{return new Date(d+'T12:00:00Z').toLocaleDateString('fa-IR-u-c
 function eP(v,dg){return v==null||!isFinite(v)?'—':(v>=0?'+':'')+(v*100).toFixed(dg==null?1:dg)+'%'}
 function eUsd(v){return v==null?'—':(v<0?'-$':'$')+Math.abs(v).toFixed(2)}
 function eGrow(a,b){return a!=null&&b!=null&&b>0?a/b-1:null}
-function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker;
-  fetch(XRAW+'/earnings/e/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}).then(function(j){
+/* Written analysis of each report (data/earnings_notes/<lang>/<T>.json on main): what the numbers were, what management
+   said in the company's own release, and what it means. Newest first; shown above the automatic summary when it exists. */
+var ERL=window.RZS_LANG||'fa';
+function erNote(n){var P=function(a){return (a||[]).map(function(p){return '<p class="ernp">'+esc(p)+'</p>'}).join('')};
+  return '<h4 class="erh">'+esc(n.headline||'')+'</h4><p class="ernp">'+esc(n.takeaway||'')+'</p>'+
+    '<details class="erd"><summary class="lnk">تحلیل کامل این گزارش ▾</summary>'+
+    (n.results&&n.results.length?'<h5>نتایج گزارش</h5>'+P(n.results):'')+(n.mgmt&&n.mgmt.length?'<h5>مدیریت چه گفت</h5>'+P(n.mgmt):'')+
+    (n.view&&n.view.length?'<h5>دیدگاه تحلیلی ما</h5>'+P(n.view):'')+(n.watch?'<h5>چه چیزی را زیر نظر بگیریم</h5><p class="ernp">'+esc(n.watch)+'</p>':'')+
+    (n.src?'<p class="xnote"><a href="'+esc(n.src)+'" target="_blank" rel="noopener nofollow">متن گزارش شرکت</a></p>':'')+'</details>'}
+function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker,vv='?v='+Math.floor(Date.now()/900000);
+  Promise.all([fetch(XRAW+'/earnings/e/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}),
+    fetch(XRAW+'/main/data/earnings_notes/'+ERL+'/'+encodeURIComponent(t)+'.json'+vv).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(R){var j=R[0],NT=(R[1]&&R[1].notes)||[];
     if(cur!==d||!j||!j.q||!j.q.length)return;var x=j.q[0],sv=0,P=[];
+    var note=NT.filter(function(n){return n.d===x.d})[0]||null,older=NT.filter(function(n){return n!==note});
     var eg=eGrow(x.act,x.ly),rg=eGrow(x.rev,x.revly);
     var when=x.tm==='pre'?'قبل از شروع بازار':x.tm==='after'?'بعد از بسته شدن بازار':'';
     P.push(esc(d.name)+' روز '+eD(x.d)+(when?' ('+when+')':'')+' نتایج فصل منتهی به '+eQ(x.q)+' رو منتشر کرد.');
@@ -936,7 +946,8 @@ function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker;
     var V=r>=0.75?['گزارش قوی',C.good]:r>=0.5?['گزارش خوب',C.ok]:r>=0.25?['گزارش متوسط',C.mid]:['گزارش ضعیف',C.bad];
     var h='<div class="axhead"><h3 style="margin:0">آخرین گزارش فصلی به زبان ساده</h3><a class="lnk" href="/pages/earnings">تقویم گزارش‌ها ←</a></div>'+
       '<div class="ern"><span class="vtag" style="background:'+V[1]+';color:#15120A">'+V[0]+'</span><span class="mut2" style="font-size:13px">فصل '+eQ(x.q)+' · '+eD(x.d)+'</span></div>'+
-      '<p class="ernp">'+P.join(' ')+'</p>';
+      (note?erNote(note):'')+'<p class="ernp">'+P.join(' ')+'</p>';
+    if(older.length)h+='<details class="erd"><summary class="lnk">تحلیل گزارش‌های قبلی ▾</summary>'+older.map(function(n){return '<div class="erold"><span class="mut2" style="font-size:12.5px">'+eD(n.d)+'</span>'+erNote(n)+'</div>'}).join('')+'</details>';
     if(j.q.length>1){var rows=j.q.map(function(y){var g1=eGrow(y.act,y.ly),g2=eGrow(y.rev,y.revly);return '<tr><td>'+eQ(y.q)+'</td><td>'+eL(eUsd(y.act))+'</td><td>'+eL(eUsd(y.f))+'</td><td class="'+(y.sur==null?'':y.sur>=0?'up':'dn')+'">'+(y.sur==null?'—':eL((y.sur>=0?'+':'')+y.sur.toFixed(1)+'%'))+'</td><td class="'+(g1==null?'':g1>=0?'up':'dn')+'">'+eL(eP(g1))+'</td><td>'+(y.rev?big(y.rev):'—')+'</td><td class="'+(g2==null?'':g2>=0?'up':'dn')+'">'+eL(eP(g2))+'</td><td class="'+(y.rx==null?'':y.rx>=0?'up':'dn')+'">'+eL(eP(y.rx))+'</td></tr>'}).join('');
       var tb='<div class="tblwrap" style="margin-top:8px"><table><thead><tr><th>فصل</th><th>EPS واقعی</th><th>پیش‌بینی</th><th>غافلگیری</th><th>رشد EPS سالانه</th><th>درآمد</th><th>رشد درآمد</th><th>واکنش قیمت</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
       h+=ACCESS?'<details><summary class="lnk" style="margin-top:4px">تاریخچه‌ی '+j.q.length+' گزارش اخیر ▾</summary>'+tb+'</details>':'<p class="xnote">تاریخچه‌ی '+j.q.length+' گزارش اخیر برای مشترکین Stock Pro.</p>'}
@@ -1001,12 +1012,12 @@ function loadSI(d){var box=$('rzs-si');if(!box)return;var t=SI_SAME[d.ticker]||d
     if(!L.length){h+='<p style="margin:10px 0 0;color:var(--mut)">هیچ‌کدوم از '+x[1].managers.length+' سرمایه‌گذار مشهور این بخش (بافت، اکمن، لی لو، تری اسمیت و …) در آخرین گزارش 13F خودشون این سهم رو نداشتن.</p>';box.innerHTML=h;box.style.display='';return}
     var nb=L.filter(function(o){return o[2]==='new'||o[2]==='add'}).length,ns=L.filter(function(o){return o[2]==='cut'}).length;
     h+='<p style="margin:8px 0 10px">در پورتفوی <b>'+faN(L.length)+'</b> سرمایه‌گذار مشهور'+(nb?' · <span class="up">'+faN(nb)+' نفر در آخرین فصل خریدن یا اضافه کردن</span>':'')+(ns?' · <span class="dn">'+faN(ns)+' نفر کم کردن</span>':'')+'</p>';
-    var rows=L.slice(0,12).map(function(o){var m=by[o[0]];return '<tr><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:600">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td class="hm" style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
+    var rows=L.slice(0,12).map(function(o,i){var m=by[o[0]];return '<tr'+(i>=5?' class="simore" style="display:none"':'')+'><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:600">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td class="hm" style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
     var tb='<div class="tblwrap"><table><thead><tr><th style="text-align:right">سرمایه‌گذار</th><th>وزن</th><th>آخرین فعالیت</th><th class="hm">گزارش</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
-    if(ACCESS)h+=tb+(L.length>12?'<p class="xnote">و '+faN(L.length-12)+' سرمایه‌گذار دیگه · <a href="/pages/superinvestors#t='+esc(t)+'">لیست کامل</a></p>':'');
+    if(ACCESS)h+=tb+(L.length>5?'<button class="lnk" id="rzs-sitog" style="margin-top:6px">نمایش همه ▾</button>':'')+(L.length>12?'<p class="xnote">و '+faN(L.length-12)+' سرمایه‌گذار دیگه · <a href="/pages/superinvestors#t='+esc(t)+'">لیست کامل</a></p>':'');
     else h+='<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+tb+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 اسم‌ها برای مشترکین Stock Pro</a></div></div>';
     h+='<p class="xnote">از گزارش‌های فصلی 13F به SEC؛ این گزارش‌ها تا ۴۵ روز بعد از پایان هر فصل منتشر میشن، پس وضعیت امروز نیستن.</p>';
-    box.innerHTML=h;box.style.display=''})}
+    box.innerHTML=h;box.style.display='';var tg=$('rzs-sitog');if(tg)tg.onclick=function(){[].forEach.call(box.querySelectorAll('tr.simore'),function(r){r.style.display=''});tg.style.display='none'}})}
 
 /* ---- news links + insider trades (branches `news` every 3h, `insider` nightly; extras.py) ---- */
 var XRAW=window.RZS_RAW||'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data';

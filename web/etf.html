@@ -189,6 +189,7 @@
 #rzf .etftbl .nm{display:flex;flex-direction:column;gap:1px;min-width:150px;white-space:normal}
 #rzf .etftbl .nm b{direction:ltr;unicode-bidi:isolate;color:var(--ac);font-size:14.5px}
 #rzf .etftbl .nm span{color:var(--mut);font-size:12.5px;line-height:1.5}
+#rzf .etftbl .nm .mo{display:none;font-size:11.5px;color:#6f747e}
 #rzf .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-size:12px;color:var(--mut)}
 #rzf .lock{color:var(--ac);font-size:12.5px}
 #rzf .etftbl td.n{direction:ltr;unicode-bidi:isolate;text-align:left;font-variant-numeric:tabular-nums}
@@ -227,6 +228,8 @@
   #rzf .etftbl{font-size:13px}
   #rzf .etftbl th,#rzf .etftbl td{padding:8px 6px}
   #rzf .etftbl .hm{display:none}
+  #rzf .etftbl .nm .mo{display:block}
+  #rzf .etftbl .nm{min-width:112px}
   #rzf .bars .r{grid-template-columns:92px 1fr 62px;font-size:12.5px}
   #rzf .dhead .px{font-size:25px}
 }
@@ -501,7 +504,7 @@ var COLS = [
   ['d_cagr', 'میانگین سالانه', 0],
   ['d_n', 'تعداد سهام', 1],
   ['d_pe', 'P/E امروز', 0],
-  ['d_peavg', 'میانگین P/E تاریخی', 1]
+  ['d_peavg', 'میانگین P/E تاریخی', 0]
 ];
 
 function val(e, k) {
@@ -549,7 +552,9 @@ function drawIndex() {
     var op = open_(e.t);
     h += '<tr data-t="' + e.t + '"' + (op ? '' : ' class="lk"') + '>' +
       '<td><div class="nm"><b>' + e.t + (op ? '' : ' <span class="lock">🔒</span>') + '</b>' +
-      '<span>' + esc(fa(e.t, 'n') || e.name) + '</span></div></td>' +
+      '<span>' + esc(fa(e.t, 'n') || e.name) + '</span>' +
+      '<span class="mo">' + esc(cls_(e.cls)) + ' · ' + esc(foc(e.focus)) +
+      (e.holdings_n == null ? '' : ' · ' + e.holdings_n + ' شرکت') + '</span></div></td>' +
       '<td class="hm"><span class="tag">' + esc(cls_(e.cls)) + '</span> <span class="mut" style="font-size:12px">' + esc(foc(e.focus)) + '</span></td>' +
       '<td class="n"' + cl(e.y1) + '>' + sgn(e.y1) + '</td>' +
       '<td class="n"' + cl(e.cagr) + '>' + sgn(e.cagr) + '</td>' +

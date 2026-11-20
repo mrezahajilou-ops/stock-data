@@ -23,7 +23,7 @@ var COLS = [
   ['d_cagr', 'میانگین سالانه', 0],
   ['d_n', 'تعداد سهام', 1],
   ['d_pe', 'P/E امروز', 0],
-  ['d_peavg', 'میانگین P/E تاریخی', 1]
+  ['d_peavg', 'میانگین P/E تاریخی', 0]
 ];
 
 function val(e, k) {
@@ -71,7 +71,9 @@ function drawIndex() {
     var op = open_(e.t);
     h += '<tr data-t="' + e.t + '"' + (op ? '' : ' class="lk"') + '>' +
       '<td><div class="nm"><b>' + e.t + (op ? '' : ' <span class="lock">🔒</span>') + '</b>' +
-      '<span>' + esc(fa(e.t, 'n') || e.name) + '</span></div></td>' +
+      '<span>' + esc(fa(e.t, 'n') || e.name) + '</span>' +
+      '<span class="mo">' + esc(cls_(e.cls)) + ' · ' + esc(foc(e.focus)) +
+      (e.holdings_n == null ? '' : ' · ' + e.holdings_n + ' شرکت') + '</span></div></td>' +
       '<td class="hm"><span class="tag">' + esc(cls_(e.cls)) + '</span> <span class="mut" style="font-size:12px">' + esc(foc(e.focus)) + '</span></td>' +
       '<td class="n"' + cl(e.y1) + '>' + sgn(e.y1) + '</td>' +
       '<td class="n"' + cl(e.cagr) + '>' + sgn(e.cagr) + '</td>' +

@@ -58,6 +58,12 @@ class Pack:
     def __init__(self, lang, ui, text, base, stock_url, site, rtl=False, iso=None,
                  countries=None, fdate=None, shariah=False, ucits=None):
         self.lang = lang
+        # labels carry {N} for the number of funds covered (it grows); Persian prints its own digits
+        import etf_list as _el
+        _n = str(len(_el.ETFS))
+        if lang == 'fa':
+            _n = _n.translate(str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹'))
+        ui = {k: (v.replace('{N}', _n) if isinstance(v, str) else v) for k, v in ui.items()}
         self.ui = ui                 # dict of labels
         self.text = text             # {ticker: (idea, strategy)}
         self.base = base             # '/etfs/' or the localised path

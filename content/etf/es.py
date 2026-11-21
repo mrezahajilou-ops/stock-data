@@ -27,15 +27,15 @@ UI = dict(
              'pesos del propio fondo y con las mismas cifras que nuestras fichas de acciones. Queda '
              'en blanco cuando el fondo no tiene acciones y cuando está formado sobre todo por '
              'empresas cotizadas fuera de Estados Unidos, que no cubrimos.',
-    i_title='Los 50 ETF más grandes: cartera, PER y rentabilidad',
-    i_desc='Los cincuenta ETF más grandes del mundo con su cartera, sus pesos y su rentabilidad a un '
+    i_title='Los {N} ETF más grandes: cartera, PER y rentabilidad',
+    i_desc='Los {N} ETF más grandes del mundo con su cartera, sus pesos y su rentabilidad a un '
            'año, y un PER calculado con las empresas que cada uno tiene realmente dentro.',
     d_title='ETF %(t)s: cartera, PER y rentabilidad',
     d_desc='%(name)s (%(t)s): cartera, pesos y rentabilidad, con un PER calculado a partir de las '
            'empresas que tiene dentro. %(idea)s',
-    h1='Los 50 ETF más grandes del mundo',
+    h1='Los {N} ETF más grandes del mundo',
     sub='Cartera, pesos y valoración · actualizado',
-    lead='Los cincuenta fondos cotizados más grandes del mundo, con para qué sirve cada uno, qué '
+    lead='Los {N} fondos cotizados más grandes del mundo, con para qué sirve cada uno, qué '
          'tiene dentro y cuánto valen las empresas que lo componen.',
     intro='El PER de estas páginas no lo publica el fondo. Cada posición se cruza con nuestra propia '
           'ficha de esa empresa y las cifras se ponderan con los pesos del propio fondo, así que el '
@@ -50,7 +50,7 @@ UI = dict(
     faq='Preguntas frecuentes',
     company='Empresa',
     weight='Peso',
-    all50='Los 50 fondos, uno al lado del otro',
+    all50='Los {N} fondos, uno al lado del otro',
     y1='1 año', y3='3 años', ytd='En el año', m1='Último mes', m3='3 meses', y5='5 años',
     price='Precio', pe='PER', holdings='Posiciones',
     chartcap='Rentabilidad del último año, todos los fondos de esta página. Pulsa una barra para abrirlo.',
@@ -397,4 +397,4 @@ UCITS = {'VUAA accumulates dividends, VUSA pays them out.': 'VUAA acumula los di
 UCITS.update({'Invesco EQQQ Nasdaq-100 UCITS ETF, or iShares Nasdaq 100 UCITS ETF': 'Invesco EQQQ Nasdaq-100 UCITS ETF o iShares Nasdaq 100 UCITS ETF', 'Vanguard FTSE Developed World UCITS ETF, or iShares Core MSCI World': 'Vanguard FTSE Developed World UCITS ETF o iShares Core MSCI World', 'Vanguard FTSE Emerging Markets UCITS ETF, or iShares Core MSCI EM IMI': 'Vanguard FTSE Emerging Markets UCITS ETF o iShares Core MSCI EM IMI'})
 
 # phone layout: return ranking, fund finder, quick keys (etf_pages.py, web_src/etfm.*)
-UI.update({'rank_h': 'Ranking de rentabilidad', 'rank_all': 'Ver los %(n)s fondos ▾', 'rank_less': 'Ver solo los 10 primeros ▴', 'rank_note': 'Rentabilidad del precio, sin dividendos. Toca un fondo para abrir su página.', 'find_ph': 'Busca entre los 50 fondos: ticker, nombre o tipo', 'sort_big': 'Más grandes', 'sort_pe': 'PER más bajo', 'n_funds': '%n fondos', 'no_fund': 'Ningún fondo coincide con la búsqueda.', 'more': 'Leer más ▾', 'less': 'Ver menos ▴', 'holds_all': 'Ver las %(n)s posiciones ▾', 'holds_less': 'Ver solo las 10 primeras ▴', 'k_idea': 'Idea', 'k_val': 'Valoración', 'k_ret': 'Rentabilidad', 'k_hold': 'Cartera', 'k_sec': 'Secciones de la página', 'k_find': 'Buscar', 'k_ph': 'Busca cualquier acción o ETF', 'k_none': 'Sin resultados', 'l_y1': 'Último año', 'l_avg': 'Media anual', 'l_hold': 'Posiciones', 'l_pe': 'PER'})
+UI.update({'rank_h': 'Ranking de rentabilidad', 'rank_all': 'Ver los %(n)s fondos ▾', 'rank_less': 'Ver solo los 10 primeros ▴', 'rank_note': 'Rentabilidad del precio, sin dividendos. Toca un fondo para abrir su página.', 'find_ph': 'Busca entre los {N} fondos: ticker, nombre o tipo', 'sort_big': 'Más grandes', 'sort_pe': 'PER más bajo', 'n_funds': '%n fondos', 'no_fund': 'Ningún fondo coincide con la búsqueda.', 'more': 'Leer más ▾', 'less': 'Ver menos ▴', 'holds_all': 'Ver las %(n)s posiciones ▾', 'holds_less': 'Ver solo las 10 primeras ▴', 'k_idea': 'Idea', 'k_val': 'Valoración', 'k_ret': 'Rentabilidad', 'k_hold': 'Cartera', 'k_sec': 'Secciones de la página', 'k_find': 'Buscar', 'k_ph': 'Busca cualquier acción o ETF', 'k_none': 'Sin resultados', 'l_y1': 'Último año', 'l_avg': 'Media anual', 'l_hold': 'Posiciones', 'l_pe': 'PER'})

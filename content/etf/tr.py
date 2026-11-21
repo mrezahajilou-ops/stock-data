@@ -11,9 +11,9 @@ Rakamlar burada değil: fiyat, getiri, portföy ve çarpanlar her gün etf_data.
 
 UI = dict(
     home='Ana sayfa', etfs='ETF', other='Diğer', fundcol='Fon',
-    h1='Dünyanın en büyük 50 ETF’si',
+    h1='Dünyanın en büyük {N} ETF’si',
     sub='Portföy, ağırlıklar ve değerleme · güncellendi',
-    lead='Dünyanın en büyük elli borsa yatırım fonu: her biri ne işe yarıyor, içinde ne var ve '
+    lead='Dünyanın en büyük {N} borsa yatırım fonu: her biri ne işe yarıyor, içinde ne var ve '
          'içindeki şirketler ne ediyor.',
     intro='Bu sayfalardaki F/K oranını fondan almıyoruz. Her pozisyon, o şirket için bizim kendi '
           'sayfamızla eşleştiriliyor ve rakamlar fonun kendi ağırlıklarıyla ağırlıklandırılıyor. '
@@ -22,7 +22,7 @@ UI = dict(
     idea='Fikir', ret='Getiri', fund='İçindeki şirketler ne ediyor',
     holds='En büyük pozisyonlar', made='Neyden oluşuyor',
     where='Yaşadığınız yerden alabilir misiniz?', company='Şirket', weight='Ağırlık',
-    all50='Elli fon yan yana',
+    all50='{N} fon yan yana',
     y1='Son 1 yıl', y3='Son 3 yıl', y5='Son 5 yıl', ytd='Yıl başından beri',
     m1='Son 1 ay', m3='Son 3 ay',
     price='Fiyat', pe='F/K', ps='Fiyat / satış',
@@ -62,8 +62,8 @@ UI = dict(
     shariah='İslami kurallara uygun alternatif',
     dis='Portföy, fonun SEC’e verdiği kendi bildirimlerinden; şirket rakamları SEC bildirimlerinden, '
         'her gün yeniden hesaplanıyor. Eğitim amaçlıdır, yatırım tavsiyesi değildir.',
-    i_title='En büyük 50 ETF: portföy, F/K ve getiri',
-    i_desc='Dünyanın en büyük elli ETF’si; portföyleri, ağırlıkları, bir yıllık getirileri ve her '
+    i_title='En büyük {N} ETF: portföy, F/K ve getiri',
+    i_desc='Dünyanın en büyük {N} ETF’si; portföyleri, ağırlıkları, bir yıllık getirileri ve her '
            'birinin gerçekten içinde tuttuğu şirketlerden hesaplanmış F/K oranı.',
     d_title='%(t)s ETF: portföy, F/K ve getiri',
     d_desc='%(name)s (%(t)s) portföyü, ağırlıkları ve getirisi; içinde gerçekten tuttuğu '
@@ -349,4 +349,4 @@ UCITS = {'VUAA accumulates dividends, VUSA pays them out.': 'VUAA temettüyü bi
 UCITS.update({'Invesco EQQQ Nasdaq-100 UCITS ETF, or iShares Nasdaq 100 UCITS ETF': 'Invesco EQQQ Nasdaq-100 UCITS ETF ya da iShares Nasdaq 100 UCITS ETF', 'Vanguard FTSE Developed World UCITS ETF, or iShares Core MSCI World': 'Vanguard FTSE Developed World UCITS ETF ya da iShares Core MSCI World', 'Vanguard FTSE Emerging Markets UCITS ETF, or iShares Core MSCI EM IMI': 'Vanguard FTSE Emerging Markets UCITS ETF ya da iShares Core MSCI EM IMI'})
 
 # phone layout: return ranking, fund finder, quick keys (etf_pages.py, web_src/etfm.*)
-UI.update({'rank_h': 'Getiri sıralaması', 'rank_all': '%(n)s fonun tümünü göster ▾', 'rank_less': 'Yalnızca ilk 10 ▴', 'rank_note': 'Temettü hariç fiyat getirisi. Sayfasını açmak için bir fona dokunun.', 'find_ph': '50 fon içinde ara: kod, ad veya tür', 'sort_big': 'En büyük', 'sort_pe': 'En düşük F/K', 'n_funds': '%n fon', 'no_fund': 'Aramayla eşleşen fon yok.', 'more': 'Devamını oku ▾', 'less': 'Daha az göster ▴', 'holds_all': '%(n)s varlığın tümünü göster ▾', 'holds_less': 'Yalnızca ilk 10 ▴', 'k_idea': 'Fikir', 'k_val': 'Değerleme', 'k_ret': 'Getiri', 'k_hold': 'Varlıklar', 'k_sec': 'Sayfa bölümleri', 'k_find': 'Ara', 'k_ph': 'Hisse veya ETF ara', 'k_none': 'Sonuç yok', 'l_y1': 'Son 1 yıl', 'l_avg': 'Yıllık ort.', 'l_hold': 'Varlık', 'l_pe': 'F/K'})
+UI.update({'rank_h': 'Getiri sıralaması', 'rank_all': '%(n)s fonun tümünü göster ▾', 'rank_less': 'Yalnızca ilk 10 ▴', 'rank_note': 'Temettü hariç fiyat getirisi. Sayfasını açmak için bir fona dokunun.', 'find_ph': '{N} fon içinde ara: kod, ad veya tür', 'sort_big': 'En büyük', 'sort_pe': 'En düşük F/K', 'n_funds': '%n fon', 'no_fund': 'Aramayla eşleşen fon yok.', 'more': 'Devamını oku ▾', 'less': 'Daha az göster ▴', 'holds_all': '%(n)s varlığın tümünü göster ▾', 'holds_less': 'Yalnızca ilk 10 ▴', 'k_idea': 'Fikir', 'k_val': 'Değerleme', 'k_ret': 'Getiri', 'k_hold': 'Varlıklar', 'k_sec': 'Sayfa bölümleri', 'k_find': 'Ara', 'k_ph': 'Hisse veya ETF ara', 'k_none': 'Sonuç yok', 'l_y1': 'Son 1 yıl', 'l_avg': 'Yıllık ort.', 'l_hold': 'Varlık', 'l_pe': 'F/K'})

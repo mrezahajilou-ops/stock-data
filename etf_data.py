@@ -637,6 +637,14 @@ def main():
                           pe_avg=rec.get('pe_avg'), pe_n=rec.get('pe_history_n'), pe_since=rec.get('pe_since'),
                           holdings_n=(rec.get('weighted') or {}).get('holdings_n')))
     json.dump(cache, open(CACHE, 'w'), separators=(',', ':'))
+    if only:
+        # a partial run (new funds, a retry) keeps every other fund's row from the last full build
+        try:
+            old = {r['t']: r for r in json.load(open(os.path.join(OUT, 'index.json'))).get('etfs') or []}
+        except Exception:
+            old = {}
+        new = {r['t']: r for r in index}
+        index = [new.get(e['t']) or old.get(e['t']) for e in etf_list.ETFS if (new.get(e['t']) or old.get(e['t']))]
     json.dump(dict(built=TODAY.isoformat(), etfs=index),
               open(os.path.join(OUT, 'index.json'), 'w'), separators=(',', ':'))
     print('wrote', len(index), 'ETFs to', OUT)

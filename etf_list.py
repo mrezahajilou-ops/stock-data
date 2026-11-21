@@ -445,11 +445,13 @@ ETFS = [
                     note='UCITS rules do not permit a single-asset crypto fund.')),
 ]
 
+from etf_list_more import MORE as _MORE   # funds 51-100
+ETFS = ETFS + _MORE
+
 BY = {e['t']: e for e in ETFS}
 TICKERS = [e['t'] for e in ETFS]
 
-assert len(ETFS) == 50, len(ETFS)
-assert len(BY) == 50, 'duplicate ticker in the list'
+assert len(BY) == len(ETFS), 'duplicate ticker in the list'
 
 if __name__ == '__main__':
     import collections

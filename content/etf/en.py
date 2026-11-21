@@ -3,9 +3,9 @@
 
 UI = dict(
     home='Home', etfs='ETFs', other='Other',
-    h1='The 50 biggest ETFs in the world',
+    h1='The {N} biggest ETFs in the world',
     sub='Holdings, weights and valuations · updated',
-    lead='The fifty largest exchange-traded funds in the world, with what each one is actually for, '
+    lead='The {N} largest exchange-traded funds in the world, with what each one is actually for, '
          'what it holds, and what the companies inside it are worth.',
     intro='The price/earnings ratio on these pages is not taken from the fund. Every holding is '
           'matched to our own page for that company and the figures are weighted by the fund’s own '
@@ -14,7 +14,7 @@ UI = dict(
     idea='The idea', ret='Return', fund='What the companies inside it are worth',
     holds='Biggest holdings', made='What it is made of',
     where='Can you buy it where you live?', company='Company', weight='Weight',
-    all50='All fifty funds, side by side', fundcol='Fund',
+    all50='All {N} funds, side by side', fundcol='Fund',
     y1='Past year', y3='Past 3 years', y5='Past 5 years', ytd='This year',
     m1='Past month', m3='Past 3 months',
     price='Price', pe='Price / earnings', ps='Price / sales',
@@ -56,8 +56,8 @@ UI = dict(
     shariah='Shariah-screened alternative',
     dis='Holdings from each fund’s own filings with the SEC; company figures from SEC filings, '
         'rebuilt every day. Educational information, not investment advice.',
-    i_title='The 50 Biggest ETFs: Holdings, P/E and Returns',
-    i_desc='The fifty largest ETFs in the world with their holdings, weights and one-year returns, '
+    i_title='The {N} Biggest ETFs: Holdings, P/E and Returns',
+    i_desc='The {N} largest ETFs in the world with their holdings, weights and one-year returns, '
            'and a price/earnings ratio worked out from the companies each one actually holds.',
     d_title='%(t)s ETF: holdings, P/E and returns',
     d_desc='%(name)s (%(t)s) holdings, weights and returns, with a price/earnings ratio built from '
@@ -92,4 +92,4 @@ UI['focus_labels'] = {'US large cap': 'US large cap', 'US total market': 'US tot
 UCITS = {}   # already English
 
 # phone layout: return ranking, fund finder, quick keys (etf_pages.py, web_src/etfm.*)
-UI.update({'rank_h': 'Return ranking', 'rank_all': 'Show all %(n)s funds ▾', 'rank_less': 'Show the top 10 ▴', 'rank_note': 'Price return without dividends. Tap a fund to open its page.', 'find_ph': 'Search the 50 funds: ticker, name or type', 'sort_big': 'Largest', 'sort_pe': 'Lowest P/E', 'n_funds': '%n funds', 'no_fund': 'No fund matches that search.', 'more': 'Read more ▾', 'less': 'Show less ▴', 'holds_all': 'Show all %(n)s holdings ▾', 'holds_less': 'Show the top 10 ▴', 'k_idea': 'Idea', 'k_val': 'Valuation', 'k_ret': 'Return', 'k_hold': 'Holdings', 'k_sec': 'Page sections', 'k_find': 'Search', 'k_ph': 'Search any stock or ETF', 'k_none': 'No match', 'l_y1': 'Past year', 'l_avg': 'Avg a year', 'l_hold': 'Holdings', 'l_pe': 'P/E'})
+UI.update({'rank_h': 'Return ranking', 'rank_all': 'Show all %(n)s funds ▾', 'rank_less': 'Show the top 10 ▴', 'rank_note': 'Price return without dividends. Tap a fund to open its page.', 'find_ph': 'Search the {N} funds: ticker, name or type', 'sort_big': 'Largest', 'sort_pe': 'Lowest P/E', 'n_funds': '%n funds', 'no_fund': 'No fund matches that search.', 'more': 'Read more ▾', 'less': 'Show less ▴', 'holds_all': 'Show all %(n)s holdings ▾', 'holds_less': 'Show the top 10 ▴', 'k_idea': 'Idea', 'k_val': 'Valuation', 'k_ret': 'Return', 'k_hold': 'Holdings', 'k_sec': 'Page sections', 'k_find': 'Search', 'k_ph': 'Search any stock or ETF', 'k_none': 'No match', 'l_y1': 'Past year', 'l_avg': 'Avg a year', 'l_hold': 'Holdings', 'l_pe': 'P/E'})

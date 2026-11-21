@@ -2124,6 +2124,12 @@ def finish(recs, market):
             continue
         sh_ = (r.get("bs") or {}).get("shares_out") or r["annual"][-1].get("shares_out") or r["annual"][-1].get("shares_diluted")
         if sh_ and not 1 / 3 < (mk["mcap"] / mk["price"]) / sh_ < 3:
+            # only when it brings the P/E toward the independent one (JBS: share classes, not a split)
+            ni_, rpe = (r.get("ttm") or {}).get("net_income"), ((EST.get(r["ticker"]) or {}).get("ref") or {}).get("pe")
+            if ni_ and ni_ > 0 and isinstance(rpe, (int, float)) and rpe > 0:
+                new_ = mk["price"] * sh_
+                if abs(math.log(new_ / ni_ / rpe)) >= abs(math.log(mk["mcap"] / ni_ / rpe)):
+                    continue
             mk["mcap"] = mk["price"] * sh_
             fixed.append(r["ticker"] + ":mcap")
     # foreign filers: per-share figures in the filings are per ordinary share and sometimes in the home currency;

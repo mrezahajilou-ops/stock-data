@@ -581,7 +581,9 @@ def holders(recs):
         for h in r.get('holdings') or []:
             if h.get('t') and h.get('pct'):
                 out.setdefault(h['t'], [h['name'], []])[1].append((f, h['pct']))
-    return {t: (n, sorted(L, key=lambda x: -x[1])) for t, (n, L) in out.items() if len(L) >= 2}
+    # ETF_MIN_HOLDERS: an edition short on room (Cloudflare's per-deploy file limit) can keep only the companies more funds hold
+    least = max(2, int(os.environ.get('ETF_MIN_HOLDERS', '2')))
+    return {t: (n, sorted(L, key=lambda x: -x[1])) for t, (n, L) in out.items() if len(L) >= least}
 
 
 def hold_url(p, t):

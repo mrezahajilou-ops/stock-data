@@ -80,6 +80,7 @@ def git_json(ref, path):
 # ---------------------------------------------------------------- html pieces
 CSS = '''<style>
 .rzg{line-height:2}
+.rzg bdi.rzb{display:inline!important;padding:0!important;margin:0!important;background:none!important;border:0!important;border-radius:0!important;gap:0!important;box-shadow:none!important}
 .rzg .upd{color:#8A8F99;font-size:.9em}
 .rzg .box{background:#15181F;border:1px solid #262B36;border-radius:12px;padding:14px 18px;margin:18px 0}
 .rzg .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0;border:1px solid #262B36;border-radius:12px}

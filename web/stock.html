@@ -947,6 +947,8 @@ function eGrow(a,b){return a!=null&&b!=null&&b>0?a/b-1:null}
    said in the company's own release, and what it means. Newest first; shown above the automatic summary when it exists. */
 var ERL=window.RZS_LANG||'fa';
 function erNote(n){var P=function(a){return (a||[]).map(function(p){return '<p class="ernp">'+esc(p)+'</p>'}).join('')};
+  var full=(n.results&&n.results.length)||(n.mgmt&&n.mgmt.length)||(n.view&&n.view.length);
+  if(!full)return '<h4 class="erh">'+esc(n.headline||'')+'</h4><p class="ernp">'+esc(n.takeaway||'')+'</p>'+(n.src?'<p class="xnote"><a href="'+esc(n.src)+'" target="_blank" rel="noopener nofollow">متن گزارش شرکت</a></p>':'');
   return '<h4 class="erh">'+esc(n.headline||'')+'</h4><p class="ernp">'+esc(n.takeaway||'')+'</p>'+
     '<details class="erd"><summary class="lnk">تحلیل کامل این گزارش ▾</summary>'+
     (n.results&&n.results.length?'<h5>نتایج گزارش</h5>'+P(n.results):'')+(n.mgmt&&n.mgmt.length?'<h5>مدیریت چه گفت</h5>'+P(n.mgmt):'')+
@@ -960,8 +962,8 @@ function loadMove(d){var box=$('rzs-mv');if(!box)return;var t=d.ticker;
     var P=function(a){return (a||[]).map(function(p){return '<p class="ernp">'+esc(p)+'</p>'}).join('')},up=m.pct>=0;
     box.innerHTML='<div class="axhead"><h3 style="margin:0">چه اتفاقی افتاد؟</h3><span class="mut2" style="font-size:13px">'+eD(m.d)+'</span></div>'+
       '<h4 class="erh"><bdi dir="ltr" class="'+(up?'up':'dn')+'">'+(up?'+':'')+m.pct.toFixed(1)+'%</bdi> · '+esc(m.headline)+'</h4><p class="ernp">'+esc(m.summary)+'</p>'+
-      '<details class="erd"><summary class="lnk">جزئیات بیشتر ▾</summary>'+P(m.why)+P(m.context)+
-      ((m.src||[]).length?'<p class="xnote">'+m.src.map(function(x){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener nofollow">'+esc(x.title)+'</a>'}).join(' · ')+'</p>':'')+'</details>';
+      ((m.why||[]).length?'<details class="erd"><summary class="lnk">جزئیات بیشتر ▾</summary>'+P(m.why)+P(m.context):'')+
+      ((m.src||[]).length?'<p class="xnote">'+m.src.map(function(x){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener nofollow">'+esc(x.title)+'</a>'}).join(' · ')+'</p>':'')+((m.why||[]).length?'</details>':'');
     box.style.display=''})}
 function loadEarn(d){var box=$('rzs-earn');if(!box)return;var t=d.ticker,vv='?v='+Math.floor(Date.now()/900000);
   Promise.all([fetch(XRAW+'/earnings/e/'+encodeURIComponent(t)+'.json?v='+Math.floor(Date.now()/3600000)).then(function(r){return r.ok?r.json():null}).catch(function(){return null}),

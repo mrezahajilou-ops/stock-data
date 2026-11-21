@@ -1,0 +1,306 @@
+{
+ "earn": {
+  "ALC": {
+   "d": "2026-11-10",
+   "headline": "Alcon: el BPA básico sube un 15%, pero las ventas de lentes para cataratas caen en EE. UU. por la competencia",
+   "takeaway": "Las ventas subieron un 5% hasta 2.700 millones de dólares y el BPA básico un 15% hasta 0,91 dólares, por encima de lo previsto. Las lentes implantables cayeron un 2% y Alcon acotó su previsión anual; la acción bajó un 3,6%."
+  },
+  "AMAT": {
+   "d": "2026-11-12",
+   "headline": "Applied Materials: ingresos +53% y beneficio casi duplicado, con otro trimestre récord previsto",
+   "takeaway": "Los ingresos alcanzaron un récord de 10.410 millones de dólares, un 53% más, y el BPA ajustado de 4,16 dólares superó los 4,05 esperados. Aun así, la acción cayó tras el informe: el mercado ya lo descontaba."
+  },
+  "B": {
+   "d": "2026-11-09",
+   "headline": "Barrick: el BPA ajustado sube un 41% con el oro caro, pero el coste por onza aumenta un 24%",
+   "takeaway": "El BPA ajustado subió un 41% hasta 0,82 dólares y los ingresos un 22%. La mina de Malí volvió a producir antes de lo previsto, pero el coste total por onza llegó a 1.911 dólares. Barrick devolvió 1.040 millones a sus accionistas."
+  },
+  "BABA": {
+   "d": "2026-11-19",
+   "headline": "Alibaba: la nube acelera al 53% y el beneficio se triplica, pero el gasto en IA hunde el flujo de caja libre",
+   "takeaway": "Los ingresos crecieron un 10% y el EBITA ajustado un 260% gracias a la nube y a menores pérdidas en entregas rápidas. El BPA quedó por debajo de lo previsto y una inversión de 50.500 millones de yuanes dejó el flujo de caja libre en -34.500 millones."
+  },
+  "BAP": {
+   "d": "2026-11-09",
+   "headline": "Credicorp: ROE cercano al 20% con préstamos +15%, y provisiones extra ante un El Niño «muy fuerte»",
+   "takeaway": "El beneficio neto subió un 11% hasta 1.930 millones de soles; los préstamos crecieron un 14,8% y el margen financiero un 17,7%. Las provisiones subieron un 37% por El Niño, pero la morosidad mejoró y la acción ganó un 5,7%."
+  },
+  "BN": {
+   "d": "2026-11-12",
+   "headline": "Brookfield: beneficio distribuible por acción +16% y 25.000 millones de capital nuevo",
+   "takeaway": "El beneficio distribuible por acción subió un 16% hasta 0,73 dólares y el beneficio neto atribuible pasó de 219 a 1.305 millones. La compañía ha recomprado casi 900 millones de dólares en acciones este año."
+  },
+  "CEG": {
+   "d": "2026-11-09",
+   "headline": "Constellation Energy: BPA un 30% por encima de lo previsto y contratos nucleares con Google y Amazon; la acción sube un 10%",
+   "takeaway": "El beneficio operativo ajustado por acción pasó de 3,04 a 5,06 dólares, unos 30% más de lo esperado. La empresa elevó su previsión anual y firmó contratos a 20 años con Google y Amazon."
+  },
+  "CSCO": {
+   "d": "2026-11-12",
+   "headline": "Cisco: el mayor crecimiento en 15 años, pero la acción cae un 5% por una guía más baja para el próximo trimestre",
+   "takeaway": "Los ingresos subieron un 24% hasta un récord de 18.500 millones y el BPA ajustado fue de 1,40 dólares. La previsión implica ingresos menores el próximo trimestre y la acción bajó un 5,1%."
+  },
+  "DIS": {
+   "d": "2026-11-17",
+   "headline": "Disney: BPA ajustado +59% ayudado por una semana extra; vuelve a prometer crecimiento de dos dígitos",
+   "takeaway": "Los ingresos subieron un 16% y el BPA ajustado fue de 1,77 dólares, por encima de lo previsto. Sin la semana adicional, el beneficio anual creció un 16% y la empresa prevé otra vez un aumento de dos dígitos."
+  },
+  "EC": {
+   "d": "2026-11-12",
+   "headline": "Ecopetrol: beneficio +86% por márgenes récord de refino y petróleo más caro, con Brava Energia incorporada",
+   "takeaway": "El beneficio neto subió un 86% hasta 4,8 billones de pesos y los ingresos un 18%. El margen de refino marcó un récord y el trimestre incluyó el primer mes de Brava Energia, de la que Ecopetrol compró el 51%."
+  },
+  "ESLT": {
+   "d": "2026-11-17",
+   "headline": "Elbit Systems: ingresos +17%, BPA +30% y cartera récord de 33.000 millones impulsada por Europa",
+   "takeaway": "Los ingresos subieron un 17% hasta 2.250 millones y el BPA fue de 4,36 dólares. Tres cuartas partes de la cartera son de clientes fuera de Israel y el flujo de caja fue muy fuerte; la acción subió un 5,9%."
+  },
+  "FERG": {
+   "d": "2026-11-09",
+   "headline": "Ferguson: ventas no residenciales +15% por centros de datos e infraestructura; guía al alza y la acción sube un 11%",
+   "takeaway": "Las ventas crecieron un 9,5% hasta 9.000 millones y el BPA ajustado fue de 3,43 dólares. Tras comprar FloWorks, Ferguson elevó su previsión de crecimiento anual a cerca del 7%."
+  },
+  "FNV": {
+   "d": "2026-11-11",
+   "headline": "Franco-Nevada: beneficio +33% con el oro a 4.250 dólares pese a un 6% menos de onzas",
+   "takeaway": "El BPA ajustado subió un 33% hasta 1,89 dólares y los ingresos un 13%. Las onzas vendidas quedaron por debajo de lo esperado y la acción bajó un 3%. Tiene 4.800 millones disponibles y ninguna deuda."
+  },
+  "HD": {
+   "d": "2026-11-17",
+   "headline": "Home Depot: ventas +4,9%, pero el crecimiento del beneficio anual se prevé en torno al 2%",
+   "takeaway": "Las ventas llegaron a 43.400 millones y el BPA ajustado fue de 3,86 dólares. La nueva previsión apunta a un crecimiento del beneficio de solo un 2% y la acción cayó un 2,5%."
+  },
+  "HMC": {
+   "d": "2026-11-10",
+   "headline": "Honda: beneficio semestral +66% gracias a las motos, pero el negocio de coches sigue en pérdidas",
+   "takeaway": "El beneficio operativo semestral subió un 48% y el neto un 66%. Las motos ganaron un margen del 19% y los coches perdieron dinero. La previsión anual de beneficio neto es inferior a lo ya ganado."
+  },
+  "INTU": {
+   "d": "2026-11-19",
+   "headline": "Intuit: beneficios mejores de lo previsto, pero la venta de Mailchimp y el ajuste de la guía de ingresos pesan",
+   "takeaway": "Los ingresos subieron un 12% hasta 4.400 millones y el BPA ajustado fue de 2,91 dólares, un 10% más de lo esperado. Intuit venderá Mailchimp y ajustó su previsión de ingresos."
+  },
+  "IX": {
+   "d": "2026-11-09",
+   "headline": "ORIX: el beneficio semestral se triplica por una ganancia contable de 796.000 millones de yenes en Kioxia",
+   "takeaway": "El beneficio neto semestral subió un 216% hasta 856.000 millones de yenes, casi todo por la participación indirecta en Kioxia a través de Toshiba. El beneficio operativo solo creció un 3,9%."
+  },
+  "JD": {
+   "d": "2026-11-17",
+   "headline": "JD.com: beneficio +58% al reducir las pérdidas en comida a domicilio, pero la acción cae un 8%",
+   "takeaway": "Los ingresos subieron un 3,5% y el BPA ajustado un 58%. JD cerró la compra de la alemana Ceconomy, pero el bajo crecimiento de las ventas decepcionó."
+  },
+  "KB": {
+   "d": "2026-11-16",
+   "headline": "KB Financial: beneficio a nueve meses +10% y recompras que reducen el número de acciones",
+   "takeaway": "El beneficio del trimestre subió un 4% y el de nueve meses un 10%. El BPA creció más rápido, un 9%, porque KB recompra y amortiza acciones. La acción subió un 3,8%."
+  },
+  "KEYS": {
+   "d": "2026-11-19",
+   "headline": "Keysight: ingresos +41% y pedidos +53% por la demanda de redes de IA, pero la acción cae un 7%",
+   "takeaway": "Los ingresos alcanzaron 1.990 millones y el BPA casi se duplicó hasta 3,61 dólares. Los pedidos superaron con creces los ingresos, pero los inversores recogieron beneficios tras una fuerte subida."
+  },
+  "KKR": {
+   "d": "2026-11-09",
+   "headline": "KKR: comisiones récord con +27% y una ganancia de 2.000 millones por la venta de USI",
+   "takeaway": "El BPA ajustado subió un 29% hasta 1,78 dólares. KKR espera que la venta de USI aporte más de 2 dólares por acción en el cuarto trimestre y amplió su recompra en 500 millones."
+  },
+  "LOW": {
+   "d": "2026-11-18",
+   "headline": "Lowe’s: el BPA de 3,10 dólares incluye 34 centavos de devoluciones de aranceles; sin ellas, el beneficio cayó",
+   "takeaway": "El BPA ajustado parecía superar lo previsto, pero 0,34 dólares vienen de devoluciones de aranceles. Sin ellas, fue de unos 2,76 dólares, frente a 3,06 un año antes."
+  },
+  "MFG": {
+   "d": "2026-11-13",
+   "headline": "Mizuho: beneficio semestral +30%; previsión anual +14% y dividendo de 200 yenes",
+   "takeaway": "El beneficio semestral llegó a 896.000 millones de yenes y la previsión anual pasó de 1,4 a 1,6 billones. El dividendo sube de 145 a 200 yenes; la acción ganó un 2,2%."
+  },
+  "MUFG": {
+   "d": "2026-11-13",
+   "headline": "Mitsubishi UFJ: beneficio semestral +26% por la subida de tipos en Japón; objetivo anual de 2,8 billones de yenes",
+   "takeaway": "El beneficio semestral alcanzó 1,63 billones de yenes y el margen de intereses subió un 29%. El banco elevó su objetivo anual y el dividendo a 100 yenes."
+  },
+  "NBIS": {
+   "d": "2026-11-12",
+   "headline": "Nebius: ingresos +571%, pero retrasos en centros de datos y un plan de inversión de 27.000 millones hunden la acción",
+   "takeaway": "Los ingresos llegaron a 981 millones y el EBITDA ajustado fue positivo. Pero los retrasos llevaron parte de los ingresos a 2027 y la inversión prevista para el próximo año es de 40.000 a 45.000 millones."
+  },
+  "NTES": {
+   "d": "2026-11-19",
+   "headline": "NetEase: ingresos de juegos -1,7% y BPA un 12% por debajo de lo previsto; la acción cae un 11%",
+   "takeaway": "Los ingresos bajaron un 1,8% hasta 27.900 millones de yuanes. Los márgenes mejoraron, pero no llegó ningún éxito nuevo. Su gran lanzamiento, Ananta, sale el 15 de enero."
+  },
+  "NU": {
+   "d": "2026-11-12",
+   "headline": "Nu Holdings: ingresos y beneficio +39% y Nubank México ya es banco; las provisiones suben un 71%",
+   "takeaway": "Los ingresos llegaron a 5.800 millones y el beneficio neto a 1.090 millones. Las provisiones crecieron más rápido, pero una menor tasa fiscal y las comisiones impulsaron el trimestre; la acción subió un 7%."
+  },
+  "NVDA": {
+   "d": "2026-11-17",
+   "headline": "Nvidia: ingresos duplicados hasta 115.800 millones, pero la acción cae porque se prevé un margen menor",
+   "takeaway": "Los ingresos subieron un 103% y el BPA ajustado de 2,68 dólares superó lo esperado en un 8%. La guía prevé unos 130.000 millones el próximo trimestre con un margen bruto más bajo; la acción bajó un 3,3%."
+  },
+  "OXY": {
+   "d": "2026-11-09",
+   "headline": "Occidental: BPA un 29% mejor de lo previsto y deuda reducida a 10.000 millones, con vía libre para más retornos",
+   "takeaway": "El BPA ajustado fue de 1,91 dólares frente a 1,48 esperados. Occidental ha amortizado 10.400 millones de deuda este año y generó 2.800 millones de flujo de caja libre."
+  },
+  "P": {
+   "d": "2026-11-18",
+   "headline": "Everpure (antes Pure Storage): ingresos +51% por la demanda de IA y tercera mejora de la guía anual",
+   "takeaway": "Los ingresos llegaron a 1.500 millones, las ventas de producto subieron un 77% y el BPA ajustado fue de 0,86 dólares. Además ganó un contrato de diseño con un segundo gran proveedor de nube."
+  },
+  "PANW": {
+   "d": "2026-11-18",
+   "headline": "Palo Alto Networks: ARR de nueva generación +66% y guía elevada de forma notable",
+   "takeaway": "Los ingresos crecieron un 39% hasta 3.440 millones, pero lo que impulsó la acción un 17% fue el ARR de nueva generación de 9.730 millones, un 66% más."
+  },
+  "PBR": {
+   "d": "2026-11-10",
+   "headline": "Petrobras: producción récord de 3,51 millones de barriles diarios y beneficio +22%, pero por debajo de lo esperado",
+   "takeaway": "El beneficio neto subió un 21,5% hasta 39.800 millones de reales, por debajo del consenso. Petrobras elevó sus previsiones de producción e inversión para 2026 y la acción bajó un 2,9%."
+  },
+  "PDD": {
+   "d": "2026-11-19",
+   "headline": "PDD: ingresos planos, pero el beneficio se mantiene en 31.000 millones de yuanes al recortar marketing; la acción sube un 11%",
+   "takeaway": "La publicidad creció un 12% y las comisiones de transacción cayeron un 12%. El BPA de 21,04 yuanes superó lo previsto porque el gasto en marketing bajó en 5.000 millones."
+  },
+  "RKLB": {
+   "d": "2026-11-09",
+   "headline": "Rocket Lab: ingresos récord de 268 millones y cartera +52%; la acción sube un 18%",
+   "takeaway": "Los ingresos crecieron un 73% y la cartera llegó a 3.570 millones en un trimestre, incluidos 515 millones para el cohete Neutron. La pérdida aumentó, pero el flujo de caja operativo fue positivo."
+  },
+  "ROIV": {
+   "d": "2026-11-09",
+   "headline": "Roivant: su primer fármaco vende 31 millones en cinco semanas y tres éxitos clínicos en un trimestre",
+   "takeaway": "Lisraya facturó 31 millones tras su aprobación para la dermatomiositis y la pérdida por acción fue mucho menor de lo previsto. Roivant tiene 4.200 millones en caja y la acción subió un 4,6%."
+  },
+  "ROST": {
+   "d": "2026-11-19",
+   "headline": "Ross Stores: ventas comparables +8% por más clientes y previsión anual al alza",
+   "takeaway": "Las ventas subieron un 12% hasta 6.300 millones y el BPA de 1,91 dólares superó la guía. La previsión anual subió, pero la acción bajó un 3% al día siguiente."
+  },
+  "SE": {
+   "d": "2026-11-10",
+   "headline": "Sea Limited: ingresos +43% y pedidos de Shopee +26%, pero marketing y provisiones limitan el beneficio",
+   "takeaway": "Los ingresos llegaron a 8.600 millones y el beneficio neto a 502 millones, pero el BPA quedó un 6% por debajo de lo previsto. El marketing subió un 64% y las provisiones un 82%; la acción cayó un 5%."
+  },
+  "SKYD": {
+   "d": "2026-11-09",
+   "headline": "Skydance: primer informe tras absorber Warner Bros. Discovery; Paramount+ crece un 21% y busca 6.000 millones en sinergias",
+   "takeaway": "Los ingresos de Paramount subieron un 5% hasta 7.000 millones y el BPA superó ampliamente lo previsto. La nueva empresa lanzará un paquete de HBO Max y Paramount+ a principios de 2027."
+  },
+  "SMFG": {
+   "d": "2026-11-13",
+   "headline": "Sumitomo Mitsui: beneficio semestral +7,5% y previsión anual récord de 1,9 billones de yenes",
+   "takeaway": "El beneficio semestral fue de un billón de yenes. Creció menos que sus rivales por pérdidas en bonos, pero la previsión anual implica un aumento del 20%; la acción subió un 1,5%."
+  },
+  "TDG": {
+   "d": "2026-11-10",
+   "headline": "TransDigm: ventas +23% con margen del 53%; la guía 2027 apunta a un BPA ajustado de unos 47,5 dólares",
+   "takeaway": "Las ventas llegaron a 3.000 millones con un crecimiento orgánico del 14%. El BPA ajustado subió un 15% hasta 12,44 dólares. Este año invirtió 4.400 millones en compras y 2.800 millones en recompras."
+  },
+  "TGT": {
+   "d": "2026-11-18",
+   "headline": "Target: tráfico +5% y ventas comparables +5,6%; el giro ya se ve en las cifras",
+   "takeaway": "Las ventas subieron un 7,1%, casi todo por más clientes. Incluso sin devoluciones de aranceles, el beneficio ajustado creció un 21% y Target elevó su previsión de ventas anual."
+  },
+  "TJX": {
+   "d": "2026-11-18",
+   "headline": "TJX: ventas comparables +4% y la acción sube un 8% por una mejor previsión navideña",
+   "takeaway": "Las ventas subieron un 6% hasta 16.000 millones. El BPA coincidió con lo previsto, pero todas las divisiones crecieron y el negocio internacional aceleró al 8%."
+  },
+  "TTWO": {
+   "d": "2026-11-09",
+   "headline": "Take-Two: las reservas caen antes de GTA VI, pero las preventas son «sin precedentes» a diez días del lanzamiento",
+   "takeaway": "Las reservas netas bajaron un 18% hasta 1.600 millones y la pérdida por acción fue de 0,29 dólares, menor de lo esperado. Take-Two mantuvo su previsión de 8.000 a 8.200 millones y la acción subió un 4,5%."
+  },
+  "VG": {
+   "d": "2026-11-10",
+   "headline": "Venture Global: ventas récord de GNL elevan el BPA a 0,96 dólares, casi el doble de lo previsto",
+   "takeaway": "Los ingresos subieron un 43% hasta 4.800 millones. Plaquemines entró en operación comercial el 31 de octubre, la guía de EBITDA subió un 14% y la acción ganó un 7%."
+  },
+  "VIK": {
+   "d": "2026-11-17",
+   "headline": "Viking: el bajo caudal de los ríos europeos reduce la ocupación, pero las reservas de 2027 van un 17% por delante",
+   "takeaway": "Los ingresos subieron un 9%, pero la ocupación bajó del 96% al 91,3% y el BPA de 1,11 dólares no alcanzó lo previsto. Los inversores se fijaron en las reservas del próximo año, con precios un 8% más altos."
+  },
+  "WMT": {
+   "d": "2026-11-19",
+   "headline": "Walmart: el beneficio crece tres veces más rápido que las ventas y la previsión anual vuelve a subir",
+   "takeaway": "Los ingresos subieron un 5,2% hasta 188.800 millones. El beneficio operativo creció un 16%, la publicidad un 25% y las suscripciones un 17%, y Walmart elevó su guía por segunda vez este año."
+  },
+  "WSM": {
+   "d": "2026-11-19",
+   "headline": "Williams-Sonoma: todas sus marcas crecen y el BPA ajustado sube un 12%, pero la acción se desploma un 15%",
+   "takeaway": "Las ventas comparables subieron un 5,1% y el BPA ajustado un 11,7% hasta 2,19 dólares. Pero la empresa solo mantuvo su previsión anual, lo que implica una temporada navideña más lenta, y la acción cayó un 15%."
+  }
+ },
+ "move": {
+  "INSM": {
+   "d": "2026-11-19",
+   "headline": "Insmed sube un 21% por un informe de que Sanofi estudia una oferta de compra",
+   "summary": "Las acciones de Insmed subieron un 20,6% después de que un informe dijera que Sanofi habla con asesores sobre una posible oferta. Ninguna de las dos empresas ha confirmado conversaciones."
+  },
+  "NTES": {
+   "d": "2026-11-19",
+   "headline": "NetEase cae un 11% tras bajar sus ingresos y quedar por debajo de lo previsto",
+   "summary": "Los ingresos del tercer trimestre bajaron un 1,8% y los de juegos un 1,7%, con un BPA un 12% inferior a lo esperado. Para una empresa valorada por su crecimiento estable, bastó para una caída de dos dígitos."
+  },
+  "PDD": {
+   "d": "2026-11-19",
+   "headline": "PDD sube un 11% porque el beneficio supera lo previsto aunque los ingresos no crecen",
+   "summary": "Los ingresos se mantuvieron planos, pero el beneficio fue un 12% superior a lo esperado porque la dueña de Temu recortó 5.000 millones de yuanes en marketing. Los inversores temían una caída del beneficio."
+  },
+  "SLS": {
+   "d": "2026-11-19",
+   "headline": "SELLAS cae otro 17% al vender 150 millones en acciones tras subir un 156%",
+   "summary": "La acción más que se duplicó el 17 de noviembre por el éxito de su vacuna contra el cáncer, y esa misma noche anunció una venta de acciones de 150 millones. Desde entonces baja mientras el mercado absorbe los nuevos títulos."
+  },
+  "SNEX": {
+   "d": "2026-11-19",
+   "headline": "StoneX se desploma un 27% por un beneficio muy inferior al previsto",
+   "summary": "El BPA del cuarto trimestre fiscal fue de 0,66 dólares frente a unos 0,92 esperados. Los ingresos crecieron un 12%, pero el beneficio neto cayó un 2% por el aumento de intereses y salarios."
+  },
+  "VVV": {
+   "d": "2026-11-19",
+   "headline": "Valvoline sube un 10% con ventas comparables +9,4% y otro año de crecimiento previsto",
+   "summary": "Las ventas del cuarto trimestre fiscal crecieron un 22% y las comparables un 9,4%, su vigésimo año seguido al alza. Prevé un crecimiento del 5% al 7% y hasta 220 tiendas nuevas."
+  },
+  "WSM": {
+   "d": "2026-11-19",
+   "headline": "Williams-Sonoma cae un 15% por un beneficio algo inferior y una guía sin cambios",
+   "summary": "Las ventas comparables subieron un 5,1%, pero el BPA ajustado quedó ligeramente por debajo de lo esperado, la mejora de márgenes vino de devoluciones puntuales de aranceles y la previsión anual no subió."
+  },
+  "AMD": {
+   "d": "2026-11-20",
+   "headline": "AMD cae un 13% en el desplome de los chips, con presión extra por seguridad y China",
+   "summary": "Las acciones de AMD bajaron un 13,3% en la venta generalizada de semiconductores. Los informes también señalaron dudas sobre la seguridad de su firmware y supuestos vínculos con empresas chinas sancionadas."
+  },
+  "AVGO": {
+   "d": "2026-11-20",
+   "headline": "Broadcom cae un 12% junto a los valores de redes y chips a medida para IA",
+   "summary": "Broadcom bajó un 12,2% junto a Marvell, Arista y Credo. No hubo noticias propias; la caída reflejó la venta generalizada de infraestructura de IA."
+  },
+  "INTU": {
+   "d": "2026-11-20",
+   "headline": "Intuit cae un 13% tras resultados por la guía ajustada con la venta de Mailchimp",
+   "summary": "La acción bajó un 12,8% el día después de unos resultados mejores de lo previsto en los que anunció la venta de Mailchimp y ajustó su previsión de ingresos, en una jornada de fuertes caídas tecnológicas."
+  },
+  "MU": {
+   "d": "2026-11-20",
+   "headline": "Micron cae un 14% con las memorias liderando el desplome de los semiconductores",
+   "summary": "Micron bajó un 13,9% junto a Sandisk, Western Digital y Seagate. Sin noticias propias, los inversores vendieron los valores que más ganaron con la escasez de memoria."
+  },
+  "NVDA": {
+   "d": "2026-11-20",
+   "headline": "Nvidia cae un 14% entre una investigación de la SEC y la crisis en su dirección",
+   "summary": "Nvidia bajó un 14% y lideró la caída de los chips, con el Nasdaq cediendo un 5,3%. La empresa afronta la dimisión de su fundador Jensen Huang, una investigación de la SEC y presión política por ventas a China."
+  },
+  "SNDK": {
+   "d": "2026-11-20",
+   "headline": "Sandisk cae un 16% en su primer día tras el desdoblamiento de acciones",
+   "summary": "Sandisk bajó un 16,1% en la primera sesión tras su desdoblamiento de 8 por 1, mientras la venta de valores de IA golpeaba con más fuerza a los fabricantes de memoria."
+  }
+ }
+}

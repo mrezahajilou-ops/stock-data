@@ -16,5 +16,12 @@
    "drop_d": "2026-11-16",
    "why": "Trip.com announces its September-quarter results on December 2, 2026; the November 16 filing only set the date"
   }
+ },
+ "EC": {
+  "Sep/2026": {
+   "act": 0.7,
+   "d": "2026-11-12",
+   "why": "Ecopetrol released third-quarter results on November 12, 2026: net income COP 4.76 trillion, about US$0.70 per ADS (20 shares) at COP 3,308/US$"
+  }
  }
 }

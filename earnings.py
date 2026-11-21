@@ -530,7 +530,7 @@ def main():
             fx = qs.get(x.get('q'))
             if not fx or fx.get('drop_d'):
                 continue
-            for k2 in ('act', 'ly', 'f'):
+            for k2 in ('act', 'ly', 'f', 'd'):
                 if fx.get(k2) is not None:
                     x[k2] = fx[k2]
             if x.get('act') is not None and x.get('f'):

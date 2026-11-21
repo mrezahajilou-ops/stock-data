@@ -489,6 +489,7 @@ def weighted(holdings, by_name, by_ticker):
     margin_n = margin_w = 0.0
     score_n = score_w = 0.0
     profitable_w = 0.0
+    loss_w = 0.0
     for t, w in matched:
         d = stock(t)
         if not d:
@@ -501,6 +502,8 @@ def weighted(holdings, by_name, by_ticker):
             num_pe += w
             den_pe += w / pe
             profitable_w += w
+        elif ((d.get('ttm') or {}).get('net_income') or 0) < 0 or (l.get('net_income') or 0) < 0:
+            loss_w += w   # a loss-maker owns its weight of the price and none of the earnings
         if ps and ps > 0:
             num_ps += w
             den_ps += w / ps
@@ -520,7 +523,8 @@ def weighted(holdings, by_name, by_ticker):
         covered_pct=round(cov, 2),
         covered_n=len([1 for h in holdings if h.get('t')]),
         holdings_n=len(holdings),
-        pe=f(num_pe, den_pe, 2),
+        # the fund's price over its holdings' combined earnings; not shown when loss-makers are most of it (biotech)
+        pe=f(num_pe + loss_w, den_pe, 2) if profitable_w >= loss_w else None,
         ps=f(num_ps, den_ps, 2),
         revenue_growth=f(growth_n, growth_w),
         net_margin=f(margin_n, margin_w),

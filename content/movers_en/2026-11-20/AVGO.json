@@ -1,0 +1,27 @@
+{
+ "t": "AVGO",
+ "d": "2026-11-20",
+ "pct": -12.19,
+ "close": 304.41,
+ "prev": 346.65,
+ "kind": "sector",
+ "headline": "Broadcom falls 12% as AI networking and custom-chip stocks join the sell-off",
+ "summary": "Broadcom shares fell 12.2% to $304.41 in the semiconductor rout, along with Marvell, Arista and Credo. There was no company-specific news; the decline reflected the sector-wide sell-off in AI infrastructure stocks.",
+ "why": [
+  "Broadcom makes the custom AI accelerators used by Google, Meta and others and much of the networking silicon inside AI data centres, which made it one of the market’s favourite AI stocks this year. On November 20 those same companies — Broadcom, Marvell, Arista Networks and Credo — fell between 11% and 15% as investors sold anything tied to AI data-centre spending.",
+  "Broadcom had benefited earlier in the month when investors rotated away from Nvidia after its chief executive’s resignation, but the selling on November 20 made no distinction between the leaders and their rivals."
+ ],
+ "context": [
+  "On November 20 the Nasdaq Composite fell 5.3% and the S&P 500 3.7%, pushing the S&P 500 and the Dow into correction territory and wiping out the Nasdaq’s gain for 2026. Semiconductors led the fall, capping their worst week since 2001."
+ ],
+ "src": [
+  {
+   "title": "Dow, S&P 500 enter correction as Nasdaq plunges in AI stock sell-off (UPI)",
+   "url": "https://www.upi.com/Top_News/US/2026/11/20/stocks-dow-jones-nasdaq-correction-territory/1061795214998/"
+  },
+  {
+   "title": "Chips suffer worst week since 2001 as the Nasdaq nears a bear market (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/article/chips-are-crashing-like-its-2008-as-the-nasdaq-100-nears-a-bear-market-192805534.html"
+  }
+ ]
+}

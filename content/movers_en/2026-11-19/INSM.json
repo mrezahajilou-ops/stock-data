@@ -1,0 +1,23 @@
+{
+ "t": "INSM",
+ "d": "2026-11-19",
+ "pct": 20.58,
+ "close": 144.46,
+ "prev": 119.8,
+ "kind": "news",
+ "headline": "Insmed jumps 21% on a report that Sanofi is weighing a takeover bid",
+ "summary": "Insmed shares rose 20.6% after a report said Sanofi has been speaking with advisers about a possible bid for the lung-disease drugmaker. The move was sharp enough to trigger a volatility trading halt; neither company has confirmed talks.",
+ "why": [
+  "A report circulating on November 19 said Sanofi has been working with advisers while it weighs a possible offer for Insmed. Traders immediately priced in part of a takeover premium, and the stock rose so quickly that trading was briefly halted for volatility. No offer has been made public, and neither company has commented.",
+  "Insmed is an attractive target for a large drugmaker because it already sells two lung-disease drugs: Arikayce for refractory MAC lung infections and Brinsupri, the first approved treatment for non-cystic fibrosis bronchiectasis, launched in the US in 2025 and approved in Europe a few months later. Brinsupri is expected by many analysts to become a multi-billion-dollar product, and big pharmaceutical companies facing patent expiries are paying high prices for late-stage and newly launched respiratory and immunology drugs."
+ ],
+ "context": [
+  "Before the report Insmed shares had fallen more than a third this year despite a strong third quarter, when revenue beat estimates and the company raised its sales guidance for both drugs. Takeover speculation can reverse quickly if no bid materialises, so the stock now carries deal risk in both directions."
+ ],
+ "src": [
+  {
+   "title": "Insmed gains after takeover report (Quiver Quantitative)",
+   "url": "https://www.quiverquant.com/news/Insmed+gains+after+takeover+report+adds+to+momentum+from+strong+recent+execution"
+  }
+ ]
+}

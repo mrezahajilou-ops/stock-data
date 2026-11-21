@@ -427,7 +427,7 @@ def index_page(idx, recs, p):
     body = ('<article class="sa-list sa-etf"><h1>%s</h1><p class="sub">%s %s</p>'
             '<p class="lead">%s</p><p class="etfintro clip">%s</p><button type="button" class="etfmore" hidden data-more="%s" data-less="%s">%s</button>'
             '%s%s<p class="dis">%s</p>%s</article>'
-            % (e(p.L('h1')), e(p.L('sub')), ltr(TODAY.strftime('%Y-%m'), p), e(p.L('lead')), e(p.L('intro')),
+            % (e(p.L('h1')), e(p.L('sub')), ltr(p.fdate(TODAY.strftime('%Y-%m')), p), e(p.L('lead')), e(p.L('intro')),
                e(p.L('more')), e(p.L('less')), e(p.L('more')),
                ranking(rows, p), box, e(p.L('dis')), assets(p)))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [

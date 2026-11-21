@@ -454,7 +454,10 @@ PAIRS = [('VOO', 'QQQ'), ('VOO', 'VTI'), ('SPY', 'VOO'), ('VOO', 'IVV'), ('SPY',
          ('SGOV', 'BIL'), ('HYG', 'JNK'), ('VIG', 'SCHD'), ('DGRO', 'VIG'), ('IWM', 'VB'), ('XBI', 'IBB'),
          ('MTUM', 'QUAL'), ('USMV', 'QUAL'), ('EEM', 'VWO'), ('MCHI', 'FXI'), ('VOO', 'VUG'), ('ARKK', 'QQQ'),
          ('XLE', 'XOP'), ('GDX', 'GLD'), ('SLV', 'GLD'), ('ACWI', 'VT'), ('IXUS', 'VXUS'), ('SCHF', 'VEA'),
-         ('VCIT', 'LQD'), ('VCSH', 'BSV'), ('MUB', 'VTEB'), ('SHY', 'SGOV'), ('TIP', 'IEF'), ('XLU', 'XLP')]
+         ('VCIT', 'LQD'), ('VCSH', 'BSV'), ('MUB', 'VTEB'), ('SHY', 'SGOV'), ('TIP', 'IEF'), ('XLU', 'XLP'),
+         ('QQQ', 'QQQM'), ('QQQ', 'TQQQ'), ('SMH', 'SOXL'), ('VIG', 'NOBL'), ('SCHD', 'HDV'), ('SCHD', 'DVY'),
+         ('JEPI', 'DIVO'), ('JEPQ', 'QYLD'), ('VBR', 'AVUV'), ('TLT', 'VGLT'), ('XLE', 'VDE'), ('XLF', 'VFH'),
+         ('VUG', 'SPYG'), ('VTV', 'SPYV'), ('IGV', 'VGT'), ('SHY', 'VGSH'), ('TIP', 'SCHP'), ('IJH', 'MDY'), ('IWM', 'IWN')]
 
 
 def _overlap(a, b):

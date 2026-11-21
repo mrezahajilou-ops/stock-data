@@ -124,3 +124,10 @@ UI.update({
     'h_stock': 'Read our full analysis of %(name)s ›',
     'h_note': 'From each fund’s own published holdings; only the largest positions of each fund are checked, so smaller holdings across the %(N)s funds are not listed.',
 })
+
+# ---- funds 101-150 (Nov 2026)
+UI['focus_labels'].update({'software': 'Software', 'leveraged': 'Leveraged (3x daily)', 'uranium': 'Uranium', 'copper miners': 'Copper miners', 'lithium and batteries': 'Lithium & batteries', 'solar': 'Solar', 'infrastructure': 'Infrastructure', 'robotics and AI': 'Robotics & AI', 'airlines': 'Airlines', 'China internet': 'China internet', 'homebuilders': 'Homebuilders', 'metals and mining': 'Metals & mining', 'Germany': 'Germany', 'Taiwan': 'Taiwan', 'South Korea': 'South Korea', 'United Kingdom': 'United Kingdom', 'emerging market bonds': 'Emerging-market bonds'})
+_G = UI['groups']
+_G[4][1].extend(['Germany', 'United Kingdom', 'Taiwan', 'South Korea'])
+_G[5][1].extend(['software', 'robotics and AI', 'infrastructure', 'homebuilders', 'metals and mining', 'copper miners', 'uranium', 'lithium and batteries', 'solar', 'airlines', 'China internet', 'leveraged'])
+_G[6][1].append('emerging market bonds')

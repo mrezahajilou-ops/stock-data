@@ -539,3 +539,24 @@ UCITS.update({'A UCITS 0-5 year USD corporate bond ETF': 'un ETF UCITS de bonos 
  'The tax exemption only benefits US taxpayers.': 'La exención fiscal solo beneficia a quien tributa en EE. UU.',
  'UCITS rules do not permit a single-commodity fund.': 'Las normas UCITS no permiten un fondo de una sola materia prima.',
  'iShares and others list one in Europe.': 'iShares y otras gestoras cotizan uno en Europa.'})
+
+# ---- comparaciones y "qué ETF tienen"
+UI.update({
+    'c_title': '%(a)s vs %(b)s: ¿qué ETF es mejor? Rentabilidad, PER y solapamiento',
+    'c_h1': '%(a)s vs %(b)s', 'c_crumb': '%(a)s vs %(b)s',
+    'c_sub': 'Rentabilidad, valoración de lo que tienen y cuánto se solapan, uno al lado del otro.',
+    'c_what': 'Qué es cada uno', 'c_side': 'Cara a cara', 'c_says': 'Lo que dicen los números',
+    'c_shared': 'Las mayores posiciones que comparten', 'c_issuer': 'Gestora', 'c_index': 'Índice',
+    'c_with': 'Comparar %(t)s con',
+    'v_ret': '%(w)s rentó más en el último año: %(x)s frente a %(y)s.',
+    'v_pe': '%(w)s tiene empresas más baratas según nuestro PER: %(x)s frente a %(y)s.',
+    'v_ov': 'El %(ov)s de %(a)s, por peso de sus mayores posiciones, está en empresas que también tiene %(b)s, así que tener los dos diversifica menos de lo que parece.',
+    'v_noov': '%(a)s y %(b)s no comparten ninguna de sus mayores posiciones, así que cumplen funciones distintas en una cartera.',
+    'hold_slug': 'que-etf-tienen-%s',
+    'h_title': '¿Qué ETF tienen %(name)s (%(t)s)? Pesos y rentabilidad',
+    'h_h1': '¿Qué ETF tienen acciones de %(name)s?',
+    'h_lead': '%(n)s de los %(N)s ETF que cubrimos tienen %(name)s entre sus mayores posiciones.',
+    'h_top': 'El mayor peso está en %(f)s, donde %(name)s es el %(w)s del fondo.',
+    'h_stock': 'Lee nuestro análisis completo de %(name)s ›',
+    'h_note': 'Según la cartera publicada por cada fondo; solo se revisan las mayores posiciones de cada uno, así que no aparecen las pequeñas.',
+})

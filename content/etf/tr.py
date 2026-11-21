@@ -481,3 +481,24 @@ UCITS.update({'A UCITS 0-5 year USD corporate bond ETF': '0-5 yıl vadeli dolar 
  'The tax exemption only benefits US taxpayers.': 'Vergi muafiyeti yalnızca ABD’de vergi ödeyenlere yarıyor.',
  'UCITS rules do not permit a single-commodity fund.': 'UCITS kuralları tek emtialı fona izin vermiyor.',
  'iShares and others list one in Europe.': 'iShares ve diğerleri Avrupa’da listeliyor.'})
+
+# ---- karşılaştırmalar ve "hangi ETF’ler tutuyor"
+UI.update({
+    'c_title': '%(a)s mı %(b)s mi? Getiri, F/K ve örtüşme karşılaştırması',
+    'c_h1': '%(a)s ile %(b)s karşılaştırması', 'c_crumb': '%(a)s – %(b)s',
+    'c_sub': 'Getiri, tuttukları şirketlerin değerlemesi ve ne kadar örtüştükleri yan yana.',
+    'c_what': 'Her biri nedir', 'c_side': 'Yan yana', 'c_says': 'Rakamlar ne diyor',
+    'c_shared': 'Ortak en büyük pozisyonlar', 'c_issuer': 'Fon şirketi', 'c_index': 'Endeks',
+    'c_with': '%(t)s ile karşılaştır',
+    'v_ret': '%(w)s son bir yılda daha çok kazandırdı: %(x)s, karşısında %(y)s.',
+    'v_pe': '%(w)s bizim F/K ölçümüze göre daha ucuz şirketler tutuyor: %(x)s, karşısında %(y)s.',
+    'v_ov': '%(a)s fonunun en büyük pozisyonlarının ağırlıkça %(ov)s kadarı %(b)s fonunda da var; ikisini birden tutmak sanıldığı kadar çeşitlendirmiyor.',
+    'v_noov': '%(a)s ile %(b)s en büyük pozisyonlarının hiçbirini paylaşmıyor; portföyde farklı işler görüyorlar.',
+    'hold_slug': '%s-hangi-etflerde',
+    'h_title': '%(name)s (%(t)s) hangi ETF’lerde var? Ağırlıklar ve getiri',
+    'h_h1': '%(name)s hangi ETF’lerde var?',
+    'h_lead': 'İzlediğimiz %(N)s ETF’nin %(n)s tanesi %(name)s hissesini en büyük pozisyonları arasında tutuyor.',
+    'h_top': 'En yüksek ağırlık %(f)s fonunda: %(name)s fonun %(w)s kadarı.',
+    'h_stock': '%(name)s için tam analizimizi okuyun ›',
+    'h_note': 'Her fonun yayımladığı portföyden; yalnızca en büyük pozisyonlar kontrol edildiği için küçük pozisyonlar listede yok.',
+})

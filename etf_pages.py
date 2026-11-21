@@ -445,6 +445,152 @@ def index_page(idx, recs, p):
     return dict(url=p.u(), title=p.L('i_title')[:62], desc=p.L('i_desc')[:300], html=body, ld=ld)
 
 
+# ---------------------------------------------------------------- comparisons and "which ETFs hold X"
+# Pairs people search for ("VOO vs QQQ"), plus each fund against its closest peers of the same type.
+PAIRS = [('VOO', 'QQQ'), ('VOO', 'VTI'), ('SPY', 'VOO'), ('VOO', 'IVV'), ('SPY', 'QQQ'), ('SCHD', 'VYM'),
+         ('SCHD', 'JEPI'), ('JEPI', 'JEPQ'), ('QQQ', 'VGT'), ('VGT', 'XLK'), ('SMH', 'SOXX'), ('VTI', 'VT'),
+         ('VXUS', 'VEA'), ('VWO', 'IEMG'), ('BND', 'AGG'), ('GLD', 'IAU'), ('GLD', 'GLDM'), ('IBIT', 'FBTC'),
+         ('VUG', 'VTV'), ('QQQ', 'SCHG'), ('VOO', 'SCHD'), ('VTI', 'SCHB'), ('RSP', 'VOO'), ('TLT', 'IEF'),
+         ('SGOV', 'BIL'), ('HYG', 'JNK'), ('VIG', 'SCHD'), ('DGRO', 'VIG'), ('IWM', 'VB'), ('XBI', 'IBB'),
+         ('MTUM', 'QUAL'), ('USMV', 'QUAL'), ('EEM', 'VWO'), ('MCHI', 'FXI'), ('VOO', 'VUG'), ('ARKK', 'QQQ'),
+         ('XLE', 'XOP'), ('GDX', 'GLD'), ('SLV', 'GLD'), ('ACWI', 'VT'), ('IXUS', 'VXUS'), ('SCHF', 'VEA'),
+         ('VCIT', 'LQD'), ('VCSH', 'BSV'), ('MUB', 'VTEB'), ('SHY', 'SGOV'), ('TIP', 'IEF'), ('XLU', 'XLP')]
+
+
+def _overlap(a, b):
+    """Share of a's weight (top holdings) in companies b also holds, and the shared names."""
+    ha = {h['t']: h for h in a.get('holdings') or [] if h.get('t')}
+    hb = {h['t']: h for h in b.get('holdings') or [] if h.get('t')}
+    common = [t for t in ha if t in hb]
+    ov = sum(min(ha[t]['pct'], hb[t]['pct']) for t in common)
+    common.sort(key=lambda t: -min(ha[t]['pct'], hb[t]['pct']))
+    return ov, [(ha[t]['name'], t, ha[t]['pct'], hb[t]['pct']) for t in common]
+
+
+def pairs(recs):
+    out, seen = [], set()
+    def add(a, b):
+        if a in recs and b in recs and a != b and frozenset((a, b)) not in seen:
+            seen.add(frozenset((a, b))); out.append((a, b))
+    for a, b in PAIRS:
+        add(a, b)
+    by = {}
+    for t, r in recs.items():
+        by.setdefault(r.get('focus'), []).append(t)
+    for f, ts in by.items():
+        for i, a in enumerate(ts):
+            for b in ts[i + 1:i + 3]:
+                add(a, b)
+    return out
+
+
+def cmp_slug(a, b):
+    return '%s-vs-%s' % (a.lower(), b.lower())
+
+
+def compare_page(a, b, recs, p):
+    A, B = recs[a], recs[b]
+    ra, rb = A.get('returns') or {}, B.get('returns') or {}
+    wa, wb = A.get('weighted') or {}, B.get('weighted') or {}
+    focus = p.ui.get('focus_labels') or {}
+    ia = (p.text.get(a) or (A.get('idea'), ''))[0]
+    ib = (p.text.get(b) or (B.get('idea'), ''))[0]
+    rows = [(p.L('c_issuer'), ltr(A.get('issuer') or '', p), ltr(B.get('issuer') or '', p)),
+            (p.L('c_index'), ltr(A.get('index') or '', p), ltr(B.get('index') or '', p)),
+            (p.L('type'), e(focus.get(A.get('focus'), A.get('focus') or '')), e(focus.get(B.get('focus'), B.get('focus') or ''))),
+            (p.L('price'), '$' + _num(A.get('price'), 2), '$' + _num(B.get('price'), 2))]
+    for k in ('ytd', 'y1', 'y3', 'y5'):
+        rows.append((p.L(k), sret(ra.get(k), p), sret(rb.get(k), p)))
+    rows.append((p.L('pe'), _num(wa.get('pe'), 1) if wa.get('pe') and not wa.get('thin') else '—',
+                 _num(wb.get('pe'), 1) if wb.get('pe') and not wb.get('thin') else '—'))
+    rows.append((p.L('holdings'), _num(wa.get('holdings_n'), 0), _num(wb.get('holdings_n'), 0)))
+    tbl = ('<div class="tw"><table class="hold cmpt"><thead><tr><th></th><th><a href="%s">%s</a></th><th><a href="%s">%s</a></th></tr></thead><tbody>%s</tbody></table></div>'
+           % (p.u(a), ltr(a, p), p.u(b), ltr(b, p),
+              ''.join('<tr><td class="hn">%s</td><td>%s</td><td>%s</td></tr>' % (e(k), x, y) for k, x, y in rows)))
+    # what the numbers say, in sentences
+    say = []
+    y1a, y1b = ra.get('y1'), rb.get('y1')
+    if y1a is not None and y1b is not None and abs(y1a - y1b) > 0.005:
+        w, x, y = (a, y1a, y1b) if y1a > y1b else (b, y1b, y1a)
+        say.append(p.L('v_ret', w=w, x=_pct(x, 1), y=_pct(y, 1)))
+    pa = wa.get('pe') if not (wa.get('thin') or wa.get('not_equity')) else None
+    pb = wb.get('pe') if not (wb.get('thin') or wb.get('not_equity')) else None
+    if pa and pb and abs(pa / pb - 1) > 0.05:
+        w, x, y = (a, pa, pb) if pa < pb else (b, pb, pa)
+        say.append(p.L('v_pe', w=w, x=_num(x, 1), y=_num(y, 1)))
+    ov, common = _overlap(A, B)
+    if A.get('holdings') and B.get('holdings'):
+        say.append(p.L('v_ov', a=a, b=b, ov=_pct(ov / 100, 0)) if ov >= 1 else p.L('v_noov', a=a, b=b))
+    shared = ''
+    if common:
+        shared = ('<h3>%s</h3><div class="tw"><table class="hold"><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'
+                  % (e(p.L('c_shared')), e(p.L('company')), ltr(a, p), ltr(b, p),
+                     ''.join('<tr><td class="hn"><a href="%s">%s</a> <span class="tk2">%s</span></td><td>%s</td><td>%s</td></tr>'
+                             % (p.stock_url(t), ltr(n, p), ltr(t, p), _pct(x / 100, 2), _pct(y / 100, 2)) for n, t, x, y in common[:10])))
+    head = ('<nav class="crumbs"><a href="/">%s</a> › <a href="%s">%s</a> › %s</nav><h1>%s</h1><p class="sub">%s</p>'
+            % (e(p.L('home')), p.u(), e(p.L('etfs')), e(p.L('c_crumb', a=a, b=b)), e(p.L('c_h1', a=a, b=b)), e(p.L('c_sub'))))
+    ideas = ('<section class="card"><h2>%s</h2><p><b><a href="%s">%s</a></b> — %s</p><p><b><a href="%s">%s</a></b> — %s</p></section>'
+             % (e(p.L('c_what')), p.u(a), ltr(a, p), e(p.iso(ia or '')), p.u(b), ltr(b, p), e(p.iso(ib or ''))))
+    body = ('<article class="sa-list sa-etf">%s%s<section class="card"><h2>%s</h2>%s%s</section>'
+            '<section class="card"><h2>%s</h2>%s%s</section><p class="dis">%s</p>%s</article>'
+            % (head, ideas, e(p.L('c_side')), tbl, '<p class="note">%s</p>' % e(p.L('note_ret')),
+               e(p.L('c_says')), ''.join('<p>%s</p>' % e(x) for x in say), shared, e(p.L('dis')), assets(p)))
+    url = p.u(cmp_slug(a, b))
+    ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
+        {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()},
+        {'@type': 'ListItem', 'position': 3, 'name': p.L('c_crumb', a=a, b=b), 'item': p.site + url}]}]
+    return dict(url=url, title=p.L('c_title', a=a, b=b)[:62], desc=(' '.join(say) or p.L('c_sub'))[:300], html=body, ld=ld)
+
+
+def holders(recs):
+    """ticker -> (name, [(fund, weight)]) for companies among the published top holdings of 2+ funds."""
+    out = {}
+    for f, r in recs.items():
+        for h in r.get('holdings') or []:
+            if h.get('t') and h.get('pct'):
+                out.setdefault(h['t'], [h['name'], []])[1].append((f, h['pct']))
+    return {t: (n, sorted(L, key=lambda x: -x[1])) for t, (n, L) in out.items() if len(L) >= 2}
+
+
+def hold_url(p, t):
+    return p.u(p.L('hold_slug') % t.lower())
+
+
+def holders_page(t, name, rows, recs, p):
+    focus = p.ui.get('focus_labels') or {}
+    trs = ''.join('<tr><td class="hn"><a href="%s">%s</a> <span class="tk2">%s</span></td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                  % (p.u(f), ltr(recs[f]['name'], p), ltr(f, p), e(focus.get(recs[f].get('focus'), recs[f].get('focus') or '')),
+                     _pct(w / 100, 2), sret((recs[f].get('returns') or {}).get('y1'), p)) for f, w in rows)
+    n_all = len(recs)
+    head = ('<nav class="crumbs"><a href="/">%s</a> › <a href="%s">%s</a> › %s</nav><h1>%s</h1><p class="sub">%s</p>'
+            % (e(p.L('home')), p.u(), e(p.L('etfs')), ltr(t, p), e(p.L('h_h1', name=name, t=t)),
+               e(p.L('h_lead', n=len(rows), N=n_all, name=name))))
+    top = rows[0]
+    say = p.L('h_top', f=top[0], w=_pct(top[1] / 100, 1), name=name)
+    body = ('<article class="sa-list sa-etf">%s<section class="card"><p>%s</p><p><a href="%s"><strong>%s</strong></a></p></section>'
+            '<style>@media(max-width:620px){table.hold th:nth-child(4),table.hold td:nth-child(4){display:none}}</style><section class="card"><div class="tw"><table class="hold"><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'
+            '<p class="note">%s</p></section><p class="dis">%s</p>%s</article>'
+            % (head, e(say), p.stock_url(t), e(p.L('h_stock', name=name)), e(p.L('fundcol')), e(p.L('type')), e(p.L('weight')),
+               e(p.L('y1')), trs, e(p.L('h_note', N=n_all)), e(p.L('dis')), assets(p)))
+    url = hold_url(p, t)
+    ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
+        {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()},
+        {'@type': 'ListItem', 'position': 3, 'name': p.L('h_h1', name=name, t=t), 'item': p.site + url}]}]
+    return dict(url=url, title=p.L('h_title', name=name, t=t)[:62],
+                desc=(p.L('h_lead', n=len(rows), N=n_all, name=name) + ' ' + say)[:300], html=body, ld=ld)
+
+
+def related_links(t, prs, p):
+    """'Compare with' links for a fund's own page."""
+    ls = [(b if a == t else a) for a, b in prs if t in (a, b)][:6]
+    if not ls:
+        return ''
+    return ('<section class="card"><h2>%s</h2><p class="cmpl">%s</p></section>'
+            % (e(p.L('c_with', t=t)), ' · '.join('<a href="%s">%s</a>' % (p.u(cmp_slug(*((t, o) if (t, o) in prs else (o, t)))), e(p.L('c_crumb', a=t, b=o))) for o in ls)))
+
+
 def load(sd):
     d = os.path.join(sd, 'data', 'etfs')
     try:
@@ -466,8 +612,24 @@ def build(sd, p, sector_labels=None):
         return []
     spy = recs.get('SPY') or recs.get('VOO')
     pages = [index_page(idx, recs, p)]
+    prs = pairs(recs) if 'c_title' in p.ui else []
     for row in idx.get('etfs') or []:
         rec = recs.get(row['t'])
         if rec:
-            pages.append(detail(sd, rec, spy, p, sector_labels))
+            d = detail(sd, rec, spy, p, sector_labels)
+            if prs:
+                d['html'] = d['html'].replace('<p class="dis">', related_links(row['t'], prs, p) + '<p class="dis">', 1)
+            pages.append(d)
+    for a, b in prs:
+        pages.append(compare_page(a, b, recs, p))
+    if 'h_title' in p.ui:
+        try:   # our own company names, not the fund filings' upper-case legal names
+            names = {r['t']: r.get('n') for r in json.load(open(os.path.join(sd, 'data', 'index.json')))}
+        except Exception:
+            names = {}
+        local = getattr(p, 'stock_name', None)   # an edition may name companies in its own language
+        for t, (name, rows) in sorted(holders(recs).items()):
+            nm = local(t) if local else (names.get(t) or name)
+            if nm:          # no local name -> no page (the Arabic site only covers companies it profiles)
+                pages.append(holders_page(t, nm, rows, recs, p))
     return pages

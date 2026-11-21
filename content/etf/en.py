@@ -103,3 +103,24 @@ _G[2][1].append('US covered call')
 _G[4][1].extend(['Japan', 'China', 'India', 'Brazil'])
 _G[5][1].extend(['consumer discretionary', 'consumer staples', 'utilities', 'materials', 'communication services', 'biotech', 'aerospace and defense', 'banks', 'gold miners', 'oil and gas', 'cybersecurity', 'clean energy', 'innovation'])
 _G[6][1].extend(['US treasury bonds', 'US corporate bonds', 'high yield bonds', 'municipal bonds', 'silver', 'ether'])
+
+# ---- comparison and "which ETFs hold" pages
+UI.update({
+    'c_title': '%(a)s vs %(b)s: Which ETF Is Better? Returns, P/E, Overlap',
+    'c_h1': '%(a)s vs %(b)s', 'c_crumb': '%(a)s vs %(b)s',
+    'c_sub': 'Returns, valuation, cost of what they hold and how much they overlap, side by side.',
+    'c_what': 'What each one is', 'c_side': 'Side by side', 'c_says': 'What the numbers say',
+    'c_shared': 'Biggest holdings they share', 'c_issuer': 'Manager', 'c_index': 'Index',
+    'c_with': 'Compare %(t)s with',
+    'v_ret': '%(w)s returned more over the past year: %(x)s against %(y)s.',
+    'v_pe': '%(w)s holds cheaper companies on our price/earnings measure: %(x)s against %(y)s.',
+    'v_ov': '%(ov)s of %(a)s, by weight of its biggest holdings, is in companies %(b)s also owns, so owning both adds less diversification than it seems.',
+    'v_noov': '%(a)s and %(b)s share none of their biggest holdings, so they do different jobs in a portfolio.',
+    'hold_slug': 'which-etfs-hold-%s',
+    'h_title': 'Which ETFs Hold %(name)s (%(t)s)? Weights and Returns',
+    'h_h1': 'Which ETFs hold %(name)s?',
+    'h_lead': '%(n)s of the %(N)s ETFs we cover hold %(name)s among their biggest positions.',
+    'h_top': 'The biggest weight is in %(f)s, where %(name)s makes up %(w)s of the fund.',
+    'h_stock': 'Read our full analysis of %(name)s ›',
+    'h_note': 'From each fund’s own published holdings; only the largest positions of each fund are checked, so smaller holdings across the %(N)s funds are not listed.',
+})

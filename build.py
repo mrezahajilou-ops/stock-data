@@ -1842,7 +1842,7 @@ def score(rec, mk, sector_pe):
     if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10 \
             and not t.get("rolled_from"):
         pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
-        if pe_ni and not 0.5 < pe / pe_ni < 2:
+        if pe_ni and not 0.2 < pe / pe_ni < 5:
             # the independent EPS can itself be on the wrong share basis right after a split (Sandisk 8:1 gave a
             # P/E of 0.09); market value / net income needs no per-share figure at all, so it decides
             pe = pe_ni
@@ -2119,7 +2119,8 @@ def finish(recs, market):
     # post-split (Sandisk 8:1: $79 a share but a $967B market value); our own restated share count fixes it
     for r in recs:
         mk = market.get(r["ticker"]) or {}
-        if not (r.get("share_factor") and mk.get("mcap") and mk.get("price")) or r["share_factor"] in (1000, 1e6):
+        if r.get("foreign") or not (r.get("share_factor") and mk.get("mcap") and mk.get("price")) or r["share_factor"] in (1000, 1e6):
+            # ADRs: the filing counts ordinary shares, the price is per receipt - never compare the two
             continue
         sh_ = (r.get("bs") or {}).get("shares_out") or r["annual"][-1].get("shares_out") or r["annual"][-1].get("shares_diluted")
         if sh_ and not 1 / 3 < (mk["mcap"] / mk["price"]) / sh_ < 3:

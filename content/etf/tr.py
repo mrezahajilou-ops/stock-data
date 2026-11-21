@@ -119,8 +119,8 @@ T = {
          'ABD’nin en eski ETF’si ve modern bir fon değil, bir unit investment trust olarak kurulu. '
          'Bu da menkul kıymet ödünç veremediği ve temettüleri ödemeler arasında yeniden yatıramadığı '
          'anlamına geliyor. Uzun vadeli yatırımcıya her yıl VOO ve IVV karşısında biraz pahalıya mal '
-         'oluyor. Karşılığında eşsiz bir likiditesi ve opsiyon piyasası var; trader’ların bunu '
-         'kullanmasının, uzun vadeli yatırımcının genelde kullanmaması gerekmesinin sebebi bu.'),
+         'oluyor. Karşılığında eşsiz bir likiditesi ve opsiyon piyasası var; bu yüzden kısa vadeli '
+         'işlem yapanlar SPY’yi seçerken uzun vadeli yatırımcı için VOO ya da IVV genelde daha mantıklı.'),
  'VTI': ('ABD’nin yatırım yapılabilir tüm halka açık şirketleri, tek bir pozisyonda.',
          'En büyüklerden küçüklere binlerce şirketi piyasa değerine göre tutuyor. Pratikte bir S&P '
          '500 fonuyla neredeyse aynı davranıyor, çünkü onu farklı kılan küçük şirketler toplamda '

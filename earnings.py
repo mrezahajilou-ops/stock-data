@@ -10,7 +10,7 @@ Keeps ./earnings (published to the branch "earnings"):
 Sources: Nasdaq earnings calendar (EPS), Nasdaq daily chart (reaction), SEC companyfacts (revenue).
 Only companies covered on the site with a market cap of at least $1B.
 """
-import json, os, sys, time, datetime as dt, urllib.request, urllib.error, gzip, concurrent.futures as cf
+import glob, json, os, sys, time, datetime as dt, urllib.request, urllib.error, gzip, concurrent.futures as cf
 
 ROOT = os.environ.get('GITHUB_WORKSPACE', os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'earnings')
@@ -331,6 +331,53 @@ def main():
         nya += 1
     print('calendar days read: %d, companies updated: %d (yahoo fallback: %d of %d pending)' % (len(want), len(touched), nya, len(pending)))
 
+    # 1b) quarters the calendar run missed. 94 of the 500 largest companies had no record for the Jan-Feb 2026
+    # reports (the job was not running every day then), so a stock page jumped from October to April. Nasdaq's
+    # per-company earnings-surprise table has the last four reports; a missing one is added from it.
+    def surprise_rows(t):
+        b = get('https://api.nasdaq.com/api/company/%s/earnings-surprise' % t.replace('.', '%2E'), NHDR, tries=2)
+        try:
+            return (((json.loads(b).get('data') or {}).get('earningsSurpriseTable') or {}).get('rows')) or []
+        except Exception:
+            return []
+
+    def has_gap(e):
+        ds = sorted((x['d'] for x in e['q'] if x.get('d')), reverse=True)[:6]
+        return any((dt.date.fromisoformat(a2) - dt.date.fromisoformat(b2)).days > 135 for a2, b2 in zip(ds, ds[1:]))
+
+    try:
+        mcap = {}
+        for f in glob.glob(os.path.join(STOCKS, '*.json')):
+            try:
+                mcap[os.path.basename(f)[:-5]] = (json.load(open(f)).get('market') or {}).get('mcap') or 0
+            except Exception:
+                pass
+        gap_t = [t for t in sorted(db, key=lambda t: -mcap.get(t, 0))[:int(os.environ.get('GAP_TOP') or 1500)] if has_gap(db[t])]
+    except Exception as ex:
+        print('gap check failed:', ex)
+        gap_t = []
+    nadd = 0
+    for t in gap_t[:int(os.environ.get('GAP_PER_RUN') or 250)]:
+        e = db[t]
+        have = {x.get('q') for x in e['q']}
+        for r in surprise_rows(t):
+            qq = (r.get('fiscalQtrEnd') or '').replace(' ', '/')
+            act = num(r.get('eps'))
+            try:
+                mo, da, yr = (r.get('dateReported') or '').split('/')
+                d0 = '%04d-%02d-%02d' % (int(yr), int(mo), int(da))
+            except Exception:
+                continue
+            if not qq or qq in have or act is None:
+                continue
+            f = num(r.get('consensusForecast'))
+            e['q'].append({'d': d0, 'tm': 'na', 'q': qq, 'act': act, 'f': f,
+                           'sur': round((act - f) / abs(f) * 100, 2) if f else None, 'ly': None, 'src': 'nasdaq-surprise'})
+            have.add(qq)
+            nadd += 1
+        time.sleep(0.35)
+    print('missing quarters added from the earnings-surprise table: %d (companies with a gap: %d)' % (nadd, len(gap_t)))
+
     # 2) price reaction + revenue for records that miss them (recent ones keep trying for 75 days)
     # time of day from the SEC: once a report is out Nasdaq no longer says whether it came before the open or after the
     # close, and without that the reaction would have to span two trading days. The moment the SEC accepted the company's
@@ -464,6 +511,26 @@ def main():
                 prev = by.get('%s/%d' % (mon, int(yr) - 1)) if yr.isdigit() else None
                 if prev and prev.get('act') is not None and (x.get('eb') != 'adj' or prev.get('eb') == 'adj' or x.get('ly') is None):
                     x['ly'] = prev['act']
+    # corrections checked by hand against the company's own release (data/earnings_fix.json): they win over every feed.
+    # {"WSM": {"Oct/2026": {"act": 2.19, "why": "..."}}} - 'act' and 'ly' are EPS, the surprise is worked out again
+    try:
+        fixes = json.load(open(os.path.join(os.path.dirname(STOCKS), 'earnings_fix.json')))
+    except Exception:
+        fixes = {}
+    nfx = 0
+    for t, qs in fixes.items():
+        for x in (db.get(t) or {}).get('q') or []:
+            fx = qs.get(x.get('q'))
+            if not fx:
+                continue
+            for k2 in ('act', 'ly', 'f'):
+                if fx.get(k2) is not None:
+                    x[k2] = fx[k2]
+            if x.get('act') is not None and x.get('f'):
+                x['sur'] = round((x['act'] - x['f']) / abs(x['f']) * 100, 2)
+            x['fix'] = fx.get('why', 1)
+            nfx += 1
+    print('hand-checked corrections applied:', nfx)
     n = 0
     for t, e in db.items():
         e['q'] = sorted(e['q'], key=lambda x: x['d'], reverse=True)[:KEEP]

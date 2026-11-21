@@ -1,4 +1,20 @@
 {
-  "WSM": {"Oct/2026": {"act": 2.19, "why": "Company's adjusted EPS from its release; the $2.38 GAAP figure includes tariff refunds"}},
-  "INTU": {"Oct/2026": {"ly": 1.87, "why": "Year-ago non-GAAP EPS as restated by Intuit in this release (Mailchimp moved to discontinued operations)"}}
+ "WSM": {
+  "Oct/2026": {
+   "act": 2.19,
+   "why": "Company's adjusted EPS from its release; the $2.38 GAAP figure includes tariff refunds"
+  }
+ },
+ "INTU": {
+  "Oct/2026": {
+   "ly": 1.87,
+   "why": "Year-ago non-GAAP EPS as restated by Intuit in this release (Mailchimp moved to discontinued operations)"
+  }
+ },
+ "TCOM": {
+  "Sep/2026": {
+   "drop_d": "2026-11-16",
+   "why": "Trip.com announces its September-quarter results on December 2, 2026; the November 16 filing only set the date"
+  }
+ }
 }

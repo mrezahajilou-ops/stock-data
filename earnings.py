@@ -519,9 +519,16 @@ def main():
         fixes = {}
     nfx = 0
     for t, qs in fixes.items():
-        for x in (db.get(t) or {}).get('q') or []:
+        # {"drop_d": "2026-11-16"}: a report that did not happen on that date (a feed booked the quarter before the
+        # company published it); only that dated row goes, so the real report replaces it when it comes
+        rows = (db.get(t) or {}).get('q') or []
+        keep = [x for x in rows if not ((qs.get(x.get('q')) or {}).get('drop_d') == x.get('d'))]
+        if len(keep) != len(rows):
+            db[t]['q'] = keep
+            nfx += len(rows) - len(keep)
+        for x in keep:
             fx = qs.get(x.get('q'))
-            if not fx:
+            if not fx or fx.get('drop_d'):
                 continue
             for k2 in ('act', 'ly', 'f'):
                 if fx.get(k2) is not None:

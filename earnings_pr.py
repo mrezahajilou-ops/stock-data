@@ -90,6 +90,10 @@ def text_of(raw):
     return s.strip()
 
 
+NOTICE = re.compile(r'(?i)(date of (?:the )?(?:audit committee|board) meeting|announcement date of|will announce the results|enters into agreement to acquire)')
+RESULTS = re.compile(r'(?i)(net income|net loss|earnings per share|net revenues?|total revenues?|operating income|profit attributable)[^.]{0,80}(?:\d|increase|decrease|was|were|of)')
+
+
 def release(cik, day):
     """(form, filed, url, text) for the earnings release filed around `day`, or None."""
     b = get('https://data.sec.gov/submissions/CIK%010d.json' % cik)
@@ -139,6 +143,10 @@ def release(cik, day):
                 continue
             txt = text_of(raw)
             if len(txt) < 1500 or not re.search(r'(?i)(revenue|net income|earnings|quarter)', txt):
+                continue
+            # notices that only set the results date (Trip.com, 2026-11-16) or announce a deal (Petrobras' Logum
+            # purchase) are not the release: they mention "quarter" or "earnings" but carry no results
+            if NOTICE.search(txt[:4000]) or not RESULTS.search(txt):
                 continue
             cover = 'Check the appropriate box' in txt[:6000] or 'CURRENT REPORT' in txt[:1500]
             if not cover:

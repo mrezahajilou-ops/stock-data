@@ -1765,7 +1765,7 @@ def fill_from_press(rec):
 DIVY_MAX = 0.25  # above this a yield must be confirmed by a second, independent source
 
 
-def div_yield(ref_y, dps, price, div_t, mcap):
+def div_yield(ref_y, dps, price, div_t, mcap, foreign=False):
     """Dividend yield with a cross-check.
     Sources: Yahoo forward yield (current rate / price, reflects raises and cuts), trailing dividends
     per share / price, and trailing dividends paid / market cap. A single source is trusted up to 25%;
@@ -1778,6 +1778,11 @@ def div_yield(ref_y, dps, price, div_t, mcap):
     others = [v for v in (tr, paid) if v is not None]
     def agrees(v, pool):
         return any(o > 0 and 0.6 <= v / o <= 1.4 for o in pool)
+    # ADRs: Yahoo's yield often counts one payment or the ordinary-share rate (HSBC 2.2% against 4.5% paid). When the
+    # two filing-based measures agree with each other and Yahoo's is far below both, the filings win. (Not the other way:
+    # scrip dividends and Brazilian interest on capital leave the filed cash dividends too low - Ferrovial, Vivo.)
+    if foreign and fwd and tr and paid and 0.8 <= tr / paid <= 1.25 and fwd < 0.6 * min(tr, paid) and max(tr, paid) <= DIVY_MAX:
+        return (tr + paid) / 2
     for v, pool in ((fwd, others), (tr, [x for x in (fwd, paid) if x is not None]), (paid, [x for x in (fwd, tr) if x is not None])):
         if v is None:
             continue
@@ -1906,7 +1911,7 @@ def score(rec, mk, sector_pe):
     parts = [x for x in (value, future, past, health, capital) if x is not None]
     total = round(sum(parts) / len(parts), 1) if parts else None
     div_t = t.get("dividends") if t.get("dividends") is not None else last.get("dividends")
-    divy = div_yield(ref.get("divy"), t.get("dps"), price, div_t, mcap)
+    divy = div_yield(ref.get("divy"), t.get("dps"), price, div_t, mcap, bool(rec.get("foreign")))
     buyback_y = (last.get("buybacks") or 0) / mcap if mcap else None
     checks = {"value": [int(bool(c)) for c in v_checks] if v_checks else None,
               "future": [int(bool(c)) for c in f_checks], "past": [int(bool(c)) for c in p_checks],

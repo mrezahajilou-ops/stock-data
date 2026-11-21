@@ -24,6 +24,8 @@ function mark(box) {
 function show(html, isIndex) {
   var box = $('rzf-main'); box.innerHTML = html;
   if (isIndex) mark(box);
+  if (window.ETFM) window.ETFM(box);                                   // ranking, fund finder, holdings toggle
+  if (window.QK) window.QK(box.querySelector('nav.qkb'));              // the four-key bar on a fund page
   [].forEach.call(box.querySelectorAll('[data-back]'), function (b) { b.onclick = function () { location.hash = '#etf/' } });
 }
 function go() {

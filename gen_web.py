@@ -310,6 +310,12 @@ CAL_JS = r"""
 var CAL=null,F='all',WD=['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
 var TM={pre:'قبل از بازار',after:'بعد از بازار',na:'—'};
 function eps(v){return v==null?'—':'<span class="num">$'+v.toFixed(2)+'</span>'}
+/* written analysis of a report (data/earnings_notes/<lang>/index.json, or the site's own index with page addresses):
+   the row gets a link to it once it exists */
+var NOTES={};
+function noteLink(t,d){var n=NOTES[t];if(!n||!n.d||Math.abs(new Date(n.d)-new Date(d))>4*864e5)return '';
+  return ' <a href="'+esc(n.url||('/pages/stock#'+t))+'" style="display:inline-block;font-size:12px;font-weight:700;color:var(--lime);border:1px solid var(--lime);border-radius:999px;padding:1px 8px;margin-inline-start:4px;white-space:nowrap;text-decoration:none">تحلیل گزارش</a>'}
+fetch(window.RZS_NOTES_INDEX||(RAW+'/main/data/earnings_notes/'+(window.RZS_LANG||'fa')+'/index.json?v='+Math.floor(Date.now()/900000))).then(function(r){return r.ok?r.json():null}).then(function(j){if(j){NOTES=j;if(CAL)draw()}}).catch(function(){});
 function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقویم هنوز آماده نیست؛ کمی بعد دوباره سر بزن.</div>';return}
   var W=wlGet(),today=new Date().toISOString().slice(0,10),ds0=Object.keys(CAL.days).sort(),h='',any=0;
   /* upcoming first (today at the top), then the recent results newest-first, so nobody has to scroll past a week of history */
@@ -318,7 +324,7 @@ function draw(){if(!CAL){$('rze-main').innerHTML='<div class="card empty">تقو
     if(d<today&&!pastHead){pastHead=1;h+='<h2 style="font-size:19px;margin:26px 0 10px;color:var(--mut);font-weight:500">نتیجه‌ی گزارش‌های اخیر</h2>'}var rows=CAL.days[d].filter(function(e){return F==='big'?e.mcap>=1e10:F==='watch'?W.indexOf(e.t)>=0:true});if(!rows.length)return;any=1;
     var dt=new Date(d+'T12:00:00Z'),past=d<today||rows.some(function(e){return e.act!=null}),lbl=WD[dt.getUTCDay()]+' '+dt.toLocaleDateString('fa-IR-u-ca-gregory',{day:'numeric',month:'long',timeZone:'UTC'});
     h+='<div class="card"'+(d===today?' style="border-color:var(--lime)"':'')+(past?' data-past="1"':'')+'><h3>'+lbl+(d===today?' · امروز':'')+' <span class="mut" style="font-size:13px;font-weight:600">('+rows.length+' شرکت)</span></h3><div class="tw"><table><thead><tr><th style="text-align:right">شرکت</th><th>زمان</th><th>ارزش بازار</th><th>'+(past?'EPS واقعی':'پیش‌بینی EPS')+'</th><th>'+(past?'پیش‌بینی':'EPS سال قبل')+'</th>'+(past?'<th>غافلگیری</th>':'')+'<th>امتیاز ما</th><th></th></tr></thead><tbody>'+
-      rows.slice(0,60).map(function(e){var inW=W.indexOf(e.t)>=0;return '<tr><td><a class="tk" href="/pages/stock#'+esc(e.t)+'">'+esc(e.t)+'</a> <bdi dir="ltr" class="mut" style="font-size:12.5px">'+esc(e.n).slice(0,34)+'</bdi></td><td>'+TM[e.time]+'</td><td class="num">'+big(e.mcap)+'</td>'+
+      rows.slice(0,60).map(function(e){var inW=W.indexOf(e.t)>=0;return '<tr><td><a class="tk" href="/pages/stock#'+esc(e.t)+'">'+esc(e.t)+'</a> <bdi dir="ltr" class="mut" style="font-size:12.5px">'+esc(e.n).slice(0,34)+'</bdi>'+noteLink(e.t,d)+'</td><td>'+TM[e.time]+'</td><td class="num">'+big(e.mcap)+'</td>'+
         (past?'<td>'+eps(e.act)+'</td><td>'+eps(e.f)+'</td><td class="num '+((e.sur||0)>=0?'up':'dn')+'">'+(e.sur==null?'—':(e.sur>=0?'+':'')+e.sur.toFixed(1)+'%')+'</td>':'<td>'+eps(e.f)+'</td><td>'+eps(e.ly)+'</td>')+
         '<td style="text-align:center">'+sc(e.s)+'</td><td><button class="btn '+(inW?'':'ghost ')+'sm" data-w="'+esc(e.t)+'">'+(inW?'⭐':'☆')+'</button></td></tr>'}).join('')+'</tbody></table></div>'+(rows.length>60?'<div class="note">'+(rows.length-60)+' شرکت کوچک‌تر دیگه هم گزارش میدن.</div>':'')+'</div>'});
   $('rze-main').innerHTML=any?h:'<div class="card empty">'+(F==='watch'?'هیچ‌کدوم از سهم‌های واچ‌لیستت در این بازه گزارش نمیدن.':'موردی نیست.')+'</div>';
@@ -344,7 +350,10 @@ def etf_page():
     sp = _iu.spec_from_file_location('etf_lang_fa', os.path.join(ROOT, 'content', 'etf', 'fa.py'))
     lang = _iu.module_from_spec(sp); sp.loader.exec_module(lang)
     css = CSS + open(os.path.join(src, 'etf.css'), encoding='utf-8').read()
+    # the ranking / fund finder / phone layout (etfm.*) and the quick-keys bar (qk.*), shared with the other editions
+    css += open(os.path.join(src, 'etfm.css'), encoding='utf-8').read() + open(os.path.join(src, 'qk.css'), encoding='utf-8').read()
     js = 'var NAMES=' + _json.dumps(lang.NAMES, ensure_ascii=False) + ';\n' + open(os.path.join(src, 'etf.js'), encoding='utf-8').read()
+    js = open(os.path.join(src, 'qk.js'), encoding='utf-8').read() + open(os.path.join(src, 'etfm.js'), encoding='utf-8').read() + js
     return ('<div id="rzf" dir="rtl">\n<style>%s</style>\n%s\n'
             '<div id="rzf-main"><div class="card empty">در حال بارگذاری…</div></div>\n'
             '<script>\n(function(){\n%s\n%s\n})();\n</script>\n</div>\n') % (css.replace('#ID', '#rzf'), nav('etf'), JS, js)

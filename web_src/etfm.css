@@ -1,0 +1,98 @@
+/* ETF pages: return ranking, fund finder (search + sort), phone layout. Shared by all five editions:
+   etf_pages.py puts it on the page with "#ID " removed; the Persian shell (gen_web.py) adds it with
+   "#ID " = "#rzf " so it outranks that section's own stylesheet. */
+#ID .sa-etf{--em-up:var(--up,var(--green,#4FBF7F));--em-dn:var(--red,#E07070);--em-gold:var(--gold,#C9A961);--em-line:var(--line,#262A33);--em-mut:var(--mut,var(--muted,#8A8F99));--em-ink:var(--ink,var(--text,#E8EAED));--em-row:#11141A}
+
+/* ---- return ranking ---- */
+#ID .sa-etf .erk-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+#ID .sa-etf .erk-h h2{margin:0}
+#ID .sa-etf .erk-p,#ID .sa-etf .etfsort{display:inline-flex;gap:4px;background:var(--em-row);border:1px solid var(--em-line);border-radius:12px;padding:3px}
+#ID .sa-etf .erk-p button,#ID .sa-etf .etfsort button{font:inherit;font-size:13.5px;font-weight:650;color:var(--em-mut);background:transparent;border:0;border-radius:9px;padding:8px 12px;cursor:pointer;white-space:nowrap;line-height:1.2}
+#ID .sa-etf .erk-p button.on,#ID .sa-etf .etfsort button.on{background:rgba(201,169,97,.16);color:var(--em-gold)}
+#ID .sa-etf ol.erk-l{list-style:none;margin:6px 0 0;padding:0;counter-reset:none}
+#ID .sa-etf ol.erk-l li{margin:0;padding:0;border-bottom:1px solid var(--em-line)}
+#ID .sa-etf ol.erk-l li:last-child{border-bottom:0}
+#ID .sa-etf ol.erk-l a{display:grid;grid-template-columns:28px minmax(0,1.1fr) minmax(70px,1.6fr) 74px;align-items:center;gap:12px;padding:10px 4px;color:inherit;text-decoration:none;border-radius:8px}
+#ID .sa-etf ol.erk-l a:hover{background:rgba(255,255,255,.03)}
+#ID .sa-etf .erk-n{color:var(--em-mut);font-size:13px;font-weight:700;text-align:center}
+#ID .sa-etf .erk-t{min-width:0;display:flex;flex-direction:column;line-height:1.25}
+#ID .sa-etf .erk-t b{color:var(--em-gold);font-size:16px}
+#ID .sa-etf .erk-t small{color:var(--em-mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ID .sa-etf .erk-b{height:12px;border-radius:99px;background:var(--em-row);overflow:hidden}
+#ID .sa-etf .erk-b i{display:block;height:100%;border-radius:99px;background:var(--em-up);transition:width .35s}
+#ID .sa-etf .erk-b i.n{background:var(--em-dn)}
+#ID .sa-etf ol.erk-l em{font-style:normal;font-size:16px;font-weight:800;text-align:end;font-variant-numeric:tabular-nums}
+#ID .sa-etf ol.erk-l.cut li:nth-child(n+11){display:none}
+#ID .sa-etf .erk-more,#ID .sa-etf .hold-more,#ID .sa-etf .etfmore{display:block;width:100%;margin:10px 0 0;font:inherit;font-size:14.5px;font-weight:700;color:var(--em-gold);
+  background:rgba(201,169,97,.08);border:1px solid rgba(201,169,97,.35);border-radius:12px;padding:12px;cursor:pointer}
+#ID .sa-etf .etfmore{display:inline-block;width:auto;padding:6px 14px;font-size:13.5px;margin:0 0 12px}
+
+/* ---- fund finder ---- */
+#ID .sa-etf .etfbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 6px}
+#ID .sa-etf .etfq-w{position:relative;flex:1 1 260px;min-width:0}
+#ID .sa-etf .etfq-w svg{position:absolute;inset-inline-start:13px;top:50%;width:18px;height:18px;margin-top:-9px;stroke:var(--em-mut);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none}
+#ID .sa-etf input.etfq{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:12px 14px;padding-inline-start:40px;border-radius:12px;border:1px solid var(--em-line);background:#0C0E12;color:var(--em-ink);outline:none}
+#ID .sa-etf input.etfq:focus{border-color:var(--em-gold)}
+#ID .sa-etf input.etfq::-webkit-search-cancel-button{filter:grayscale(1)}
+#ID .sa-etf .etfcnt{color:var(--em-mut);font-size:13px;white-space:nowrap}
+#ID .sa-etf .etfnone{margin:14px 4px;color:var(--em-mut)}
+#ID .sa-etf .etftbl tr[hidden]{display:none!important}
+
+/* ---- fund page ---- */
+#ID .sa-etf table.hold.cut tr.hx{display:none}
+#ID .sa-etf figure.etfline{margin:14px 0 6px}
+#ID .sa-etf .etfline svg{width:100%;height:auto;display:block}
+#ID .sa-etf .etfline .mob{display:none}
+#ID .sa-etf .etfintro.clip{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---- phones ---- */
+@media(max-width:700px){
+  #ID .sa-etf h1{font-size:24px;line-height:1.25}
+  #ID .sa-etf .card{padding:14px}
+  #ID .sa-etf ol.erk-l a{grid-template-columns:22px minmax(0,1fr) 76px;grid-template-rows:auto auto;gap:3px 10px;padding:11px 2px}
+  #ID .sa-etf .erk-n{grid-row:1/3}
+  #ID .sa-etf .erk-t{grid-column:2}
+  #ID .sa-etf .erk-b{grid-column:2/4;grid-row:2;height:8px}
+  #ID .sa-etf ol.erk-l em{grid-column:3;grid-row:1;font-size:17px}
+  #ID .sa-etf .erk-h{align-items:flex-start}
+  #ID .sa-etf .erk-p{width:100%}
+  #ID .sa-etf .erk-p button{flex:1}
+  #ID .sa-etf .etfbar{position:sticky;top:0;z-index:5;background:var(--card,var(--panel,#151821));margin:-4px -4px 6px;padding:6px 4px 8px}
+  #ID .sa-etf .etfsort{width:100%;overflow-x:auto;scrollbar-width:none}
+  #ID .sa-etf .etfsort::-webkit-scrollbar{display:none}
+  #ID .sa-etf .etfsort button{flex:1 0 auto;padding:8px 10px;font-size:13px}
+  #ID .sa-etf .etfcnt{order:3}
+  /* the fund table becomes one card per fund: name and type on the left, the year's return large on the right */
+  #ID .sa-etf .etfbox .tw{border:0!important;margin:0!important;overflow:visible!important}
+  #ID .sa-etf .etftbl,#ID .sa-etf .etftbl tbody{display:block!important;width:100%!important}
+  #ID .sa-etf .etftbl thead{display:none!important}
+  #ID .sa-etf .etftbl tr{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:12px 4px;border-bottom:1px solid var(--em-line)}
+  #ID .sa-etf .etftbl td{display:block!important;padding:0!important;border:0!important;white-space:normal!important;text-align:start!important;width:auto!important;font-size:13px}
+  #ID .sa-etf .etftbl td.nm{grid-column:1;grid-row:1}
+  #ID .sa-etf .etftbl td.nm a{display:flex;flex-direction:column;line-height:1.3}
+  #ID .sa-etf .etftbl td.nm b{font-size:16px}
+  #ID .sa-etf .etftbl td.nm span{font-size:13.5px;color:var(--em-ink);white-space:normal!important;overflow:visible!important;text-overflow:clip!important;max-width:none!important;display:block!important}
+  #ID .sa-etf .etftbl td.nm i{display:none}
+  #ID .sa-etf .etftbl td.nm bdi,#ID .sa-etf .erk-t bdi{white-space:normal!important;overflow:visible!important;max-width:none!important}
+  #ID .sa-etf .etftbl td.ty{grid-column:1;grid-row:2;color:var(--em-mut);font-size:12.5px}
+  #ID .sa-etf .etftbl td.y1{grid-column:2;grid-row:1;text-align:end!important;font-size:18px;font-weight:800;align-self:start}
+  #ID .sa-etf .etftbl td.cg{grid-column:2;grid-row:2;text-align:end!important;color:var(--em-mut)}
+  #ID .sa-etf .etftbl td.ho{grid-column:1;grid-row:3;color:var(--em-mut);font-size:12.5px;margin-top:3px}
+  #ID .sa-etf .etftbl td.pe{grid-column:2;grid-row:3;color:var(--em-mut);font-size:12.5px;margin-top:3px;text-align:end!important}
+  #ID .sa-etf .etftbl td.pa{display:none!important}
+  #ID .sa-etf .etftbl td[data-l]::before{content:attr(data-l) " ";color:var(--em-mut);font-weight:400;font-size:12px}
+  #ID .sa-etf .etftbl td.y1::before{display:block;font-size:11.5px;font-weight:500}
+  /* fund page */
+  #ID .sa-etf .etfline .dsk{display:none}
+  #ID .sa-etf .etfline .mob{display:block}
+  #ID .sa-etf .etfline .mob .yl,#ID .sa-etf .etfline .mob .xl{font-size:13px}
+  #ID .sa-etf table.ctry,#ID .sa-etf table.ctry tbody,#ID .sa-etf table.ctry tr{display:block!important;width:auto!important}
+  #ID .sa-etf table.ctry tr{display:grid!important;grid-template-columns:1fr auto;gap:2px 10px;padding:11px 12px;border-bottom:1px solid var(--em-line)}
+  #ID .sa-etf table.ctry th,#ID .sa-etf table.ctry td{display:block!important;width:auto!important;padding:0!important;border:0!important;white-space:normal!important;text-align:start!important}
+  #ID .sa-etf table.ctry th{grid-column:1;grid-row:1;font-size:14.5px;background:none!important;position:static!important;color:var(--em-ink)}
+  #ID .sa-etf table.ctry td:nth-of-type(1){grid-column:2;grid-row:1;font-size:13px;text-align:end!important}
+  #ID .sa-etf table.ctry td:nth-of-type(2){grid-column:1/-1;grid-row:2;color:var(--em-mut);font-size:13.5px;line-height:1.6;margin-top:3px}
+  #ID .sa-etf table.hold td{padding:8px 10px!important}
+  #ID .sa-etf table.hold .hw i{width:48px!important}
+  #ID .sa-etf .kv{grid-template-columns:1fr 1fr!important}
+}

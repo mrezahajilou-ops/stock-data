@@ -46,6 +46,8 @@ def main():
     p = pages.Pack(lang='fa', ui=lang.UI, text=lang.T, ucits=lang.UCITS, base='#etf/',
                    stock_url=lambda t: '/pages/stock#%s' % t.upper(),
                    site='https://sahamanaliz.com', rtl=True, iso=pages.make_iso(), fdate=fdate)
+    p.inline_assets = False      # the shell (gen_web.etf_page) already carries the styles and scripts these pages use
+    p.qk_idx = 'https://cdn.jsdelivr.net/gh/mrezahajilou-ops/stock-data@main/data/index.json'   # stock list for the bar's search
     os.makedirs(OUT, exist_ok=True)
     keep = set()
     for pg in pages.build(SD, p, SECTORS):

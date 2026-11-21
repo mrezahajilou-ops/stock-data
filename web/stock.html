@@ -413,6 +413,9 @@
 #rzs.has-t>.card:first-of-type{padding:10px 12px;margin-bottom:10px}
 @media(max-width:640px){#rzs.has-t #rzs-pop,#rzs.has-t .quota{display:none}#rzs.has-t>.nav{margin-bottom:8px}}
 /* FOCUS:END */
+/* a narrow super-investors card (phones, or the half-width card) drops the firm name so the 'latest action' column fits */
+#rzs-si{container-type:inline-size}
+@container (max-width:440px){#rzs-si .sif{display:none}}
 </style>
 
 <div class="acctbar"><a class="qk qhome" href="/">🏠 صفحه اصلی</a><a class="qk qcont" href="/pages/contest-portfolio">🏆 مسابقه</a><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a class="on" href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/etf">صندوق‌های ETF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
@@ -512,10 +515,19 @@ function liveWhen(iso){
 }
 function liveLabel(t){var Q=liveQ(t);if(!Q)return '';var w=Q[3]||RZQ.as_of;return (liveFresh(Q)?'قیمت لحظه‌ای':/T16:0\d/.test(w)?'قیمت پایانی':(RZQ_ST[RZQ.status]||'آخرین قیمت'))+' · '+liveWhen(w)}
 function liveScale(old,f){return old==null||!isFinite(old)?old:old*f}
+/* true when the quote was taken before the closing price the page already has (same day before 16:00 New York, or an
+   earlier day): NVDA showed a 10:21 a.m. quote of $139.35 over the $125.53 close of the same day */
+function liveStale(iso,closeDay){
+  if(!iso||!closeDay)return false;
+  try{var p={};new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso)).forEach(function(x){p[x.type]=x.value});
+    var day=p.year+'-'+p.month+'-'+p.day, hm=(+p.hour)*60+(+p.minute);
+    return day<closeDay||(day===closeDay&&hm<16*60)}catch(e){return false}
+}
 function applyLive(d){
   var Q=d&&liveQ(d.ticker), m=d&&d.market;
   if(Q&&m&&!m.price&&Q[0]>0){m.price=Q[0];m.chg=Q[1];m.live=Q[3]||RZQ.as_of;return d}   /* build without a price: still show the live one */
   if(!Q||!m||!m.price||!(Q[0]>0))return d;
+  if(liveStale(Q[3]||RZQ.as_of,m.as_of))return d;   /* a quote from before the close the page was built with would undo it */
   var f=Q[0]/m.price, r=d.ratios||{}, mc0=m.mcap;
   m.build_price=m.price; m.price=Q[0]; m.chg=Q[1]; m.live=Q[3]||RZQ.as_of;
   if(mc0){m.mcap=mc0*f;
@@ -766,25 +778,37 @@ function drawTarget(d){var box=$('rzs-tg'),A=d.analyst,px=(d.market||{}).price;i
   box.innerHTML='<span class="tgl">🎯 هدف تحلیلگرها <b class="ltr">$'+A.tgt.toFixed(0)+'</b> <small class="'+(up>=0?'up':'dn')+' ltr">'+(up>=0?'+':'')+(up*100).toFixed(0)+'%</small></span>'+
     '<span class="tgb" dir="ltr" title="بازه‌ی قیمت هدف '+fcN(A)+' تحلیلگر"><small>$'+A.tlo.toFixed(0)+'</small><span class="tr"><i class="rg" style="left:'+p(A.tlo)+';right:calc(100% - '+p(A.thi)+')"></i><i class="pv" style="left:'+p(px)+'"></i><i class="tv" style="left:'+p(A.tgt)+'"></i></span><small>$'+A.thi.toFixed(0)+'</small></span>'}
 
+/* Quick keys: the sticky bar of four keys under the company header (web_src/qk.js, copied in by tools/sync_qk.py).
+   Its search uses the stock list this page already loads and opens a result by setting the address hash. */
+window.QK_INDEX=function(){return INDEX&&INDEX.length?INDEX:null};
+function qkNav(){
+  var H='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v12h13V9"/><path d="M10 21v-6h4v6"/></svg>',
+      F='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>';
+  return '<nav class="qkb" aria-label="بخش‌های صفحه" data-ph="جستجوی سهم دیگر…" data-none="چیزی پیدا نشد" data-hash="1" data-url="#{t}" data-idx="'+API+'/index.json">'+
+    '<a class="qkb-i qkb-home" href="/" aria-label="صفحه‌ی اصلی">'+H+'</a><div class="qkb-k">'+
+    '<a href="#rzs-q1">خلاصه</a><a href="#rzs-q2">ارزش‌گذاری</a><a href="#rzs-q3">گزارش فصلی</a><a href="#rzs-q4">صورت‌های مالی</a></div>'+
+    '<button class="qkb-i qkb-find" type="button" aria-label="جستجو">'+F+'</button></nav>';
+}
 function render(d){
   d.name=niceName(d.name);
   cur=d; var a=d.annual, L=a[a.length-1], m=d.market||{}, r=d.ratios||{}, s=d.scores||{}, sm=d.summary||{}, c=d.checks||null;
   var TT=ttmRow(d), aT=TT?a.concat([TT]):a;   /* annual rows + the last twelve months, for charts and the table */
   var tot=s.total, stars=''; for(var i=1;i<=5;i++) stars+= tot>=i-0.25?'★':'☆';
   var inW=false;try{inW=JSON.parse(localStorage.getItem('rz_watch')||'[]').indexOf(d.ticker)>=0}catch(e){}
-  var h='<div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(d.name)+'</bdi><small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'در واچ‌لیست':'واچ‌لیست')+'</button></div>'+
+  var h='<i id="rzs-q1" class="qkb-a"></i><div class="card"><div class="head"><div><div class="co"><bdi dir="ltr">'+esc(d.name)+'</bdi><small>'+esc(d.ticker)+'</small> <button class="wl'+(inW?' on':'')+'" data-wl="'+esc(d.ticker)+'">'+(inW?'در واچ‌لیست':'واچ‌لیست')+'</button></div>'+
     '<div class="meta facts">'+[esc(m.sector||''),m.industry?esc(m.industry):'',m.country?esc(m.country):'',(TT?'داده‌ها تا \u2066'+esc(TT.fy_end)+'\u2069 (۱۲ ماه اخیر)':'سال مالی '+faN(L.fy)+' تا \u2066'+esc(L.fy_end||'')+'\u2069')].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('')+
     (d.reported_currency&&d.reported_currency!=='USD'?'<span class="badge">گزارش به '+esc(d.reported_currency)+'، تبدیل‌شده به دلار</span>':'')+
     (ALIAS&&ALIAS.to===d.ticker?'<span class="badge">'+esc(ALIAS.from)+' یکی از کلاس‌های سهام همین شرکته؛ داده‌های نماد اصلی ('+esc(d.ticker)+') نمایش داده میشه</span>':'')+'</div></div>'+
     '<div class="px"><div class="p" id="rzs-px">'+(m.price?'$'+m.price.toFixed(2):'—')+(m.chg!=null&&isFinite(m.chg)?' <span class="'+(m.chg>=0?'up':'dn')+'" style="font-size:15px;font-weight:800">'+(m.chg>=0?'+':'')+m.chg.toFixed(2)+'%</span>':'')+'</div>'+
     '<div class="tgx" id="rzs-tg"></div><div class="d">ارزش بازار <b id="rzs-mc">'+big(m.mcap)+'</b> · EV <b id="rzs-ev">'+big(r.ev!=null?r.ev:(m.mcap?m.mcap+(L.debt||0)-(L.cash||0):null))+'</b>'+(m.live?' · <span class="live" id="rzs-lv"><i></i>'+esc(liveLabel(d.ticker))+'</span>':(m.as_of?' · \u2066'+esc(m.as_of)+'\u2069':''))+'</div></div></div>'+
     '<div class="comm" id="rzs-comm"></div><div class="rel" id="rzs-rel"></div></div>';
+  h+=qkNav();
   h+=verdict(d);
   h+='<div class="wide2"><div class="card" id="rzs-rn"></div>';
   h+='<div class="card" id="rzs-price"><h3>عملکرد قیمت سهم</h3><div class="empty" style="padding:14px">در حال بارگذاری قیمت‌ها…</div></div></div>';
-  h+='<div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
+  h+='<i id="rzs-q2" class="qkb-a"></i><div class="wide2"><div class="card" id="rzs-val" style="display:none"></div>';
   h+='<div class="card" id="rzs-an" style="display:none"></div></div>';
-  h+='<div class="card" id="rzs-mv" style="display:none"></div>';
+  h+='<i id="rzs-q3" class="qkb-a"></i><div class="card" id="rzs-mv" style="display:none"></div>';
   h+='<div class="wide2"><div class="card" id="rzs-si" style="display:none"></div><div class="card" id="rzs-earn" style="display:none"></div></div>';
   h+='<div class="grid2"><div class="card score"><div class="lbl">امتیاز کلی</div><div class="big" dir="ltr" style="color:'+col(tot||0)+'">'+(tot==null?'—':tot.toFixed(1))+'<span style="font-size:18px;color:var(--mut)"> / 5</span></div><div class="stars">'+stars+'</div>'+radar(s)+'</div>';
   h+='<div class="card"><div class="axhead"><h3 style="margin:0">امتیاز در پنج بخش</h3>'+(c?'<button class="lnk" id="rzs-why">چرا این امتیاز؟ ▾</button>':'')+'</div><div class="axes">'+AX.map(function(A){var v=s[A[0]];return '<div class="ax"><div class="t">'+A[1]+'<span>'+A[2]+'</span></div><div class="bar"><i style="width:'+((v||0)*20)+'%;background:'+col(v||0)+'"></i></div><b>'+(v==null?'—':v+'/5')+'</b></div>'+whyRows(A[0],c)}).join('')+'</div>'+
@@ -806,12 +830,13 @@ function render(d){
   var yrsR=yrs.slice().reverse();
   var FC=fcCols(d,a);   /* analysts' forecast for this + next fiscal year: shown before TTM (newest first), Stock Pro only */
   yrsR=FC.concat(yrsR);   /* newest first, next to the row label (natural reading order in RTL, and what phones see first) */
-  h+='<div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrsR.map(function(y){return y.fc?'<th class="fc'+(y.last?' last':'')+'" title="میانگین پیش‌بینی تحلیلگرها">پیش‌بینی<small>'+esc(y.fy)+'</small></th>':y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
+  h+='<i id="rzs-q4" class="qkb-a"></i><div class="card"><div class="axhead"><h3 style="margin:0">صورت‌های مالی ۱۰ ساله'+(TT?' + ۱۲ ماه اخیر':'')+'</h3>'+(ACCESS?'<button class="lnk" id="rzs-csv">دانلود CSV ⬇</button>':'')+'</div><div class="tblwrap"><table><thead><tr><th style="text-align:right">سال مالی</th>'+yrsR.map(function(y){return y.fc?'<th class="fc'+(y.last?' last':'')+'" title="میانگین پیش‌بینی تحلیلگرها">پیش‌بینی<small>'+esc(y.fy)+'</small></th>':y.ttm?'<th class="ttm" title="۱۲ ماه اخیر تا '+esc(y.fy_end)+'">TTM<small>'+esc(y.fy_end.slice(0,7))+'</small></th>':'<th>'+y.fy+'</th>'}).join('')+'</tr></thead><tbody>'+
     sections.map(function(S){return '<tr class="sec"><td colspan="'+(yrsR.length+1)+'">'+S[0]+'</td></tr>'+S[1].map(function(R){return '<tr><td class="n">'+R[0]+'</td>'+yrsR.map(function(y){if(y.fc){var fk=FC_KEYS.indexOf(R[1])>=0,fv=y[R[1]];return '<td class="fc'+(y.last?' last':'')+(fk&&fv<0?' neg':'')+'">'+(!fk?'':(!ACCESS?'<span class="fcl" title="مخصوص مشترکین Stock Pro">🔒</span>':R[2](fv)))+'</td>'}var v=y[R[1]];var cls=(v<0?'neg ':'')+(y.ttm?'ttm':'');return '<td'+(cls.trim()?' class="'+cls.trim()+'"':'')+'>'+R[2](v)+'</td>'}).join('')+'</tr>'}).join('')}).join('')+'</tbody></table></div>'+(FC.length?'<p class="xnote" style="margin:6px 0 0">ستون‌های «پیش‌بینی» = میانگین پیش‌بینی '+FC[0].na+' تحلیلگر وال‌استریت'+(ACCESS?'':' (🔒 مخصوص مشترکین <a href="'+esc(SUB_URL)+'">Stock Pro</a>)')+'. EPS پیش‌بینی بر اساس سود تعدیل‌شده (non-GAAP) است و ممکنه با EPS گزارش‌شده فرق داشته باشه.</p>':'')+'</div>';
   h+='<div class="two"><div class="card" id="rzs-news"><h3>آخرین اخبار '+esc(d.ticker)+'</h3><div class="empty" style="padding:14px">در حال بارگذاری اخبار…</div></div>'+
      '<div class="card" id="rzs-ins"><h3>معاملات مدیران و سهامداران عمده (Insider)</h3><div class="empty" style="padding:14px">در حال بارگذاری…</div></div></div>';
   h+='<div class="card" id="rzs-about" style="display:none"></div>';
   $('rzs-main').innerHTML=h;
+  if(window.QK)window.QK($('rzs-main').querySelector('nav.qkb'));
   var wb=$('rzs-why'); if(wb){wb.addEventListener('click',function(){var on=!document.querySelector('#rzs .why.on');[].forEach.call(document.querySelectorAll('#rzs .why'),function(e){e.classList.toggle('on',on)});wb.textContent=on?'بستن توضیح‌ها ▴':'چرا این امتیاز؟ ▾'})}
   var cb=$('rzs-csv'); if(cb){cb.addEventListener('click',function(){var rows=[['metric'].concat(yrs.map(function(y){return y.fy}))];sections.forEach(function(S){S[1].forEach(function(R){rows.push([R[0]].concat(yrs.map(function(y){var v=y[R[1]];return v==null?'':v})))})});
     var csv='\ufeff'+rows.map(function(r){return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\n'); var b=new Blob([csv],{type:'text/csv'}); var u=URL.createObjectURL(b); var l=document.createElement('a'); l.href=u; l.download=d.ticker+'_financials.csv'; document.body.appendChild(l); l.click(); l.remove(); URL.revokeObjectURL(u)})}
@@ -1024,7 +1049,7 @@ function loadSI(d){var box=$('rzs-si');if(!box)return;var t=SI_SAME[d.ticker]||d
     if(!L.length){h+='<p style="margin:10px 0 0;color:var(--mut)">هیچ‌کدوم از '+x[1].managers.length+' سرمایه‌گذار مشهور این بخش (بافت، اکمن، لی لو، تری اسمیت و …) در آخرین گزارش 13F خودشون این سهم رو نداشتن.</p>';box.innerHTML=h;box.style.display='';return}
     var nb=L.filter(function(o){return o[2]==='new'||o[2]==='add'}).length,ns=L.filter(function(o){return o[2]==='cut'}).length;
     h+='<p style="margin:8px 0 10px">در پورتفوی <b>'+faN(L.length)+'</b> سرمایه‌گذار مشهور'+(nb?' · <span class="up">'+faN(nb)+' نفر در آخرین فصل خریدن یا اضافه کردن</span>':'')+(ns?' · <span class="dn">'+faN(ns)+' نفر کم کردن</span>':'')+'</p>';
-    var rows=L.slice(0,12).map(function(o,i){var m=by[o[0]];return '<tr'+(i>=5?' class="simore" style="display:none"':'')+'><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:600">'+esc(m.fa)+'</a> <span style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td class="hm" style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
+    var rows=L.slice(0,12).map(function(o,i){var m=by[o[0]];return '<tr'+(i>=5?' class="simore" style="display:none"':'')+'><td style="text-align:right"><a href="/pages/superinvestors#m='+esc(m.id)+'" style="font-weight:600">'+esc(m.fa)+'</a> <span class="sif" style="color:var(--mut);font-size:12.5px">'+esc(m.ffa)+'</span></td><td style="text-align:center"><b>'+w(o[1])+'</b></td><td style="text-align:center">'+bd(o[2])+'</td><td class="hm" style="text-align:center;color:var(--mut)"><bdi>'+q(m.period)+'</bdi></td></tr>'}).join('');
     var tb='<div class="tblwrap"><table><thead><tr><th style="text-align:right">سرمایه‌گذار</th><th>وزن</th><th>آخرین فعالیت</th><th class="hm">گزارش</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
     if(ACCESS)h+=tb+(L.length>5?'<button class="lnk" id="rzs-sitog" style="margin-top:6px">نمایش همه ▾</button>':'')+(L.length>12?'<p class="xnote">و '+faN(L.length-12)+' سرمایه‌گذار دیگه · <a href="/pages/superinvestors#t='+esc(t)+'">لیست کامل</a></p>':'');
     else h+='<div style="position:relative"><div style="filter:blur(6px);opacity:.5;pointer-events:none;user-select:none">'+tb+'</div><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><a class="btn" href="'+esc(SUB_URL)+'">🔒 اسم‌ها برای مشترکین Stock Pro</a></div></div>';
@@ -1297,3 +1322,246 @@ var h0=(location.hash||'').slice(1).toUpperCase(); if(h0&&/^[A-Z.-]{1,7}$/.test(
 /* FIN2:END */
 </script>
 </div>
+<style>/*QK-CSS*/
+/* Quick keys (see qk.js). Uses the host page's colours where they exist. */
+.qkb-a{display:block;height:0;overflow:hidden}
+.qkb{--qkb-gold:var(--gold,#C9A961);--qkb-ink:var(--ink,#E8EAED);--qkb-mut:var(--mut,#8A8F99);--qkb-line:var(--line,#262A33);--qkb-card:var(--card,#151821);
+  position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:4px;margin:12px 0 16px;padding:5px;
+  background:rgba(14,16,21,.9);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);
+  border:1px solid var(--qkb-line);border-radius:14px;transition:box-shadow .2s,border-radius .2s;font-family:inherit;line-height:1.2}
+.qkb.stuck{box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.qkb-i{flex:0 0 auto;width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;
+  color:var(--qkb-ink)!important;background:transparent;border:0;padding:0;cursor:pointer;text-decoration:none!important;-webkit-tap-highlight-color:transparent}
+.qkb-i:hover,.qkb-i:focus-visible,.qkb.open .qkb-find{background:rgba(255,255,255,.07)}
+.qkb .qkb-i svg{width:20px!important;height:20px!important;max-width:none;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.qkb-k{flex:1 1 auto;min-width:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.qkb-k::-webkit-scrollbar{display:none}
+.qkb-k a{flex:1 0 auto;display:flex;align-items:center;justify-content:center;min-height:40px;padding:0 12px;border-radius:10px;
+  font-size:14px;font-weight:650;color:var(--qkb-mut)!important;text-decoration:none!important;white-space:nowrap;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.qkb .qkb-k a:hover{color:var(--qkb-ink)!important}
+.qkb .qkb-k a.on{background:rgba(201,169,97,.16);color:var(--qkb-gold)!important}
+.qkb-k a.off{opacity:.35;pointer-events:none}
+.qkb-s{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--qkb-card);border:1px solid var(--qkb-line);
+  border-radius:14px;padding:10px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.qkb.open .qkb-s{display:block}
+.qkb-sf{display:flex;gap:6px}
+.qkb-s input{flex:1;min-width:0;box-sizing:border-box;font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1px solid var(--qkb-line);
+  background:#0C0E12;color:var(--qkb-ink);outline:none}
+.qkb-s input:focus{border-color:var(--qkb-gold)}
+.qkb-x{flex:0 0 auto;width:46px;border-radius:10px;border:1px solid var(--qkb-line);background:transparent;color:var(--qkb-mut);font-size:16px;cursor:pointer}
+.qkb-r{max-height:min(60vh,420px);overflow-y:auto;margin-top:6px}
+.qkb .qkb-r a{display:flex;gap:12px;align-items:baseline;padding:11px 10px;border-radius:9px;text-decoration:none!important;color:var(--qkb-ink)!important;min-width:0}
+.qkb-r a b{flex:0 0 auto;min-width:56px;color:var(--qkb-gold);font-weight:700}
+.qkb-r a span{color:var(--qkb-mut);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.qkb-r a.sel,.qkb-r a:hover{background:rgba(255,255,255,.06)}
+.qkb-m{margin:8px 10px;color:var(--qkb-mut);font-size:14px}
+.qkb-s input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+@media(max-width:700px){
+  .qkb{margin:10px -6px 14px;padding:3px;gap:0;border-radius:13px}
+  .qkb-i{width:36px;height:38px}
+  .qkb .qkb-i svg{width:19px!important;height:19px!important}
+  .qkb-k a{flex:1 1 auto;padding:0 5px;font-size:12.5px;min-height:38px;letter-spacing:-.01em}
+}
+@media(max-width:374px){.qkb-i{width:32px}.qkb-k a{padding:0 3px;font-size:12px}}
+</style>
+<script>/*QK-INLINE*/
+/* Quick keys: the sticky bar on long pages (stock pages, the stock analysis tool, ETF pages).
+   Four keys jump to the parts people look for, the one in view lights up, and a house and a magnifier
+   take you home or to another stock from anywhere on the page. Language-free: every word on it is
+   in the markup, so the same code serves all five sites.
+
+   <nav class="qkb" data-ph="Search any stock" data-none="No match" data-idx="/assets/search.json"
+        data-url="/stocks/{l}/">
+     <a class="qkb-i qkb-home" href="/" aria-label="Home">…</a>
+     <div class="qkb-k"><a href="#s-ov">Overview</a> … </div>
+     <button class="qkb-i qkb-find" type="button" aria-label="Search">…</button>
+   </nav>
+
+   data-idx: a JSON list [{t, n, u?}] fetched the first time the search opens. Instead, a page can
+   set window.QK_INDEX = function () { return [...] } (the analysis tool already holds its list).
+   data-url: where a result goes; {t} = ticker, {l} = ticker in lower case. data-hash="1" makes a
+   result set location.hash instead (the analysis tool reads the ticker from the hash).
+   The keys never change location.hash, which the analysis tool uses for the ticker. */
+(function () {
+  function $$(r, s) { return [].slice.call(r.querySelectorAll(s)) }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] }) }
+
+  function QK(nav) {
+    if (!nav || nav.__qk) return;
+    nav.__qk = 1;
+    var keys = $$(nav, '.qkb-k a'), row = nav.querySelector('.qkb-k'), off = 0, ticking = false, cur = -1;
+
+    // a header the host page keeps fixed at the top (the Shopify theme) pushes the bar down
+    function hostTop() {
+      var o = 0, els = document.elementsFromPoint ? document.elementsFromPoint(innerWidth / 2, 1) : [];
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (nav.contains(el) || el === document.body || el === document.documentElement) continue;
+        for (var n = el; n && n !== document.body; n = n.parentElement) {
+          if (nav.contains(n)) break;
+          var p = getComputedStyle(n).position;
+          if (p === 'fixed' || p === 'sticky') {
+            var r = n.getBoundingClientRect();
+            if (r.top <= 1 && r.bottom > 0 && r.height < innerHeight / 3) o = Math.max(o, r.bottom);
+            break;
+          }
+        }
+      }
+      return Math.round(o);
+    }
+    function inpage(a) { return (a.getAttribute('href') || '').charAt(0) === '#' }
+    function target(a) {
+      if (!inpage(a)) return null;
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      return el && el.offsetParent !== null ? el : null;     // hidden (display:none) parts of the page are skipped
+    }
+    function update() {
+      ticking = false;
+      if (!nav.isConnected) {            // the analysis tool redraws its page for each stock: drop the old bar
+        removeEventListener('scroll', tick); removeEventListener('resize', tick); return;
+      }
+      var o = hostTop();
+      if (o !== off) { off = o; nav.style.top = off + 'px' }
+      var nr = nav.getBoundingClientRect();
+      nav.classList.toggle('stuck', nr.top <= off + 0.5 && (window.scrollY || 0) > 40);
+      var line = nr.bottom + 24, act = -1;
+      keys.forEach(function (a, i) {
+        if (!inpage(a)) return;          // a key to another page is always available and never 'in view'
+        var t = target(a);
+        a.classList.toggle('off', !t);
+        if (t && t.getBoundingClientRect().top <= line) act = i;
+      });
+      if (act < 0 && keys.length) act = 0;
+      if (act !== cur) {
+        cur = act;
+        keys.forEach(function (a, i) { a.classList.toggle('on', i === act); if (i === act) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current') });
+        var a = keys[act];
+        if (a && row.scrollWidth > row.clientWidth + 2) {
+          var l = a.offsetLeft - row.offsetLeft, rr = l + a.offsetWidth;
+          if (l < row.scrollLeft || rr > row.scrollLeft + row.clientWidth) row.scrollTo({ left: l - 12, behavior: 'smooth' });
+        }
+      }
+    }
+    function tick() { if (!ticking) { ticking = true; requestAnimationFrame(update) } }
+    addEventListener('scroll', tick, { passive: true });
+    addEventListener('resize', tick);
+    keys.forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        if (!inpage(a)) return;
+        ev.preventDefault();
+        var t = target(a);
+        if (!t) return;
+        close();
+        var y = t.getBoundingClientRect().top + (window.scrollY || 0) - nav.offsetHeight - off - 10;
+        // a short hop glides; a long one (several screens) jumps, so nobody waits for the page to roll past
+        var far = Math.abs(y - (window.scrollY || 0)) > innerHeight * 3;
+        window.scrollTo({ top: Math.max(0, y), behavior: far ? 'auto' : 'smooth' });
+      });
+    });
+
+    /* ---- search ---- */
+    var find = nav.querySelector('.qkb-find'), box, inp, res, list = null, loading = null, sel = 0, hits = [];
+    function load() {
+      if (list) return Promise.resolve(list);
+      if (typeof window.QK_INDEX === 'function') { var l = window.QK_INDEX(); if (l && l.length) { list = l; return Promise.resolve(list) } }
+      if (!loading) loading = fetch(nav.getAttribute('data-idx')).then(function (r) { return r.json() }).then(function (j) { list = j; return j }).catch(function () { loading = null; return [] });
+      return loading;
+    }
+    function url(x) {
+      if (x.u) return x.u;
+      var p = nav.getAttribute('data-url') || '/stocks/{l}/';
+      return p.replace('{t}', x.t).replace('{l}', x.t.toLowerCase());
+    }
+    // Arabic and Persian spellings vary (alef with or without hamza, Arabic or Persian yeh and kaf, teh marbuta):
+    // compare a folded form. Written as \u escapes so this file stays free of right-to-left script.
+    function fold(s) {
+      return String(s || '').toLowerCase().replace(/[\u064B-\u0652\u0640]/g, '').replace(/[\u0623\u0625\u0622\u0671]/g, '\u0627')
+        .replace(/[\u0649\u064A\u06CC]/g, '\u06CC').replace(/[\u0643\u06A9]/g, '\u06A9').replace(/\u0629/g, '\u0647').replace(/\u0624/g, '\u0648').replace(/\u0626/g, '\u06CC');
+    }
+    function match(q) {
+      q = q.trim();
+      if (!q || !list) return [];
+      var Q = q.toUpperCase(), lq = fold(q), out = [[], [], [], [], []];
+      for (var i = 0; i < list.length; i++) {
+        var x = list[i], t = (x.t || '').toUpperCase(), n = x.f || (x.f = fold(x.n)), k;
+        if (t === Q) k = 0;
+        else if (t.indexOf(Q) === 0) k = 1;
+        else if (n.indexOf(lq) === 0) k = 2;
+        else if (n.indexOf(' ' + lq) >= 0) k = 3;
+        else if (lq.length > 1 && n.indexOf(lq) >= 0) k = 4;
+        else continue;
+        if (out[k].length < 8) out[k].push(x);
+      }
+      return out[0].concat(out[1], out[2], out[3], out[4]).slice(0, 8);
+    }
+    function draw() {
+      hits = match(inp.value);
+      sel = 0;
+      if (!inp.value.trim()) { res.innerHTML = ''; return }
+      if (!list) { res.innerHTML = '<p class="qkb-m">…</p>'; return }
+      res.innerHTML = hits.length ? hits.map(function (x, i) {
+        return '<a href="' + esc(url(x)) + '" data-i="' + i + '"' + (i === 0 ? ' class="sel"' : '') + '><b dir="ltr">' + esc(x.t) + '</b><span dir="auto">' + esc(x.n || '') + '</span></a>';
+      }).join('') : '<p class="qkb-m">' + esc(nav.getAttribute('data-none') || '—') + '</p>';
+    }
+    function go(x) {
+      if (!x) return;
+      if (nav.getAttribute('data-hash') && !x.u) {
+        close();
+        location.hash = '#' + x.t;
+        window.scrollTo({ top: 0 });
+        return;
+      }
+      location.href = url(x);
+    }
+    function open() {
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'qkb-s';
+        box.innerHTML = '<div class="qkb-sf"><input type="search" autocomplete="off" autocapitalize="characters" spellcheck="false" enterkeyhint="go" dir="auto">' +
+          '<button type="button" class="qkb-x" aria-label="×">✕</button></div><div class="qkb-r"></div>';
+        nav.appendChild(box);
+        inp = box.querySelector('input'); res = box.querySelector('.qkb-r');
+        inp.placeholder = nav.getAttribute('data-ph') || '';
+        inp.addEventListener('input', function () { load().then(draw) });
+        inp.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Escape') { close(); find.focus() }
+          else if (ev.key === 'Enter') { ev.preventDefault(); go(hits[sel] || hits[0]) }
+          else if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+            ev.preventDefault();
+            if (!hits.length) return;
+            sel = (sel + (ev.key === 'ArrowDown' ? 1 : hits.length - 1)) % hits.length;
+            $$(res, 'a').forEach(function (a, i) { a.classList.toggle('sel', i === sel) });
+          }
+        });
+        res.addEventListener('click', function (ev) {
+          var a = ev.target.closest('a[data-i]');
+          if (!a || !nav.getAttribute('data-hash')) return;
+          ev.preventDefault(); go(hits[+a.getAttribute('data-i')]);
+        });
+        box.querySelector('.qkb-x').addEventListener('click', close);
+      }
+      nav.classList.add('open');
+      find.setAttribute('aria-expanded', 'true');
+      inp.value = ''; res.innerHTML = '';
+      inp.focus();
+      load();
+    }
+    function close() {
+      if (!nav.classList.contains('open')) return;
+      nav.classList.remove('open');
+      find && find.setAttribute('aria-expanded', 'false');
+      if (inp) inp.blur();
+    }
+    if (find) {
+      find.setAttribute('aria-expanded', 'false');
+      find.addEventListener('click', function () { nav.classList.contains('open') ? close() : open() });
+      document.addEventListener('click', function (ev) { if (!nav.contains(ev.target)) close() });
+    }
+    update();
+    setTimeout(update, 600);
+  }
+  window.QK = QK;
+  function boot() { $$(document, 'nav.qkb').forEach(QK) }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+</script>

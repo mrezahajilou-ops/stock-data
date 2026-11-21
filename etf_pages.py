@@ -87,6 +87,43 @@ class Pack:
 
 # ---------------------------------------------------------------- pieces of a page
 
+_WS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web_src')
+
+
+def _asset(n):
+    try:
+        return open(os.path.join(_WS, n), encoding='utf-8').read()
+    except Exception:
+        return ''
+
+
+ETFM_CSS, ETFM_JS = _asset('etfm.css'), _asset('etfm.js')
+
+
+def assets(p):
+    """The ranking, finder and phone layout (web_src/etfm.*), on the page itself. The Persian edition loads pages as
+    fragments into a shell that already carries them (gen_web.py), so it sets inline_assets = False."""
+    if not getattr(p, 'inline_assets', True):
+        return ''
+    return '<style>%s</style><script>%s</script>' % (ETFM_CSS.replace('#ID ', ''), ETFM_JS)
+
+
+QK_HOME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v12h13V9"/><path d="M10 21v-6h4v6"/></svg>'
+QK_FIND = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>'
+
+
+def quick_keys(p, keys):
+    """The sticky four-key bar (web_src/qk.js): jump to a part of the fund page, go home, search for a stock."""
+    su = p.stock_url('QKT')
+    url = getattr(p, 'qk_url', None) or su.replace('QKT', '{t}').replace('qkt', '{l}')
+    idx = getattr(p, 'qk_idx', None) or '/assets/search.json'
+    return ('<nav class="qkb" aria-label="%s" data-ph="%s" data-none="%s" data-idx="%s" data-url="%s">'
+            '<a class="qkb-i qkb-home" href="/" aria-label="%s">%s</a><div class="qkb-k">%s</div>'
+            '<button class="qkb-i qkb-find" type="button" aria-label="%s">%s</button></nav>'
+            % (e(p.L('k_sec')), e(p.L('k_ph')), e(p.L('k_none')), e(idx), e(url), e(p.L('home')), QK_HOME,
+               ''.join('<a href="#%s">%s</a>' % (i, e(l)) for i, l in keys), e(p.L('k_find')), QK_FIND))
+
+
 def sret(v, p):
     if v is None:
         return '<span class="mut">—</span>'
@@ -99,6 +136,27 @@ def sret(v, p):
 def ltr(s, p):
     """A ticker, a price or anything else Latin, kept from reordering the line around it."""
     return '<bdi dir="ltr" class="ltr">%s</bdi>' % e(s) if p.rtl else e(s)
+
+
+def ranking(rows, p):
+    """Every fund ranked by return, in large readable rows: the top ten, then all; past year or yearly average."""
+    rows = [r for r in rows if r.get('y1') is not None]
+    if not rows:
+        return ''
+    rows = sorted(rows, key=lambda r: -r['y1'])
+    mx = max(abs(r['y1']) for r in rows) or 1.0
+    li = []
+    for i, r in enumerate(rows):
+        v = r['y1']
+        li.append('<li data-y1="%s" data-cagr="%s" data-y1f="%s" data-cagrf="%s"><a href="%s"><span class="erk-n">%d</span>'
+                  '<span class="erk-t"><b>%s</b><small>%s</small></span><span class="erk-b"><i style="width:%.1f%%"%s></i></span><em>%s</em></a></li>'
+                  % ('%.4f' % v, ('%.4f' % r['cagr']) if r.get('cagr') is not None else '', e(sret(v, p)), e(sret(r.get('cagr'), p)),
+                     p.u(r['t']), i + 1, e(r['t']), ltr(r['name'], p), max(2.0, abs(v) / mx * 100), ' class="n"' if v < 0 else '', sret(v, p)))
+    return ('<section class="card erk" id="e-rank"><div class="erk-h"><h2>%s</h2><div class="erk-p">'
+            '<button type="button" data-p="y1" class="on" aria-pressed="true">%s</button><button type="button" data-p="cagr" aria-pressed="false">%s</button></div></div>'
+            '<ol class="erk-l cut">%s</ol><button type="button" class="erk-more" data-all="%s" data-less="%s">%s</button><p class="note">%s</p></section>'
+            % (e(p.L('rank_h')), e(p.L('y1')), e(p.L('avg_yr')), ''.join(li),
+               e(p.L('rank_all', n=len(rows))), e(p.L('rank_less')), e(p.L('rank_all', n=len(rows))), e(p.L('rank_note'))))
 
 
 def bars(rows, p):
@@ -128,13 +186,23 @@ def bars(rows, p):
 
 
 def line(series, p, h=170):
+    """The price since launch; a second, taller drawing for phones, where the wide one shrinks to a sliver."""
+    d = _line(series, p, h=h)
+    if not d:
+        return ''
+    m = _line(series, p, h=250, w=430, every=3)
+    pts = [x for x in (series or []) if x and x[1]]
+    return ('<figure class="etfline">%s%s<figcaption>%s</figcaption></figure>'
+            % (d.replace('<svg ', '<svg class="dsk" ', 1), m.replace('<svg ', '<svg class="mob" ', 1), e(p.L('linecap', year=pts[0][0][:4]))))
+
+
+def _line(series, p, h=170, w=760, every=6):
     pts = [x for x in (series or []) if x and x[1]]
     if len(pts) < 4:
         return ''
     vals = [x[1] for x in pts]
     lo, hi = min(vals), max(vals)
     span = (hi - lo) or 1.0
-    w = 760
     step = (w - 54) / (len(pts) - 1)
     d = ' '.join('%s%.1f,%.1f' % ('M' if i == 0 else 'L', 46 + i * step, h - 20 - (v - lo) / span * (h - 42))
                  for i, v in enumerate(vals))
@@ -147,10 +215,9 @@ def line(series, p, h=170):
             seen.add(x[0][:4])
             yrs.append((i, x[0][:4]))
     xl = ''.join('<text x="%.1f" y="%d" class="xl">%s</text>' % (46 + i * step, h - 5, y)
-                 for i, y in yrs[::max(1, len(yrs) // 6)])
-    return ('<figure class="etfline"><svg viewBox="0 0 %d %d" dir="ltr" role="img"><path d="%s" class="ar"/>'
-            '<path d="%s" class="ln"/>%s%s</svg><figcaption>%s</figcaption></figure>'
-            % (w, h, area, d, ticks, xl, e(p.L('linecap', year=pts[0][0][:4]))))
+                 for i, y in yrs[::max(1, len(yrs) // every)])
+    return ('<svg viewBox="0 0 %d %d" dir="ltr" role="img"><path d="%s" class="ar"/><path d="%s" class="ln"/>%s%s</svg>'
+            % (w, h, area, d, ticks, xl))
 
 
 def sectors(sd, holds, p, labels=None):
@@ -228,22 +295,22 @@ def detail(sd, rec, spy, p, sector_labels=None):
                ltr(nm, p), ltr(t, p), ltr(rec['issuer'], p), ltr(rec['index'], p), rec['since'],
                _num(rec.get('price'), 2), e(p.L('y1')), sret(r.get('y1'), p)))
 
-    about = ('<section class="card"><h2>%s</h2><p class="lead">%s</p><p>%s</p></section>'
+    about = ('<section class="card" id="e-idea"><h2>%s</h2><p class="lead">%s</p><p>%s</p></section>'
              % (e(p.L('idea')), e(p.iso(idea)), e(p.iso(strat))))
 
     kv = [(p.L('y1'), sret(r.get('y1'), p)), (p.L('ytd'), sret(r.get('ytd'), p)),
           (p.L('y3'), sret(r.get('y3'), p)), (p.L('y5'), sret(r.get('y5'), p)),
           (p.L('m3'), sret(r.get('m3'), p)), (p.L('m1'), sret(r.get('m1'), p))]
-    perf = ('<section class="card"><h2>%s</h2><div class="kv">%s</div>%s<p class="note">%s</p></section>'
+    perf = ('<section class="card" id="e-ret"><h2>%s</h2><div class="kv">%s</div>%s<p class="note">%s</p></section>'
             % (e(p.L('ret')), ''.join('<div><span>%s</span><b>%s</b></div>' % (e(a), b) for a, b in kv),
                line(rec.get('chart'), p), e(p.L('note_ret'))))
 
     fund = ''
     if w.get('not_equity'):
-        fund = ('<section class="card"><h2>%s</h2><p>%s</p></section>'
+        fund = ('<section class="card" id="e-val"><h2>%s</h2><p>%s</p></section>'
                 % (e(p.L('no_pe_h')), e(p.L('no_pe_bond', n=_num(w.get('holdings_n'), 0)))))
     elif w.get('thin'):
-        fund = ('<section class="card"><h2>%s</h2><p>%s</p></section>'
+        fund = ('<section class="card" id="e-val"><h2>%s</h2><p>%s</p></section>'
                 % (e(p.L('no_pe_h')),
                    e(p.L('no_pe_thin', n=_num(w.get('holdings_n'), 0),
                          cov=_pct((w.get('covered_pct') or 0) / 100, 0)))))
@@ -259,7 +326,7 @@ def detail(sd, rec, spy, p, sector_labels=None):
                 (p.L('margin'), _pct(w['net_margin'], 1) if w.get('net_margin') is not None else '—'),
                 (p.L('score'), (_num(w.get('score'), 1) + ' / 5') if w.get('score') else '—'),
                 (p.L('holdings'), _num(w.get('holdings_n'), 0))]
-        fund = ('<section class="card"><h2>%s</h2><div class="kv">%s</div>%s<p class="note">%s</p></section>'
+        fund = ('<section class="card" id="e-val"><h2>%s</h2><div class="kv">%s</div>%s<p class="note">%s</p></section>'
                 % (e(p.L('fund')),
                    ''.join('<div><span>%s</span><b>%s</b></div>' % (e(a), b) for a, b in rows), cmpr,
                    e(p.L('note_pe', cov=_pct((w.get('covered_pct') or 0) / 100, 1),
@@ -271,20 +338,24 @@ def detail(sd, rec, spy, p, sector_labels=None):
         top = holds[:40]
         mx = max((h['pct'] for h in top), default=1) or 1
         rows = ''.join(
-            '<tr><td class="hn">%s</td><td class="hw"><i><b style="width:%.1f%%"></b></i>%s</td></tr>'
-            % (('<a href="%s">%s</a> <span class="tk2">%s</span>'
+            '<tr%s><td class="hn">%s</td><td class="hw"><i><b style="width:%.1f%%"></b></i>%s</td></tr>'
+            % (' class="hx"' if i >= 10 else '',
+               ('<a href="%s">%s</a> <span class="tk2">%s</span>'
                 % (p.stock_url(h['t']), ltr(h['name'], p), ltr(h['t'], p))) if h.get('t') else ltr(h['name'], p),
-               min(100.0, h['pct'] / mx * 100), _pct(h['pct'] / 100, 2)) for h in top)
-        tbl = ('<section class="card"><h2>%s</h2><div class="tw"><table class="hold">'
-               '<thead><tr><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>%s'
+               min(100.0, h['pct'] / mx * 100), _pct(h['pct'] / 100, 2)) for i, h in enumerate(top))
+        more = ('<button type="button" class="hold-more" data-all="%s" data-less="%s">%s</button>'
+                % (e(p.L('holds_all', n=len(top))), e(p.L('holds_less')), e(p.L('holds_all', n=len(top))))) if len(top) > 10 else ''
+        tbl = ('<section class="card" id="e-hold"><h2>%s</h2><div class="tw"><table class="hold%s">'
+               '<thead><tr><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>%s%s'
                '<p class="note">%s</p></section>'
-               % (e(p.L('holds')), e(p.L('company')), e(p.L('weight')), rows,
+               % (e(p.L('holds')), ' cut' if more else '', e(p.L('company')), e(p.L('weight')), rows, more,
                   sectors(sd, holds, p, sector_labels),
                   e(p.L('note_holds', n=len(top), total=_num(w.get('holdings_n'), 0),
                         asof=(' · ' + p.fdate(rec['holdings_as_of'])) if rec.get('holdings_as_of') else ''))))
 
-    body = ('<article class="sa-list sa-etf">%s%s%s%s%s%s<p class="dis">%s</p></article>'
-            % (head, about, fund, perf, tbl, where(rec, p), e(p.L('dis'))))
+    qk = quick_keys(p, [('e-idea', p.L('k_idea')), ('e-val', p.L('k_val')), ('e-ret', p.L('k_ret')), ('e-hold', p.L('k_hold'))])
+    body = ('<article class="sa-list sa-etf">%s%s%s%s%s%s%s<p class="dis">%s</p>%s</article>'
+            % (head, qk, about, fund, perf, tbl, where(rec, p), e(p.L('dis')), assets(p)))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
         {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()},
@@ -294,9 +365,15 @@ def detail(sd, rec, spy, p, sector_labels=None):
                 html=body, ld=ld)
 
 
+def _dv(v):
+    """A number for a data- attribute (sorting); empty when missing."""
+    return '' if v is None else '%.4f' % v
+
+
 def index_page(idx, recs, p):
     """One box holding all fifty funds, each row clickable through to its own page."""
     rows = idx.get('etfs') or []
+    rank = {r['t']: i for i, r in enumerate(rows)}          # the list comes largest fund first
     rows = sorted(rows, key=lambda r: -(r.get('y1') if r.get('y1') is not None else -9))
     focus = p.ui.get('focus_labels') or {}
     # A fund's name is its issuer plus the index it tracks, and both are proper nouns. Rather than
@@ -314,33 +391,45 @@ def index_page(idx, recs, p):
         rec = recs.get(r['t']) or {}
         local = pat % dict(issuer=rec.get('issuer') or r.get('issuer') or '',
                            index=rec.get('index') or '')
+        ty = focus.get(r.get('focus'), r.get('focus') or '')
+        srch = ' '.join(x for x in (r['t'], r.get('name'), local, ty, idea) if x).lower()
         body_rows.append(
-            '<tr onclick="location.href=\'%s\'">'
+            '<tr onclick="location.href=\'%s\'" data-k="%d" data-y1="%s" data-cagr="%s" data-pe="%s" data-s="%s">'
             '<td class="nm"><a href="%s"><b>%s</b><span>%s</span></a>%s</td>'
             '<td class="ty">%s</td>'
-            '<td>%s</td><td>%s</td>'
-            '<td>%s</td><td>%s</td><td>%s</td></tr>'
-            % (p.u(r['t']), p.u(r['t']), e(r['t']), ltr(r['name'], p),
+            '<td class="y1" data-l="%s">%s</td><td class="cg" data-l="%s">%s</td>'
+            '<td class="ho" data-l="%s">%s</td><td class="pe" data-l="%s">%s</td><td class="pa">%s</td></tr>'
+            % (p.u(r['t']), rank.get(r['t'], 99), _dv(r.get('y1')), _dv(r.get('cagr')), _dv(w.get('pe')), e(srch),
+               p.u(r['t']), e(r['t']), ltr(r['name'], p),
                ('<i>%s</i>' % e(p.iso(local))) if local else ('<i>%s</i>' % e(p.iso(idea))),
-               e(focus.get(r.get('focus'), r.get('focus') or '')),
-               cell_pct(r.get('y1')), cell_pct(r.get('cagr')),
-               _num(r.get('holdings_n'), 0) if r.get('holdings_n') else '—',
-               _num(w.get('pe'), 1) if w.get('pe') else '—',
+               e(ty),
+               e(p.L('l_y1')), cell_pct(r.get('y1')), e(p.L('l_avg')), cell_pct(r.get('cagr')),
+               e(p.L('l_hold')), _num(r.get('holdings_n'), 0) if r.get('holdings_n') else '—',
+               e(p.L('l_pe')), _num(w.get('pe'), 1) if w.get('pe') else '—',
                _num(r.get('pe_avg'), 1) if r.get('pe_avg') else '—'))
 
-    box = ('<section class="card etfbox"><div class="tw"><table class="etftbl">'
+    find = ('<div class="etfbar"><label class="etfq-w"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>'
+            '<input class="etfq" type="search" placeholder="%s" aria-label="%s" autocomplete="off" spellcheck="false" enterkeyhint="search" dir="auto"></label>'
+            '<div class="etfsort"><button type="button" data-k="y1" class="on" aria-pressed="true">%s</button><button type="button" data-k="cagr" aria-pressed="false">%s</button>'
+            '<button type="button" data-k="k" aria-pressed="false">%s</button><button type="button" data-k="pe" aria-pressed="false">%s</button></div>'
+            '<span class="etfcnt" data-f="%s">%s</span></div>'
+            % (e(p.L('find_ph')), e(p.L('find_ph')), e(p.L('l_y1')), e(p.L('l_avg')), e(p.L('sort_big')), e(p.L('sort_pe')),
+               e(p.ui.get('n_funds', '%n')), e(p.ui.get('n_funds', '%n').replace('%n', str(len(rows))))))
+    box = ('<section class="card etfbox" id="e-all">%s<div class="tw"><table class="etftbl">'
            '<thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead>'
-           '<tbody>%s</tbody></table></div><p class="note">%s</p>'
+           '<tbody>%s</tbody></table></div><p class="etfnone" hidden>%s</p><p class="note">%s</p>'
            '<p class="note">%s</p></section>'
-           % (e(p.L('fundcol')), e(p.L('type')), e(p.L('y1')), e(p.L('avg_yr')),
+           % (find, e(p.L('fundcol')), e(p.L('type')), e(p.L('y1')), e(p.L('avg_yr')),
               e(p.L('holdings')), e(p.ui.get('pe_short') or p.L('pe')), e(p.L('pe_avg')),
-              ''.join(body_rows), e(p.L('note_tbl')),
+              ''.join(body_rows), e(p.L('no_fund')), e(p.L('note_tbl')),
               e(p.L('note_peavg', since=p.fdate(since)) if since else p.L('note_peavg_none'))))
 
     body = ('<article class="sa-list sa-etf"><h1>%s</h1><p class="sub">%s %s</p>'
-            '<p class="lead">%s</p><p>%s</p>%s%s<p class="dis">%s</p></article>'
+            '<p class="lead">%s</p><p class="etfintro clip">%s</p><button type="button" class="etfmore" hidden data-more="%s" data-less="%s">%s</button>'
+            '%s%s<p class="dis">%s</p>%s</article>'
             % (e(p.L('h1')), e(p.L('sub')), ltr(TODAY.strftime('%Y-%m'), p), e(p.L('lead')), e(p.L('intro')),
-               bars(rows, p), box, e(p.L('dis'))))
+               e(p.L('more')), e(p.L('less')), e(p.L('more')),
+               ranking(rows, p), box, e(p.L('dis')), assets(p)))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
         {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()}]},

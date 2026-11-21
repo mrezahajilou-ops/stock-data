@@ -93,3 +93,13 @@ UCITS = {}   # already English
 
 # phone layout: return ranking, fund finder, quick keys (etf_pages.py, web_src/etfm.*)
 UI.update({'rank_h': 'Return ranking', 'rank_all': 'Show all %(n)s funds ▾', 'rank_less': 'Show the top 10 ▴', 'rank_note': 'Price return without dividends. Tap a fund to open its page.', 'find_ph': 'Search the {N} funds: ticker, name or type', 'sort_big': 'Largest', 'sort_pe': 'Lowest P/E', 'n_funds': '%n funds', 'no_fund': 'No fund matches that search.', 'more': 'Read more ▾', 'less': 'Show less ▴', 'holds_all': 'Show all %(n)s holdings ▾', 'holds_less': 'Show the top 10 ▴', 'k_idea': 'Idea', 'k_val': 'Valuation', 'k_ret': 'Return', 'k_hold': 'Holdings', 'k_sec': 'Page sections', 'k_find': 'Search', 'k_ph': 'Search any stock or ETF', 'k_none': 'No match', 'l_y1': 'Past year', 'l_avg': 'Avg a year', 'l_hold': 'Holdings', 'l_pe': 'P/E'})
+
+# ---- funds 51-100 (Nov 2026)
+UI['focus_labels'].update({'US treasury bonds': 'US Treasuries', 'US corporate bonds': 'US corporate bonds', 'high yield bonds': 'High-yield bonds', 'municipal bonds': 'Municipal bonds', 'US covered call': 'Covered-call income', 'consumer discretionary': 'Consumer discretionary', 'consumer staples': 'Consumer staples', 'utilities': 'Utilities', 'materials': 'Materials', 'communication services': 'Communication services', 'biotech': 'Biotech', 'aerospace and defense': 'Aerospace & defense', 'banks': 'Banks', 'gold miners': 'Gold miners', 'oil and gas': 'Oil & gas', 'cybersecurity': 'Cybersecurity', 'clean energy': 'Clean energy', 'innovation': 'Innovation', 'US momentum': 'US momentum', 'US low volatility': 'US low volatility', 'Japan': 'Japan', 'China': 'China', 'India': 'India', 'Brazil': 'Brazil', 'silver': 'Silver', 'ether': 'Ether'})
+
+_G = UI['groups']
+_G[1][1].extend(['US momentum', 'US low volatility'])
+_G[2][1].append('US covered call')
+_G[4][1].extend(['Japan', 'China', 'India', 'Brazil'])
+_G[5][1].extend(['consumer discretionary', 'consumer staples', 'utilities', 'materials', 'communication services', 'biotech', 'aerospace and defense', 'banks', 'gold miners', 'oil and gas', 'cybersecurity', 'clean energy', 'innovation'])
+_G[6][1].extend(['US treasury bonds', 'US corporate bonds', 'high yield bonds', 'municipal bonds', 'silver', 'ether'])

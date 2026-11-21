@@ -8,7 +8,7 @@ var SUB = window.RZS_SUB_URL || '/products/stock-data-pro', SUBY = window.RZS_SU
 var FCACHE = {};
 function tick() { var m = (location.hash || '').match(/#etf\/([A-Za-z.]+)/); return m ? m[1].toUpperCase() : ''; }
 function lockBox(t) {
-  return '<button class="back" data-back>◀ برگشت به فهرست ۵۰ صندوق</button><div class="lockbox"><h3>🔒 ' + esc(NAMES[t] || t) +
+  return '<button class="back" data-back>◀ برگشت به فهرست صندوق‌ها</button><div class="lockbox"><h3>🔒 ' + esc(NAMES[t] || t) +
     ' <bdi dir="ltr">(' + esc(t) + ')</bdi></h3><p>صفحه‌ی کامل این صندوق — ترکیب سهام و وزن‌ها، نمودار قیمت، بازدهی دوره‌ای، ' +
     'ارزش‌گذاری شرکت‌های داخلش و اینکه از کدام کشور می‌شود خریدش — برای مشترکین استاک پرو باز است. صندوق‌های اس‌اند‌پی ۵۰۰ برای همه باز است.</p>' +
     '<a class="btn" href="' + SUB + '">اشتراک ماهانه</a> <a class="btn ghost" href="' + SUBY + '">اشتراک سالانه</a></div>';

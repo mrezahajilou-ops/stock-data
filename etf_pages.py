@@ -430,9 +430,37 @@ def index_page(idx, recs, p):
               ''.join(body_rows), e(p.L('no_fund')), e(p.L('note_tbl')),
               e(p.L('note_peavg', since=p.fdate(since)) if since else p.L('note_peavg_none'))))
 
-    body = ('<article class="sa-list sa-etf"><h1>%s</h1><p class="sub">%s %s</p>'
+    # a search box right under the title: type a ticker or a name and jump straight to that fund
+    import json as _json
+    jl = _json.dumps([[r['t'], r.get('name') or '', p.u(r['t']),
+                       ' '.join(x for x in (r['t'], r.get('name'), (recs.get(r['t']) or {}).get('index'),
+                                            focus.get(r.get('focus'), r.get('focus') or '')) if x).lower()]
+                      for r in sorted(rows, key=lambda r: rank.get(r['t'], 99))], ensure_ascii=False).replace('</', '<\\/')
+    jump = ('<div class="ejump"><label class="ejump-w"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>'
+            '<input id="ejq" type="search" placeholder="%s" aria-label="%s" autocomplete="off" spellcheck="false" enterkeyhint="go" dir="auto"></label>'
+            '<ul id="ejr" class="ejr" role="listbox" hidden></ul></div>'
+            '<style>.ejump{position:relative;margin:14px 0 6px}.ejump-w{display:flex;align-items:center;gap:8px;border:1px solid var(--line,#2a3340);'
+            'border-radius:12px;padding:10px 12px;background:var(--card,#141a22)}.ejump-w svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;opacity:.6}'
+            '.ejump-w input{flex:1;min-width:0;border:0!important;outline:0!important;box-shadow:none!important;padding:0!important;background:transparent!important;color:inherit;font:inherit;font-size:16px}'
+            '.ejr{position:absolute;z-index:30;left:0;right:0;top:100%%;margin:4px 0 0;padding:4px;list-style:none;border:1px solid var(--line,#2a3340);'
+            'border-radius:12px;background:var(--card,#141a22);box-shadow:0 10px 30px rgba(0,0,0,.35);max-height:60vh;overflow:auto}'
+            '.ejr a{display:flex;gap:10px;align-items:baseline;padding:9px 10px;border-radius:8px;color:inherit;text-decoration:none}'
+            '.ejr a b{min-width:52px}.ejr a span{opacity:.75;font-size:.92em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
+            '.ejr li.on a,.ejr a:hover{background:rgba(127,127,127,.15)}</style>'
+            '<script>(function(){var D=%s,q=document.getElementById("ejq"),u=document.getElementById("ejr"),k=-1,m=[];'
+            'function esc(s){return s.replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;"}[c]})}'
+            'function show(){var v=q.value.trim().toLowerCase();k=-1;if(!v){u.hidden=true;return}'
+            'm=D.filter(function(d){return d[0].toLowerCase().indexOf(v)===0}).concat(D.filter(function(d){return d[0].toLowerCase().indexOf(v)!==0&&d[3].indexOf(v)>-1})).slice(0,8);'
+            'u.innerHTML=m.length?m.map(function(d){return \'<li><a href="\'+d[2]+\'"><b dir="ltr">\'+d[0]+\'</b><span dir="ltr">\'+esc(d[1])+\'</span></a></li>\'}).join(""):\'<li><a>%s</a></li>\';u.hidden=false}'
+            'q.addEventListener("input",show);q.addEventListener("focus",show);'
+            'q.addEventListener("keydown",function(e){var l=u.querySelectorAll("li");if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();if(!l.length)return;'
+            'k=(k+(e.key==="ArrowDown"?1:-1)+l.length)%%l.length;l.forEach(function(x,i){x.classList.toggle("on",i===k)})}'
+            'else if(e.key==="Enter"&&m.length){e.preventDefault();location.href=m[k<0?0:k][2]}else if(e.key==="Escape"){u.hidden=true}});'
+            'document.addEventListener("click",function(e){if(!e.target.closest(".ejump"))u.hidden=true})})();</script>'
+            % (e(p.L('find_ph')), e(p.L('find_ph')), jl, e(p.L('no_fund'))))
+    body = (('<article class="sa-list sa-etf"><h1>%s</h1>' + jump.replace('%', '%%') + '<p class="sub">%s %s</p>'
             '<p class="lead">%s</p><p class="etfintro clip">%s</p><button type="button" class="etfmore" hidden data-more="%s" data-less="%s">%s</button>'
-            '%s%s<p class="dis">%s</p>%s</article>'
+            '%s%s<p class="dis">%s</p>%s</article>')
             % (e(p.L('h1')), e(p.L('sub')), ltr(p.fdate(TODAY.strftime('%Y-%m')), p), e(p.L('lead')), e(p.L('intro')),
                e(p.L('more')), e(p.L('less')), e(p.L('more')),
                ranking(rows, p), box, e(p.L('dis')), assets(p)))

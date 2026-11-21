@@ -23,6 +23,7 @@ function mark(box) {
 }
 function show(html, isIndex) {
   var box = $('rzf-main'); box.innerHTML = html;
+  [].forEach.call(box.querySelectorAll('script'), function (o) { var n = document.createElement('script'); n.text = o.text; o.parentNode.replaceChild(n, o); });   // innerHTML leaves scripts inert (the fund search)
   if (isIndex) mark(box);
   if (window.ETFM) window.ETFM(box);                                   // ranking, fund finder, holdings toggle
   if (window.QK) window.QK(box.querySelector('nav.qkb'));              // the four-key bar on a fund page

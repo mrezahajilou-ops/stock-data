@@ -1838,9 +1838,14 @@ def score(rec, mk, sector_pe):
         rec["ttm_src"] = "yahoo"
     pe = mcap / ni if (mcap and ni and ni > 0) else None
     yeps = ref.get("teps") if isinstance(ref.get("teps"), (int, float)) else None
+    pe_ni = pe
     if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10 \
             and not t.get("rolled_from"):
         pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
+        if pe_ni and not 0.5 < pe / pe_ni < 2:
+            # the independent EPS can itself be on the wrong share basis right after a split (Sandisk 8:1 gave a
+            # P/E of 0.09); market value / net income needs no per-share figure at all, so it decides
+            pe = pe_ni
     elif not stale and t.get("eps") and t["eps"] > 0 and price:
         pe = price / t["eps"]  # price / diluted EPS of the last four quarters (as Yahoo / stockanalysis)
     elif not stale and t.get("eps") is not None and t["eps"] <= 0:
@@ -2110,6 +2115,16 @@ def finish(recs, market):
             r["bs"]["shares_out"] = r["bs"]["shares_out"] * n
         r["share_factor"] = n
         fixed.append(r["ticker"])
+    # right after a split the feed's market value can sit on the wrong share basis while the price is already
+    # post-split (Sandisk 8:1: $79 a share but a $967B market value); our own restated share count fixes it
+    for r in recs:
+        mk = market.get(r["ticker"]) or {}
+        if not (r.get("share_factor") and mk.get("mcap") and mk.get("price")) or r["share_factor"] in (1000, 1e6):
+            continue
+        sh_ = (r.get("bs") or {}).get("shares_out") or r["annual"][-1].get("shares_out") or r["annual"][-1].get("shares_diluted")
+        if sh_ and not 1 / 3 < (mk["mcap"] / mk["price"]) / sh_ < 3:
+            mk["mcap"] = mk["price"] * sh_
+            fixed.append(r["ticker"] + ":mcap")
     # foreign filers: per-share figures in the filings are per ordinary share and sometimes in the home currency;
     # restate every year per ADS / per listed share (net figure / the share count the market price refers to)
     PS_SRC = (("eps_diluted", "net_income"), ("fcf_per_share", "fcf"), ("revenue_per_share", "revenue"),

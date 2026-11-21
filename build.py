@@ -1842,7 +1842,7 @@ def score(rec, mk, sector_pe):
     if not stale and t.get("eps") and t["eps"] > 0 and price and yeps and yeps > 0 and abs(t["eps"] / yeps - 1) > 0.10 \
             and not t.get("rolled_from"):
         pe = price / yeps  # our quarterly EPS disagrees with the independent figure (stock split, spin-off restatement)
-        if pe_ni and not 0.2 < pe / pe_ni < 5:
+        if pe_ni and not 0.2 < pe / pe_ni < 5 and rec.get("share_factor") not in (None, 1, 1000, 1e6):
             # the independent EPS can itself be on the wrong share basis right after a split (Sandisk 8:1 gave a
             # P/E of 0.09); market value / net income needs no per-share figure at all, so it decides
             pe = pe_ni

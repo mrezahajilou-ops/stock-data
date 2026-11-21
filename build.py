@@ -1523,6 +1523,11 @@ def fill_from_yahoo(rec, e):
             rec["bs"] = {"end": d0, "cash": cash, "debt": debt, "equity": eq, "src": "yahoo"}
 
 
+# confirmed stock splits not yet in the filings, from the company's own announcement: ticker -> ratio
+try:
+    SPLIT_FIX = json.load(open(os.path.join(OUT, "split_fix.json")))
+except Exception:
+    SPLIT_FIX = {}
 SPLIT_RATIOS = [2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 40, 50, 100]
 PER_SHARE_DIV = ("eps_diluted", "fcf_per_share", "revenue_per_share", "book_value_per_share", "div_per_share")
 SHARE_MUL = ("shares_diluted", "shares_basic", "shares_out")
@@ -2060,6 +2065,12 @@ def finish(recs, market):
                 q = te / ye
                 # EPS too high by q -> share count too low by q -> multiply the share counts by q
                 n = next((c for c in CAND if c not in (1000, 1e6) and abs(q / c - 1) < 0.06), None)
+                # trailing EPS is a rough witness (net income moves between the two sources' windows); among the ratios
+                # it allows, the share count picks the split (Sandisk's 8:1 split read as 10:1 from EPS alone)
+                if n:
+                    near = [c for c in CAND if c not in (1000, 1e6) and abs(q / c - 1) < 0.3]
+                    n = min(near, key=lambda c: abs(math.log(k / c)))
+                n = SPLIT_FIX.get(r["ticker"], n)
                 # a split moves the share count by the same factor; shares issued in a merger (Kimberly-Clark / Kenvue)
                 # also dilute the trailing EPS but leave the dividend per share unchanged - that is not a split
                 if n and not 0.7 < k / n < 1.45:

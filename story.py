@@ -100,7 +100,7 @@ def _years(an):
     return sorted(out, key=lambda a: a['fy'])[-11:]
 
 
-def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name):
+def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x):
     """List of (salience, [sentences]) for one company. Empty list when the record is too thin."""
     t = d['ticker']
     m, r, s = d.get('market') or {}, d.get('ratios') or {}, d.get('summary') or {}
@@ -119,7 +119,7 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name):
     if g and len(g['docs']) >= 3 and t in g['rank'] and mc > 0:
         k, ds, n = g['rank'][t], g['docs'], len(g['docs'])
         iname = ind_name(ind)
-        link = lambda x: '<a href="%s">%s</a>' % (stock_url(x['ticker']), H.escape(peer_name(x)))
+        link = lambda x: '<a href="%s">%s</a>' % (stock_url(x['ticker']), wrap(H.escape(peer_name(x))))
         if k == 0:
             nxt = ds[1]
             w.say('size_top', name=name, ind=iname, n=n, mcap=F.money(mc), other=link(nxt), x=F.times(mc / max(_mc(nxt), 1)))
@@ -395,8 +395,9 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name):
 
 
 def html(d, ctx, P, name, ind_name, stock_url, peer_name, cls='card story', h2=''):
-    name = H.escape(name)
-    ps = paragraphs(d, ctx, P, name, lambda i: H.escape(ind_name(i)), stock_url, peer_name)
+    wrap = getattr(P, 'wrap_name', None) or (lambda x: x)   # Arabic isolates Latin names inside right-to-left text
+    name = wrap(H.escape(name))
+    ps = paragraphs(d, ctx, P, name, lambda i: H.escape(ind_name(i)), stock_url, peer_name, wrap)
     if not ps or sum(len(p) for p in ps) < 5:
         return ''
     h = P.T['head'][_pick(d['ticker'], 'head', len(P.T['head']))].format(name=name)

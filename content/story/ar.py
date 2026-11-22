@@ -207,3 +207,8 @@ def post(s):
             w = _NOUN[w]
         return '%s %s' % (m.group(1), w)
     return _RX.sub(f, s)
+
+
+def wrap_name(s):
+    """A company name in Latin letters inside Arabic text: isolate it so the sentence keeps its right-to-left order."""
+    return '<bdi dir="ltr">%s</bdi>' % s if re.search('[A-Za-z]', s) else s

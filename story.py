@@ -317,7 +317,7 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
     cash, debt = lat.get('cash'), lat.get('debt')
     if cash is not None and debt is not None and mc > 0:
         net = cash - debt
-        if net > 0 and net / mc >= 0.05:
+        if net > 0 and 0.05 <= net / mc <= 10:   # beyond 10x the market cap is a broken market cap, not a fact
             w.say('bs_cash', net=F.money(net), p=F.pct(net / mc))
         elif net < 0:
             eb = tt.get('ebitda')

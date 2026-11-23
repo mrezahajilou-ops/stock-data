@@ -35,7 +35,11 @@ class F:
 
     @staticmethod
     def price(v):
-        return '$' + format(v, ',.2f')
+        a = abs(v); d = 2
+        if 0 < a < 0.005:   # sub-cent EPS: show it, not "$0.00" (23 Nov 2026)
+            d = 3 if a >= 0.0005 else 4
+        s = format(a, ',.%df' % d)
+        return ('−' if v < 0 and float(s.replace(',', '')) else '') + '$' + s
 
     @staticmethod
     def years(ys):

@@ -324,7 +324,7 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
             if eb and eb > 0 and -net / eb < 30:
                 w.say('bs_debt_x', net=F.money(-net), x=F.num(-net / eb))
                 sal += 1 if -net / eb > 4 else 0
-            elif -net / mc > 0.2:
+            elif 0.2 < -net / mc <= 10:   # above 10x the market cap the percentage ("13811%") stops meaning anything
                 w.say('bs_debt_p', net=F.money(-net), p=F.pct(-net / mc))
                 sal += 1
     burn = tt.get('fcf')
@@ -335,7 +335,7 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
             sal += 3 if yrs < 2 else 1
     sh3 = s.get('sh_cagr_3y')
     if sh3 is not None:
-        if sh3 >= 0.03:
+        if 0.03 <= sh3 <= 1.0:   # >100%/yr is almost always reverse splits or a share-class change, not dilution
             w.say('sh_dilute', p=F.pct(sh3))
             sal += 2 if sh3 > 0.1 else 1
         elif sh3 <= -0.015:

@@ -42,7 +42,10 @@ class F:
 
     @staticmethod
     def price(v):
-        return '%s dólares' % _d(v, 2)
+        a = abs(v); d = 2
+        if 0 < a < 0.005:   # sub-cent EPS: show it, not "$0.00" (23 Nov 2026)
+            d = 3 if a >= 0.0005 else 4
+        return '%s%s dólares' % ('−' if v < 0 and round(a, d) else '', _d(a, d))
 
     @staticmethod
     def years(ys):

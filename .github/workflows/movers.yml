@@ -1,0 +1,77 @@
+name: Big movers - the day's 10% moves, automatically
+
+# Every trading evening, after the official closing quotes (quotes.yml runs at 23:30 UTC), this job:
+#  1. lists every company worth $2B+ that closed 10% or more up or down (movers.py, from the quotes snapshot) into
+#     data/movers/raw/<day>.json on main, with the earnings date when the move came on a report;
+#  2. fetches what each of them filed with the SEC that day or the day before (movers_facts.py) into the
+#     "movers-facts" branch, so the explanation can be written from the company's own announcements.
+# The explanations (data/movers/<lang>/) are then written in all five languages and published by every site.
+# GitHub's schedule can be late or skip a run, so it is tried twice; a day already listed is not redone.
+
+on:
+  schedule:
+    - cron: '50 23 * * 1-5'
+    - cron: '40 1 * * 2-6'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: movers
+  cancel-in-progress: false
+
+jobs:
+  movers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            data/stocks
+            data/movers/raw
+            movers.py
+            movers_facts.py
+            earnings_pr.py
+            .github/workflows
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: List the day's big movers
+        id: list
+        run: |
+          git fetch -q --depth 1 origin +refs/heads/quotes:refs/remotes/origin/quotes +refs/heads/earnings:refs/remotes/origin/earnings
+          git show origin/quotes:quotes.json > /tmp/quotes.json
+          mkdir -p /tmp/earn && git archive origin/earnings | tar -x -C /tmp/earn
+          before=$(ls data/movers/raw)
+          QUOTES=/tmp/quotes.json EARN_DIR=/tmp/earn python movers.py | tail -40
+          new=$(comm -13 <(echo "$before" | sort) <(ls data/movers/raw | sort) | head -1)
+          day="${new%.json}"
+          if [ -z "$day" ]; then echo "day already listed"; fi
+          echo "day=$day" >> $GITHUB_OUTPUT
+          echo "tickers=$(python -c "import json; print(' '.join(r['t'] for r in json.load(open('data/movers/raw/$day.json'))[:60]))" 2>/dev/null)" >> $GITHUB_OUTPUT
+      - name: Commit the list
+        if: steps.list.outputs.day != ''
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add data/movers/raw
+          git commit -qm "Big movers ${{ steps.list.outputs.day }}"
+          for i in 1 2 3 4 5; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && break
+            sleep $((i * 7))
+          done
+      - name: What each company filed that day
+        if: steps.list.outputs.day != '' && steps.list.outputs.tickers != ''
+        run: |
+          export SEC_USER_AGENT="$(grep -m1 'SEC_USER_AGENT:' .github/workflows/earnings.yml | sed 's/^[^"]*"//; s/"[^"]*$//')"
+          git clone -q --depth 1 -b movers-facts "https://github.com/${{ github.repository }}" out || mkdir -p out
+          find out/mv -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | head -n -10 | xargs -r rm -rf
+          python movers_facts.py ${{ steps.list.outputs.day }} ${{ steps.list.outputs.tickers }} || true
+          cd out && rm -rf .git && git init -q -b movers-facts
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add -A && git commit -qm "Mover facts ${{ steps.list.outputs.day }}"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" movers-facts:movers-facts

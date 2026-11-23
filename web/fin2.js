@@ -35,10 +35,12 @@
     if (a >= 1e6) return s + '$' + (a / 1e6).toFixed(0) + 'M';
     return s + '$' + a.toFixed(0);
   }
-  function pct(v, d) { return nn(v) ? D : (v * 100).toFixed(d || 0) + '%'; }
-  function sp(v) { return nn(v) ? D : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '%'; }
-  function eps(v) { return nn(v) ? D : (v < 0 ? '−$' + (-v).toFixed(2) : '$' + v.toFixed(2)); }
-  function x2(v, d) { return nn(v) ? D : v.toFixed(d === undefined ? 1 : d); }
+  // 23 Nov 2026: ±1000% and beyond comes from a near-zero base (an acquisition year, a tiny prior figure) and is shown
+  // as >999%; a value that rounds to zero carries no sign; sub-cent EPS keeps its digits instead of reading $0.00.
+  function pct(v, d) { if (nn(v)) return D; if (Math.abs(v) >= 10) return v > 0 ? '>999%' : '<−999%'; var s = (v * 100).toFixed(d || 0); if (+s === 0) s = (0).toFixed(d || 0); return s + '%'; }
+  function sp(v) { if (nn(v)) return D; if (Math.abs(v) >= 10) return v > 0 ? '>+999%' : '<−999%'; var a = Math.abs(v * 100).toFixed(1); return (+a === 0 ? '' : (v >= 0 ? '+' : '−')) + a + '%'; }
+  function eps(v) { if (nn(v)) return D; var a = Math.abs(v), dg = (a > 0 && a < 0.005) ? (a >= 0.0005 ? 3 : 4) : 2, s = a.toFixed(dg); return (v < 0 && +s !== 0 ? '−$' : '$') + s; }
+  function x2(v, d) { if (nn(v)) return D; var s = v.toFixed(d === undefined ? 1 : d); return +s === 0 ? (0).toFixed(d === undefined ? 1 : d) : s; }
   function shr(v) { return nn(v) ? D : (Math.abs(v) >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(0) + 'M'); }
   function dol(v, d) { return nn(v) ? D : '$' + v.toFixed(d === undefined ? 2 : d); }
   function esc(s) { return String(s === undefined || s === null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }

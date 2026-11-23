@@ -54,6 +54,9 @@ JOBS = {
     'guides.yml':         ('فهرست‌های سهام و مقاله‌های گزارش فصلی', 50),
     'social.yml':         ('پیش‌نویس پست‌های روزانه', 50),
 }
+# Jobs that only run on US trading days: hours of Saturday and Sunday (UTC) do not count towards their limit,
+# otherwise every weekend gap (e.g. Friday night -> Monday) raised a false "not run for 60 hours" alarm.
+WEEKDAY_JOBS = {'estimates.yml', 'contest-data.yml', 'top30.yml', 'sec-build.yml', 'prices.yml', 'bench.yml'}
 
 
 def get(url, gh=False, timeout=30):
@@ -80,6 +83,19 @@ def age_h(iso):
     return (NOW - dt.datetime.fromisoformat(iso.replace('Z', '+00:00'))).total_seconds() / 3600
 
 
+def weekday_age_h(iso):
+    """Hours since iso, not counting Saturday and Sunday (UTC)."""
+    t = dt.datetime.fromisoformat(iso.replace('Z', '+00:00'))
+    total = (NOW - t).total_seconds()
+    d = t
+    while d < NOW:
+        nxt = min(NOW, dt.datetime.combine(d.date() + dt.timedelta(days=1), dt.time(), tzinfo=dt.timezone.utc))
+        if d.weekday() >= 5:
+            total -= (nxt - d).total_seconds()
+        d = nxt
+    return total / 3600
+
+
 def check_jobs(issues):
     for wf, (label, max_h) in JOBS.items():
         try:
@@ -93,8 +109,11 @@ def check_jobs(issues):
             issues['fail:' + wf] = f'«{label}» دو بار پشت سر هم شکست خورده ({wf}).'
         elif not ok:
             issues['stale:' + wf] = f'«{label}» در ۲۰ اجرای آخر هیچ اجرای موفقی نداشته ({wf}).'
-        elif age_h(ok[0]['updated_at']) > max_h:
-            issues['stale:' + wf] = f'«{label}» {age_h(ok[0]["updated_at"]):.0f} ساعته موفق اجرا نشده (حد مجاز {max_h} ساعت، {wf}).'
+        else:
+            h = (weekday_age_h if wf in WEEKDAY_JOBS else age_h)(ok[0]['updated_at'])
+            if h > max_h:
+                extra = ' بدون احتساب آخر هفته' if wf in WEEKDAY_JOBS else ''
+                issues['stale:' + wf] = f'«{label}» {h:.0f} ساعت{extra} موفق اجرا نشده (حد مجاز {max_h} ساعت، {wf}).'
 
 
 def us_session():
@@ -273,7 +292,9 @@ def check_en(issues):
         except Exception as e:
             issues['en:' + url] = f'{name} باز نمی‌شود ({type(e).__name__}).'
     try:
-        st, body = get('https://raw.githubusercontent.com/mrezahajilou-ops/stockanaliz-site/main/content/last-refresh', timeout=30)
+        # stockanaliz-site is a private repo, so raw.githubusercontent.com answers 404; the build publishes the stamp
+        # on the live site instead, which also proves the refresh actually went live
+        st, body = get(EN + '/last-refresh.txt', timeout=30)
         h = age_h(body.decode().strip())
         if h > 10:
             issues['en:stale'] = f'سایت انگلیسی {h:.0f} ساعته دوباره ساخته نشده (حد مجاز ۱۰ ساعت).'

@@ -65,7 +65,22 @@
   "CEG": {
    "d": "2026-11-09",
    "headline": "Constellation Energy: BPA un 30% por encima de lo previsto y contratos nucleares con Google y Amazon; la acción sube un 10%",
-   "takeaway": "El beneficio operativo ajustado por acción pasó de 3,04 a 5,06 dólares, unos 30% más de lo esperado. La empresa elevó su previsión anual y firmó contratos a 20 años con Google y Amazon."
+   "takeaway": "El beneficio operativo ajustado por acción pasó de 3,04 a 5,06 dólares, unos 30% más de lo esperado. La empresa elevó su previsión anual y firmó contratos a 20 años con Google y Amazon.",
+   "results": [
+    "Constellation Energy registró un beneficio neto GAAP de 5,19 dólares por acción en el tercer trimestre, frente a 2,97, y un beneficio operativo ajustado de 5,06 dólares, frente a 3,04 y muy por encima de los 3,89 que esperaban los analistas. La empresa atribuyó el aumento a unas condiciones favorables de mercado y de cartera y a la incorporación de Calpine, comprada en enero, compensadas en parte por mayores costes financieros y un menor beneficio del crédito fiscal federal a la producción nuclear. Los ingresos fueron de unos 9.600 millones.",
+    "La flota nuclear produjo 46.677 gigavatios hora, algo más que un año antes, y las centrales, sin contar las sociedades conjuntas de Salem y South Texas, funcionaron con un factor de capacidad del 97,2%, frente al 96,8%. Con la flota de gas de Calpine ya incluida, la empresa ha empezado a publicar las tasas de paradas forzosas de sus centrales de gas, petróleo y renovables como indicador operativo clave.",
+    "Constellation acordó comprar a Shell la central de gas Rhode Island State Energy Center, de 609 megavatios, por 715 millones de dólares, y firmó un compromiso condicional de préstamo de hasta 5.000 millones del Departamento de Energía para financiar aumentos de potencia nuclear."
+   ],
+   "mgmt": [
+    "El consejero delegado, Joe Dominguez, dijo que los acuerdos del trimestre añaden más de 1.000 megavatios de nueva capacidad sin emisiones —el equivalente a una gran central nuclear— sin coste para los clientes actuales. Los más importantes son un contrato de compra de electricidad a 20 años con Google que respalda 4.300 millones de inversión para añadir unos 890 megavatios en 11 unidades nucleares, más un acuerdo de seguimiento de carga a 15 años de 2.700 megavatios; y un acuerdo a 20 años de 690 megavatios con Amazon que respalda más de 3.000 millones de inversión en Calvert Cliffs, incluida una ampliación de 190 megavatios prevista entre 2030 y 2032.",
+    "El director financiero, Shane Smith, dijo que los resultados permitieron elevar por segunda vez este año el punto medio de la previsión, hasta 12,50–12,80 dólares por acción, y señaló los aumentos de potencia, la compra en Rhode Island y un ritmo agresivo de recompras como motores de un crecimiento sostenido del beneficio. La empresa también lanzó Peak+, un producto que combina nueva capacidad y suministro de energía para grandes clientes, con un primer contrato de 270 megavatios a 20 años."
+   ],
+   "view": [
+    "Constellation se ha convertido en la forma más limpia de invertir en la idea de que la inteligencia artificial necesita electricidad fiable y sin carbono las 24 horas, y este trimestre ofreció la prueba de que la idea da dinero. Superar el beneficio previsto en un 30% es mucho para una eléctrica, y la sorpresa vino del negocio de mercado: vender electricidad y capacidad a precios que han subido con fuerza en la red PJM porque la demanda de los centros de datos supera a la nueva oferta. Esa es la parte de la historia que los inversores dudaban: si los altos precios de 2025 durarían.",
+    "Los contratos importan más que el trimestre. Los acuerdos con Google y Amazon hacen algo distinto de los llamativos acuerdos de reapertura del año pasado: pagan aumentos de potencia y ampliaciones en centrales existentes —unos 1.080 megavatios en total— que son más baratos y rápidos de construir que nuevos reactores, y aseguran 20 años de ingresos de los compradores más solventes del mundo. Junto con un préstamo del Departamento de Energía de hasta 5.000 millones a tipos públicos, Constellation está, en la práctica, cobrando de sus clientes por ampliar su flota y siendo financiada por el Estado.",
+    "Los riesgos son políticos y financieros, no operativos. Los reguladores de PJM están presionados por el aumento de las facturas de los consumidores, y cualquier tope a los precios de capacidad o norma que obligue a los centros de datos a aportar su propia generación golpearía los beneficios de mercado que impulsaron esta sorpresa. La empresa también está más endeudada tras la compra de Calpine por más de 26.000 millones y ahora posee una gran flota de gas cuyo valor depende de los diferenciales entre gas y electricidad. A unas 19 veces el beneficio previsto para este año, muy por encima del múltiplo de una eléctrica regulada, la acción ya da por hecho que seguirán llegando contratos. Este informe no da motivos para dudarlo, pero deja poco margen ante un cambio de política."
+   ],
+   "watch": "Vigilar la próxima subasta de capacidad de PJM y cualquier medida regulatoria sobre los precios, nuevos contratos con grandes tecnológicas, el cierre de la compra en Rhode Island y la previsión de 2027 en febrero."
   },
   "CSCO": {
    "d": "2026-11-12",
@@ -191,12 +206,44 @@
   "LOW": {
    "d": "2026-11-18",
    "headline": "Lowe’s: el BPA de 3,10 dólares incluye 34 centavos de devoluciones de aranceles; sin ellas, el beneficio cayó",
-   "takeaway": "El BPA ajustado parecía superar lo previsto, pero 0,34 dólares vienen de devoluciones de aranceles. Sin ellas, fue de unos 2,76 dólares, frente a 3,06 un año antes."
+   "takeaway": "El BPA ajustado parecía superar lo previsto, pero 0,34 dólares vienen de devoluciones de aranceles. Sin ellas, fue de unos 2,76 dólares, frente a 3,06 un año antes.",
+   "results": [
+    "Lowe’s registró unas ventas totales de 22.800 millones de dólares en el trimestre cerrado el 30 de octubre, un 9,3% más que los 20.800 millones de un año antes. Las ventas comparables subieron un 1,8%, el sexto trimestre positivo consecutivo, impulsadas por un aumento del 17,4% de las ventas en línea y por el crecimiento de las ventas a profesionales y de los servicios para el hogar.",
+    "El BPA diluido contable fue de 2,98 dólares y el ajustado de 3,10, un 1,3% más que un año antes. Ambas cifras incluyen un impacto positivo antes de impuestos de unos 250 millones por devoluciones de aranceles pagados bajo la Ley de Poderes Económicos de Emergencia Internacional, equivalente a 0,34 dólares por acción. La cifra ajustada excluye 96 millones de amortización de los dos negocios que Lowe’s adquirió, Foundation Building Materials y Artisan Design Group.",
+    "La empresa operaba 1.762 tiendas al cierre del trimestre y pagó 701 millones en dividendos. La diferencia entre el crecimiento de las ventas totales del 9,3% y el comparable del 1,8% es la aportación de esas adquisiciones, que atienden a constructores y contratistas profesionales."
+   ],
+   "mgmt": [
+    "El presidente y consejero delegado, Marvin Ellison, destacó el sexto trimestre seguido de ventas comparables positivas y atribuyó el crecimiento a los clientes profesionales, las ventas en línea y los servicios para el hogar, como prueba de la solidez de la estrategia «Total Home» de la empresa. Remitió a los inversores a una conferencia con analistas e inversores en diciembre para conocer más sobre las oportunidades de crecimiento.",
+    "Lowe’s actualizó su previsión para el ejercicio 2026: ventas totales de unos 92.500 millones (antes 92.000), ventas comparables alrededor de un 0,5% mayores (antes planas) y un margen operativo ajustado de alrededor del 11,5% (antes 11,6%). Espera un BPA ajustado de unos 12,25 dólares y un gasto neto por intereses de unos 1.500 millones.",
+    "La empresa dijo que la actualización refleja los resultados hasta ahora y las «tendencias actuales de la demanda y las presiones de costes en todo el negocio»: la previsión de ventas subió mientras que la de margen bajó."
+   ],
+   "view": [
+    "Es un trimestre en el que el titular engaña, y merece la pena hacer las cuentas. El BPA ajustado de 3,10 dólares incluye 34 centavos de devoluciones de aranceles, dinero devuelto por derechos pagados en periodos anteriores que no se repetirá. Sin ese efecto, Lowe’s ganó unos 2,76 dólares, frente a 3,06 un año antes y un consenso de 2,88. En el negocio subyacente, el beneficio por acción cayó cerca de un 10% y decepcionó. Que la acción subiera un 1% indica que el mercado vio más allá del titular y no se impresionó ni se alarmó.",
+    "¿Por qué caerían los beneficios cuando las ventas subieron un 9%? Porque el crecimiento se compró. Lowe’s gastó mucho en adquirir dos distribuidores que atienden a constructores profesionales, y esos negocios aportan ingresos con márgenes más bajos, además de los intereses de la deuda que los financió. La previsión dice lo mismo en dos líneas: ventas elevadas en 500 millones y margen operativo recortado una décima. Más ventas, menos beneficio por cada dólar. Ese es el coste de reorientar un minorista de bricolaje hacia el cliente profesional.",
+    "La estrategia en sí es sensata, y es la misma que sigue Home Depot. Los profesionales gastan mucho más que los particulares y lo hacen a lo largo de todo el ciclo, y Lowe’s ha estado históricamente infraponderada en ellos: entre una cuarta parte y el 30% de las ventas, frente a cerca de la mitad en su rival. Cerrar esa brecha es la mayor oportunidad de crecimiento de la empresa. La cuestión es el precio: la distribución es un negocio de menor margen y más intensivo en capital que el comercio minorista, y los beneficios llegan a lo largo de años mientras los costes llegan ya.",
+    "El panorama de la demanda de fondo coincide con el de Home Depot un día antes: ventas comparables positivas pero bajas, un mercado inmobiliario en el que poca gente se muda y grandes proyectos discrecionales todavía aplazados. El 1,8% comparable de Lowe’s frente al 2,2% de Home Depot es una diferencia normal. Con una previsión de crecimiento comparable anual de alrededor del 0,5%, es un negocio que espera a que se reactiven las compraventas de viviendas. El día del inversor de diciembre importa más que este informe: es donde la dirección tiene que mostrar cuánto ganarán los negocios adquiridos una vez integrados."
+   ],
+   "watch": "El beneficio sin las devoluciones de aranceles y los objetivos de margen que se den en la conferencia de inversores de diciembre. Lo primero muestra lo que el negocio gana de verdad; lo segundo, si se espera que las adquisiciones recuperen el margen que han diluido."
   },
   "MFG": {
    "d": "2026-11-13",
    "headline": "Mizuho: beneficio semestral +30%; previsión anual +14% y dividendo de 200 yenes",
-   "takeaway": "El beneficio semestral llegó a 896.000 millones de yenes y la previsión anual pasó de 1,4 a 1,6 billones. El dividendo sube de 145 a 200 yenes; la acción ganó un 2,2%."
+   "takeaway": "El beneficio semestral llegó a 896.000 millones de yenes y la previsión anual pasó de 1,4 a 1,6 billones. El dividendo sube de 145 a 200 yenes; la acción ganó un 2,2%.",
+   "results": [
+    "Mizuho Financial Group registró un beneficio atribuido de 896.500 millones de yenes en los seis meses cerrados el 30 de septiembre, un 29,9% más, con unos ingresos ordinarios de 4,9931 billones, un 15,1% más. El beneficio ordinario subió un 47,3% hasta 1,2523 billones y el beneficio por acción fue de 368,81 yenes. Solo el segundo trimestre equivalió a unos 0,24 dólares por ADS, frente a un consenso de 0,21.",
+    "Los ingresos por intereses subieron un 8% hasta 3,1276 billones de yenes, mientras que los gastos por intereses solo crecieron un 5%, lo que amplió el margen; los intereses de préstamos subieron un 13% y los ingresos por comisiones un 18%, hasta 688.300 millones. El resultado integral cayó un 69,5% hasta 257.300 millones, porque la subida de las rentabilidades redujo el valor de la cartera de valores.",
+    "El dividendo a cuenta fue de 100 yenes, frente a 72,50 un año antes, y la previsión anual es ahora de 200 yenes, frente a los 145 pagados el año pasado."
+   ],
+   "mgmt": [
+    "Tras el resultado semestral, Mizuho elevó su estimación de beneficio consolidado para el ejercicio hasta marzo de 2027 en 200.000 millones de yenes, un 14,2%, hasta 1,6 billones, un 28,1% más que el año pasado, o 660,42 yenes por acción. El beneficio semestral es el 56% de la nueva cifra.",
+    "La empresa revisó al mismo tiempo su previsión de dividendo, en línea con su política de dividendo progresivo vinculado al crecimiento del beneficio."
+   ],
+   "view": [
+    "Mizuho ha sido durante mucho tiempo el rezagado de los tres megabancos, con los márgenes más estrechos y un historial de fallos informáticos que le valieron sanciones de los reguladores. Este informe muestra que ahora es el mayor beneficiado por la normalización de los tipos japoneses. Un beneficio ordinario un 47% mayor y un aumento del 18% de las comisiones apuntan tanto a mejores márgenes como a un negocio de banca de inversión y mercados más fuerte, en parte gracias a la compra de la firma asesora estadounidense Greenhill en 2023.",
+    "Elevar la previsión un 14% a mitad de ejercicio es inusual en un banco japonés, donde las direcciones suelen fijar objetivos que pueden superar con holgura y dejan las revisiones para el último trimestre. Hacerlo ahora, junto con un aumento del dividendo del 38%, transmite confianza en que la mejora es estructural y no unos pocos buenos meses en el negocio de mercados.",
+    "El riesgo es el mismo que el de sus rivales: la caída del resultado integral muestra cuánta exposición al precio de los bonos tienen los bancos, y cualquier subida brusca de las rentabilidades a largo plazo golpearía el capital antes de ayudar a los beneficios. Mizuho también está menos diversificado en el exterior que MUFG. Pero con estas cifras, el banco que era el más débil de los tres está cerrando rápido la brecha de rentabilidad, y suele ser entonces cuando también se cierra la brecha de valoración."
+   ],
+   "watch": "Vigilar si Mizuho sigue superando su previsión elevada en el segundo semestre, la evolución de las pérdidas de valoración de su cartera y cualquier anuncio de una recompra mayor en mayo."
   },
   "MUFG": {
    "d": "2026-11-13",
@@ -290,12 +337,42 @@
   "PBR": {
    "d": "2026-11-10",
    "headline": "Petrobras: producción récord de 3,51 millones de barriles diarios y beneficio +22%, pero por debajo de lo esperado",
-   "takeaway": "El beneficio neto subió un 21,5% hasta 39.800 millones de reales, por debajo del consenso. Petrobras elevó sus previsiones de producción e inversión para 2026 y la acción bajó un 2,9%."
+   "takeaway": "El beneficio neto subió un 21,5% hasta 39.800 millones de reales, por debajo del consenso. Petrobras elevó sus previsiones de producción e inversión para 2026 y la acción bajó un 2,9%.",
+   "results": [
+    "Petrobras registró un beneficio neto de 39.800 millones de reales (7.700 millones de dólares) en el tercer trimestre, un 21,5% más que un año antes, según sus resultados y la prensa. Sin partidas extraordinarias, el beneficio neto fue de 47.900 millones de reales, un 68% más. Los ingresos en dólares subieron alrededor de un 40%.",
+    "La producción de petróleo y gas promedió un récord de 3,51 millones de barriles equivalentes diarios, unos 2,96 millones de ellos de los campos del presal, el tercer récord trimestral seguido este año. La empresa puso en marcha nuevas plataformas flotantes de producción antes de lo previsto y obtuvo autorización para operar 11 plataformas por encima de su capacidad original. Las refinerías funcionaron al 99% de su capacidad y la producción de diésel marcó un récord.",
+    "En los nueve primeros meses el beneficio neto subió alrededor de un 46% en dólares, hasta unos 24.400 millones. La empresa también anunció la compra del 70% restante de Logum, una empresa de oleoductos de etanol, por 620 millones de reales."
+   ],
+   "mgmt": [
+    "La consejera delegada, Magda Chambriard, dijo que la empresa volvió a lograr récords de producción de petróleo y gas y de diésel con una utilización de las refinerías del 99%, algo que calificó de esencial para la seguridad energética de Brasil durante la crisis geopolítica, y que la fuerte generación de caja está financiando una ejecución más rápida de las inversiones.",
+    "Petrobras elevó su previsión de producción para 2026 a entre 3,3 y 3,4 millones de barriles equivalentes diarios desde unos 3,1 millones, aumentó la generación de caja operativa esperada para el año a entre 45.000 y 50.000 millones de dólares desde unos 35.000 millones, y subió su objetivo de inversión en proyectos en ejecución a entre 24.000 y 25.500 millones desde unos 19.400 millones."
+   ],
+   "view": [
+    "En lo operativo, fue uno de los mejores trimestres de la historia de Petrobras. Producir 3,5 millones de barriles diarios —más de un 10% más en un año— con las refinerías a pleno rendimiento muestra una empresa que ejecuta su plan de desarrollo en alta mar más rápido de lo prometido, con la ayuda del campo de Búzios y de nuevas plataformas. La capacidad de llevar las plataformas existentes por encima de su capacidad nominal es especialmente valiosa porque añade barriles sin nueva inversión.",
+    "La decepción está en cómo esa producción se convierte en beneficios y en el uso que se dará a la caja. El beneficio quedó por debajo de las previsiones pese a los altos precios del crudo, y la política de precios de los combustibles en Brasil —donde la empresa controlada por el Estado ha tardado históricamente en trasladar los precios internacionales a los consumidores— sigue siendo un límite estructural a la parte de un repunte de precios que llega a la cuenta de resultados. Más importante aún, el aumento del 30% del objetivo de inversión indica que la ganancia extraordinaria de caja va a nuevos proyectos y no a los accionistas. Con el gobierno del presidente Lula, Petrobras se ha expandido hacia el refino, los fertilizantes y las renovables, que el mercado considera usos del capital de menor rentabilidad.",
+    "Esa es la tensión permanente de Petrobras: un productor de petróleo en aguas profundas de primer nivel y bajo coste que también es un instrumento de política nacional. La acción cotiza a un múltiplo bajo de beneficios con una alta rentabilidad por dividendo, reflejo de esa tensión más que de la calidad de los activos. Los inversores obtienen un crecimiento excepcional de la producción y grandes dividendos mientras el crudo se mantiene caro; el riesgo es que una caída del petróleo coincida con un mayor compromiso de inversión y recorte los pagos que justifican tener la acción."
+   ],
+   "watch": "Vigilar el anuncio del dividendo del cuarto trimestre, el próximo plan de negocio a cinco años, las decisiones sobre precios de los combustibles en Brasil y la producción de las nuevas plataformas."
   },
   "PDD": {
    "d": "2026-11-19",
    "headline": "PDD: ingresos planos, pero el beneficio se mantiene en 31.000 millones de yuanes al recortar marketing; la acción sube un 11%",
-   "takeaway": "La publicidad creció un 12% y las comisiones de transacción cayeron un 12%. El BPA de 21,04 yuanes superó lo previsto porque el gasto en marketing bajó en 5.000 millones."
+   "takeaway": "La publicidad creció un 12% y las comisiones de transacción cayeron un 12%. El BPA de 21,04 yuanes superó lo previsto porque el gasto en marketing bajó en 5.000 millones.",
+   "results": [
+    "PDD Holdings registró unos ingresos de 108.300 millones de yuanes (16.200 millones de dólares) en el trimestre cerrado el 30 de septiembre, lo mismo que un año antes. Los servicios de marketing en línea —la publicidad que los comerciantes compran en Pinduoduo— subieron un 12% hasta 59.800 millones, mientras que los servicios de transacción, que incluyen las comisiones de Temu y Duoduo Maicai, cayeron un 12% hasta 48.500 millones.",
+    "Los gastos operativos bajaron un 12% hasta 31.900 millones de yuanes, sobre todo porque ventas y marketing cayeron a 25.300 millones desde 30.300 millones. El beneficio operativo fue de 31.200 millones y el beneficio neto no GAAP de 31.000 millones, casi idéntico a los 31.400 millones del año pasado. El beneficio diluido no GAAP por ADS fue de 21,04 yuanes (3,14 dólares), frente a 21,08 un año antes y un consenso de unos 18,8.",
+    "El flujo de caja operativo fue de 43.000 millones de yuanes. La caja y las inversiones a corto plazo alcanzaron 455.400 millones (67.900 millones de dólares), con otros 115.700 millones, sobre todo depósitos a plazo, en otros activos no corrientes: en conjunto, unos 85.000 millones de dólares, alrededor de dos tercios del valor en bolsa de PDD."
+   ],
+   "mgmt": [
+    "El consejero delegado Jiazhen Zhao dijo que la empresa siguió reforzando su apoyo a los comerciantes y ve un potencial importante para avanzar sobre ese progreso. El consejero delegado Lei Chen dijo que el negocio global se está adaptando a un entorno comercial y regulatorio cambiante y que PDD sigue comprometida con profundizar sus inversiones en la cadena de suministro.",
+    "Jun Liu, vicepresidente de finanzas, repitió que PDD sigue en una fase de inversión estratégica y que continuará financiando con disciplina las iniciativas de apoyo a comerciantes. Como de costumbre, la empresa no dio previsiones financieras y mantuvo su política de no pagar dividendos ni recomprar acciones."
+   ],
+   "view": [
+    "Un titular que dice que los ingresos no crecieron nada sería normalmente un desastre para una empresa valorada como de crecimiento. La subida del 11% en bolsa indica que PDD ya no se valora así. A unas siete veces beneficios y con una caja equivalente a dos tercios de su valor en bolsa, los inversores compran un mercado electrónico chino muy rentable cuyo brazo internacional ha dejado de ser fuente de crecimiento para convertirse en fuente de riesgo. Este trimestre mostró que el motor de beneficios sigue intacto: la publicidad nacional creció un 12% y PDD protegió el beneficio gastando 5.000 millones de yuanes menos en marketing.",
+    "La caída del 12% de los ingresos por transacciones es la historia de Temu en una cifra. El fin de la exención arancelaria estadounidense para paquetes pequeños y unas normas más estrictas en Europa obligaron a Temu a pasar de enviar paquetes individuales desde China a un modelo de almacenes locales, que gana menos por pedido y crece más despacio. El lenguaje prudente de la dirección sobre adaptarse al entorno comercial y regulatorio reconoce que la etapa de hipercrecimiento en el exterior ha terminado. La pregunta es si Temu se asienta como un negocio más pequeño pero rentable o se convierte en una carga.",
+    "El descuento persistente refleja tanto el gobierno corporativo como los fundamentales. PDD no da previsiones, apenas celebra conferencias de resultados con contenido, no devuelve nada a los accionistas y acumula una caja que crece 30.000 millones de yuanes o más cada trimestre. Hasta que la dirección indique para qué es ese dinero —una recompra, un dividendo o una gran inversión—, la acción cotizará según la sorpresa de beneficios del día y no según el valor del negocio. Quien tenga PDD debería considerar cualquier anuncio de retribución al accionista como el catalizador más importante."
+   ],
+   "watch": "Vigilar la línea de servicios de transacción en busca de señales de que la caída de Temu toca fondo, si los recortes de marketing se mantienen sin perder cuota frente a Alibaba y JD en China, y cualquier cambio en la política de PDD de quedarse con toda su caja."
   },
   "RKLB": {
    "d": "2026-11-09",
@@ -325,7 +402,22 @@
   "SMFG": {
    "d": "2026-11-13",
    "headline": "Sumitomo Mitsui: beneficio semestral +7,5% y previsión anual récord de 1,9 billones de yenes",
-   "takeaway": "El beneficio semestral fue de un billón de yenes. Creció menos que sus rivales por pérdidas en bonos, pero la previsión anual implica un aumento del 20%; la acción subió un 1,5%."
+   "takeaway": "El beneficio semestral fue de un billón de yenes. Creció menos que sus rivales por pérdidas en bonos, pero la previsión anual implica un aumento del 20%; la acción subió un 1,5%.",
+   "results": [
+    "Sumitomo Mitsui Financial Group registró un beneficio atribuido de 1,0032 billones de yenes en los seis meses cerrados el 30 de septiembre, un 7,5% más, con unos ingresos ordinarios de 5,8001 billones, un 11,4% más. El beneficio ordinario subió un 9,2% hasta 1,3956 billones. Por ADS, el trimestre equivalió a unos 0,25 dólares, en línea con el consenso.",
+    "El resultado integral cayó un 41,6% hasta 601.800 millones de yenes, reflejo de la menor valoración de las carteras de bonos y acciones del grupo al subir las rentabilidades japonesas. En la sociedad holding, el beneficio ordinario creció un 35% gracias a mayores dividendos de las filiales.",
+    "El 1 de octubre SMFG desdobló sus acciones dos por una. La previsión de dividendo anual es de 200 yenes en la base antigua, equivalentes a 100 yenes tras el desdoblamiento, y la previsión de beneficios supone que seguirán las recompras de acciones."
+   ],
+   "mgmt": [
+    "SMFG revisó su previsión de mayo y ahora espera un beneficio atribuido de 1,9 billones de yenes en el ejercicio hasta marzo de 2027, un 20% más y un récord, equivalente a 250,84 yenes por acción tras el desdoblamiento. El resultado semestral es el 53% de esa cifra, lo que implica un segundo semestre más fuerte.",
+    "La empresa también elevó su previsión de dividendo y señaló que la previsión de beneficio por acción refleja tanto el desdoblamiento como las recompras. Durante el periodo desconsolidó JRI Holdings."
+   ],
+   "view": [
+    "El primer semestre de SMFG fue el más flojo de los tres megabancos, y la razón es la cartera de bonos, no el negocio. La subida de los tipos en yenes amplía los márgenes del crédito, pero reduce el valor de los bonos comprados con rentabilidades cero, y SMFG ha reconocido esas pérdidas en su cuenta de resultados y en el resultado integral de forma más agresiva que sus rivales. Eso frena hoy el crecimiento contable y eleva los ingresos por intereses futuros; es una decisión de calendario, no una señal de debilidad.",
+    "La previsión es la cifra más reveladora. Un aumento del 20% hasta 1,9 billones con solo el 53% logrado en el primer semestre significa que la dirección espera un segundo semestre claramente mejor, a medida que los préstamos revisados al alza y los bonos reinvertidos empiecen a rendir más. SMFG suele fijar previsiones que luego supera, y el desdoblamiento y el lenguaje sobre recompras apuntan a un consejo que quiere ampliar su base de accionistas y seguir devolviendo capital.",
+    "Frente a MUFG y Mizuho, SMFG es la apuesta más pura por el crédito a empresas en Japón y por su creciente negocio asiático en India, Indonesia y Vietnam, donde ha comprado participaciones en bancos locales. Esas participaciones aportan crecimiento, pero también riesgo de crédito emergente. La diferencia de valoración con MUFG se ha estrechado; lo que volvería a ampliarla sería un tropiezo en Asia o una pausa del Banco de Japón."
+   ],
+   "watch": "Vigilar el ritmo del segundo semestre frente a la previsión de 1,9 billones de yenes, nuevas pérdidas en la cartera de bonos y el tamaño de la próxima recompra con los resultados anuales."
   },
   "TDG": {
    "d": "2026-11-10",

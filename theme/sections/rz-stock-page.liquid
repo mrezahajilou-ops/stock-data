@@ -263,6 +263,9 @@
   {%- assign hh = tk | append: '-financial-history' -%}
   {%- capture more -%}
     {%- if pages[hh].title != blank -%}<a href="/pages/{{ hh }}">درآمد و سود ۱۰ ساله</a>{%- endif -%}
+    {%- assign qe = tk | append: '-earnings-date' -%}{%- if pages[qe].title != blank -%}<a href="/pages/{{ qe }}">گزارش فصلی بعدی کی است؟</a>{%- endif -%}
+    {%- assign qd = tk | append: '-dividend-date' -%}{%- if pages[qd].title != blank -%}<a href="/pages/{{ qd }}">سود نقدی کی پرداخت می‌شود؟</a>{%- endif -%}
+    {%- assign qw = tk | append: '-why-stock-moved' -%}{%- if pages[qw].title != blank -%}<a href="/pages/{{ qw }}">چرا سهم تکان خورد؟</a>{%- endif -%}
     {%- for r in d.related -%}
       {%- assign rt = r.t | downcase | replace: '.', '-' -%}
       {%- assign c1 = tk | append: '-vs-' | append: rt -%}

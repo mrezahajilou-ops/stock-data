@@ -201,7 +201,22 @@
   "MUFG": {
    "d": "2026-11-13",
    "headline": "Mitsubishi UFJ: Japonya’da artan faizlerle yarıyıl kârı %26 arttı; yıllık hedef 2,8 trilyon yen",
-   "takeaway": "Altı aylık kâr 1,63 trilyon yene ulaştı ve net faiz geliri %29 arttı. Banka yıllık kâr hedefini ve temettüyü 100 yene yükseltti."
+   "takeaway": "Altı aylık kâr 1,63 trilyon yene ulaştı ve net faiz geliri %29 arttı. Banka yıllık kâr hedefini ve temettüyü 100 yene yükseltti.",
+   "results": [
+    "Mitsubishi UFJ Financial Group, 30 Eylül'de biten altı ayda %26,1 artışla 1.630,9 milyar yen ana ortaklığa ait kâr açıkladı. Olağan kâr %29,4 artışla 2.261,0 milyar yene yükseldi, hisse başı kâr 113,07 yenden 144,73 yene çıktı. Dolar cinsinden ikinci çeyrek, yaklaşık 0,45 dolarlık beklentiye karşı ADS başına yaklaşık 0,46 dolar oldu.",
+    "İki ana iştirakte net faiz geliri 411 milyar yen ya da %29 artışla 1.851 milyar yene, net ücret ve komisyonlar %14 artışla 1.138 milyar yene çıktı; alım satım kârı neredeyse üç katına çıktı. Buna karşılık banka 196 milyar yen tahvil satış zararı kaydetti ve genel yönetim giderleri %11 arttı. Kredi maliyetleri öncesi net faaliyet kârı %25 artışla 1.639 milyar yen oldu.",
+    "Toplam varlıklar 425,8 trilyon yen, özkaynaklar 22,8 trilyon yen düzeyindeydi. Ara temettü bir yıl önceki 35 yene karşı 48 yen oldu ve yıllık tahmin geçen yıl ödenen 86 yenden 100 yene yükseltildi."
+   ],
+   "mgmt": [
+    "MUFG klasik bir kâr tahmini yayımlamıyor; bir kâr hedefi belirliyor ve piyasa ile ekonomideki belirsizliğin tahmini pratik olmaktan çıkardığını yeniden açıkladı. Mart 2027'ye kadar olan yılın hedefi artık mayısta belirlenen rakamdan değiştirilerek 2,8 trilyon yen. Yarıyıl sonucu şimdiden bu hedefin %58'ine denk geliyor.",
+    "Şirket temettü tahminini de revize ederek ikinci yarı ödemesini 52 yen, toplamı 100 yen olarak belirledi. Yönetim iyileşmeyi esas olarak yükselen yen faizlerine, bankacılık, emanet ve menkul kıymet işlerindeki daha güçlü ücret gelirlerine ve yurt dışı operasyonlardaki daha iyi sonuçlara bağladı."
+   ],
+   "view": [
+    "Otuz yıl boyunca Japon bankalarının hikâyesi para kazanamamalarıydı: sıfır faiz kredi marjlarını eziyordu ve yatırımcılar onları defter değerinin küçük bir kısmıyla değerliyordu. Bu yarıyıl hikâyenin değiştiğinin kanıtı. Altı ayda net faiz gelirindeki %29'luk artışın neredeyse tamamı Japonya Merkez Bankası'nın faizi sıfırdan çıkarmasından geliyor; her artış, bankaya neredeyse hiç maliyeti olmayan 200 trilyon yeni aşkın mevduat üzerinden doğrudan kâra yansıyor. MUFG artık yüzde onların başında bir özkaynak kârlılığı elde ediyor; bu, 2020'de hayal bile edilemeyecek bir seviye.",
+    "Tahvil zararlarını korkmak yerine anlamak gerekiyor. MUFG, faizler sıfıra yakınken aldığı düşük getirili devlet tahvillerini satıp daha yüksek getiriyle yeniden yatırım yapıyor. Bu bugün para kaybettiriyor, yarın geliri artırıyor ve banka bunu karşılayabiliyor çünkü çekirdek kâr çok hızlı yükseliyor. %16'lık temettü artışı ve bankanın sonuçlarla birlikte geri alım açıklama alışkanlığıyla birlikte sermaye hikâyesi, kâr hikâyesi kadar güçlü.",
+    "Sınırlı tepki, bunun büyük bölümünün fiyatlandığını söylüyor. Hisse, defter değerinin yaklaşık yarısından belirgin şekilde üzerine yeniden değerlendi ve bir sonraki adım Japonya Merkez Bankası'nın ne kadar ileri gideceğine bağlı. Faizler %1,5'e doğru yükselirse kazanç gücü yine önemli ölçüde artar; büyüme durur ve merkez bankası ara verirse piyasa kredi maliyetlerine ve MUFG'nin Morgan Stanley ile Endonezya ve Tayland'daki kredilere yönelik büyük riskine odaklanır. Bu raporun gösterdiğine göre yönetim temkinli hedefler koyuyor ve onları aşıyor."
+   ],
+   "watch": "Japonya Merkez Bankası'nın bir sonraki faiz kararını, mayıstaki yıllık sonuçlarda açıklanacak olası yeni geri alımın büyüklüğünü ve banka menkul kıymet portföyünü yeniden düzenlerken tahvil satış zararlarının büyümeye devam edip etmediğini izleyin."
   },
   "NBIS": {
    "d": "2026-11-12",
@@ -325,7 +340,24 @@
   "TJX": {
    "d": "2026-11-18",
    "headline": "TJX: karşılaştırılabilir satışlar %4 arttı, daha güçlü tatil sezonu tahminiyle hisse %8 yükseldi",
-   "takeaway": "Satışlar %6 artışla 16 milyar dolara çıktı. Hisse başı kâr beklentiyle tam örtüştü, ancak tüm bölümler büyüdü ve uluslararası iş %8’e hızlandı."
+   "takeaway": "Satışlar %6 artışla 16 milyar dolara çıktı. Hisse başı kâr beklentiyle tam örtüştü, ancak tüm bölümler büyüdü ve uluslararası iş %8’e hızlandı.",
+   "results": [
+    "TJX, 31 Ekim'de biten çeyrekte %6 artışla 16,0 milyar dolar net satış açıkladı; konsolide benzer mağaza satışları şirketin planının üzerinde %4 arttı. Raporlanan hisse başı kâr %9 artışla 1,39 dolar oldu; gümrük vergisi iadelerinden gelen beş sentlik net katkı hariç düzeltilmiş hisse başı kâr %5 artışla 1,34 dolar oldu ve 1,34 dolarlık beklentiyle aynı geldi.",
+    "Bölümler bazında benzer satışlar, ABD'deki TJ Maxx ve Marshalls'tan oluşan Marmaxx'ta bir yıl önceki %6'lık artışa karşı %2, HomeGoods'ta %5, TJX Kanada'da %6 ve bir yıl önceki %3'ten yükselerek TJX Uluslararası'da %8 arttı. Düzeltilmiş vergi öncesi marj, geçen yıla göre 0,2 puan düşüşle %12,5 oldu ama planın üzerindeydi.",
+    "Stoklar 9,4 milyar dolara karşı 9,8 milyar dolardı; mağaza başına değişmedi. Şirket çeyrekte 64 mağaza açarak 5.349'a ulaştı ve geri alım ile temettüyle hissedarlara 1,5 milyar dolar dağıttı."
+   ],
+   "mgmt": [
+    "CEO Ernie Herrman, satışların, kârlılığın ve hisse başı kârın beklentileri aştığını ve sonuçların küresel, çeşitlendirilmiş bir işin avantajını gösterdiğini söyledi. ABD ve Kanada'daki mevsim dışı sıcak havanın bazı kategorilerde talebi frenlediğini, ancak şirketin yılbaşı sezonu boyunca satış ivmesinin hızlanmasını ve dördüncü çeyrekte Marmaxx'ta daha fazla iyileşme beklediğini belirtti.",
+    "TJX dördüncü çeyrek için %2–3 benzer satış artışı, %11,8–11,9 düzeltilmiş vergi öncesi marj ve 1,42–1,45 dolar düzeltilmiş hisse başı kâr planlıyor. Tüm yıl için artık %4 benzer satış artışı ve 5,17–5,20 dolar düzeltilmiş hisse başı kâr bekliyor; düzeltilmiş vergi öncesi marj hâlâ %12,0–12,1.",
+    "İki muhasebe konusuna dikkat çekildi. Şirket, Uluslararası Acil Ekonomik Yetkiler Yasası kapsamında ödenen gümrük vergilerinin iadesini aldı; bu raporlanan kârı artırıyor. Bu iadelere bağlı ek teşvik primi ayırıyor ve bu dördüncü çeyreğe yük olacak. Beklenti ayrıca artık öncekinden daha yüksek akaryakıt maliyeti varsayıyor."
+   ],
+   "view": [
+    "Bu raporla ilgili anlaşılması gereken ilk şey, kâr rakamının asıl haber olmadığı. Düzeltilmiş hisse başı kâr beklentiyle kuruşu kuruşuna aynıydı; bu genelde omuz silkmeyle karşılanır. Hisse %8 yükseldi, çünkü yatırımcılar satışların yaklaşık %60'ını oluşturan ABD çekirdeği Marmaxx'tan endişeliydi; burada benzer büyüme %2'ye yavaşlamıştı. Yönetimin iyileşmenin en önemli çeyrekte geleceğini ve zayıflığı daha zayıf bir tüketicinin değil sıcak havanın açıkladığını söylemesi, motorun stop ettiği endişesini giderdi.",
+    "Çeyreğin kalitesi genişliğinde. %5 ile HomeGoods, %6 ile Kanada ve %8 ile uluslararası iş, ABD giyim zincirinden daha güçlü; uluslararası işteki %3'ten %8'e hızlanma açıklamadaki en ilginç rakam. Avrupa'daki TK Maxx uzun süre daha az kârlı kardeşti; şimdi en hızlı büyüyen oysa, TJX'in ABD dışında uzun bir yolu olduğu tezi güçleniyor. 5.349 mağazası olup bir çeyrekte hâlâ 64 mağaza açan bir perakendeci olgun değildir.",
+    "İndirimli perakendenin bu ortamın işine yarayan tuhaf bir avantajı var. TJX, diğer perakendecilerin ve markaların satamadığını satın alıyor; bu yüzden başka yerlerdeki aksaklıklar —gümrük vergileri, iptal edilen siparişler, kapanan büyük mağazalar— onun tedarikini iyileştiriyor. Yönetimin ürünlerin “olağanüstü bulunabilirliği” ifadesi bu avantajın açıkça söylenmesi. Satışlar artarken mağaza başına stokların sabit kalması, alıcıların stok yığmak yerine seçici davrandığını gösteriyor ve bu marjı koruyor.",
+    "Bir miktar ölçülü olmanın nedeni marjın kendisi. Düzeltilmiş vergi öncesi marj 0,2 puan düştü ve %11,8–11,9'luk dördüncü çeyrek beklentisi daha yüksek akaryakıt maliyetlerini ve ek prim ödemesini içeriyor. Gümrük vergisi iadeleri, şirketin kendisinin de yaptığı gibi göz ardı edilmesi gereken tek seferlik bir kalem. Orta tek haneli benzer büyüme ve yaklaşık %9 düzeltilmiş hisse başı kâr büyümesi için kârın 28–32 katı arası bir değerlemeyle TJX, onlarca yıldır olduğu güvenilir bileşik büyüyen şirket olarak fiyatlanıyor: ucuz değil, makul; ve prim bu güvenilirliğin sürmesine dayanıyor."
+   ],
+   "watch": "Yılbaşı çeyreğinde Marmaxx benzer satışları. Yönetim %2'den iyileşme sözü verdi; gelirse hava açıklaması geçerli olur, gelmezse ABD tüketicisine dair soru hemen geri döner."
   },
   "TTWO": {
    "d": "2026-11-09",

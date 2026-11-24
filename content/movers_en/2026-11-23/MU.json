@@ -1,0 +1,28 @@
+{
+ "t": "MU",
+ "d": "2026-11-23",
+ "pct": 19.04,
+ "close": 707.7,
+ "prev": 594.51,
+ "kind": "sector",
+ "headline": "Micron surges 19% as chip stocks rebound on Jensen Huang’s return to Nvidia",
+ "summary": "Micron rose 19.0% to $707.70 on heavy volume as memory and chip stocks recovered from the previous week’s rout. Nvidia’s decision to reinstate Jensen Huang lifted the whole AI supply chain, and Citi argued that worries about AI infrastructure spending were overdone.",
+ "why": [
+  "Micron had fallen sharply with the rest of the semiconductor sector the week before, as leadership turmoil at Nvidia, a reported SEC probe and doubts about the financing of AI data centres hit every company that supplies them. Memory makers were among the hardest hit because their earnings depend on high-bandwidth memory sold into AI servers.",
+  "There was no company-specific news. The move was a rebound with the sector: Nvidia’s board reinstating Huang removed the most visible risk to AI demand, and commentary from Citi suggesting that the fears about infrastructure spending were overblown gave memory stocks extra support."
+ ],
+ "context": [
+  "US stocks had their best day since April 2025 on November 23. The Nasdaq rose close to 7% during the session and the S&P 500 about 5%, recovering much of the previous week’s sell-off, in which chip stocks had their worst week since 2001.",
+  "More than 120 US companies worth over $2 billion rose 10% or more on the day, almost all of them chipmakers, memory makers, data-centre suppliers and other AI-linked stocks."
+ ],
+ "src": [
+  {
+   "title": "Stock Market Today, Nov. 23: Micron surges 19% as Nvidia CEO change calms AI spending fears (Motley Fool)",
+   "url": "https://www.fool.com/coverage/stock-market-today/2026/11/23/stock-market-today-nov-23-micron-surges-19-as-nvidia-ceo-change-calms-ai-spending-fears/"
+  },
+  {
+   "title": "Stocks post best day since April 2025 as Nvidia reinstates Jensen Huang (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
+  }
+ ]
+}

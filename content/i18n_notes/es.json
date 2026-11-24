@@ -288,19 +288,29 @@
    "summary": "La acción bajó un 12,8% el día después de unos resultados mejores de lo previsto en los que anunció la venta de Mailchimp y ajustó su previsión de ingresos, en una jornada de fuertes caídas tecnológicas."
   },
   "MU": {
-   "d": "2026-11-20",
-   "headline": "Micron cae un 14% con las memorias liderando el desplome de los semiconductores",
-   "summary": "Micron bajó un 13,9% junto a Sandisk, Western Digital y Seagate. Sin noticias propias, los inversores vendieron los valores que más ganaron con la escasez de memoria."
+   "d": "2026-11-23",
+   "headline": "Micron sube un 19% con el rebote de los chips tras el regreso de Huang a Nvidia",
+   "summary": "Micron subió un 19% junto con todo el sector de semiconductores tras la fuerte caída de la semana anterior. No hubo noticias propias de la empresa: fue un rebote del sector."
   },
   "NVDA": {
-   "d": "2026-11-20",
-   "headline": "Nvidia cae un 14% entre una investigación de la SEC y la crisis en su dirección",
-   "summary": "Nvidia bajó un 14% y lideró la caída de los chips, con el Nasdaq cediendo un 5,3%. La empresa afronta la dimisión de su fundador Jensen Huang, una investigación de la SEC y presión política por ventas a China."
+   "d": "2026-11-23",
+   "headline": "Nvidia se dispara un 31% tras reincorporar a Jensen Huang como consejero delegado",
+   "summary": "El consejo de Nvidia devolvió a Jensen Huang el cargo de consejero delegado once días después de su dimisión, y la acción subió un 31,5%. El consejo dijo que su regreso no supone un riesgo para la seguridad nacional, aunque la investigación independiente sigue."
   },
   "SNDK": {
    "d": "2026-11-20",
    "headline": "Sandisk cae un 16% en su primer día tras el desdoblamiento de acciones",
    "summary": "Sandisk bajó un 16,1% en la primera sesión tras su desdoblamiento de 8 por 1, mientras la venta de valores de IA golpeaba con más fuerza a los fabricantes de memoria."
+  },
+  "ZS": {
+   "d": "2026-11-23",
+   "headline": "Zscaler se dispara un 18% después de que CrowdStrike acuerde comprarla por 43.900 millones",
+   "summary": "CrowdStrike acordó comprar Zscaler por 43.900 millones de dólares. Las acciones de Zscaler subieron un 17,7% y las del comprador cayeron."
+  },
+  "ARM": {
+   "d": "2026-11-23",
+   "headline": "Arm sube un 16% con el rally de los chips y la renovación de su consejero delegado hasta 2033",
+   "summary": "Arm subió un 16% junto con el sector de semiconductores, y anunció que su consejero delegado, Rene Haas, renovó su contrato hasta 2033."
   }
  }
 }

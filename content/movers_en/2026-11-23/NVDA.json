@@ -1,0 +1,24 @@
+{
+ "t": "NVDA",
+ "d": "2026-11-23",
+ "pct": 31.48,
+ "close": 165.05,
+ "prev": 125.53,
+ "kind": "news",
+ "headline": "Nvidia jumps 31% after its board reinstates Jensen Huang as chief executive",
+ "summary": "Nvidia rose 31.5% to $165.05, its biggest one-day gain in years, after the board reinstated co-founder Jensen Huang as president, chief executive and director with immediate effect, eleven days after he resigned.",
+ "why": [
+  "Huang resigned on November 12 after reports of relationships with employees and with an executive at Megaspeed suspected of being a Chinese agent, and the shares lost almost half their value from their October high in the turmoil that followed. Before Monday’s open the board reversed course: it said it had received input from senior levels of the US government and concluded that his return poses no national security risk. President Trump had publicly urged the board to bring him back and praised the decision.",
+  "The board said its independent investigation into Huang’s ties to the Megaspeed executive will proceed to its conclusion, and it formed a new National Security and Export Control Committee. Investors took the decision as removing the largest single uncertainty over the company, but the SEC’s reported investigation into Nvidia’s disclosures and the political scrutiny of chip sales to China are still open."
+ ],
+ "context": [
+  "US stocks had their best day since April 2025 on November 23. The Nasdaq rose close to 7% during the session and the S&P 500 about 5%, recovering much of the previous week’s sell-off, in which chip stocks had their worst week since 2001.",
+  "More than 120 US companies worth over $2 billion rose 10% or more on the day, almost all of them chipmakers, memory makers, data-centre suppliers and other AI-linked stocks."
+ ],
+ "src": [
+  {
+   "title": "Stocks post best day since April 2025 as Nvidia reinstates Jensen Huang (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
+  }
+ ]
+}

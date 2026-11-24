@@ -1,0 +1,24 @@
+{
+ "t": "ARM",
+ "d": "2026-11-23",
+ "pct": 16.08,
+ "close": 176.67,
+ "prev": 152.2,
+ "kind": "news",
+ "headline": "Arm rises 16% in the chip rally after its chief executive renews his contract to 2033",
+ "summary": "Arm Holdings rose 16.1% to $176.67. The chip designer gained with the rest of the semiconductor sector after Nvidia reinstated Jensen Huang, and it also announced that chief executive Rene Haas had renewed his contract through 2033.",
+ "why": [
+  "Arm licenses the chip designs used in nearly every smartphone and, increasingly, in data-centre processors, so it moves with sentiment toward AI hardware. The sector had its worst week since 2001 the week before, and Monday’s rebound after Nvidia’s leadership reversal lifted Arm along with it.",
+  "On top of that, Arm said that Rene Haas, who has led the company through its listing and its push into data-centre chips, had renewed his contract through 2033. On a day when leadership was the market’s main worry, a long commitment from Arm’s own chief executive was welcomed."
+ ],
+ "context": [
+  "US stocks had their best day since April 2025 on November 23. The Nasdaq rose close to 7% during the session and the S&P 500 about 5%, recovering much of the previous week’s sell-off, in which chip stocks had their worst week since 2001.",
+  "More than 120 US companies worth over $2 billion rose 10% or more on the day, almost all of them chipmakers, memory makers, data-centre suppliers and other AI-linked stocks."
+ ],
+ "src": [
+  {
+   "title": "Stocks post best day since April 2025 as Nvidia reinstates Jensen Huang (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
+  }
+ ]
+}

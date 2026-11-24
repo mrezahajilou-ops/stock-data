@@ -288,19 +288,29 @@
    "summary": "Hisse, beklentiyi aşan sonuçlarla birlikte Mailchimp satışını ve gelir tahmini düzeltmesini açıkladığı raporun ertesi günü %12,8 geriledi; teknoloji hisselerindeki genel satış düşüşü büyüttü."
   },
   "MU": {
-   "d": "2026-11-20",
-   "headline": "Micron, bellek hisselerinin öncülük ettiği çip çöküşünde %14 düştü",
-   "summary": "Micron, Sandisk, Western Digital ve Seagate ile birlikte %13,9 geriledi. Özel bir haber yoktu; yatırımcılar bellek kıtlığından en çok kazanan hisseleri sattı."
+   "d": "2026-11-23",
+   "headline": "Huang’ın Nvidia’ya dönüşüyle çip hisseleri toparlanırken Micron yüzde 19 yükseldi",
+   "summary": "Micron, önceki haftanın sert düşüşünün ardından tüm yarı iletken sektörüyle birlikte yüzde 19 yükseldi. Şirkete özel bir haber yoktu; hareket sektörün toparlanmasıydı."
   },
   "NVDA": {
-   "d": "2026-11-20",
-   "headline": "Nvidia, SEC soruşturması ve yönetim krizi ortasında %14 düştü",
-   "summary": "Nvidia %14 geriledi ve Nasdaq’ın %5,3 düştüğü günde çip satışına öncülük etti. Şirket, kurucusu Jensen Huang’ın istifası, bir SEC soruşturması ve Çin satışları konusunda siyasi baskıyla karşı karşıya."
+   "d": "2026-11-23",
+   "headline": "Nvidia, Jensen Huang’ı yeniden CEO yapınca hisseleri yüzde 31 fırladı",
+   "summary": "Nvidia yönetim kurulu, istifasından on bir gün sonra Jensen Huang’ı yeniden CEO yaptı ve hisse yüzde 31,5 yükseldi. Kurul, dönüşünün ulusal güvenlik riski oluşturmadığını açıkladı; bağımsız soruşturma sürüyor."
   },
   "SNDK": {
    "d": "2026-11-20",
    "headline": "Sandisk, hisse bölünmesinin ardından ilk işlem gününde %16 düştü",
    "summary": "Sandisk, 8’e 1 hisse bölünmesinin ardından ilk seansta %16,1 geriledi; yapay zekâ satışları en sert bellek üreticilerini vurdu."
+  },
+  "ZS": {
+   "d": "2026-11-23",
+   "headline": "CrowdStrike’ın 43,9 milyar dolarlık satın alma anlaşmasıyla Zscaler yüzde 18 fırladı",
+   "summary": "CrowdStrike, Zscaler’ı 43,9 milyar dolara satın almak için anlaştı. Zscaler hisseleri yüzde 17,7 yükselirken alıcının hisseleri düştü."
+  },
+  "ARM": {
+   "d": "2026-11-23",
+   "headline": "Çip rallisi ve CEO’nun 2033’e kadar uzatılan sözleşmesiyle Arm yüzde 16 yükseldi",
+   "summary": "Arm, yarı iletken sektörüyle birlikte yüzde 16 yükseldi; şirket ayrıca CEO Rene Haas’ın sözleşmesinin 2033’e kadar uzatıldığını açıkladı."
   }
  }
 }

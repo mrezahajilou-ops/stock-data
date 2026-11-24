@@ -1,0 +1,23 @@
+{
+ "t": "ZS",
+ "d": "2026-11-23",
+ "pct": 17.67,
+ "close": 229.24,
+ "prev": 194.82,
+ "kind": "news",
+ "headline": "Zscaler jumps 18% after CrowdStrike agrees to buy it for $43.9 billion",
+ "summary": "Zscaler rose 17.7% to $229.24 after CrowdStrike agreed to acquire the cloud security company for $43.9 billion, one of the largest cybersecurity deals on record. CrowdStrike’s own shares fell on the news.",
+ "why": [
+  "CrowdStrike announced an agreement to buy Zscaler, combining the leading endpoint security platform with the leading cloud-based secure access business. A takeover at a premium to the previous close pulls the target’s share price up toward the offer, which is why Zscaler jumped while the buyer’s shares fell.",
+  "The gap between Zscaler’s price after the jump and the deal value reflects the time to closing and the risk that regulators or shareholders block it. Investors in CrowdStrike sold on concern about the price paid and the dilution or debt needed to fund a deal of this size."
+ ],
+ "context": [
+  "The deal was announced on the same day as a broad rally in technology stocks after Nvidia reinstated Jensen Huang as chief executive."
+ ],
+ "src": [
+  {
+   "title": "Stocks post best day since April 2025 as Nvidia reinstates Jensen Huang (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-23-dow-sp-500-nasdaq-surge-after-nvidia-reinstates-jensen-huang-182039397.html"
+  }
+ ]
+}

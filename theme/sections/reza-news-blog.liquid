@@ -17,7 +17,11 @@
     {%- if blog.all_tags.size > 0 -%}
       {%- comment -%} Nov 2026: 45+ topics made a five-row wall above the articles. The main topics stay visible;
         the rest fold under "موضوعات بیشتر" (opened automatically when the current filter is one of them). {%- endcomment -%}
-      {%- assign pri = 'خبر|گزارش فصلی|بازار امروز|بورس آمریکا|هوش مصنوعی|بهترین سهام|آموزش|تحلیل بنیادی|طلا' | split: '|' -%}
+      {%- if blog.handle == 'earnings-reports' -%}
+        {%- assign pri = 'فناوری|مالی|سلامت و دارو|انرژی|صنعتی|کالاهای مصرفی غیرضروری|کالاهای مصرفی ضروری|خدمات عمومی|املاک و مستغلات|مواد اولیه|مخابرات' | split: '|' -%}
+      {%- else -%}
+        {%- assign pri = 'خبر|گزارش فصلی|بازار امروز|بورس آمریکا|هوش مصنوعی|بهترین سهام|آموزش|تحلیل بنیادی|طلا' | split: '|' -%}
+      {%- endif -%}
       {%- assign rest_open = false -%}
       {%- assign rest_n = 0 -%}
       {%- for tag in blog.all_tags -%}
@@ -36,7 +40,9 @@
       </div>
       {%- if rest_n > 0 -%}
         <details class="rzn-more"{% if rest_open %} open{% endif %}>
-          <summary>موضوعات بیشتر <span>({{ rest_n }})</span></summary>
+          <summary>{% if blog.handle == 'earnings-reports' %}همه‌ی شرکت‌ها{% else %}موضوعات بیشتر{% endif %} <span>({{ rest_n }})</span></summary>
+          {%- if rest_n > 30 -%}<input class="rzn-find" type="search" placeholder="جستجوی نام یا نماد شرکت…" aria-label="جستجو"
+            oninput="var q=this.value.trim().toLowerCase();this.nextElementSibling.querySelectorAll('a').forEach(function(a){a.style.display=!q||a.textContent.toLowerCase().indexOf(q)>-1?'':'none'})">{%- endif -%}
           <div class="rzn-tags">
             {%- for tag in blog.all_tags -%}
               {%- unless pri contains tag -%}
@@ -55,6 +61,9 @@
         .rzn-more[open]>summary::after{content:'▴'}
         .rzn-more>summary span{color:var(--rz-mut,#8a9bb3);font-weight:500}
         .rzn-more[open]>summary{margin-bottom:10px}
+        .rzn-find{display:block;width:100%;max-width:360px;margin:0 0 10px;padding:9px 14px;border-radius:12px;border:1px solid var(--rz-line,#2a3a52);
+          background:transparent;color:inherit;font:inherit;font-size:14px;box-sizing:border-box}
+        .rzn-more .rzn-tags{max-height:340px;overflow:auto}
       </style>
     {%- endif -%}
 

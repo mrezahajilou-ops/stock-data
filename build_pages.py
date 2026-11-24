@@ -46,7 +46,8 @@ def about(t):
     return {'what': iso(p.get('what')), 'problem': iso(p.get('problem')), 'customers': iso(p.get('customers')),
             'money': [{'s': iso(m[0]), 'w': iso(m[1]) if len(m) > 1 else '', 'h': iso(m[2]) if len(m) > 2 else ''} for m in p.get('money') or []],
             'moat': iso(p.get('moat')), 'rivals': rv, 'risks': [iso(x) for x in p.get('risks') or []],
-            'opportunities': [iso(x) for x in p.get('opportunities') or []], 'watch': iso(p.get('watch')),
+            # a written line quoting a figure (growth, margin, upside) goes stale; keep the qualitative ones
+            'opportunities': [iso(x) for x in p.get('opportunities') or [] if not re.search(r'[0-9۰-۹٪%]', x)], 'watch': iso(p.get('watch')),
             'updated_fa': month_fa(p.get('updated'))}
 
 
@@ -161,9 +162,15 @@ def page(d, related):
     # ---- text ----
     p1 = ('%s از شرکت‌های %sبورس آمریکاست%s. ' % (label, ('بخش ' + sector_fa + ' در ') if sector_fa else '',
           (' و ارزش بازارش حدود ' + big_fa(m.get('mcap')) + ' است') if m.get('mcap') else ''))
-    p1 += ('در آخرین سال مالی (%s) درآمدش %s و سود خالصش %s بوده' % (fa(L['fy']), big_fa(L.get('revenue')), big_fa(L.get('net_income'))))
-    if L.get('net_margin') is not None:
-        p1 += ' که یعنی حاشیه سود خالص ' + pct(L['net_margin'])
+    _t = d.get('ttm') or {}
+    if _t.get('revenue') and _t['revenue'] > 0 and _t.get('net_income') is not None and _t.get('end'):
+        # the latest twelve months first; the fiscal year only when there is no TTM
+        p1 += ('در ۱۲ ماه منتهی به %s درآمدش %s و سود خالصش %s بوده' % (month_fa(_t['end'][:7]) or fa(_t['end'][:7]), big_fa(_t['revenue']), big_fa(_t['net_income'])))
+        p1 += ' که یعنی حاشیه سود خالص ' + pct(_t['net_income'] / _t['revenue'])
+    else:
+        p1 += ('در آخرین سال مالی (%s) درآمدش %s و سود خالصش %s بوده' % (fa(L['fy']), big_fa(L.get('revenue')), big_fa(L.get('net_income'))))
+        if L.get('net_margin') is not None:
+            p1 += ' که یعنی حاشیه سود خالص ' + pct(L['net_margin'])
     p1 += '.'
     if tot is not None:
         p2 = ('امتیاز کلی %s در تحلیل ما %s از ۵ است (%s). ' % (label, fa('%.1f' % tot), verdict(tot)))

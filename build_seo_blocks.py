@@ -70,13 +70,17 @@ def _auto(h):
     """Programmatic pages from build_seo_more (daily market pages, 10-year histories, comparisons, A-Z index):
     hundreds of them, so they get their own compact sections instead of flooding the ranking lists."""
     return (h.startswith('stock-market-') or h.endswith('-financial-history') or '-vs-' in h or h == 'all-stocks'
-            or (h.startswith('stocks-') and len(h) <= 9) or h == 'market-movers')
+            or (h.startswith('stocks-') and len(h) <= 9) or h == 'market-movers'
+            or h.endswith('-earnings-date') or h.endswith('-dividend-date') or h.endswith('-why-stock-moved'))
 
 
 RANKINGS = guide_links(lambda h: not h.startswith('best-') and not h.startswith('portfolio-') and h not in ('guides', 'superinvestors-portfolios') and not _auto(h))
 DAYS = sorted(guide_links(lambda h: h.startswith('stock-market-')), reverse=True)
 HIST = guide_links(lambda h: h.endswith('-financial-history'))
 CMP = guide_links(lambda h: '-vs-' in h)
+WHY = guide_links(lambda h: h.endswith('-why-stock-moved'))
+EDATE = guide_links(lambda h: h.endswith('-earnings-date'))
+DDATE = guide_links(lambda h: h.endswith('-dividend-date'))
 
 
 def chips_more(links, n, more='بیشتر'):
@@ -135,6 +139,9 @@ def build():
         '<h2>بورس آمریکا روزبه‌روز</h2>', chips_more([('/pages/market-movers', 'بیشترین رشد و افت امروز')]
                                                      + [(u, 'بازار ' + t.split(' در ', 1)[-1].split(':')[0]) for u, t in DAYS], 6, 'روزهای قبل'),
         '<h2>درآمد و سود ۱۰ ساله‌ی بزرگ‌ترین شرکت‌ها</h2>', chips_more([(u, t.replace('درآمد و سود ', '').split(' از ')[0]) for u, t in HIST[:60]] + [('/pages/all-stocks', 'فهرست همه‌ی سهام')], 8, 'شرکت‌های بیشتر'),
+        '<h2>چرا این سهم‌ها تکان خوردند؟</h2>', chips_more([(u, t.split(' (')[0]) for u, t in WHY], 6, 'سهم‌های بیشتر'),
+        '<h2>گزارش فصلی بعدی کی است؟</h2>', chips_more([(u, t.replace('گزارش فصلی بعدی ', '').split(' کی است')[0]) for u, t in EDATE[:80]], 10, 'شرکت‌های بیشتر'),
+        '<h2>سود نقدی کی پرداخت می‌شود؟</h2>', chips_more([(u, t.replace('سود نقدی ', '').split(' کی پرداخت')[0]) for u, t in DDATE[:80]], 10, 'شرکت‌های بیشتر'),
         '<h2>مقایسه‌ی سهام هم‌صنعت</h2>', chips_more(CMP[:40], 6, 'مقایسه‌های بیشتر'),
         '<h2>آموزش و اخبار</h2>', chips([('/blogs/learn', 'آموزش سرمایه‌گذاری'), ('/blogs/news', 'اخبار و مقالات'),
                                           ('/blogs/earnings-reports', 'گزارش‌های فصلی شرکت‌ها')] + learn('pe-ratio', 'intrinsic-value', 'etf', 'dividend')),

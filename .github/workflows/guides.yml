@@ -42,6 +42,8 @@ jobs:
           git fetch -q --depth 1 origin estimates:refs/remotes/origin/estimates || true
           git fetch -q --depth 1 origin quotes:refs/remotes/origin/quotes || true
           git fetch -q --depth 1 origin prices:refs/remotes/origin/prices || true
+          git fetch -q --depth 1 origin keystats:refs/remotes/origin/keystats || true
+          git fetch -q --depth 1 origin calendar:refs/remotes/origin/calendar || true
       - name: Build pages
         run: |
           python build_forecasts.py   # first: other pages link a forecast only if it exists

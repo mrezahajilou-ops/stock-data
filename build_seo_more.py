@@ -402,6 +402,12 @@ def build(U):
             mv['html'] = mv['html'].replace('<h2>صفحه‌ها و ابزارهای دیگر</h2>', '<h2>روزهای معاملاتی قبل</h2>' + chips(dlinks) + '<h2>صفحه‌ها و ابزارهای دیگر</h2>', 1)
         out.append(mv)
     out += dpages
+    try:
+        import build_qa
+        qp, _ = build_qa.build(U)
+        out += qp
+    except Exception as ex:
+        print('qa pages:', ex)
     hist_pages, hist = history_pages(U, recs)
     cmp_pages, cmp_links = compare_pages(U, recs)
     out += hist_pages + cmp_pages + az_pages(U, hist, cmp_links)

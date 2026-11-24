@@ -137,6 +137,52 @@ def big_fa(v):
     return fa('%.0f' % (v / 1e6)) + ' میلیون دلار'
 
 
+_NOTES = {}
+
+
+def _fa_notes(kind):
+    if kind not in _NOTES:
+        out = {}
+        base = os.path.join(os.environ.get('GITHUB_WORKSPACE', os.getcwd()), 'data', 'earnings_notes' if kind == 'earn' else 'movers', 'fa')
+        for f in glob.glob(os.path.join(base, '*.json')):
+            if f.endswith('index.json'):
+                continue
+            try:
+                j = json.load(open(f, encoding='utf-8'))
+            except Exception:
+                continue
+            lst = sorted(j.get('notes' if kind == 'earn' else 'moves') or [], key=lambda n: n.get('d') or '', reverse=True)
+            if lst:
+                out[j.get('t') or os.path.basename(f)[:-5]] = lst
+        _NOTES[kind] = out
+    return _NOTES[kind]
+
+
+def _d_fa(s):
+    try:
+        y, m, d = (int(x) for x in str(s)[:10].split('-'))
+        return fa(d) + ' ' + MONTHS_FA[m - 1] + ' ' + fa(y)
+    except Exception:
+        return ''
+
+
+MONTHS_FA = ['ژانویه', 'فوریه', 'مارس', 'آوریل', 'مه', 'ژوئن', 'ژوئیه', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر']
+
+
+def news_lines(t):
+    """Dated lines for the top of the stock page: the last big moves and the latest quarterly report, newest first.
+    Only items from the last 120 days, so an old headline never sits on top of the page."""
+    cut = (dt.date.today() - dt.timedelta(days=120)).isoformat()
+    items = []
+    for m in (_fa_notes('move').get(t) or [])[:2]:
+        if (m.get('d') or '') >= cut:
+            items.append((m['d'], '📰 خبر %s: %s. %s' % (_d_fa(m['d']), m['headline'], m.get('summary') or '')))
+    n = (_fa_notes('earn').get(t) or [None])[0]
+    if n and (n.get('d') or '') >= cut:
+        items.append((n['d'], '📊 آخرین گزارش فصلی (%s): %s. %s' % (_d_fa(n['d']), n['headline'], n.get('takeaway') or '')))
+    return [x for _, x in sorted(items, reverse=True)]
+
+
 def verdict(t):
     if t is None:
         return 'نامشخص'
@@ -195,6 +241,10 @@ def page(d, related):
         p3 += (' بر اساس DCF با فرض‌های متوسط، ارزش ذاتی تقریباً %s %s از قیمت فعلی است.' %
                (pct(abs(g)), 'بالاتر' if g >= 0 else 'پایین‌تر'))
     summary = '\n\n'.join(x for x in (p1, p2, p3) if x)
+    # latest news on top (Nov 2026): the stock page is the one permanent, always-fresh page per company
+    news = news_lines(t)
+    if news:
+        summary = '\n\n'.join(news) + '\n\n' + summary
 
     if anyfa:  # lead with the words people type: "سهام <نام فارسی>"
         title = 'سهام %s | تحلیل فارسی، امتیاز %s از ۵ و ارزش ذاتی' % (label, fa('%.1f' % tot) if tot is not None else '—')

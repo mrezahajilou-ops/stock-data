@@ -40,6 +40,44 @@ def _med(xs):
     return statistics.median(xs) if len(xs) >= 3 else None
 
 
+def _qs(d, idx):
+    q = [x for x in (d.get('quarterly') or []) if isinstance(x, list) and len(x) > idx and isinstance(x[idx], (int, float))]
+    return q
+
+
+def ttm_margin(d):
+    """Net margin over the trailing twelve months; the latest fiscal year only when there is no TTM."""
+    t = d.get('ttm') or {}
+    rv, ni = t.get('revenue'), t.get('net_income')
+    if isinstance(rv, (int, float)) and rv > 0 and isinstance(ni, (int, float)):
+        return ni / rv
+    return (d.get('latest') or {}).get('net_margin')
+
+
+def ttm_op_margin(d):
+    t = d.get('ttm') or {}
+    rv, op = t.get('revenue'), t.get('op_income')
+    if isinstance(rv, (int, float)) and rv > 0 and isinstance(op, (int, float)):
+        return op / rv
+    return None
+
+
+def ttm_growth(d):
+    """(revenue growth, True) over the trailing twelve months against the twelve before, from the quarterly
+    revenue; (last fiscal year's growth, False) when fewer than eight quarters are available."""
+    q = _qs(d, 1)
+    if len(q) >= 8:
+        try:
+            import datetime as _dt
+            span = (_dt.date.fromisoformat(q[-1][0]) - _dt.date.fromisoformat(q[-8][0])).days
+        except Exception:
+            span = 0
+        a, b = sum(x[1] for x in q[-4:]), sum(x[1] for x in q[-8:-4])
+        if 600 <= span <= 800 and b > 0:
+            return a / b - 1, True
+    return (d.get('summary') or {}).get('rev_cagr_1y'), False
+
+
 def context(docs):
     """Industry peer groups (largest first) and medians, computed once per build."""
     by = defaultdict(list)
@@ -50,9 +88,9 @@ def context(docs):
     ctx = {}
     for i, ds in by.items():
         ds.sort(key=lambda x: -_mc(x))
-        nm = [((x.get('latest') or {}).get('net_margin')) for x in ds]
+        nm = [ttm_margin(x) for x in ds]
         nm = [v for v in nm if v is not None and -3 < v < 1]
-        gr = [((x.get('summary') or {}).get('rev_cagr_1y')) for x in ds]
+        gr = [ttm_growth(x)[0] for x in ds]
         gr = [v for v in gr if v is not None and -0.9 < v < 5]
         pe = [((x.get('ratios') or {}).get('pe')) for x in ds]
         pe = [v for v in pe if v and 0 < v < 300]
@@ -228,8 +266,12 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
                 key = 'eps_faster'
             w.say(key, e0=F.price(eps[0][1]), e1=F.price(eps[-1][1]), fy0=eps[0][0], fy1=eps[-1][0], g=F.pct(abs(ec)))
     o1, o5 = s.get('op_margin_avg_1y'), s.get('op_margin_avg_5y')
+    ot = ttm_op_margin(d)
+    o_ttm = ot is not None and -1 < ot < 1 and bool(P.T.get('opm_up_ttm'))
+    if o_ttm:
+        o1 = ot
     if o1 is not None and o5 is not None and -1 < o1 < 1 and -1 < o5 < 1 and abs(o1 - o5) >= 0.03 and (o1 > 0 or o5 > 0):
-        w.say('opm_up' if o1 > o5 else 'opm_down', now=F.mpct(o1), avg=F.mpct(o5))
+        w.say(('opm_up' if o1 > o5 else 'opm_down') + ('_ttm' if o_ttm else ''), now=F.mpct(o1), avg=F.mpct(o5))
     fcf = [a.get('fcf') for a in ys if a.get('fcf') is not None]
     if len(fcf) >= 4:
         pos = sum(1 for v in fcf if v > 0)
@@ -274,7 +316,7 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
     sal = 4
     if g and len(g['docs']) >= 5:
         iname = ind_name(ind)
-        nm, med = lat.get('net_margin'), g['med_nm']
+        nm, med = ttm_margin(d), g['med_nm']
         if nm is not None and med is not None and -3 < nm < 1 and nm < 0:
             w.say('peer_loss_hi' if nm > med else 'peer_loss_lo', m=F.mpct(nm), med=F.mpct(med), ind=iname)
         elif nm is not None and med is not None and -3 < nm < 1:
@@ -286,9 +328,11 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
                 sal += 1
             else:
                 w.say('peer_margin_eq', m=F.mpct(nm), med=F.mpct(med), ind=iname)
-        gg, mg = s.get('rev_cagr_1y'), g['med_g']
+        gg, is_t = ttm_growth(d)
+        mg = g['med_g']
         if gg is not None and mg is not None and -0.9 < gg < 5:
-            w.say('peer_growth_hi' if gg > mg + 0.03 else ('peer_growth_lo' if gg < mg - 0.03 else 'peer_growth_eq'), g=F.spct(gg), med=F.spct(mg))
+            k = 'peer_growth_hi' if gg > mg + 0.03 else ('peer_growth_lo' if gg < mg - 0.03 else 'peer_growth_eq')
+            w.say(k + ('_ttm' if is_t and P.T.get(k + '_ttm') else ''), g=F.spct(gg), med=F.spct(mg))
         pe, mpe = r.get('pe'), g['med_pe']
         if pe and 0 < pe < 300 and mpe:
             ratio = pe / mpe

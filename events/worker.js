@@ -35,6 +35,8 @@ function cors(req, env) {
   try { readOnly = req.method === 'GET' && new URL(req.url).pathname.startsWith('/c/') && READ_ORIGINS.includes(o); } catch (e) {}
   // the English site runs its own contest board on the same engine: full access to /c/ only
   try { if (EN_ORIGINS.includes(o) && new URL(req.url).pathname.startsWith('/c/')) readOnly = true; } catch (e) {}
+  // the community pulse (aggregate, anonymous counts) is public on every sister site
+  try { if (req.method === 'GET' && READ_ORIGINS.includes(o) && new URL(req.url).pathname === '/stats') readOnly = true; } catch (e) {}
   const ok = allowed.length === 0 || allowed.includes(o) || readOnly || /^http:\/\/localhost(:\d+)?$/.test(o);
   return {
     'Access-Control-Allow-Origin': ok ? (o || '*') : 'null',

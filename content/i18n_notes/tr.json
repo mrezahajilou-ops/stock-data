@@ -308,7 +308,22 @@
   "JD": {
    "d": "2026-11-17",
    "headline": "JD.com: yemek teslimatı zararları azalınca kâr %58 arttı, ancak hisse %8 düştü",
-   "takeaway": "Gelir %3,5, düzeltilmiş hisse başı kâr %58 arttı. JD, Alman Ceconomy’nin alımını tamamladı, ancak zayıf satış büyümesi yatırımcıları ikna etmedi."
+   "takeaway": "Gelir %3,5, düzeltilmiş hisse başı kâr %58 arttı. JD, Alman Ceconomy’nin alımını tamamladı, ancak zayıf satış büyümesi yatırımcıları ikna etmedi.",
+   "results": [
+    "JD.com üçüncü çeyrekte %3,5 artışla 309,6 milyar yuan (46,2 milyar dolar) net gelir açıkladı. Faaliyet kârı, bir yıl önceki 1,1 milyar yuanlık zarara karşı %1,7 marjla 5,2 milyar yuan oldu; GAAP dışı faaliyet kârı %2,4 marjla 7,3 milyar yuandı. GAAP dışı net kâr 5,8 milyar yuandan 8,3 milyar yuana çıktı ve ADS başına GAAP dışı seyreltilmiş kâr %57,6 artışla 5,88 yuana (0,88 dolar) yükseldi; beklentiyle aynı.",
+    "Çekirdek e-ticaret işi JD Retail, bir yıl önceki 14,8 milyar yuan ve %5,9'a karşı %5,8 marjla 15,1 milyar yuan faaliyet kârı elde etti. Başta JD Food Delivery, indirim platformu Jingxi ve uluslararası operasyonlar olmak üzere Yeni İşler, zararlarını hem yıllık bazda hem ikinci çeyreğe göre azalttı.",
+    "Şirketin kendi ölçüsüne göre serbest nakit akışı, daha yüksek yatırım harcaması ve işletme sermayesi hareketleri sonrası çeyrekte negatif oldu. GAAP'a göre hissedarlara ait net kâr 5,3 milyar yuana karşı 6,5 milyar yuandı."
+   ],
+   "mgmt": [
+    "CEO Sandy Xu, JD'nin kâr büyümesini hızlandırırken yeniden pozitif gelir büyümesine döndüğünü, bunun JD Retail'in dayanıklılığı ve Yeni İşlerdeki süregelen zarar azaltımıyla desteklendiğini ve pazarlama giderlerindeki belirgin düşüşle birlikte kullanıcı tabanının genişlediğini söyledi. MediaMarkt ve Saturn'ün sahibi Ceconomy'nin satın alınmasının tamamlanmasını JD'nin küreselleşmesinde önemli bir adım olarak tanımladı.",
+    "Finans direktörü Ian Su Shan, JD Retail'in yüksek bir tabana karşı marjını büyük ölçüde sabit tuttuğunu ve uluslararası platform Joybuy'ın ivme kazandığını, Ceconomy ile sinerjilerin bunu güçlendireceğini söyledi. Şirket ayrıca uygulamasının 16.0 sürümüyle yapay zekâ alışveriş asistanı Dongdong'u kullanıma sundu."
+   ],
+   "view": [
+    "JD 2025'i, büyük ölçüde kullanıcılarının alışveriş sıklığını korumak için girdiği anlık yemek teslimatı pazarında Meituan ve Alibaba ile pahalı bir savaşta geçirdi. Bu mücadele bir yıl önce kârı ezdi; bu çeyrek zararların hızla küçüldüğünü gösteriyor ve GAAP dışı kârın %58 artmasının nedeni bu. İyileşme gerçek ama yeni bir kâr gücü değil, kendi açtığı bir yaradan toparlanma ve piyasa farkı biliyor.",
+    "Asıl sorun büyüme. Çin'in en büyük doğrudan perakendecisi için %3,5'lik gelir artışı, en büyük kategorileri olan elektronik ve beyaz eşyaya Çin'deki zayıf talebi yansıtıyor ve JD Retail'in marjı artık esasen yatay. Ceconomy anlaşması yönetimin sunduğu cevap: Çin yapımı elektroniği satmak ve Joybuy'ı desteklemek için 1.000'i aşkın mağazalı hazır bir Avrupa perakende ağı. Ama kendi yeniden yapılanma zorlukları olan düşük marjlı, olgun bir iş getiriyor.",
+    "Bu, JD'yi düşük büyümeli, düşük marjlı bir perakendeci olarak, son on iki ayın kârının yaklaşık 15 katıyla değerlenmiş halde bırakıyor; büyük bir nakit yığını ve geri alım programı düşüş riskini yumuşatıyor. Hisse ancak Çin tüketimi toparlanırsa ya da uluslararası strateji Avrupa perakendesinin genelde kazandığından fazlasını kazanabildiğini kanıtlarsa yeniden değerlenir. Bu çeyrekte ikisi de görülmedi; %58'lik kâr artışının yine de düşen bir hisse fiyatı getirmesinin nedeni bu."
+   ],
+   "watch": "Dördüncü çeyrek alışveriş sezonunda JD Retail gelir büyümesini, yemek teslimatındaki kalan zararları, Ceconomy'nin konsolide edildiği ilk çeyreği ve hisse geri alım hızını izleyin."
   },
   "KB": {
    "d": "2026-11-16",
@@ -522,7 +537,22 @@
   "P": {
    "d": "2026-11-18",
    "headline": "Everpure (eski Pure Storage): yapay zekâ talebiyle gelir %51 arttı, yıllık tahmin üçüncü kez yükseldi",
-   "takeaway": "Gelir 1,5 milyar dolara ulaştı, ürün satışları %77 arttı ve düzeltilmiş hisse başı kâr 0,86 dolar oldu. Şirket ikinci büyük bulut sağlayıcısıyla da tasarım anlaşması kazandı."
+   "takeaway": "Gelir 1,5 milyar dolara ulaştı, ürün satışları %77 arttı ve düzeltilmiş hisse başı kâr 0,86 dolar oldu. Şirket ikinci büyük bulut sağlayıcısıyla da tasarım anlaşması kazandı.",
+   "results": [
+    "Eski adı Pure Storage olan depolama şirketi Everpure, 1 Kasım'da biten çeyrekte %51 artışla 1,5 milyar dolar gelir açıkladı. Ürün geliri %77 artışla 948 milyon dolara, abonelik hizmetleri geliri %19 artışla 512 milyon dolara yükseldi. Yıllık tekrarlayan abonelik geliri %20 artışla 2,2 milyar dolara, sözleşmeli gelecek gelir olan kalan edim yükümlülükleri %44 artışla 4,2 milyar dolara ulaştı.",
+    "GAAP dışı brüt marj %69,2, GAAP dışı faaliyet kârı %23,6 marjla 345 milyon dolar oldu; GAAP faaliyet kârı 150 milyon dolardı. GAAP dışı hisse başı kâr bir yıl önceki 0,58 dolara karşı 0,86 dolar oldu. Faaliyet nakit akışı 443 milyon dolar, serbest nakit akışı 265 milyon dolardı; nakit ve yatırımlar 1,1 milyar dolardı.",
+    "Şirket yaklaşık 67 milyon dolara 0,5 milyon hisse geri aldı. Eylülde S&P 500'e girdi ve Gartner'ın kurumsal depolama sıralamasında yeniden lider seçildi."
+   ],
+   "mgmt": [
+    "Yönetim kurulu başkanı ve CEO Charles Giancarlo, sonuçların kurumlar veri varlıklarını modernleştirirken Everpure'un kritik veri altyapısında güvenilen ortak rolünü pekiştirdiğini söyledi. Finans direktörü Tarek Robbiati, gelir ve faaliyet kârının beklenti aralığının üst sınırını aştığını, çekirdek işteki ve çekirdek yapay zekâ ürünlerindeki büyümenin yeni işlerle tamamlandığını ve şirketin 2028 mali yılı ön beklentisini yinelerken yıllık beklentisini üst üste üçüncü çeyrek yükselttiğini söyledi.",
+    "Everpure artık 2027 mali yılı için 5,03–5,07 milyar dolar yerine 5,20–5,21 milyar dolar gelir ve 940–960 milyon dolar yerine 1,08–1,09 milyar dolar GAAP dışı faaliyet kârı bekliyor. Dördüncü çeyrek için %42–43 artışla 1,50–1,52 milyar dolar gelir öngördü. Ayrıca DirectFlash teknolojisi için en büyük beş bulut sağlayıcıdan ikincisiyle bir tasarım anlaşması kazandığını duyurdu."
+   ],
+   "view": [
+    "Pure Storage tarihinin büyük kısmında kurumsal veri merkezlerine flash depolama dizileri satan, yüzde on ile on beş arası büyüyen premium bir satıcıydı. Everpure adına geçiş farklı bir şirketle aynı zamana denk geliyor: en büyük bulut sağlayıcılar kendi veri merkezlerinde sabit diskleri değiştirmek için DirectFlash teknolojisini kullanmaya başladığı için %40'ın üzerinde büyüyen bir şirket. Meta en büyük beşten ilk bulut devi oldu; bu çeyrekteki ikinci tasarım anlaşması tek büyük bir sözleşmeyi bir kalıba dönüştürüyor ve ürün gelirini %77 artıran da bu.",
+    "Büyümenin kalitesi yüksek. Flash bellek fiyatlarının yükseldiği bir dönemde %69'a yakın marjlar fiyatlama gücünü gösteriyor, faaliyet kârı gelirden çok daha hızlı büyüyor ve 4,2 milyar dolarlık sözleşmeli gelecek gelir görünürlük sağlıyor. Bir yılda beklentiyi üç kez yükseltip gelecek yılın beklentisini yinelemek, temkinli hedefler koyup artık bunları tutarlı biçimde aşan bir yönetimin işareti.",
+    "Riskler fırsatla aynı yerde. Bulut devleriyle anlaşmalar büyük, düzensiz ve sert pazarlıkla yapılıyor; marjları baskılayabilir ve büyümeyi çeyrekten çeyreğe dengesiz hale getirebilir; bu büyüklükteki müşteriler her zaman kendi çözümlerini geliştirebilir. Sandisk ve Micron'a yardım eden NAND flash fiyatlarındaki sıçrama Everpure'un girdi maliyetlerini de artırıyor. Bu yılın GAAP dışı kârının yaklaşık 31 katıyla (GAAP kârının 100 katından fazlası) yatırımcılar bulut devleri işinin kalıcı ikinci bir motor olmasına para ödüyor; bu çeyrek bunun olabileceğinin bugüne kadarki en güçlü kanıtı."
+   ],
+   "watch": "İki bulut devine yapılacak sevkiyatların büyüklüğünü ve zamanlamasını, flash fiyatları yükselirken brüt marjı, çekirdek kurumsal işte abonelik gelirinin büyümesini ve şubattaki resmi 2028 mali yılı beklentisini izleyin."
   },
   "PANW": {
    "d": "2026-11-18",
@@ -589,7 +619,22 @@
   "RKLB": {
    "d": "2026-11-09",
    "headline": "Rocket Lab: rekor 268 milyon dolar gelir, iş birikimi %52 arttı; hisse %18 sıçradı",
-   "takeaway": "Gelir %73 arttı ve iş birikimi bir çeyrekte 3,57 milyar dolara çıktı; bunun 515 milyon doları Neutron roketi için. Zarar büyüdü, ancak faaliyet nakit akışı pozitife döndü."
+   "takeaway": "Gelir %73 arttı ve iş birikimi bir çeyrekte 3,57 milyar dolara çıktı; bunun 515 milyon doları Neutron roketi için. Zarar büyüdü, ancak faaliyet nakit akışı pozitife döndü.",
+   "results": [
+    "Rocket Lab üçüncü çeyrekte bir yıl önceki 155 milyon dolardan %73 artışla, ikinci çeyreğin 34 milyon dolar üzerinde 268 milyon dolar gelir açıkladı. Net zarar, bir vergi faydasının sonucu güzelleştirdiği bir yıl önceki 18,3 milyon dolardan 79,7 milyon dolara ya da hisse başına 0,12 dolara genişledi; vergi öncesi zarar 59,3 milyon dolara karşı 76,2 milyon dolardı. GAAP faaliyet nakit akışı 7,2 milyon dolarla pozitifti.",
+    "Birikmiş siparişler hazirandan bu yana %52 artışla rekor 3,57 milyar dolara ulaştı. Şirket Electron, hipersonik test aracı HASTE ve Neutron genelinde yaklaşık 1 milyar dolarlık fırlatma sözleşmesi imzalayarak fırlatma birikimini 117 göreve çıkardı; ayrıca 470 milyon dolarlık uzay sistemleri işi aldı. Takımyıldız operatörlerinden gelen 515 milyon doları aşan Neutron sözleşmeleri, ilk uçuş öncesi birikimini 16 göreve çıkardı; birkaçının taban fiyatı 70 milyon dolara yükseltildi.",
+    "Rocket Lab'in ürettiği on iki uzay aracı yörüngeye ulaştı; aralarında Globalstar'ın cihaza doğrudan bağlantı takımyıldızı için sekiz platform, NASA için iki Mars bilim aracı ve ABD Uzay Kuvvetleri için hızlı müdahale görevi VICTUS HAZE vardı. 55'i aşkın uzay aracı üretimde."
+   ],
+   "mgmt": [
+    "Kurucu ve CEO Sir Peter Beck bunu belirleyici bir çeyrek olarak niteledi; uçtan uca stratejinin tasarlandığı gibi işlediğini, kritik görevlerin fırlatma, uzay aracı ve bileşenler için giderek daha fazla Rocket Lab'e, bazen tek bir görevde hepsine dayandığını söyledi. Neutron'un ilk fırlatması artık en erken 2027 olarak hedefleniyor; ilk uçuş donanımı 3 No'lu Fırlatma Kompleksi'ne teslim edildi.",
+    "Rocket Lab dördüncü çeyrek için 270–290 milyon dolar gelir, %34–36 GAAP brüt marj ve 14–20 milyon dolar düzeltilmiş FAVÖK zararı bekliyor. Uydu operatörü Iridium Communications'ın bekleyen satın alımını piyasaya hisse satışıyla tamamen finanse etti, Iridium'un kredi hattını koruması için kredi verenlerin onayını aldı ve Iridium hissedarlarının onayını kazandı."
+   ],
+   "view": [
+    "Rocket Lab, SpaceX'in ardından Batı'daki fırlatmalarda açık ara ikinci ve giderek bir görevi baştan sona inşa edip fırlatıp işletebilen bir uydu üreticisi haline geldi. Bu çeyrekteki birikim sıçraması açıklamanın en önemli rakamı. Üç ayda 1,5 milyar dolarlık yeni iş imzalamak ve Neutron daha uçmadan fiyatını 70 milyon dolara çıkarmak, fırlatma kapasitesinin kıt olduğunu ve takımyıldız operatörlerinin SpaceX'e bir alternatifi bunun bedelini ödeyecek kadar istediğini gösteriyor.",
+    "Iridium anlaşması şirketin karakterini değiştiriyor. Iridium, uzun süreli ABD hükümeti müşteri tabanına sahip kârlı, nakit üreten bir uydu ağı getiriyor; bu da Rocket Lab'e düzensiz ve zararlı fırlatma ve üretim işlerini dengeleyecek tekrarlayan hizmet geliri sağlar. Ayrıca Iridium'un borcunu ve mevcut hissedarları sulandıran bir hisse satışıyla finanse edilen çok daha büyük bir hisse sayısını getiriyor. Yatırımcılar birleşimin, daha küçük ölçekte SpaceX'in Starlink modeline benzer dikey entegre bir uzay şirketine dönüşeceğine bahse giriyor.",
+    "Riskler zamanlama ve değerleme. Neutron defalarca ertelendi ve artık 2027'den önce uçmayacak; 16 görevlik birikimi ilk uçuşların başarısına bağlı ve bir başarısızlık hem finansal hem de itibar açısından pahalı olur. Rocket Lab hâlâ zarar ediyor ve yaklaşık 30 milyar dolarlık piyasa değeriyle bu yılın beklenen gelirinin yaklaşık 29 katıyla işlem görüyor. Birikim görünürlük sağlıyor ama hisse fiyatı Neutron'un, Iridium entegrasyonunun ve uzay aracı işinin hepsinin başarılı olacağını varsayıyor."
+   ],
+   "watch": "Neutron'un ilk fırlatma tarihini ve test kilometre taşlarını, Iridium satın alımının tamamlanması ve entegrasyonunu, 3,6 milyar dolarlık birikimin gelire dönüşmesini ve pozitif düzeltilmiş FAVÖK'e doğru ilerlemeyi izleyin."
   },
   "ROIV": {
    "d": "2026-11-09",
@@ -639,7 +684,22 @@
   "SKYD": {
    "d": "2026-11-09",
    "headline": "Skydance: Warner Bros. Discovery’nin ardından ilk rapor; Paramount+ %21 büyüdü, 6 milyar dolarlık sinerji hedefi",
-   "takeaway": "Paramount’un geliri %5 artışla 7 milyar dolara çıktı ve hisse başı kâr beklentinin çok üzerinde geldi. Yeni şirket 2027 başında HBO Max ve Paramount+ paketini sunacak."
+   "takeaway": "Paramount’un geliri %5 artışla 7 milyar dolara çıktı ve hisse başı kâr beklentinin çok üzerinde geldi. Yeni şirket 2027 başında HBO Max ve Paramount+ paketini sunacak.",
+   "results": [
+    "Warner Bros. Discovery hariç Paramount Skydance üçüncü çeyrekte %5 artışla 7,0 milyar dolar gelir, 73 milyon dolar net kâr ve %14 marjla 1,0 milyar dolar düzeltilmiş FAVÖK açıkladı. Şirket, 3,9 milyar dolarlık düzeltilmiş FAVÖK olan 2026 kâr beklentisinin üst ucuna ulaşma yolunda olduğunu söyledi. Düzeltilmiş hisse başı kâr, analistlerin 0,20 dolarlık beklentisine karşı 0,45 dolar oldu.",
+    "Paramount+ geliri bu yılın en hızlı büyümesiyle %21 arttı; kullanıcı başına gelir yaklaşık %14 yükseldi. Stüdyo geliri %23 arttı ve CBS ile kablolu kanalları içeren TV Medya bölümü %34 düzeltilmiş FAVÖK marjına ulaştı. Warner Bros. Discovery dahil proforma bazda doğrudan tüketiciye gelir %15 büyüdü.",
+    "Warner Bros. Discovery satın alımı 6 Ekim 2026'da tamamlandı. Paramount+, HBO ve HBO Max birlikte 130'u aşkın pazarda 203 milyon aboneye ulaşıyor, Pluto TV'nin aylık yaklaşık 75 milyon kullanıcısı var; Nielsen verilerine göre birleşik grup YouTube'dan sonra ABD'de televizyon izlenmesinin ikinci büyük dağıtıcısı."
+   ],
+   "mgmt": [
+    "Yönetim kurulu başkanı ve CEO David Ellison ile eş CEO Ynon Kreiz, birleşik şirketin dünyanın önde gelen içerik motoru olmayı, entegre bir yayın platformunu hızlandırmayı ve yaratıcılık ile teknolojiyle çalışan yeni nesil medya şirketini kurmayı hedeflediğini yazdı. 20'yi aşkın çalışma kolu yürütülürken üç yıl içinde en az 6 milyar dolarlık yıllık sinerji hedefliyorlar; 2029 sonuna kadar net kaldıracı 3,0 kata indirmeyi ve yatırım yapılabilir kredi notu ölçütlerine ulaşmayı planlıyorlar.",
+    "Dördüncü çeyrek için güçlü yayın platformu büyümesinin sürmesini ve son çeyreklerle uyumlu televizyon eğilimleri bekliyorlar; ancak iyileşen Paramount film takviminin Warner Bros. film takviminin zayıf performansıyla fazlasıyla dengeleneceğini söylediler."
+   ],
+   "view": [
+    "Bu, Disney'in Fox'u almasından bu yana en önemli medya birleşmesi. Babası Larry Ellison'ın servetinin desteğiyle David Ellison 2025'te Paramount'u satın aldı ve şimdi Warner Bros. Discovery'yi bünyesine katarak CBS, Paramount Pictures, Nickelodeon, MTV, CNN, HBO, Warner Bros., DC ve Discovery'yi tek çatı altında topladı. Stratejik mantık yayın platformunda ölçek: Paramount+ tek başına Netflix ve Disney ile rekabet edemeyecek kadar küçüktü, HBO Max ise prestijli içeriğe sahipti ama erişime değil. 200 milyonu aşkın aboneli birleşik bir hizmet, sözü geçecek kadar büyük.",
+    "Tek başına Paramount rakamları birçoklarının beklediğinden iyi. %14 artan fiyatlarla %21 büyüyen Paramount+ geliri hizmetin fiyatlama gücü olduğunu, geleneksel televizyondaki %34'lük marj ise gerileyen kablolu yayın işinin geçişi finanse etmek için hâlâ çok nakit ürettiğini gösteriyor. Bu nakit hayati, çünkü birleşik şirket satın almadan kaynaklanan çok büyük bir borç yükü taşıyor; 3,0 katlık kaldıraca ancak 2029'da ulaşma hedefi de bu yüzden.",
+    "Riskler büyütülmüş klasik birleşme riskleri. 6 milyar dolarlık tasarrufu gerçekleştirmek, sektör zaten küçülürken örtüşen kanallarda, stüdyolarda ve destek birimlerinde derin kesintiler demek. Warner Bros. film takvimi şimdiden dördüncü çeyrek için bir yük olarak işaretlendi ve çok farklı kültürlere sahip iki şirketi yeni bir sahip altında birleştirmek zor. Çok düşük hisse fiyatı, anlaşmanın yarattığı ağır sulanmayı ve borç konusundaki şüpheciliği yansıtıyor; 2027 başındaki ilk birleşik çeyrek sinerji planının gerçek olup olmadığını gösterecek."
+   ],
+   "watch": "İlk birleşik sonuçları, 6 milyar dolarlık sinerji hedefindeki ilerlemeyi, 2027 başında HBO Max ve Paramount+ paketinin lansmanını, borç azaltımını ve olası kablolu kanal satışlarını izleyin."
   },
   "SMFG": {
    "d": "2026-11-13",

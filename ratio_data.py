@@ -12,8 +12,8 @@ FA_DIG = str.maketrans('0123456789.', '۰۱۲۳۴۵۶۷۸۹٫')
 
 P = {
  'es': dict(stock='/acciones/%s/', screener='/screener-de-acciones/', dec=',', rtl=False,
-   sec={'Technology': 'Tecnología', 'Finance': 'Finanzas', 'Health Care': 'Salud', 'Consumer Discretionary': 'Consumo discrecional', 'Consumer Staples': 'Consumo básico',
-        'Industrials': 'Industria', 'Energy': 'Energía', 'Utilities': 'Servicios públicos', 'Real Estate': 'Inmobiliario', 'Basic Materials': 'Materiales', 'Telecommunications': 'Telecomunicaciones'},
+   sec={'Technology': 'Tecnología', 'Finance': 'Finanzas', 'Health Care': 'Salud', 'Consumer Discretionary': 'Consumo discricionário', 'Consumer Staples': 'Consumo básico',
+        'Industrials': 'Industria', 'Energy': 'Energía', 'Utilities': 'Utilidades públicas', 'Real Estate': 'Inmobiliario', 'Basic Materials': 'Materiales', 'Telecommunications': 'Telecomunicaciones'},
    pe_h='El PER del mercado hoy',
    pe_p='Entre las 500 mayores empresas que cotizan en EE. UU. que seguimos, el PER ponderado por capitalización (valor total de mercado dividido entre el beneficio total de las rentables) es <b>{pe}</b>, y la empresa mediana cotiza a <b>{med}</b> veces sus beneficios de los últimos doce meses. Con las estimaciones de los analistas para los próximos doce meses, el PER ponderado es <b>{fpe}</b>. {loss} de las 500 perdieron dinero en el último año y no tienen PER. La cifra ponderada se inclina hacia los gigantes; por eso la mediana es mejor guía para una acción «típica».',
    sec_h='PER medio por sector', sec_p='Cada sector cotiza con múltiplos muy distintos, así que compara una empresa con su propio sector. Empresas de 2.000 millones de dólares o más, solo las rentables:',
@@ -28,6 +28,23 @@ P = {
    q_pe='¿Cuál es el PER medio de la bolsa hoy?', a_pe='Entre las 500 mayores empresas cotizadas en EE. UU., el PER ponderado es de unos {pe} y la empresa mediana cotiza a unas {med} veces sus beneficios (datos a {d}).',
    q_sec='¿Qué sector tiene el PER más alto?', a_sec='Hoy es {hi}, con un PER ponderado de unos {hiv}; el más bajo es {lo}, con unos {lov}.',
    q_pb='¿Cuál es un ratio precio/valor contable típico hoy?', a_pb='La mediana entre las 500 mayores empresas cotizadas en EE. UU. es de unos {pb} (datos a {d}).'),
+ 'pt': dict(stock='/acoes/%s/', screener='/screener-de-acoes/', dec=',', rtl=False,
+   sec={'Technology': 'Tecnologia', 'Finance': 'Finanças', 'Health Care': 'Saúde', 'Consumer Discretionary': 'Consumo discricionário', 'Consumer Staples': 'Consumo básico',
+        'Industrials': 'Indústria', 'Energy': 'Energia', 'Utilities': 'Utilidades públicas', 'Real Estate': 'Imobiliário', 'Basic Materials': 'Materiais', 'Telecommunications': 'Telecomunicações'},
+   pe_h='O P/L do mercado hoje',
+   pe_p='Entre as 500 maiores empresas listadas nos EUA que acompanhamos, o P/L ponderado pelo valor de mercado (valor de mercado total dividido pelo lucro total das lucrativas) é <b>{pe}</b>, e a empresa mediana é negociada a <b>{med}</b> vezes o lucro dos últimos doze meses. Com as estimativas dos analistas para os próximos doze meses, o P/L ponderado é <b>{fpe}</b>. {loss} das 500 perderam dinheiro no último ano e não têm P/L. O número ponderado pende para os gigantes; por isso a mediana é um guia melhor para uma ação «típica».',
+   sec_h='P/L médio por setor', sec_p='Cada setor é negociado a múltiplos muito diferentes, então compare uma empresa com o próprio setor. Empresas de 2 bilhões de dólares ou mais, só as lucrativas:',
+   sec_cols=['Setor', 'Empresas', 'P/L mediano', 'P/L ponderado', 'P/L projetado mediano'],
+   big_h='P/L das maiores empresas dos EUA', big_cols=['Empresa', 'Valor de mercado', 'P/L (12 meses)', 'P/L projetado'],
+   low_h='Grandes empresas com o P/L mais baixo', low_p='Empresas de 10 bilhões de dólares ou mais com P/L abaixo de 12 e nota de saúde financeira de pelo menos 3 de 5. Um P/L baixo é um ponto de partida, não um sinal de compra: descubra por que o mercado desconfia.',
+   low_cols=['Empresa', 'Setor', 'P/L', 'P/L projetado', 'Nota'], scr='Crie a sua própria lista com o <a href="{u}">screener de ações</a>.',
+   pb_h='O preço/valor patrimonial do mercado hoje', pb_p='Entre as 500 maiores empresas listadas nos EUA, a mediana do P/VP é <b>{pb}</b>. Empresas com poucos ativos físicos (software, marcas, plataformas) costumam ser negociadas a muitas vezes o valor patrimonial; bancos, seguradoras e industriais, bem mais perto dele.',
+   pbs_h='P/VP médio por setor', pbs_p='Empresas de 2 bilhões de dólares ou mais com patrimônio positivo:', pbs_cols=['Setor', 'Empresas', 'P/VP mediano'],
+   fin_h='Grandes financeiras por P/VP', fin_p='O P/VP importa sobretudo em bancos e seguradoras, cujos ativos são em sua maioria financeiros.', fin_cols=['Empresa', 'Valor de mercado', 'P/VP', 'P/L'],
+   note='Números dos relatórios das empresas e preços de mercado de {d}; recalculados a cada atualização.', loss='prejuízo',
+   q_pe='Qual é o P/L médio da bolsa hoje?', a_pe='Entre as 500 maiores empresas listadas nos EUA, o P/L ponderado é de cerca de {pe} e a empresa mediana é negociada a cerca de {med} vezes o lucro (dados de {d}).',
+   q_sec='Qual setor tem o P/L mais alto?', a_sec='Hoje é {hi}, com P/L ponderado de cerca de {hiv}; o mais baixo é {lo}, com cerca de {lov}.',
+   q_pb='Qual é um P/VP típico hoje?', a_pb='A mediana entre as 500 maiores empresas listadas nos EUA é de cerca de {pb} (dados de {d}).'),
  'tr': dict(stock='/hisseler/%s/', screener='/hisse-tarama/', dec=',', rtl=False,
    sec={'Technology': 'Teknoloji', 'Finance': 'Finans', 'Health Care': 'Sağlık', 'Consumer Discretionary': 'İsteğe bağlı tüketim', 'Consumer Staples': 'Temel tüketim',
         'Industrials': 'Sanayi', 'Energy': 'Enerji', 'Utilities': 'Kamu hizmetleri', 'Real Estate': 'Gayrimenkul', 'Basic Materials': 'Hammadde', 'Telecommunications': 'Telekom'},
@@ -135,6 +152,8 @@ class R:
             return ('%s هزار میلیارد دلار' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s میلیارد دلار' % self.i(int(round(v / 1e9))))
         if self.lang == 'ar':
             return ('%s تريليون $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s مليار $' % self.i(int(round(v / 1e9))))
+        if self.lang == 'pt':
+            return ('%s tri US$' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s bi US$' % self.i(int(round(v / 1e9))))
         if self.lang == 'es':
             return ('%s billones $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s mil M$' % self.i(int(round(v / 1e9))))
         return ('%s trilyon $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s milyar $' % self.i(int(round(v / 1e9))))

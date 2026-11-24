@@ -22,7 +22,7 @@
     return x.replace(/(<[^>]*>)|([-−+]?\$?\d[\d.,]*(?:\s?[%TBMK])?(?:\s?–\s?\$?\d[\d.,]*[%TBMK]?)?)/g, function (m, tag, num) { return tag ? tag : '<bdi dir="ltr">' + num + '</bdi>'; });
   }
   function F(s) { var a = arguments, i = 0; return T(s).replace(/%(\d)\$s|%s/g, function (_, n) { return B(n ? a[+n] : a[++i]); }); }
-  var LOC = { en: 'en-US', es: 'es-ES', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
+  var LOC = { en: 'en-US', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
 
   // ---------------------------------------------------------------- formatting (same rules as the server pages)
   var D = '—';

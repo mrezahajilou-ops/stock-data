@@ -179,7 +179,22 @@
   "ESLT": {
    "d": "2026-11-17",
    "headline": "Elbit Systems: gelir %17, hisse başı kâr %30 arttı; Avrupa siparişleriyle iş birikimi rekor 33 milyar dolara ulaştı",
-   "takeaway": "Gelir %17 artışla 2,25 milyar dolara çıktı ve hisse başı kâr 4,36 dolar oldu. Siparişlerin dörtte üçü İsrail dışından ve nakit akışı çok güçlüydü; hisse %5,9 yükseldi."
+   "takeaway": "Gelir %17 artışla 2,25 milyar dolara çıktı ve hisse başı kâr 4,36 dolar oldu. Siparişlerin dörtte üçü İsrail dışından ve nakit akışı çok güçlüydü; hisse %5,9 yükseldi.",
+   "results": [
+    "Elbit Systems üçüncü çeyrekte 1.921,6 milyon dolardan %17 artışla 2.252,1 milyon dolar gelir açıkladı. GAAP net kâr 177,9 milyon dolar ya da hisse başına 3,70 dolar, GAAP dışı net kâr bir yıl önceki 3,35 dolara karşı 210,0 milyon dolar ya da hisse başına 4,36 dolar oldu. GAAP dışı brüt marj %25,2'den %25,7'ye yükseldi; Ar-Ge harcaması, İsrail'in yeni Ar-Ge teşvik yasası kapsamında kaydedilen yaklaşık 20 milyon dolarlık katkıyla gelirin %6,5'i oldu.",
+    "Bölümler bazında ISTAR ve elektronik harp, Asya-Pasifik ve İsrail'deki yüksek güçlü lazer, elektronik harp ve deniz sistemleriyle %32; Kara ve Mühimmat İsrail'deki mühimmat satışlarıyla %28; C4I ve Siber Avrupa'daki komuta kontrol sistemleriyle %11; adı değiştirilen ABD iştiraki Twenty-Six Defense %10 ve Havacılık %4 büyüdü; İsrail'deki daha fazla insansız hava aracı satışı Asya-Pasifik'teki daha az hassas güdümlü mühimmatı dengeledi.",
+    "33,0 milyar dolarlık birikmiş sipariş esas olarak Avrupa siparişleriyle büyüdü; yaklaşık %74'ü İsrail dışından ve yaklaşık %35'inin 2027 sonuna kadar teslim edilmesi planlanıyor. Dokuz aylık faaliyet nakit akışı 862,5 milyon dolar oldu. Yönetim kurulu hisse başına 1,00 dolar temettü açıkladı."
+   ],
+   "mgmt": [
+    "CEO Bezhalel Machlis, Elbit'in sürekli genişleyen marjlarla yüzde on beşler ile yirmiler arası gelir büyümesi, %30'un üzerinde artan faaliyet kârı ve hisse başı kâr, rekor birikmiş sipariş ve artan yatırım harcamasına rağmen özellikle güçlü serbest nakit akışı sağladığını söyledi. Birden fazla hava ve kara sistemini koordine eden yapay zekâ destekli yeni otonom muharebe yeteneklerini ve elektro-optik, güdümlü mühimmat, elektronik harp ve yüksek güçlü lazerlerdeki süregelen ilerlemeyi öne çıkardı.",
+    "Elbit üretim kapasitesini genişletip verimliliği artırmak için yapay zekâ kullanırken uygulamanın öncelik olmaya devam ettiğini söyledi. Şirket ayrıca İsrail Savunma Bakanlığı'nın Ekim 2023'ten bu yana geciken ödemeleri için tazmin edileceği bir anlaşmayı ve uluslararası bir müşteri için yaklaşık 270 milyon dolarlık istihbarat, gözetleme ve hedefleme yükleri dahil son sözleşmeleri belirtti."
+   ],
+   "view": [
+    "Elbit esas olarak İsrail'in savaş dönemi tedarikçisi olarak görülmekten dünyanın en hızlı büyüyen savunma şirketlerinden biri olmaya geçti ve nedeni Avrupa. Oradaki hükümetler stoklarını yeniden inşa ediyor ve Soğuk Savaş'tan bu yana görülmemiş bir hızla topçu, hava savunma, insansız hava aracı ve elektronik harp sistemleri alıyor; Elbit de kısa teslim süreli, savaşta denenmiş sistemler sunuyor. Birikmiş siparişin esas olarak Avrupa siparişleriyle büyümesi ve dörtte üçünün artık uluslararası olması önemli; çünkü Elbit'i bir ateşkes sonrası harcaması düşebilecek tek bir müşteriye daha az bağımlı kılıyor.",
+    "Finansal kalite de iyileşti. Marjlar birkaç yıldır yavaş yavaş yükseliyor; İsrail hükümeti alacaklarına bağlanan işletme sermayesinin nakit akışını baskıladığı bir dönemin ardından bu çeyrekteki nakde dönüşüm mükemmeldi ve geciken ödemeler anlaşması daha da yardımcı olmalı. Iron Beam sistemi gibi yüksek güçlü lazerler, Elbit'in gerçek bir teknolojik üstünlüğe sahip olduğu ve büyük bir ihracat ürününe dönüşebilecek bir alan.",
+    "Riskler siyasi. Avrupalı müşteriler Avrupa malı alma baskısıyla karşı karşıya ve bazı hükümetler Gazze savaşı nedeniyle İsrail savunma sözleşmelerini iptal etti ya da askıya aldı; daha geniş bir boykot en önemli büyüme pazarını etkiler. Hisse de sert biçimde yeniden değerlendi ve son on iki ayın GAAP kârının yaklaşık 46 katıyla işlem görüyor. Yaklaşık dört yıllık gelire eşit birikmiş siparişle görünürlük alışılmadık düzeyde, ama değerleme bunun büyük kısmını zaten yansıtıyor."
+   ],
+   "watch": "Yeni Avrupa sözleşmesi duyurularını ve İsrailli tedarikçilere yönelik siyasi tepkileri, üretim genişlerken marj ilerlemesini ve dördüncü çeyrekte nakde dönüşümü izleyin."
   },
   "FERG": {
    "d": "2026-11-09",
@@ -450,7 +465,22 @@
   "NBIS": {
    "d": "2026-11-12",
    "headline": "Nebius: gelir %571 arttı, ancak veri merkezi gecikmeleri ve 27 milyar dolarlık harcama planı hisseyi düşürdü",
-   "takeaway": "Gelir 981 milyon dolara ulaştı ve düzeltilmiş FAVÖK pozitife döndü. Ancak gecikmeler gelirin bir kısmını 2027’ye kaydırdı ve gelecek yıl için 40-45 milyar dolarlık yatırım planlanıyor."
+   "takeaway": "Gelir 981 milyon dolara ulaştı ve düzeltilmiş FAVÖK pozitife döndü. Ancak gecikmeler gelirin bir kısmını 2027’ye kaydırdı ve gelecek yıl için 40-45 milyar dolarlık yatırım planlanıyor.",
+   "results": [
+    "Nebius Group üçüncü çeyrekte bir yıl önceki 146,1 milyon dolara karşı ve ikinci çeyreğe göre %68 artışla 980,8 milyon dolar gelir açıkladı. Düzeltilmiş FAVÖK 5,2 milyon dolarlık zarara karşı 465,8 milyon dolar, düzeltilmiş net kâr 100,4 milyon dolarlık zarara karşı 90,9 milyon dolar oldu. Sürdürülen faaliyetlerden net zarar 119,6 milyon dolardan 37,5 milyon dolara geriledi.",
+    "Faaliyet giderleri 930,4 milyon dolara çıktı ama gelire oranı %189'dan %95'e indi. GPU kiralayan bir şirketin en büyük tek maliyeti olan amortisman %258 artışla 354,7 milyon dolara yükseldi. Satışların maliyeti gelirin %29'undan %22'sine düştü.",
+    "Yatırım harcaması çeyrekte 7,3 milyar dolar, dokuz ayda 15,4 milyar dolar oldu. Dokuz aylık faaliyet nakit akışı, şirkete göre çeyrekte imzalanan anlaşmalara bağlı yatırımın %100'ünden fazlasını karşılayan müşteri ön ödemeleriyle 4,2 milyar dolardı. Nebius çeyrek içinde 5,75 milyar dolar borç da topladı."
+   ],
+   "mgmt": [
+    "Kurucu ve CEO Arkady Volozh, sonuçlarla birlikte çeyreklik hissedar mektubunu yayımladı. Basına yansıyan şirket beklentisine göre üçüncü taraf veri merkezi sahalarındaki gecikmeler kapasitenin ve aralık için beklenen gelirin bir kısmını 2027 başına kaydıracak; bu yüzden 2026 tam yıl gelirinin önceki 3,0–3,4 milyar dolar aralığı yerine 3,0–3,2 milyar dolar olması bekleniyor.",
+    "Nebius 2026 yatırım harcaması beklentisini 20–25 milyar dolardan yaklaşık 27 milyar dolara yükseltti ve analistlerin harcama beklentilerinin çok üzerinde, 40–45 milyar dolar yatırım harcamasıyla 12–13 milyar dolar gelir öngören bir 2027 görünümü açıkladı."
+   ],
+   "view": [
+    "Nebius, yapay zekâ altyapısı patlamasına yönelik en saf bahislerden biri: Nvidia GPU'larıyla dolu veri merkezleri inşa edip bunları, Microsoft ve Meta ile milyarlarca dolarlık sözleşmeler dahil, yapay zekâ laboratuvarlarına ve büyük teknoloji şirketlerine kiralıyor. Çeyreğin kendisi olağanüstüydü: gelir altı kattan fazla arttı ve FAVÖK marjı %47 oldu. Hisse düştü çünkü yatırımcılar artık bu şirketleri gelir büyümesine göre değil, onu sağlamak için gereken kapasitenin maliyeti ve zamanlamasına göre değerlendiriyor.",
+    "Rakamlar endişeyi açıklıyor. Gelecek yıl 40–45 milyar dolar harcarken 12–13 milyar dolar gelir öngörmek, Nebius'un ön ödemeler, borç ve muhtemelen yeni hisselerle finanse edilen her bir dolarlık gelir için üç dolardan fazla yatırım yapacağı anlamına geliyor. Bu ancak sözleşmeler sürerse, GPU'lar maliyetlerini çıkaracak kadar uzun süre verimli kalırsa ve veri merkezleri zamanında gelirse işler; bu çeyrek son koşulun şimdiden kaydığını gösterdi. Ön ödemelerin yeni anlaşmalara bağlı harcamayı karşılaması gerçek bir olumlu nokta, çünkü müşterilerin yatırımın büyük kısmını finanse ettiği anlamına geliyor; ama eski kapasiteyi ya da daha büyük 2027 planını karşılamıyor.",
+    "Bu ay zirvesinden yaklaşık %50 düştükten sonra hisse artık önemli bir uygulama riskini fiyatlıyor. İyimser senaryo, Nebius'un dünyanın en derin cepli alıcılarından sözleşmeli talebe sahip olduğu ve FAVÖK düzeyinde beklenenden hızlı kâra geçtiği. Kötümser senaryo, GPU kira fiyatlarının düşebileceği, CoreWeave ve büyük bulut şirketleriyle rekabetin yoğun olduğu ve her gecikmenin finansman ihtiyacını katladığı bir pazarda sermaye aç bir kiraya veren olduğu. Yatırımcılar finansmanı gelir kadar yakından izlemeli."
+   ],
+   "watch": "Geciken veri merkezi sahalarının teslim tarihlerini, 2027 harcamasının nasıl finanse edileceğini (borç, ön ödeme ya da yeni hisse), gelirin en büyük müşterilerde yoğunlaşmasını ve GPU kira fiyatlarını izleyin."
   },
   "NTES": {
    "d": "2026-11-19",
@@ -639,7 +669,22 @@
   "ROIV": {
    "d": "2026-11-09",
    "headline": "Roivant: ilk ilacı beş haftada 31 milyon dolar sattı, bir çeyrekte üç klinik başarı",
-   "takeaway": "Lisraya, dermatomiyozit onayının ardından 31 milyon dolar satış yaptı ve hisse başı zarar beklentiden çok daha düşük geldi. Şirketin 4,2 milyar dolar nakdi var; hisse %4,6 yükseldi."
+   "takeaway": "Lisraya, dermatomiyozit onayının ardından 31 milyon dolar satış yaptı ve hisse başı zarar beklentiden çok daha düşük geldi. Şirketin 4,2 milyar dolar nakdi var; hisse %4,6 yükseldi.",
+   "results": [
+    "Roivant, 30 Eylül'de biten ikinci mali çeyreğinde bir yıl önceki 1,6 milyon dolara karşı 35,1 milyon dolar gelir açıkladı; neredeyse tamamı, nadir görülen iltihaplı bir kas ve deri hastalığı olan yetişkin dermatomiyoziti için ağustosta FDA onayı aldıktan sonra ABD pazarındaki ilk beş haftasında 31,0 milyon dolar net ürün geliri yaratan LISRAYA'dan geldi. Hisse başı net zarar 0,28 dolardan 0,18 dolara geriledi.",
+    "Bir JAK1 ve TYK2 inhibitörü olan brepocitinib, iltihaplı bir göz hastalığı olan enfeksiyöz olmayan üveitte Faz 3 CLARITY-1 ve CLARITY-2 çalışmalarında birincil ve tüm önemli ikincil hedeflere ulaştı; ek başvurunun 2027'nin ilk yarısında yapılması bekleniyor. Mosliciguat interstisyel akciğer hastalığına bağlı pulmoner hipertansiyonda olumlu Faz 2 verisi verdi ve Faz 3 çalışması başladı.",
+    "Immunovant'ın FcRn antikoru IMVT-1402, tedavisi zor romatoid artritte potansiyel olarak ruhsata esas olabilecek bir çalışmada 600 mg dozda birincil hedefine ulaştı: hastaların %92,5'i 28. haftada ACR20 yanıtını korudu, plaseboda bu oran %75,6'ydı. Roivant çeyreği temmuzda Moderna'dan alınan bir ödeme dahil 4,2 milyar dolar nakit ve menkul kıymetle kapattı."
+   ],
+   "mgmt": [
+    "CEO Matt Gline, LISRAYA'nın satışa sunulması ve hasta ile hekim talebini yansıtan güçlü başlangıcıyla bunun Roivant için büyük bir dönüşüm olduğunu söyledi; IMVT-1402 verilerinin birden fazla ileri tedavide başarısız olmuş hastalarda yanıtı koruma ve derinleştirme potansiyelini desteklediğini belirtti. Roivant, IMVT-1402'nin romatoid artritte ruhsat yolu konusunda bu yılın sonlarında FDA ile görüşmeyi planlıyor.",
+    "Şirket, değişen tablo ve Sjögren hastalığındaki son veriler göz önüne alındığında IMVT-1402'yi bu endikasyonda mevcut Faz 2 çalışmasının ötesine taşımasının olası olmadığını söyledi. Nakdinin kârlılığa kadar yettiğini ve 9 Aralık'ta bir yatırımcı günü düzenleyeceğini ekledi."
+   ],
+   "view": [
+    "Roivant on yılı bir ilaç geliştirme holdingi olarak geçirdi: iştirakler kurdu, varlıklar sattı, en ünlüsü anti-TL1A antikorunu 7 milyar doları aşan bedelle Roche'a satmasıydı, ve geliri yeniden kullandı. Bu çeyrekte ticari bir şirkete dönüştü. Beş haftada 31 milyon dolar, nadir hastalık ilacı için güçlü bir lansman: yıllıklandırıldığında bu hız şimdiden 300 milyon doların üzerinde ve dermatomiyozit hastalarının az sayıda etkili ağızdan tedavi seçeneği var. Üveit verileri yaklaşık on sekiz ay içinde ikinci ve daha büyük bir endikasyon ekliyor.",
+    "IMVT-1402 sonucu iyi ama nüanslı. Tüm hastaların önce ilacı aldığı ve yanıt verenlerin devam etmek ya da plaseboya geçmek üzere rastgele ayrıldığı randomize geri çekme tasarımı sonuçları güzelleştirme eğiliminde ve 17 puanlık fark ezici değil ama anlamlı. FcRn ilaçlarının da karışık bir geçmişi var; Sjögren'den vazgeçilmesi sınıf genelindeki hayal kırıklığı yaratan verileri yansıtıyor. Yine de birkaç tedavide başarısız olmuş romatoid artrit hastaları büyük ve yeterince hizmet alamayan bir grup; FDA ile net bir yol IMVT-1402'yi büyük bir varlığa dönüştürür.",
+    "Roivant'ı biyoteknoloji şirketleri arasında sıra dışı kılan bilanço. Yaklaşık 28 milyar dolarlık piyasa değerine karşı 4,2 milyar dolar nakit ve açıklanmış bir kârlılık yoluyla, hissedarları sulandırmadan üç ileri aşama programı finanse edebiliyor; lipit nanopartikül patent anlaşmazlığından gelen Moderna ödemesi de hukuki varlıklarının değeri olduğunu gösteriyor. Risk, değerlemenin bu programlardan birkaçının başarılı olacağını zaten varsayması; LISRAYA'nın önümüzdeki iki çeyrekteki gidişatı, Roivant'ın ilaç geliştirdiği kadar iyi ilaç satıp satamayacağının en net sınavı olacak."
+   ],
+   "watch": "Aralık çeyreğinde LISRAYA reçetelerini ve gelirini, IMVT-1402'nin romatoid artrit için FDA toplantısını, 2027'deki üveit başvurusunu ve aralıktaki yatırımcı gününde nakde dair planları izleyin."
   },
   "ROST": {
    "d": "2026-11-19",
@@ -808,7 +853,22 @@
   "VG": {
    "d": "2026-11-10",
    "headline": "Venture Global: rekor LNG satışları hisse başı kârı 0,96 dolara taşıdı, beklentinin neredeyse iki katı",
-   "takeaway": "Gelir %43 artışla 4,8 milyar dolara çıktı. Plaquemines 31 Ekim’de ticari faaliyete başladı, FAVÖK tahmini %14 yükseldi ve hisse %7 arttı."
+   "takeaway": "Gelir %43 artışla 4,8 milyar dolara çıktı. Plaquemines 31 Ekim’de ticari faaliyete başladı, FAVÖK tahmini %14 yükseldi ve hisse %7 arttı.",
+   "results": [
+    "Venture Global üçüncü çeyrekte %43 artışla 4,8 milyar dolar gelir ve %74 artışla 2,3 milyar dolar faaliyet kârı açıkladı. Hissedarlara ait net kâr neredeyse altı katına çıkarak 2,5 milyar dolara ya da bir yıl önceki 0,15 dolara karşı hisse başına 0,96 dolara yükseldi; konsolide düzeltilmiş FAVÖK %69 artışla 2,6 milyar dolara çıktı. Yılbaşından bu yana gelir 14 milyar dolara yaklaştı.",
+    "Şirket Louisiana'daki Calcasieu Pass ve Plaquemines tesislerinden 124 kargo ihraç etti ve %25 artışla 465,8 trilyon İngiliz ısı birimi LNG sattı. Plaquemines 1. Faz, nihai yatırım kararından 53 aydan biraz fazla süre sonra 31 Ekim 2026'da ticari faaliyete geçti ve uzun vadeli sözleşmeli müşterilere LNG satmaya başladı.",
+    "Venture Global 2026 konsolide düzeltilmiş FAVÖK beklentisini 8,7–9,1 milyar dolardan 10,0–10,3 milyar dolara yükseltti. Ekimde GE Vernova ve Baker Hughes ile 16 adede kadar yeni 720 megavatlık enerji adası ve ilgili şebeke ekipmanı için çerçeve anlaşmalar imzaladı."
+   ],
+   "mgmt": [
+    "CEO Mike Sabel, rekor satış ve kârla, beklentilerin üst ucunda LNG üretimiyle ve Plaquemines büyüklüğünde sıfırdan bir proje için uzun vadeli teslimatlara en hızlı başlangıçlardan biriyle olağanüstü bir çeyrek geçirdiklerini söyledi. Güçlü operasyonların ve fiyat görünümünün hacim ve FAVÖK beklentisinin orta noktasını yükseltmeye imkân verdiğini belirtti.",
+    "Sabel ayrıca olası yeni bir işi de anlattı: şirketin şebekeden bağımsız, ada modunda çalışan enerji ağları kurma deneyimini kullanarak veri merkezlerine enerji, arazi, kapalı devre su, ABD doğal gaz tedariki ve kendi mühendislik ve inşaat hizmetlerini birleştiren şebeke dışı bir yapay zekâ elektrik şirketi sunmak."
+   ],
+   "view": [
+    "Venture Global'in modeli hem gücü hem tartışma konusu oldu. Fabrikada üretilen modüler hatlarla LNG tesislerini rakiplerinden daha hızlı ve ucuza inşa ediyor ve uzun devreye alma döneminde üretilen gazı, daha ucuz uzun vadeli sözleşmelere geçmeden önce yüksek spot fiyatlardan satıyor. Bu, şirketi 2022–2025'te son derece kârlı yaptı ve kargoları daha önce almaları gerektiğini savunan Shell ve BP gibi müşterileri kızdırdı. Plaquemines'in ticari faaliyete geçmesi dönüm noktası: bundan sonra üretimin daha büyük kısmı sabit ücretle sözleşmeli müşterilere gidiyor; bu, spot fiyatlardan gelen yukarı potansiyeli azaltıyor ama kârı çok daha öngörülebilir kılıyor.",
+    "Bu çeyrek devreye alma döneminin ne kadar kazançlı olduğunu gösteriyor. Beklentinin neredeyse iki katı hisse başı kâr, güçlü spot LNG fiyatlarını ve daha yüksek hacmi yansıtıyor; FAVÖK beklentisindeki %14'lük artış dördüncü çeyreğin de güçlü olacağını düşündürüyor. Geçiş değerleme için önemli: yatırımcılar Venture Global'i hukuki anlaşmazlıkları ve spot satışlara bağımlılığı nedeniyle iskontolu fiyatladı; daha istikrarlı, sözleşmeye dayalı bir kâr akışı zamanla bu iskontoyu daraltabilir.",
+    "Veri merkezi fikri belirsiz bir koz. Venture Global sıvılaştırma tesislerini çalıştırmak için zaten kendi gaz santrallerini işletiyor ve GE Vernova ile Baker Hughes'la 11,5 gigavata kadar enerji ekipmanı için yapılan anlaşmalar ciddi donanım taahhütleri. Mantıklı bir uzantı, ama aynı zamanda sermaye yoğun ve kanıtlanmamış; üstelik kayda değer borcu olan ve CP2 genişlemesini hâlâ finanse etmesi gereken bir şirketten geliyor. Yatırımcılar bir müşteri imza atana kadar bunu bir plan değil bir opsiyon olarak görmeli."
+   ],
+   "watch": "Plaquemines'ten sözleşmeli teslimatların ilk tam çeyreğini, kalan müşteri tahkimlerinin sonucunu, CP2'nin finansmanını ve ilerlemesini ve bir veri merkezi müşterisinin şebeke dışı enerji için imza atıp atmayacağını izleyin."
   },
   "VIK": {
    "d": "2026-11-17",

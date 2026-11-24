@@ -91,6 +91,127 @@ def movers_page(U):
                            ('/pages/all-stocks', 'فهرست همه‌ی سهام')])
 
 
+# ------------------------------------------------------------------------- dated market days (archive)
+WD_FA = ['دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه']
+DAY_KEEP = 60     # trading days kept as pages (about three months)
+
+
+def _moves_fa():
+    """Farsi 'why it moved' notes by day: {day: [move, ...]} from data/movers/fa."""
+    import glob
+    by = {}
+    for f in glob.glob(os.path.join(os.environ.get('GITHUB_WORKSPACE', os.getcwd()), 'data', 'movers', 'fa', '*.json')):
+        if f.endswith('index.json'):
+            continue
+        try:
+            for m in json.load(open(f)).get('moves') or []:
+                if m.get('headline') and m.get('d'):
+                    by.setdefault(m['d'], []).append(m)
+        except Exception:
+            pass
+    return by
+
+
+def sp(v, d=1):
+    """Signed percent as plain text (for descriptions and FAQ answers, where HTML is not allowed)."""
+    return ('+' if v >= 0 else '−') + pct(abs(v), d)
+
+
+def iso(x):
+    """Name for plain text (descriptions, FAQ): an English name is isolated so it cannot break the right-to-left order."""
+    return x.get('fa') or ('\u2066%s\u2069' % (x.get('en') or x['t']))
+
+
+def day_handle(day):
+    return 'stock-market-' + day
+
+
+def day_pages(U):
+    """One page per trading day: /pages/stock-market-YYYY-MM-DD, from data/daily (every $2B+ company's close)."""
+    import glob, datetime as dt
+    root = os.path.join(os.environ.get('GITHUB_WORKSPACE', os.getcwd()), 'data', 'daily')
+    days = sorted(os.path.basename(f)[:-5] for f in glob.glob(os.path.join(root, '20*.json')))[-DAY_KEEP:]
+    if not days:
+        return [], []
+    by_t = {x['t']: x for x in U}
+    notes = _moves_fa()
+    out = []
+    for i, day in enumerate(days):
+        try:
+            d = json.load(open(os.path.join(root, day + '.json')))
+        except Exception:
+            continue
+        rows = []
+        for t, close, ch, mc in d.get('rows') or []:
+            if ch is None or not mc or mc < 2e9 or t not in by_t:
+                continue
+            rows.append((ch, close, by_t[t], mc))
+        if len(rows) < 100:
+            continue
+        D = dt.date.fromisoformat(day)
+        dfa = '%s %s' % (WD_FA[D.weekday()], date_fa(D))
+        up = sorted(rows, key=lambda r: -r[0])[:20]
+        dn = sorted(rows, key=lambda r: r[0])[:20]
+        big = sorted(rows, key=lambda r: -r[3])[:15]
+        adv = sum(1 for r in rows if r[0] > 0)
+        ten_up = sum(1 for r in rows if r[0] >= 0.10)
+        ten_dn = sum(1 for r in rows if r[0] <= -0.10)
+        tot0 = sum(r[3] / (1 + r[0]) for r in rows)
+        tot1 = sum(r[3] for r in rows)
+        mkt = tot1 / tot0 - 1 if tot0 else 0
+        def t(L):
+            return table(['#', 'شرکت', 'تغییر', 'قیمت (دلار)', 'ارزش بازار (دلار)'],
+                         [[fa(k), stock_a(x) + '<span class="tk">%s</span>' % e(x['t']), signed(c, 1), num(p, 2), short_usd(m)]
+                          for k, (c, p, x, m) in enumerate(L, 1)])
+        # sector moves, weighted by market value
+        sec = {}
+        for c, p, x, m in rows:
+            k = x.get('sector') or ''
+            if not k:
+                continue
+            a = sec.setdefault(k, [0.0, 0.0])
+            a[0] += m / (1 + c); a[1] += m
+        secs = sorted(((v[1] / v[0] - 1, k) for k, v in sec.items() if v[0] > 0), reverse=True)
+        lead = ('<p>در %s، ارزش مجموع %s شرکت بالای ۲ میلیارد دلار بورس آمریکا %s تغییر کرد. %s سهم بالا رفتند و %s سهم پایین آمدند؛ '
+                '%s سهم بیش از ۱۰٪ رشد و %s سهم بیش از ۱۰٪ افت داشتند. بیشترین رشد را %s با %s و بیشترین افت را %s با %s داشت.</p>'
+                % (dfa, fa(len(rows)), signed(mkt, 2), fa(adv), fa(len(rows) - adv), fa(ten_up), fa(ten_dn),
+                   stock_a(up[0][2]), signed(up[0][0], 1), stock_a(dn[0][2]), signed(dn[0][0], 1)))
+        why = ''
+        ns = sorted(notes.get(day) or [], key=lambda m: -abs(m.get('pct') or 0))
+        if ns:
+            items = []
+            for m in ns[:12]:
+                x = by_t.get(m['t'])
+                if not x:
+                    continue
+                items.append('<li><b>%s</b> (%s): %s%s</li>' % (stock_a(x), signed((m.get('pct') or 0) / 100.0, 1), e(m['headline']),
+                             ('<br>' + e(m['summary'])) if m.get('summary') else ''))
+            if items:
+                why = '<h2>چرا این سهم‌ها تکان خوردند؟</h2><ul class="mvw">%s</ul>' % ''.join(items)
+        sect = ''
+        if len(secs) >= 4:
+            sect = '<h2>صنعت‌ها</h2>' + table(['صنعت', 'تغییر'], [[e(FA_SECTOR.get(k, k)), signed(c, 2)] for c, k in secs])
+        nav = []
+        if i > 0:
+            nav.append(('/pages/' + day_handle(days[i - 1]), 'روز معاملاتی قبل'))
+        if i < len(days) - 1:
+            nav.append(('/pages/' + day_handle(days[i + 1]), 'روز معاملاتی بعد'))
+        body = (lead + why + '<h2>بیشترین رشد</h2>' + t(up) + '<h2>بیشترین افت</h2>' + t(dn) + sect
+                + '<h2>بزرگ‌ترین شرکت‌ها چه کردند؟</h2>' + t(big) + (chips(nav) if nav else ''))
+        qa = [('در %s کدام سهم آمریکا بیشترین رشد را داشت؟' % dfa, '%s با %s بیشترین رشد را میان شرکت‌های بالای ۲ میلیارد دلار داشت.' % (iso(up[0][2]), sp(up[0][0], 1))),
+              ('کدام سهم بیشترین افت را داشت؟', '%s با %s.' % (iso(dn[0][2]), sp(dn[0][0], 1))),
+              ('بازار در این روز چقدر تغییر کرد؟', 'ارزش مجموع شرکت‌های بالای ۲ میلیارد دلار %s تغییر کرد؛ %s سهم بالا و %s سهم پایین بسته شدند.' % (sp(mkt, 2), fa(adv), fa(len(rows) - adv)))]
+        title = 'بورس آمریکا در %s: بیشترین رشد و افت سهام' % dfa
+        pg = page(day_handle(day), title, ('بورس آمریکا %s | رشد و افت سهام' % date_fa(D)),
+                  'بورس آمریکا در %s: %s با %s بیشترین رشد و %s با %s بیشترین افت را داشت. دلیل حرکت‌های بزرگ، ۲۰ سهم پررشد و ۲۰ سهم پرافت و تغییر صنعت‌ها.'
+                  % (dfa, iso(up[0][2]), sp(up[0][0], 1), iso(dn[0][2]), sp(dn[0][0], 1)),
+                  body, qa, [('/pages/market-movers', 'بیشترین رشد و افت امروز')])
+        pg['html'] = pg['html'].replace('<p class="upd">به‌روزرسانی: %s</p>' % date_fa(TODAY), '<p class="upd">روز معاملاتی: %s</p>' % dfa, 1)
+        out.append(pg)
+    links = [('/pages/' + day_handle(dd), date_fa(dt.date.fromisoformat(dd))) for dd in reversed(days[-10:])]
+    return out, links
+
+
 # ------------------------------------------------------------------------------------- financial history
 def _year_end_prices(t):
     d = git_json('origin/prices', t + '.json') or {}
@@ -272,8 +393,15 @@ def build(U):
             pass
     out = []
     mv = movers_page(U)
+    try:
+        dpages, dlinks = day_pages(U)
+    except Exception as ex:
+        print('day pages:', ex); dpages, dlinks = [], []
     if mv:
+        if dlinks:
+            mv['html'] = mv['html'].replace('<h2>صفحه‌ها و ابزارهای دیگر</h2>', '<h2>روزهای معاملاتی قبل</h2>' + chips(dlinks) + '<h2>صفحه‌ها و ابزارهای دیگر</h2>', 1)
         out.append(mv)
+    out += dpages
     hist_pages, hist = history_pages(U, recs)
     cmp_pages, cmp_links = compare_pages(U, recs)
     out += hist_pages + cmp_pages + az_pages(U, hist, cmp_links)

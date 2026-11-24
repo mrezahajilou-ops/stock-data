@@ -1797,11 +1797,54 @@ def div_yield(ref_y, dps, price, div_t, mcap, foreign=False):
     return None
 
 
+def roll_ttm_quarters(rec):
+    """The quarterly table already holds a newer quarter than the trailing twelve months (foreign filers: Yahoo's
+    quarterly series moves before its 'trailing' figure, 2026-11 BIDU/HTHT/XPEV stuck on June): roll the TTM forward
+    quarter by quarter, TTM(new) = TTM(base) - same quarter a year earlier + new quarter, for revenue and net income.
+    Other TTM fields are left empty, as roll_forward() does, rather than mixing two periods in one column."""
+    t, q = rec.get("ttm") or {}, [x for x in rec.get("quarterly") or [] if x and x[0]]
+    if not t.get("end") or not t.get("revenue") or len(q) < 5:
+        return 0
+    i = next((k for k, x in enumerate(q) if abs(days(t["end"], x[0])) <= 10), None)
+    if i is None or i == len(q) - 1:
+        return 0
+    n, base = 0, dict(t)
+    for x in q[i + 1:]:
+        ya = next((r for r in q if 350 <= days(r[0], x[0]) <= 380), None)
+        if not ya or not ya[1] or not x[1] or not base.get("revenue"):
+            break
+        nt = dict(base)
+        nt["revenue"] = base["revenue"] - ya[1] + x[1]
+        if nt["revenue"] <= 0 or not 0.5 < nt["revenue"] / base["revenue"] < 2.0:
+            break
+        if x[2] is not None and ya[2] is not None and base.get("net_income") is not None:
+            nt["net_income"] = base["net_income"] - ya[2] + x[2]
+            if base.get("eps") and base["net_income"] and base["net_income"] > 0 and nt["net_income"] > 0:
+                nt["eps"] = base["eps"] * nt["net_income"] / base["net_income"]
+            elif nt.get("shares_diluted"):
+                nt["eps"] = nt["net_income"] / nt["shares_diluted"]
+        else:
+            nt["net_income"] = nt["eps"] = None
+        for k in ("cfo", "capex", "fcf", "op_income", "gross_profit", "ebitda", "da", "rnd", "sbc", "dividends", "dps",
+                  "buybacks", "interest_exp", "pretax_income", "tax"):
+            nt[k] = None
+        nt.pop("filled", None)
+        nt["end"], nt["rolled_from"], nt["src"] = x[0], base.get("rolled_from") or base.get("end"), "quarters"
+        base = nt
+        n += 1
+    if n:
+        rec["ttm"] = base
+        rec["fresh"] = {"q": base["end"], "src": "quarters"}
+        log("ttm rolled from quarterly table", rec["ticker"], base["end"], n)
+    return n
+
+
 def score(rec, mk, sector_pe):
     """Five 0-5 scores. Also returns the individual checks (as 1/0) so the site can explain WHY."""
     fill_from_yahoo(rec, EST.get(rec["ticker"]))
     roll_from_yahoo(rec, EST.get(rec["ticker"]))
     fill_from_press(rec)
+    roll_ttm_quarters(rec)
     reconcile_per_share(rec, mk, (EST.get(rec["ticker"]) or {}).get("ref") or {})
     a, s = rec["annual"], rec["summary"]
     last = a[-1]

@@ -249,6 +249,9 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
         if len(ms) >= 4:
             pk = max(ms, key=lambda x: x[1])
             now = ms[-1][1]
+            tn = ttm_margin(d)      # "now" is the trailing twelve months when there is one, not the last fiscal year
+            if tn is not None and -3 < tn < 1:
+                now = tn
             if pk[1] > 0.02 and pk[0] != ms[-1][0] and now < pk[1] - 0.02:
                 w.say('prof_margin_off', fy=pk[0], peak=F.mpct(pk[1]), now=F.mpct(now))
                 sal += 1

@@ -10,7 +10,7 @@ Only files whose content actually differs are sent, so a run with nothing to do 
 Secrets: SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET (scopes must include write_themes).
 Env: SHOPIFY_SHOP (default jev8ju-dh.myshopify.com), DRY=1 to report without writing.
 """
-import json, os, sys, time, urllib.request, urllib.parse, urllib.error
+import json, os, re, sys, time, urllib.request, urllib.parse, urllib.error
 
 SHOP = os.environ.get('SHOPIFY_SHOP', 'jev8ju-dh.myshopify.com')
 API = 'https://%s/admin/api/2026-01/graphql.json' % SHOP
@@ -82,6 +82,78 @@ def local_files():
     return out
 
 
+# --- edits to files the repo does not own (Nov 2026) ------------------------------------------------
+# The store's primary language is English, so the theme printed <html lang="en"> on every Farsi page and
+# the cart drawer greeted Farsi readers with "Your cart is empty" / "Estimated total". These patch the live
+# layout and default locale in place (only the listed strings), so theme updates keep everything else.
+CART_FA = {
+    ('sections', 'cart', 'title'): 'سبد خرید شما',
+    ('sections', 'cart', 'empty'): 'سبد خرید شما خالی است',
+    ('sections', 'cart', 'estimated_total'): 'جمع کل',
+    ('sections', 'cart', 'new_estimated_total'): 'جمع کل جدید',
+    ('sections', 'cart', 'subtotal'): 'جمع',
+    ('sections', 'cart', 'new_subtotal'): 'جمع جدید',
+    ('sections', 'cart', 'checkout'): 'پرداخت',
+    ('sections', 'cart', 'update'): 'به‌روزرسانی',
+    ('sections', 'cart', 'remove_all'): 'حذف همه',
+    ('sections', 'cart', 'note'): 'توضیح سفارش',
+    ('sections', 'cart', 'headings', 'product'): 'محصول',
+    ('sections', 'cart', 'headings', 'price'): 'قیمت',
+    ('sections', 'cart', 'headings', 'total'): 'جمع',
+    ('sections', 'cart', 'headings', 'quantity'): 'تعداد',
+    ('sections', 'cart', 'login', 'title'): 'حساب کاربری دارید؟',
+    ('general', 'continue_shopping'): 'ادامه‌ی خرید',
+    ('general', 'cart', 'view'): 'مشاهده‌ی سبد خرید',
+    ('templates', 'cart', 'cart'): 'سبد خرید',
+    ('accessibility', 'close'): 'بستن',
+}
+
+
+def _set_existing(d, path, val):
+    for k in path[:-1]:
+        if not isinstance(d, dict) or k not in d:
+            return False
+        d = d[k]
+    if isinstance(d, dict) and path[-1] in d and isinstance(d[path[-1]], str) and d[path[-1]] != val:
+        d[path[-1]] = val
+        return True
+    return False
+
+
+def patch_live(tok, tid):
+    names = ['layout/theme.liquid', 'locales/en.default.json']
+    r = gql(tok, READ, {'id': tid, 'names': names})
+    cur = {n['filename']: (n.get('body') or {}).get('content')
+           for n in ((((r.get('data') or {}).get('theme') or {}).get('files') or {}).get('nodes') or [])}
+    out = []
+    lay = cur.get('layout/theme.liquid')
+    if lay:
+        new = re.sub(r'lang="\{\{\s*request\.locale\.iso_code\s*\}\}"', 'lang="fa"', lay, count=1)
+        if new != lay:
+            out.append(('layout/theme.liquid', new))
+    loc = cur.get('locales/en.default.json')
+    if loc:
+        m = re.match(r'\s*(/\*.*?\*/)?\s*', loc, re.S)
+        head = (m.group(1) + '\n') if m and m.group(1) else ''
+        try:
+            d = json.loads(loc[m.end():] if m else loc)
+            if sum(_set_existing(d, k, v) for k, v in CART_FA.items()):
+                out.append(('locales/en.default.json', head + json.dumps(d, ensure_ascii=False, indent=2)))
+        except Exception as ex:
+            print('locale patch skipped:', ex)
+    if not out:
+        print('live layout/locale already patched'); return 0
+    print('patching: %s' % ', '.join(n for n, _ in out))
+    if DRY:
+        return 0
+    r = gql(tok, UPSERT, {'id': tid, 'files': [{'filename': n, 'body': {'type': 'TEXT', 'value': v}} for n, v in out]})
+    res = ((r.get('data') or {}).get('themeFilesUpsert') or {})
+    errs = (r.get('errors') or []) + (res.get('userErrors') or [])
+    if errs:
+        print('::error::%s' % json.dumps(errs, ensure_ascii=False)); return 1
+    return 0
+
+
 def main():
     files = local_files()
     if not files:
@@ -103,6 +175,8 @@ def main():
             live[n['filename']] = ((n.get('body') or {}).get('content'))
 
     changed = [n for n in names if files[n] != live.get(n)]
+    if patch_live(tok, tid):
+        return 1
     if not changed:
         print('theme is already up to date (%d files checked)' % len(names)); return 0
     print('changed: %s' % ', '.join(changed))

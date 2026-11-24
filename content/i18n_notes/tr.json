@@ -307,7 +307,15 @@
   "MU": {
    "d": "2026-11-23",
    "headline": "Huang’ın Nvidia’ya dönüşüyle çip hisseleri toparlanırken Micron yüzde 19 yükseldi",
-   "summary": "Micron, önceki haftanın sert düşüşünün ardından tüm yarı iletken sektörüyle birlikte yüzde 19 yükseldi. Şirkete özel bir haber yoktu; hareket sektörün toparlanmasıydı."
+   "summary": "Micron, önceki haftanın sert düşüşünün ardından tüm yarı iletken sektörüyle birlikte yüzde 19 yükseldi. Şirkete özel bir haber yoktu; hareket sektörün toparlanmasıydı.",
+   "why": [
+    "Micron, Nvidia'daki liderlik krizi, iddia edilen SEC soruşturması ve yapay zekâ veri merkezlerinin finansmanına dair şüpheler bu merkezlere tedarik sağlayan tüm şirketleri vurunca önceki hafta yarı iletken sektörünün geri kalanıyla birlikte sert düşmüştü. Bellek üreticileri, kârları yapay zekâ sunucularına satılan yüksek bant genişlikli belleğe bağlı olduğu için en çok zarar görenler arasındaydı.",
+    "Şirkete özgü bir haber yoktu. Hareket sektörle birlikte gelen bir toparlanmaydı: Nvidia yönetim kurulunun Huang'ı geri getirmesi yapay zekâ talebi üzerindeki en görünür riski ortadan kaldırdı ve Citi'nin altyapı harcamalarına dair korkuların abartıldığını öne süren yorumları bellek hisselerine ek destek verdi."
+   ],
+   "context": [
+    "ABD borsaları 23 Kasım'da Nisan 2025'ten bu yana en iyi gününü yaşadı: Nasdaq gün içinde yaklaşık %7, S&P 500 yaklaşık %5 yükseldi ve çip hisselerinin 2001'den bu yana en kötü haftasını geçirdiği önceki haftanın kayıplarının büyük kısmını telafi etti.",
+    "Değeri 2 milyar doları aşan 120'den fazla ABD şirketi o gün %10 veya daha fazla yükseldi; bunların neredeyse tamamı çip ve bellek üreticileri, veri merkezi tedarikçileri ve yapay zekâyla bağlantılı diğer hisselerdi."
+   ]
   },
   "NVDA": {
    "d": "2026-11-23",
@@ -330,12 +338,27 @@
   "ZS": {
    "d": "2026-11-23",
    "headline": "CrowdStrike’ın 43,9 milyar dolarlık satın alma anlaşmasıyla Zscaler yüzde 18 fırladı",
-   "summary": "CrowdStrike, Zscaler’ı 43,9 milyar dolara satın almak için anlaştı. Zscaler hisseleri yüzde 17,7 yükselirken alıcının hisseleri düştü."
+   "summary": "CrowdStrike, Zscaler’ı 43,9 milyar dolara satın almak için anlaştı. Zscaler hisseleri yüzde 17,7 yükselirken alıcının hisseleri düştü.",
+   "why": [
+    "CrowdStrike, Zscaler'ı satın almak için anlaşma yaptığını açıkladı; bu birleşme önde gelen uç nokta güvenliği platformunu, bulut tabanlı güvenli erişimde lider işle bir araya getiriyor. Önceki kapanışın üzerinde primli bir satın alma, hedef şirketin hisse fiyatını teklife doğru çeker; bu yüzden Zscaler fırlarken alıcının hisseleri düştü.",
+    "Zscaler'ın sıçramadan sonraki fiyatı ile anlaşma değeri arasındaki fark, kapanışa kadar geçecek süreyi ve düzenleyicilerin ya da hissedarların anlaşmayı engelleme riskini yansıtıyor. CrowdStrike yatırımcıları, ödenen fiyat ve bu büyüklükte bir anlaşmayı finanse etmek için gereken hisse sulandırması ya da borç endişesiyle satış yaptı."
+   ],
+   "context": [
+    "Anlaşma, Nvidia'nın Jensen Huang'ı yeniden CEO yapmasının ardından teknoloji hisselerinde geniş bir yükselişin yaşandığı gün duyuruldu."
+   ]
   },
   "ARM": {
    "d": "2026-11-23",
    "headline": "Çip rallisi ve CEO’nun 2033’e kadar uzatılan sözleşmesiyle Arm yüzde 16 yükseldi",
-   "summary": "Arm, yarı iletken sektörüyle birlikte yüzde 16 yükseldi; şirket ayrıca CEO Rene Haas’ın sözleşmesinin 2033’e kadar uzatıldığını açıkladı."
+   "summary": "Arm, yarı iletken sektörüyle birlikte yüzde 16 yükseldi; şirket ayrıca CEO Rene Haas’ın sözleşmesinin 2033’e kadar uzatıldığını açıkladı.",
+   "why": [
+    "Arm, neredeyse her akıllı telefonda ve giderek artan biçimde veri merkezi işlemcilerinde kullanılan çip tasarımlarının lisansını veriyor; bu yüzden yapay zekâ donanımına yönelik havayla birlikte hareket ediyor. Sektör önceki hafta 2001'den bu yana en kötü haftasını yaşamıştı ve pazartesi Nvidia'daki yönetim kararının ardından gelen toparlanma Arm'ı da yukarı taşıdı.",
+    "Bunun üzerine Arm, şirketi halka arzı ve veri merkezi çiplerine açılımı boyunca yöneten Rene Haas'ın sözleşmesini 2033'e kadar uzattığını açıkladı. Liderliğin piyasanın ana kaygısı olduğu bir günde, Arm'ın kendi CEO'sundan gelen uzun vadeli bağlılık olumlu karşılandı."
+   ],
+   "context": [
+    "ABD borsaları 23 Kasım'da Nisan 2025'ten bu yana en iyi gününü yaşadı: Nasdaq gün içinde yaklaşık %7, S&P 500 yaklaşık %5 yükseldi ve çip hisselerinin 2001'den bu yana en kötü haftasını geçirdiği önceki haftanın kayıplarının büyük kısmını telafi etti.",
+    "Değeri 2 milyar doları aşan 120'den fazla ABD şirketi o gün %10 veya daha fazla yükseldi; bunların neredeyse tamamı çip ve bellek üreticileri, veri merkezi tedarikçileri ve yapay zekâyla bağlantılı diğer hisselerdi."
+   ]
   }
  }
 }

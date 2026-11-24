@@ -307,7 +307,15 @@
   "MU": {
    "d": "2026-11-23",
    "headline": "Micron sube un 19% con el rebote de los chips tras el regreso de Huang a Nvidia",
-   "summary": "Micron subió un 19% junto con todo el sector de semiconductores tras la fuerte caída de la semana anterior. No hubo noticias propias de la empresa: fue un rebote del sector."
+   "summary": "Micron subió un 19% junto con todo el sector de semiconductores tras la fuerte caída de la semana anterior. No hubo noticias propias de la empresa: fue un rebote del sector.",
+   "why": [
+    "Micron había caído con fuerza junto con el resto del sector de semiconductores la semana anterior, cuando la crisis de liderazgo en Nvidia, una supuesta investigación de la SEC y las dudas sobre la financiación de los centros de datos de IA golpearon a todas las empresas que los abastecen. Los fabricantes de memoria estuvieron entre los más castigados porque sus beneficios dependen de la memoria de alto ancho de banda que se vende para servidores de IA.",
+    "No hubo noticias propias de la empresa. El movimiento fue un rebote junto con el sector: el regreso de Huang a Nvidia eliminó el riesgo más visible para la demanda de IA, y los comentarios de Citi según los cuales los temores sobre el gasto en infraestructura eran exagerados dieron un apoyo adicional a las acciones de memoria."
+   ],
+   "context": [
+    "La bolsa estadounidense vivió el 23 de noviembre su mejor sesión desde abril de 2025: el Nasdaq llegó a subir cerca de un 7% y el S&P 500 alrededor de un 5%, recuperando buena parte de las caídas de la semana anterior, en la que los fabricantes de chips sufrieron su peor semana desde 2001.",
+    "Más de 120 empresas estadounidenses de más de 2.000 millones de dólares subieron un 10% o más ese día; casi todas eran fabricantes de chips y de memoria, proveedores de centros de datos y otros valores ligados a la inteligencia artificial."
+   ]
   },
   "NVDA": {
    "d": "2026-11-23",
@@ -330,12 +338,27 @@
   "ZS": {
    "d": "2026-11-23",
    "headline": "Zscaler se dispara un 18% después de que CrowdStrike acuerde comprarla por 43.900 millones",
-   "summary": "CrowdStrike acordó comprar Zscaler por 43.900 millones de dólares. Las acciones de Zscaler subieron un 17,7% y las del comprador cayeron."
+   "summary": "CrowdStrike acordó comprar Zscaler por 43.900 millones de dólares. Las acciones de Zscaler subieron un 17,7% y las del comprador cayeron.",
+   "why": [
+    "CrowdStrike anunció un acuerdo para comprar Zscaler, que une la principal plataforma de seguridad para dispositivos con el principal negocio de acceso seguro en la nube. Una compra con prima sobre el cierre anterior empuja el precio de la empresa adquirida hacia la oferta, y por eso Zscaler se disparó mientras las acciones del comprador caían.",
+    "La diferencia entre el precio de Zscaler tras el salto y el valor del acuerdo refleja el tiempo hasta el cierre y el riesgo de que los reguladores o los accionistas lo bloqueen. Los inversores de CrowdStrike vendieron por la preocupación por el precio pagado y por la dilución o la deuda necesarias para financiar una operación de este tamaño."
+   ],
+   "context": [
+    "El acuerdo se anunció el mismo día de un fuerte repunte de las tecnológicas, después de que Nvidia devolviera a Jensen Huang el cargo de consejero delegado."
+   ]
   },
   "ARM": {
    "d": "2026-11-23",
    "headline": "Arm sube un 16% con el rally de los chips y la renovación de su consejero delegado hasta 2033",
-   "summary": "Arm subió un 16% junto con el sector de semiconductores, y anunció que su consejero delegado, Rene Haas, renovó su contrato hasta 2033."
+   "summary": "Arm subió un 16% junto con el sector de semiconductores, y anunció que su consejero delegado, Rene Haas, renovó su contrato hasta 2033.",
+   "why": [
+    "Arm licencia los diseños de chips que se usan en casi todos los teléfonos inteligentes y, cada vez más, en procesadores para centros de datos, así que se mueve con el ánimo hacia el hardware de IA. El sector había vivido la semana anterior su peor semana desde 2001, y el rebote del lunes tras el giro en la dirección de Nvidia arrastró a Arm.",
+    "Además, Arm comunicó que Rene Haas, que ha dirigido la compañía en su salida a bolsa y en su entrada en los chips para centros de datos, había renovado su contrato hasta 2033. En un día en que la dirección de las empresas era la principal preocupación del mercado, un compromiso largo del propio consejero delegado de Arm fue bien recibido."
+   ],
+   "context": [
+    "La bolsa estadounidense vivió el 23 de noviembre su mejor sesión desde abril de 2025: el Nasdaq llegó a subir cerca de un 7% y el S&P 500 alrededor de un 5%, recuperando buena parte de las caídas de la semana anterior, en la que los fabricantes de chips sufrieron su peor semana desde 2001.",
+    "Más de 120 empresas estadounidenses de más de 2.000 millones de dólares subieron un 10% o más ese día; casi todas eran fabricantes de chips y de memoria, proveedores de centros de datos y otros valores ligados a la inteligencia artificial."
+   ]
   }
  }
 }

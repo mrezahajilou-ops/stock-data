@@ -15,12 +15,47 @@
     </div>
 
     {%- if blog.all_tags.size > 0 -%}
+      {%- comment -%} Nov 2026: 45+ topics made a five-row wall above the articles. The main topics stay visible;
+        the rest fold under "موضوعات بیشتر" (opened automatically when the current filter is one of them). {%- endcomment -%}
+      {%- assign pri = 'خبر|گزارش فصلی|بازار امروز|بورس آمریکا|هوش مصنوعی|بهترین سهام|آموزش|تحلیل بنیادی|طلا' | split: '|' -%}
+      {%- assign rest_open = false -%}
+      {%- assign rest_n = 0 -%}
+      {%- for tag in blog.all_tags -%}
+        {%- unless pri contains tag -%}
+          {%- assign rest_n = rest_n | plus: 1 -%}
+          {%- if current_tags contains tag -%}{%- assign rest_open = true -%}{%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
       <div class="rzn-tags">
         <a href="{{ blog.url }}" class="{% unless current_tags %}on{% endunless %}">همه</a>
-        {%- for tag in blog.all_tags -%}
-          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="{% if current_tags contains tag %}on{% endif %}">{{ tag }}</a>
+        {%- for t in pri -%}
+          {%- if blog.all_tags contains t -%}
+            <a href="{{ blog.url }}/tagged/{{ t | handleize }}" class="{% if current_tags contains t %}on{% endif %}">{{ t }}</a>
+          {%- endif -%}
         {%- endfor -%}
       </div>
+      {%- if rest_n > 0 -%}
+        <details class="rzn-more"{% if rest_open %} open{% endif %}>
+          <summary>موضوعات بیشتر <span>({{ rest_n }})</span></summary>
+          <div class="rzn-tags">
+            {%- for tag in blog.all_tags -%}
+              {%- unless pri contains tag -%}
+                <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="{% if current_tags contains tag %}on{% endif %}">{{ tag }}</a>
+              {%- endunless -%}
+            {%- endfor -%}
+          </div>
+        </details>
+      {%- endif -%}
+      <style>
+        .rzn-more{margin:-6px 0 18px}
+        .rzn-more>summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border:1px dashed var(--rz-line,#2a3a52);
+          border-radius:999px;color:var(--rz-gold,#C9A961);font-size:14px;font-weight:700;user-select:none}
+        .rzn-more>summary::-webkit-details-marker{display:none}
+        .rzn-more>summary::after{content:'▾';font-size:12px}
+        .rzn-more[open]>summary::after{content:'▴'}
+        .rzn-more>summary span{color:var(--rz-mut,#8a9bb3);font-weight:500}
+        .rzn-more[open]>summary{margin-bottom:10px}
+      </style>
     {%- endif -%}
 
     {%- if p -%}{%- render 'reza-book-card', product: p, style: 'compact' -%}{%- endif -%}

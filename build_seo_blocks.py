@@ -45,6 +45,12 @@ FC = {p['handle'] for p in (jl('forecasts.json') or [])}
 FC_HUB = ('/pages/stock-forecasts', 'پیش‌بینی سهام آمریکا (قیمت هدف تحلیلگرها)')
 
 
+def stock_chips_more(rows, n):
+    if len(rows) <= n + 2:
+        return stock_chips(rows)
+    return stock_chips(rows[:n]) + '<details class="more"><summary>شرکت‌های بیشتر (%s مورد دیگر)</summary>%s</details>' % (fa(len(rows) - n), stock_chips(rows[n:]))
+
+
 def forecast_chips(rows):
     rows = [x for x in rows if x['t'].lower().replace('.', '-') + '-forecast' in FC]
     return '<div class="chips">' + ''.join('<a href="/pages/%s-forecast">پیش‌بینی سهام %s</a>' % (e(x['t'].lower().replace('.', '-')), nm_html(x.get('fa'), x['en']))
@@ -60,7 +66,26 @@ def learn(*handles):
     return [('/blogs/learn/' + h, e(by[h]['title'])) for h in handles if h in by]
 
 
-RANKINGS = guide_links(lambda h: not h.startswith('best-') and not h.startswith('portfolio-') and h not in ('guides', 'superinvestors-portfolios'))
+def _auto(h):
+    """Programmatic pages from build_seo_more (daily market pages, 10-year histories, comparisons, A-Z index):
+    hundreds of them, so they get their own compact sections instead of flooding the ranking lists."""
+    return (h.startswith('stock-market-') or h.endswith('-financial-history') or '-vs-' in h or h == 'all-stocks'
+            or (h.startswith('stocks-') and len(h) <= 9) or h == 'market-movers')
+
+
+RANKINGS = guide_links(lambda h: not h.startswith('best-') and not h.startswith('portfolio-') and h not in ('guides', 'superinvestors-portfolios') and not _auto(h))
+DAYS = sorted(guide_links(lambda h: h.startswith('stock-market-')), reverse=True)
+HIST = guide_links(lambda h: h.endswith('-financial-history'))
+CMP = guide_links(lambda h: '-vs-' in h)
+
+
+def chips_more(links, n, more='بیشتر'):
+    """First n links as chips, the rest folded under a "more" toggle. All links stay in the HTML for search engines."""
+    links = list(links)
+    if len(links) <= n + 2:
+        return chips(links)
+    return chips(links[:n]) + ('<details class="more"><summary>%s (%s مورد دیگر)</summary>%s</details>'
+                               % (more, fa(len(links) - n), chips(links[n:])))
 SECTORS = guide_links(lambda h: h.startswith('best-'))
 PORTFOLIOS = guide_links(lambda h: h.startswith('portfolio-') or h == 'superinvestors-portfolios')
 
@@ -105,8 +130,12 @@ def build():
          'کمیسیون بورس آمریکا و قیمت هدف تحلیلگرها را می‌بینی.' % nf,
          'همه‌ی اعداد هر روز بعد از بسته شدن بازار آمریکا خودکار به‌روز می‌شوند و همه‌چیز به دلار است. این سایت آموزشی است و توصیه‌ی خرید یا فروش نمی‌دهد.'],
         '<h2>ابزارهای سهام آنالیز</h2>', tool_list(),
-        '<h2>بزرگ‌ترین شرکت‌های بورس آمریکا</h2>', stock_chips(top30),
-        '<h2>فهرست‌های آماده‌ی سهام</h2>', chips([FC_HUB] + RANKINGS + SECTORS[:6] + [('/pages/guides', 'همه‌ی فهرست‌ها')]),
+        '<h2>بزرگ‌ترین شرکت‌های بورس آمریکا</h2>', stock_chips_more(top30, 15),
+        '<h2>فهرست‌های آماده‌ی سهام</h2>', chips_more([FC_HUB] + RANKINGS + SECTORS + [('/pages/guides', 'همه‌ی فهرست‌ها')], 9, 'فهرست‌های بیشتر'),
+        '<h2>بورس آمریکا روزبه‌روز</h2>', chips_more([('/pages/market-movers', 'بیشترین رشد و افت امروز')]
+                                                     + [(u, 'بازار ' + t.split(' در ', 1)[-1].split(':')[0]) for u, t in DAYS], 6, 'روزهای قبل'),
+        '<h2>درآمد و سود ۱۰ ساله‌ی بزرگ‌ترین شرکت‌ها</h2>', chips_more([(u, t.replace('درآمد و سود ', '').split(' از ')[0]) for u, t in HIST[:60]] + [('/pages/all-stocks', 'فهرست همه‌ی سهام')], 8, 'شرکت‌های بیشتر'),
+        '<h2>مقایسه‌ی سهام هم‌صنعت</h2>', chips_more(CMP[:40], 6, 'مقایسه‌های بیشتر'),
         '<h2>آموزش و اخبار</h2>', chips([('/blogs/learn', 'آموزش سرمایه‌گذاری'), ('/blogs/news', 'اخبار و مقالات'),
                                           ('/blogs/earnings-reports', 'گزارش‌های فصلی شرکت‌ها')] + learn('pe-ratio', 'intrinsic-value', 'etf', 'dividend')),
         faq_block([
@@ -130,8 +159,8 @@ def build():
         ['با غربالگر، از میان %s سهم بورس آمریکا فقط آن‌هایی را پیدا کن که شرط‌های تو را دارند: نسبت قیمت به سود پایین، رشد درآمد بالا، '
          'بدهی کم، سود نقدی، بازده سرمایه‌ی بالا یا فاصله تا ارزش ذاتی. نتیجه را می‌شود بر اساس هر ستون مرتب کرد.' % nf,
          'اگر وقت ساختن فیلتر نداری، فهرست‌های آماده‌ی پایین همین کار را از قبل انجام داده‌اند.'],
-        '<h2>فهرست‌های آماده</h2>', chips(RANKINGS),
-        '<h2>بهترین سهام هر صنعت</h2>', chips(SECTORS),
+        '<h2>فهرست‌های آماده</h2>', chips_more(RANKINGS, 10, 'فهرست‌های بیشتر'),
+        '<h2>بهترین سهام هر صنعت</h2>', chips_more(SECTORS, 10, 'صنعت‌های بیشتر'),
         other_tools('/pages/screener'))
 
     B['dcf'] = block(
@@ -148,7 +177,7 @@ def build():
         ['صندوق‌های بزرگ آمریکا موظف‌اند هر سه ماه یک بار سهم‌هایشان را در گزارش رسمی ۱۳اف به کمیسیون بورس آمریکا اعلام کنند. '
          'این صفحه پورتفوی وارن بافت و ده‌ها سرمایه‌گذار مشهور دیگر را از همین گزارش‌ها نشان می‌دهد: چه دارند، چه خریده‌اند و چه فروخته‌اند.',
          'این گزارش‌ها حدود ۴۵ روز بعد از پایان هر فصل منتشر می‌شوند؛ پس نشان می‌دهند مدیرها چند هفته پیش چه داشتند، نه امروز.'],
-        '<h2>پورتفوی هر سرمایه‌گذار</h2>', chips(PORTFOLIOS),
+        '<h2>پورتفوی هر سرمایه‌گذار</h2>', chips_more(PORTFOLIOS, 10, 'سرمایه‌گذارهای بیشتر'),
         '<h2>بیشتر بدان</h2>', chips(learn('13f', 'buyback', 'roic')),
         other_tools('/pages/superinvestors'))
 

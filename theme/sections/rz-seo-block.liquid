@@ -35,6 +35,13 @@
   .rzseo .tk{font-family:Inter,Arial,sans-serif;direction:ltr;unicode-bidi:isolate;color:#93a7bf;font-size:.82em;margin-right:4px}
   .rzseo .fa2{color:#93a7bf;font-size:.82em;margin-right:5px}
   .rzseo .faq p{margin:0 0 6px}
+  .rzseo details.more{margin-top:8px}
+  .rzseo details.more>summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border:1px dashed #3a5a80;
+    border-radius:999px;color:#C9A961;font-size:13.5px;font-weight:700;user-select:none}
+  .rzseo details.more>summary::-webkit-details-marker{display:none}
+  .rzseo details.more>summary::after{content:'▾';font-size:11px}
+  .rzseo details.more[open]>summary::after{content:'▴'}
+  .rzseo details.more[open]>summary{margin-bottom:8px}
   .rzseo .upd{color:#6f839b;font-size:12.5px;margin:18px 0 0}
   @media (max-width:700px){
     .rzseo{padding:4px 12px 28px}

@@ -875,6 +875,9 @@ def build_company(cik, entry, facts):
             nopat = op * (1 - tax_rate)
         sh_d = g("shares_diluted") or g("shares_basic")
         eps = g("eps_diluted")
+        # some filers tag a loss per share as a positive number (VUZI 2016-18: EPS +1.23 on a $19M loss)
+        if eps and ni and abs(ni) > 1e5 and (eps > 0) != (ni > 0):
+            eps = -eps
         if not sh_d and ni and eps:
             sh_d = abs(ni / eps)
         if eps is None and ni is not None and sh_d:

@@ -82,8 +82,35 @@ def main():
         tickers.update(ts)
         if f in FACTS:
             ciks.add(cik)
+    cik_of = {t: c for c, ts in by_cik.items() for t in ts}
     for t in os.environ.get('EXTRA_TICKERS', '').split():
         tickers.add(t)
+        if cik_of.get(t):
+            ciks.add(cik_of[t])           # an extra ticker also gets its SEC facts re-read
+    # self-healing: a US filer whose newest quarter in our data is over 135 days old has filed a 10-Q we missed
+    # (fast lane down that hour, feed delay): re-read a rotating handful every run until the gap closes
+    try:
+        import glob, hashlib
+        today = dt.date.today()
+        stale = []
+        for f in glob.glob(os.path.join('data', 'stocks', '*.json')):
+            try:
+                d = json.load(open(f))
+            except Exception:
+                continue
+            q = d.get('quarterly') or []
+            if d.get('foreign') or not q or not d.get('cik') or not q[-1] or not q[-1][0]:
+                continue
+            if (today - dt.date.fromisoformat(q[-1][0][:10])).days > 135 and ((d.get('market') or {}).get('mcap') or 0) > 3e8:
+                stale.append(d['ticker'])
+        stale.sort(key=lambda t: hashlib.md5((t + today.isoformat() + str(dt.datetime.utcnow().hour)).encode()).hexdigest())
+        for t in stale[:15]:
+            tickers.add(t)
+            if cik_of.get(t):
+                ciks.add(cik_of[t])
+        print('stale quarterly data: %d companies, re-reading %d' % (len(stale), min(15, len(stale))), file=sys.stderr)
+    except Exception as ex:
+        print('stale check skipped:', ex, file=sys.stderr)
     print('filings', len(hits), 'our companies', len(tickers), 'with new XBRL facts', len(ciks), file=sys.stderr)
     res = {'tickers': ' '.join(sorted(tickers)), 'ciks': ','.join(str(c) for c in sorted(ciks))}
     gh = os.environ.get('GITHUB_OUTPUT')

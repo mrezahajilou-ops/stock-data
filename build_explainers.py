@@ -55,7 +55,7 @@ A = [
 <h2>P/E خوب چقدر است؟</h2><p>عدد جادویی وجود ندارد. میانگین بلندمدت بازار آمریکا حدود ۱۶ تا ۲۰ بوده. شرکتی که سودش سریع رشد می‌کند P/E بالاتری می‌گیرد، چون بازار سود بزرگ‌تر آینده را از الان حساب می‌کند. برای همین P/E را فقط بین شرکت‌های یک صنعت یا با گذشته‌ی خود شرکت مقایسه کن.</p>
 <h2>اشتباه‌های رایج</h2><p>P/E پایین همیشه یعنی ارزان نیست؛ گاهی بازار انتظار دارد سود شرکت کم شود. P/E بالا هم همیشه یعنی گران نیست. شرکت زیان‌ده اصلاً P/E ندارد. همیشه کنارش رشد سود، بدهی و جریان نقد آزاد را هم ببین.</p>''',
   [('P/E منفی یعنی چه؟', 'یعنی شرکت زیان‌ده است؛ در این حالت P/E معنی ندارد و معمولاً نمایش داده نمی‌شود.'),
-   ('فرق P/E گذشته‌نگر و آینده‌نگر چیست؟', 'گذشته‌نگر از سود ۱۲ ماه اخیر استفاده می‌کند؛ آینده‌نگر (Forward) از سودی که تحلیلگرها برای سال بعد پیش‌بینی کرده‌اند.')],
+   ('فرق P/E گذشته‌نگر و آینده‌نگر چیست؟', 'گذشته‌نگر از سود ۱۲ ماه اخیر استفاده می‌کند؛ آینده‌نگر از سودی که تحلیلگرها برای سال بعد پیش‌بینی کرده‌اند.')],
   [('/pages/undervalued-stocks', 'سهام باکیفیت زیر ارزش ذاتی'), ('/pages/screener', 'غربالگر سهام')]),
 
  ('eps', 'سود هر سهم (EPS) چیست؟', 'EPS چیست؟ | سود هر سهم به زبان ساده با مثال واقعی',
@@ -196,10 +196,19 @@ def main():
     if missing:
         print('::warning::explainers: no live value for', missing)
     arts = []
+    import ratio_data
+    try:
+        fa_names = json.load(open(os.path.join(ROOT, 'content', 'fa_names.json'), encoding='utf-8'))
+    except Exception:
+        fa_names = {}
     for h, title, st, sd, body, qa, links in A:
         links = [(u, t) for u, t in links if t]
+        extra = ''
+        if h == 'pe-ratio':   # live market tables (Search Console, Nov 2026: the formula is everywhere, today's numbers are not)
+            extra, _q = ratio_data.extra(ROOT, 'fa', 'pe', fa_names)
+            qa = list(qa) + _q
         html = (CSS + '<div class="rzg" dir="rtl"><p class="upd">مثال‌ها به‌روز شده در %s</p>' % date_fa(TODAY)
-                + body.format(**c) + faq_block(qa) + '<h2>بیشتر بخوان</h2>'
+                + body.format(**c) + extra + faq_block(qa) + '<h2>بیشتر بخوان</h2>'
                 + chips(links + [('/blogs/learn', 'همه‌ی آموزش‌ها'), ('/pages/guides', 'فهرست‌های سهام'), ('/pages/stock', 'تحلیل سهام')])
                 + '<p class="dis">این مطلب آموزشی است و توصیه‌ی خرید یا فروش هیچ سهمی نیست.</p></div>')
         arts.append(dict(handle=h, title=title, seo_title=st, seo_desc=sd, summary='<p>%s</p>' % sd, html=html,

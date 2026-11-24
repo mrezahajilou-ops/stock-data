@@ -45,6 +45,23 @@ P = {
    q_pe='Qual é o P/L médio da bolsa hoje?', a_pe='Entre as 500 maiores empresas listadas nos EUA, o P/L ponderado é de cerca de {pe} e a empresa mediana é negociada a cerca de {med} vezes o lucro (dados de {d}).',
    q_sec='Qual setor tem o P/L mais alto?', a_sec='Hoje é {hi}, com P/L ponderado de cerca de {hiv}; o mais baixo é {lo}, com cerca de {lov}.',
    q_pb='Qual é um P/VP típico hoje?', a_pb='A mediana entre as 500 maiores empresas listadas nos EUA é de cerca de {pb} (dados de {d}).'),
+ 'de': dict(stock='/aktien/%s/', screener='/aktien-screener/', dec=',', rtl=False,
+   sec={'Technology': 'Technologie', 'Finance': 'Finanzen', 'Health Care': 'Gesundheit', 'Consumer Discretionary': 'Zyklischer Konsum', 'Consumer Staples': 'Basiskonsum',
+        'Industrials': 'Industrie', 'Energy': 'Energie', 'Utilities': 'Versorger', 'Real Estate': 'Immobilien', 'Basic Materials': 'Grundstoffe', 'Telecommunications': 'Telekommunikation'},
+   pe_h='Das KGV des Marktes heute',
+   pe_p='Unter den 500 größten US-börsennotierten Unternehmen, die wir verfolgen, liegt das nach Börsenwert gewichtete KGV (gesamter Börsenwert geteilt durch den Gesamtgewinn der profitablen Unternehmen) bei <b>{pe}</b>; das mittlere Unternehmen (Median) wird mit dem <b>{med}</b>-Fachen seines Gewinns der letzten zwölf Monate bewertet. Mit den Analystenschätzungen für die nächsten zwölf Monate liegt das gewichtete KGV bei <b>{fpe}</b>. {loss} der 500 haben im letzten Jahr Verlust gemacht und haben kein KGV. Die gewichtete Zahl wird von den Giganten dominiert; für eine „typische“ Aktie ist der Median der bessere Maßstab.',
+   sec_h='Durchschnittliches KGV nach Sektor', sec_p='Jeder Sektor wird mit ganz anderen Multiplikatoren bewertet – vergleichen Sie ein Unternehmen daher mit seinem eigenen Sektor. Unternehmen ab 2 Mrd. US-Dollar, nur profitable:',
+   sec_cols=['Sektor', 'Unternehmen', 'KGV (Median)', 'KGV (gewichtet)', 'Erwartetes KGV (Median)'],
+   big_h='KGV der größten US-Unternehmen', big_cols=['Unternehmen', 'Börsenwert', 'KGV (12 Monate)', 'Erwartetes KGV'],
+   low_h='Große Unternehmen mit dem niedrigsten KGV', low_p='Unternehmen ab 10 Mrd. US-Dollar mit einem KGV unter 12 und einer Finanzkraft-Note von mindestens 3 von 5. Ein niedriges KGV ist ein Ausgangspunkt, kein Kaufsignal: Finden Sie heraus, warum der Markt skeptisch ist.',
+   low_cols=['Unternehmen', 'Sektor', 'KGV', 'Erwartetes KGV', 'Note'], scr='Erstellen Sie Ihre eigene Liste mit dem <a href="{u}">Aktien-Screener</a>.',
+   pb_h='Das Kurs-Buchwert-Verhältnis des Marktes heute', pb_p='Unter den 500 größten US-börsennotierten Unternehmen liegt der Median des KBV bei <b>{pb}</b>. Unternehmen mit wenig physischem Vermögen (Software, Marken, Plattformen) werden oft mit einem Vielfachen ihres Buchwerts bewertet; Banken, Versicherer und Industriewerte liegen viel näher daran.',
+   pbs_h='Durchschnittliches KBV nach Sektor', pbs_p='Unternehmen ab 2 Mrd. US-Dollar mit positivem Eigenkapital:', pbs_cols=['Sektor', 'Unternehmen', 'KBV (Median)'],
+   fin_h='Große Finanzwerte nach KBV', fin_p='Das KBV zählt vor allem bei Banken und Versicherern, deren Vermögen überwiegend aus Finanzwerten besteht.', fin_cols=['Unternehmen', 'Börsenwert', 'KBV', 'KGV'],
+   note='Zahlen aus den Berichten der Unternehmen und Marktpreise vom {d}; bei jeder Aktualisierung neu berechnet.', loss='Verlust',
+   q_pe='Wie hoch ist das durchschnittliche KGV der Börse heute?', a_pe='Unter den 500 größten US-börsennotierten Unternehmen liegt das gewichtete KGV bei etwa {pe}; das mittlere Unternehmen wird mit etwa dem {med}-Fachen seines Gewinns bewertet (Stand {d}).',
+   q_sec='Welcher Sektor hat das höchste KGV?', a_sec='Derzeit {hi} mit einem gewichteten KGV von etwa {hiv}; am niedrigsten ist {lo} mit etwa {lov}.',
+   q_pb='Wie hoch ist ein typisches KBV heute?', a_pb='Der Median unter den 500 größten US-börsennotierten Unternehmen liegt bei etwa {pb} (Stand {d}).'),
  'tr': dict(stock='/hisseler/%s/', screener='/hisse-tarama/', dec=',', rtl=False,
    sec={'Technology': 'Teknoloji', 'Finance': 'Finans', 'Health Care': 'Sağlık', 'Consumer Discretionary': 'İsteğe bağlı tüketim', 'Consumer Staples': 'Temel tüketim',
         'Industrials': 'Sanayi', 'Energy': 'Enerji', 'Utilities': 'Kamu hizmetleri', 'Real Estate': 'Gayrimenkul', 'Basic Materials': 'Hammadde', 'Telecommunications': 'Telekom'},
@@ -152,8 +169,10 @@ class R:
             return ('%s هزار میلیارد دلار' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s میلیارد دلار' % self.i(int(round(v / 1e9))))
         if self.lang == 'ar':
             return ('%s تريليون $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s مليار $' % self.i(int(round(v / 1e9))))
+        if self.lang == 'de':
+            return ('%s Bio. $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s Mrd. $' % self.i(int(round(v / 1e9))))
         if self.lang == 'pt':
-            return ('%s tri US$' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s bi US$' % self.i(int(round(v / 1e9))))
+            return ('US$ %s tri' % self.n(v / 1e12, 2)) if v >= 1e12 else ('US$ %s bi' % self.i(int(round(v / 1e9))))
         if self.lang == 'es':
             return ('%s billones $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s mil M$' % self.i(int(round(v / 1e9))))
         return ('%s trilyon $' % self.n(v / 1e12, 2)) if v >= 1e12 else ('%s milyar $' % self.i(int(round(v / 1e9))))
@@ -163,7 +182,7 @@ class R:
         return d.translate(FA_DIG) if self.lang == 'fa' else d
 
     def link(self, x):
-        t = x['t']
+        t = {'BRK-A': 'BRK-B', 'GOOG': 'GOOGL'}.get(x['t'], x['t'])   # one page per company
         nm = self.names.get(t)
         if self.L['rtl']:
             nm = nm or None

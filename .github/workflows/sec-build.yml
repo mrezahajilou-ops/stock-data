@@ -4,17 +4,37 @@ on:
   schedule:
     # Tue-Sat 00:20 UTC = after every US trading day (also after the final quotes run at 23:30 UTC)
     - cron: "20 0 * * 2-6"
+    # fallback: GitHub sometimes drops a scheduled run (24 Nov 2026: no build after Monday's close, the stock pages kept
+    # Friday's prices); this second slot builds only if no build has succeeded yet today
+    - cron: "40 2 * * 2-6"
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: secbuild
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.event.schedule }}" = "40 2 * * 2-6" ]; then
+            n=$(gh api "repos/${{ github.repository }}/actions/workflows/sec-build.yml/runs?created=>=$(date -u +%F)&status=success" --jq '.total_count' || echo 0)
+            if [ "${n:-0}" -gt 0 ]; then echo "already built today"; echo "run=0" >> $GITHUB_OUTPUT; exit 0; fi
+          fi
+          echo "run=1" >> $GITHUB_OUTPUT
   build:
+    needs: gate
+    if: needs.gate.outputs.run == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

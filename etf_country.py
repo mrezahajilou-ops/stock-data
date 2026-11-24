@@ -104,6 +104,13 @@ COUNTRIES.update({
         'Sanctions mean residents cannot open an account with a US or European broker, so these '
         'funds are not reachable from inside the country whatever the fund rules say.')),
     'United States': dict(status='open', why='The fund is domiciled here; it is bought like any share.'),
+    # ---------------------------------------------------------------- Portuguese-speaking markets
+    'Brazil': dict(status='local', why=(
+        'The largest US ETFs trade on B3 as BDRs, bought in reais through any Brazilian broker; the '
+        'fund itself can be bought in dollars through an international account.')),
+    'Angola': dict(status='hard', why='Moving kwanzas abroad is the obstacle rather than the fund.'),
+    'Mozambique': dict(status='hard', why='Foreign-exchange rules on sending money abroad are the obstacle rather than the fund.'),
+    'Cape Verde': dict(status='open', why='No European restriction applies; reachable through international brokers.'),
     'Canada': dict(status='open', why=(
         'No European restriction applies. US-listed funds are bought in US dollars through any '
         'Canadian broker; the usual consideration is the currency conversion and the account type.')),
@@ -152,6 +159,7 @@ GROUPS = {
     'tr': ['Turkey', 'Germany', 'Netherlands', 'Austria', 'United Kingdom', 'United States'],
     'fa': ['Germany', 'United States', 'Canada', 'United Kingdom', 'Netherlands', 'Sweden',
            'Turkey', 'United Arab Emirates', 'Australia', 'Iran'],
+    'pt': ['Brazil', 'Portugal', 'United States', 'Angola', 'Mozambique', 'Cape Verde'],
     'en': ['United States', 'United Kingdom', 'Germany', 'Canada', 'Australia', 'Singapore',
            'United Arab Emirates', 'India'],
 }

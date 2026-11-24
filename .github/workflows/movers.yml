@@ -34,6 +34,8 @@ jobs:
             movers.py
             movers_facts.py
             earnings_pr.py
+            daily_snapshot.py
+            data/daily
             .github/workflows
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
@@ -47,6 +49,7 @@ jobs:
           mkdir -p /tmp/earn && git archive origin/earnings | tar -x -C /tmp/earn
           before=$(ls data/movers/raw)
           QUOTES=/tmp/quotes.json EARN_DIR=/tmp/earn python movers.py | tail -40
+          QUOTES=/tmp/quotes.json python daily_snapshot.py || true
           new=$(comm -13 <(echo "$before" | sort) <(ls data/movers/raw | sort) | head -1)
           day="${new%.json}"
           if [ -z "$day" ]; then echo "day already listed"; fi
@@ -57,7 +60,7 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@users.noreply.github.com
-          git add data/movers/raw
+          git add data/movers/raw data/daily
           git commit -qm "Big movers ${{ steps.list.outputs.day }}"
           for i in 1 2 3 4 5; do
             git pull -q --rebase origin main && git push -q origin HEAD:main && break

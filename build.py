@@ -1375,7 +1375,8 @@ def forward(rec, mk):
 
 # ---------------- Yahoo fundamentals fill-in (foreign filers / SEC XBRL gaps) ----------------
 Y_FLOW = {"revenue": "TotalRevenue", "net_income": "NetIncomeCommonStockholders", "cfo": "OperatingCashFlow",
-          "capex": "CapitalExpenditure", "fcf": "FreeCashFlow", "dividends": "CashDividendsPaid", "shares_diluted": "DilutedAverageShares"}
+          "capex": "CapitalExpenditure", "fcf": "FreeCashFlow", "dividends": "CashDividendsPaid", "shares_diluted": "DilutedAverageShares",
+          "gross_profit": "GrossProfit", "op_income": "OperatingIncome", "rnd": "ResearchAndDevelopment", "ebitda": "EBITDA"}
 
 
 def _yv(ts, key, fx):
@@ -1469,10 +1470,15 @@ def fill_from_yahoo(rec, e):
     t = rec.get("ttm")
     if end and row.get("revenue") and row["revenue"] > 0 and end <= today:
         yt = {"end": end, "revenue": row.get("revenue"), "net_income": row.get("net_income"), "cfo": row.get("cfo"),
-              "capex": row.get("capex"), "op_income": None, "da": None, "dividends": row.get("dividends"),
+              "capex": row.get("capex"), "op_income": row.get("op_income"), "da": None, "dividends": row.get("dividends"),
               "eps": row.get("eps_diluted"), "dps": safe_div(row.get("dividends"), row.get("shares_diluted")),
-              "gross_profit": None, "rnd": None, "sbc": None, "buybacks": None, "interest_exp": None, "pretax_income": None,
-              "tax": None, "shares_diluted": row.get("shares_diluted"), "fcf": row.get("fcf"), "ebitda": None, "src": "yahoo"}
+              "gross_profit": row.get("gross_profit"), "rnd": row.get("rnd"), "sbc": None, "buybacks": None, "interest_exp": None,
+              "pretax_income": None, "tax": None, "shares_diluted": row.get("shares_diluted"), "fcf": row.get("fcf"),
+              "ebitda": row.get("ebitda"), "src": "yahoo"}
+        for _k in ("gross_profit", "op_income"):   # a margin outside -100%..100% (gross) / -300%..100% (operating) is a feed error
+            _m = safe_div(yt.get(_k), yt["revenue"])
+            if _m is not None and not (-1.0 if _k == "gross_profit" else -3.0) <= _m <= 1.0:
+                yt[_k] = None
         base_rev = (t or {}).get("revenue") or rev0
         plausible = (not base_rev) or 0.3 < row["revenue"] / base_rev < 5.0
         if not t:
@@ -1481,7 +1487,7 @@ def fill_from_yahoo(rec, e):
         elif t.get("end") and days(t["end"], end) >= 45 and plausible:
             rec["ttm"] = yt          # newer quarter than the SEC feed has
         elif t.get("end") and abs(days(t["end"], end)) <= 10:
-            for k in ("revenue", "net_income", "cfo", "capex", "fcf", "dividends", "shares_diluted", "eps"):
+            for k in ("revenue", "net_income", "cfo", "capex", "fcf", "dividends", "shares_diluted", "eps", "gross_profit", "op_income", "rnd", "ebitda"):
                 if t.get(k) is None and yt.get(k) is not None and (k != "revenue" or not rev0 or 0.3 < yt[k] / rev0 < 5.0):
                     t[k] = yt[k]
                     t.setdefault("filled", []).append(k)

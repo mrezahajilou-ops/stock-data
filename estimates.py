@@ -45,7 +45,9 @@ def raw(x):
 
 
 TS_TYPES = ['TotalRevenue', 'NetIncomeCommonStockholders', 'NetIncome', 'OperatingCashFlow', 'CapitalExpenditure',
-            'FreeCashFlow', 'CashDividendsPaid', 'DilutedAverageShares']
+            'FreeCashFlow', 'CashDividendsPaid', 'DilutedAverageShares',
+            # margins: without these a TTM taken from Yahoo (a quarter the SEC feed lacks) had no gross / operating margin
+            'GrossProfit', 'OperatingIncome', 'ResearchAndDevelopment', 'EBITDA']
 TS_BAL = ['CashCashEquivalentsAndShortTermInvestments', 'TotalDebt', 'StockholdersEquity']
 TS_QFLOW = ['TotalRevenue', 'NetIncomeCommonStockholders']   # quarterly table for foreign filers (no quarterly XBRL at SEC)
 

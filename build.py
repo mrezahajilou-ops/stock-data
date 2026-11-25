@@ -956,11 +956,19 @@ def build_company(cik, entry, facts):
             cur = r[k]
             r[k + "_growth"] = r4((cur - prev) / abs(prev)) if (prev not in (None, 0) and cur is not None) else None
 
+    why = {}   # why a growth rate is empty, so every page can say so instead of showing a bare dash
+
     def cagr(key, n):
+        name = {"revenue": "rev", "net_income": "ni", "fcf": "fcf", "eps_diluted": "eps"}[key] + "_cagr_%dy" % n
         if len(rows) <= n:
+            why[name] = "short_history"      # fewer annual reports than the period (recent listing or new SEC registrant)
             return None
         a, b = rows[-1 - n][key], rows[-1][key]
-        if a in (None, 0) or b is None or a < 0 or b < 0:
+        if a is None or b is None:
+            why[name] = "not_reported"       # the filings carry no figure for the first or last year
+            return None
+        if a <= 0 or b <= 0:
+            why[name] = "loss_or_negative"   # growth from or to a loss has no meaning
             return None
         return r4((b / a) ** (1 / n) - 1)
 
@@ -992,6 +1000,7 @@ def build_company(cik, entry, facts):
     summary["om_trend"] = r4(rows[-1]["op_margin"] - sum(prev_om) / len(prev_om)) \
         if (prev_om and rows[-1]["op_margin"] is not None) else None
     summary["profit_years"] = sum(1 for r in rows[-10:] if (r["net_income"] or 0) > 0)
+    summary["why"] = why
     summary["fcf_pos_years"] = sum(1 for r in rows[-10:] if (r["fcf"] or 0) > 0)
     summary["div_years"] = sum(1 for r in rows[-10:] if (r["dividends"] or 0) > 0)
     summary["years"] = len(rows)
@@ -1718,10 +1727,16 @@ def roll_forward(rec, rows, src):
                     # no share count in the TTM row: scale EPS with net income (share count barely moves in a quarter);
                     # without this the old EPS stayed and P/E was computed from last quarter's earnings (NVDA, 2026-11-18)
                     nt["eps"] = base["eps"] * nt["net_income"] / base["net_income"]
-            # figures not in the release data: leave them empty rather than mix two periods in one column
-            for k in ("cfo", "capex", "fcf", "op_income", "gross_profit", "ebitda", "da", "rnd", "sbc", "dividends", "dps",
-                      "buybacks", "interest_exp", "pretax_income", "tax"):
+            # income-statement lines not in the release data: empty rather than mix two periods in one ratio.
+            # Cash-flow lines keep the previous twelve months, dated by "cf_end", so free cash flow never turns into a
+            # blank for the weeks between a press release and the 10-Q (A, ADSK, DELL, BBY - 25 Nov 2026)
+            for k in ("op_income", "gross_profit", "ebitda", "rnd", "interest_exp", "pretax_income", "tax"):
                 nt[k] = None
+            if any(base.get(k) is not None for k in ("cfo", "fcf")):
+                nt["cf_end"] = base.get("end")
+            else:
+                for k in ("cfo", "capex", "fcf", "da", "sbc", "dividends", "dps", "buybacks"):
+                    nt[k] = None
             nt.pop("filled", None)
             nt["end"] = end
             nt["rolled_from"] = base.get("end")

@@ -28,7 +28,11 @@ LIMIT = int(os.environ.get("LIMIT", "0"))
 FRESH = {int(x) for x in os.environ.get("FRESH_CIKS", "").split(",") if x.strip().isdigit()}
 FRESH_OK = set()
 # new holding companies that took over a listed company's ticker: CIK -> predecessor CIK with the history
-PREDECESSOR = {2115436: 34088}  # ExxonMobil Holdings Corp (2026) <- Exxon Mobil Corp  # for testing: process only N companies
+PREDECESSOR = {2115436: 34088,    # ExxonMobil Holdings Corp (2026) <- Exxon Mobil Corp
+               2012383: 1364742,  # BlackRock, Inc. (2024 holding company) <- BlackRock Finance, Inc. (the old BlackRock Inc.)
+               1996862: 1144519,  # Bunge Global SA (2023, Switzerland) <- Bunge Ltd
+               2011641: 1832433}  # Ferguson Enterprises (2024, US) <- Ferguson plc
+#  # for testing: process only N companies
 
 # ---- concept fallbacks: first tag with data wins (per fiscal year) ----
 # (kind: 'dur' = duration/flow over the year, 'inst' = instant/balance at FY end)

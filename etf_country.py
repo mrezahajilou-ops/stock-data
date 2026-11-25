@@ -161,6 +161,7 @@ GROUPS = {
            'Turkey', 'United Arab Emirates', 'Australia', 'Iran'],
     'pt': ['Brazil', 'Portugal', 'United States', 'Angola', 'Mozambique', 'Cape Verde'],
     'de': ['Germany', 'Austria', 'Switzerland', 'Liechtenstein', 'Luxembourg', 'United States'],
+    'ja': ['Japan', 'United States'],
     'en': ['United States', 'United Kingdom', 'Germany', 'Canada', 'Australia', 'Singapore',
            'United Arab Emirates', 'India'],
 }

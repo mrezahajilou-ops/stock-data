@@ -256,7 +256,7 @@ def where(rec, p):
     nm = tr.get(u.get('name') or '', u.get('name') or '')
     note = tr.get(u.get('note') or '', u.get('note') or '')
     body = '<p>%s</p>' % p.L('priips', fund=ltr(rec['t'], p))
-    if alt or nm:
+    if (alt or nm) and not p.ui.get('skip_ucits'):
         # the ticker is Latin and must not reorder the line; the description is in the page's own
         # language and must not be forced into a Latin run, which is what broke the Arabic layout
         bits = []

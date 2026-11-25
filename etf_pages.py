@@ -571,7 +571,7 @@ def compare_page(a, b, recs, p):
         {'@type': 'ListItem', 'position': 1, 'name': p.L('home'), 'item': p.site + '/'},
         {'@type': 'ListItem', 'position': 2, 'name': p.L('etfs'), 'item': p.site + p.u()},
         {'@type': 'ListItem', 'position': 3, 'name': p.L('c_crumb', a=a, b=b), 'item': p.site + url}]}]
-    return dict(url=url, title=p.L('c_title', a=a, b=b)[:62], desc=(' '.join(say) or p.L('c_sub'))[:300], html=body, ld=ld)
+    return dict(url=url, title=p.L('c_title', a=a, b=b)[:62], desc=(' '.join(say) or (p.L('c_h1', a=a, b=b) + ': ' + p.L('c_sub')))[:300], html=body, ld=ld)
 
 
 def holders(recs):

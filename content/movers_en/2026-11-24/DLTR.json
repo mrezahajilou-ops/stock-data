@@ -1,0 +1,28 @@
+{
+ "t": "DLTR",
+ "d": "2026-11-24",
+ "pct": 11.18,
+ "close": 154.65,
+ "prev": 139.1,
+ "kind": "earnings",
+ "headline": "Dollar Tree jumps 11% as traffic accelerates and it raises its earnings outlook",
+ "summary": "Dollar Tree rose 11.2% to $154.65 after third-quarter comparable sales grew 4.6%, above its own range, with traffic up 3.8%. It raised its full-year adjusted earnings outlook to $8.05–$8.25 a share, a figure that includes about $0.65 of tariff refunds.",
+ "why": [
+  "Total revenue rose 6.9% to $5.1 billion, and traffic growth of 3.8% showed that its move to sell items above $1.25 in about 7,400 multi-price stores is drawing more shoppers. Margins fell because the company is reinvesting tariff refunds in prices and stores, but investors focused on the sales momentum and the higher guidance.",
+  "The move also benefited from a rotation on November 24 out of chip stocks and into retailers, consumer staples and health care: Dick’s Sporting Goods rose about 15% the same day on its own strong results."
+ ],
+ "context": [
+  "On November 24 the Nasdaq fell about 1.5% and the S&P 500 about 0.5% while the Dow rose almost 0.9%, as chip stocks gave back much of the previous day’s rally after Nvidia reinstated Jensen Huang. Nvidia fell about 6–7% and AMD, Micron and Broadcom also dropped.",
+  "Money rotated out of semiconductors and AI hardware into health care, consumer staples and retailers, so most stocks rose even as the technology-heavy indexes fell."
+ ],
+ "src": [
+  {
+   "title": "Dollar Tree third-quarter 2026 results (company release)",
+   "url": "https://www.sec.gov/Archives/edgar/data/935703/000093570326000136/ex991q3-26earningspressrel.htm"
+  },
+  {
+   "title": "Dow rises, S&P 500 and Nasdaq decline as chip sector tumbles (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html"
+  }
+ ]
+}

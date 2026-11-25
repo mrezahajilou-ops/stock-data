@@ -961,6 +961,36 @@
     "%15'lik düşüş beklentilerin ne kadar yüksek olduğunu gösteriyor. Sağlam bir üçüncü çeyreğin ardından yıllık aralığı korumak yılbaşı çeyreğinin daha yavaş büyüyeceği anlamına geliyor; istikrarlı sürprizlere ve beklenti artışlarına prim ödemiş yatırımcılar bunu ivmenin zayıfladığının işareti olarak okudu. Düşüşten sonra hisse yaklaşık 21 kat kârla, bir ev mobilyası perakendecisi için hâlâ primli işlem görüyor. Bu prim, Williams-Sonoma'nın konut döngüsü boyunca marjları %18 civarında tutabilmesine dayanıyor. Mortgage faizleri düşer ve konut satışları toparlanırsa faaliyet kaldıracı kârı sert biçimde yükseltir; o zamana kadar orta tek haneli büyüyen yüksek kaliteli bir şirket."
    ],
    "watch": "Yılbaşı çeyreği benzer satışlarını yıllık aralığa karşı, navlun petrolle birlikte yükselirken brüt marjı, stok seviyelerini ve ABD konut satışlarında toparlanma işaretlerini izleyin."
+  },
+  "DELL": {
+   "d": "2026-11-24",
+   "headline": "Dell geliri ikiye katlayarak rekor 54,9 milyar dolara çıkardı, yıllık beklentiyi 202 milyar dolara yükseltti",
+   "takeaway": "Yapay zekâ sunucuları Dell’i değiştirdi: gelir yüzde 103, hisse başına kâr yüzde 287 arttı, yapay zekâ sipariş birikimi rekor 132 milyar dolara ulaştı ve yıllık beklenti 10 milyar dolar yükseltildi."
+  },
+  "CRWD": {
+   "d": "2026-11-23",
+   "headline": "CrowdStrike rekor yeni yinelenen gelir açıkladı ve Zscaler’ı 43,9 milyar dolara almak için anlaştı",
+   "takeaway": "Yeni yıllık yinelenen gelir yüzde 58 artışla rekor kırdı ve büyüme beşinci çeyrek üst üste hızlandı. Zscaler alımı tamamen hisseyle ödenecek."
+  },
+  "ZS": {
+   "d": "2026-11-23",
+   "headline": "Zscaler yüzde 20 büyüdü, rekor nakit akışı açıkladı ve CrowdStrike’a satılmayı kabul etti",
+   "takeaway": "Gelir yüzde 20, yıllık yinelenen gelir yüzde 21 arttı; serbest nakit akışı rekor kırdı. Aynı gün CrowdStrike tarafından hisse karşılığı satın alınmak için anlaştı."
+  },
+  "ADI": {
+   "d": "2026-11-24",
+   "headline": "Analog Devices rekor gelir açıkladı ama yatay ilk çeyrek beklentisi hisseyi yüzde 17 düşürdü",
+   "takeaway": "Çeyrek geliri yüzde 42, yıllık gelir yüzde 38 arttı; serbest nakit akışı 5,5 milyar dolar oldu. Çip hisselerinin düştüğü günde yatay ilk çeyrek beklentisi hisseyi yüzde 17,4 düşürdü."
+  },
+  "HPE": {
+   "d": "2026-11-23",
+   "headline": "HPE geliri yüzde 50 artırıp beklentiyi yükseltti ama hisse yüzde 16 düştü",
+   "takeaway": "Gelir yüzde 50 arttı ve kâr şirketin kendi beklentisini aştı; ancak brüt marj önceki çeyreğe göre geriledi ve şirket parça sıkıntısı konusunda uyardı."
+  },
+  "DLTR": {
+   "d": "2026-11-24",
+   "headline": "Dollar Tree yüzde 4,6’lık karşılaştırılabilir satış artışıyla beklentiyi yükseltti, hisse yüzde 11 fırladı",
+   "takeaway": "Müşteri trafiği yüzde 3,8, karşılaştırılabilir satışlar yüzde 4,6 arttı. Yıllık kâr beklentisindeki artışın bir kısmı tekrarlanmayacak gümrük iadelerinden geliyor."
   }
  },
  "move": {
@@ -1069,6 +1099,26 @@
     "ABD borsaları 23 Kasım'da Nisan 2025'ten bu yana en iyi gününü yaşadı: Nasdaq gün içinde yaklaşık %7, S&P 500 yaklaşık %5 yükseldi ve çip hisselerinin 2001'den bu yana en kötü haftasını geçirdiği önceki haftanın kayıplarının büyük kısmını telafi etti.",
     "Değeri 2 milyar doları aşan 120'den fazla ABD şirketi o gün %10 veya daha fazla yükseldi; bunların neredeyse tamamı çip ve bellek üreticileri, veri merkezi tedarikçileri ve yapay zekâyla bağlantılı diğer hisselerdi."
    ]
+  },
+  "HPE": {
+   "d": "2026-11-24",
+   "headline": "HPE rekor çeyreğin ardından marj düşüşü ve parça sıkıntısı uyarısıyla yüzde 16 düştü",
+   "summary": "HPE, rekor gelir açıklamasından bir gün sonra yüzde 16,3 düştü. Brüt marj önceki çeyreğe göre geriledi ve haberlere göre şirket 2028’e kadar parça sıkıntısı konusunda uyardı."
+  },
+  "ADI": {
+   "d": "2026-11-24",
+   "headline": "Analog Devices, çip satışının yaşandığı günde yatay beklentiyle yüzde 17 düştü",
+   "summary": "Çeyrek çok güçlüydü, ancak bir sonraki çeyrek için gelir ve kâr beklentisi toparlanmanın en hızlı kısmının geride kaldığını gösterdi."
+  },
+  "DELL": {
+   "d": "2026-11-24",
+   "headline": "Dell, yapay zekâ sunucu hisseleri pazartesi rallisini geri verirken sonuçlar öncesi yüzde 12 düştü",
+   "summary": "Dell, önceki gün yüzde 20 yükseldikten sonra yapay zekâ donanımındaki geri çekilme ve HPE’nin düşüşüyle yüzde 11,8 geriledi."
+  },
+  "DLTR": {
+   "d": "2026-11-24",
+   "headline": "Dollar Tree müşteri trafiği hızlanıp kâr beklentisini yükseltince yüzde 11 fırladı",
+   "summary": "Karşılaştırılabilir satışlar yüzde 4,6, müşteri trafiği yüzde 3,8 arttı ve şirket yıllık kâr beklentisini yükseltti."
   }
  }
 }

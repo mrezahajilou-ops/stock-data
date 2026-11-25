@@ -1,0 +1,28 @@
+{
+ "t": "DELL",
+ "d": "2026-11-24",
+ "pct": -11.83,
+ "close": 295.28,
+ "prev": 334.91,
+ "kind": "sector",
+ "headline": "Dell falls 12% before its results as AI server stocks give back Monday’s rally",
+ "summary": "Dell fell 11.8% to $295.28 during the session ahead of its third-quarter report, after jumping 20% the day before. AI hardware stocks retreated, and HPE’s 16% drop after its own report raised worries about component shortages and margins in AI servers.",
+ "why": [
+  "Dell had rallied 20.5% on November 23 when Nvidia reinstated Jensen Huang. The next day the AI trade reversed, Nvidia fell about 6–7%, and HPE dropped 16% after warning that AI server component shortages could last into 2028. Benzinga reported that the shortage concerns spread to Dell, and investors cut positions before Dell’s results.",
+  "After the close Dell reported record revenue of $54.9 billion, up 103%, a record $132.3 billion AI backlog and full-year guidance raised to $202 billion, with a $25 billion increase to its buyback authorisation. The shares were roughly flat in after-hours trading."
+ ],
+ "context": [
+  "On November 24 the Nasdaq fell about 1.5% and the S&P 500 about 0.5% while the Dow rose almost 0.9%, as chip stocks gave back much of the previous day’s rally after Nvidia reinstated Jensen Huang. Nvidia fell about 6–7% and AMD, Micron and Broadcom also dropped.",
+  "Money rotated out of semiconductors and AI hardware into health care, consumer staples and retailers, so most stocks rose even as the technology-heavy indexes fell."
+ ],
+ "src": [
+  {
+   "title": "Why Dell stock is falling today (Benzinga)",
+   "url": "https://www.benzinga.com/markets/tech/26/11/63587697/why-dell-stock-is-falling-today-despite-a-133-rally-in-2026"
+  },
+  {
+   "title": "Dow rises, S&P 500 and Nasdaq decline as chip sector tumbles (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html"
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "t": "HPE",
+ "d": "2026-11-24",
+ "pct": -16.31,
+ "close": 40.19,
+ "prev": 48.02,
+ "kind": "earnings",
+ "headline": "HPE falls 16% after its record quarter, as margins slip and it warns of component shortages",
+ "summary": "Hewlett Packard Enterprise fell 16.3% to $40.19 the day after reporting record fourth-quarter revenue of $14.5 billion, up 50%, and raising its outlook. Gross margin fell 220 basis points from the previous quarter, and the company reportedly warned of AI server component shortages lasting into 2028.",
+ "why": [
+  "HPE’s results beat its own guidance, with servers nearly doubling and networking growing 12%, and it raised its fiscal 2027 outlook. But non-GAAP gross margin fell to 38.2% from 40.4% in the previous quarter as low-margin AI servers made up more of sales, and reports after the call said management warned that shortages of AI server components could extend into 2028, which would cap how fast it can ship.",
+  "The reaction was amplified by the day’s sell-off in AI hardware, which had surged the day before on Jensen Huang’s return to Nvidia. Dell, which reported after the close the same day, fell 11.8% in sympathy, and Benzinga tied part of Dell’s drop directly to HPE’s warning."
+ ],
+ "context": [
+  "On November 24 the Nasdaq fell about 1.5% and the S&P 500 about 0.5% while the Dow rose almost 0.9%, as chip stocks gave back much of the previous day’s rally after Nvidia reinstated Jensen Huang. Nvidia fell about 6–7% and AMD, Micron and Broadcom also dropped.",
+  "Money rotated out of semiconductors and AI hardware into health care, consumer staples and retailers, so most stocks rose even as the technology-heavy indexes fell."
+ ],
+ "src": [
+  {
+   "title": "Why Dell stock is falling today (Benzinga)",
+   "url": "https://www.benzinga.com/markets/tech/26/11/63587697/why-dell-stock-is-falling-today-despite-a-133-rally-in-2026"
+  },
+  {
+   "title": "Dow rises, S&P 500 and Nasdaq decline as chip sector tumbles (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html"
+  }
+ ]
+}

@@ -961,6 +961,36 @@
     "La caída del 15% muestra lo altas que eran las expectativas. Mantener el rango anual tras un tercer trimestre sólido implica que el trimestre navideño crecerá más despacio, y los inversores que habían pagado una prima por las sorpresas y subidas de previsión constantes lo interpretaron como señal de que el impulso se desvanece. Tras la caída la acción cotiza a unas 21 veces beneficios, todavía con prima para un minorista de mobiliario. Esa prima descansa en la capacidad de Williams-Sonoma de mantener márgenes cercanos al 18% a lo largo del ciclo inmobiliario. Si los tipos hipotecarios bajan y se recupera la compraventa de viviendas, su apalancamiento operativo elevaría con fuerza el beneficio; hasta entonces, es una empresa de gran calidad que crece a un dígito medio."
    ],
    "watch": "Vigilar las ventas comparables del trimestre navideño frente al rango anual, el margen bruto a medida que suben los fletes con el petróleo, los niveles de inventario y cualquier señal de recuperación de la compraventa de viviendas en EE. UU."
+  },
+  "DELL": {
+   "d": "2026-11-24",
+   "headline": "Dell duplica sus ingresos hasta un récord de 54.900 millones y eleva su previsión anual a 202.000 millones",
+   "takeaway": "Los servidores de IA transformaron Dell: ingresos +103%, beneficio por acción +287%, una cartera récord de pedidos de IA de 132.000 millones y la previsión anual elevada en 10.000 millones."
+  },
+  "CRWD": {
+   "d": "2026-11-23",
+   "headline": "CrowdStrike logra un récord de nuevos ingresos recurrentes y acuerda comprar Zscaler por 43.900 millones",
+   "takeaway": "Los nuevos ingresos recurrentes anuales crecieron un 58% hasta un récord y el crecimiento se aceleró por quinto trimestre seguido. La compra de Zscaler se pagará íntegramente en acciones."
+  },
+  "ZS": {
+   "d": "2026-11-23",
+   "headline": "Zscaler crece un 20% con flujo de caja récord y acepta ser comprada por CrowdStrike",
+   "takeaway": "Los ingresos subieron un 20% y los ingresos recurrentes un 21%, con flujo de caja libre récord. El mismo día acordó ser adquirida por CrowdStrike a cambio de acciones."
+  },
+  "ADI": {
+   "d": "2026-11-24",
+   "headline": "Analog Devices bate récords, pero una previsión plana hunde la acción un 17%",
+   "takeaway": "Los ingresos del trimestre subieron un 42% y los del año un 38%, con 5.500 millones de flujo de caja libre. La previsión de un primer trimestre plano, en un día de caídas en los chips, restó un 17,4% a la acción."
+  },
+  "HPE": {
+   "d": "2026-11-23",
+   "headline": "HPE crece un 50% y eleva su previsión, pero la acción cae un 16%",
+   "takeaway": "Los ingresos subieron un 50% y el beneficio superó su propia guía, pero el margen bruto bajó frente al trimestre anterior y la empresa advirtió de escasez de componentes."
+  },
+  "DLTR": {
+   "d": "2026-11-24",
+   "headline": "Dollar Tree supera previsiones con ventas comparables +4,6% y la acción sube un 11%",
+   "takeaway": "El tráfico creció un 3,8% y las ventas comparables un 4,6%. Parte de la mejora de la previsión anual procede de devoluciones de aranceles que no se repetirán."
   }
  },
  "move": {
@@ -1069,6 +1099,26 @@
     "La bolsa estadounidense vivió el 23 de noviembre su mejor sesión desde abril de 2025: el Nasdaq llegó a subir cerca de un 7% y el S&P 500 alrededor de un 5%, recuperando buena parte de las caídas de la semana anterior, en la que los fabricantes de chips sufrieron su peor semana desde 2001.",
     "Más de 120 empresas estadounidenses de más de 2.000 millones de dólares subieron un 10% o más ese día; casi todas eran fabricantes de chips y de memoria, proveedores de centros de datos y otros valores ligados a la inteligencia artificial."
    ]
+  },
+  "HPE": {
+   "d": "2026-11-24",
+   "headline": "HPE cae un 16% tras su trimestre récord por la caída de márgenes y la escasez de componentes",
+   "summary": "HPE cayó un 16,3% un día después de presentar ingresos récord. El margen bruto bajó frente al trimestre anterior y, según la prensa, advirtió de escasez de componentes hasta 2028."
+  },
+  "ADI": {
+   "d": "2026-11-24",
+   "headline": "Analog Devices se hunde un 17% por una previsión plana en un día de caída de los chips",
+   "summary": "El trimestre fue muy fuerte, pero la previsión de ingresos y beneficios para el siguiente indica que lo más intenso de la recuperación ya pasó."
+  },
+  "DELL": {
+   "d": "2026-11-24",
+   "headline": "Dell cae un 12% antes de sus resultados mientras los servidores de IA ceden el rally del lunes",
+   "summary": "Dell bajó un 11,8% tras subir un 20% el día anterior, arrastrada por la caída del hardware de IA y el desplome de HPE."
+  },
+  "DLTR": {
+   "d": "2026-11-24",
+   "headline": "Dollar Tree se dispara un 11% al acelerar el tráfico y elevar su previsión de beneficios",
+   "summary": "Las ventas comparables crecieron un 4,6% y el tráfico un 3,8%, y la empresa elevó su previsión de beneficio anual."
   }
  }
 }

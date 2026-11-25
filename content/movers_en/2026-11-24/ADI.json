@@ -1,0 +1,28 @@
+{
+ "t": "ADI",
+ "d": "2026-11-24",
+ "pct": -17.37,
+ "close": 312.95,
+ "prev": 378.75,
+ "kind": "earnings",
+ "headline": "Analog Devices drops 17% as a flat first-quarter outlook meets a chip sell-off",
+ "summary": "Analog Devices fell 17.4% to $312.95 after record fourth-quarter results, with revenue up 42% to $4.37 billion. Its first-quarter forecast of $4.4 billion revenue and $3.82 adjusted earnings per share implies a flat quarter after a steep recovery, on a day when chip stocks fell sharply.",
+ "why": [
+  "The quarter itself was very strong: gross margin rose to 69.3%, operating margin to 42.7% and adjusted earnings per share 80% to $4.06, and full-year free cash flow reached $5.5 billion. The guidance disappointed because revenue is expected to be roughly flat and adjusted earnings per share lower in the first quarter of fiscal 2027, a sign that the sharpest part of the analog chip recovery may be over.",
+  "The timing made it worse: the report came on a day when semiconductor stocks fell hard after Monday’s rally, so investors sold any chipmaker that gave them a reason to. Management stressed that more than two-thirds of its growth came from markets not centred on AI."
+ ],
+ "context": [
+  "On November 24 the Nasdaq fell about 1.5% and the S&P 500 about 0.5% while the Dow rose almost 0.9%, as chip stocks gave back much of the previous day’s rally after Nvidia reinstated Jensen Huang. Nvidia fell about 6–7% and AMD, Micron and Broadcom also dropped.",
+  "Money rotated out of semiconductors and AI hardware into health care, consumer staples and retailers, so most stocks rose even as the technology-heavy indexes fell."
+ ],
+ "src": [
+  {
+   "title": "Analog Devices fourth-quarter fiscal 2026 results (company release)",
+   "url": "https://www.sec.gov/Archives/edgar/data/6281/000000628126000087/adiq426exhibit991.htm"
+  },
+  {
+   "title": "Dow rises, S&P 500 and Nasdaq decline as chip sector tumbles (Yahoo Finance)",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html"
+  }
+ ]
+}

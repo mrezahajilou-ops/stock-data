@@ -75,6 +75,7 @@
 #rzs .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 @media (min-width:1200px){#rzs .stats{grid-template-columns:repeat(6,1fr)}}
 #rzs .st{background:var(--card2);border-radius:12px;padding:8px 10px;position:relative}
+#rzs .blanknote{font-size:12.5px;color:var(--mut);padding:10px 14px}#rzs .blanknote summary{cursor:pointer;font-weight:700}#rzs .blanknote ul{margin:8px 0 0;padding-inline-start:18px;line-height:1.7}#rzs .blanknote b{color:var(--txt,inherit);font-weight:600}
 #rzs .st .k{font-size:12px;color:var(--mut);display:flex;justify-content:space-between;gap:4px}
 #rzs .st .k i{font-style:normal;color:#6f86a3;cursor:help;font-size:11px;border:1px solid #2f4a6b;border-radius:50%;width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
 #rzs .st .v{font-size:18px;font-weight:900;direction:ltr;text-align:right}
@@ -710,6 +711,21 @@ function statCards(d){
     h+='<div class="card"><h3>'+G[0]+'</h3><div class="stats">'+G[1].map(function(z){
       return '<div class="st"><div class="k"><span>'+z[0]+'</span><i title="'+esc(z[2])+'">?</i></div><div class="v">'+z[1]+'</div><div class="s" data-sk="'+(z[3]||'')+'" data-lo="'+z[4]+'"></div></div>'}).join('')+'</div></div>';
   });
+  /* every empty field gets its reason, in one small note under the cards (never inside a card, where it would not fit) */
+  var why=sm.why||{}, tt=d.ttm||{}, seen={}, notes=[];
+  var WHYK={'رشد سالانه درآمد (۵ سال)':'rev_cagr_5y','رشد سالانه EPS (۵ سال)':'eps_cagr_5y'};
+  var RS={short_history:'سابقه‌ی گزارش سالانه برای این دوره کافی نیست (تازه وارد بورس شده یا با شناسه‌ی جدید در SEC ثبت شده).',not_reported:'شرکت این رقم را در گزارش رسمی‌اش منتشر نکرده است.',loss_or_negative:'سال پایه یا آخرین سال زیان‌ده بوده و رشد از زیان یا به زیان معنی ندارد.'};
+  groups.forEach(function(G){G[1].forEach(function(z){
+    if(z[1]!=='—'||seen[z[0]])return; seen[z[0]]=1;
+    var k=WHYK[z[0]], why_=k&&why[k]?RS[why[k]]:null;
+    if(!why_&&z[3]==='pe'&&((tt.net_income!=null&&tt.net_income<=0)||(tt.eps!=null&&tt.eps<=0)))why_='سود ۱۲ ماه اخیر منفی است، پس نسبت قیمت به سود معنی ندارد.';
+    notes.push([z[0],why_||'این رقم در گزارش‌های این شرکت نیست یا برای نوع کسب‌وکارش کاربرد ندارد (مثلاً حاشیه سود ناخالص برای بانک‌ها).']);
+  })});
+  if(tt.cf_end)notes.push(['جریان نقد ۱۲ ماه اخیر','تا {d} حساب شده؛ جریان نقد فصل آخر هنوز در گزارش رسمی منتشر نشده.'.replace('{d}',esc(String(tt.cf_end)))]);
+  if(notes.length){
+    var byR={};notes.forEach(function(n){(byR[n[1]]=byR[n[1]]||[]).push(n[0])});
+    h+='<details class="card blanknote"><summary>چرا بعضی خانه‌ها خالی‌اند؟</summary><ul>'+Object.keys(byR).map(function(r_){return '<li><b>'+byR[r_].join(' · ')+'</b>: '+r_+'</li>'}).join('')+'</ul></details>';
+  }
   return h;
 }
 function fillSector(){

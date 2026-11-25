@@ -22,7 +22,7 @@
     return x.replace(/(<[^>]*>)|([-−+]?\$?\d[\d.,]*(?:\s?[%TBMK])?(?:\s?–\s?\$?\d[\d.,]*[%TBMK]?)?)/g, function (m, tag, num) { return tag ? tag : '<bdi dir="ltr">' + num + '</bdi>'; });
   }
   function F(s) { var a = arguments, i = 0; return T(s).replace(/%(\d)\$s|%s/g, function (_, n) { return B(n ? a[+n] : a[++i]); }); }
-  var LOC = { en: 'en-US', es: 'es-ES', pt: 'pt-BR', de: 'de-DE', ja: 'ja-JP', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
+  var LOC = { en: 'en-US', es: 'es-ES', pt: 'pt-BR', de: 'de-DE', ja: 'ja-JP', ko: 'ko-KR', tr: 'tr-TR', fa: 'fa-IR-u-ca-gregory-nu-latn', ar: 'ar-u-ca-gregory-nu-latn' }[LANG] || 'en-US';
 
   // ---------------------------------------------------------------- formatting (same rules as the server pages)
   var D = '—';
@@ -36,6 +36,12 @@
       if (a >= 1e4) return s + Math.round(a / 1e4).toLocaleString('ja-JP') + '万ドル';
       return s + a.toFixed(0) + 'ドル';
     }
+    if (LANG === 'ko') {
+      if (a >= 1e12) return s + (a / 1e12).toFixed(2) + '조 달러';
+      if (a >= 1e8) return s + (a / 1e8).toLocaleString('ko-KR', { maximumFractionDigits: a >= 1e10 ? 0 : 1 }) + '억 달러';
+      if (a >= 1e4) return s + Math.round(a / 1e4).toLocaleString('ko-KR') + '만 달러';
+      return s + a.toFixed(0) + '달러';
+    }
     if (a >= 1e12) return s + '$' + (a / 1e12).toFixed(2) + 'T';
     if (a >= 1e9) return s + '$' + (a / 1e9).toFixed(d) + 'B';
     if (a >= 1e6) return s + '$' + (a / 1e6).toFixed(0) + 'M';
@@ -47,7 +53,7 @@
   function sp(v) { if (nn(v)) return D; if (Math.abs(v) >= 10) return v > 0 ? '>+999%' : '<−999%'; var a = Math.abs(v * 100).toFixed(1); return (+a === 0 ? '' : (v >= 0 ? '+' : '−')) + a + '%'; }
   function eps(v) { if (nn(v)) return D; var a = Math.abs(v), dg = (a > 0 && a < 0.005) ? (a >= 0.0005 ? 3 : 4) : 2, s = a.toFixed(dg); return (v < 0 && +s !== 0 ? '−$' : '$') + s; }
   function x2(v, d) { if (nn(v)) return D; var s = v.toFixed(d === undefined ? 1 : d); return +s === 0 ? (0).toFixed(d === undefined ? 1 : d) : s; }
-  function shr(v) { if (!nn(v) && LANG === 'ja') return (Math.abs(v) >= 1e8 ? (v / 1e8).toFixed(2) + '億' : Math.round(v / 1e4).toLocaleString('ja-JP') + '万'); return nn(v) ? D : (Math.abs(v) >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(0) + 'M'); }
+  function shr(v) { if (!nn(v) && LANG === 'ko') return (Math.abs(v) >= 1e8 ? (v / 1e8).toFixed(2) + '억' : Math.round(v / 1e4).toLocaleString('ko-KR') + '만'); if (!nn(v) && LANG === 'ja') return (Math.abs(v) >= 1e8 ? (v / 1e8).toFixed(2) + '億' : Math.round(v / 1e4).toLocaleString('ja-JP') + '万'); return nn(v) ? D : (Math.abs(v) >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(0) + 'M'); }
   function dol(v, d) { return nn(v) ? D : '$' + v.toFixed(d === undefined ? 2 : d); }
   function esc(s) { return String(s === undefined || s === null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function dd(s) { if (!s) return null; var m = String(s).slice(0, 10).match(/^(\d{4})-(\d{2})-(\d{2})$/); return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null; }
@@ -59,7 +65,7 @@
   var fmtD = new Intl.DateTimeFormat(LOC, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   var fmtF = new Intl.DateTimeFormat(LOC, { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
   // English-style "Sep ’26"; in Persian/Arabic the apostrophe breaks right-to-left reading, so write "سپتامبر 2026"
-  function mon(x) { if (!x) return ''; if (LANG === 'ja') return x.getUTCFullYear() + '年' + (x.getUTCMonth() + 1) + '月'; return LANG === 'fa' || LANG === 'ar' ? fmtM.format(x) + ' ' + x.getUTCFullYear() : fmtM.format(x).replace('.', '') + ' ’' + String(x.getUTCFullYear()).slice(2); }
+  function mon(x) { if (!x) return ''; if (LANG === 'ja') return x.getUTCFullYear() + '年' + (x.getUTCMonth() + 1) + '月'; if (LANG === 'ko') return x.getUTCFullYear() + '년 ' + (x.getUTCMonth() + 1) + '월'; return LANG === 'fa' || LANG === 'ar' ? fmtM.format(x) + ' ' + x.getUTCFullYear() : fmtM.format(x).replace('.', '') + ' ’' + String(x.getUTCFullYear()).slice(2); }
   function fdate(s) { var x = dd(s); return x ? fmtF.format(x) : ''; }
   function sdate(x) { return x ? fmtD.format(x) : D; }
 
@@ -644,7 +650,7 @@
     var qs = [];
     [['0q', 'Next quarter'], ['+1q', 'Quarter after']].forEach(function (z) {
       var tr = TR[z[0]]; if (!tr) return;
-      var e = dd(tr.end), lb = T(z[1]) + (e ? ' (' + F('ends %s', LANG === 'ja' ? mon(e) : fmtM.format(e).replace('.', '') + ' ' + e.getUTCFullYear()) + ')' : '');
+      var e = dd(tr.end), lb = T(z[1]) + (e ? ' (' + F('ends %s', (LANG === 'ja' || LANG === 'ko') ? mon(e) : fmtM.format(e).replace('.', '') + ' ' + e.getUTCFullYear()) + ')' : '');
       qs.push([F('%s revenue', lb), estRows(tr, 'rev', usd), 'b']); qs.push([F('%s EPS', lb), estRows(tr, 'eps', eps), '']);
     });
     var hdr = [T('Low'), T('Average'), T('High'), T('Growth'), T('Analysts')];

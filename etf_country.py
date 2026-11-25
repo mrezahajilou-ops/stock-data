@@ -151,6 +151,8 @@ SHARIAH = {
     'XLF': (None, 'A financials fund holds banks and insurers, which the screens exclude. There is no screened equivalent.'),
 }
 
+COUNTRIES['South Korea'] = dict(status='local', why=('Reachable through Korean brokers offering US markets; Korean-listed ETFs track the same US indices for tax-advantaged accounts.'))
+
 GROUPS = {
     'es': ['Spain', 'Mexico', 'Argentina', 'Chile', 'Colombia', 'Peru', 'Uruguay', 'Ecuador',
            'Costa Rica', 'Panama', 'Dominican Republic', 'Guatemala', 'Bolivia', 'Venezuela'],
@@ -162,6 +164,7 @@ GROUPS = {
     'pt': ['Brazil', 'Portugal', 'United States', 'Angola', 'Mozambique', 'Cape Verde'],
     'de': ['Germany', 'Austria', 'Switzerland', 'Liechtenstein', 'Luxembourg', 'United States'],
     'ja': ['Japan', 'United States'],
+    'ko': ['South Korea', 'United States'],
     'en': ['United States', 'United Kingdom', 'Germany', 'Canada', 'Australia', 'Singapore',
            'United Arab Emirates', 'India'],
 }

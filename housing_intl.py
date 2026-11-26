@@ -284,10 +284,10 @@ def ca():
         v = num(r.get('VALUE'))
         if v is None:
             continue
-        prov = r['GEO'].split(',')[-1].strip()
-        prov = next((p for p in CA_PROV if prov.startswith(p) or prov.split('/')[0].strip() == p), None)
-        if prov:
-            cen.setdefault(prov, {}).setdefault(r['REF_DATE'][:4] + '-10', []).append(v)
+        pv = r['GEO'].split(',')[-1].strip()
+        pv = next((p for p in CA_PROV if pv.startswith(p) or pv.split('/')[0].strip() == p), None)
+        if pv:
+            cen.setdefault(pv, {}).setdefault(r['REF_DATE'][:4] + '-10', []).append(v)
     med = lambda xs: sorted(xs)[len(xs) // 2]
     rent = {p: {k: med(v) for k, v in d.items()} for p, d in cen.items()}
     allc = {}

@@ -19,13 +19,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: housing.py
+          sparse-checkout: |
+            housing.py
+            housing_intl.py
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Build housing.json
         run: pip install -q openpyxl && python -u housing.py
+      - name: Other countries (housing_<cc>.json)
+        run: |
+          timeout 900 python -u housing_intl.py || true
+          python -c "import json,glob;print('\n'.join(f[8:-5]+':'+json.load(open(f)).get('stamp','') for f in sorted(glob.glob('housing_*.json'))))" >> stamp.txt || true
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |
           B=housing; if [ "${{ github.ref_name }}" != "main" ]; then B=housing-test; fi

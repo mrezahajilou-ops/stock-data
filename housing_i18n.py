@@ -815,3 +815,4 @@ for _k, _v in (('n_Dubai median sale price per m² (DLD)', 'متوسط سعر ب
 
 EN.setdefault('k_sales', 'Home sales'); EN.setdefault('k_off', 'Off-plan share of sales')
 AR.setdefault('k_sales', 'عدد صفقات بيع المساكن'); AR.setdefault('k_off', 'حصة البيع على الخارطة')
+AR.setdefault('ix_ae_msci', 'مؤشر إم إس سي آي للإمارات'); AR.setdefault('ix_sa_msci', 'مؤشر إم إس سي آي للسعودية')

@@ -846,6 +846,15 @@ def generic(cc):
         out['src'].insert(0, 'FipeZap')
     out['regions'] = [r for r in regions if r['n'] != 'Portugal']
     out['mkt'] = market(idx_sym, fx)
+    if len(out['mkt'].get('index') or []) < 24 and cc in ('ae', 'sa'):
+        # Yahoo has no history for the Dubai and Tadawul indexes: the iShares MSCI country fund instead (dollars; the
+        # dirham and the riyal are pegged, so the percentage moves are the same in local money)
+        try:
+            alt = srt(yahoo_weekly({'ae': 'UAE', 'sa': 'KSA'}[cc]))
+            if len(alt) > 24:
+                out['mkt']['index'], out['mkt']['alt'] = alt, 'msci'
+        except Exception as e:
+            say(cc, 'msci fund', str(e)[:80])
     out['src'] += ['OECD', 'Yahoo Finance']
     return out
 

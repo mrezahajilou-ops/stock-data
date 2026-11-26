@@ -398,7 +398,8 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     X['sym'] = (L.get('_syms') or {}).get(X['cur'], X['sym'])
     X['src'] = [L.get('src_' + x, x) for x in X.get('src') or []]          # {name, adj, in_, of}
     D = prepare(cc, X, L)
-    D['index_name'] = L.get('ix_' + cc) or INDEX_NAME.get(cc, '')
+    alt = (X.get('mkt') or {}).get('alt')
+    D['index_name'] = (alt and L.get('ix_%s_%s' % (cc, alt))) or L.get('ix_' + cc) or INDEX_NAME.get(cc, '')
     N, F = D['N'], Fmt(L, X['sym'], X['cur'])
     tiles = drivers(D, L, F)
     cfg_js, tabs = chart_cfg(D, L)

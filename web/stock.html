@@ -588,7 +588,18 @@ function open(t,via){
     fetch(API+'/aliases.json').then(function(r){return r.ok?r.json():{}}).then(function(a){var p=a&&a[t];if(p){ALIAS={from:t,to:p};open(p,true)}else notFound(t)}).catch(function(){notFound(t)});
   }).catch(function(){notFound(t)});
 }
-function notFound(t){$('rzs-main').innerHTML='<div class="card empty">برای '+esc(t)+' داده‌ای پیدا نشد. فقط سهم‌های بورس آمریکا که گزارش سالانه به SEC میدن پوشش داده میشن.</div>'}
+function nf0(t){$('rzs-main').innerHTML='<div class="card empty">برای '+esc(t)+' داده‌ای پیدا نشد. فقط سهم‌های بورس آمریکا که گزارش سالانه به SEC میدن پوشش داده میشن.</div>'}
+/* a large new listing without a first annual report: a reduced card from data/newlist/<T>.json (quarterly figures) */
+function notFound(t){fetch(API+'/newlist/'+encodeURIComponent(t)+'.json').then(function(r){return r.ok?r.json():null}).then(function(n){
+  if(!n||!n.q||!n.q.length){nf0(t);return}
+  var m=n.market||{},Q=n.q.slice(-6).reverse(),gap=false;
+  function c(v){if(v==null){gap=true;return '—'}return big(v)}
+  var rows=Q.map(function(x){return '<tr><td><bdi dir="ltr">'+esc(x.end)+'</bdi></td><td>'+c(x.revenue)+'</td><td>'+c(x.op_income)+'</td><td>'+c(x.net_income)+'</td></tr>'}).join('');
+  $('rzs-main').innerHTML='<div class="card"><h2>'+esc(niceName?niceName(n.name||t):(n.name||t))+' <bdi dir="ltr">'+esc(t)+'</bdi></h2>'+
+   '<p><b>سهم تازه‌وارد به بورس</b></p><p>این شرکت هنوز اولین گزارش سالانه‌ی خود را منتشر نکرده است؛ تحلیل کامل، امتیاز و ارزش ذاتی بعد از آن گزارش اضافه می‌شود. تا آن موقع، نتایج فصلی از گزارش‌های شرکت:</p>'+
+   (m.mcap?'<p>ارزش بازار: <b>'+big(m.mcap)+'</b></p>':'')+
+   '<div style="overflow-x:auto"><table class="fin"><thead><tr><th>فصل منتهی به</th><th>درآمد</th><th>سود عملیاتی</th><th>سود خالص</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+   (gap?'<p class="muted" style="font-size:.85em;opacity:.75">خط تیره یعنی شرکت این رقم را برای آن فصل جداگانه گزارش نکرده است.</p>':'')+'</div>'}).catch(function(){nf0(t)})}
 function paywall(t){
   var login=LOGGED?'':'<a class="pw-login" href="/account/login?return_url='+encodeURIComponent(location.pathname+'#'+t)+'">قبلاً عضو شدی؟ وارد شو</a>';
   var Y=window.RZS_SUB_Y||'/products/stock-data-pro-yearly';

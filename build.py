@@ -2585,6 +2585,14 @@ def main():
     keep = set()
     for m_ in miss:
         nl = NEWLIST.get(m_["t"])
+        if not nl:
+            # a listing with no 10-Q yet (only the prospectus): hand-checked figures from data/newlist_seed/<T>.json
+            sp = os.path.join(OUT, "newlist_seed", m_["t"] + ".json")
+            if os.path.exists(sp):
+                try:
+                    nl = json.load(open(sp))
+                except Exception as e:
+                    log("newlist seed unreadable", m_["t"], e)
         if nl and m_["mcap"] >= 5e9:
             nl = dict(nl, ticker=m_["t"], market=market.get(m_["t"]) or {}, mcap=m_["mcap"])
             with open(os.path.join(nd, m_["t"] + ".json"), "w") as f:

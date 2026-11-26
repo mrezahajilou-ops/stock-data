@@ -793,3 +793,16 @@ LANGS['fa'] = FA
 for _k, _v in (('src_OECD', 'منظمة التعاون الاقتصادي والتنمية'), ('src_Yahoo Finance', 'ياهو فاينانس'), ('ix_ae', 'مؤشر سوق دبي المالي'), ('ix_sa', 'مؤشر تاسي'),
                ('n_Average price per m², whole country (BIS)', 'متوسط سعر المتر المربع على مستوى الدولة')):
     AR.setdefault(_k, _v)
+
+
+# names shared by every country page: sources, the local stock index
+_COMMON = {
+    'pt': {'src_OECD': 'OCDE', 'src_Yahoo Finance': 'Yahoo Finanças', 'src_FipeZap': 'FipeZap', 'src_Eurostat': 'Eurostat', 'ix_br': 'Ibovespa', 'ix_pt': 'PSI'},
+    'id': {'src_OECD': 'OECD', 'src_Yahoo Finance': 'Yahoo Finance', 'ix_id': 'IHSG'},
+    'ko': {'src_OECD': '경제협력개발기구(OECD)', 'src_Yahoo Finance': '야후 파이낸스', 'ix_kr': '코스피'},
+    'ja': {'src_OECD': '経済協力開発機構(OECD)', 'src_Yahoo Finance': 'ヤフーファイナンス', 'ix_jp': '日経平均株価'},
+    'tr': {'src_OECD': 'OECD', 'src_Yahoo Finance': 'Yahoo Finance', 'ix_tr': 'BIST 100'},
+}
+for _l, _d in _COMMON.items():
+    for _k, _v in _d.items():
+        LANGS[_l].setdefault(_k, _v)

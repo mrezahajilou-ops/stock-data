@@ -678,7 +678,7 @@ def generic(cc):
                 out['price'] = {'n': 'Median bank valuation per m²', 's': tot(nat['s'])}
                 tt = {k: v for k, v in nat['s'].items() if k != 'Total'}
                 if tt:
-                    out['types'] = {('Apartments' if 'part' in k.lower() else 'Houses' if 'ouse' in k.lower() or 'orad' in k.lower() else k) + ', per m²': v for k, v in tt.items()}
+                    out['types'] = {('Apartments' if 'part' in k.lower() or 'flat' in k.lower() else 'Houses' if 'ouse' in k.lower() or 'orad' in k.lower() or 'villa' in k.lower() else k) + ', per m²': v for k, v in tt.items()}
             for gc, g in pr.items():
                 regions.append({'id': gc, 'n': g['n'], 'price': tot(g['s'])})
             out['src'].insert(0, 'Statistics Portugal (INE)')

@@ -11,6 +11,17 @@
   {%- if customer -%}<a class="a in" href="{{ routes.account_url }}">👤 حساب من</a>
   {%- else -%}<a class="a" href="{{ routes.account_login_url }}?return_url={{ request.path | url_encode }}">👤 <span class="lg">ورود مشترکین</span><span class="sm">ورود</span></a>{%- endif -%}
 </div>
+{%- if template.name == 'index' -%}
+<script>
+/* Housing-market card on the home page, right after gold & silver. It is added here and not in web/home.html because the
+   sister sites build their home page from that file and must not get a Persian card. */
+(function(){var done=false;function add(){if(done)return true;var g=document.querySelector('#rzh .tools a.tool[href="/pages/gold"]');if(!g)return false;
+  if(!document.querySelector('#rzh a.tool[href="/pages/housing"]')){var a=document.createElement('a');a.className='tool';a.href='/pages/housing';
+  a.innerHTML='<span class="i">🏘️</span><span><b>بازار مسکن</b><small>قیمت خانه، اجاره و نرخ وام در آمریکا، آلمان و کانادا؛ با نقشه و نمودار.</small><span class="tag free">رایگان</span></span>';
+  g.parentNode.insertBefore(a,g.nextSibling)}done=true;return true}
+  if(!add()){var mo=new MutationObserver(function(){if(add())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}})();
+</script>
+{%- endif -%}
 <style>
   .rzgt{display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:var(--page-width,120rem);margin:0 auto;padding:12px 16px 0;
     font-family:'Vazirmatn',Tahoma,sans-serif;box-sizing:border-box}

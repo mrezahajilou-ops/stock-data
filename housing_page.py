@@ -389,7 +389,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     # lead
     lead = []
     if N.get('i_y1') is not None:
-        lead.append(L['lead_p'].format(adj=C['adj'], dir=L['up'] if N['i_y1'] >= 0 else L['down'], v=F.pc(abs(N['i_y1']), 1, False), src=D['idx_n'], m=F.monthl(N['i_m'])))
+        lead.append(L['lead_p'].format(in_=C['in_'], name=C['name'], adj=C['adj'], dir=L['up'] if N['i_y1'] >= 0 else L['down'], v=F.pc(abs(N['i_y1']), 1, False), src=D['idx_n'], m=F.monthl(N['i_m'])))
     if N.get('p') is not None:
         lead.append(L['lead_price'].format(n=D['price_n'], v=F.money(N['p'])))
     if N.get('rate') is not None and N.get('rate_1y') is not None:
@@ -558,7 +558,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     desc = L['desc'].format(dir=L['up'] if (N.get('i_y1') or 0) >= 0 else L['down'], v=F.pc(abs(N.get('i_y1') or 0), 1, False), **C)
     faq = []
     if N.get('i_y1') is not None:
-        faq.append((L['q_dir'].format(**C), L['a_dir'].format(adj=C['adj'], dir=L['up'] if N['i_y1'] >= 0 else L['down'], v=F.pc(abs(N['i_y1']), 1, False), src=D['idx_n'], m=F.monthl(N['i_m']), t=F.pc(N.get('i_y10'), 0))))
+        faq.append((L['q_dir'].format(**C), L['a_dir'].format(in_=C['in_'], name=C['name'], adj=C['adj'], dir=L['up'] if N['i_y1'] >= 0 else L['down'], v=F.pc(abs(N['i_y1']), 1, False), src=D['idx_n'], m=F.monthl(N['i_m']), t=F.pc(N.get('i_y10'), 0))))
     if N.get('p') is not None:
         faq.append((L['q_price'].format(**C), L['a_price'].format(n=D['price_n'], v=F.money(N['p']), m=F.month(N['p_m']))))
     if N.get('rate') is not None or N.get('pol') is not None:

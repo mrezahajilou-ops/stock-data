@@ -56,7 +56,7 @@ class Pack:
     """Everything that differs between the five editions."""
 
     def __init__(self, lang, ui, text, base, stock_url, site, rtl=False, iso=None,
-                 countries=None, fdate=None, shariah=False, ucits=None):
+                 countries=None, fdate=None, shariah=False, ucits=None, tool_url=None):
         self.lang = lang
         # labels carry {N} for the number of funds covered (it grows); Persian prints its own digits
         import etf_list as _el
@@ -68,6 +68,7 @@ class Pack:
         self.text = text             # {ticker: (idea, strategy)}
         self.base = base             # '/etfs/' or the localised path
         self.stock_url = stock_url   # fn(ticker) -> url of our page for that company
+        self.tool_url = tool_url or stock_url   # fn(ticker) -> interactive stock analysis (holdings tables link here)
         self.site = site
         self.rtl = rtl
         self.iso = iso or (lambda s: s)   # isolate Latin runs inside RTL text
@@ -115,18 +116,20 @@ def assets(p):
 
 
 QK_HOME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v12h13V9"/><path d="M10 21v-6h4v6"/></svg>'
+QK_LIST = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>'
 QK_FIND = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>'
 
 
-def quick_keys(p, keys):
+def quick_keys(p, keys, etf_home=False):
     """The sticky four-key bar (web_src/qk.js): jump to a part of the fund page, go home, search for a stock."""
-    su = p.stock_url('QKT')
+    su = p.tool_url('QKT')
     url = getattr(p, 'qk_url', None) or su.replace('QKT', '{t}').replace('qkt', '{l}')
     idx = getattr(p, 'qk_idx', None) or '/assets/search.json'
     return ('<nav class="qkb" aria-label="%s" data-ph="%s" data-none="%s" data-idx="%s" data-url="%s">'
-            '<a class="qkb-i qkb-home" href="/" aria-label="%s">%s</a><div class="qkb-k">%s</div>'
+            '<a class="qkb-i qkb-home" href="%s" aria-label="%s" title="%s">%s</a>%s<div class="qkb-k">%s</div>'
             '<button class="qkb-i qkb-find" type="button" aria-label="%s">%s</button></nav>'
-            % (e(p.L('k_sec')), e(p.L('k_ph')), e(p.L('k_none')), e(idx), e(url), e(p.L('home')), QK_HOME,
+            % (e(p.L('k_sec')), e(p.L('k_ph')), e(p.L('k_none')), e(idx), e(url), e(getattr(p, 'home_url', None) or '/'), e(p.L('home')), e(p.L('home')), QK_HOME,
+               '' if etf_home else '<a class="qkb-i qkb-list" href="%s" aria-label="%s" title="%s">%s</a>' % (e(p.u()), e(p.L('etfs')), e(p.L('etfs')), QK_LIST),
                ''.join('<a href="#%s">%s</a>' % (i, e(l)) for i, l in keys), e(p.L('k_find')), QK_FIND))
 
 
@@ -347,7 +350,7 @@ def detail(sd, rec, spy, p, sector_labels=None):
             '<tr%s><td class="hn">%s</td><td class="hw"><i><b style="width:%.1f%%"></b></i>%s</td></tr>'
             % (' class="hx"' if i >= 10 else '',
                ('<a href="%s">%s</a> <span class="tk2">%s</span>'
-                % (p.stock_url(h['t']), ltr(h['name'], p), ltr(h['t'], p))) if h.get('t') else ltr(h['name'], p),
+                % (p.tool_url(h['t']), ltr(h['name'], p), ltr(h['t'], p))) if h.get('t') else ltr(h['name'], p),
                min(100.0, h['pct'] / mx * 100), _pct(h['pct'] / 100, 2)) for i, h in enumerate(top))
         more = ('<button type="button" class="hold-more" data-all="%s" data-less="%s">%s</button>'
                 % (e(p.L('holds_all', n=len(top))), e(p.L('holds_less')), e(p.L('holds_all', n=len(top))))) if len(top) > 10 else ''
@@ -458,7 +461,8 @@ def index_page(idx, recs, p):
             'else if(e.key==="Enter"&&m.length){e.preventDefault();location.href=m[k<0?0:k][2]}else if(e.key==="Escape"){u.hidden=true}});'
             'document.addEventListener("click",function(e){if(!e.target.closest(".ejump"))u.hidden=true})})();</script>'
             % (e(p.L('find_ph')), e(p.L('find_ph')), jl, e(p.L('no_fund'))))
-    body = (('<article class="sa-list sa-etf"><h1>%s</h1>' + jump.replace('%', '%%') + '<p class="sub">%s %s</p>'
+    qk = quick_keys(p, [('e-rank', p.L('rank_h')), ('e-all', p.ui.get('n_funds', '%n').replace('%n', str(len(rows))))], etf_home=True)
+    body = (('<article class="sa-list sa-etf">' + qk.replace('%', '%%') + '<h1>%s</h1>' + jump.replace('%', '%%') + '<p class="sub">%s %s</p>'
             '<p class="lead">%s</p><p class="etfintro clip">%s</p><button type="button" class="etfmore" hidden data-more="%s" data-less="%s">%s</button>'
             '%s%s<p class="dis">%s</p>%s</article>')
             % (e(p.L('h1')), e(p.L('sub')), ltr(p.fdate(TODAY.strftime('%Y-%m')), p), e(p.L('lead')), e(p.L('intro')),
@@ -557,14 +561,14 @@ def compare_page(a, b, recs, p):
         shared = ('<h3>%s</h3><div class="tw"><table class="hold"><thead><tr><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'
                   % (e(p.L('c_shared')), e(p.L('company')), ltr(a, p), ltr(b, p),
                      ''.join('<tr><td class="hn"><a href="%s">%s</a> <span class="tk2">%s</span></td><td>%s</td><td>%s</td></tr>'
-                             % (p.stock_url(t), ltr(n, p), ltr(t, p), _pct(x / 100, 2), _pct(y / 100, 2)) for n, t, x, y in common[:10])))
+                             % (p.tool_url(t), ltr(n, p), ltr(t, p), _pct(x / 100, 2), _pct(y / 100, 2)) for n, t, x, y in common[:10])))
     head = ('<nav class="crumbs"><a href="/">%s</a> › <a href="%s">%s</a> › %s</nav><h1>%s</h1><p class="sub">%s</p>'
             % (e(p.L('home')), p.u(), e(p.L('etfs')), e(p.L('c_crumb', a=a, b=b)), e(p.L('c_h1', a=a, b=b)), e(p.L('c_sub'))))
     ideas = ('<section class="card"><h2>%s</h2><p><b><a href="%s">%s</a></b> — %s</p><p><b><a href="%s">%s</a></b> — %s</p></section>'
              % (e(p.L('c_what')), p.u(a), ltr(a, p), e(p.iso(ia or '')), p.u(b), ltr(b, p), e(p.iso(ib or ''))))
-    body = ('<article class="sa-list sa-etf">%s%s<section class="card"><h2>%s</h2>%s%s</section>'
-            '<section class="card"><h2>%s</h2>%s%s</section><p class="dis">%s</p>%s</article>'
-            % (head, ideas, e(p.L('c_side')), tbl, '<p class="note">%s</p>' % e(p.L('note_ret')),
+    body = ('<article class="sa-list sa-etf">%s%s%s<section class="card" id="e-side"><h2>%s</h2>%s%s</section>'
+            '<section class="card" id="e-says"><h2>%s</h2>%s%s</section><p class="dis">%s</p>%s</article>'
+            % (quick_keys(p, [('e-side', p.L('c_side')), ('e-says', p.L('c_says'))]), head, ideas, e(p.L('c_side')), tbl, '<p class="note">%s</p>' % e(p.L('note_ret')),
                e(p.L('c_says')), ''.join('<p>%s</p>' % e(x) for x in say), shared, e(p.L('dis')), assets(p)))
     url = p.u(cmp_slug(a, b))
     ld = [{'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
@@ -601,7 +605,7 @@ def holders_page(t, name, rows, recs, p):
                e(p.L('h_lead', n=len(rows), N=n_all, name=name))))
     top = rows[0]
     say = p.L('h_top', f=top[0], w=_pct(top[1] / 100, 1), name=name)
-    body = ('<article class="sa-list sa-etf">%s<section class="card"><p>%s</p><p><a href="%s"><strong>%s</strong></a></p></section>'
+    body = ('<article class="sa-list sa-etf">' + quick_keys(p, []).replace('%', '%%') + '%s<section class="card"><p>%s</p><p><a href="%s"><strong>%s</strong></a></p></section>'
             '<style>@media(max-width:620px){table.hold th:nth-child(4),table.hold td:nth-child(4){display:none}}</style><section class="card"><div class="tw"><table class="hold"><thead><tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'
             '<p class="note">%s</p></section><p class="dis">%s</p>%s</article>'
             % (head, e(say), p.stock_url(t), e(p.L('h_stock', name=name)), e(p.L('fundcol')), e(p.L('type')), e(p.L('weight')),

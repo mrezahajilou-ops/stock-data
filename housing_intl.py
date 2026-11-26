@@ -499,11 +499,7 @@ def bis_load():
             cand.setdefault(area, {}).setdefault(key, {})[qm(r['TIME_PERIOD:Time period or range'])] = v
         for area, ser in cand.items():
             say('bis dpp', area, [(k[:160], len(v)) for k, v in ser.items()][:12])
-            idx = [(k, v) for k, v in ser.items() if 'ndex' in k and 'year' not in k.lower() and 'change' not in k.lower()]
-            if idx:
-                k, v = max(idx, key=lambda kv: len(kv[1]))
-                BIS[area]['nom'] = v
-                say('bis dpp pick', area, k[:200], len(v))
+            BIS.setdefault(area, {})['dpp'] = {('country' if 'Whole country' in k else 'capital' if 'Capital city' in k else 'cities' if 'Big cities' in k else k[:40]): v for k, v in ser.items()}
     except Exception as e:
         say('bis dpp', str(e)[:100])
     say('bis', len(BIS))
@@ -646,20 +642,24 @@ def generic(cc):
             out['src'].append('Bank for International Settlements')
     if b.get('real'):
         out['bis_real'] = srt(b['real'])
+    dpp = b.get('dpp') or {}
+    if cc == 'ae' and dpp.get('country'):
+        out['price'] = {'n': 'Average price per m², whole country (BIS)', 's': srt(dpp['country'])}
+        out['types'] = {'Whole country, per m²': srt(dpp['country'])}
+        if dpp.get('capital'):
+            out['types']['Main financial centre, per m²'] = srt(dpp['capital'])
+        if dpp.get('cities'):
+            out['types']['Big cities, per m²'] = srt(dpp['cities'])
+    if cc == 'sa' and dpp.get('country'):
+        out['idx'] = {'n': 'Real estate price index (GASTAT via BIS)', 's': srt(dpp['country'])}
+        if dpp.get('capital'):
+            out['types'] = {'Whole country': srt(dpp['country']), 'Riyadh': srt(dpp['capital'])}
     regions = []
     if cc == 'es':
         for n, s in es_regions().items():
             if n != 'Nacional':
                 regions.append({'id': n, 'n': n, 'idx': s})
         out['src'].insert(0, 'Instituto Nacional de Estadística (INE)')
-    if cc == 'pt':
-        pr = pt_regions()
-        for n, s in pr.items():
-            regions.append({'id': n, 'n': n, 'price': s})
-        nat = pr.get('Portugal')
-        if nat:
-            out['price'] = {'n': 'Median sale price per m²', 's': nat}
-        out['src'].insert(0, 'Statistics Portugal (INE)')
     if cc == 'br':
         fz = br_fipezap()
         nat = next((v for k, v in fz.items() if 'ndice' in k or 'FipeZap' in k or 'Brasil' in k), None)

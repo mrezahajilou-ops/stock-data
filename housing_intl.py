@@ -66,6 +66,12 @@ def qm(p):
     m = re.match(r'^(\d{4})Q([1-4])$', p)
     if m:
         return '%s-%02d' % (m.group(1), int(m.group(2)) * 3)
+    m = re.match(r'^(\d{4})(\d\d)$', p)          # CSO monthly: 202609
+    if m:
+        return m.group(1) + '-' + m.group(2)
+    m = re.match(r'^(\d{4})([1-4])$', p)           # CSO quarterly: 20254
+    if m:
+        return '%s-%02d' % (m.group(1), int(m.group(2)) * 3)
     return p
 
 
@@ -113,6 +119,15 @@ def market(index_sym, fx_sym):
     fx = yahoo_weekly(fx_sym) if fx_sym else {}
     g = {m: (v / fx[m] if fx_sym else v) for m, v in gold.items() if (not fx_sym or fx.get(m))}
     return {'index': srt(idx), 'gold': srt(g)}
+
+
+def dims_debug(url, rows):
+    seen = {}
+    for k, _ in rows:
+        for d, c in k.items():
+            if not d.startswith('TLIST'):
+                seen.setdefault(d, set()).add(c[1])
+    say('DIMS', url.split('/')[-4], {d: sorted(v)[:14] + (['... %d' % len(v)] if len(v) > 14 else []) for d, v in seen.items()})
 
 
 def jsonstat(url):
@@ -263,7 +278,9 @@ def ca():
         elif geo in CA_PROV:
             prov.setdefault(geo, {})[r['REF_DATE'][:7]] = v
     rent = {}
+    geos, types, units = set(), set(), set()
     for r in statcan('34100133'):
+        geos.add(r['GEO']); types.add(r.get('Type of structure')); units.add(r.get('Type of unit'))
         geo = r['GEO'].strip()
         if r.get('Type of unit') != 'Two bedroom units' or 'three units and over' not in (r.get('Type of structure') or ''):
             continue
@@ -273,10 +290,13 @@ def ca():
         key = 'Canada' if geo == 'Canada' else geo if geo in CA_PROV else None
         if key:
             rent.setdefault(key, {})[r['REF_DATE'][:4] + '-10'] = v   # CMHC survey: October
-    say('ca statcan', len(prov), len(rent), sorted(nh.items())[-1:])
+    say('ca statcan', len(prov), len(rent), sorted(nh.items())[-1:], [g for g in geos if ',' not in g][:20], types, units)
     starts = {}
     try:
+        cols = None
         for r in statcan('34100158'):
+            if cols is None:
+                cols = list(r.keys()); say('ca starts cols', cols, r)
             if r.get('GEO') == 'Canada' and 'Total units' in (r.get('Type of unit') or '') and 'Seasonally adjusted at annual rates' in (r.get('Seasonal adjustment') or r.get('Adjustments') or ''):
                 v = num(r.get('VALUE'))
                 if v is not None:
@@ -335,7 +355,9 @@ def ie():
     say('ie rppi', len(reg), list(reg)[:8])
     med = {}
     try:
-        for k, v in jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM04/JSON-stat/2.0/en'):
+        rows = jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM04/JSON-stat/2.0/en')
+        dims_debug('x/HPM04/a/b', rows)
+        for k, v in rows:
             if 'Median' not in k['STATISTIC'][1]:
                 continue
             labs = {d: c[1] for d, c in k.items()}
@@ -350,15 +372,17 @@ def ie():
         say('ie median', str(e)[:100])
     rent = {}
     try:
-        for k, v in jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en'):
+        rows = jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en')
+        dims_debug('x/RIQ02/a/b', rows)
+        for k, v in rows:
             labs = {d: c[1] for d, c in k.items()}
             t = next(c for d, c in k.items() if d.startswith('TLIST'))
-            loc = next((c for d, c in labs.items() if c in IE_COUNTIES or c == 'Ireland'), None)
+            loc = next((c for d, c in labs.items() if c in IE_COUNTIES or c in ('Ireland', 'State', 'National')), None)
             if not loc:
                 continue
             if any(('All' not in c) for d, c in labs.items() if d not in ('STATISTIC',) and not d.startswith('TLIST') and c != loc):
                 continue
-            rent.setdefault(loc, {})[qm(t[0])] = v
+            rent.setdefault('Ireland' if loc in ('State', 'National') else loc, {})[qm(t[0])] = v
     except Exception as e:
         say('ie rent', str(e)[:100])
     say('ie', len(med), len(rent), sorted((med.get('Ireland') or {}).items())[-1:], sorted((rent.get('Ireland') or {}).items())[-1:])
@@ -382,6 +406,7 @@ def rba(table, want):
     txt = get('https://www.rba.gov.au/statistics/tables/csv/%s-data.csv' % table)
     rows = list(csv.reader(io.StringIO(txt)))
     title = next(r for r in rows if r and r[0] == 'Title')
+    say('rba', table, title[:12])
     cols = {lab: next((i for i, t in enumerate(title) if t.strip().lower() == w.lower()), None) for lab, w in want.items()}
     out = {lab: {} for lab in want}
     for r in rows:

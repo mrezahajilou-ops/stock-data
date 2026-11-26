@@ -16,3 +16,7 @@ html body .copyright__content a{display:inline-block;padding:8px 2px}
 html body span.tk,html body small.tk{font-size:max(12px,.82em)!important}
 html body input:not([type=hidden]):not([type=checkbox]):not([type=radio]),html body select,html body textarea{font-size:max(16px,1em)!important}
 }
+/* no-overlap-2026-11: big score number clear of its label; ticker and fund name never touch on the ETF list */
+html body .score .big{margin-top:6px;line-height:1.05}
+html body .erk-t>b,html body td.nm a>b{margin-inline-end:6px;display:inline-block}
+html body .erk-t>small{display:inline-block}

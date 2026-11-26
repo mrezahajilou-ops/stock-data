@@ -20,12 +20,15 @@ const U_RE = /^[a-z0-9]{8,32}$/;
 const RETAIN_DAYS = 400;
 const MIN_UNIQ = 3;
 
+// Portuguese, German, Japanese, Korean, French, Italian, Indonesian and Vietnamese sites (they were missing: contest and
+// live prices were refused there until Nov 26 2026)
+const SISTER = ['https://bolsagaviao.com', 'https://www.bolsagaviao.com', 'https://aktienadler.com', 'https://www.aktienadler.com', 'https://kabutakajp.com', 'https://www.kabutakajp.com', 'https://jusikmae.com', 'https://www.jusikmae.com', 'https://boursefaucon.com', 'https://www.boursefaucon.com', 'https://borsafalco.com', 'https://www.borsafalco.com', 'https://sahamelang.com', 'https://www.sahamelang.com', 'https://cophieudaibang.com', 'https://www.cophieudaibang.com'];
 const EN_ORIGINS = ['https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev',
   'https://borsakartal.com', 'https://www.borsakartal.com', 'https://borsakartal-site.pages.dev',
-  'https://bolsacondor.com', 'https://www.bolsacondor.com', 'https://bolsacondor.pages.dev'];   // English + Turkish + Spanish sister sites: own contest boards
+  'https://bolsacondor.com', 'https://www.bolsacondor.com', 'https://bolsacondor.pages.dev', ...SISTER];   // sister sites: own contest boards
 const READ_ORIGINS = ['https://saqrmarkets.com', 'https://www.saqrmarkets.com', 'https://stockanaliz.com', 'https://www.stockanaliz.com', 'https://stockanaliz-site.pages.dev',
   'https://borsakartal.com', 'https://www.borsakartal.com', 'https://borsakartal-site.pages.dev',
-  'https://bolsacondor.com', 'https://www.bolsacondor.com', 'https://bolsacondor.pages.dev'];
+  'https://bolsacondor.com', 'https://www.bolsacondor.com', 'https://bolsacondor.pages.dev', ...SISTER];
 
 function cors(req, env) {
   const o = req.headers.get('Origin') || '';

@@ -2444,6 +2444,35 @@ def write_related(recs, market, screener, ci):
     log("related strips:", len(out))
 
 
+TAG_DIAG = {}
+
+
+def _tag_diag(t, rec, facts):
+    """Blank-value guard, data side: when a company's latest year has no revenue or no EPS, list the concepts its
+    filing does carry that look like one (name contains Revenue/Sales/PerShare), with their latest annual value, so a
+    missing tag can be added to CONCEPTS instead of the page showing a dash."""
+    L = rec["annual"][-1]
+    need = [k for k in ("revenue", "eps_diluted") if L.get(k) is None]
+    if not need:
+        return
+    out = {}
+    for ns, concepts in (facts.get("facts") or {}).items():
+        if ns == "dei":
+            continue
+        for name, c in concepts.items():
+            if not re.search(r"Revenue|Sales|PerShare|Turnover", name):
+                continue
+            best = None
+            for u, arr in (c.get("units") or {}).items():
+                for x in arr:
+                    if x.get("form") in ("10-K", "20-F", "40-F") and x.get("fp") == "FY" and x.get("end", "") >= str(L.get("fy", 0)):
+                        if best is None or x["end"] > best[0]:
+                            best = (x["end"], x.get("val"), u)
+            if best:
+                out[ns + ":" + name] = best
+    TAG_DIAG[t] = {"missing": need, "fy": L.get("fy"), "candidates": dict(sorted(out.items())[:40])}
+
+
 def main():
     os.makedirs(os.path.join(OUT, "stocks"), exist_ok=True)
     log("downloading ticker map")
@@ -2515,6 +2544,8 @@ def main():
             # one listing can have several share classes (GOOGL/GOOG): same data, both tickers
             try:
                 rec = build_company(cik, entry, facts)
+                if rec and rec.get("annual"):
+                    _tag_diag(entry["ticker"], rec, facts)
             except Exception as e:
                 log("build error", entry["ticker"], repr(e)[:200])
                 why[entry["ticker"]] = "error: " + repr(e)[:120]
@@ -2565,6 +2596,8 @@ def main():
     log("new listings (quarterly only):", sorted(keep))
     log("large companies missing:", len(miss), [(m["t"], m["why"]) for m in miss[:30]])
     finish(recs, market)
+    with open(os.path.join(OUT, "tag_diag.json"), "w") as f:
+        json.dump(TAG_DIAG, f, indent=0, sort_keys=True)
     with open(os.path.join(OUT, "meta.json"), "w") as f:
         json.dump({"built": dt.datetime.now(dt.timezone.utc).isoformat(), "stocks": done, "skipped": skipped,
                    "source": "SEC EDGAR", "version": 2}, f)

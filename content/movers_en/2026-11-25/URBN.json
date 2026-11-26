@@ -1,0 +1,21 @@
+{
+ "t": "URBN",
+ "d": "2026-11-25",
+ "pct": -10.33,
+ "close": 76.74,
+ "prev": 85.58,
+ "kind": "earnings",
+ "headline": "Urban Outfitters falls 10% despite record third-quarter sales and earnings per share",
+ "summary": "Urban Outfitters dropped 10.3% to $76.74 after reporting record third-quarter sales of $1.67 billion, up 8.9%, and EPS of $1.54 against $1.28. Retail comparable sales grew 4.4%, with Anthropologie up only 1.7%, while inventory rose 10.1%.",
+ "why": [
+  "Every brand grew: Free People comparable sales rose 8.5%, Urban Outfitters 5.8%, and the Nuuly rental service lifted subscription revenue 28%. Net income rose about 15% to $134 million and the gross margin edged up to 37.1%.",
+  "The problem was the pace and the mix. Retail comparable growth of 4.4% is a slowdown from the double-digit gains a year ago, Anthropologie, the largest brand, barely grew, and inventory rising faster than sales raises the risk of markdowns in the holiday quarter. The release also gave no comment on how November trading has started."
+ ],
+ "context": [],
+ "src": [
+  {
+   "title": "Urban Outfitters Q3 FY2027 results (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000912615/000119312526477264/urbn-ex99_1.htm"
+  }
+ ]
+}

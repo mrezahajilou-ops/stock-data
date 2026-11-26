@@ -991,6 +991,31 @@
    "d": "2026-11-24",
    "headline": "Dollar Tree supera previsiones con ventas comparables +4,6% y la acción sube un 11%",
    "takeaway": "El tráfico creció un 3,8% y las ventas comparables un 4,6%. Parte de la mejora de la previsión anual procede de devoluciones de aranceles que no se repetirán."
+  },
+  "MDT": {
+   "d": "2026-11-24",
+   "headline": "Medtronic crece un 6,5% orgánico con la ablación cardiaca +58%, pero solo reitera su previsión anual",
+   "takeaway": "Los ingresos alcanzaron 9.360 millones de dólares, pero la previsión de crecimiento del 7,25–7,75% y de BPA de 5,94–6,00 dólares no subió y la acción cayó un 4,6%."
+  },
+  "ADSK": {
+   "d": "2026-11-24",
+   "headline": "Autodesk crece un 17% con margen operativo del 39% y eleva objetivos, pero la facturación sube solo un 12%",
+   "takeaway": "Ingresos de 2.160 millones y BPA ajustado de 3,20 dólares. La facturación más lenta preocupó al mercado y la acción cayó un 3,5% al día siguiente."
+  },
+  "WDAY": {
+   "d": "2026-11-24",
+   "headline": "Workday eleva su previsión de suscripciones y margen gracias a casi 150 millones en nuevos contratos de IA",
+   "takeaway": "Los ingresos por suscripción crecieron un 12,8% y el margen operativo ajustado llegó al 31,4%. La guía del cuarto trimestre implica una desaceleración al 10%."
+  },
+  "HPQ": {
+   "d": "2026-11-24",
+   "headline": "HP sube un 11,5% con ventas +9% y PCs con IA cerca del 60% de envíos, pese a una guía prudente",
+   "takeaway": "El encarecimiento de la memoria redujo el BPA ajustado del trimestre un 10,8%, pero las expectativas eran muy bajas. Prevé un BPA de 3,15–3,45 dólares para 2027 y sube el dividendo."
+  },
+  "A": {
+   "d": "2026-11-23",
+   "headline": "Agilent crece un 9,6% con margen operativo del 30% y prevé un BPA de 6,73–6,86 dólares en 2027",
+   "takeaway": "Las tres divisiones crecieron y mercados aplicados avanzó un 13%. La guía de 5–7% de crecimiento es prudente; la acción subió un 4,2% al día siguiente."
   }
  },
  "move": {
@@ -1119,6 +1144,31 @@
    "d": "2026-11-24",
    "headline": "Dollar Tree se dispara un 11% al acelerar el tráfico y elevar su previsión de beneficios",
    "summary": "Las ventas comparables crecieron un 4,6% y el tráfico un 3,8%, y la empresa elevó su previsión de beneficio anual."
+  },
+  "HPQ": {
+   "d": "2026-11-25",
+   "headline": "HP sube un 11,5% tras unos resultados mejores de lo que temía el mercado",
+   "summary": "Pese a la caída del beneficio trimestral por la memoria, el crecimiento de ventas, 3.300 millones de flujo libre y un dividendo mayor impulsaron el rebote."
+  },
+  "NTNX": {
+   "d": "2026-11-25",
+   "headline": "Nutanix se hunde un 15% pese a superar sus objetivos, al anunciar la salida de su consejero delegado",
+   "summary": "Los ingresos crecieron un 15% con un margen récord, pero el consejo inició la búsqueda de un sucesor para Rajiv Ramaswami."
+  },
+  "URBN": {
+   "d": "2026-11-25",
+   "headline": "Urban Outfitters cae un 10% pese a ventas y beneficios récord",
+   "summary": "Las ventas comparables crecieron solo un 4,4%, Anthropologie apenas avanzó y el inventario subió más rápido que las ventas."
+  },
+  "BZ": {
+   "d": "2026-11-25",
+   "headline": "Kanzhun sube un 12,6% con usuarios +14% y una nueva recompra de 500 millones",
+   "summary": "Los ingresos de BOSS Zhipin crecieron un 11,7%; la pérdida neta vino de una inversión y la empresa promete devolver al menos la mitad del beneficio."
+  },
+  "LI": {
+   "d": "2026-11-25",
+   "headline": "Li Auto sube un 11% al reducir su pérdida y prever volver a beneficios",
+   "summary": "El margen por vehículo subió del 9,4% al 15,3%, el flujo libre fue positivo y prevé entregar 110.000–115.000 vehículos en el cuarto trimestre."
   }
  }
 }

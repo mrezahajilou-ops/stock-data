@@ -1,0 +1,25 @@
+{
+ "t": "NTNX",
+ "d": "2026-11-25",
+ "pct": -15.19,
+ "close": 46.3,
+ "prev": 54.59,
+ "kind": "earnings",
+ "headline": "Nutanix sinks 15% after beating its targets and announcing that its chief executive will step down",
+ "summary": "Nutanix fell 15.2% to $46.30 after reporting first-quarter revenue up 15% to $772 million and a record 32.1% adjusted operating margin, alongside the news that the board has begun searching for a successor to chief executive Rajiv Ramaswami.",
+ "why": [
+  "The quarter itself beat every metric the company had guided: annual recurring revenue grew 15% to $2.63 billion, free cash flow rose to $209 million and adjusted EPS was $0.73. Nutanix guided second-quarter revenue of $820–830 million and full-year revenue of $3.18–3.23 billion, with free cash flow of $875–975 million.",
+  "The surprise was the leadership change. In a separate release the board said it had hired a search firm to find the next chief executive, with Ramaswami staying until a successor is in place. Unplanned CEO searches add uncertainty for a company that has cut guidance twice in the past year because of server shortages, and ARR growth slowing from 16% to 15% gave investors little reason to look past it."
+ ],
+ "context": [],
+ "src": [
+  {
+   "title": "Nutanix Q1 fiscal 2027 results (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001618732/000117184326007693/exh_991.htm"
+  },
+  {
+   "title": "Nutanix CEO succession plan (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001618732/000117184326007693/exh_992.htm"
+  }
+ ]
+}

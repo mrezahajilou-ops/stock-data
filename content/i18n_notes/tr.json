@@ -991,6 +991,31 @@
    "d": "2026-11-24",
    "headline": "Dollar Tree yüzde 4,6’lık karşılaştırılabilir satış artışıyla beklentiyi yükseltti, hisse yüzde 11 fırladı",
    "takeaway": "Müşteri trafiği yüzde 3,8, karşılaştırılabilir satışlar yüzde 4,6 arttı. Yıllık kâr beklentisindeki artışın bir kısmı tekrarlanmayacak gümrük iadelerinden geliyor."
+  },
+  "MDT": {
+   "d": "2026-11-24",
+   "headline": "Medtronic yüzde 6,5 organik büyüdü, kardiyak ablasyon yüzde 58 arttı ama yıllık beklentisini sadece teyit etti",
+   "takeaway": "Gelir 9,36 milyar dolar oldu, ancak yüzde 7,25–7,75 büyüme ve 5,94–6,00 dolar hisse başı kâr beklentisi yükseltilmedi; hisse yüzde 4,6 düştü."
+  },
+  "ADSK": {
+   "d": "2026-11-24",
+   "headline": "Autodesk yüzde 17 gelir büyümesi ve yüzde 39 faaliyet marjıyla hedeflerini yükseltti, faturalama yüzde 12’de kaldı",
+   "takeaway": "Gelir 2,16 milyar dolar, düzeltilmiş hisse başı kâr 3,20 dolar oldu. Yavaşlayan faturalama endişe yarattı ve hisse ertesi gün yüzde 3,5 geriledi."
+  },
+  "WDAY": {
+   "d": "2026-11-24",
+   "headline": "Workday yaklaşık 150 milyon dolarlık yeni yapay zekâ sözleşmesiyle abonelik ve marj beklentisini yükseltti",
+   "takeaway": "Abonelik gelirleri yüzde 12,8 arttı, düzeltilmiş faaliyet marjı yüzde 31,4’e çıktı. Dördüncü çeyrek beklentisi büyümenin yüzde 10’a yavaşlayacağını gösteriyor."
+  },
+  "HPQ": {
+   "d": "2026-11-24",
+   "headline": "HP, temkinli beklentiye rağmen yüzde 9 gelir artışı ve yapay zekâ PC’lerinin yüzde 60’a yaklaşan payıyla yüzde 11,5 yükseldi",
+   "takeaway": "Bellek maliyetleri çeyreklik düzeltilmiş kârı yüzde 10,8 düşürdü ama beklentiler çok düşüktü. 2027 için 3,15–3,45 dolar hisse başı kâr bekleniyor, temettü artırıldı."
+  },
+  "A": {
+   "d": "2026-11-23",
+   "headline": "Agilent yüzde 9,6 büyüme ve yüzde 30 faaliyet marjıyla 2027 hisse başı kârını 6,73–6,86 dolar öngördü",
+   "takeaway": "Üç bölümün hepsi büyüdü, uygulamalı pazarlar yüzde 13 arttı. Yüzde 5–7 büyüme beklentisi temkinli; hisse ertesi gün yüzde 4,2 yükseldi."
   }
  },
  "move": {
@@ -1119,6 +1144,31 @@
    "d": "2026-11-24",
    "headline": "Dollar Tree müşteri trafiği hızlanıp kâr beklentisini yükseltince yüzde 11 fırladı",
    "summary": "Karşılaştırılabilir satışlar yüzde 4,6, müşteri trafiği yüzde 3,8 arttı ve şirket yıllık kâr beklentisini yükseltti."
+  },
+  "HPQ": {
+   "d": "2026-11-25",
+   "headline": "HP, piyasanın korktuğundan iyi sonuçlarla yüzde 11,5 yükseldi",
+   "summary": "Bellek maliyetleri çeyreklik kârı düşürse de gelir artışı, 3,3 milyar dolarlık serbest nakit akışı ve artırılan temettü rallisi getirdi."
+  },
+  "NTNX": {
+   "d": "2026-11-25",
+   "headline": "Nutanix hedeflerini aşmasına rağmen CEO’nun ayrılacağını açıklayınca yüzde 15 düştü",
+   "summary": "Gelir yüzde 15 arttı ve marj rekor kırdı, ancak yönetim kurulu Rajiv Ramaswami’nin halefini aramaya başladı."
+  },
+  "URBN": {
+   "d": "2026-11-25",
+   "headline": "Urban Outfitters rekor satış ve kâra rağmen yüzde 10 geriledi",
+   "summary": "Karşılaştırılabilir satışlar yalnızca yüzde 4,4 arttı, Anthropologie neredeyse yerinde saydı ve stoklar satışlardan hızlı büyüdü."
+  },
+  "BZ": {
+   "d": "2026-11-25",
+   "headline": "Kanzhun yüzde 14 kullanıcı artışı ve 500 milyon dolarlık geri alımla yüzde 12,6 yükseldi",
+   "summary": "BOSS Zhipin gelirleri yüzde 11,7 arttı; net zarar bir yatırımdan kaynaklandı ve şirket kârın en az yarısını dağıtmayı planlıyor."
+  },
+  "LI": {
+   "d": "2026-11-25",
+   "headline": "Li Auto zararını sert biçimde daraltıp kâra dönüş beklentisiyle yüzde 11 yükseldi",
+   "summary": "Araç marjı yüzde 9,4’ten 15,3’e çıktı, serbest nakit akışı pozitife döndü ve dördüncü çeyrekte 110–115 bin teslimat bekleniyor."
   }
  }
 }

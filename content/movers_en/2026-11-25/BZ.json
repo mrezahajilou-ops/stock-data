@@ -1,0 +1,21 @@
+{
+ "t": "BZ",
+ "d": "2026-11-25",
+ "pct": 12.56,
+ "close": 14.34,
+ "prev": 12.74,
+ "kind": "earnings",
+ "headline": "Kanzhun climbs 12.6% as BOSS Zhipin grows users 14% and announces a new $500 million buyback",
+ "summary": "Kanzhun, operator of China’s BOSS Zhipin job platform, rose 12.6% to $14.34 after third-quarter revenue grew 11.7% to RMB2.42 billion, monthly users rose 14.4% to 73 million and the board approved a new $500 million share buyback.",
+ "why": [
+  "Adjusted operating income grew 19.1% to RMB1.08 billion and adjusted net income 12.3%. The reported net loss of RMB249 million came entirely from a RMB1.44 billion investment loss on a company that listed in January, not from the recruitment business itself.",
+  "The capital return plan mattered most for the shares. Besides the $500 million buyback over 12 months, Kanzhun said it plans to return at least half of the previous year’s adjusted net income through dividends and buybacks over the next three years. That appeared to outweigh a softer fourth-quarter outlook of RMB2.19–2.23 billion, implying growth of only 5–7%."
+ ],
+ "context": [],
+ "src": [
+  {
+   "title": "Kanzhun Q3 2026 results (SEC)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001842827/000110465926131805/tm2630442d1_ex99-1.htm"
+  }
+ ]
+}

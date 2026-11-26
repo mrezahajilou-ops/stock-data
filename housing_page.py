@@ -138,8 +138,15 @@ class Fmt:
         return self.L['_q'].format(q=(int(k[5:7]) - 1) // 3 + 1, y=k[:4])
 
 
+def mid(tpl, n):
+    """A name placed after an article ('Le {n}', 'El {n}') starts in lower case, unless it is an abbreviation."""
+    if n and not tpl.startswith('{n}') and len(n) > 1 and n[0].isupper() and not n[1].isupper():
+        return n[0].lower() + n[1:]
+    return n
+
+
 def cls(v):
-    return '' if v is None else ('up' if v > 0 else 'dn' if v < 0 else '')
+    return '' if v is None or abs(v) < 0.05 else ('up' if v > 0 else 'dn')
 
 
 def load(sd, cc):
@@ -409,9 +416,9 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     if N.get('p') is not None:
         lead.append(L['lead_price'].format(n=D['price_n'], v=F.money(N['p'])))
     if N.get('rate') is not None and N.get('rate_1y') is not None:
-        lead.append(L['lead_rate'].format(n=N['rate_n'], v=F.rate(N['rate']), dir=L['from_down'] if N['rate'] < N['rate_1y'] else L['from_up'], p=F.rate(N['rate_1y'])))
+        lead.append(L['lead_rate'].format(n=mid(L['lead_rate'], N['rate_n']), v=F.rate(N['rate']), dir=L['from_down'] if N['rate'] < N['rate_1y'] else L['from_up'], p=F.rate(N['rate_1y'])))
     elif N.get('pol') is not None and N.get('pol_1y') is not None:
-        lead.append(L['lead_rate'].format(n=N['pol_n'], v=F.rate(N['pol']), dir=L['from_down'] if N['pol'] < N['pol_1y'] else L['from_up'], p=F.rate(N['pol_1y'])))
+        lead.append(L['lead_rate'].format(n=mid(L['lead_rate'], N['pol_n']), v=F.rate(N['pol']), dir=L['from_down'] if N['pol'] < N['pol_1y'] else L['from_up'], p=F.rate(N['pol_1y'])))
     if N.get('ry') is not None:
         lead.append(L['lead_rent'].format(dir=L['up'] if N['ry'] >= 0 else L['down'], v=F.pc(abs(N['ry']), 1, False)))
     rk = sorted([s for s in states if s.get('y1') is not None], key=lambda s: s['y1'])

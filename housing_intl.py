@@ -627,7 +627,7 @@ def ecb_mir_try(cc):
 
 # ---------------------------------------------------------------- Dubai Land Department (open data, transaction by transaction)
 DLD_URL = 'https://gateway.dubailand.gov.ae/open-data/transactions'
-DLD_FIRST = '2019-01'
+DLD_FIRST = '2026-01'   # the open data answers only the current calendar year; older months stay in housing_ae.json as they are collected
 
 
 def dld_window(d0, d1):
@@ -708,13 +708,20 @@ def dld_stats(prev):
         if m > 12:
             y, m = y + 1, 1
     todo += missing[::-1][:14]          # newest gaps first
-    t0 = time.time()
+    t0, fails = time.time(), 0
+    st = {k: v for k, v in st.items() if v.get('n')}
     for k in todo:
         if time.time() - t0 > 480:
             break
         try:
-            st[k] = dld_month(k)
-            say('dld', k, st[k]['n'], st[k]['m'])
+            x = dld_month(k)
+            say('dld', k, x['n'], x['m'])
+            if x['n']:
+                st[k] = x
+            elif k < pm:
+                fails += 1          # an empty older month: the open data does not go back that far (or the gateway is limiting us)
+                if fails >= 2:
+                    break
         except Exception as e:
             say('dld', k, 'failed', str(e)[:100])
     return st
@@ -772,7 +779,7 @@ def generic(cc):
             st = (prev or {}).get('dld') or {}
         out['dld'] = st
         ks = sorted(k for k in st if st[k].get('n', 0) >= 300)
-        if len(ks) >= 13:
+        if len(ks) >= 3:
             ser = lambda key: [[k, st[k]['m'][key]] for k in ks if st[k]['m'].get(key)]
             out.pop('idx', None)
             out['price'] = {'n': 'Dubai median sale price per m² (DLD)', 's': ser('all')}

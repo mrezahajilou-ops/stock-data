@@ -122,11 +122,11 @@ class Fmt:
             return '—'
         if round(v, d) == 0:
             v = 0.0
-        s = self.n(abs(v), d, False) + self.L['_pct']
+        s = ('%' + self.n(abs(v), d, False)) if self.L.get('_pctpre') else self.n(abs(v), d, False) + self.L['_pct']
         return self.iso((('+' if v > 0 else '−' if v < 0 else '') if sign else ('−' if v < 0 else '')) + s)
 
     def rate(self, v):
-        return '—' if v is None else self.iso(self.n(v, 2, False) + self.L['_pct'])
+        return '—' if v is None else self.iso(('%' + self.n(v, 2, False)) if self.L.get('_pctpre') else self.n(v, 2, False) + self.L['_pct'])
 
     def month(self, k):
         return '%s %s' % (self.L['_mon'][int(k[5:7]) - 1], k[:4])
@@ -469,9 +469,10 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     cmp_tbl = ('<div class="tw"><table><thead><tr><th></th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>' % (L['y1l'], L['y5l'], L['y10l'], L['y20l']) +
                ''.join('<tr><td class="nm">%s</td>%s</tr>' % (esc(l), ''.join('<td class="%s"%s>%s</td>' % (cls(v), ' style="background:rgba(79,163,122,.12)"' if v is not None and v == best[i] else '', F.pc(v, 0 if i else 1)) for i, v in enumerate(vals))) for l, vals in crow) +
                '</tbody></table></div>')
-    grow = ''.join('<div><small>%s</small><b>%s</b></div>' % (esc(l), F.money(10000 * (1 + v[2] / 100))) for l, v in crow if v[2] is not None)
+    base = {'KRW': 10000000, 'JPY': 1000000, 'IDR': 100000000, 'TRY': 100000, 'BRL': 10000}.get(X['cur'], 10000)
+    grow = ''.join('<div><small>%s</small><b>%s</b></div>' % (esc(l), F.money(base * (1 + v[2] / 100))) for l, v in crow if v[2] is not None)
     if grow:
-        cmp_tbl += '<h3 style="margin:16px 0 8px">%s</h3><div class="dg">%s</div><p class="src">%s</p>' % (L['became'].format(v=F.money(10000)), grow, L['price_only_note'])
+        cmp_tbl += '<h3 style="margin:16px 0 8px">%s</h3><div class="dg">%s</div><p class="src">%s</p>' % (L['became'].format(v=F.money(base)), grow, L['price_only_note'])
     dv = ''.join('<div class="dc"><div class="k"><span>%s</span><em class="%s">%s</em></div><div class="v">%s</div><div class="s">%s</div><svg data-sp="%s"></svg><div class="why">%s</div></div>' % (
         esc(label), tone, L['tone_' + tone], val, sub, key, why) for key, label, val, sub, why, tone in tiles)
     # types card
@@ -522,10 +523,11 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         regions_html = '<h2 id="regions" class="ac">%s</h2><p class="sub">%s</p>%s<div class="card"><div class="bar"><b style="font-weight:600">%s</b><span class="sp"></span>%s</div><div class="tw"><table><thead><tr>%s</tr></thead><tbody id="hs-st">%s</tbody></table></div><button class="more" id="hs-st-more"></button><p class="src">%s</p></div>' % (
             L['h_regions'].format(w=rn), L['regions_sub'].format(w=rn), mapblock, L['all_regions'].format(w=rns), sel, thead, srows, L['dash_note'].format(w=rn) + ' ' + L['src'] + ': ' + esc(X['src'][0]) + '.')
     D['narrow'] = L.get('_narrow')
+    D['pctpre'] = L.get('_pctpre')
     D['loc'], D['tx'] = L['_loc'], {'year': L['year'], 'change': L['change'], 'latest': L['latest'], 'ybyy': L['ybyy'], 'ynote': L['ynote'], 'rent': L['rents'],
                                     'nodata': L['nodata'], 'q': L['_qjs'], 'mo': L['_mo']}
     pdata = {k: D.get(k) for k in ('idx', 'idxy', 'real', 'price', 'pti', 'ptr', 'renty', 'rents_y', 'rent', 'tys', 'rates', 'cmp', 'vol', 'starts', 'sp', 'maxk',
-                                   'tysm', 'states', 'metros', 'geo', 'sym', 'cur', 'narrow', 'loc', 'tx', 'mapm', 'map0', 'tip', 'small', 'nshow', 'moreS', 'lessS', 'ylab', 'yfmt', 'rdec')}
+                                   'tysm', 'states', 'metros', 'geo', 'sym', 'cur', 'narrow', 'pctpre', 'loc', 'tx', 'mapm', 'map0', 'tip', 'small', 'nshow', 'moreS', 'lessS', 'ylab', 'yfmt', 'rdec')}
     if not states:
         pdata['states'], pdata['geo'] = [], {'w': 10, 'h': 10, 's': {}}
     pdata['rec'] = [['2008-04', '2009-06'], ['2020-02', '2020-06']]
@@ -541,7 +543,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
 {nav}
 <p class="stamp">{stamp}</p>
 <div class="lead">{' '.join(lead)}<small>{L['auto']}</small></div>
-<div class="kp">{''.join(kps)}</div>
+<div class="kp n{len(kps)}">{''.join(kps)}</div>
 {toc}
 <div id="prices" class="ac">{chart_card(L, 'price', L['ch_price'].format(**C), L['ch_price_s'], tabs['price'], 0, L['src'] + ': ' + srcs + '.')}</div>
 {types_html}

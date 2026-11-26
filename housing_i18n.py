@@ -627,6 +627,7 @@ AR = {
 }
 
 TR = {
+    '_pctpre': True,
     '_dec': ',', '_grp': '.', '_cur': '{n} {s}', '_pct': '%', '_loc': 'tr-TR', '_dir': 'ltr', '_qjs': 'Ç', '_mo': ' ay',
     '_mon': ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
     '_monl': ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],

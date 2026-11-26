@@ -485,6 +485,27 @@ def bis_load():
         v = num(r.get('OBS_VALUE:Observation Value'))
         if v is not None:
             BIS.setdefault(r['REF_AREA:Reference area'][:2], {}).setdefault('pol', {})[r['TIME_PERIOD:Time period or range'][:7]] = v
+    try:   # detailed series for areas missing from the selected set (UAE, Saudi Arabia ...)
+        z = zipfile.ZipFile(io.BytesIO(getb('https://data.bis.org/static/bulk/WS_DPP_csv_flat.zip', timeout=240)))
+        cand = {}
+        for r in csv.DictReader(io.TextIOWrapper(z.open(z.namelist()[0]), encoding='utf-8-sig')):
+            area = (r.get('REF_AREA:Reference area') or '')[:2]
+            if area not in ('AE', 'SA') or (BIS.get(area) or {}).get('nom'):
+                continue
+            v = num(r.get('OBS_VALUE:Observation Value'))
+            if v is None:
+                continue
+            key = r.get('KEY') or '|'.join(r.get(c, '')[:40] for c in r if c and c.split(':')[0] not in ('TIME_PERIOD', 'OBS_VALUE', 'OBS_STATUS', 'OBS_CONF', 'OBS_PRE_BREAK', 'STRUCTURE', 'STRUCTURE_ID', 'ACTION'))
+            cand.setdefault(area, {}).setdefault(key, {})[qm(r['TIME_PERIOD:Time period or range'])] = v
+        for area, ser in cand.items():
+            say('bis dpp', area, [(k[:160], len(v)) for k, v in ser.items()][:12])
+            idx = [(k, v) for k, v in ser.items() if 'ndex' in k and 'year' not in k.lower() and 'change' not in k.lower()]
+            if idx:
+                k, v = max(idx, key=lambda kv: len(kv[1]))
+                BIS[area]['nom'] = v
+                say('bis dpp pick', area, k[:200], len(v))
+    except Exception as e:
+        say('bis dpp', str(e)[:100])
     say('bis', len(BIS))
     return BIS
 
@@ -521,7 +542,7 @@ def es_regions():
 
 
 def pt_regions():
-    j = json.loads(get('https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0009490&Dim1=T&lang=EN', timeout=120))
+    j = json.loads(get('https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0009490&lang=EN', timeout=120))
     dados = j[0].get('Dados') or {}
     out = {}
     for per, rows in dados.items():
@@ -533,7 +554,7 @@ def pt_regions():
             v = num(row.get('valor'))
             if v is not None:
                 out.setdefault(row.get('geodsg'), {})[k] = v
-    say('pt ine', len(out), list(dados)[:3], list(out)[:30])
+    say('pt ine', len(out), list(dados)[:3], list(out)[:30], str(j[0])[:300] if not out else '')
     return {k: srt(v) for k, v in out.items()}
 
 
@@ -556,19 +577,24 @@ def br_fipezap():
             continue
         head = [str(c or '') for c in rows[hdr]]
         sub = [str(c or '') for c in rows[hdr + 1]] if hdr + 1 < len(rows) else []
-        cols = [i for i, c in enumerate(sub or head) if 'R$/m' in c]
-        if len(out) < 2:
-            say('fipezap', ws.title, head[:16], sub[:16], cols)
+        blocks, cur = {}, None
+        for i, c in enumerate(head):
+            if c.strip():
+                cur = c
+            blocks[i] = cur or ''
+        pcols = [i for i in range(len(sub)) if 'Preço médio' in blocks.get(i, '') and sub[i].strip() == 'Total']
+        dcol = next((i for i, c in enumerate(sub) if c.strip() == 'Data'), 1)
+        if len(out) < 1:
+            say('fipezap cols', ws.title, [(i, blocks[i]) for i in pcols], [c for c in head if c][:12], dcol)
         sale, rent = {}, {}
         for r in rows[hdr + 2:]:
-            if not r or not isinstance(r[1] if len(r) > 1 else None, dt.datetime) and not isinstance(r[0], dt.datetime):
+            if not r or len(r) <= dcol or not isinstance(r[dcol], dt.datetime):
                 continue
-            d0 = r[1] if isinstance(r[1], dt.datetime) else r[0]
-            k = d0.strftime('%Y-%m')
-            if len(cols) >= 1 and num(r[cols[0]]):
-                sale[k] = num(r[cols[0]])
-            if len(cols) >= 2 and num(r[cols[1]]):
-                rent[k] = num(r[cols[1]])
+            k = r[dcol].strftime('%Y-%m')
+            if len(pcols) >= 1 and num(r[pcols[0]]):
+                sale[k] = num(r[pcols[0]])
+            if len(pcols) >= 2 and num(r[pcols[1]]):
+                rent[k] = num(r[pcols[1]])
         if sale:
             out[ws.title] = {'sale': srt(sale), 'rent': srt(rent)}
     say('fipezap cities', len(out), list(out)[:60])

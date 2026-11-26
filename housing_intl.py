@@ -351,7 +351,6 @@ def ie_debug():
 
 
 def ie():
-    ie_debug()
     idx, reg = {}, {}
     for k, v in jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM09/JSON-stat/2.0/en'):
         if not k['STATISTIC'][1].startswith('Residential Property Price Index'):
@@ -365,27 +364,28 @@ def ie():
         (s for l, s in reg.items() if 'national' in l.lower()), {})
     say('ie rppi', len(reg), list(reg)[:8])
     med = {}
-    try:
-        rows = jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM04/JSON-stat/2.0/en')
-        dims_debug('x/HPM04/a/b', rows)
-        for k, v in rows:
-            if 'Median' not in k['STATISTIC'][1]:
-                continue
+    try:   # HPM07: moving 12-month median sale price by county, monthly (all buyers, existing + new, executions)
+        raw = {}
+        for k, v in jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM07/JSON-stat/2.0/en'):
             labs = {d: c[1] for d, c in k.items()}
+            if 'Median' not in labs.get('STATISTIC', ''):
+                continue
+            if any(c in ('Filings', 'Existing', 'New') or (c.startswith('Household Buyer')) for c in labs.values()):
+                continue
             t = next(c for d, c in k.items() if d.startswith('TLIST'))
-            area = next((c for d, c in labs.items() if c.replace('Co. ', '').strip() in IE_COUNTIES or c == 'Ireland' or c.startswith('Dublin')), None)
-            if not area:
-                continue
-            if any(('All' not in c and ('Dwelling' in d or 'Buyer' in d or 'Stamp' in d or 'Type' in d)) for d, c in labs.items() if not d.startswith('TLIST') and d != 'STATISTIC' and c != area):
-                continue
-            med.setdefault(area.replace('Co. ', '').strip(), {})[qm(t[0])] = v
+            area = next((c for d, c in labs.items() if not d.startswith('TLIST') and d != 'STATISTIC' and c not in ('Executions', 'All Dwelling Statuses', 'All Buyer Types')), None)
+            if area:
+                raw.setdefault(area, {})[qm(t[0])] = v
+        for c in IE_COUNTIES + ['All']:
+            src = raw.get(c) or raw.get(c + ' County') or raw.get('County ' + c)
+            if src:
+                med['Ireland' if c == 'All' else c] = src
+        say('ie hpm07 areas', sorted(raw)[:50])
     except Exception as e:
         say('ie median', str(e)[:100])
     rent = {}
     try:
         rows = jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en')
-        dims_debug('x/RIQ02/a/b', rows)
-        say('RIQ02 national-ish', sorted({c[1] for k, _ in rows for d, c in k.items() if 'Ireland' in c[1] or 'State' in c[1] or 'National' in c[1] or ',' not in c[1]})[:60])
         for k, v in rows:
             labs = {d: c[1] for d, c in k.items()}
             t = next(c for d, c in k.items() if d.startswith('TLIST'))
@@ -400,7 +400,7 @@ def ie():
     say('ie', len(med), len(rent), sorted((med.get('Ireland') or {}).items())[-1:], sorted((rent.get('Ireland') or {}).items())[-1:])
     return {'code': 'ie', 'name': 'Ireland', 'cur': 'EUR', 'sym': '€', 'oecd_code': 'IRL',
             'idx': {'n': 'Residential Property Price Index', 's': srt(nat)},
-            'price': {'n': 'Median sale price', 's': srt(med.get('Ireland', {}))},
+            'price': {'n': 'Median sale price (12 months)', 's': srt(med.get('Ireland', {}))},
             'rent': {'n': 'Average monthly rent (RTB, new tenancies)', 's': srt(rent.get('Ireland', {}))},
             'rates': {'New mortgage lending rate': ecb_mir('IE'), 'ECB deposit rate': ecb_rate()},
             'rindex': {l: srt(s) for l, s in reg.items()},
@@ -418,13 +418,16 @@ def rba(table, want):
     txt = get('https://www.rba.gov.au/statistics/tables/csv/%s-data.csv' % table)
     rows = list(csv.reader(io.StringIO(txt)))
     title = next(r for r in rows if r and r[0] == 'Title')
-    say('rba', table, title[:4], [r for r in rows if r and re.match(r'\d', r[0].strip())][-2:])
     cols = {lab: next((i for i, t in enumerate(title) if t.strip().lower() == w.lower()), None) for lab, w in want.items()}
     out = {lab: {} for lab in want}
     for r in rows:
-        if not r or not re.match(r'\d{1,2}-[A-Za-z]{3}-\d{4}$', r[0].strip()):
+        d0 = r[0].strip() if r else ''
+        if re.match(r'\d{1,2}-[A-Za-z]{3}-\d{4}$', d0):
+            m = dt.datetime.strptime(d0, '%d-%b-%Y').strftime('%Y-%m')
+        elif re.match(r'\d{1,2}/\d{1,2}/\d{4}$', d0):
+            m = dt.datetime.strptime(d0, '%d/%m/%Y').strftime('%Y-%m')
+        else:
             continue
-        m = dt.datetime.strptime(r[0].strip(), '%d-%b-%Y').strftime('%Y-%m')
         for lab, i in cols.items():
             if i is not None and i < len(r) and num(r[i]) is not None:
                 out[lab][m] = num(r[i])
@@ -447,8 +450,8 @@ def au():
         elif 'number' in meas:
             count.setdefault(reg, {})[qm(r['TIME_PERIOD'])] = v * mult
     say('au abs', len(price), sorted(price.get('Australia', {}).items())[-1:])
-    rates = rba('f5', {'Standard variable mortgage (owner-occupier)': 'Lending rates; Housing loans; Banks; Variable; Standard; Owner-occupier',
-                       'Discounted variable mortgage (owner-occupier)': 'Lending rates; Housing loans; Banks; Variable; Discounted; Owner-occupier'})
+    rates = rba('f5', {'Discounted variable mortgage (owner-occupier)': 'Lending rates; Housing loans; Banks; Variable; Discounted; Owner-occupier',
+                       '3-year fixed mortgage (owner-occupier)': 'Lending rates; Housing loans; Banks; 3-year fixed; Owner-occupier'})
     try:
         rates.update(rba('f1.1', {'RBA cash rate target': 'Cash Rate Target'}))
     except Exception as e:

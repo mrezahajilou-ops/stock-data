@@ -120,7 +120,14 @@ def main():
         print(m, len(rows), 'of', len(items))
         if len(rows) < len(items) // 2:
             print('too few rows for', m, '- not written'); continue
-        json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'market': m, 'cur': CUR[m], 'rows': rows},
+        # dollars per local unit: some companies (Petrobras, Vale, Embraer...) report in US dollars
+        fx = None
+        try:
+            _, meta = chart('%s=X' % CUR[m])
+            fx = (meta or {}).get('regularMarketPrice')
+        except Exception as ex:
+            print('fx', m, ex)
+        json.dump({'as_of': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ'), 'market': m, 'cur': CUR[m], 'usd_fx': fx, 'rows': rows},
                   open(os.path.join(OUT, m + '.json'), 'w'), separators=(',', ':'), ensure_ascii=False)
         k = next(iter(rows))
         print(k, json.dumps({a: b for a, b in rows[k].items() if a not in ('wk', 'ts')}, ensure_ascii=False)[:900])

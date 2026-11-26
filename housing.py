@@ -189,13 +189,9 @@ def construction():
     f['PERMIT'] = monthly_sheet(wb, sa, 1)
     wb = xlsx('https://www.census.gov/construction/nrs/xls/sold_cust.xlsx')
     f['HSN1F'] = monthly_sheet(wb, lambda t: t.lower().startswith('month'), 6)
-    try:   # houses for sale at the end of the month -> months' supply = for sale / (yearly sales rate / 12)
+    try:   # new houses for sale: seasonally adjusted months' supply is the 7th column of the monthly sheet
         wb = xlsx('https://www.census.gov/construction/nrs/xls/fsale_cust.xlsx')
-        say('for-sale sheets', [w.title for w in wb.worksheets])
-        fs = monthly_sheet(wb, lambda t: t.lower().startswith('month'), 6)
-        f['FORSALE'] = fs
-        sold = dict(f['HSN1F'])
-        f['MSACSR'] = [[d, round(v / (sold[d] / 12), 1)] for d, v in fs if sold.get(d)]
+        f['MSACSR'] = monthly_sheet(wb, lambda t: t.lower().startswith('month'), 6)
     except Exception as e:
         LOG.append('for-sale file: %s' % str(e)[:80])
     for k in ('HOUST', 'PERMIT', 'HSN1F'):

@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""Text of the housing country pages (housing_page.py), per language. Written natively per language, not machine-translated.
+Placeholders: {name} country, {in_} 'in <country>' phrase, {adj} adjective form, {idx} local stock index, {w} region word."""
+
+EN = {
+    '_dec': '.', '_grp': ',', '_cur': '{s}{n}', '_pct': '%', '_loc': 'en-US', '_dir': 'ltr', '_qjs': 'Q', '_mo': ' mo',
+    '_mon': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    '_monl': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    '_q': 'Q{q} {y}',
+    'c': {}, 'country': 'Country',
+}
+
+DE = {
+    '_dec': ',', '_grp': '.', '_cur': '{n} {s}', '_pct': ' %', '_loc': 'de-DE', '_dir': 'ltr', '_qjs': 'Q', '_mo': ' Mon.',
+    '_mon': ['Jan.', 'Feb.', 'März', 'Apr.', 'Mai', 'Juni', 'Juli', 'Aug.', 'Sep.', 'Okt.', 'Nov.', 'Dez.'],
+    '_monl': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    '_q': 'Q{q} {y}',
+    'c': {'de': {'name': 'Deutschland', 'in_': 'in Deutschland', 'adj': 'deutschen', 'gen': 'Deutschlands'},
+          'ch': {'name': 'Schweiz', 'in_': 'in der Schweiz', 'adj': 'Schweizer', 'gen': 'der Schweiz'},
+          'at': {'name': 'Österreich', 'in_': 'in Österreich', 'adj': 'österreichischen', 'gen': 'Österreichs'}},
+    'country': 'Land',
+    'n_House price index (Eurostat)': 'Häuserpreisindex (Eurostat)', 'n_Residential property price index (BIS)': 'Wohnimmobilienpreisindex (BIZ)',
+    'n_oecd_idx': 'Wohnimmobilienpreisindex (OECD)',
+    't_New dwellings': 'Neubau', 't_Existing dwellings': 'Bestandsimmobilien',
+    'r_New mortgage lending rate': 'Bauzins (Neugeschäft)', 'r_ECB deposit rate': 'EZB-Einlagenzins', 'r_Central bank policy rate': 'SNB-Leitzins',
+    'd_rate_sub': '{m} · {d} Pkt. ggü. Vorjahr',
+    'why_mort': 'Fast jeder Käufer finanziert mit Kredit: Der Bauzins bestimmt die Monatsrate und damit, was Käufer bieten können. Sinkende Zinsen holen Käufer zurück, steigende bremsen die Preise.',
+    'why_pol': 'Der Leitzins bestimmt, was sich Banken Geld kosten lassen – die Bauzinsen folgen ihm mit Verzögerung.',
+    'k_pti': 'Preis-Einkommens-Verhältnis', 'k_ptr': 'Preis-Miet-Verhältnis', 'd_vsavg': 'ggü. dem langjährigen Durchschnitt · {q}',
+    'why_pti': 'Immobilienpreise im Verhältnis zu den Haushaltseinkommen (OECD-Index). Weit über dem Durchschnitt können sich weniger Käufer eine Immobilie leisten – das begrenzt den Preisanstieg.',
+    'why_ptr': 'Kaufpreise im Verhältnis zu den Mieten (OECD-Index). Ist Kaufen im Vergleich zum Mieten teuer, sind die Mietrenditen dünn und die Preise steigen meist langsamer, bis die Mieten aufholen.',
+    'k_rentg': 'Mietanstieg', 'd_yoy': '{m} · ggü. Vorjahr',
+    'why_rent': 'Die Miete ist der Ertrag einer vermieteten Wohnung und die Alternative zum Kauf. Steigen die Mieten schneller als die Preise, wächst die Mietrendite – das stützt die Werte.',
+    'k_real': 'Reale Immobilienpreise', 'd_real': '{q} · inflationsbereinigt ggü. Vorjahr · {p} ggü. Hoch {y}',
+    'why_real': 'Preise nach Abzug der Inflation. Liegen sie real deutlich unter dem alten Hoch, ist Luft nach oben; auf Rekordniveau setzt die Erschwinglichkeit die Grenze.',
+    'k_infl': 'Inflation', 'why_infl': 'Immobilien sind Sachwerte: Über lange Zeiträume halten die Preise meist mit der Inflation Schritt – und hohe Inflation zwingt die Notenbank, die Zinsen hochzuhalten.',
+    'k_pg': 'Preisdynamik', 'why_mom': 'Preistrends halten oft eine Weile an – in beide Richtungen –, weil Kaufabschlüsse Monate brauchen.',
+    'shaded': 'Grau hinterlegt: globale Rezessionen.', 'tab_index': 'Index', 's_real': 'Immobilienpreise real (OECD/BIZ)',
+    'note_real': 'Realer Immobilienpreisindex: Nominalpreise geteilt durch die Verbraucherpreise.', 'tab_real': 'Inflationsbereinigt', 'tab_price': 'In {s}',
+    's_yoy': 'Immobilienpreise, Veränderung ggü. Vorjahr', 'note_yoy': 'Veränderung gegenüber dem Vorjahr. Unter null: Die Preise liegen unter dem Vorjahresniveau.', 'tab_yoy': 'Jährliche Veränderung',
+    's_home': 'Immobilienpreise', 's_gold': 'Gold', 's_rents': 'Mieten', 's_infl': 'Inflation',
+    'note_cmp': 'Alle Linien starten beim ersten gezeigten Monat bei 100. Aktienindex ohne Dividenden, Gold in Landeswährung umgerechnet. Nur Preise – eine Immobilie bringt zusätzlich Miete (oder spart sie).',
+    'tab_rates': 'Zinsen', 's_pti': 'Preis-Einkommens-Verhältnis (OECD)', 's_ptr': 'Preis-Miet-Verhältnis (OECD)',
+    'note_aff': 'OECD-Indizes (2015 = 100). Über dem langjährigen Durchschnitt heißt: Wohnen ist im Verhältnis zu Einkommen bzw. Mieten teuer.', 'tab_aff': 'Erschwinglichkeit',
+    'note_pvr': 'Linke Achse: Veränderung der Immobilienpreise ggü. Vorjahr. Rechte Achse: Zins.', 'tab_pvr': 'Preise vs. Zinsen',
+    's_rents_y': 'Mieten, ggü. Vorjahr', 'tab_rentg': 'Mietanstieg', 'tab_rentl': 'Mietniveau',
+    'y5': '5 J.', 'y10': '10 J.', 'y20': '20 J.', 'all': 'Alle',
+    'lead_p': 'Die {adj} Immobilienpreise liegen {v} {dir} Vorjahresniveau ({src}, {m}).',
+    'up': 'über dem', 'down': 'unter dem',
+    'lead_price': '{n}: {v}.', 'lead_rate': 'Der {n} liegt bei {v}, {dir} {p} vor einem Jahr.', 'from_down': 'nach', 'from_up': 'nach',
+    'lead_rent': 'Die Mieten liegen {v} {dir} Vorjahr.', 'lead_reg': 'In {k} von {n} Regionen steigen die Preise; vorn liegt {top} ({tv}), Schlusslicht ist {low} ({lv}).',
+    'y1s': '1 J.', 'y5s': '5 J.', 'y10s': '10 J.', 'k_p1': 'Immobilienpreise, 1 Jahr', 'ago': 'Vorjahr', 'k_rent': 'Miete',
+    'vs_avg_oecd': 'ggü. langjährigem Durchschnitt (OECD)', 'k_realpeak': 'Real vs. Hoch {y}', 'after_infl': 'inflationsbereinigt',
+    'year': 'Jahr', 'h_idx': 'Preisindex', 'rents': 'Mieten', 'avg': 'Durchschnitt', 'to': 'bis {m}', 'price_only': 'nur Kurs',
+    'y1l': '1 Jahr', 'y5l': '5 Jahre', 'y10l': '10 Jahre', 'y20l': '20 Jahre', 'became': 'Was aus {v} in 10 Jahren wurde',
+    'price_only_note': 'Nur die Preisentwicklung: Eine Immobilie bringt zusätzlich Miete, Aktien zahlen Dividenden.',
+    'tone_pos': 'stützt die Preise', 'tone_neg': 'belastet die Preise', 'tone_neu': 'neutral',
+    'types_t': 'Neubau vs. Bestand', 'types_s': 'Preisindex nach Art der Immobilie.', 'types_t2': 'Nach Immobilienart', 'types_s2': 'Aktueller Indexstand und Veränderung.',
+    'src': 'Quellen', 'region': 'Region', 'regions': 'Regionen', 'h_price': 'Preis', 'rent1y': 'Miete 1 Jahr', 'yield': 'Mietrendite',
+    'sort': 'Sortieren', 'sort_def': 'Standard', 'sort_az': 'Name A–Z', 'sort_hi': 'Höchster Wert: {l}', 'sort_lo': 'Niedrigster Wert: {l}', 'sort_up': 'Stärkster Anstieg: {l}', 'sort_down': 'Stärkster Rückgang: {l}',
+    'show_all': 'Alle {n} {w} anzeigen', 'show_5': 'Nur die ersten 5 zeigen', 'map_aria': 'Karte der Immobilienpreise in {c}',
+    'h_regions': 'Immobilienpreise nach {w}', 'regions_sub': 'Tippen Sie auf eine Region in der Karte oder eine Zeile der Tabelle, um die Werte Jahr für Jahr zu sehen.',
+    'all_regions': 'Alle {w}', 'dash_note': '— bedeutet: Die Quelle veröffentlicht für diese Region keinen Wert.',
+    'change': 'Veränderung', 'latest': 'aktuell', 'ybyy': 'Jahr für Jahr', 'ynote': 'Dezember jedes Jahres bzw. letzter Wert des Jahres; die letzte Zeile ist der aktuelle Stand.', 'nodata': 'Keine Daten.',
+    'toc_prices': 'Preise', 'toc_years': 'Jahr für Jahr', 'toc_vs': 'vs. Aktien & Gold', 'toc_drivers': 'Preistreiber', 'toc_rates': 'Bauzinsen', 'toc_regions': 'Nach {w}', 'toc_rents': 'Mieten',
+    'stamp': 'Datenstand {d} · jede Reihe wird aktualisiert, sobald die Quelle neue Zahlen veröffentlicht · Preise in {c}',
+    'h1': 'Immobilienmarkt {name}: Hauspreise, Mieten und Bauzinsen',
+    'sub': 'Der Immobilienmarkt {in_} gelesen wie ein Aktienmarkt: Preise und ihre Geschichte, die Kräfte dahinter, Mieten und der Vergleich mit dem {idx} und Gold.',
+    'auto': 'Automatisch aus den aktuellen Daten dieser Seite erstellt. Keine Anlageberatung.',
+    'ch_price': 'Immobilienpreise {in_}', 'ch_price_s': 'Wechseln Sie zwischen Index, inflationsbereinigten Preisen und jährlicher Veränderung.',
+    'h_years': 'Jahr für Jahr: So haben sich Immobilienpreise und Mieten {in_} verändert', 'years_sub': 'Veränderung von Dezember zu Dezember (bzw. letzter Wert des Jahres); das laufende Jahr bis zum aktuellen Monat.',
+    'h_vs': 'Immobilien {in_} vs. {idx}, Gold und Inflation', 'growth100': 'Wertentwicklung von 100', 'prices_only_in': 'Nur Preise, in {c}.',
+    'total_change': 'Gesamte Preisveränderung', 'best': 'Der Spitzenreiter jedes Zeitraums ist hervorgehoben.',
+    'h_drivers': 'Was die Immobilienpreise {in_} bewegt', 'drivers_sub': 'Die Kennzahlen, auf die Immobilieninvestoren achten – mit aktuellem Stand und Bedeutung für die Preise. Linien: die letzten fünf Jahre.',
+    'h_rates': 'Bauzinsen und Erschwinglichkeit', 'h_rents': 'Mieten', 'more_markets': 'Weitere Immobilienmärkte',
+    'title': 'Immobilienmarkt {name}: Hauspreise, Mieten und Bauzinsen aktuell',
+    'desc': 'Immobilienpreise {in_} {v} {dir} Vorjahr: Preisindex, Bauzinsen, Mieten, Erschwinglichkeit und Vergleich mit Aktien und Gold – mit Charts und Jahrestabelle.',
+    'q_dir': 'Steigen oder fallen die Immobilienpreise {in_}?', 'a_dir': 'Die {adj} Immobilienpreise liegen {v} {dir} Vorjahresniveau ({src}, {m}); über zehn Jahre beträgt die Veränderung {t}.',
+    'q_price': 'Was kostet eine Immobilie {in_}?', 'a_price': '{n}: {v} ({m}).',
+    'q_rate': 'Wie hoch sind die Bauzinsen {in_}?', 'a_rate': '{n}: {v}.',
+    'q_over': 'Sind Immobilien {in_} überbewertet?', 'a_over': 'Im Verhältnis zu den Einkommen liegen die Preise {pti} gegenüber ihrem langjährigen Durchschnitt (OECD), im Verhältnis zu den Mieten {ptr}. Das ist ein Vergleich mit der Vergangenheit, keine Prognose.',
+    'p1': 'Diese Seite verfolgt den Immobilienmarkt {in_} so, wie ein Anleger eine Aktie verfolgt: wo die Preise stehen, wie sie dorthin kamen und was sie gerade bewegt. Der Preistrend stammt aus dem {src}, die langfristigen Bewertungskennzahlen von der OECD. Jede Zahl wird aktualisiert, sobald die Quelle neue Daten veröffentlicht.',
+    'p_reg': 'Am stärksten stiegen die Preise zuletzt in {top}; am schwächsten entwickelten sich {low}.',
+    'p_drivers': 'Was bewegt die Preise? Kurzfristig die Bauzinsen: Sie bestimmen die Monatsrate und damit, was Käufer bieten können. Mittelfristig das Angebot – wie viele Wohnungen gebaut und angeboten werden. Langfristig Einkommen und Mieten, deshalb stehen Preis-Einkommens- und Preis-Miet-Verhältnis, jeweils gemessen am eigenen langjährigen Durchschnitt, direkt neben dem Zins.',
+    'seo_h': 'Über die Daten zum Immobilienmarkt {in_}', 'faq': 'Häufige Fragen',
+    'src_European Central Bank': 'Europäische Zentralbank', 'src_Bank for International Settlements': 'Bank für Internationalen Zahlungsausgleich (BIZ)',
+}
+
+
+LANGS = {'en': EN, 'de': DE}
+
+
+def lang(code):
+    base = dict(EN)
+    base.update(LANGS.get(code, {}))
+    return base

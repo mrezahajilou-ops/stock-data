@@ -2214,10 +2214,19 @@ def finish(recs, market):
         implied = mk["mcap"] / mk["price"]
         last = r["annual"][-1]
         if r.get("foreign"):
+            # keep each year's own share count from the filing and convert it to the listed share (ADS ratio = the share
+            # count today's price refers to / the latest reported count). Overwriting every year with today's count made
+            # the share history flat ("0.0%" every year) and every past EPS wrong (Sea Limited, Nov 2026).
+            base = last.get("shares_diluted")
+            ratio = implied / base if base else None
+            if ratio and not (1 / 50 < ratio < 50):
+                ratio = None
             for row in r["annual"]:
-                row["shares_diluted"] = implied
+                own = row.get("shares_diluted")
+                row["shares_diluted"] = own * ratio if (own and ratio) else (implied if row is last else None)
+                sh = row["shares_diluted"]
                 for k, src in PS_SRC:
-                    row[k] = r4(safe_div(row.get(src), implied)) if row.get(src) is not None else None
+                    row[k] = r4(safe_div(row.get(src), sh)) if (row.get(src) is not None and sh) else None
             r["per_share_basis"] = "market"
             continue
         # US filers: a stock split after the last annual report leaves the annual EPS on the old basis

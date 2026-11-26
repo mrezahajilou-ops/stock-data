@@ -261,6 +261,15 @@
     var A = c.A, R = c.R, q = c.q, tt = c.tt, k = c.k;
     var KA = k.a_inc || [], KQ = k.q_inc || [];
     var YT = ttmInc(k), Tt = YT[YT.length - 1] || {};
+    // the quarterly statements behind TTM often lack EPS, EBITDA, shares or SBC (foreign filers): take them from the
+    // record's own trailing-12-month row when it covers the same period, instead of showing a blank
+    var DT = (c.d && c.d.ttm) || {};
+    if (Tt.end && DT.end && Math.abs(days(dd(Tt.end), dd(DT.end))) < 20) {
+      [['DilutedEPS', 'eps'], ['EBITDA', 'ebitda'], ['_sh', 'shares_diluted'], ['StockBasedCompensation', 'sbc'], ['InterestExpense', 'interest_exp'],
+       ['PretaxIncome', 'pretax_income'], ['TaxProvision', 'tax']].forEach(function (p) { if (nn(Tt[p[0]]) && !nn(DT[p[1]])) Tt[p[0]] = DT[p[1]]; });
+      if (Tt.TotalRevenue && nn(Tt._em) && !nn(Tt.EBITDA)) Tt._em = Tt.EBITDA / Tt.TotalRevenue;
+      if (nn(Tt._tr) && Tt.PretaxIncome > 0 && !nn(Tt.TaxProvision)) Tt._tr = Tt.TaxProvision / Tt.PretaxIncome;
+    }
     var lastA = A[A.length - 1] || {};
     var has = !!Tt.TotalRevenue && newer(Tt.end, lastA.fy_end);
     // some companies define revenue differently in the two sources (banks and brokers net of interest, excise taxes, pass-through costs):
@@ -271,7 +280,24 @@
     var yc = ycols(c), cols = (has ? ['TTM'] : []).concat(yc[0]), sub = (has ? [mon(dd(Tt.end))] : []).concat(yc[1]);
     function ser(fn, tv) { return (has ? [tv === undefined ? D : tv] : []).concat(R.map(function (a, i) { return fn(a, R[i + 1]); })); }
     function g(key) { return function (a, p) { return (p && !nn(a[key]) && p[key] > 0) ? sp(a[key] / p[key] - 1) : D; }; }
+    function gpv(cur, prev) {
+      if (nn(cur) || nn(prev) || prev === 0) return D;
+      if (prev > 0) return cur >= 0 ? sp(cur / prev - 1) : T('turned to a loss');
+      if (cur > 0) return T('turned profitable');
+      return cur > prev ? T('loss narrowed') : (cur < prev ? T('loss widened') : D);
+    }
+    function gp(key) { return function (a, p) { return p ? gpv(a[key], p[key]) : D; }; }
     function v(key, f) { f = f || usd; return function (a) { return f(a[key]); }; }
+    // a line the SEC data lacks for a year (no 'gross profit' tag, foreign filers...) from the second source's statement for
+    // the same year, scaled by the two sources' revenue for that year (handles home currency); skipped when they disagree
+    function yfb(a, key) {
+      var y = match(KA, a.fy_end); if (nn(y[key]) || !y.TotalRevenue || !a.revenue) return null;
+      var f = a.revenue / y.TotalRevenue; if (!(f > 0) || (!c.fx && Math.abs(f - 1) > 0.06)) return null;
+      return y[key] * f;
+    }
+    function fv(a, key, yk) { return !nn(a[key]) ? a[key] : yfb(a, yk); }
+    function vf(key, yk, f) { f = f || usd; return function (a) { return f(fv(a, key, yk)); }; }
+    function mf(num, yk) { return function (a) { var x = fv(a, num, yk); return (!nn(x) && a.revenue) ? P1(x / a.revenue) : D; }; }
     var P = {};
     if (Tt.end) {
       for (var j = YT.length - 1; j >= 0; j--) { var dy = days(dd(Tt.end), dd(YT[j].end)); if (dy > 330 && dy < 400) { P = YT[j]; break; } }
@@ -289,39 +315,61 @@
       }
     }
     function tg(key) { return (!nn(Tt[key]) && P[key] > 0) ? sp(Tt[key] / P[key] - 1) : D; }
+    // no year-earlier TTM (foreign filers: the source keeps only five quarters): the latest quarter against the same
+    // quarter a year earlier, marked * and explained under the table
+    var qstar = false;
+    function lqy(j, prof) {
+      var L = q[q.length - 1], Y = null;
+      if (!L || !Tt.end || Math.abs(days(dd(Tt.end), dd(L[0]))) > 20) return D;
+      for (var i = q.length - 2; i >= 0; i--) { var dy = days(dd(L[0]), dd(q[i][0])); if (dy > 340 && dy < 390) { Y = q[i]; break; } }
+      if (!Y) return D;
+      var r = prof ? gpv(L[j], Y[j]) : ((Y[j] > 0 && !nn(L[j])) ? sp(L[j] / Y[j] - 1) : D);
+      if (r === D) return D;
+      qstar = true; return r + '*';
+    }
+    function lqk(key) {
+      var L = q[q.length - 1], Y = null;
+      if (!L || !Tt.end || Math.abs(days(dd(Tt.end), dd(L[0]))) > 20) return D;
+      for (var i = q.length - 2; i >= 0; i--) { var dy = days(dd(L[0]), dd(q[i][0])); if (dy > 340 && dy < 390) { Y = q[i]; break; } }
+      if (!Y) return D;
+      var r = gpv(match(KQ, L[0])[key], match(KQ, Y[0])[key]);
+      if (r === D) return D;
+      qstar = true; return r + '*';
+    }
+    function tgx(key, j, prof) { var r = prof ? ((!nn(Tt[key]) && !nn(P[key])) ? gpv(Tt[key], P[key]) : D) : tg(key); return r === D ? lqy(j, prof) : r; }
     function tv(key, f) { return (f || usd)(Tt[key]); }
     function ka(key, f, alt) { return function (a) { var x = match(KA, a.fy_end)[key]; if (nn(x) && alt) x = typeof alt === 'function' ? alt(a) : a[alt]; return (f || usd)(x); }; }
     var rows = [
       ['Revenue', ser(v('revenue'), tv('TotalRevenue')), ''],
-      ['Revenue growth', ser(g('revenue'), tg('TotalRevenue')), 'g'],
-      ['Cost of revenue', ser(function (a) { return (!nn(a.revenue) && !nn(a.gross_profit)) ? usd(a.revenue - a.gross_profit) : D; }, tv('CostOfRevenue')), ''],
-      ['Gross profit', ser(v('gross_profit'), tv('GrossProfit')), 'b'],
-      ['Research & development', ser(v('rnd'), tv('ResearchAndDevelopment')), ''],
-      ['SG&A and other operating expenses', ser(function (a) { return (!nn(a.gross_profit) && !nn(a.op_income)) ? usd(a.gross_profit - a.op_income - (a.rnd || 0)) : D; }, tv('_oth')), ''],
-      ['Operating income', ser(v('op_income'), tv('OperatingIncome')), 'b'],
-      ['Interest expense', ser(v('interest_exp'), tv('InterestExpense')), ''],
+      ['Revenue growth', ser(g('revenue'), tgx('TotalRevenue', 1)), 'g'],
+      ['Cost of revenue', ser(function (a) { var gp = fv(a, 'gross_profit', 'GrossProfit'); return (!nn(a.revenue) && !nn(gp)) ? usd(a.revenue - gp) : D; }, tv('CostOfRevenue')), ''],
+      ['Gross profit', ser(vf('gross_profit', 'GrossProfit'), tv('GrossProfit')), 'b'],
+      ['Research & development', ser(vf('rnd', 'ResearchAndDevelopment'), tv('ResearchAndDevelopment')), ''],
+      ['SG&A and other operating expenses', ser(function (a) { var gp = fv(a, 'gross_profit', 'GrossProfit'), op = fv(a, 'op_income', 'OperatingIncome'); return (!nn(gp) && !nn(op)) ? usd(gp - op - (fv(a, 'rnd', 'ResearchAndDevelopment') || 0)) : D; }, tv('_oth')), ''],
+      ['Operating income', ser(vf('op_income', 'OperatingIncome'), tv('OperatingIncome')), 'b'],
+      ['Interest expense', ser(vf('interest_exp', 'InterestExpense'), tv('InterestExpense')), ''],
       ['Interest & investment income', ser(ka('InterestIncome'), tv('InterestIncome')), ''],
       ['Pretax income', ser(ka('PretaxIncome', usd, 'pretax'), tv('PretaxIncome')), ''],
       ['Income tax', ser(ka('TaxProvision', usd, 'tax'), tv('TaxProvision')), ''],
       ['Net income', ser(v('net_income'), tv('NetIncome')), 'b'],
-      ['Net income growth', ser(g('net_income'), tg('NetIncome')), 'g'],
+      ['Net income growth', ser(gp('net_income'), tgx('NetIncome', 2, 1)), 'g'],
       ['Shares outstanding (diluted)', ser(function (a) { return a.shares_diluted ? (a.shares_diluted / 1e9).toFixed(2) + 'B' : D; }, tv('_sh', shr)), ''],
       ['Shares change', ser(g('shares_diluted'), tg('_sh')), 'g'],
       ['EPS (basic)', ser(ka('BasicEPS', eps), tv('BasicEPS', eps)), ''],
       ['EPS (diluted)', ser(v('eps_diluted', eps), tv('DilutedEPS', eps)), 'b'],
-      ['EPS growth', ser(g('eps_diluted'), tg('DilutedEPS')), 'g'],
+      ['EPS growth', ser(gp('eps_diluted'), (!nn(Tt.DilutedEPS) && !nn(P.DilutedEPS)) ? gpv(Tt.DilutedEPS, P.DilutedEPS) : lqk('DilutedEPS')), 'g'],
       ['Margins', [], 'sec'],
-      ['Gross margin', ser(v('gross_margin', P1), tv('_gm', P1)), ''],
-      ['Operating margin', ser(v('op_margin', P1), tv('_om', P1)), ''],
+      ['Gross margin', ser(function (a) { return !nn(a.gross_margin) ? P1(a.gross_margin) : mf('gross_profit', 'GrossProfit')(a); }, tv('_gm', P1)), ''],
+      ['Operating margin', ser(function (a) { return !nn(a.op_margin) ? P1(a.op_margin) : mf('op_income', 'OperatingIncome')(a); }, tv('_om', P1)), ''],
       ['Net margin', ser(v('net_margin', P1), tv('_nm', P1)), ''],
-      ['EBITDA', ser(v('ebitda'), tv('EBITDA')), ''],
-      ['EBITDA margin', ser(v('ebitda_margin', P1), tv('_em', P1)), ''],
+      ['EBITDA', ser(vf('ebitda', 'EBITDA'), tv('EBITDA')), ''],
+      ['EBITDA margin', ser(function (a) { return !nn(a.ebitda_margin) ? P1(a.ebitda_margin) : mf('ebitda', 'EBITDA')(a); }, tv('_em', P1)), ''],
       ['Effective tax rate', ser(function (a) { var yk = match(KA, a.fy_end), pt = !nn(yk.PretaxIncome) ? yk.PretaxIncome : a.pretax, tx = !nn(yk.TaxProvision) ? yk.TaxProvision : a.tax; return (pt > 0 && !nn(tx) && Math.abs(tx / pt) < 1) ? P1(tx / pt) : D; }, tv('_tr', P1)), ''],
       ['Stock-based compensation', ser(v('sbc'), tv('StockBasedCompensation')), '']
     ];
     // quarterly: revenue / net income from SEC, other lines from the quarterly statements
     var Q = q.slice(-20).reverse(), M = Q.map(function (x) { return match(KQ, x[0]); });
-    function qy(i, j) { if (i + 4 >= Q.length) return D; var a = Q[i], b = Q[i + 4]; return (!b[j] || b[j] <= 0 || nn(a[j])) ? D : sp(a[j] / b[j] - 1); }
+    function qy(i, j) { if (i + 4 >= Q.length) return D; var a = Q[i], b = Q[i + 4]; if (j === 2) return gpv(a[j], b[j]); return (!b[j] || b[j] <= 0 || nn(a[j])) ? D : sp(a[j] / b[j] - 1); }
     function mq(key, f) { return M.map(function (x) { return (f || usd)(x[key]); }); }
     function mg(key) { return M.map(function (x, i) { return (!nn(x[key]) && Q[i][1]) ? pct(x[key] / Q[i][1], 1) : D; }); }
     var qrows = [
@@ -337,7 +385,7 @@
     var lq = q[q.length - 1];
     var lagnote = (lag && lq) ? F('TTM = the four quarters to %s, the latest quarter with a full statement. The %s quarter (revenue %s, net income %s) is in the Quarterly view and joins TTM once its full statement is published.',
       fdate(Tt.end), mon(dd(lq[0])), usd(lq[1]), usd(lq[2])) : '';
-    return sec('a', table(cols, sub, rows) + note(lagnote)) +
+    return sec('a', table(cols, sub, rows) + note(lagnote) + note(T('— = not reported for that period in the filings, or not meaningful (for example a tax rate on a pre-tax loss).')) + (qstar ? note(T('* Latest quarter vs. the same quarter a year earlier: the quarters needed for a full twelve-month comparison are not available for this company.')) : '')) +
       sec('q', table(Q.map(function (x) { return mon(dd(x[0])); }), Q.map(function () { return ''; }), qrows, 'Quarter ending') +
         note(F('Last %s quarters. Revenue and net income from SEC filings; other lines from Yahoo Finance for the quarters it covers (— = not yet available).', Q.length)), 1) +
       sec('t', qtable(YT.slice().reverse().slice(0, 12), INCROWS, 'Twelve months ending') +
@@ -403,7 +451,7 @@
       cols = [T('Latest quarter')].concat(cols); sub = [mon(dd(L.end))].concat(sub);
     }
     var qt = qtable(KQ.slice().reverse(), BALQ);
-    return sec('a', table(cols, sub, rows)) + sec('q', qt + note(T('Quarter-end balance sheets from Yahoo Finance.')), 1) +
+    return sec('a', table(cols, sub, rows) + note(T('— = not reported for that period in the filings, or not meaningful (for example a tax rate on a pre-tax loss).'))) + sec('q', qt + note(T('Quarter-end balance sheets from Yahoo Finance.')), 1) +
       sec('t', qt + note(T('A balance sheet is a snapshot at one date, so the TTM view shows the latest quarter-end balance sheets.')), 1);
   }
 
@@ -421,18 +469,32 @@
     function y(key) { return S(function (a) { return usd(match(KA, a.fy_end)[key]); }); }
     function yf(key, alt, neg) { return S(function (a) { var x = match(KA, a.fy_end)[key]; if (!nn(x)) return usd(x); var z = a[alt]; return nn(z) ? D : usd(neg ? -Math.abs(z) : z); }); }
     function ng(key) { return S(function (a) { return a[key] ? usd(-Math.abs(a[key])) : D; }); }
+    function cfb(a, yk) { var y = match(KA, a.fy_end); if (nn(y[yk]) || !y.OperatingCashFlow || !a.cfo) return null; var f = a.cfo / y.OperatingCashFlow; if (!(f > 0) || (!c.fx && Math.abs(f - 1) > 0.06)) return null; return y[yk] * f; }
+    function vc(key, yk, neg) { return S(function (a) { var x = !nn(a[key]) && a[key] !== 0 ? a[key] : cfb(a, yk); return nn(x) ? D : usd(neg ? -Math.abs(x) : x); }); }
     var rows = [
-      ['Operating activities', [], 'sec'], ['Net income', v('net_income'), ''], ['Depreciation & amortization', v('da'), ''],
-      ['Stock-based compensation', v('sbc'), ''], ['Change in working capital', y('ChangeInWorkingCapital'), ''], ['Operating cash flow', v('cfo'), 'b'],
+      ['Operating activities', [], 'sec'], ['Net income', v('net_income'), ''], ['Depreciation & amortization', vc('da', 'DepreciationAndAmortization'), ''],
+      ['Stock-based compensation', vc('sbc', 'StockBasedCompensation'), ''], ['Change in working capital', y('ChangeInWorkingCapital'), ''], ['Operating cash flow', v('cfo'), 'b'],
       ['Operating cash flow growth', S(function (a, i) { var p = R[i + 1]; return (p && !nn(a.cfo) && p.cfo > 0) ? sp(a.cfo / p.cfo - 1) : D; }), 'g'],
-      ['Investing & financing', [], 'sec'], ['Capital expenditures', ng('capex'), ''], ['Acquisitions', yf('PurchaseOfBusiness', 'acq', 1), ''],
-      ['Investing cash flow', yf('InvestingCashFlow', 'icf'), 'b'], ['Dividends paid', ng('dividends'), ''], ['Share buybacks', ng('buybacks'), ''],
+      ['Investing & financing', [], 'sec'], ['Capital expenditures', vc('capex', 'CapitalExpenditure', 1), ''], ['Acquisitions', yf('PurchaseOfBusiness', 'acq', 1), ''],
+      ['Investing cash flow', yf('InvestingCashFlow', 'icf'), 'b'], ['Dividends paid', ng('dividends'), ''], ['Share buybacks', vc('buybacks', 'RepurchaseOfCapitalStock', 1), ''],
       ['Debt issued', y('IssuanceOfDebt'), ''], ['Debt repaid', yf('RepaymentOfDebt', 'debt_repaid', 1), ''], ['Financing cash flow', yf('FinancingCashFlow', 'fincf'), 'b'],
       ['Free cash flow', [], 'sec'], ['Free cash flow', v('fcf'), 'b'], ['Free cash flow growth', S(function (a) { return sp(a.fcf_growth); }), 'g'],
       ['Free cash flow margin', S(function (a) { return pct(a.fcf_margin, 1); }), ''], ['Free cash flow per share', S(function (a) { return eps(a.fcf_per_share); }), ''],
       ['FCF / net income', S(function (a) { return x2(a.fcf_conv, 2); }), '']
     ];
     var yc = ycols(c), cols = yc[0], sub = yc[1], LT = latest(k), TI = LT[0], TC = LT[1], lastA = A[A.length - 1] || {};
+    var cstar = false, CT = sum4(qcf(k));
+    // TTM growth: against the twelve months a year earlier, else the latest quarter against the same quarter a year earlier (*)
+    function cgr(key) {
+      var cur = TC[key];
+      if (nn(cur)) return D;
+      for (var j = CT.length - 1; j >= 0; j--) { var dy = days(dd(TC.end), dd(CT[j].end)); if (dy > 340 && dy < 390) return CT[j][key] > 0 ? sp(cur / CT[j][key] - 1) : D; }
+      var L = KQ[KQ.length - 1], Y = null;
+      if (!L || Math.abs(days(dd(TC.end), dd(L.end))) > 20) return D;
+      for (var i = KQ.length - 2; i >= 0; i--) { var d2 = days(dd(L.end), dd(KQ[i].end)); if (d2 > 340 && d2 < 390) { Y = KQ[i]; break; } }
+      if (!Y || nn(L[key]) || !(Y[key] > 0)) return D;
+      cstar = true; return sp(L[key] / Y[key] - 1) + '*';
+    }
     if (TC.end && newer(TC.end, lastA.fy_end)) {
       var same = TI.end === TC.end, fcf = TC.FreeCashFlow, rv = same ? TI.TotalRevenue : null, ni = TC.NetIncomeFromContinuingOperations, sh = same ? TI._sh : null;
       rows = prepend(rows, {
@@ -441,11 +503,12 @@
         'Acquisitions': usd(TC.PurchaseOfBusiness), 'Investing cash flow': usd(TC.InvestingCashFlow), 'Dividends paid': usd(TC.CashDividendsPaid),
         'Share buybacks': usd(TC.RepurchaseOfCapitalStock), 'Debt issued': usd(TC.IssuanceOfDebt), 'Debt repaid': usd(TC.RepaymentOfDebt),
         'Financing cash flow': usd(TC.FinancingCashFlow), 'Free cash flow': usd(fcf), 'Free cash flow margin': (!nn(fcf) && rv) ? pct(fcf / rv, 1) : D,
-        'Free cash flow per share': (!nn(fcf) && sh) ? eps(fcf / sh) : D, 'FCF / net income': (!nn(fcf) && ni > 0) ? x2(fcf / ni, 2) : D
+        'Free cash flow per share': (!nn(fcf) && sh) ? eps(fcf / sh) : D, 'FCF / net income': (!nn(fcf) && ni > 0) ? x2(fcf / ni, 2) : D,
+        'Operating cash flow growth': cgr('OperatingCashFlow'), 'Free cash flow growth': cgr('FreeCashFlow')
       });
       cols = ['TTM'].concat(cols); sub = [mon(dd(TC.end))].concat(sub);
     }
-    return sec('a', table(cols, sub, rows)) + sec('q', qtable(KQ.slice().reverse(), CFROWS) + note(T('Quarterly cash flow from Yahoo Finance.')), 1) +
+    return sec('a', table(cols, sub, rows) + note(T('— = not reported for that period in the filings, or not meaningful (for example a tax rate on a pre-tax loss).')) + (cstar ? note(T('* Latest quarter vs. the same quarter a year earlier: the quarters needed for a full twelve-month comparison are not available for this company.')) : '')) + sec('q', qtable(KQ.slice().reverse(), CFROWS) + note(T('Quarterly cash flow from Yahoo Finance.')), 1) +
       sec('t', qtable(sum4(qcf(k)).reverse(), CFROWS, 'Twelve months ending') + note(T('Each column adds up the four quarters ending on that date.')), 1);
   }
 
@@ -528,7 +591,7 @@
     }
     var yc = ycols(c), asof = dd(m.as_of);
     return sec('a', table([T('Current')].concat(yc[0]), [asof ? mon(asof) : ''].concat(yc[1]), rows) +
-        note(T('“Current” uses the latest price and the last twelve months. Past years use the share price at each fiscal year-end and that year’s annual report.'))) +
+        note(T('“Current” uses the latest price and the last twelve months. Past years use the share price at each fiscal year-end and that year’s annual report.') + ' ' + T('Forward P/E and PEG use today’s analyst estimates, so only the current column has them.')) + note(T('— = not reported for that period in the filings, or not meaningful (for example a tax rate on a pre-tax loss).'))) +
       sec('q', qtable(qratios(k, false).reverse(), RROWS_Q) + note(T('Margins for each quarter; balance-sheet ratios at each quarter end.')), 1) +
       sec('t', qtable(qratios(k, true).reverse(), RROWS, 'Twelve months ending') + note(T('Returns and margins over the four quarters ending on each date; balance-sheet ratios at that date.')), 1);
   }

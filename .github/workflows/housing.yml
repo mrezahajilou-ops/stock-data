@@ -2,7 +2,7 @@ name: Housing market data (stockanaliz.com/housing)
 
 on:
   schedule:
-    - cron: '23 14 * * *'    # once a day: FHFA, Freddie Mac, BLS, Census, Fed, Zillow, Realtor.com
+    - cron: '23 */2 * * *'   # every 2 hours (the job takes ~30 s); stamp.txt changes when any source publishes, and the site rebuilds on that
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |
           B=housing; if [ "${{ github.ref_name }}" != "main" ]; then B=housing-test; fi
-          mkdir out && cp housing.json out/ && cd out
+          mkdir out && cp housing.json stamp.txt out/ && (cp housing_*.json out/ 2>/dev/null || true) && cd out
           git init -q && git checkout -q -b $B
           git -c user.name=github-actions -c user.email=actions@github.com add -A
           git -c user.name=github-actions -c user.email=actions@github.com commit -qm "housing $(date -u +%FT%TZ)"

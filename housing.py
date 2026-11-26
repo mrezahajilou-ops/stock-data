@@ -447,8 +447,15 @@ def main():
         for k in ('z', 'st', 'mt'):
             out[k] = prev.get(k)
     out['rdc'] = res.get('rdc') or prev.get('rdc') or {}
+    # fingerprint of the newest data point of every source: the site rebuilds as soon as it changes
+    last = {k: v[-1][0] for k, v in f.items() if v}
+    last.update({'zillow': ((out.get('z') or {}).get('us') or {}).get('all', [['']])[-1][0], 'zori': ((out.get('z') or {}).get('zori_us') or [['']])[-1][0],
+                 'rdc': ((out.get('rdc') or {}).get('US') or [['']])[-1][0], 'acs': max(((out.get('acs') or {}).get('US') or {'': 0})),
+                 'inc': max(((out.get('inc') or {}).get('US') or {'': 0}))})
+    out['stamp'] = '|'.join('%s=%s' % kv for kv in sorted(last.items()))
     out['log'] = LOG
     json.dump(out, open(OUT, 'w'), separators=(',', ':'))
+    open(os.path.join(os.path.dirname(OUT), 'stamp.txt'), 'w').write(out['stamp'] + '\n')
     print('\n'.join(LOG))
     say('series:', {k: (len(v), v[-1]) for k, v in f.items()})
     say('wrote %d KB' % (os.path.getsize(OUT) // 1024))

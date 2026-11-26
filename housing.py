@@ -85,6 +85,13 @@ class Slow(Exception):
     pass
 
 
+T0 = time.time()
+
+
+def say(*a):
+    print('[%4ds]' % (time.time() - T0), *a, flush=True)
+
+
 def get(url, timeout=60, tries=3):
     last = None
     for a in range(tries):
@@ -107,7 +114,8 @@ def num(x):
 
 # ------------------------------------------------------------------ FRED
 def fred(sid):
-    txt = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + sid, timeout=90)
+    txt = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + sid, timeout=45, tries=2)
+    say('fred', sid)
     rows = []
     for r in csv.reader(io.StringIO(txt)):
         if len(r) >= 2 and re.match(r'\d{4}-\d\d-\d\d$', r[0]):
@@ -131,7 +139,8 @@ ZHVI = {'all': 'uc_sfrcondo', 'sfr': 'uc_sfr', 'condo': 'uc_condo'}
 
 
 def zillow(path):
-    txt = get(ZBASE + path, timeout=120)
+    txt = get(ZBASE + path, timeout=90, tries=2)
+    say('zillow', path)
     rd = csv.reader(io.StringIO(txt))
     head = next(rd)
     dcols = [(i, h[:7]) for i, h in enumerate(head) if re.match(r'\d{4}-\d\d-\d\d$', h)]
@@ -187,7 +196,7 @@ def acs_year(y, geo):
     for vs in (list(ACSV), CORE + ['B25031_003E', 'B25031_004E', 'B25031_005E'], CORE):
         url = 'https://api.census.gov/data/%d/acs/acs1?get=NAME,%s&for=%s' % (y, ','.join(vs), geo)
         try:
-            j = json.loads(get(url, timeout=60, tries=2))
+            j = json.loads(get(url, timeout=45, tries=1))
         except Exception as e:
             last = e
             continue
@@ -210,13 +219,22 @@ def acs_year(y, geo):
 
 def acs_all():
     acs = {}
-    for y in range(2012, TODAY.year):
-        for geo in ('state:*', 'us:1'):
+    jobs = [(y, geo) for y in range(TODAY.year - 1, 2011, -1) for geo in ('state:*', 'us:1') if y != 2020]   # 2020: no standard 1-year release
+    try:
+        get('https://api.census.gov/data/2023/acs/acs1?get=NAME&for=us:1', timeout=30, tries=1)
+    except Exception as e:
+        LOG.append('acs unreachable: %s' % str(e)[:80])
+        return acs
+    with cf.ThreadPoolExecutor(6) as ex:
+        futs = {ex.submit(acs_year, y, geo): (y, geo) for y, geo in jobs}
+        for fu in cf.as_completed(futs):
+            y, geo = futs[fu]
             try:
-                for k, rec in acs_year(y, geo).items():
+                for k, rec in fu.result().items():
                     acs.setdefault(k, {})[str(y)] = rec
             except Exception as e:
-                LOG.append('acs %d %s: %s' % (y, geo, str(e)[:80]))   # 2020 has no standard 1-year release; newest year may not be out yet
+                LOG.append('acs %d %s: %s' % (y, geo, str(e)[:80]))   # the newest year may not be out yet
+    say('acs done', len(acs))
     return acs
 
 
@@ -225,7 +243,8 @@ RDC = 'https://econdata.s3-us-west-2.amazonaws.com/Reports/Core/RDC_Inventory_Co
 
 
 def rdc(level):
-    txt = get(RDC % level, timeout=120)
+    txt = get(RDC % level, timeout=90, tries=2)
+    say('realtor', level)
     rd = csv.DictReader(io.StringIO(txt))
     out = {}
     for r in rd:
@@ -276,8 +295,10 @@ def main():
                 LOG.append('fred %s FAILED (%s), kept %s' % (s, str(e)[:60], 'previous' if s in f else 'nothing'))
     out['f'] = f
     out['src']['fred'] = {s: (v[-1][0] if v else None) for s, v in f.items()}
+    say('fred done', len(f))
     try:
         z, st, mt = zillow_all(prev)
+        say('zillow done')
         if len(st) < 45 or len(mt) < 40:
             raise ValueError('too few rows: %d states, %d metros' % (len(st), len(mt)))
         out['z'], out['st'], out['mt'] = z, st, mt

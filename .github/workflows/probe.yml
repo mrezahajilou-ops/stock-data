@@ -2,7 +2,9 @@ name: Probe URLs from a runner (manual)
 on:
   workflow_dispatch:
     inputs:
-      urls: {description: 'URLs, space separated (prefix POST: for a JSON POST with body after |)', required: true}
+      urls: {description: 'URLs, space separated', required: true}
+      post: {description: 'optional: one URL to POST JSON to', required: false, default: ''}
+      body: {description: 'JSON body for the POST', required: false, default: '{}'}
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -10,9 +12,16 @@ jobs:
     steps:
       - env:
           URLS: ${{ inputs.urls }}
+          POST: ${{ inputs.post }}
+          BODY: ${{ inputs.body }}
         run: |
           for u in $URLS; do
             echo "=== $u"
             curl -sS -m 40 -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0 Safari/537.36' -o /tmp/b -w 'HTTP %{http_code} %{size_download} bytes %{content_type}\n' "$u" || true
             head -c 2500 /tmp/b | tr -d '\0' ; echo
           done
+          if [ -n "$POST" ]; then
+            echo "=== POST $POST"
+            curl -sS -m 60 -X POST -H 'Content-Type: application/json' -H 'Origin: https://dubailand.gov.ae' -H 'Referer: https://dubailand.gov.ae/' -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0 Safari/537.36' --data "$BODY" -o /tmp/p -w 'HTTP %{http_code} %{size_download} bytes\n' "$POST" || true
+            head -c 3000 /tmp/p; echo
+          fi

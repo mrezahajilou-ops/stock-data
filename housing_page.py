@@ -110,10 +110,10 @@ class Fmt:
         s = ('−' if v < 0 else '') + s
         return self.iso(s) if wrap else s
 
-    def money(self, v):
+    def money(self, v, d=0):
         if v is None:
             return '—'
-        s = self.n(abs(v), 0, False)
+        s = self.n(abs(v), d, False)
         s = self.L['_cur'].format(n=s, s=self.sym)
         return self.iso(('−' if v < 0 else '') + s)
 
@@ -184,8 +184,8 @@ def prepare(cc, X, L):
     D['rent_n'] = L.get('n_' + ((X.get('rent') or {}).get('n') or ''), (X.get('rent') or {}).get('n'))
     D['rents_y'] = yoy(rent) if len(rent) > 12 else []
     D['tys'] = [{'n': L.get('t_' + n, n), 'c': COLS[i % 5], 'd': s} for i, (n, s) in enumerate((X.get('types') or {}).items()) if s]
-    D['tysm'] = bool(D['tys']) and min(t['d'][-1][1] for t in D['tys']) > 2000
-    D['rates'] = [{'n': L.get('r_' + n, n), 'c': COLS[i % 5], 'd': s, 'pol': 'mortgage' not in n.lower()} for i, (n, s) in enumerate((X.get('rates') or {}).items()) if s]
+    D['tysm'] = bool(D['tys']) and (min(t['d'][-1][1] for t in D['tys']) > 2000 or all('m²' in n for n in (X.get('types') or {})))
+    D['rates'] = [{'n': L.get('r_' + n, n), 'c': COLS[i % 5], 'd': [p for p in s if p[0] >= '2003'] if max(v for _, v in s) > 100 else s, 'pol': 'mortgage' not in n.lower()} for i, (n, s) in enumerate((X.get('rates') or {}).items()) if s]
     nom, real = dict(oe.get('nom') or []), dict(oe.get('real') or [])
     cpi = [[k, round(nom[k] / real[k] * 100, 3)] for k in sorted(nom) if real.get(k)]
     D['_cpiy'] = yoy(cpi)
@@ -429,7 +429,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     if N.get('pol') is not None:
         kps.append(kp(N['pol_n'], F.rate(N['pol']), '%s %s' % (L['ago'], F.rate(N.get('pol_1y')))))
     if N.get('rent') is not None:
-        kps.append(kp(D['rent_n'] or L['k_rent'], F.money(N['rent']) if N['rent'] > 200 else F.n(N['rent'], 2) + ' ' + X['sym'], '%s · %s' % (ch(N.get('rent_y1')), F.month(N['rent_m']))))
+        kps.append(kp(D['rent_n'] or L['k_rent'], F.money(N['rent']) if N['rent'] > 200 else F.money(N['rent'], 2), '%s · %s' % (ch(N.get('rent_y1')), F.month(N['rent_m']))))
     if N.get('ry') is not None:
         kps.append(kp(L['k_rentg'], F.pc(N['ry']), L['d_yoy'].format(m=F.q(N['ry_m']) if D['renty'] else F.month(N['ry_m']))))
     for k, lab in (('pti', 'k_pti'), ('ptr', 'k_ptr')):
@@ -442,7 +442,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     tys = D['tys'][:4]
     mort = [x for x in D['rates'] if not x['pol']]
     pol = [x for x in D['rates'] if x['pol']]
-    head = '<th>%s</th><th>%s</th>' % (L['year'], L['h_idx']) + ('<th>%s</th>' % esc(D['price_n']) if D['price'] else '') + \
+    head = '<th>%s</th><th>%s</th>' % (L['year'], L['h_idx']) + ('<th>%s</th>' % esc(D['price_n'] if len(D['price_n'] or '') <= 26 else L['h_price']) if D['price'] else '') + \
         ''.join('<th class="hm">%s</th>' % esc(t['n']) for t in tys) + '<th>%s</th>' % L['rents'] + \
         ('<th>%s<br><small class="mut">%s</small></th>' % (esc(mort[0]['n']), L['avg']) if mort else '') + \
         ('<th>%s<br><small class="mut">%s</small></th>' % (esc(pol[0]['n']), L['avg']) if pol else '')
@@ -495,7 +495,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         cols = [c for c in cols if any(s.get(c[0]) is not None for s in states)]
 
         def fv(v, f):
-            return F.money(v) if f == '$' else F.pc(v) if f == '+%' else F.rate(v) if f == '%2' else (F.n(v, 2) + ' ' + X['sym'] if f == 'r' and v < 200 else F.money(v)) if f == 'r' else F.n(v, 1)
+            return F.money(v) if f == '$' else F.pc(v) if f == '+%' else F.rate(v) if f == '%2' else ('—' if v is None else F.money(v, 2) if v < 200 else F.money(v)) if f == 'r' else F.n(v, 1)
         srows = ''.join('<tr class="rw" data-k="%s"><td class="nm">%s</td>%s</tr>' % (esc(s['ab']), esc(s['n']), ''.join(
             '<td class="%s %s">%s</td>' % (hm, cls(s.get(k)) if f == '+%' else '', fv(s.get(k), f)) for k, l, f, hm in cols)) for s in states)
         thead = '<th>%s</th>' % rn + ''.join('<th class="%s">%s</th>' % (hm, l) for k, l, f, hm in cols)

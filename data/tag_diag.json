@@ -1,0 +1,9251 @@
+{
+"AAAU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AASP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ABCP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ABEO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ABOS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ABPO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ABPWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACET": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACGP": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"ACRG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACRV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACTU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACUT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ACXP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ADT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ADVB": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"ADXN": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"ADZCF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"AEAE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AEAEU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AEAEW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AEC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AEFC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AEG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AEGOF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AEHL": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"AEMD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AEON": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AFJK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AFJKR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AFJKU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AGLY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGNCZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AGQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AGTX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AHII": {
+"candidates": {},
+"fy": 2013,
+"missing": [
+"revenue"
+]
+},
+"AHNRF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"AIBT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"AIEV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AIRJ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AIRJW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"AIV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AKOM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AKTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ALCUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALCWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALCYF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALDS": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"ALDX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ALF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALFUU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALFUW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ALRTF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ALSAF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALSTF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALSUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALSWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ALTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ALXO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ALZN": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AMLIF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"AMTD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"AMUB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ANDG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ANG-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ANIX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ANL": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"ANNX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ANRO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ANTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ANVI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AOXY": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"APA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"APGH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"APHD": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"APRE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"APSI": {
+"candidates": {},
+"fy": 2022,
+"missing": [
+"revenue"
+]
+},
+"APTN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"APUS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"APVO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AQB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AQMS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ARCC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AREC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ARES": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ARES-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ARKB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ARLP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ARMP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AROW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ARR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ARR-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ARRKF": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"ARTL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ASCBF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASCRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASCWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASII": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"ASPC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASPCR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASPCU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ASUR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ASUUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ATEK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ATEKU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ATEKW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ATEX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"ATH-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATH-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATH-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATH-PE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATHS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATMH": {
+"candidates": {},
+"fy": 2014,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ATMP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ATOS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ATVK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AUC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AUMN": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"AURA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AUST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AVAI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AVBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AVIR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AVPMF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"AVXL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AXIAY": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"AXICY": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"AXNX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"AXREF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AZI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"AZR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"AZUL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"AZUXY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BAIDF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BAK": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"BAM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BANR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BAR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BASA": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"BBAR": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"BBD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BBDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BBDO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BBLG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BBOT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BBVA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BBVXF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCAB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCAX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCCG": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BCDRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCHG": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BCIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCLI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCSF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BCTX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BCTXL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BCTXZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BDCI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BDCIU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BDCIW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BDCX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BDCZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BDRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BDRY": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BEAG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BEAGR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BEAGU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BEAT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BEATW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BELFA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BELFB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BENF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"BENFW": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"BEPC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BESS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BESS-WT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BETRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BFNH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BGL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BGLC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BGLWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BHLL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BHVN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BIDU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BIOF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BIPC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BITB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BITW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BIVI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BIVIW": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BIXT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BJDX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BKHA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BKHAR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BKHAU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BKR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BLMH": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"BLNH": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BLTE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BLTH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BMA": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"BMEA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BMNM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BNET": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BNO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BNR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BNTC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BOIL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BOLD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPAQF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPPFF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPYPM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPYPN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPYPO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BPYPP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BRK-A": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BRK-B": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BRLL": {
+"candidates": {},
+"fy": 2020,
+"missing": [
+"revenue"
+]
+},
+"BRRR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BRVO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BSAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BSAI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BSBR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BSM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BTBD": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"BTBDW": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"BTCK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BTCO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BTCW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BTG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BVC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"BWET": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BWLP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BWVTF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"BXBL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BXSL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"BYNO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BYNOU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BYNOW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"BYOP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CABA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CADL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CALC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CANE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CAPC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CATX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CBGGF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CBIO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CBRGF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CBRRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CCAP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CCEC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CCTSF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CCU": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"CDNL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CDT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CDTTW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CEF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CEFD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CELC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CEPF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CEPO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CEPS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CEPV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CERO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CEROW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CETI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CGBD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CGEM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CGTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CHGA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CHNR": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"CHRS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CHSCL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CHSCM": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CHSCN": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CHSCO": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CHSCP": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CIA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CICB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CICC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIG": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"CIG-C": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"CIIT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"CIM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIM-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIM-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIM-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIM-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIMN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIMO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CIMP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CING": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CINGW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CION": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CKX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CLCS": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"CLDI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CLDWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CLOQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CLRB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CLRCF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CLRRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CLRUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CLRWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CLYM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CMCAF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CMCUF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CMCWF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CMMB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CMND": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CMPS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CNDA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CNDAU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CNDAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CNFN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CNL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CNSP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CNTN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CNTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"COCP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"COGT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"COKE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"COPR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"COPR-WT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"CORN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"COSG": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"CPER": {
+"candidates": {},
+"fy": 2021,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CPMV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CPTKW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CQP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRCE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRCUF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"CRD-A": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRD-B": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRDL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRESY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRGY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CRML": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRMLW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRTMF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRVS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CRWE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CSANY": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"CSTAF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CSTUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CSTWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CSUI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"CSWC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"CTGG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CTGO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CTHH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CTNM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CTOR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CTRVP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CTSUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CTSWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"CTTH": {
+"candidates": {},
+"fy": 2014,
+"missing": [
+"revenue"
+]
+},
+"CTTRF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"CTXR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CUEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CUENW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CURX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CVKD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CVM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CWH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CXAI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CXAIW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"CYDY": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"CYPH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"CYTOF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"DB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DBA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DBB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"DBC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DBE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DBO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"DC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DCOY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DCX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DDDX": {
+"candidates": {},
+"fy": 2014,
+"missing": [
+"revenue"
+]
+},
+"DDL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DEENF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DFNS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DFNSW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DFTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DGICA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DGICB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DGP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DGZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DJP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DKL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DLNG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DLNG-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DLTI": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"DMAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DMRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DOGP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DRMA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DROR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DRTS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DRTSW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DRUG": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"DTCKF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DTSQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DTSQR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DTSQU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DTST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DWAY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"DWTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DX-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DX-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DYN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"DZZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"EARN": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"EBZT": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"EDRY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EDSA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EGMCF": {
+"candidates": {},
+"fy": 2017,
+"missing": [
+"revenue"
+]
+},
+"ELBM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ELDN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ELLA": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"ELPC": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"ELTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ELUT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ELVN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EMAT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ENGN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ENGNW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ENHA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ENLV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ENRT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ENVB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EOCN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EPSM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"EQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EQS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ERAS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ERIE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ERLFF": {
+"candidates": {},
+"fy": 2019,
+"missing": [
+"revenue"
+]
+},
+"ERNA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ERNAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ESLA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ESLAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ESSI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"ET": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ET-PI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ETCG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ETHA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ETHE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"EUO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"EURK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"EURKR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"EURKU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"EVAWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EVBWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EVEX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EVEXW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EVTL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EVTWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EWTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EXOD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"EXOZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"EZBC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"FABC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FBLG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FBTC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"FCHS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FDUS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FEAM": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"FEAV": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"FECOF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"FENG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FFAI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FFLO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FFMGF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FFR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FGDL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"FGPR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"FISN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FLNA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FMHS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FMST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FMSTW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FMX": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"FNUC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FOXO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FOXOW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FPH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FPS": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"FRBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FRFFF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FRFHF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FRSPF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"FSK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FTH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FUNI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FURY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FVCB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FWFW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"FWONA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FWONB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"FWONK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GAIN": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GAING": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GAINI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GAINZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GALT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GANX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GBDC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GBTC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GBUG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GCGJ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GCTK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GDLG": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"GDRZF": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GEBRF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"GECC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GECCG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GECCH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GECCI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GEDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GEF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"GEF-B": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"GERN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GGB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GGBY": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"GGROU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GHG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GHRS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GIBO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GIBOW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GIGGF": {
+"candidates": {},
+"fy": 2020,
+"missing": [
+"revenue"
+]
+},
+"GLAD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GLD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GLDG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GLDI": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"GLDM": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GLEI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GLL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GLNK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GLNS": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GLOP-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GLOP-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GLOP-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GLP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GLSI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GLTR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GMER": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GMM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GNOLF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"GNPX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GNTOF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GNVR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GPAT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GPATU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GPATW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GPCR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GPLB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GPLL": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"GPOD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GRCE": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GRDN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GRI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GRML": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GRMLW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GRN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GRO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GRPFF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"GRTUF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"GRVE": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"GSBD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GSL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GSL-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"GSOL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GSRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GSRFR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GSRFU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GSTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GTBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GTCH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GTEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GTENU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GTENW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GTIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"GWSO": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"GWTI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"GXLM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HCHL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HDLB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HELP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HEPA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HESM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HGAS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HGASW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HGTY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HLNE": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"HLSQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HMELF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HODL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HODO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HOVR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"HOVRW": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"HOWL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HRZN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HSPOF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HSPRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HSPUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HSPWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HSTI": {
+"candidates": {},
+"fy": 2022,
+"missing": [
+"revenue"
+]
+},
+"HSY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HTFC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HTT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"HVT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HVT-A": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HYEX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"HYMC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HYMCW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"HZEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"IAU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IAUM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IBAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"IBACR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"IBATF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"IBIT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ICMB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IEP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"IFED": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"IFS": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"IKT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMAQ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"IMAQR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"IMAQU": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"IMAQW": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"IMCC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"IMKTA": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"IMMX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMNN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMSR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMSRW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMUX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IMVT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"INAB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"INDP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"INFQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"INFQ-WT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"INKT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"INTI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"INTS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IOR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IPSI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IPX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"IRLA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IRON": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ISLUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ISLWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ISOU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ISRLF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ITUB": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"IWSH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"IXAQF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"IXQUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"IXQWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"JAGU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"JBIO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"JG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"JJETF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"JSPR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"JWSMF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"JWSUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"JWSWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"KAPA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KB": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"KBDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KBLB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KIDZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KIDZW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KKR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KKR-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KKRS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KKRT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KLRS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KNOP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KOD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KOLD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"KRP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"KTTA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KVACF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"KVAUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"KVAWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"KYNB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"KYTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LAES": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"LAR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LBRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LBSR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"LCU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LDI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"LFT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LFT-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LGN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"LGVT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"LIEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LIMN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LIMNW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LINMF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"LMED": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"LMMY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LONA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LRMR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"LTCN": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"LTRN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"LXEO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MAGE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MAIA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MAIN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MANE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MAZE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MBAI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MBIO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MBOT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MBX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MCAG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MCAGR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MCAGU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MCRB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MDBH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MDCE": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"revenue"
+]
+},
+"MDCX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MDCXW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MDEX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MDNAF": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"MDTK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MDXR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"MENS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MF": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"MFI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MFIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MFICL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MIRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MIST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITT-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITT-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MITT-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MLPB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MLPR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MLTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MLYS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MMLP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MMMW": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"MODD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"MPLT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MPLX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MSC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MSDL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MSIF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MSLE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MTEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"MTH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MTLK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"MTNB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MTRI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"MTTCF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MTVA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MTWO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"MVRL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"NA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NAK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NAUT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NB": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"NBP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NBRG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NBRGR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NBRGU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NCDL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NCEL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NCNA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NDRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"NEON": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NERV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NEWH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NEWP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NEXM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NFTM": {
+"candidates": {},
+"fy": 2012,
+"missing": [
+"revenue"
+]
+},
+"NGEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NGHI": {
+"candidates": {},
+"fy": 2017,
+"missing": [
+"revenue"
+]
+},
+"NGL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"NGL-PB": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"NGL-PC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"NGLD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NIHK": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"NIKA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NIKI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NIMU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NIOBW": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"NIVF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NIVFW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NKLR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NLY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NLY-PF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NLY-PG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NLY-PJ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NMAD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NMFC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NMFCZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NMG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NMM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"NMRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NNE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NOEM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"NOEMR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"NOEMU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"NOEMW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"NORD": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"NREF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NREF-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NRHI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NRP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"NRSN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NRSNW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NRUC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"NSARO": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"eps_diluted"
+]
+},
+"NSARP": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"eps_diluted"
+]
+},
+"NSLR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NSLRL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NSTM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NTRR": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"NUMD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NUVI": {
+"candidates": {},
+"fy": 2015,
+"missing": [
+"revenue"
+]
+},
+"NVA": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"NVA-WT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"NVACW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NVCT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NVNO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NWPG": {
+"candidates": {},
+"fy": 2012,
+"missing": [
+"revenue"
+]
+},
+"NWPP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NXE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NXTC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NXTS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NXTT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"NYMXF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"OBDC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OBTC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"OCAC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"OCAC-RI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"OCAC-UN": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"OCAC-WT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"OCEA": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"OCGN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"OCSL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"ODC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"ODRS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ODYY": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"OFAL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"OFS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OFSSH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OFSSO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OGEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OKLO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OKUR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OKYO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OLMA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OLOXF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"OMER": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OMTK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ONCY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ONEW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ONON": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ORIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ORKA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ORMP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OSTX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OTF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OTLC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OUNZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"OVID": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"OVTZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OXSQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OXSQG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"OXSQH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PAA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PAAPU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PAGP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PAL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PALL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PALX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PASG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PAVM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PBHC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PBM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PBMLF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PBMWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PCMC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PCSA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PCVX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PDSB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PEPG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PFAI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PFFL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PFLA": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"PFLT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"PFSA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PFX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PFXNZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PGIM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"PHIO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PHOS": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"PHVS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PHXE-P": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PHYS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PIAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PJT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PLG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PLNT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PLRZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PLTM": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PLYX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PMN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PMVC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"PMVCW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"PMVP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PNNT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PPBT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PPCB": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PPLT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PPTA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PREJF": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"PROK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PRTCY": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"PRXA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"PSBD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PSEC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PSEC-PA": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PSLV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PTCHF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"PTIX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"PTPI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PULM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PVLA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"PYPD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QCLS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QETA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"QETAR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"QETAU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"QNC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QNRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"QNTM": {
+"candidates": {},
+"fy": 2022,
+"missing": [
+"revenue"
+]
+},
+"QPRC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QSP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"QUIT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QVCG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"QWTR": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"QXL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"QZMRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RAIN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"RAINW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"RAND": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RAPH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RAPP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RBOT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RBTK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RDAR": {
+"candidates": {},
+"fy": 2015,
+"missing": [
+"revenue"
+]
+},
+"REEUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"REEWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"REFI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RENEF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"REPL": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"RERE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"REVB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"REVBW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RGC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"RGNT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RITE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RKTO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RLMD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RNAZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RNGE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ROSS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"RPT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RPT-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RSTRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"RTGN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RVPH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RWAY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RWAYI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RWAYL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RWAYM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"RWDMU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"RYAN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"RYES": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"RZLT": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SABS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SAEN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SAFX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SAJ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SAN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SANA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SAR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SATT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SAV": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SAX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SAY": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SAZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SB-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SB-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SBS": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"SCE-PG": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SCE-PL": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SCE-PM": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SCE-PN": {
+"candidates": {},
+"fy": 2011,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SCO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SCYYF": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"SDCO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SDEV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SDST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SDSTW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SEAL-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SEAL-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SEAT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SEER": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SEI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SEII": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SEV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SFCX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SFES": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"SFHG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SFRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SFWL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SGBAF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SGMT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SGOL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SGP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SGRX": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SGST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SHGI": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"SHPH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SIGY": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"SILEF": {
+"candidates": {},
+"fy": 2021,
+"missing": [
+"revenue"
+]
+},
+"SION": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SITS": {
+"candidates": {},
+"fy": 2015,
+"missing": [
+"eps_diluted"
+]
+},
+"SIVR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SKE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SKFG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SKT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SKYE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SKYQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SLDB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLDC": {
+"candidates": {},
+"fy": 2016,
+"missing": [
+"revenue"
+]
+},
+"SLI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLMT": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SLRC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLSR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLTN": {
+"candidates": {},
+"fy": 2015,
+"missing": [
+"revenue"
+]
+},
+"SLV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SLVO": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"SMA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SMFG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMFNF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMHB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SMMT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMNR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMNRW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SMXWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SNFI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SNGX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SNNRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SNTUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SNUS-PH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SONM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SOYB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SPKLF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SPKUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SPKWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SPPP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SRAD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SRGZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SSM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"STCB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"STEX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"STKH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"STME": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"STNDF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"STQN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"STSR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"STZ": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"SUN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"SUND": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"SVBL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SVIX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SVRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SVVC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"SVXY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"SYRE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TAAG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TACH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TACHU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TACHW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TAGS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TAPR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TARA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TARSF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TCPA": {
+"candidates": {},
+"fy": 2017,
+"missing": [
+"eps_diluted"
+]
+},
+"TCPC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TDAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TDACU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TDACW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TDIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TECX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TELO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"THMG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"THRC": {
+"candidates": {},
+"fy": 2017,
+"missing": [
+"revenue"
+]
+},
+"TIC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TICAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TIPT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TLK": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"TLSA": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"TLSS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TMC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TMQ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TNYA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TONT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TONT-UN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TONT-WT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"TOVX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TPST": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TPVG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TRAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TREO": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"TRFA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TRSG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRTN-PG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"TRVI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TSLX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TTRX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TV": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"eps_diluted"
+]
+},
+"TVC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"TVE": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"TVGN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TVGNW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TVRD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"TYRA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"UCIB": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"UCO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UDN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"UFG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"UGA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"UGL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ULE": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UNCY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"UNG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UNL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"USAC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"USAU": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"USBC": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"USCI": {
+"candidates": {},
+"fy": 2021,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"USGO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"USL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"USO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"USOI": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"eps_diluted"
+]
+},
+"UUP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"UVIX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UVXY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UYSC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UYSCR": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"UYSCU": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"V": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"VBIO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VEL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VERA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VERU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VERX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VESI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VGAS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VGASW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VGES": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"VICP": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"VINP": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"VISK": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VISM": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"VIV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VIVC": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"VIXM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VIXY": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VLGEA": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"VLRS": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"VMCAF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VMCUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VMCWF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VNET": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VNJA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"VOR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VPLM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VRDN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VRMK": {
+"candidates": {},
+"fy": 2009,
+"missing": [
+"eps_diluted"
+]
+},
+"VSA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"VSNT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VTVT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VXX": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VXZ": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"VZLA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WAMFF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WBI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WBSR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WCHD": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"WEAT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"WELPM": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WELPP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WES": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WF": {
+"candidates": {},
+"fy": 2024,
+"missing": [
+"revenue"
+]
+},
+"WHD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WHF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WHFCL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WHLT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"WINV": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"WINVR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"WLKP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WMG": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"WNDW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WNFT": {
+"candidates": {},
+"fy": 2023,
+"missing": [
+"revenue"
+]
+},
+"WRN": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"WSKEF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WTTR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WVVI": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WVVIP": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"WWR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"XAEIU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"XBIT": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"XERI": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"XMTR": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"XNET": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"XPL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"XRTX": {
+"candidates": {},
+"fy": 2021,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"XTGRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"YCL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"YCS": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"YHNAF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"YHNRF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"YHNUF": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"YOU": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"YTFD": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZCSH": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ZENA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZEO": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ZEOWW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"eps_diluted"
+]
+},
+"ZLME": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"revenue"
+]
+},
+"ZNOG": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZNOGW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZONE": {
+"candidates": {},
+"fy": 2026,
+"missing": [
+"eps_diluted"
+]
+},
+"ZPTA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZPTAW": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+},
+"ZSL": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue",
+"eps_diluted"
+]
+},
+"ZURA": {
+"candidates": {},
+"fy": 2025,
+"missing": [
+"revenue"
+]
+}
+}

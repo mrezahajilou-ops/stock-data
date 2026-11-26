@@ -190,7 +190,7 @@ def prepare(cc, X, L):
     cpi = [[k, round(nom[k] / real[k] * 100, 3)] for k in sorted(nom) if real.get(k)]
     D['_cpiy'] = yoy(cpi)
     mk = X.get('mkt') or {}
-    start = (mk.get('index') or [['2006-01']])[0][0]
+    start = (mk.get('index') or [['2006-01']])[0][0] if len(mk.get('index') or []) > 24 else '2006-01'
     cut = lambda s: [p for p in s if p[0] >= start]
     D['cmp'] = {'home': cut(idx), 'index': cut(mk.get('index') or []), 'gold': cut(mk.get('gold') or []), 'cpi': cut(cpi), 'rent': cut(D['rentx'] or rent)}
     D['vol'], D['starts'] = [], []

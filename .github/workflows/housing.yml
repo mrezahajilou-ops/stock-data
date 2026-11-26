@@ -30,7 +30,7 @@ jobs:
         run: pip install -q openpyxl && python -u housing.py
       - name: Other countries (housing_<cc>.json)
         run: |
-          timeout 900 python -u housing_intl.py || true
+          pip install -q openpyxl >/dev/null 2>&1; timeout 900 python -u housing_intl.py || true
           python -c "import json,glob;print('\n'.join(f[8:-5]+':'+json.load(open(f)).get('stamp','') for f in sorted(glob.glob('housing_*.json'))))" >> stamp.txt || true
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |

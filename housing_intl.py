@@ -464,7 +464,195 @@ def au():
             'src': ['Australian Bureau of Statistics', 'Reserve Bank of Australia', 'OECD', 'Yahoo Finance']}
 
 
+# ------------------------------------------------------------------ other countries (national data; regions where a keyless source exists)
+BIS = {}
+
+
+def bis_load():
+    if BIS:
+        return BIS
+    z = zipfile.ZipFile(io.BytesIO(getb('https://data.bis.org/static/bulk/WS_SPP_csv_flat.zip', timeout=180)))
+    for r in csv.DictReader(io.TextIOWrapper(z.open(z.namelist()[0]), encoding='utf-8-sig')):
+        area, val, unit = r['REF_AREA:Reference area'][:2], r['VALUE:Value'][:1], r['UNIT_MEASURE:Unit of measure'][:3]
+        v = num(r.get('OBS_VALUE:Observation Value'))
+        if v is None or unit != '628' or (r.get('FREQ:Frequency') or '')[:1] != 'Q':
+            continue
+        BIS.setdefault(area, {}).setdefault('nom' if val == 'N' else 'real' if val == 'R' else '?', {})[qm(r['TIME_PERIOD:Time period or range'])] = v
+    z = zipfile.ZipFile(io.BytesIO(getb('https://data.bis.org/static/bulk/WS_CBPOL_csv_flat.zip', timeout=180)))
+    for r in csv.DictReader(io.TextIOWrapper(z.open(z.namelist()[0]), encoding='utf-8-sig')):
+        if (r.get('FREQ:Frequency') or '')[:1] != 'M':
+            continue
+        v = num(r.get('OBS_VALUE:Observation Value'))
+        if v is not None:
+            BIS.setdefault(r['REF_AREA:Reference area'][:2], {}).setdefault('pol', {})[r['TIME_PERIOD:Time period or range'][:7]] = v
+    say('bis', len(BIS))
+    return BIS
+
+
+def eurostat(geo):
+    out = {}
+    for typ in ('TOTAL', 'DW_NEW', 'DW_EXST'):
+        j = json.loads(get('https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hpi_q?geo=%s&unit=I15_Q&purchase=%s' % (geo, typ)))
+        idx = j['dimension']['time']['category']['index']
+        rev = {v: k for k, v in idx.items()}
+        out[typ] = srt({qm(rev[int(i)]): v for i, v in j['value'].items()})
+    return out
+
+
+INE_Q = {19: 3, 20: 6, 21: 9, 22: 12}
+
+
+def es_regions():
+    j = json.loads(get('https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/25171?nult=120', timeout=120))
+    out = {}
+    for s in j:
+        n = s.get('Nombre') or ''
+        parts = [p.strip() for p in n.split('.') if p.strip()]
+        if len(parts) < 3 or parts[1] != 'General' or not parts[2].startswith('Índice'):
+            continue
+        d = {}
+        for o in s.get('Data') or []:
+            m = INE_Q.get(o.get('FK_Periodo'))
+            if m and o.get('Valor') is not None:
+                d['%d-%02d' % (o['Anyo'], m)] = o['Valor']
+        out[parts[0]] = srt(d)
+    say('es ine', len(out), list(out)[:20])
+    return out
+
+
+def pt_regions():
+    j = json.loads(get('https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0009490&Dim1=T&lang=EN', timeout=120))
+    dados = j[0].get('Dados') or {}
+    out = {}
+    for per, rows in dados.items():
+        m = re.search(r'(\d)\w* Quarter (\d{4})', per) or re.search(r'(\d)T(\d{4})', per) or re.search(r'Q(\d) (\d{4})', per)
+        if not m:
+            continue
+        k = '%s-%02d' % (m.group(2), int(m.group(1)) * 3)
+        for row in rows:
+            v = num(row.get('valor'))
+            if v is not None:
+                out.setdefault(row.get('geodsg'), {})[k] = v
+    say('pt ine', len(out), list(dados)[:3], list(out)[:30])
+    return {k: srt(v) for k, v in out.items()}
+
+
+def br_fipezap():
+    import openpyxl
+    wb = openpyxl.load_workbook(io.BytesIO(getb('https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx', timeout=180)), read_only=True, data_only=True)
+    say('fipezap sheets', [w.title for w in wb.worksheets][:70])
+    out = {}
+    for ws in wb.worksheets:
+        rows = list(ws.iter_rows(values_only=True))
+        if len(rows) < 6:
+            continue
+        hdr = None
+        for i, r in enumerate(rows[:8]):
+            if r and any(isinstance(c, str) and ('R$/m' in c or 'Preço médio' in c or 'Preco medio' in c) for c in r):
+                hdr = i
+        if ws.title in ('Resumo', 'Índice FipeZap') or hdr is None:
+            if len(out) < 2:
+                say('fipezap sample', ws.title, [list(r)[:12] for r in rows[:6]])
+            continue
+        head = [str(c or '') for c in rows[hdr]]
+        sub = [str(c or '') for c in rows[hdr + 1]] if hdr + 1 < len(rows) else []
+        cols = [i for i, c in enumerate(sub or head) if 'R$/m' in c]
+        if len(out) < 2:
+            say('fipezap', ws.title, head[:16], sub[:16], cols)
+        sale, rent = {}, {}
+        for r in rows[hdr + 2:]:
+            if not r or not isinstance(r[1] if len(r) > 1 else None, dt.datetime) and not isinstance(r[0], dt.datetime):
+                continue
+            d0 = r[1] if isinstance(r[1], dt.datetime) else r[0]
+            k = d0.strftime('%Y-%m')
+            if len(cols) >= 1 and num(r[cols[0]]):
+                sale[k] = num(r[cols[0]])
+            if len(cols) >= 2 and num(r[cols[1]]):
+                rent[k] = num(r[cols[1]])
+        if sale:
+            out[ws.title] = {'sale': srt(sale), 'rent': srt(rent)}
+    say('fipezap cities', len(out), list(out)[:60])
+    return out
+
+
+def ecb_mir_try(cc):
+    try:
+        return ecb_mir(cc)
+    except Exception:
+        return []
+
+
+GEN = {
+    'de': ('Germany', 'EUR', '€', 'DEU', 'DE', '^GDAXI', 'EURUSD=X', 'eu'),
+    'at': ('Austria', 'EUR', '€', 'AUT', 'AT', '^ATX', 'EURUSD=X', 'eu'),
+    'ch': ('Switzerland', 'CHF', 'CHF', 'CHE', 'CH', '^SSMI', 'CHFUSD=X', None),
+    'fr': ('France', 'EUR', '€', 'FRA', 'FR', '^FCHI', 'EURUSD=X', 'eu'),
+    'it': ('Italy', 'EUR', '€', 'ITA', 'IT', 'FTSEMIB.MI', 'EURUSD=X', 'eu'),
+    'es': ('Spain', 'EUR', '€', 'ESP', 'ES', '^IBEX', 'EURUSD=X', 'eu'),
+    'pt': ('Portugal', 'EUR', '€', 'PRT', 'PT', 'PSI20.LS', 'EURUSD=X', 'eu'),
+    'br': ('Brazil', 'BRL', 'R$', 'BRA', 'BR', '^BVSP', 'BRLUSD=X', None),
+    'id': ('Indonesia', 'IDR', 'Rp', 'IDN', 'ID', '^JKSE', 'IDRUSD=X', None),
+    'kr': ('South Korea', 'KRW', '₩', 'KOR', 'KR', '^KS11', 'KRWUSD=X', None),
+    'jp': ('Japan', 'JPY', '¥', 'JPN', 'JP', '^N225', 'JPYUSD=X', None),
+    'ae': ('United Arab Emirates', 'AED', 'AED', 'ARE', 'AE', 'DFMGI.AE', 'AEDUSD=X', None),
+    'sa': ('Saudi Arabia', 'SAR', 'SAR', 'SAU', 'SA', '^TASI.SR', 'SARUSD=X', None),
+    'tr': ('Turkey', 'TRY', '₺', 'TUR', 'TR', 'XU100.IS', 'TRYUSD=X', None),
+}
+
+
+def generic(cc):
+    name, cur, sym, o3, a2, idx_sym, fx, zone = GEN[cc]
+    b = bis_load().get(a2) or {}
+    out = {'code': cc, 'name': name, 'cur': cur, 'sym': sym, 'oecd_code': o3, 'src': []}
+    if zone == 'eu':
+        e = eurostat(a2)
+        out['idx'] = {'n': 'House price index (Eurostat)', 's': e['TOTAL']}
+        out['types'] = {'New dwellings': e['DW_NEW'], 'Existing dwellings': e['DW_EXST']}
+        out['src'].append('Eurostat')
+        out['rates'] = {'New mortgage lending rate': ecb_mir_try(a2), 'ECB deposit rate': ecb_rate()}
+        out['src'].append('European Central Bank')
+    else:
+        if b.get('nom'):
+            out['idx'] = {'n': 'Residential property price index (BIS)', 's': srt(b['nom'])}
+            out['src'].append('Bank for International Settlements')
+        out['rates'] = {'Central bank policy rate': srt(b.get('pol') or {})}
+        if 'Bank for International Settlements' not in out['src']:
+            out['src'].append('Bank for International Settlements')
+    if b.get('real'):
+        out['bis_real'] = srt(b['real'])
+    regions = []
+    if cc == 'es':
+        for n, s in es_regions().items():
+            if n != 'Nacional':
+                regions.append({'id': n, 'n': n, 'idx': s})
+        out['src'].insert(0, 'Instituto Nacional de Estadística (INE)')
+    if cc == 'pt':
+        pr = pt_regions()
+        for n, s in pr.items():
+            regions.append({'id': n, 'n': n, 'price': s})
+        nat = pr.get('Portugal')
+        if nat:
+            out['price'] = {'n': 'Median sale price per m²', 's': nat}
+        out['src'].insert(0, 'Statistics Portugal (INE)')
+    if cc == 'br':
+        fz = br_fipezap()
+        nat = next((v for k, v in fz.items() if 'ndice' in k or 'FipeZap' in k or 'Brasil' in k), None)
+        if nat:
+            out['price'] = {'n': 'Average asking price per m² (FipeZap, 50 cities)', 's': nat['sale']}
+            if nat.get('rent'):
+                out['rent'] = {'n': 'Average asking rent per m² (FipeZap)', 's': nat['rent']}
+        for k, v in fz.items():
+            if v is not nat:
+                regions.append({'id': k, 'n': k, 'price': v['sale'], 'rent': v.get('rent') or []})
+        out['src'].insert(0, 'FipeZap')
+    out['regions'] = [r for r in regions if r['n'] != 'Portugal']
+    out['mkt'] = market(idx_sym, fx)
+    out['src'] += ['OECD', 'Yahoo Finance']
+    return out
+
+
 COUNTRIES = {'gb': gb, 'ca': ca, 'ie': ie, 'au': au}
+COUNTRIES.update({c: (lambda c=c: generic(c)) for c in GEN})
 
 
 def main():
@@ -475,7 +663,12 @@ def main():
         say('OECD FAILED', e)
         oecd = {}
     ok = 0
-    with cf.ThreadPoolExecutor(4) as ex:
+    if any(c in GEN for c in only):
+        try:
+            bis_load()
+        except Exception as e:
+            say('BIS FAILED', e)
+    with cf.ThreadPoolExecutor(6) as ex:
         futs = {ex.submit(COUNTRIES[c]): c for c in only}
         for fu in cf.as_completed(futs):
             c = futs[fu]

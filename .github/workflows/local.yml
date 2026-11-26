@@ -27,8 +27,7 @@ jobs:
       - name: Keep the markets that this run does not refresh
         run: |
           mkdir -p local
-          git fetch -q --depth 1 origin local && git --work-tree=local checkout origin/local -- . 2>/dev/null || true
-          git reset -q || true
+          (git fetch -q --depth 1 origin local && git archive origin/local | tar -x -C local) || true
           ls -la local
       - run: python local.py
       - name: Publish to branch "local"

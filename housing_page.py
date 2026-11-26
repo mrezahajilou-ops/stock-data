@@ -140,7 +140,7 @@ class Fmt:
 
 def mid(tpl, n):
     """A name placed after an article ('Le {n}', 'El {n}') starts in lower case, unless it is an abbreviation."""
-    if n and not tpl.startswith('{n}') and len(n) > 1 and n[0].isupper() and not n[1].isupper():
+    if n and not tpl.startswith(('{n}', 'Der ', 'Die ', 'Das ')) and len(n) > 1 and n[0].isupper() and not n[1].isupper():
         return n[0].lower() + n[1:]
     return n
 

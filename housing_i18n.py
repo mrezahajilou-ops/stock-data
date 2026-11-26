@@ -598,7 +598,7 @@ AR = {
     'y1l': 'سنة', 'y5l': '5 سنوات', 'y10l': '10 سنوات', 'y20l': '20 سنة', 'became': 'كم أصبحت {v} خلال 10 سنوات',
     'price_only_note': 'تغير الأسعار فقط: العقار يدرّ إيجارًا والأسهم توزع أرباحًا.',
     'tone_pos': 'يدعم الأسعار', 'tone_neg': 'يضغط على الأسعار', 'tone_neu': 'محايد',
-    'types_t': 'حسب المنطقة', 'types_s': 'الأسعار حسب المنطقة.', 'types_t2': 'حسب المنطقة', 'types_s2': 'آخر قيمة والتغير.',
+    'types_t': 'حسب النوع والمنطقة', 'types_s': 'الأسعار حسب نوع العقار أو المنطقة.', 'types_t2': 'حسب النوع والمنطقة', 'types_s2': 'آخر قيمة والتغير.',
     'src': 'المصادر', 'region': 'المنطقة', 'regions': 'المناطق', 'h_price': 'السعر', 'rent1y': 'الإيجار سنة', 'yield': 'العائد الإيجاري',
     'sort': 'ترتيب', 'sort_def': 'افتراضي', 'sort_az': 'الاسم', 'sort_hi': 'الأعلى: {l}', 'sort_lo': 'الأدنى: {l}', 'sort_up': 'أكبر ارتفاع: {l}', 'sort_down': 'أكبر انخفاض: {l}',
     'show_all': 'عرض كل {w} ({n})', 'show_5': 'عرض أول 5 فقط', 'map_aria': 'خريطة أسعار العقارات: {c}',
@@ -812,3 +812,6 @@ for _k, _v in (('n_Dubai median sale price per m² (DLD)', 'متوسط سعر ب
                ('t_Apartments in Dubai, per m²', 'الشقق في دبي، للمتر المربع'), ('t_Villas and townhouses in Dubai, per m²', 'الفلل والتاون هاوس في دبي، للمتر المربع'),
                ('src_Dubai Land Department', 'دائرة الأراضي والأملاك في دبي'), ('rn_ae', ('المنطقة', 'مناطق دبي'))):
     AR.setdefault(_k, _v)
+
+EN.setdefault('k_sales', 'Home sales'); EN.setdefault('k_off', 'Off-plan share of sales')
+AR.setdefault('k_sales', 'عدد صفقات بيع المساكن'); AR.setdefault('k_off', 'حصة البيع على الخارطة')

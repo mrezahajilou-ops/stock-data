@@ -103,19 +103,23 @@ def oecd_all():
 def yahoo_weekly(sym, years=21):
     acc = yahoo_series(sym, years, '1wk')
     if len(acc) < 24:          # some Gulf indexes answer only the last bar for weekly data: monthly instead
-        try:
-            acc2 = yahoo_series(sym, years, '1mo')
-            if len(acc2) > len(acc):
-                acc = acc2
-        except Exception:
-            pass
+        for iv in ('1mo', 'range'):
+            try:
+                acc2 = yahoo_series(sym, years, iv)
+                if len(acc2) > len(acc):
+                    acc = acc2
+            except Exception:
+                pass
     return acc
 
 
 def yahoo_series(sym, years, iv):
     now = int(time.time())
-    j = json.loads(get('https://query2.finance.yahoo.com/v8/finance/chart/%s?period1=%d&period2=%d&interval=%s'
-                       % (urllib.request.quote(sym), now - int(years * 365.25 * 86400), now, iv)))
+    if iv == 'range':
+        j = json.loads(get('https://query1.finance.yahoo.com/v8/finance/chart/%s?range=max&interval=1mo' % urllib.request.quote(sym)))
+    else:
+        j = json.loads(get('https://query2.finance.yahoo.com/v8/finance/chart/%s?period1=%d&period2=%d&interval=%s'
+                           % (urllib.request.quote(sym), now - int(years * 365.25 * 86400), now, iv)))
     r = j['chart']['result'][0]
     acc = {}
     for t, c in zip(r.get('timestamp') or [], ((r.get('indicators') or {}).get('quote') or [{}])[0].get('close') or []):

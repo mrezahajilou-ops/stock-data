@@ -138,6 +138,10 @@ class Fmt:
         return self.L['_q'].format(q=(int(k[5:7]) - 1) // 3 + 1, y=k[:4])
 
 
+def TODAY_YM():
+    return dt.date.today().strftime('%Y-%m')
+
+
 def mid(tpl, n):
     """A name placed after an article ('Le {n}', 'El {n}') starts in lower case, unless it is an abbreviation."""
     if n and not tpl.startswith(('{n}', 'Der ', 'Die ', 'Das ')) and len(n) > 1 and n[0].isupper() and not n[1].isupper():
@@ -446,6 +450,15 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
             kps.append(kp(L[lab], F.pc(N[k + '_vs'], 0), L['vs_avg_oecd']))
     if N.get('real_vs_peak') is not None:
         kps.append(kp(L['k_realpeak'].format(y=N['real_peak'][0][:4]), F.pc(N['real_vs_peak'], 0), L['after_infl']))
+    if X.get('sales'):        # transaction-level sources (Dubai): sales per month and off-plan share
+        m_, n_ = X['sales'][-1]
+        if m_ == TODAY_YM() and len(X['sales']) > 1:
+            m_, n_ = X['sales'][-2]   # the running month is not complete yet
+        kps.append(kp(L['k_sales'], F.n(n_), F.monthl(m_)))
+    if X.get('offplan'):
+        kps.append(kp(L['k_off'], F.pc(X['offplan'][-1][1], 0, False), F.monthl(X['offplan'][-1][0])))
+    for t in D['tys'][:2] if len(kps) < 4 and D.get('tysm') else []:
+        kps.append(kp(t['n'], F.money(t['d'][-1][1]), F.month(t['d'][-1][0])))
     kps = kps[:6] if len(kps) >= 6 else kps[:4] if len(kps) >= 4 else kps
     # year table
     tys = D['tys'][:4]
@@ -541,7 +554,9 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     pdata['rec'] = [['2008-04', '2009-06'], ['2020-02', '2020-06']]
     blob = json.dumps(pdata, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
     srcs = SEP.join(s for s in X['src'] if s != L.get('src_Yahoo Finance', 'Yahoo Finance'))
-    toc_items = [('prices', L['toc_prices']), ('years', L['toc_years']), ('vs', L['toc_vs']), ('drivers', L['toc_drivers']), ('rates', L['toc_rates'])] + \
+    has_years, has_drv, has_rates = bool(yrows), bool(tiles), bool(D['rates'])
+    toc_items = [('prices', L['toc_prices'])] + ([('years', L['toc_years'])] if has_years else []) + [('vs', L['toc_vs'])] + \
+        ([('drivers', L['toc_drivers'])] if has_drv else []) + ([('rates', L['toc_rates'])] if has_rates else []) + \
         ([('regions', L['toc_regions'].format(w=(L['rn_' + cc] if ('rn_' + cc) in L else (L['region'],))[0]))] if states else []) + ([('rents', L['toc_rents'])] if 'rent' in tabs else [])
     toc = '<nav class="toc">' + ''.join('<a href="#%s">%s</a>' % kv for kv in toc_items) + '</nav>'
     stamp = L['stamp'].format(d=F.monthl(D['as_of'][:7]).split(' ')[0] + ' ' + D['as_of'][8:10].lstrip('0') + ', ' + D['as_of'][:4] if lang == 'en' else dt.date.fromisoformat(D['as_of']).strftime('%d.%m.%Y'), c=curn)
@@ -555,19 +570,14 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
 {toc}
 <div id="prices" class="ac">{chart_card(L, 'price', L['ch_price'].format(**C), L['ch_price_s'], tabs['price'], 0, L['src'] + ': ' + srcs + '.')}</div>
 {types_html}
-<h2 id="years" class="ac">{L['h_years'].format(**C)}</h2>
-<p class="sub">{L['years_sub']}</p>
-<div class="card">{year_tbl}</div>
+{('<h2 id="years" class="ac">' + L['h_years'].format(**C) + '</h2><p class="sub">' + L['years_sub'] + '</p><div class="card">' + year_tbl + '</div>') if has_years else ''}
 <h2 id="vs" class="ac">{L['h_vs'].format(idx=D['index_name'], **C)}</h2>
 <div class="two">
 {chart_card(L, 'cmp', L['growth100'], L['prices_only_in'].format(c=curn), ['-'], 20, L['src'] + ': ' + SEP.join([D['idx_n'], L.get('src_Yahoo Finance', 'Yahoo Finance'), L.get('src_OECD', 'OECD')]) + '.')}
 <div class="card"><h3>{L['total_change']}</h3><p class="sub">{L['best']}</p>{cmp_tbl}</div>
 </div>
-<h2 id="drivers" class="ac">{L['h_drivers'].format(**C)}</h2>
-<p class="sub">{L['drivers_sub']}</p>
-<div class="drv">{dv}</div>
-<h2 id="rates" class="ac">{L['h_rates']}</h2>
-{chart_card(L, 'rates', L['h_rates'], '', tabs['rates'], 0, L['src'] + ': ' + srcs + '.')}
+{('<h2 id="drivers" class="ac">' + L['h_drivers'].format(**C) + '</h2><p class="sub">' + L['drivers_sub'] + '</p><div class="drv">' + dv + '</div>') if has_drv else ''}
+{('<h2 id="rates" class="ac">' + L['h_rates'] + '</h2>' + chart_card(L, 'rates', L['h_rates'], '', tabs['rates'], 0, L['src'] + ': ' + srcs + '.')) if has_rates else ''}
 {regions_html}
 {('<h2 id="rents" class="ac">' + L['h_rents'] + '</h2>' + chart_card(L, 'rent', L['h_rents'], '', tabs['rent'], 20, L['src'] + ': ' + srcs + '.')) if 'rent' in tabs else ''}
 {('<div class="card" style="margin-top:22px"><h3>' + L['more_markets'] + '</h3>' + nav + '</div>') if nav else ''}

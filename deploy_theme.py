@@ -162,6 +162,13 @@ def main():
     j = gql(tok, THEMES)
     nodes = (((j.get('data') or {}).get('themes') or {}).get('nodes') or [])
     if not nodes:
+        if 'ACCESS_DENIED' in json.dumps(j) or 'read_themes' in json.dumps(j):
+            # The store app was never granted read_themes/write_themes, so this job cannot write the theme.
+            # Theme changes are made through Claude's Shopify connection instead (and the live theme is newer than
+            # theme/ for some files, e.g. the home page), so a failure here is expected, not an outage: say so and stop.
+            print('::notice::store app lacks the read_themes/write_themes scopes - theme not pushed from this job '
+                  '(changes go through the Shopify connection; grant the scopes to re-enable this job)')
+            return 0
         print('::error::no live theme found: %s' % json.dumps(j, ensure_ascii=False)[:600]); return 1
     tid, tname = nodes[0]['id'], nodes[0]['name']
     print('live theme: %s (%s)' % (tname, tid))

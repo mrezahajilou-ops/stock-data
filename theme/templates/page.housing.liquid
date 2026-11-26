@@ -19,7 +19,7 @@
   var u = 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/housing/fa-{{ hs_cc }}.html?v=' + Math.floor(Date.now()/300000);
   fetch(u).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }).then(function(html){
     c.style.cssText = ''; c.innerHTML = html;
-    [].slice.call(c.querySelectorAll('script')).forEach(function(s){ var n = document.createElement('script'); if (s.type) n.type = s.type; n.textContent = s.textContent; s.parentNode.replaceChild(n, s); });
+    [].slice.call(c.querySelectorAll('script')).forEach(function(s){ var n = document.createElement('script'); [].slice.call(s.attributes).forEach(function(a){ n.setAttribute(a.name, a.value); }); n.textContent = s.textContent; s.parentNode.replaceChild(n, s); });
   }).catch(function(){ c.innerHTML = 'بارگذاری صفحه ناموفق بود؛ چند لحظه بعد دوباره امتحان کن.'; });
 })();
 </script>

@@ -661,10 +661,15 @@ def dld_month(ym):
     end = min(end, TODAY)
     vals = {'all': [], 'flat': [], 'villa': []}
     areas, off = {}, 0
-    d = start
+    wins, d = [], start
     while d <= end:
         e = min(d + dt.timedelta(days=4), end)
-        for r in dld_window(d, e):
+        wins.append((d, e))
+        d = e + dt.timedelta(days=1)
+    with cf.ThreadPoolExecutor(4) as ex:
+        rows = [r for part in ex.map(lambda w: dld_window(*w), wins) for r in part]
+    if True:
+        for r in rows:
             sub = (r.get('PROP_SB_TYPE_EN') or '').lower()
             kind = 'flat' if 'flat' in sub or 'apartment' in sub else 'villa' if 'villa' in sub or 'town' in sub else None
             if not kind:
@@ -682,7 +687,6 @@ def dld_month(ym):
             if an:
                 x = areas.setdefault(an, [[], r.get('AREA_AR') or an])
                 x[0].append(ppm)
-        d = e + dt.timedelta(days=1)
     n = len(vals['all'])
     return {'n': n, 'off': round(off / n * 100, 1) if n else None, 'm': {k: round(med(v)) if len(v) >= 30 else None for k, v in vals.items()},
             'a': {k: [round(med(v[0])), len(v[0]), v[1]] for k, v in areas.items() if len(v[0]) >= 5}}
@@ -693,7 +697,7 @@ def dld_stats(prev):
     st = dict((prev or {}).get('dld') or {})
     cur = TODAY.strftime('%Y-%m')
     pm = (TODAY.replace(day=1) - dt.timedelta(days=1)).strftime('%Y-%m')
-    todo = [cur, pm]
+    todo = [cur] + ([pm] if TODAY.day <= 10 or pm not in st else [])
     y, m = int(DLD_FIRST[:4]), int(DLD_FIRST[5:7])
     missing = []
     while '%04d-%02d' % (y, m) < pm:
@@ -703,10 +707,10 @@ def dld_stats(prev):
         m += 1
         if m > 12:
             y, m = y + 1, 1
-    todo += missing[::-1][:6]           # newest gaps first
+    todo += missing[::-1][:14]          # newest gaps first
     t0 = time.time()
     for k in todo:
-        if time.time() - t0 > 420:
+        if time.time() - t0 > 480:
             break
         try:
             st[k] = dld_month(k)

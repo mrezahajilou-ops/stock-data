@@ -1,0 +1,16 @@
+name: Probe URLs from a runner (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      urls: {description: 'URLs, space separated (prefix POST: for a JSON POST with body after |)', required: true}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: |
+          for u in ${{ inputs.urls }}; do
+            echo "=== $u"
+            curl -sS -m 40 -L -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/126.0 Safari/537.36' -o /tmp/b -w 'HTTP %{http_code} %{size_download} bytes %{content_type}\n' "$u" || true
+            head -c 1500 /tmp/b | tr -d '\0' ; echo
+          done

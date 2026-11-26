@@ -1,0 +1,24 @@
+name: Screenshots of live pages (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      urls: {description: 'URLs, space separated', required: true}
+permissions:
+  contents: write
+jobs:
+  shot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools/shot.py
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -q playwright && python tools/shot.py shots ${{ inputs.urls }}
+      - name: Publish to branch "shots"
+        run: |
+          cd shots && git init -q -b shots && git config user.name github-actions && git config user.email actions@github.com
+          git add -A && git commit -qm "shots" && git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" shots:shots

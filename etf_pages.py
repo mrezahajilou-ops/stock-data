@@ -223,8 +223,23 @@ def _line(series, p, h=170, w=760, every=6):
         if x[0][:4] not in seen:
             seen.add(x[0][:4])
             yrs.append((i, x[0][:4]))
-    xl = ''.join('<text x="%.1f" y="%d" class="xl">%s</text>' % (46 + i * step, h - 5, y)
-                 for i, y in yrs[::max(1, len(yrs) // every)])
+    # year labels never closer than ~4 characters apart (a fund that starts in late 2020 put "2020" on top of "2021"),
+    # and the first one starts at the axis instead of centring on it, so it does not touch the lowest price label
+    gap = 52 if w < 600 else 40
+    keep, last = [], None
+    for i, y in yrs[::max(1, len(yrs) // every)]:
+        x = 46 + i * step
+        if last is not None and x - last < gap:
+            continue
+        keep.append((x, y)); last = x
+    def _anchor(k, x):
+        if k == 0 and x < 46 + gap / 2:
+            return x + 2, ' style="text-anchor:start"'
+        if k == len(keep) - 1 and x > w - gap / 2:
+            return min(x, w - 2), ' style="text-anchor:end"'
+        return x, ''
+    xl = ''.join('<text x="%.1f" y="%d" class="xl"%s>%s</text>' % (_anchor(k, x)[0], h - 5, _anchor(k, x)[1], y)
+                 for k, (x, y) in enumerate(keep))
     return ('<svg viewBox="0 0 %d %d" dir="ltr" role="img"><path d="%s" class="ar"/><path d="%s" class="ln"/>%s%s</svg>'
             % (w, h, area, d, ticks, xl))
 

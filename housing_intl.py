@@ -277,35 +277,37 @@ def ca():
             nh[r['REF_DATE'][:7]] = v
         elif geo in CA_PROV:
             prov.setdefault(geo, {})[r['REF_DATE'][:7]] = v
-    rent = {}
-    geos, types, units = set(), set(), set()
+    cen = {}
     for r in statcan('34100133'):
-        geos.add(r['GEO']); types.add(r.get('Type of structure')); units.add(r.get('Type of unit'))
-        geo = r['GEO'].strip()
-        if r.get('Type of unit') != 'Two bedroom units' or 'three units and over' not in (r.get('Type of structure') or ''):
+        if r.get('Type of unit') != 'Two bedroom units' or r.get('Type of structure') != 'Row and apartment structures of three units and over':
             continue
         v = num(r.get('VALUE'))
         if v is None:
             continue
-        key = 'Canada' if geo == 'Canada' else geo if geo in CA_PROV else None
-        if key:
-            rent.setdefault(key, {})[r['REF_DATE'][:4] + '-10'] = v   # CMHC survey: October
-    say('ca statcan', len(prov), len(rent), sorted(nh.items())[-1:], [g for g in geos if ',' not in g][:20], types, units)
+        prov = r['GEO'].split(',')[-1].strip()
+        prov = next((p for p in CA_PROV if prov.startswith(p) or prov.split('/')[0].strip() == p), None)
+        if prov:
+            cen.setdefault(prov, {}).setdefault(r['REF_DATE'][:4] + '-10', []).append(v)
+    med = lambda xs: sorted(xs)[len(xs) // 2]
+    rent = {p: {k: med(v) for k, v in d.items()} for p, d in cen.items()}
+    allc = {}
+    for d in cen.values():
+        for k, v in d.items():
+            allc.setdefault(k, []).extend(v)
+    rent['Canada'] = {k: med(v) for k, v in allc.items()}
+    say('ca statcan', len(prov), len(rent), sorted(nh.items())[-1:], sorted(rent['Canada'].items())[-1:])
     starts = {}
     try:
-        cols = None
         for r in statcan('34100158'):
-            if cols is None:
-                cols = list(r.keys()); say('ca starts cols', cols, r)
-            if r.get('GEO') == 'Canada' and 'Total units' in (r.get('Type of unit') or '') and 'Seasonally adjusted at annual rates' in (r.get('Seasonal adjustment') or r.get('Adjustments') or ''):
+            if r.get('GEO') == 'Canada':
                 v = num(r.get('VALUE'))
                 if v is not None:
-                    starts[r['REF_DATE'][:7]] = v / 1000 if v > 5000 else v
+                    starts[r['REF_DATE'][:7]] = v
     except Exception as e:
         say('ca starts', str(e)[:80])
     return {'code': 'ca', 'name': 'Canada', 'cur': 'CAD', 'sym': 'C$', 'oecd_code': 'CAN',
             'idx': {'n': 'New Housing Price Index', 's': srt(nh)},
-            'rent': {'n': 'Average rent, 2-bedroom apartment (CMHC, October)', 's': srt(rent.get('Canada', {}))},
+            'rent': {'n': 'Typical 2-bedroom rent (median of CMHC centres, October)', 's': srt(rent.get('Canada', {}))},
             'rates': {'5-year conventional mortgage': valet('V80691335'), 'Bank of Canada policy rate': valet('V39079')},
             'starts': srt(starts),
             'regions': [{'id': CA_PROV[p], 'n': p, 'idx': srt(prov.get(p, {})), 'rent': srt(rent.get(p, {}))} for p in CA_PROV if prov.get(p) or rent.get(p)],
@@ -340,7 +342,16 @@ def ecb_rate():
     return srt(out)
 
 
+def ie_debug():
+    for t in ('HPM02', 'HPM03', 'HPM05', 'HPM06', 'HPM07', 'HPM08', 'HPA02', 'HPA06'):
+        try:
+            dims_debug('x/%s/a/b' % t, jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/%s/JSON-stat/2.0/en' % t))
+        except Exception as e:
+            say(t, str(e)[:80])
+
+
 def ie():
+    ie_debug()
     idx, reg = {}, {}
     for k, v in jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/HPM09/JSON-stat/2.0/en'):
         if not k['STATISTIC'][1].startswith('Residential Property Price Index'):
@@ -374,6 +385,7 @@ def ie():
     try:
         rows = jsonstat('https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en')
         dims_debug('x/RIQ02/a/b', rows)
+        say('RIQ02 national-ish', sorted({c[1] for k, _ in rows for d, c in k.items() if 'Ireland' in c[1] or 'State' in c[1] or 'National' in c[1] or ',' not in c[1]})[:60])
         for k, v in rows:
             labs = {d: c[1] for d, c in k.items()}
             t = next(c for d, c in k.items() if d.startswith('TLIST'))
@@ -406,7 +418,7 @@ def rba(table, want):
     txt = get('https://www.rba.gov.au/statistics/tables/csv/%s-data.csv' % table)
     rows = list(csv.reader(io.StringIO(txt)))
     title = next(r for r in rows if r and r[0] == 'Title')
-    say('rba', table, title[:12])
+    say('rba', table, title[:4], [r for r in rows if r and re.match(r'\d', r[0].strip())][-2:])
     cols = {lab: next((i for i, t in enumerate(title) if t.strip().lower() == w.lower()), None) for lab, w in want.items()}
     out = {lab: {} for lab in want}
     for r in rows:

@@ -55,7 +55,7 @@
 },
 {
 "t": "CBRS",
-"mcap": 21313825056,
+"mcap": 21313825057,
 "why": "no usable annual data",
 "cik": 2021728
 },
@@ -79,7 +79,7 @@
 },
 {
 "t": "CIB",
-"mcap": 19581412235,
+"mcap": 19581412236,
 "why": "no usable annual data",
 "cik": 2058897
 },
@@ -121,7 +121,7 @@
 },
 {
 "t": "UHAL.B",
-"mcap": 9354671754,
+"mcap": 9354671755,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -175,13 +175,13 @@
 },
 {
 "t": "MBGL",
-"mcap": 6774971594,
+"mcap": 6774971593,
 "why": "no usable annual data",
 "cik": 2090312
 },
 {
 "t": "OCTV",
-"mcap": 6053272120,
+"mcap": 6053272119,
 "why": "no usable annual data",
 "cik": 2083632
 },
@@ -205,7 +205,7 @@
 },
 {
 "t": "AUGO",
-"mcap": 5277823819,
+"mcap": 5277823818,
 "why": "no usable annual data",
 "cik": 1468642
 },
@@ -253,7 +253,7 @@
 },
 {
 "t": "TXR",
-"mcap": 4193086921,
+"mcap": 4193086920,
 "why": "no companyfacts file",
 "cik": 1561540
 },
@@ -289,7 +289,7 @@
 },
 {
 "t": "ELC",
-"mcap": 3872393945,
+"mcap": 3872393944,
 "why": "no usable annual data",
 "cik": 1348952
 },
@@ -301,7 +301,7 @@
 },
 {
 "t": "MSGR",
-"mcap": 3429603765,
+"mcap": 3429603764,
 "why": "no usable annual data",
 "cik": 2132873
 },
@@ -313,7 +313,7 @@
 },
 {
 "t": "CII",
-"mcap": 3251947616,
+"mcap": 3251947617,
 "why": "no usable annual data",
 "cik": 1278895
 },
@@ -325,7 +325,7 @@
 },
 {
 "t": "VGNT",
-"mcap": 3073241264,
+"mcap": 3073241265,
 "why": "no usable annual data",
 "cik": 2078008
 },
@@ -385,7 +385,7 @@
 },
 {
 "t": "TOWN",
-"mcap": 2657869295,
+"mcap": 2657869294,
 "why": "not in SEC ticker map",
 "cik": null
 },
@@ -397,7 +397,7 @@
 },
 {
 "t": "VVVV",
-"mcap": 2540169192,
+"mcap": 2540169193,
 "why": "no usable annual data",
 "cik": 1907709
 },
@@ -409,7 +409,7 @@
 },
 {
 "t": "IOND",
-"mcap": 2418544406,
+"mcap": 2418544407,
 "why": "no usable annual data",
 "cik": 2007691
 },
@@ -451,19 +451,19 @@
 },
 {
 "t": "ALMR",
-"mcap": 2055267237,
+"mcap": 2055267236,
 "why": "no usable annual data",
 "cik": 2104204
 },
 {
 "t": "COAG",
-"mcap": 2022968020,
+"mcap": 2022968021,
 "why": "no usable annual data",
 "cik": 2114044
 },
 {
 "t": "MFP",
-"mcap": 2020058524,
+"mcap": 2020058523,
 "why": "no usable annual data",
 "cik": 2088281
 },

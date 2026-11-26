@@ -231,6 +231,7 @@
 #rzd .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
 
 /* THEME:END */
+.blanknote{font-size:12.5px;opacity:.85;margin:8px 2px 0;line-height:1.7}.blanknote summary{cursor:pointer;font-weight:700}.blanknote ul{margin:6px 0 0;padding-inline-start:18px}.blanknote b{font-weight:600}
 </style>
 
 <div class="acctbar"><a class="qk qhome" href="/">🏠 صفحه اصلی</a><a class="qk qcont" href="/pages/contest-portfolio">🏆 مسابقه</a><a class="acct" data-rzacct href="/account/login">👤 ورود مشترکین</a></div><script>(function(){var a=document.querySelectorAll("[data-rzacct]");a=a[a.length-1];if(!a)return;var L=window.RZS_LOGGED!=null?!!window.RZS_LOGGED:(window.RZP?!!RZP.logged:null);try{if(L===null)L=localStorage.getItem("rz_li")==="1";else localStorage.setItem("rz_li",L?"1":"0")}catch(e){L=!!L}if(L){a.href="/account";a.textContent="👤 حساب من";a.classList.add("in")}else{a.href="/account/login?return_url="+encodeURIComponent(location.pathname+location.hash)}})();</script><div class="nav"><a href="/pages/stock">تحلیل سهم</a><a href="/pages/screener">غربالگر سهام</a><a class="on" href="/pages/dcf">ماشین‌حساب DCF</a><a href="/pages/etf">صندوق‌های ETF</a><a href="/pages/compare">مقایسه</a><a href="/pages/watchlist">واچ‌لیست</a><a href="/pages/earnings">تقویم گزارش‌ها</a><a href="/pages/pulse">نبض جامعه</a><a href="/pages/superinvestors">سوپر سرمایه‌گذارها</a><a href="/pages/top-30">۳۰ سهم برتر</a><a href="/pages/my-portfolio">دفترچه سهام من</a><a href="/pages/return-calculator">ماشین‌حساب بازده</a><a href="/pages/portfolio">پورتفوی رضا</a><a href="/pages/book">کتاب</a></div>
@@ -436,6 +437,7 @@ function render(s){
   });
   html+='<tr><td class="n">ROIC<span>بازده سرمایه‌ی به‌کاررفته (کیفیت کسب‌وکار)</span></td>'+H.roic.map(function(v,i){return '<td class="h'+(i==3?' sep':'')+'">'+pct(v)+'</td>'}).join('')+'<td></td><td></td><td></td></tr>';
   html+='</tbody></table></div>';
+  html+='<div id="rzd-blank"></div>';
   html+='<label class="opt"><input type="checkbox" id="rzd-bs"'+(saved&&saved.bs?' checked':'')+(B.mode==='earn'?' disabled':'')+'> نقد منهای بدهی رو هم جدا اضافه کن ('+big(B.cash-B.debt)+'). <span style="opacity:.75">پیش‌فرض خاموشه چون سود و جریان نقد بعد از هزینه‌ی بهره حساب شدن و بهره‌ی نقد هم داخل سوده؛ اضافه کردنش یعنی دوبار شمردن.</span></label>';
   html+='<div class="tools"><button class="btn ghost sm" id="rzd-reset">برگشت به پیش‌فرض</button>'+(ACCESS?'<button class="btn ghost sm" id="rzd-save">ذخیره‌ی فرض‌هام برای '+esc(s.t)+'</button>':'')+'<button class="btn ghost sm" id="rzd-share">کپی لینک این مدل</button></div>';
   html+='<div class="card" style="margin-top:14px"><div class="res" id="rzd-res"></div><div class="bar"><svg id="rzd-svg" viewBox="0 0 800 150"></svg></div><div class="meta" id="rzd-mnote" style="margin-top:8px"></div></div>';
@@ -443,6 +445,13 @@ function render(s){
   html+='<div class="card"><h3>DCF معکوس: بازار چه رشدی رو قیمت‌گذاری کرده؟</h3><div class="rev" id="rzd-rev"></div></div>';
   html+='<div class="card"><h3>جدول حساسیت: ارزش منصفانه بر اساس رشد سال ۱ و ۲ × بازده مورد انتظار</h3><div class="meta" style="margin-bottom:8px">بقیه‌ی فرض‌ها مثل سناریوی متوسط. سبز = قیمت فعلی زیر ارزش منصفانه، قرمز = بالاتر. خونه‌ی سفید فرض فعلی توئه.</div><div class="tblwrap"><table class="sens" id="rzd-sens"></table></div></div>';
   $('rzd-main').innerHTML=html;
+  /* empty history cells: their reasons in one small note under the table, never inside the cells */
+  (function(){var WH=H.why||{},RN={no_quarterly:'شرکت گزارش فصلی کامل برای دو سال اخیر ندارد، پس رشد ۱۲ ماهه حساب نمی‌شود.',short_history:'سابقه‌ی گزارش سالانه برای این دوره کافی نیست (تازه وارد بورس شده یا با شناسه‌ی جدید در SEC ثبت شده).',not_reported:'شرکت این رقم را در گزارش رسمی‌اش منتشر نکرده است.',loss_or_negative:'سال پایه یا آخرین سال زیان‌ده بوده و رشد از زیان یا به زیان معنی ندارد.'},byR={},n=0;
+    var cl=[].map.call(document.querySelectorAll('#rzd-main .tbl thead tr:nth-child(2) th.hh'),function(x){return x.textContent});
+    ROWS.forEach(function(R){var hk=R[3];if(!hk||!WH[hk]||!H[hk])return;WH[hk].forEach(function(w,i){if(w&&RN[w]&&H[hk][i]==null){(byR[w]=byR[w]||[]).push(R[1]+(cl[i]?' ('+cl[i]+')':''));n++}})});
+    if(!n)return;
+    $('rzd-blank').innerHTML='<details class="blanknote"><summary>چرا بعضی خانه‌ها خالی‌اند؟</summary><ul>'+Object.keys(byR).map(function(w){return '<li><b>'+byR[w].join(' · ')+'</b>: '+RN[w]+'</li>'}).join('')+'</ul></details>';
+  })();
   var msgs=[], F=B.flags||[];
   if(B.mode&&MODE[B.mode]) msgs.push(MODE[B.mode]);
   if(F.indexOf('stale')>=0) msgs.push('آخرین گزارش این شرکت قدیمیه؛ عددها رو با احتیاط بخون.');

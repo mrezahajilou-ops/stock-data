@@ -295,11 +295,29 @@ def block(rec, mk, est, fx, peer=None, today=None):
         g_ttm = base["rev"] / hist[-2]["rev"] - 1
     pm_t = base["ni"] / base["rev"] if base.get("ni") is not None else None
     fm_t = base["fcf"] / base["rev"] if base.get("fcf") is not None else None
+    def why(k, n):   # why a history cell is empty; the page explains it in one note under the table
+        if len(hist) <= n:
+            return "short_history"
+        x, y = hist[-1 - n].get(k), hist[-1].get(k)
+        if x is None or y is None:
+            return "not_reported"
+        return "loss_or_negative" if (x <= 0 or y <= 0) else None
+
+    def why_avg(f, n):
+        if len(hist) < n:
+            return "short_history"
+        return None if any(f(r) is not None for r in hist[-n:]) else "not_reported"
+
+    H_why = {"g": [None if g_ttm is not None else "no_quarterly"] + [None if cagr("rev", n) is not None else why("rev", n) for n in (1, 5, 10)],
+             "pm": [None, why_avg(nm, 1), why_avg(nm, 5), why_avg(nm, 10)],
+             "fm": [None, why_avg(fmr, 1), why_avg(fmr, 5), why_avg(fmr, 10)]}
     H = {"g": [g_ttm, cagr("rev", 1), cagr("rev", 5), cagr("rev", 10)],
          "pm": [pm_t, avg(nm, 1), avg(nm, 5), avg(nm, 10)],
          "fm": [fm_t, avg(fmr, 1), avg(fmr, 5), avg(fmr, 10)],
          "roic": [None, avg(lambda r: r.get("roic"), 1), avg(lambda r: r.get("roic"), 5), avg(lambda r: r.get("roic"), 10)],
          "sh": [None] + [None if rec.get("foreign") or rec.get("per_share_basis") == "market" else cagr("sh", n) for n in (1, 5, 10)]}
+    if any(x for v in H_why.values() for x in v):
+        H["why"] = H_why
 
     # ---- analyst consensus (revenue growth over the next ~2 years, forward net margin). Growth is measured
     # against the same provider's trailing revenue so the revenue definitions match (banks, insurers).
@@ -485,7 +503,7 @@ def block(rec, mk, est, fx, peer=None, today=None):
     blk = {"base": {k: (round(v, 0) if isinstance(v, float) and k not in ("end", "src") else v) for k, v in base.items()},
            "cash": round(cash), "debt": round(debt), "bs_end": bs_end, "sh": round(sh), "price": price,
            "payout": round(payout, 4), "nc": 0 if mode == "earn" else round(cash - debt), "mode": mode, "crp": crp,
-           "hist": {k: [R(x) for x in v] for k, v in H.items()},
+           "hist": {k: (v if k == "why" else [R(x) for x in v]) for k, v in H.items()},
            "an": {k: (R(v) if k != "n" else v) for k, v in an.items()},
            "d": d, "flags": flags}
     return blk

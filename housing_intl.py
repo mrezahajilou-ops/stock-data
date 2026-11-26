@@ -537,21 +537,30 @@ def es_regions():
     return out
 
 
+EN_MON = {m: i + 1 for i, m in enumerate(['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])}
+
+
 def pt_regions():
-    j = json.loads(get('https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0009490&lang=EN', timeout=120))
+    """INE indicator 0012248: median bank valuation of housing, EUR/m2, monthly, by NUTS region (total / apartments / houses)."""
+    j = json.loads(get('https://www.ine.pt/ine/json_indicador/pindica.jsp?op=2&varcd=0012248&Dim1=T&lang=EN', timeout=180))
     dados = j[0].get('Dados') or {}
-    out = {}
+    out, geos, types = {}, {}, set()
     for per, rows in dados.items():
-        m = re.search(r'(\d)\w* Quarter (\d{4})', per) or re.search(r'(\d)T(\d{4})', per) or re.search(r'Q(\d) (\d{4})', per)
-        if not m:
+        m = re.match(r'([A-Za-z]+) (\d{4})', per.strip())
+        if not m or m.group(1).lower() not in EN_MON:
             continue
-        k = '%s-%02d' % (m.group(2), int(m.group(1)) * 3)
+        k = '%s-%02d' % (m.group(2), EN_MON[m.group(1).lower()])
         for row in rows:
             v = num(row.get('valor'))
-            if v is not None:
-                out.setdefault(row.get('geodsg'), {})[k] = v
-    say('pt ine', len(out), list(dados)[:3], list(out)[:30], str(j[0])[:300] if not out else '')
-    return {k: srt(v) for k, v in out.items()}
+            gc = str(row.get('geocod') or '')
+            t = str(row.get('dim_3_t') or 'Total')
+            types.add(t)
+            if v is None or not (gc == 'PT' or len(gc) == 2):
+                continue
+            geos[gc] = row.get('geodsg')
+            out.setdefault(gc, {}).setdefault(t, {})[k] = v
+    say('pt ine', len(dados), sorted(geos.items()), types)
+    return {gc: {'n': geos[gc], 's': {t: srt(d) for t, d in v.items()}} for gc, v in out.items()}
 
 
 def br_fipezap():
@@ -660,6 +669,21 @@ def generic(cc):
             if n != 'Nacional':
                 regions.append({'id': n, 'n': n, 'idx': s})
         out['src'].insert(0, 'Instituto Nacional de Estadística (INE)')
+    if cc == 'pt':
+        try:
+            pr = pt_regions()
+            tot = lambda d: d.get('Total') or next(iter(d.values()))
+            nat = pr.pop('PT', None)
+            if nat:
+                out['price'] = {'n': 'Median bank valuation per m²', 's': tot(nat['s'])}
+                tt = {k: v for k, v in nat['s'].items() if k != 'Total'}
+                if tt:
+                    out['types'] = {('Apartments' if 'part' in k.lower() else 'Houses' if 'ouse' in k.lower() or 'orad' in k.lower() else k) + ', per m²': v for k, v in tt.items()}
+            for gc, g in pr.items():
+                regions.append({'id': gc, 'n': g['n'], 'price': tot(g['s'])})
+            out['src'].insert(0, 'Statistics Portugal (INE)')
+        except Exception as e:
+            say('pt regions', str(e)[:120])
     if cc == 'br':
         fz = br_fipezap()
         nat = next((v for k, v in fz.items() if 'ndice' in k or 'FipeZap' in k or 'Brasil' in k), None)

@@ -379,6 +379,8 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     gp = os.path.join(HERE, 'web_src', 'geo', '%s-paths.json' % cc)
     if D['states'] and os.path.exists(gp):
         geo = json.load(open(gp))
+        if cc in ('es', 'gb'):
+            geo['merged'] = 1
         known = set(geo['s'])
         D['states'] = [s for s in D['states'] if s['ab'] in known] + [s for s in D['states'] if s['ab'] not in known]
     states = D['states']
@@ -491,7 +493,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         D['mapm'] = {k: [l, f, d] for k, l, f, d in mapm}
         D['map0'] = mapm[0][0]
         D['tip'] = [[l, k, {'r': '$'}.get(f, f)] for k, l, f, _ in cols[:4]]
-        D['small'] = {k: 1 for k in (geo or {}).get('s', {})} if geo and len(geo['s']) > 20 else {}
+        D['small'] = {k: 1 for k in (geo or {}).get('s', {}) if len(geo['s']) > 20 or len(k) > 4}
         D['nshow'] = 5
         D['moreS'] = L['show_all'].format(n=len(states), w=rns)
         D['lessS'] = L['show_5']

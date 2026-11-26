@@ -242,14 +242,14 @@
 <script>
 /* SCR2:START  screener v2 (shared script, loaded for every language; the English site mounts it at build time) */
 (function(){var R=document.getElementById('rzc2');if(!R||window.SCR2_CFG)return;window.SCR2_ON=1;
-var L=(document.documentElement.lang||'fa').slice(0,2).toLowerCase();if(['fa','ar','es','tr'].indexOf(L)<0)L='fa';
+var L=(document.documentElement.lang||'fa').slice(0,2).toLowerCase();var CEN=['fa','ar','es','tr','de','pt'];/* other languages: the site's own /assets/scr2_i18n_<L>.js if it has one, else English labels; never the Persian paid view */
 var old=[].slice.call(R.querySelectorAll('.card,.bar,.tblwrap,#rzc2-more,#rzc2-cmp'));old.forEach(function(e){e.style.display='none'});
 var m=document.createElement('div');m.id='scr2';var sub=R.querySelector('.sub');if(sub&&sub.parentNode)sub.parentNode.insertBefore(m,sub.nextSibling);else R.insertBefore(m,R.firstChild);
 var free=L!=='fa';
 window.SCR2_CFG={lang:L,stockUrl:'/pages/stock#',subSel:'#rzc2 .sub',access:free||!!window.RZS_ACCESS,logged:!!window.RZS_LOGGED,subUrl:window.RZS_SUB_URL||'/products/stock-data-pro',subYearUrl:window.RZS_SUB_Y||'/products/stock-data-pro-yearly',loginUrl:'/account/login?return_url='+encodeURIComponent(location.pathname)};
 var B='https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/main/web/',v=Math.floor(Date.now()/3e5);
 function g(f){return fetch(B+f+'?v='+v,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()})}
-Promise.all([g('scr2.css'),g('scr2_i18n_'+L+'.js'),g('scr2.js')]).then(function(x){var s=document.createElement('style');s.textContent=x[0];R.appendChild(s);[x[1],x[2]].forEach(function(c){var e=document.createElement('script');e.textContent=c;document.head.appendChild(e)})})
+Promise.all([g('scr2.css'),CEN.indexOf(L)>=0?g('scr2_i18n_'+L+'.js'):fetch('/assets/scr2_i18n_'+L+'.js',{cache:'no-store'}).then(function(r){return r.ok?r.text():''}).catch(function(){return ''}),g('scr2.js')]).then(function(x){var s=document.createElement('style');s.textContent=x[0];R.appendChild(s);[x[1],x[2]].forEach(function(c){var e=document.createElement('script');e.textContent=c;document.head.appendChild(e)})})
 .catch(function(){window.SCR2_ON=0;old.forEach(function(e){e.style.display=''});if(m.parentNode)m.parentNode.removeChild(m);if(window.RZC2_START)window.RZC2_START()})})();
 /* SCR2:END */
 /* EVENTS:START */

@@ -327,7 +327,7 @@ function liveWhen(iso){
   try{var d=new Date(iso);if(isNaN(d))return '';
     return d.toLocaleString('fa-IR-u-ca-gregory',{timeZone:'America/New_York',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' به وقت نیویورک'}catch(e){return ''}
 }
-function liveLabel(t){var Q=liveQ(t);if(!Q)return '';return (RZQ_ST[RZQ.status]||'آخرین قیمت')+' · '+liveWhen(Q[3]||RZQ.as_of)}
+function liveLabel(t){var Q=liveQ(t);if(!Q)return '';var w=Q[3]||RZQ.as_of;return (/T16:0\d/.test(w)?'قیمت پایانی':(RZQ_ST[RZQ.status]||'آخرین قیمت'))+' · '+liveWhen(w)}
 var ALIAS=null;
 function load(t,cb,viaAlias){
   if(!viaAlias) ALIAS=null;

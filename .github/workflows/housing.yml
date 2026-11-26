@@ -2,7 +2,7 @@ name: Housing market data (stockanaliz.com/housing)
 
 on:
   schedule:
-    - cron: '23 14 * * *'    # once a day: FRED (Case-Shiller, Freddie Mac rates), Zillow, Census ACS, Realtor.com
+    - cron: '23 14 * * *'    # once a day: FHFA, Freddie Mac, BLS, Census, Fed, Zillow, Realtor.com
   workflow_dispatch:
 
 permissions:
@@ -24,11 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Probe sources
-        run: pip install -q openpyxl && timeout 600 python -u housing.py probe || true
       - name: Build housing.json
-        if: false
-        run: python -u housing.py
+        run: pip install -q openpyxl && python -u housing.py
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |
           B=housing; if [ "${{ github.ref_name }}" != "main" ]; then B=housing-test; fi

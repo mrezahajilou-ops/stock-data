@@ -63,6 +63,11 @@ def from_worker():
     return None
 
 
+def _utc(d):
+    """Stamps arrive both with and without a time zone; a naive one is UTC (comparing the two kinds crashed the job)."""
+    return d.replace(tzinfo=dt.timezone.utc) if d.tzinfo is None else d
+
+
 def official_closes(q):
     """Overlay the official closes (close_fix.py -> branch `closes`) on any quote stamped at or before them.
     The screener's last sale can be the previous day's price stamped with today's close time."""
@@ -70,7 +75,7 @@ def official_closes(q):
         url = 'https://raw.githubusercontent.com/' + os.environ.get('GITHUB_REPOSITORY', 'mrezahajilou-ops/stock-data') + '/closes/closes.json'
         with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'stock-data-quotes'}), timeout=30) as r:
             c = json.loads(r.read())
-        cs = dt.datetime.fromisoformat(c['stamp'].replace('Z', '+00:00'))
+        cs = _utc(dt.datetime.fromisoformat(c['stamp'].replace('Z', '+00:00')))
     except Exception as e:
         print('official closes unavailable', e, flush=True)
         return 0
@@ -78,7 +83,7 @@ def official_closes(q):
     for t, v in (c.get('c') or {}).items():
         o = q.get(t)
         try:
-            ts = dt.datetime.fromisoformat(str(o[3]).replace('Z', '+00:00')) if o else None
+            ts = _utc(dt.datetime.fromisoformat(str(o[3]).replace('Z', '+00:00'))) if o else None
         except Exception:
             ts = None
         if o and ts and ts <= cs and v and v[0]:

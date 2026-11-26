@@ -127,7 +127,25 @@ def us_session():
     dst = nth_sunday(3, 2) + dt.timedelta(hours=7) <= NOW < nth_sunday(11, 1) + dt.timedelta(hours=6)
     ny = NOW - dt.timedelta(hours=4 if dst else 5)
     m = ny.hour * 60 + ny.minute
-    return ny.weekday() < 5 and 570 <= m < 960
+    day = ny.strftime('%Y-%m-%d')
+    if day in nyse_holidays():   # Thanksgiving etc.: no session, so old quotes are not a problem
+        return False
+    close = 780 if day in NYSE_HALF_DAYS else 960   # 13:00 New York on the half days
+    return ny.weekday() < 5 and 570 <= m < close
+
+
+# the day after Thanksgiving and Christmas Eve close at 13:00 New York
+NYSE_HALF_DAYS = {'2026-11-27', '2026-12-24', '2027-11-26'}
+
+
+def nyse_holidays():
+    """Full-day NYSE holidays, kept in one place (quotes.py NYSE_HOLIDAYS)."""
+    import os, re, ast
+    try:
+        src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'quotes.py'), encoding='utf-8').read()
+        return ast.literal_eval(re.search(r'NYSE_HOLIDAYS = (\{.*?\})', src, re.S).group(1))
+    except Exception:
+        return set()
 
 
 def check_site(issues):

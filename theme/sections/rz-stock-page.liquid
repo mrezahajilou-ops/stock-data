@@ -104,8 +104,8 @@
       <h1>تحلیل سهام {{ label | escape }} به فارسی{% if d.fa2 != blank %} <small class="fa2">{{ d.fa2 | escape }}</small>{% endif %}</h1>
       <div class="meta">
         {%- if d.sector_fa != blank -%}بخش {{ d.sector_fa | escape }}{%- endif -%}
-        {%- if d.industry != blank %} · <span dir="ltr">{{ d.industry | escape }}</span>{%- endif -%}
-        · {{ d.name | escape }}
+        {%- if d.industry_fa != blank %} · {{ d.industry_fa | escape }}{%- endif -%}
+        · <bdi dir="ltr">{{ d.name | escape }}</bdi>
       </div>
     </div>
     <div class="px">

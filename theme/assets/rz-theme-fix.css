@@ -5,3 +5,14 @@
 .shopify-payment-button__button--unbranded{background:transparent!important;color:var(--rz-ink)!important;box-shadow:inset 0 0 0 1px var(--rz-line)!important}
 .shopify-payment-button__button--unbranded:hover{box-shadow:inset 0 0 0 1px var(--rz-gold)!important;color:var(--rz-gold)!important}
 .shopify-payment-terms-notice,.product__info-container .product-form small{color:var(--rz-mut)}
+/* mobile-ux-2026-11: touch targets of at least ~40px, readable minimum text, no iOS zoom on input focus */
+@media (max-width:640px){
+html body .acctbar a{min-height:38px;display:inline-flex;align-items:center}
+html body .hero .pop a,html body .chips a{min-height:38px;display:inline-flex;align-items:center}
+html body .hero .pop a{padding:6px 14px}
+html body a.more{min-height:40px;display:flex;align-items:center}
+html body details>summary{padding:10px 0;min-height:44px;box-sizing:border-box}
+html body .copyright__content a{display:inline-block;padding:8px 2px}
+html body span.tk,html body small.tk{font-size:max(12px,.82em)!important}
+html body input:not([type=hidden]):not([type=checkbox]):not([type=radio]),html body select,html body textarea{font-size:max(16px,1em)!important}
+}

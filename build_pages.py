@@ -6,6 +6,10 @@ Output: pages/pages.jsonl  - one JSON object per line: {"handle", "fields": {...
 The text is written in Persian from the same numbers and checks the interactive tool uses,
 so every page is unique, factual and indexable (it is rendered server-side by the theme).
 """
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'content'))
+from industries_fa import IND_FA
+
 import json, os, glob, re, datetime as dt
 from collections import defaultdict
 
@@ -256,7 +260,7 @@ def page(d, related):
     hist = [{'fy': x['fy'], 'rev': x.get('revenue'), 'ni': x.get('net_income'), 'fcf': x.get('fcf'),
              'nm': num(x.get('net_margin'), 4), 'roic': num(x.get('roic'), 4)} for x in a[-6:]]
     data = {
-        't': t, 'name': nm_en, 'fa': nm, 'fa2': fa2, 'sector': m.get('sector'), 'sector_fa': sector_fa, 'industry': m.get('industry'),
+        't': t, 'name': nm_en, 'fa': nm, 'fa2': fa2, 'sector': m.get('sector'), 'sector_fa': sector_fa, 'industry': m.get('industry'), 'industry_fa': IND_FA.get(m.get('industry') or ''),
         'price': m.get('price'), 'mcap': m.get('mcap'), 'as_of': trading_day(m.get('as_of')),
         'scores': {k: sc.get(k) for k, _ in AX}, 'total': tot, 'verdict': verdict(tot),
         'axes': [{'k': k, 'fa': f, 'v': sc.get(k)} for k, f in AX],

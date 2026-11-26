@@ -1,0 +1,36 @@
+{%- comment -%}
+  Housing market (/pages/housing = US, /pages/housing-germany, /pages/housing-canada).
+  Live part: fa-<cc>.html on the data branch "housing" of stock-data, rebuilt every 2 hours by .github/workflows/housing.yml
+  (housing_fa.py + the shared renderer housing_page.py). The short text below is rendered on the server for search engines.
+{%- endcomment -%}
+{%- assign hs_cc = 'us' -%}{%- assign hs_name = 'آمریکا' -%}
+{%- if page.handle contains 'germany' -%}{%- assign hs_cc = 'de' -%}{%- assign hs_name = 'آلمان' -%}{%- endif -%}
+{%- if page.handle contains 'canada' -%}{%- assign hs_cc = 'ca' -%}{%- assign hs_name = 'کانادا' -%}{%- endif -%}
+<style>#rz-app-housing table{table-layout:auto!important;margin:0}#rz-app-housing svg{max-width:none}</style>
+<script>
+  window.RZS_LOGGED = {% if customer %}true{% else %}false{% endif %};
+</script>
+<div style="padding:24px 0 8px">
+  <div id="rz-app-housing" dir="rtl" style="min-height:300px;color:#93a7bf;text-align:center;padding:40px 0;font-family:Vazirmatn,Tahoma,sans-serif">در حال بارگذاری…</div>
+</div>
+<script>
+(function(){
+  var c = document.getElementById('rz-app-housing');
+  var u = 'https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/housing/fa-{{ hs_cc }}.html?v=' + Math.floor(Date.now()/300000);
+  fetch(u).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }).then(function(html){
+    c.style.cssText = ''; c.innerHTML = html;
+    [].slice.call(c.querySelectorAll('script')).forEach(function(s){ var n = document.createElement('script'); if (s.type) n.type = s.type; n.textContent = s.textContent; s.parentNode.replaceChild(n, s); });
+  }).catch(function(){ c.innerHTML = 'بارگذاری صفحه ناموفق بود؛ چند لحظه بعد دوباره امتحان کن.'; });
+})();
+</script>
+<noscript>
+  <section dir="rtl" style="max-width:1100px;margin:0 auto;padding:0 22px 40px;font-family:Vazirmatn,Tahoma,sans-serif;color:#cfd3da;line-height:1.9">
+    <h2>بازار مسکن {{ hs_name }}</h2>
+    <p>قیمت خانه، اجاره و نرخ وام مسکن {{ hs_name }}، با تاریخچه‌ی قیمت، تغییر سال‌به‌سال، مقایسه با بورس و طلا و عوامل اصلی قیمت. داده‌ها هر چند ساعت از منابع رسمی به‌روز می‌شوند.</p>
+  </section>
+</noscript>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"خانه","item":"{{ shop.url }}/"},
+  {"@type":"ListItem","position":2,"name":"بازار مسکن {{ hs_name }}","item":"{{ shop.url }}{{ page.url }}"}]}
+</script>

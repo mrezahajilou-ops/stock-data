@@ -1,11 +1,12 @@
 {%- comment -%}
-  Quick links on every page: home, stock analysis, gold & silver (desktop only), contest, account. Tool pages (rz-app) draw the same bar themselves (gen_web.py ACCT),
+  Quick links on every page: home, stock analysis, gold & silver and housing (desktop only), contest, account. Tool pages (rz-app) draw the same bar themselves (gen_web.py ACCT),
   so this one hides itself when the page contains an rz-app container.
 {%- endcomment -%}
 <div class="rzgt" dir="rtl">
   {%- unless template.name == 'index' -%}<a class="q" href="/">🏠 <span class="lg">صفحه اصلی</span><span class="sm">خانه</span></a>{%- endunless -%}
   {%- unless request.path == '/pages/stock' -%}<a class="q" href="/pages/stock">📊 تحلیل سهام</a>{%- endunless -%}
   {%- unless request.path == '/pages/gold' -%}<a class="q g" href="/pages/gold">🥇 طلا و نقره</a>{%- endunless -%}
+  {%- unless request.path contains '/pages/housing' -%}<a class="q g" href="/pages/housing">🏘️ بازار مسکن</a>{%- endunless -%}
   <a class="q c" href="/pages/contest-portfolio">🏆 مسابقه</a>
   {%- if customer -%}<a class="a in" href="{{ routes.account_url }}">👤 حساب من</a>
   {%- else -%}<a class="a" href="{{ routes.account_login_url }}?return_url={{ request.path | url_encode }}">👤 <span class="lg">ورود مشترکین</span><span class="sm">ورود</span></a>{%- endif -%}

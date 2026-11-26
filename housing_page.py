@@ -32,9 +32,10 @@ FLAG = {
     'sa': '<svg viewBox="0 0 3 2" width="15" height="10"><rect width="3" height="2" fill="#006C35"/><rect x=".7" y="1.35" width="1.6" height=".12" fill="#fff"/></svg>',
     'tr': '<svg viewBox="0 0 30 20" width="15" height="10"><rect width="30" height="20" fill="#E30A17"/><circle cx="11" cy="10" r="5" fill="#fff"/><circle cx="12.3" cy="10" r="4" fill="#E30A17"/><path d="M16.5 10l3.8-1.2-2.3 3.2V8l2.3 3.2z" fill="#fff"/></svg>',
 }
-INDEX_NAME = {'de': 'DAX', 'at': 'ATX', 'ch': 'SMI', 'fr': 'CAC 40', 'it': 'FTSE MIB', 'es': 'IBEX 35', 'pt': 'PSI', 'br': 'Ibovespa',
+INDEX_NAME = {'us': 'S&P 500', 'ca': 'S&P/TSX', 'gb': 'FTSE 100', 'ie': 'ISEQ', 'au': 'ASX 200', 'de': 'DAX', 'at': 'ATX', 'ch': 'SMI', 'fr': 'CAC 40', 'it': 'FTSE MIB', 'es': 'IBEX 35', 'pt': 'PSI', 'br': 'Ibovespa',
               'id': 'IDX Composite', 'kr': 'KOSPI', 'jp': 'Nikkei 225', 'ae': 'DFM', 'sa': 'TASI', 'tr': 'BIST 100'}
-TERM = {'de': 25, 'at': 25, 'ch': 25, 'fr': 20, 'it': 25, 'es': 25, 'pt': 30, 'br': 30, 'id': 15, 'kr': 30, 'jp': 35, 'ae': 25, 'sa': 25, 'tr': 10}
+TERM = {'us': 30, 'ca': 25, 'gb': 25, 'ie': 30, 'au': 30, 'de': 25, 'at': 25, 'ch': 25, 'fr': 20, 'it': 25, 'es': 25, 'pt': 30, 'br': 30, 'id': 15, 'kr': 30, 'jp': 35, 'ae': 25, 'sa': 25, 'tr': 10}
+SEP = ', '
 COLS = ['#C9A961', '#6FA8DC', '#8A8F99', '#4FA37A', '#C8534F']
 
 
@@ -96,30 +97,36 @@ class Fmt:
     def __init__(self, L, sym, cur):
         self.L, self.sym, self.cur = L, sym, cur
         self.dec, self.grp = L['_dec'], L['_grp']
+        self.rtl = L.get('_dir') == 'rtl'
 
-    def n(self, v, d=0):
+    def iso(self, s):
+        """Right-to-left pages: keep a number with its sign and % together (Unicode isolate, invisible)."""
+        return '\u2066' + s + '\u2069' if self.rtl and s != '—' else s
+
+    def n(self, v, d=0, wrap=True):
         if v is None:
             return '—'
         s = format(abs(v), ',.%df' % d).replace(',', '\x01').replace('.', '\x02').replace('\x01', self.grp).replace('\x02', self.dec)
-        return ('−' if v < 0 else '') + s
+        s = ('−' if v < 0 else '') + s
+        return self.iso(s) if wrap else s
 
     def money(self, v):
         if v is None:
             return '—'
-        s = self.n(abs(v))
+        s = self.n(abs(v), 0, False)
         s = self.L['_cur'].format(n=s, s=self.sym)
-        return ('−' if v < 0 else '') + s
+        return self.iso(('−' if v < 0 else '') + s)
 
     def pc(self, v, d=1, sign=True):
         if v is None:
             return '—'
         if round(v, d) == 0:
             v = 0.0
-        s = self.n(abs(v), d) + self.L['_pct']
-        return (('+' if v > 0 else '−' if v < 0 else '') if sign else ('−' if v < 0 else '')) + s
+        s = self.n(abs(v), d, False) + self.L['_pct']
+        return self.iso((('+' if v > 0 else '−' if v < 0 else '') if sign else ('−' if v < 0 else '')) + s)
 
     def rate(self, v):
-        return '—' if v is None else self.n(v, 2) + self.L['_pct']
+        return '—' if v is None else self.iso(self.n(v, 2, False) + self.L['_pct'])
 
     def month(self, k):
         return '%s %s' % (self.L['_mon'][int(k[5:7]) - 1], k[:4])
@@ -136,6 +143,9 @@ def cls(v):
 
 
 def load(sd, cc):
+    lp = os.path.join(os.environ.get('HOUSING_DIR', ''), 'housing_%s.json' % cc) if os.environ.get('HOUSING_DIR') else ''
+    if lp and os.path.exists(lp):
+        return json.load(open(lp))
     for ref in ('origin/housing', 'housing'):
         try:
             return json.loads(subprocess.run(['git', '-C', sd, 'show', '%s:housing_%s.json' % (ref, cc)], capture_output=True, timeout=60, check=True).stdout)
@@ -174,6 +184,7 @@ def prepare(cc, X, L):
     D['rent_n'] = L.get('n_' + ((X.get('rent') or {}).get('n') or ''), (X.get('rent') or {}).get('n'))
     D['rents_y'] = yoy(rent) if len(rent) > 12 else []
     D['tys'] = [{'n': L.get('t_' + n, n), 'c': COLS[i % 5], 'd': s} for i, (n, s) in enumerate((X.get('types') or {}).items()) if s]
+    D['tysm'] = bool(D['tys']) and min(t['d'][-1][1] for t in D['tys']) > 2000
     D['rates'] = [{'n': L.get('r_' + n, n), 'c': COLS[i % 5], 'd': s, 'pol': 'mortgage' not in n.lower()} for i, (n, s) in enumerate((X.get('rates') or {}).items()) if s]
     nom, real = dict(oe.get('nom') or []), dict(oe.get('real') or [])
     cpi = [[k, round(nom[k] / real[k] * 100, 3)] for k in sorted(nom) if real.get(k)]
@@ -217,7 +228,7 @@ def prepare(cc, X, L):
     cy = int(D['maxk'][:4])
     years = list(range(cy - 11, cy + 1))
     for g in X.get('regions') or []:
-        row = {'ab': g['id'], 'n': g['n']}
+        row = {'ab': g['id'], 'n': (L.get('rg_' + cc) or {}).get(g['id'], g['n'])}
         ps, ix, rs = g.get('price') or [], g.get('idx') or [], g.get('rent') or []
         main = ps or ix
         if main:
@@ -316,7 +327,7 @@ def chart_cfg(D, L):
     labs.append(L['tab_yoy'])
     t['price'] = (pv, labs)
     if D['tys']:
-        t['types'] = (["{s:function(D){return D.tys.map(function(x){return {n:x.n,c:x.c,d:x.d,f:'i'}})},note:''}"], ['-'])
+        t['types'] = (["{s:function(D){return D.tys.map(function(x){return {n:x.n,c:x.c,d:x.d,f:D.tysm?'$':'i'}})},note:''}"], ['-'])
     t['cmp'] = (["{s:function(D){var c=D.cmp;return [{n:%s,c:'#C9A961',d:c.home},{n:%s,c:'#6FA8DC',d:c.index},{n:%s,c:'#E8C77A',d:c.gold,dash:1},{n:%s,c:'#4FA37A',d:c.rent},{n:%s,c:'#8A8F99',d:c.cpi}]},norm:1,note:%s}" % (
         j(L['s_home']), j(D['index_name']), j(L['s_gold']), j(L['s_rents']), j(L['s_infl']), j(L['note_cmp']))], ['-'])
     rv = ["{s:function(D){return D.rates.map(function(x){return {n:x.n,c:x.c,d:x.d,f:'%2'}})},note:''}"]
@@ -354,11 +365,11 @@ def chart_card(L, key, title, sub, tabs, default_y, src):
 
 
 DETAIL_JS = r"""window.HS_STDETAIL=function(r){var D=JSON.parse(document.getElementById('hs-data').textContent),T=D.tx,LOC=D.loc;
- function fmv(v){if(v==null)return '—';return D.yfmt==='i'?v.toLocaleString(LOC,{maximumFractionDigits:1,minimumFractionDigits:1}):new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,maximumFractionDigits:0}).format(v)}
+ function fmv(v){if(v==null)return '—';return D.yfmt==='i'?v.toLocaleString(LOC,{maximumFractionDigits:1,minimumFractionDigits:1}):new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,currencyDisplay:D.narrow?'narrowSymbol':'symbol',maximumFractionDigits:0}).format(v)}
  function cc(a,b){if(a==null||b==null)return '<td>—</td>';var v=(a/b-1)*100;return '<td class="'+(v>0?'up':'dn')+'">'+(v>0?'+':v<0?'−':'')+Math.abs(v).toLocaleString(LOC,{maximumFractionDigits:1,minimumFractionDigits:1})+'%</td>'}
  var use=[1,4].filter(function(j){return r.yr.some(function(x){return x[j]!=null})}),L=[,D.ylab,,,T.rent];
  var h='<b style="font-weight:600">'+r.n+' – '+T.ybyy+'</b><p class="mut" style="margin:2px 0 6px;font-size:12.5px">'+T.ynote+'</p><div class="tw"><table class="yt"><thead><tr><th>'+T.year+'</th>'+use.map(function(j){return '<th>'+L[j]+'</th><th>'+T.change+'</th>'}).join('')+'</tr></thead><tbody>';
- for(var i=r.yr.length-1;i>=1;i--){var a=r.yr[i],p=r.yr[i-1];if(a[1]==null&&a[4]==null)continue;h+='<tr><td>'+a[0]+(i===r.yr.length-1?' <small class="mut">('+T.latest+')</small>':'')+'</td>'+use.map(function(j){return '<td>'+(j===4?(a[j]==null?'—':new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,maximumFractionDigits:D.rdec||0}).format(a[j])):fmv(a[j]))+'</td>'+cc(a[j],p[j])}).join('')+'</tr>'}
+ for(var i=r.yr.length-1;i>=1;i--){var a=r.yr[i],p=r.yr[i-1];if(a[1]==null&&a[4]==null)continue;h+='<tr><td>'+a[0]+(i===r.yr.length-1?' <small class="mut">('+T.latest+')</small>':'')+'</td>'+use.map(function(j){return '<td>'+(j===4?(a[j]==null?'—':new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,currencyDisplay:D.narrow?'narrowSymbol':'symbol',maximumFractionDigits:D.rdec||0}).format(a[j])):fmv(a[j]))+'</td>'+cc(a[j],p[j])}).join('')+'</tr>'}
  return h+'</tbody></table></div>'};"""
 
 
@@ -369,9 +380,12 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         return None
     L = I18N.lang(lang)
     C = L['c'][cc]
+    global SEP
+    SEP = L.get('_sep', ', ')
+    curn = (L.get('_curn') or {}).get(X['cur'], X['cur'])
     X['src'] = [L.get('src_' + x, x) for x in X.get('src') or []]          # {name, adj, in_, of}
     D = prepare(cc, X, L)
-    D['index_name'] = INDEX_NAME.get(cc, '')
+    D['index_name'] = L.get('ix_' + cc) or INDEX_NAME.get(cc, '')
     N, F = D['N'], Fmt(L, X['sym'], X['cur'])
     tiles = drivers(D, L, F)
     cfg_js, tabs = chart_cfg(D, L)
@@ -463,10 +477,10 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     types_html = ''
     if D['tys']:
         trs = ''.join('<tr><td class="nm">%s</td><td>%s</td><td class="%s">%s</td><td class="%s">%s</td><td class="%s">%s</td></tr>' % (
-            esc(t['n']), F.n(t['d'][-1][1], 1), cls(chg(t['d'][-1][1], back(t['d'], 12))), F.pc(chg(t['d'][-1][1], back(t['d'], 12))),
+            esc(t['n']), F.money(t['d'][-1][1]) if D.get('tysm') else F.n(t['d'][-1][1], 1), cls(chg(t['d'][-1][1], back(t['d'], 12))), F.pc(chg(t['d'][-1][1], back(t['d'], 12))),
             cls(chg(t['d'][-1][1], back(t['d'], 60))), F.pc(chg(t['d'][-1][1], back(t['d'], 60)), 0), cls(chg(t['d'][-1][1], back(t['d'], 120))), F.pc(chg(t['d'][-1][1], back(t['d'], 120)), 0)) for t in D['tys'])
         types_html = '<div class="two">%s<div class="card"><h3>%s</h3><p class="sub">%s</p><div class="tw"><table><thead><tr><th></th><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div></div></div>' % (
-            chart_card(L, 'types', L['types_t'], L['types_s'], ['-'], 0, L['src'] + ': ' + ', '.join(X['src'][:1])), L['types_t2'], L['types_s2'], L['h_idx'], L['y1l'], L['y5l'], L['y10l'], trs)
+            chart_card(L, 'types', L['types_t'], L['types_s'], ['-'], 0, L['src'] + ': ' + SEP.join(X['src'][:1])), L['types_t2'], L['types_s2'], L['h_price'] if D.get('tysm') else L['h_idx'], L['y1l'], L['y5l'], L['y10l'], trs)
     # regions
     regions_html = ''
     if states:
@@ -506,19 +520,20 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
             mb, min(900, geo['w']), geo['w'], geo['h'], esc(L['map_aria'].format(c=C['name']))) if geo else '')
         regions_html = '<h2 id="regions" class="ac">%s</h2><p class="sub">%s</p>%s<div class="card"><div class="bar"><b style="font-weight:600">%s</b><span class="sp"></span>%s</div><div class="tw"><table><thead><tr>%s</tr></thead><tbody id="hs-st">%s</tbody></table></div><button class="more" id="hs-st-more"></button><p class="src">%s</p></div>' % (
             L['h_regions'].format(w=rn), L['regions_sub'].format(w=rn), mapblock, L['all_regions'].format(w=rns), sel, thead, srows, L['dash_note'].format(w=rn) + ' ' + L['src'] + ': ' + esc(X['src'][0]) + '.')
+    D['narrow'] = L.get('_narrow')
     D['loc'], D['tx'] = L['_loc'], {'year': L['year'], 'change': L['change'], 'latest': L['latest'], 'ybyy': L['ybyy'], 'ynote': L['ynote'], 'rent': L['rents'],
                                     'nodata': L['nodata'], 'q': L['_qjs'], 'mo': L['_mo']}
     pdata = {k: D.get(k) for k in ('idx', 'idxy', 'real', 'price', 'pti', 'ptr', 'renty', 'rents_y', 'rent', 'tys', 'rates', 'cmp', 'vol', 'starts', 'sp', 'maxk',
-                                   'states', 'metros', 'geo', 'sym', 'cur', 'loc', 'tx', 'mapm', 'map0', 'tip', 'small', 'nshow', 'moreS', 'lessS', 'ylab', 'yfmt', 'rdec')}
+                                   'tysm', 'states', 'metros', 'geo', 'sym', 'cur', 'narrow', 'loc', 'tx', 'mapm', 'map0', 'tip', 'small', 'nshow', 'moreS', 'lessS', 'ylab', 'yfmt', 'rdec')}
     if not states:
         pdata['states'], pdata['geo'] = [], {'w': 10, 'h': 10, 's': {}}
     pdata['rec'] = [['2008-04', '2009-06'], ['2020-02', '2020-06']]
     blob = json.dumps(pdata, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/')
-    srcs = ', '.join(s for s in X['src'] if s != 'Yahoo Finance')
+    srcs = SEP.join(s for s in X['src'] if s != L.get('src_Yahoo Finance', 'Yahoo Finance'))
     toc_items = [('prices', L['toc_prices']), ('years', L['toc_years']), ('vs', L['toc_vs']), ('drivers', L['toc_drivers']), ('rates', L['toc_rates'])] + \
         ([('regions', L['toc_regions'].format(w=(L['rn_' + cc] if ('rn_' + cc) in L else (L['region'],))[0]))] if states else []) + ([('rents', L['toc_rents'])] if 'rent' in tabs else [])
     toc = '<nav class="toc">' + ''.join('<a href="#%s">%s</a>' % kv for kv in toc_items) + '</nav>'
-    stamp = L['stamp'].format(d=F.monthl(D['as_of'][:7]).split(' ')[0] + ' ' + D['as_of'][8:10].lstrip('0') + ', ' + D['as_of'][:4] if lang == 'en' else dt.date.fromisoformat(D['as_of']).strftime('%d.%m.%Y'), c=X['cur'])
+    stamp = L['stamp'].format(d=F.monthl(D['as_of'][:7]).split(' ')[0] + ' ' + D['as_of'][8:10].lstrip('0') + ', ' + D['as_of'][:4] if lang == 'en' else dt.date.fromisoformat(D['as_of']).strftime('%d.%m.%Y'), c=curn)
     body = f"""
 <h1>🏠 {L['h1'].format(**C)}</h1>
 <p class="sub">{L['sub'].format(idx=D['index_name'], **C)}</p>
@@ -534,7 +549,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
 <div class="card">{year_tbl}</div>
 <h2 id="vs" class="ac">{L['h_vs'].format(idx=D['index_name'], **C)}</h2>
 <div class="two">
-{chart_card(L, 'cmp', L['growth100'], L['prices_only_in'].format(c=X['cur']), ['-'], 20, L['src'] + ': ' + D['idx_n'] + ', Yahoo Finance, OECD.')}
+{chart_card(L, 'cmp', L['growth100'], L['prices_only_in'].format(c=curn), ['-'], 20, L['src'] + ': ' + SEP.join([D['idx_n'], L.get('src_Yahoo Finance', 'Yahoo Finance'), L.get('src_OECD', 'OECD')]) + '.')}
 <div class="card"><h3>{L['total_change']}</h3><p class="sub">{L['best']}</p>{cmp_tbl}</div>
 </div>
 <h2 id="drivers" class="ac">{L['h_drivers'].format(**C)}</h2>
@@ -553,6 +568,8 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     css = theme_css(sd)
     if flip:
         css = flip(css)
+    if L['_dir'] == 'rtl':   # charts, map scale and numbers keep left-to-right order inside a right-to-left page
+        css += '\n#hs svg,#hs .scale{direction:ltr}'
     page = '<div id="hs" dir="%s"><style>' % L['_dir'] + css + CSS + '</style>' + chrome_html + body + '</div>'
     title = L['title'].format(**C)
     desc = L['desc'].format(dir=L['up'] if (N.get('i_y1') or 0) >= 0 else L['down'], v=F.pc(abs(N.get('i_y1') or 0), 1, False), **C)
@@ -568,7 +585,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     up = sorted([s for s in states if s.get('y1') is not None], key=lambda s: -s['y1'])
     paras = [L['p1'].format(src=D['idx_n'], **C)]
     if len(up) > 3:
-        paras.append(L['p_reg'].format(top=', '.join('%s (%s)' % (s['n'], F.pc(s['y1'])) for s in up[:3]), low=', '.join('%s (%s)' % (s['n'], F.pc(s['y1'])) for s in up[-3:][::-1])))
+        paras.append(L['p_reg'].format(top=SEP.join('%s (%s)' % (s['n'], F.pc(s['y1'])) for s in up[:3]), low=SEP.join('%s (%s)' % (s['n'], F.pc(s['y1'])) for s in up[-3:][::-1])))
     paras.append(L['p_drivers'])
     seo = '<section class="sa-seo cv"><div><h2>%s</h2>%s<h3>%s</h3>%s</div></section>' % (
         L['seo_h'].format(**C), ''.join('<p>%s</p>' % p for p in paras), L['faq'], ''.join('<details><summary>%s</summary><p>%s</p></details>' % qa for qa in faq))

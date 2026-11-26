@@ -22,6 +22,11 @@ jobs:
           sparse-checkout: |
             housing.py
             housing_intl.py
+            housing_page.py
+            housing_i18n.py
+            housing_fa.py
+            gen_web.py
+            web_src/
           sparse-checkout-cone-mode: false
       - uses: actions/setup-python@v5
         with:
@@ -32,10 +37,14 @@ jobs:
         run: |
           pip install -q openpyxl >/dev/null 2>&1; timeout 900 python -u housing_intl.py || true
           python -c "import json,glob;print('\n'.join(f[8:-5]+':'+json.load(open(f)).get('stamp','') for f in sorted(glob.glob('housing_*.json'))))" >> stamp.txt || true
+      - name: Farsi pages for sahamanaliz.com (fa-us/de/ca.html, loaded by theme/templates/page.housing.liquid)
+        run: |
+          HOUSING_DIR=. timeout 300 python -u housing_fa.py . || true
+          for c in us de ca; do [ -s fa-$c.html ] || curl -sfL "https://raw.githubusercontent.com/${{ github.repository }}/housing/fa-$c.html" -o fa-$c.html || true; done
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |
           B=housing; if [ "${{ github.ref_name }}" != "main" ]; then B=housing-test; fi
-          mkdir out && cp housing.json stamp.txt out/ && (cp housing_*.json out/ 2>/dev/null || true) && cd out
+          mkdir out && cp housing.json stamp.txt out/ && (cp housing_*.json out/ 2>/dev/null || true) && (cp fa-*.html out/ 2>/dev/null || true) && cd out
           git init -q && git checkout -q -b $B
           git -c user.name=github-actions -c user.email=actions@github.com add -A
           git -c user.name=github-actions -c user.email=actions@github.com commit -qm "housing $(date -u +%FT%TZ)"

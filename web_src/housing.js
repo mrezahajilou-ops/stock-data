@@ -7,8 +7,8 @@ var LOC=D.loc||'en-US',TX=D.tx||{};
 function nf(v,d){return v.toLocaleString(LOC,{minimumFractionDigits:d,maximumFractionDigits:d})}
 function fm(v,f){if(v==null||!isFinite(v))return '—';
   var Y=D.sym||'$';
-  if(f==='$'){if(D.cur)return new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,maximumFractionDigits:0}).format(v);return (v<0?'-':'')+Y+Math.round(Math.abs(v)).toLocaleString('en-US')}
-  if(f==='$k'){if(D.cur)return new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,notation:'compact',maximumFractionDigits:Math.abs(v)>=1e6?2:0}).format(v);return Math.abs(v)>=1e6?Y+(v/1e6).toFixed(2)+'M':Y+Math.round(v/1e3)+'K'}
+  if(f==='$'){if(D.cur)return new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,currencyDisplay:D.narrow?'narrowSymbol':'symbol',maximumFractionDigits:0}).format(v);return (v<0?'-':'')+Y+Math.round(Math.abs(v)).toLocaleString('en-US')}
+  if(f==='$k'){if(D.cur&&D.narrow)return new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,currencyDisplay:'narrowSymbol',maximumFractionDigits:0}).format(v);if(D.cur)return new Intl.NumberFormat(LOC,{style:'currency',currency:D.cur,currencyDisplay:D.narrow?'narrowSymbol':'symbol',notation:'compact',maximumFractionDigits:Math.abs(v)>=1e6?2:0}).format(v);return Math.abs(v)>=1e6?Y+(v/1e6).toFixed(2)+'M':Y+Math.round(v/1e3)+'K'}
   if(f==='%')return nf(v,1)+'%';
   if(f==='%2')return nf(v,2)+'%';
   if(f==='+%')return (v>0?'+':v<0?'−':'')+nf(Math.abs(v),1)+'%';
@@ -30,13 +30,14 @@ function chart(el,S,o){o=o||{};var W=Math.max(300,Math.round(el.clientWidth||760
   var xs=[].concat.apply([],ser.map(function(x){return x.d.map(function(p){return tx(p[0])})})),x0=Math.min.apply(0,xs),x1=Math.max.apply(0,xs);
   var ax={};ser.forEach(function(x){var a=x.s.ax||0,v=x.d.map(function(p){return p[1]});ax[a]=ax[a]||{lo:1e18,hi:-1e18,f:x.s.f};ax[a].lo=Math.min(ax[a].lo,Math.min.apply(0,v));ax[a].hi=Math.max(ax[a].hi,Math.max.apply(0,v))});
   Object.keys(ax).forEach(function(a){var A=ax[a],pos=A.lo>=0;if(o.zero&&A.lo>0)A.lo=0;var pad=(A.hi-A.lo)*.05||1,lo=A.lo-(o.zero&&A.lo===0?0:pad);if(pos&&lo<0)lo=0;A.t=nice(lo,A.hi+pad,W<560?4:5);A.lo=A.t[0];A.hi=A.t[A.t.length-1]});
-  var dual=ax[1]!=null;L=W<560?44:56;R=dual?(W<560?40:52):10;
+  var dual=ax[1]!=null;L=W<560?44:56;if(D.narrow&&ax[0].f==='$')L=W<560?62:74;R=dual?(W<560?40:52):10;
   var X=function(t){return L+(t-x0)/(x1-x0||1)*(W-L-R)},Y=function(v,a){var A=ax[a||0];return T+(1-(v-A.lo)/(A.hi-A.lo||1))*(H-T-B)};
   var cid='c'+Math.random().toString(36).slice(2,8),svg='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" role="img"><defs><clipPath id="'+cid+'"><rect x="'+L+'" y="0" width="'+(W-L-R)+'" height="'+(H-B)+'"/></clipPath></defs>';
-  ax[0].t.forEach(function(v){var y=Y(v,0);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#1F242E"/><text x="'+(L-6)+'" y="'+(y+4)+'" fill="#8A8F99" font-size="11.5" text-anchor="end">'+fm(v,ax[0].f==='%2'?'%':ax[0].f==='$'?'$k':ax[0].f)+'</text>'});
-  if(dual)ax[1].t.forEach(function(v){var y=Y(v,1);svg+='<text x="'+(W-R+6)+'" y="'+(y+4)+'" fill="#8A8F99" font-size="11.5">'+fm(v,ax[1].f==='%2'?'%':ax[1].f==='$'?'$k':ax[1].f)+'</text>'});
+  var tf=function(A){var f=A.f==='%2'?'%':A.f==='$'?'$k':A.f;if((f==='i'||f==='%')&&A.t.every(function(v){return Math.abs(v-Math.round(v))<1e-9}))return function(v){return f==='%'?nf(v,0)+'%':nf(v,0)};return function(v){return fm(v,f)}},tf0=tf(ax[0]),tf1=dual?tf(ax[1]):null;
+  ax[0].t.forEach(function(v){var y=Y(v,0);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#1F242E"/><text x="'+(L-6)+'" y="'+(y+4)+'" fill="#8A8F99" font-size="11.5" text-anchor="end">'+tf0(v)+'</text>'});
+  if(dual)ax[1].t.forEach(function(v){var y=Y(v,1);svg+='<text x="'+(W-R+6)+'" y="'+(y+4)+'" fill="#8A8F99" font-size="11.5">'+tf1(v)+'</text>'});
   if(o.zero0&&ax[0].lo<0&&ax[0].hi>0){var yz=Y(0,0);svg+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yz+'" y2="'+yz+'" stroke="#4A505C"/>'}
-  var span=x1-x0,stp=span>40?10:span>20?5:span>8?2:1;for(var yr=Math.ceil(x0/stp)*stp;yr<=x1;yr+=stp){var xx=X(yr);svg+='<line x1="'+xx+'" x2="'+xx+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="#4A505C"/><text x="'+xx+'" y="'+(H-6)+'" fill="#8A8F99" font-size="11.5" text-anchor="middle">'+yr+'</text>'}
+  var span=x1-x0,stp=span>40?10:span>20?5:span>8?2:1;while((W-L-R)/(span/stp)<40)stp=stp===1?2:stp===2?5:stp*2;for(var yr=Math.ceil(x0/stp)*stp;yr<=x1;yr+=stp){var xx=X(yr);svg+='<line x1="'+xx+'" x2="'+xx+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="#4A505C"/><text x="'+xx+'" y="'+(H-6)+'" fill="#8A8F99" font-size="11.5" text-anchor="middle">'+yr+'</text>'}
   if(o.bands)o.bands.forEach(function(b){var a=X(tx(b[0])),z=X(tx(b[1]));if(z>L&&a<W-R)svg+='<rect x="'+Math.max(a,L)+'" y="'+T+'" width="'+(Math.min(z,W-R)-Math.max(a,L))+'" height="'+(H-T-B)+'" fill="rgba(200,83,79,.08)"/>'});
   ser.forEach(function(x){var p=x.d.map(function(q,i){return (i?'L':'M')+X(tx(q[0])).toFixed(1)+','+Y(q[1],x.s.ax).toFixed(1)}).join('');svg+='<path d="'+p+'" fill="none" stroke="'+x.s.c+'" stroke-width="'+(x.s.w||2)+'"'+' clip-path="url(#'+cid+')"'+(x.s.dash?' stroke-dasharray="5 4"':'')+' stroke-linejoin="round"/>'});
   svg+='<line class="cx" x1="0" x2="0" y1="'+T+'" y2="'+(H-B)+'" stroke="#8A8F99" stroke-dasharray="3 3" style="display:none"/><rect x="'+L+'" y="0" width="'+(W-L-R)+'" height="'+H+'" fill="transparent"/></svg><div class="tip"></div>';

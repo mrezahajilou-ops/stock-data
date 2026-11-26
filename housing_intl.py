@@ -701,7 +701,65 @@ def generic(cc):
     return out
 
 
-COUNTRIES = {'gb': gb, 'ca': ca, 'ie': ie, 'au': au}
+US_ST = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut',
+         'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois',
+         'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland',
+         'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana',
+         'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York',
+         'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania',
+         'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah',
+         'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'}
+
+
+def us():
+    """US in the shared schema, for the non-English sites. Built from housing.json, which housing.py writes earlier in the
+    same job (FHFA, Freddie Mac, Zillow, Census ACS); the Fed policy rate comes from BIS."""
+    path = os.path.join(OUTDIR, 'housing.json')
+    H = json.load(open(path)) if os.path.exists(path) else json.loads(get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/housing/housing.json'))
+    f, z = H.get('f') or {}, H.get('z') or {}
+    mon = lambda s: [[k[:7], v] for k, v in s or []]
+
+    def monthly(s):
+        acc = {}
+        for k, v in s or []:
+            acc.setdefault(k[:7], []).append(v)
+        return [[k, round(sum(v) / len(v), 3)] for k, v in sorted(acc.items())]
+    out = {'code': 'us', 'name': 'United States', 'cur': 'USD', 'sym': '$', 'oecd_code': 'USA',
+           'src': ['FHFA', 'Zillow', 'Freddie Mac', 'U.S. Census Bureau']}
+    out['idx'] = {'n': 'House price index (FHFA)', 's': mon(f.get('HPI_SA') or f.get('HPI'))}
+    zu = z.get('us') or {}
+    if zu.get('all'):
+        out['price'] = {'n': 'Typical home value (Zillow)', 's': zu['all']}
+    ty = {}
+    if zu.get('sfr'):
+        ty['Single-family homes'] = zu['sfr']
+    if zu.get('condo'):
+        ty['Condos and apartments'] = zu['condo']
+    if ty:
+        out['types'] = ty
+    if z.get('zori_us'):
+        out['rent'] = {'n': 'Typical rent (Zillow)', 's': z['zori_us']}
+    b = {}
+    try:
+        b = bis_load().get('US') or {}
+    except Exception as e:
+        say('us bis', e)
+    out['rates'] = {'30-year fixed mortgage rate': monthly(f.get('MORTGAGE30US')), '15-year fixed mortgage rate': monthly(f.get('MORTGAGE15US')),
+                    'Federal Reserve policy rate': srt(b.get('pol') or {})}
+    if b.get('real'):
+        out['bis_real'] = srt(b['real'])
+    acs = H.get('acs') or {}
+    regions = []
+    for ab, s in (H.get('st') or {}).items():
+        rs = [['%s-12' % y, v['rent']] for y, v in sorted((acs.get(ab) or {}).items()) if v.get('rent')]
+        regions.append({'id': ab, 'n': US_ST.get(ab, s.get('n') or ab), 'price': s.get('all') or [], 'rent': rs})
+    out['regions'] = regions
+    out['mkt'] = market('^GSPC', None)
+    out['src'] += ['Bank for International Settlements', 'OECD', 'Yahoo Finance']
+    return out
+
+
+COUNTRIES = {'us': us, 'gb': gb, 'ca': ca, 'ie': ie, 'au': au}
 COUNTRIES.update({c: (lambda c=c: generic(c)) for c in GEN})
 
 
@@ -713,7 +771,7 @@ def main():
         say('OECD FAILED', e)
         oecd = {}
     ok = 0
-    if any(c in GEN for c in only):
+    if any(c in GEN or c == 'us' for c in only):
         try:
             bis_load()
         except Exception as e:

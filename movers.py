@@ -27,9 +27,16 @@ def from_quotes(path):
             days[v[3][:10]] = days.get(v[3][:10], 0) + 1
     # the newest trading day with a real number of fresh quotes (the near-live set covers the large companies)
     day = max((d for d, n in days.items() if n >= 500), default=None)
+    # guard: a stale previous close (still the close of two sessions ago) re-lists yesterday's movers under today's
+    # date (seen 2026-11-25). If a ticker was on the previous list and its "previous close" equals that list's prev, skip it.
+    older = sorted(f for f in glob.glob('data/movers/raw/*.json') if os.path.basename(f)[:10] < (day or ''))
+    yest = {r['t']: r for r in json.load(open(older[-1]))} if older else {}
     rows = []
     for t, v in q.items():
         if not v or len(v) < 4 or not v[3] or v[3][:10] != day or not v[0] or not v[2]:
+            continue
+        y = yest.get(t)
+        if y and y.get('prev') and abs(v[2] / y['prev'] - 1) < 0.002:
             continue
         pct = (v[0] / v[2] - 1) * 100
         if abs(pct) >= MIN_MOVE:

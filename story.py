@@ -362,13 +362,18 @@ def paragraphs(d, ctx, P, name, ind_name, stock_url, peer_name, wrap=lambda x: x
     w = _W(t, P)
     sal = 4
     cash, debt = lat.get('cash'), lat.get('debt')
+    bsq = d.get('bs') or {}
+    if bsq.get('cash') is not None and bsq.get('debt') is not None and (bsq.get('end') or '') > (lat.get('fy_end') or ''):
+        cash, debt = bsq['cash'], bsq['debt']   # the latest quarterly balance sheet: the same one enterprise value uses
     if cash is not None and debt is not None and mc > 0:
         net = cash - debt
         if net > 0 and 0.05 <= net / mc <= 10:   # beyond 10x the market cap is a broken market cap, not a fact
             w.say('bs_cash', net=F.money(net), p=F.pct(net / mc))
         elif net < 0:
             eb = tt.get('ebitda')
-            if eb and eb > 0 and -net / eb < 30:
+            if eb and eb > 0 and -net / eb < 0.1:
+                pass                      # debt and cash roughly cancel out: "0.0 times EBITDA" tells the reader nothing
+            elif eb and eb > 0 and -net / eb < 30:
                 w.say('bs_debt_x', net=F.money(-net), x=F.num(-net / eb))
                 sal += 1 if -net / eb > 4 else 0
             elif 0.2 < -net / mc <= 10:   # above 10x the market cap the percentage ("13811%") stops meaning anything

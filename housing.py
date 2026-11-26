@@ -333,21 +333,20 @@ def main():
 
 
 PROBE = [
-    'https://www.fhfa.gov/hpi/download/monthly/hpi_master.csv',
-    'https://www.fhfa.gov/DataTools/Downloads/Documents/HPI/HPI_master.csv',
-    'https://www.fhfa.gov/hpi/download/quarterly_datasets/hpi_at_state.csv',
-    'https://www.freddiemac.com/pmms/docs/PMMS_history.csv',
-    'https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SEHA',
-    'https://api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E&for=us:1',
-    'https://api.census.gov/data/timeseries/eits/resconst?get=cell_value,time_slot_id,category_code,data_type_code&time=from+2024',
-    'https://www.census.gov/econ/currentdata/export/csv?programCode=RESCONST&timeSlotType=12&startYear=2024&endYear=2026&categories[]=STARTS&dataType=TOTAL&geoLevel=US&adjusted=1&notAdjusted=0&errorData=0',
-    'https://www.census.gov/econ/currentdata/export/csv?programCode=RESSALES&timeSlotType=12&startYear=2024&endYear=2026&categories[]=SOLD&dataType=TOTAL&geoLevel=US&adjusted=1&notAdjusted=0&errorData=0',
+    'https://www.census.gov/construction/nrc/xls/starts_cust.xlsx',
+    'https://www.census.gov/construction/nrc/xls/permits_cust.xlsx',
+    'https://www.census.gov/construction/nrc/xls/co_cust.xlsx',
+    'https://www.census.gov/construction/nrs/xls/sold_cust.xlsx',
+    'https://www.census.gov/construction/nrs/xls/monthssupply_cust.xlsx',
+    'https://www.census.gov/construction/nrs/xls/newressales.xlsx',
+    'https://www.census.gov/construction/nrc/xls/newresconst.xlsx',
+    'https://www.census.gov/econ/currentdata/export/csv?programCode=RESCONST&timeSlotType=12&startYear=2024&endYear=2026&categories=STARTS&dataType=TOTAL&geoLevel=US&adjusted=1&notAdjusted=0&errorData=0',
+    'https://www.census.gov/housing/hvs/data/histtab1.xlsx',
     'https://www.census.gov/housing/hvs/data/histtab14.xlsx',
-    'https://www.census.gov/construction/nrs/xls/usprice_cust.xlsx',
-    'https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=CSUSHPINSA',
+    'https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/1YRData/acsdt1y2024-b25064.dat',
+    'https://www2.census.gov/programs-surveys/acs/summary_file/2025/table-based-SF/data/1YRData/acsdt1y2025-b25064.dat',
+    'https://www2.census.gov/programs-surveys/cps/tables/time-series/historical-income-households/h08.xlsx',
     'https://www.federalreserve.gov/releases/chargeoff/delallsa.htm',
-    'https://query2.finance.yahoo.com/v8/finance/chart/%5ETNX?range=5d&interval=1d',
-    'https://www.spglobal.com/spdji/en/idsexport/file.xls?redesignExport=true&selectedModule=PerformanceGraphView&selectedSubModule=Graph&yearFlag=tenYearFlag&indexId=1188',
 ]
 
 
@@ -357,8 +356,28 @@ def probe():
         try:
             req = urllib.request.Request(u, headers={'User-Agent': UA, 'Accept': '*/*'})
             r = urllib.request.urlopen(req, timeout=25)
-            b = r.read(400000)
-            print('OK %3d %5.1fs %7d %s\n    %r' % (r.status, time.time() - t, len(b), u, b[:220]), flush=True)
+            b = r.read()
+            print('OK %3d %5.1fs %7d %s\n    %r' % (r.status, time.time() - t, len(b), u, b[:160]), flush=True)
+            if b[:2] == b'PK':
+                try:
+                    import openpyxl
+                    wb = openpyxl.load_workbook(io.BytesIO(b), read_only=True, data_only=True)
+                    for ws in wb.worksheets[:2]:
+                        print('    sheet', ws.title)
+                        for i, row in enumerate(ws.iter_rows(values_only=True)):
+                            if i < 14 or i % 150 == 0:
+                                print('     ', i, [c for c in row[:14]])
+                        print('     last', [c for c in row[:14]])
+                except Exception as e:
+                    print('    xlsx', e)
+            elif u.endswith('.dat'):
+                L = b.decode('utf-8', 'replace').splitlines()
+                print('    lines', len(L), L[0][:300])
+                print('   ', [x[:200] for x in L if x.startswith('0400000US06') or x.startswith('0100000US')][:2])
+            elif u.endswith('.htm'):
+                txt = b.decode('utf-8', 'replace')
+                i = txt.find('Residential')
+                print('    ', re.sub(r'\s+', ' ', re.sub('<[^>]+>', ' ', txt[i:i + 3000]))[:900])
         except Exception as e:
             print('XX       %5.1fs %s\n    %s' % (time.time() - t, u, str(e)[:200]), flush=True)
 

@@ -25,8 +25,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Probe sources
-        run: timeout 600 python -u housing.py probe || true
+        run: pip install -q openpyxl && timeout 600 python -u housing.py probe || true
       - name: Build housing.json
+        if: false
         run: python -u housing.py
       - name: Publish to branch "housing" (other branches publish to "housing-test")
         run: |

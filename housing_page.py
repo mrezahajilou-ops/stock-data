@@ -228,7 +228,7 @@ def prepare(cc, X, L):
     cy = int(D['maxk'][:4])
     years = list(range(cy - 11, cy + 1))
     for g in X.get('regions') or []:
-        row = {'ab': g['id'], 'n': (L.get('rg_' + cc) or {}).get(g['id'], g['n'])}
+        row = {'ab': g['id'], 'n': (L.get('rg_' + cc) or {}).get(g['id']) or g.get('n_' + L.get('_code', '')) or g['n']}
         ps, ix, rs = g.get('price') or [], g.get('idx') or [], g.get('rent') or []
         main = ps or ix
         if main:
@@ -379,6 +379,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         print('housing %s: no data' % cc)
         return None
     L = I18N.lang(lang)
+    L['_code'] = lang
     C = L['c'][cc]
     global SEP
     SEP = L.get('_sep', ', ')

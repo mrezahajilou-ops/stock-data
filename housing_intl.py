@@ -613,6 +613,97 @@ def ecb_mir_try(cc):
         return []
 
 
+# ---------------------------------------------------------------- Dubai Land Department (open data, transaction by transaction)
+DLD_URL = 'https://gateway.dubailand.gov.ae/open-data/transactions'
+DLD_FIRST = '2019-01'
+
+
+def dld_window(d0, d1):
+    body = json.dumps({'P_FROM_DATE': d0.strftime('%m/%d/%Y'), 'P_TO_DATE': d1.strftime('%m/%d/%Y'), 'P_GROUP_ID': '1', 'P_IS_OFFPLAN': '',
+                       'P_IS_FREE_HOLD': '', 'P_AREA_ID': '', 'P_USAGE_ID': '', 'P_PROP_TYPE_ID': '', 'P_TAKE': '-1', 'P_SKIP': '',
+                       'P_SORT': 'TRANSACTION_NUMBER_ASC'}).encode()
+    last = None
+    for a in range(3):
+        try:
+            req = urllib.request.Request(DLD_URL, data=body, headers={'User-Agent': UA, 'Content-Type': 'application/json', 'Accept': 'application/json',
+                                                                     'Origin': 'https://dubailand.gov.ae', 'Referer': 'https://dubailand.gov.ae/'})
+            j = json.loads(urllib.request.urlopen(req, timeout=120).read())
+            return ((j.get('response') or {}).get('result')) or []
+        except Exception as e:
+            last = e
+            time.sleep(4 * (a + 1))
+    raise last
+
+
+def med(v):
+    v = sorted(v)
+    n = len(v)
+    return None if not n else (v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2)
+
+
+def dld_month(ym):
+    """Residential sales in one month: median price per m² (all, flats, villas), count, off-plan share, by area."""
+    y, m = int(ym[:4]), int(ym[5:7])
+    start = dt.date(y, m, 1)
+    end = (dt.date(y + (m == 12), m % 12 + 1, 1) - dt.timedelta(days=1))
+    end = min(end, TODAY)
+    vals = {'all': [], 'flat': [], 'villa': []}
+    areas, off = {}, 0
+    d = start
+    while d <= end:
+        e = min(d + dt.timedelta(days=4), end)
+        for r in dld_window(d, e):
+            sub = (r.get('PROP_SB_TYPE_EN') or '').lower()
+            kind = 'flat' if 'flat' in sub or 'apartment' in sub else 'villa' if 'villa' in sub or 'town' in sub else None
+            if not kind:
+                continue
+            v, a = r.get('TRANS_VALUE') or 0, r.get('ACTUAL_AREA') or r.get('PROCEDURE_AREA') or 0
+            if v < 100000 or a < 15:
+                continue
+            ppm = v / a
+            if not 1500 <= ppm <= 150000:
+                continue
+            vals['all'].append(ppm)
+            vals[kind].append(ppm)
+            off += 1 if r.get('IS_OFFPLAN') == 1 else 0
+            an = r.get('AREA_EN') or ''
+            if an:
+                x = areas.setdefault(an, [[], r.get('AREA_AR') or an])
+                x[0].append(ppm)
+        d = e + dt.timedelta(days=1)
+    n = len(vals['all'])
+    return {'n': n, 'off': round(off / n * 100, 1) if n else None, 'm': {k: round(med(v)) if len(v) >= 30 else None for k, v in vals.items()},
+            'a': {k: [round(med(v[0])), len(v[0]), v[1]] for k, v in areas.items() if len(v[0]) >= 5}}
+
+
+def dld_stats(prev):
+    """Month table kept in housing_ae.json: each run redoes the last two months and fills older months a few at a time."""
+    st = dict((prev or {}).get('dld') or {})
+    cur = TODAY.strftime('%Y-%m')
+    pm = (TODAY.replace(day=1) - dt.timedelta(days=1)).strftime('%Y-%m')
+    todo = [cur, pm]
+    y, m = int(DLD_FIRST[:4]), int(DLD_FIRST[5:7])
+    missing = []
+    while '%04d-%02d' % (y, m) < pm:
+        k = '%04d-%02d' % (y, m)
+        if k not in st:
+            missing.append(k)
+        m += 1
+        if m > 12:
+            y, m = y + 1, 1
+    todo += missing[::-1][:6]           # newest gaps first
+    t0 = time.time()
+    for k in todo:
+        if time.time() - t0 > 420:
+            break
+        try:
+            st[k] = dld_month(k)
+            say('dld', k, st[k]['n'], st[k]['m'])
+        except Exception as e:
+            say('dld', k, 'failed', str(e)[:100])
+    return st
+
+
 GEN = {
     'de': ('Germany', 'EUR', '€', 'DEU', 'DE', '^GDAXI', 'EURUSD=X', 'eu'),
     'at': ('Austria', 'EUR', '€', 'AUT', 'AT', '^ATX', 'EURUSD=X', 'eu'),
@@ -652,7 +743,39 @@ def generic(cc):
     if b.get('real'):
         out['bis_real'] = srt(b['real'])
     dpp = b.get('dpp') or {}
-    if cc == 'ae' and dpp.get('country'):
+    regions = []
+    if cc == 'ae':
+        try:
+            prev = json.loads(get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/housing/housing_ae.json', tries=1))
+        except Exception:
+            prev = {}
+        try:
+            st = dld_stats(prev)
+        except Exception as e:
+            say('dld failed', str(e)[:120])
+            st = (prev or {}).get('dld') or {}
+        out['dld'] = st
+        ks = sorted(k for k in st if st[k].get('n', 0) >= 300)
+        if len(ks) >= 13:
+            ser = lambda key: [[k, st[k]['m'][key]] for k in ks if st[k]['m'].get(key)]
+            out.pop('idx', None)
+            out['price'] = {'n': 'Dubai median sale price per m² (DLD)', 's': ser('all')}
+            out['types'] = {'Apartments in Dubai, per m²': ser('flat'), 'Villas and townhouses in Dubai, per m²': ser('villa')}
+            out['sales'] = [[k, st[k]['n']] for k in ks]
+            out['offplan'] = [[k, st[k]['off']] for k in ks if st[k].get('off') is not None]
+            names, hist = {}, {}
+            for k in ks:
+                for an, (v, n, ar) in st[k].get('a', {}).items():
+                    names[an] = ar
+                    hist.setdefault(an, []).append([k, v, n])
+            last12 = ks[-12:]
+            vol = {an: sum(n for k, v, n in h if k in last12) for an, h in hist.items()}
+            for an in sorted(vol, key=lambda a: -vol[a])[:40]:
+                if vol[an] < 150:
+                    continue
+                regions.append({'id': an, 'n': an.title(), 'n_ar': names[an], 'price': [[k, v] for k, v, n in hist[an] if n >= 10]})
+            out['src'].insert(0, 'Dubai Land Department')
+    if cc == 'ae' and dpp.get('country') and not out.get('price'):
         out['price'] = {'n': 'Average price per m², whole country (BIS)', 's': srt(dpp['country'])}
         out['types'] = {'Whole country, per m²': srt(dpp['country'])}
         if dpp.get('capital'):
@@ -663,7 +786,6 @@ def generic(cc):
         out['idx'] = {'n': 'Real estate price index (GASTAT via BIS)', 's': srt(dpp['country'])}
         if dpp.get('capital'):
             out['types'] = {'Whole country': srt(dpp['country']), 'Riyadh': srt(dpp['capital'])}
-    regions = []
     if cc == 'es':
         for n, s in es_regions().items():
             if n != 'Nacional':

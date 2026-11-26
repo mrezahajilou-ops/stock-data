@@ -332,5 +332,39 @@ def main():
         sys.exit('missing core data')
 
 
+PROBE = [
+    'https://www.fhfa.gov/hpi/download/monthly/hpi_master.csv',
+    'https://www.fhfa.gov/DataTools/Downloads/Documents/HPI/HPI_master.csv',
+    'https://www.fhfa.gov/hpi/download/quarterly_datasets/hpi_at_state.csv',
+    'https://www.freddiemac.com/pmms/docs/PMMS_history.csv',
+    'https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SEHA',
+    'https://api.census.gov/data/2023/acs/acs1?get=NAME,B25064_001E&for=us:1',
+    'https://api.census.gov/data/timeseries/eits/resconst?get=cell_value,time_slot_id,category_code,data_type_code&time=from+2024',
+    'https://www.census.gov/econ/currentdata/export/csv?programCode=RESCONST&timeSlotType=12&startYear=2024&endYear=2026&categories[]=STARTS&dataType=TOTAL&geoLevel=US&adjusted=1&notAdjusted=0&errorData=0',
+    'https://www.census.gov/econ/currentdata/export/csv?programCode=RESSALES&timeSlotType=12&startYear=2024&endYear=2026&categories[]=SOLD&dataType=TOTAL&geoLevel=US&adjusted=1&notAdjusted=0&errorData=0',
+    'https://www.census.gov/housing/hvs/data/histtab14.xlsx',
+    'https://www.census.gov/construction/nrs/xls/usprice_cust.xlsx',
+    'https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=CSUSHPINSA',
+    'https://www.federalreserve.gov/releases/chargeoff/delallsa.htm',
+    'https://query2.finance.yahoo.com/v8/finance/chart/%5ETNX?range=5d&interval=1d',
+    'https://www.spglobal.com/spdji/en/idsexport/file.xls?redesignExport=true&selectedModule=PerformanceGraphView&selectedSubModule=Graph&yearFlag=tenYearFlag&indexId=1188',
+]
+
+
+def probe():
+    for u in PROBE:
+        t = time.time()
+        try:
+            req = urllib.request.Request(u, headers={'User-Agent': UA, 'Accept': '*/*'})
+            r = urllib.request.urlopen(req, timeout=25)
+            b = r.read(400000)
+            print('OK %3d %5.1fs %7d %s\n    %r' % (r.status, time.time() - t, len(b), u, b[:220]), flush=True)
+        except Exception as e:
+            print('XX       %5.1fs %s\n    %s' % (time.time() - t, u, str(e)[:200]), flush=True)
+
+
 if __name__ == '__main__':
-    main()
+    if sys.argv[1:] == ['probe']:
+        probe()
+    else:
+        main()

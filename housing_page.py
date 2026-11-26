@@ -384,6 +384,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
     global SEP
     SEP = L.get('_sep', ', ')
     curn = (L.get('_curn') or {}).get(X['cur'], X['cur'])
+    X['sym'] = (L.get('_syms') or {}).get(X['cur'], X['sym'])
     X['src'] = [L.get('src_' + x, x) for x in X.get('src') or []]          # {name, adj, in_, of}
     D = prepare(cc, X, L)
     D['index_name'] = L.get('ix_' + cc) or INDEX_NAME.get(cc, '')

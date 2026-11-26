@@ -732,11 +732,31 @@
   // ---------------------------------------------------------------- data loading
   var DATA = {};
   function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  // Live price: the data file carries the price of the last build, so every price-based multiple is rescaled to the
+  // worker's live quote (same source as the page's price line). Multiples move with the price, not only the price itself.
+  var QAPI = CFG.quotes_api || 'https://rz-events.mreza-hajilou.workers.dev';
+  var PX_UP = ['pe', 'ps', 'pb', 'pfcf', 'fwd_pe', 'fwd_ps', 'fwd_pfcf', 'peg'], PX_DN = ['div_yield', 'fcf_yield', 'earnings_yield', 'buyback_yield', 'shareholder_yield'];
+  function live(d, q) {
+    var m = d && d.market, r = (d && d.ratios) || {};
+    if (!m || !q || !(q[0] > 0) || !(m.price > 0)) return d;
+    var f = q[0] / m.price;
+    if (f < 0.5 || f > 2) return d;   // a split or a bad tick: keep the build's consistent set rather than mix them
+    var dm = (m.mcap || 0) * (f - 1);
+    m.price = q[0]; if (m.mcap) m.mcap *= f;
+    PX_UP.forEach(function (k) { if (r[k] != null) r[k] *= f; });
+    PX_DN.forEach(function (k) { if (r[k] != null) r[k] /= f; });
+    if (r.ev != null) { var ev0 = r.ev; r.ev = ev0 + dm; if (r.ev_ebitda != null && ev0) r.ev_ebitda *= r.ev / ev0; }
+    if (q[3]) { try { m.as_of = new Date(q[3]).toISOString().slice(0, 10); } catch (e) {} }
+    m.live = true;
+    return d;
+  }
   function load(t) {
     if (DATA[t]) return DATA[t];
     var api = window.RZS_API || (RAW + '/main/data');
     DATA[t] = Promise.all([
-      getJSON(api + '/stocks/' + encodeURIComponent(t) + '.json'),
+      getJSON(api + '/stocks/' + encodeURIComponent(t) + '.json').then(function (d) {
+        return getJSON(QAPI + '/c/q?t=' + encodeURIComponent(t)).then(function (j) { return live(d, j && j.q && j.q[t]); }, function () { return d; });
+      }),
       getJSON(RAW + '/keystats/' + encodeURIComponent(t) + '.json').catch(function () { return {}; }),
       getJSON(RAW + '/prices/' + encodeURIComponent(t) + '.json').then(function (j) { return j.w || []; }).catch(function () { return []; })
     ]).then(function (x) { return ctx(x[0], x[1], x[2]); });

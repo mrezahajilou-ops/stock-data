@@ -81,6 +81,8 @@ def parse(xml, acc, filed):
     for o in by.values():
         o['p'] = round(o['v'] / o['q'], 2) if o['q'] else 0
         o['q'], o['v'], o['h'] = round(o['q']), round(o['v']), round(o['h'])
+        if o['v'] > 1e10 or o['p'] > 1e6:   # a typo in the filing (price in cents, shares in the price box): never shown
+            continue
         out.append(o)
     return out
 
@@ -171,6 +173,8 @@ def main():
     rows, have = [], set()
     for r in add + (st.get('rows') or []):
         k = (r.get('a'), r.get('c'))
+        if (r.get('v') or 0) > 1e10 or (r.get('p') or 0) > 1e6:
+            continue
         if k not in have:
             have.add(k)
             rows.append(r)

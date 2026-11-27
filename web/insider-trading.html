@@ -490,6 +490,14 @@ function alSet(o){try{localStorage.setItem('rz_alerts',JSON.stringify(o))}catch(
   load(); setInterval(load, 30000); setInterval(upd, 20000);
 })();
 
+/* sahamanaliz: the live insider table is for subscribers; visitors see it blurred behind the offer (FAQ stays readable) */
+(function(){if(window.RZS_ACCESS)return;var L={"h": "🔒 معاملات مدیران مخصوص مشترک‌های سهام آنالیز است", "p": "هر خرید و فروش مدیرعامل‌ها، اعضای هیئت‌مدیره و سهامداران عمده‌ی شرکت‌های آمریکایی، چند دقیقه بعد از ثبت در کمیسیون بورس آمریکا: نام و سمت هر نفر، تعداد سهم، قیمت و ارزش معامله، و نمودار یک‌ساله‌ی هر سهم با همه‌ی خریدها و فروش‌های مدیرانش.", "y": "سالانه ۴۷٫۹۴ € (۵۰٪ ارزان‌تر)", "m": "ماهانه ۷٫۹۹ €", "l": "قبلاً مشترک شدی؟ وارد حسابت شو"};var st=document.createElement('style');st.textContent="#rzin .ilk{position:relative;border-radius:14px;overflow:hidden;min-height:460px}#rzin .ilk-b{filter:blur(6px);opacity:.45;pointer-events:none;user-select:none;max-height:640px;overflow:hidden}#rzin .ilk-c{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:70px 14px 0}#rzin .ilk-box{max-width:470px;background:rgba(21,24,31,.96);border:1px solid #C9A961;border-radius:16px;padding:22px 20px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.5)}#rzin .ilk-box h3{margin:0 0 10px;font-size:19px}#rzin .ilk-box p{margin:0 0 14px;line-height:1.9;font-size:14px}#rzin .ilk-box .bt{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}#rzin .ilk-box a.b1,#rzin .ilk-box a.b2{display:inline-block;padding:10px 16px;border-radius:10px;font-weight:800;text-decoration:none}#rzin .ilk-box a.b1{background:#C9A961;color:#15120A}#rzin .ilk-box a.b2{border:1px solid #C9A961;color:#C9A961}#rzin .ilk-box small{display:block;margin-top:12px;font-size:13px}";document.head.appendChild(st);
+var a=document.querySelector('#rzin .ins-sum'),w=document.querySelector('#rzin .ins-wrap'),mo=document.querySelector('#rzin .ins-more');if(!a||!w)return;
+var box=document.createElement('div');box.className='ilk';var b=document.createElement('div');b.className='ilk-b';a.parentNode.insertBefore(box,a);box.appendChild(b);
+[a,document.querySelector('#rzin .ins-tabs'),w,mo].forEach(function(n){if(n)b.appendChild(n)});
+var Y=window.RZS_SUB_Y||'/products/stock-data-pro-yearly',M=window.RZS_SUB_URL||'/products/stock-data-pro';
+var c=document.createElement('div');c.className='ilk-c';c.innerHTML='<div class="ilk-box"><h3>'+L.h+'</h3><p>'+L.p+'</p><div class="bt"><a class="b1" href="'+Y+'">'+L.y+'</a><a class="b2" href="'+M+'">'+L.m+'</a></div>'+(window.RZS_LOGGED?'':'<small><a href="/account/login?return_url=%2Fpages%2Finsider-trading">'+L.l+'</a></small>')+'</div>';box.appendChild(c);})();
+
 })();
 </script>
 </div>

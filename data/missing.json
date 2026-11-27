@@ -199,7 +199,7 @@
 },
 {
 "t": "OGC",
-"mcap": 5449949753,
+"mcap": 5452154425,
 "why": "no usable annual data",
 "cik": 1487326
 },
@@ -217,13 +217,13 @@
 },
 {
 "t": "DPC",
-"mcap": 4965823851,
+"mcap": 4961342061,
 "why": "no usable annual data",
 "cik": 2107018
 },
 {
 "t": "MDA",
-"mcap": 4417640108,
+"mcap": 4420072729,
 "why": "no usable annual data",
 "cik": 1857047
 },
@@ -253,7 +253,7 @@
 },
 {
 "t": "TXR",
-"mcap": 4193086920,
+"mcap": 4188924359,
 "why": "no companyfacts file",
 "cik": 1561540
 },
@@ -271,7 +271,7 @@
 },
 {
 "t": "ENO",
-"mcap": 4062786074,
+"mcap": 4069200999,
 "why": "no companyfacts file",
 "cik": 71508
 },
@@ -289,7 +289,7 @@
 },
 {
 "t": "ELC",
-"mcap": 3872393944,
+"mcap": 3885188197,
 "why": "no usable annual data",
 "cik": 1348952
 },

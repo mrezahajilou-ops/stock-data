@@ -172,18 +172,18 @@ def ni_growth_cell(lang, x, spct):
 
 
 W = {  # 0 negative, 1 PEG without EPS growth, 2 not applicable (banks), 3 short history, 4 '%d yrs', 5 no DCF model
-    'en': ['Negative', 'EPS not growing', 'n/a for banks', 'Short history', '%d yrs', 'No model (FCF < 0)', 'Negative base year', '— = not reported by the company in that period’s filing.', 'First year'],
-    'es': ['Negativo', 'BPA sin crecimiento', 'No aplica a bancos', 'Historial corto', '%d años', 'Sin modelo (FCF < 0)', 'Año base negativo', '— = la empresa no publicó esta cifra en el informe de ese periodo.', 'Primer año'],
-    'pt': ['Negativo', 'LPA sem crescimento', 'Não se aplica a bancos', 'Histórico curto', '%d anos', 'Sem modelo (FCL < 0)', 'Ano-base negativo', '— = a empresa não divulgou este número no relatório desse período.', 'Primeiro ano'],
-    'de': ['Negativ', 'Kein EPS-Wachstum', 'Entfällt bei Banken', 'Zu kurze Historie', '%d J.', 'Kein Modell (FCF < 0)', 'Basisjahr negativ', '— = vom Unternehmen im Bericht dieses Zeitraums nicht ausgewiesen.', 'Erstes Jahr'],
-    'fr': ['Négatif', 'BPA sans croissance', 'Sans objet (banque)', 'Historique court', '%d ans', 'Pas de modèle (FCF < 0)', 'Année de base négative', '— = chiffre non publié par l’entreprise dans le rapport de cette période.', 'Première année'],
-    'it': ['Negativo', 'Utile per azione non in crescita', 'Non applicabile alle banche', 'Storico breve', '%d anni', 'Nessun modello (FCF < 0)', 'Anno base negativo', '— = dato non riportato dalla società nel bilancio di quel periodo.', 'Primo anno'],
-    'tr': ['Negatif', 'HBK büyümüyor', 'Bankalarda uygulanmaz', 'Kısa geçmiş', '%d yıl', 'Model yok (FCF < 0)', 'Baz yıl negatif', '— = şirket bu rakamı o dönemin raporunda açıklamadı.', 'İlk yıl'],
-    'ja': ['マイナス', 'EPS成長なし', '銀行は対象外', '履歴不足', '%d年', '算出不可(FCF赤字)', '基準年マイナス', '— = その期の決算書で会社が開示していない項目です。', '初年度'],
-    'ko': ['마이너스', 'EPS 성장 없음', '은행은 해당 없음', '이력 부족', '%d년', '산출 불가(FCF 적자)', '기준연도 마이너스', '— = 해당 기간 보고서에서 회사가 공시하지 않은 항목입니다.', '첫 해'],
-    'id': ['Negatif', 'EPS tidak tumbuh', 'Tidak berlaku untuk bank', 'Riwayat pendek', '%d thn', 'Tanpa model (FCF < 0)', 'Tahun dasar negatif', '— = perusahaan tidak melaporkan angka ini dalam laporan periode tersebut.', 'Tahun pertama'],
-    'vi': ['Âm', 'EPS không tăng', 'Không áp dụng cho ngân hàng', 'Lịch sử ngắn', '%d năm', 'Không định giá (FCF âm)', 'Năm gốc âm', '— = công ty không công bố số liệu này trong báo cáo kỳ đó.', 'Năm đầu'],
-    'ar': ['سالب', 'ربحية السهم لا تنمو', 'لا ينطبق على البنوك', 'تاريخ قصير', '%d سنوات', 'لا نموذج (تدفق نقدي حر سالب)', 'سنة الأساس سالبة', '— = لم تُفصح الشركة عن هذا الرقم في تقرير تلك الفترة.', 'السنة الأولى'],
+    'en': ['Negative', 'EPS not growing', 'n/a for banks', 'Short history', '%d yrs', 'No model (FCF < 0)', 'Negative base year', '— = not reported by the company in that period’s filing.', 'First year', 'No analyst estimates', '— = the company does not report this figure, or there is not enough data to calculate it.'],
+    'es': ['Negativo', 'BPA sin crecimiento', 'No aplica a bancos', 'Historial corto', '%d años', 'Sin modelo (FCF < 0)', 'Año base negativo', '— = la empresa no publicó esta cifra en el informe de ese periodo.', 'Primer año', 'Sin estimaciones', '— = la empresa no publica esta cifra o no hay datos suficientes para calcularla.'],
+    'pt': ['Negativo', 'LPA sem crescimento', 'Não se aplica a bancos', 'Histórico curto', '%d anos', 'Sem modelo (FCL < 0)', 'Ano-base negativo', '— = a empresa não divulgou este número no relatório desse período.', 'Primeiro ano', 'Sem estimativas', '— = a empresa não divulga este número ou não há dados suficientes para calculá-lo.'],
+    'de': ['Negativ', 'Kein EPS-Wachstum', 'Entfällt bei Banken', 'Zu kurze Historie', '%d J.', 'Kein Modell (FCF < 0)', 'Basisjahr negativ', '— = vom Unternehmen im Bericht dieses Zeitraums nicht ausgewiesen.', 'Erstes Jahr', 'Keine Schätzungen', '— = das Unternehmen weist diese Zahl nicht aus, oder die Daten reichen für eine Berechnung nicht aus.'],
+    'fr': ['Négatif', 'BPA sans croissance', 'Sans objet (banque)', 'Historique court', '%d ans', 'Pas de modèle (FCF < 0)', 'Année de base négative', '— = chiffre non publié par l’entreprise dans le rapport de cette période.', 'Première année', 'Pas d’estimations', '— = l’entreprise ne publie pas ce chiffre, ou les données ne suffisent pas pour le calculer.'],
+    'it': ['Negativo', 'Utile per azione non in crescita', 'Non applicabile alle banche', 'Storico breve', '%d anni', 'Nessun modello (FCF < 0)', 'Anno base negativo', '— = dato non riportato dalla società nel bilancio di quel periodo.', 'Primo anno', 'Nessuna stima', '— = la società non pubblica questo dato, oppure i dati non bastano per calcolarlo.'],
+    'tr': ['Negatif', 'HBK büyümüyor', 'Bankalarda uygulanmaz', 'Kısa geçmiş', '%d yıl', 'Model yok (FCF < 0)', 'Baz yıl negatif', '— = şirket bu rakamı o dönemin raporunda açıklamadı.', 'İlk yıl', 'Tahmin yok', '— = şirket bu rakamı açıklamıyor ya da hesaplamak için yeterli veri yok.'],
+    'ja': ['マイナス', 'EPS成長なし', '銀行は対象外', '履歴不足', '%d年', '算出不可(FCF赤字)', '基準年マイナス', '— = その期の決算書で会社が開示していない項目です。', '初年度', '予想なし', '— = 会社が開示していないか、算出に必要なデータが不足している項目です。'],
+    'ko': ['마이너스', 'EPS 성장 없음', '은행은 해당 없음', '이력 부족', '%d년', '산출 불가(FCF 적자)', '기준연도 마이너스', '— = 해당 기간 보고서에서 회사가 공시하지 않은 항목입니다.', '첫 해', '추정치 없음', '— = 회사가 공시하지 않거나 계산에 필요한 데이터가 부족한 항목입니다.'],
+    'id': ['Negatif', 'EPS tidak tumbuh', 'Tidak berlaku untuk bank', 'Riwayat pendek', '%d thn', 'Tanpa model (FCF < 0)', 'Tahun dasar negatif', '— = perusahaan tidak melaporkan angka ini dalam laporan periode tersebut.', 'Tahun pertama', 'Tanpa estimasi', '— = perusahaan tidak melaporkan angka ini, atau datanya belum cukup untuk menghitungnya.'],
+    'vi': ['Âm', 'EPS không tăng', 'Không áp dụng cho ngân hàng', 'Lịch sử ngắn', '%d năm', 'Không định giá (FCF âm)', 'Năm gốc âm', '— = công ty không công bố số liệu này trong báo cáo kỳ đó.', 'Năm đầu', 'Chưa có dự báo', '— = công ty không công bố số liệu này, hoặc chưa đủ dữ liệu để tính.'],
+    'ar': ['سالب', 'ربحية السهم لا تنمو', 'لا ينطبق على البنوك', 'تاريخ قصير', '%d سنوات', 'لا نموذج (تدفق نقدي حر سالب)', 'سنة الأساس سالبة', '— = لم تُفصح الشركة عن هذا الرقم في تقرير تلك الفترة.', 'السنة الأولى', 'لا توقعات للمحللين', '— = لا تُفصح الشركة عن هذا الرقم، أو لا تكفي البيانات لحسابه.'],
 }
 
 
@@ -225,7 +225,9 @@ def vcells(lang, d, gap, num, pct):
     V['pe'] = ratio('pe', 'net_income', loss)
     fe = _n(r.get('fwd_pe'))
     e0 = _n((d.get('analyst') or {}).get('e0'))
-    V['fwd_pe'] = num(fe) if fe and fe > 0 else (loss if (e0 is not None and e0 < 0) or (fe is not None and fe <= 0) else '—')
+    V['fwd_pe'] = num(fe) if fe and fe > 0 else (loss if (e0 is not None and e0 < 0) or (fe is not None and fe <= 0) else mut(w(lang, 9)) if not (d.get('analyst') or {}).get('e0') else '—')
+    ps_ = _n(r.get('ps'))
+    V['ps'] = num(ps_) if ps_ and ps_ > 0 else (mut(lbl(lang, 11)) if not base('revenue') else '—')
     V['pfcf'] = mut(w(lang, 2)) if bank else ratio('pfcf', 'fcf', neg)
     V['pb'] = ratio('pb', 'equity', neg)
     V['ev_ebitda'] = ratio('ev_ebitda', 'ebitda', neg)
@@ -277,6 +279,10 @@ def vcells(lang, d, gap, num, pct):
     V['roic5'] = (pct(s['roic_avg_5y'], 1) if _n(s.get('roic_avg_5y')) is not None else
                   (pct(a['roic'], 1) + ' <span class="mut">(%s)</span>' % (w(lang, 4) % 1)) if _n(a.get('roic')) is not None else
                   mut(w(lang, 2)) if bank else '—')
+    rv_, ni_ = _n(tt.get('revenue')), _n(tt.get('net_income'))
+    V['nmt'] = (pct(ni_ / rv_, 1) if (rv_ and ni_ is not None and rv_ > 0) else
+                (pct(a['net_margin'], 1) + ' <span class="mut">(%s)</span>' % (w(lang, 4) % 1)) if _n(a.get('net_margin')) is not None else
+                mut(lbl(lang, 11)) if not base('revenue') else '—')
     dv = s.get('div_years')
     V['divy'] = str(dv) if dv else (mut(lbl(lang, 9)) if dv == 0 or dy == 0 else '—')
     v1 = _n(s.get('rev_cagr_1y'))
@@ -288,8 +294,12 @@ def vcells(lang, d, gap, num, pct):
 
 def note_if_dash(lang, html):
     """Card html: add the one-line meaning of a dash when the table still has one."""
-    if '<td>—</td>' not in html:
+    tiles = '<b>—</b>' in html and '<td>—</td>' not in html
+    if '<td>—</td>' not in html and not tiles:
         return html
+    if tiles:
+        i = html.rfind('</section>')
+        return html[:i] + '<p class="note">%s</p>' % w(lang, 10) + html[i:] if i >= 0 else html
     if '</div></section>' in html:
         return html.replace('</div></section>', '</div><p class="note">%s</p></section>' % w(lang, 7), 1)
     i = html.rfind('</section>')

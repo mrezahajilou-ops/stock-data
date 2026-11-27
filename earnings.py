@@ -472,6 +472,30 @@ def main():
                     x['revno'] = 1
         if time.time() - t0 > 3000:
             break
+    # revenue a year earlier, from the company's own quarterly table, where the quarter's revenue came from Yahoo
+    # (so the SEC step above never ran): the earnings tables showed a dash under "revenue growth" for the newest quarter
+    MON = {m: i + 1 for i, m in enumerate(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])}
+    for t, e in db.items():
+        miss = [x for x in e['q'] if x.get('rev') and not x.get('revly') and '/' in (x.get('q') or '')]
+        if not miss:
+            continue
+        try:
+            qs = json.load(open(os.path.join(STOCKS, t + '.json'))).get('quarterly') or []
+        except Exception:
+            continue
+        for x in miss:
+            mo, yr = x['q'].split('/')[:2]
+            if mo[:3] not in MON or not yr.isdigit():
+                continue
+            k = int(yr) * 12 + MON[mo[:3]] - 12   # same quarter, one year earlier
+            for row in qs:
+                try:
+                    km = int(row[0][:4]) * 12 + int(row[0][5:7])
+                except Exception:
+                    continue
+                if len(row) >= 2 and row[1] and abs(km - k) <= 1:
+                    x['revly'] = row[1]
+                    break
 
     # one basis for actual vs expected EPS: Nasdaq sometimes pairs the GAAP result with the adjusted consensus
     # (Credo: GAAP 0.78 vs adjusted forecast 0.93 = a fake "miss"). Yahoo's earnings history has both on the

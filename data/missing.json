@@ -7,7 +7,7 @@
 },
 {
 "t": "ANT",
-"mcap": 1083445623974,
+"mcap": 1094454184030,
 "why": "no usable annual data",
 "cik": 2130357
 },
@@ -82,6 +82,12 @@
 "mcap": 19698181032,
 "why": "no usable annual data",
 "cik": 2058897
+},
+{
+"t": "SKYD.WS",
+"mcap": 14678687091,
+"why": "not in SEC ticker map",
+"cik": null
 },
 {
 "t": "MAIR",

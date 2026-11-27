@@ -818,6 +818,7 @@ async function cDispatch(env) {
   if (mi >= 30 && mi < 35) await go('watchdog.yml');
   if (mi % 15 >= 5 && mi % 15 < 10) await go('gold.yml');   // every 15 minutes (prices, yields, Fed odds)
   if (mi % 20 < 5) await go('alerts.yml');
+  await go('insider-live.yml');   // insider trading feed (SEC Form 4): every 5 minutes, GitHub's own */5 schedule starts late or skips
   if (mi % 20 >= 10 && mi % 20 < 15) await go('si-watch.yml');   // new 13F filings -> super-investors rebuild
   // official closes (prices.yml -> close_fix.py -> branch "closes"): GitHub's own 00:40 UTC schedule ran ~10 h late
   // (2026-11-17), leaving the previous day's price on every page all night. Start it right after the close, retry later.

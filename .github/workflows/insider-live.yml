@@ -3,7 +3,7 @@ name: Insider trading live feed (SEC Form 4)
 # Every 5 minutes: newest Form 4 filings -> branch `insider-live` (live.json), served by the worker at /c/insider.json
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/15 * * * *'   # backup only: the worker (events/contest.js cDispatch) starts it every 5 minutes
   workflow_dispatch:
     inputs:
       backfill: {description: 'one-off: also load the last N business days from the daily index', required: false, default: ''}

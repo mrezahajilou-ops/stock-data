@@ -59,7 +59,7 @@ UI = dict(
     i_title='The {N} Biggest ETFs: Holdings, P/E and Returns',
     i_desc='The {N} largest ETFs in the world with their holdings, weights and one-year returns, '
            'and a price/earnings ratio worked out from the companies each one actually holds.',
-    d_title='%(t)s ETF: holdings, P/E and returns',
+    d_title='%(t)s ETF: Top Holdings, P/E and Returns (2026)',
     d_desc='%(name)s (%(t)s) holdings, weights and returns, with a price/earnings ratio built from '
            'the companies it actually holds. %(idea)s',
     groups=[

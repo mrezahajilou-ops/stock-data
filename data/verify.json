@@ -1,6 +1,6 @@
 {
- "ok": 88,
- "diff": 11,
+ "ok": 86,
+ "diff": 13,
  "missing": 3,
  "rows": [
   {
@@ -457,10 +457,10 @@
    "ticker": "SE",
    "fy": 2024,
    "metric": "eps_diluted",
-   "ours": 0.7254,
+   "ours": 0.7656,
    "ref": 0.74,
-   "diff": 0.0197,
-   "status": "OK"
+   "diff": 0.0334,
+   "status": "DIFF"
   },
   {
    "ticker": "SE",
@@ -502,10 +502,10 @@
    "ticker": "SE",
    "fy": 2023,
    "metric": "eps_diluted",
-   "ours": 0.2461,
+   "ours": 0.2642,
    "ref": 0.25,
-   "diff": 0.0156,
-   "status": "OK"
+   "diff": 0.0537,
+   "status": "DIFF"
   },
   {
    "ticker": "SE",

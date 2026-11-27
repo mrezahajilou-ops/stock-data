@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "id": "2026-11-27-ant-meta-amzn",
+   "t": "2026-11-27T14:45:00Z",
+   "text": "$ANT +4% early, $META and $AMZN +2% each, $AVGO almost +2% as the rally pares to Dow +0.6% in the first half hour.",
+   "src": "CNBC",
+   "url": "https://cnbc.com/2026/11/26/stock-market-today-live-updates.html"
+  },
+  {
+   "id": "2026-11-27-open",
+   "t": "2026-11-27T14:32:00Z",
+   "text": "Opening bell: Dow +507 points (+1%), S&P 500 +1.2%, Nasdaq +1.5% as tech leads the post-Thanksgiving rebound. The Dow came into Friday up 5% this week, on pace for its best week since April 2025.",
+   "src": "CNBC",
+   "url": "https://cnbc.com/2026/11/26/stock-market-today-live-updates.html"
+  },
+  {
    "id": "2026-11-27-optical-storage",
    "t": "2026-11-27T14:05:00Z",
    "text": "Optical and storage names lead S&P 500 premarket gainers after a brutal month: $LITE +8% to $514.50 (still down 48% in a month), $WDC +6.2%, with $COHR and $STX also near the top.",
@@ -106,5 +120,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T14:22:16Z"
+ "updated": "2026-11-27T14:51:48Z"
 }

@@ -951,7 +951,28 @@ def main():
                 except Exception:
                     pass
                 continue
+            # a source that timed out this run must not empty the page: keep the previous run's block
+            try:
+                prev = json.loads(get('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/housing/housing_%s.json' % c, tries=2))
+            except Exception:
+                prev = {}
+            for k in ('idx', 'price', 'rent', 'types', 'regions', 'mkt'):
+                new, old_ = d.get(k), prev.get(k)
+                empty = (not new) or (isinstance(new, dict) and 's' in new and not new['s']) or (k == 'mkt' and len((new or {}).get('index') or []) < 24)
+                if empty and old_:
+                    d[k] = old_
+                    say(c, 'kept previous', k)
+            for rk, rs in list((d.get('rates') or {}).items()):
+                if not rs and (prev.get('rates') or {}).get(rk):
+                    d['rates'][rk] = prev['rates'][rk]
+                    say(c, 'kept previous rate', rk)
+            for src in prev.get('src') or []:
+                if src not in d.get('src', []) and any(k in d and d[k] == prev.get(k) for k in ('price', 'regions')):
+                    d.setdefault('src', []).insert(0, src)
             d['oecd'] = oecd.get(d['oecd_code']) or {}
+            if not d['oecd'] and prev.get('oecd'):
+                d['oecd'] = prev['oecd']
+                say(c, 'kept previous oecd')
             d['as_of'] = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
             lasts = []
             for k in ('idx', 'price', 'rent'):

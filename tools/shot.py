@@ -26,9 +26,16 @@ async def main(out, urls):
                   var o=[],w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);while(w.nextNode()){var t=w.currentNode,p=t.parentNode;
                   if(p.closest('script,style,svg'))continue;var m=t.nodeValue.match(/[A-Za-z]{2,}[A-Za-z .&-]*/g);if(m)o.push(m.join(' | '))}
                   return o.slice(0,40)})()''')
+                extra = await pg.evaluate(r'''(()=>{var r=document.querySelector('#hs');if(!r)return null;
+                  var charts=[].slice.call(r.querySelectorAll('[data-chart] .ch')).filter(function(c){return c.offsetParent});
+                  var empty=charts.filter(function(c){return !c.querySelector('svg path')}).length;
+                  var nod=[].slice.call(r.querySelectorAll('p.mut')).filter(function(p){return p.offsetParent&&/^(No data|Keine|Aucune|Nessun|Sin datos|Sem dados|Tidak|데이터|データ|Veri yok|لا توجد|داده‌ای نیست)/.test(p.textContent.trim())}).length;
+                  var rows=r.querySelectorAll('table tbody tr').length;
+                  var over=[].slice.call(r.querySelectorAll('svg text')).filter(function(t){var b=t.getBoundingClientRect();return b.left<0||b.right>innerWidth+1}).length;
+                  return {charts:charts.length,emptyCharts:empty,noData:nod,tableRows:rows,textOutside:over}})()''')
                 fn = '%02d-%s.png' % (i, tag)
                 await pg.screenshot(path=os.path.join(out, fn), full_page=True)
-                rep['%s %s' % (u, tag)] = {'file': fn, 'scrollWidth': sw, 'errors': errs[:8], 'latin_in_rtl': latin}
+                rep['%s %s' % (u, tag)] = {'file': fn, 'scrollWidth': sw, 'errors': errs[:8], 'latin_in_rtl': latin, 'page': extra}
                 await pg.close()
         await b.close()
     json.dump(rep, open(os.path.join(out, 'report.json'), 'w'), ensure_ascii=False, indent=1)

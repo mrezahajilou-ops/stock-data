@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: sudo apt-get install -y -q fonts-noto-cjk >/dev/null 2>&1 || true
       - run: pip install -q playwright && python tools/shot.py shots ${{ inputs.urls }}
       - name: Publish to branch "shots"
         run: |

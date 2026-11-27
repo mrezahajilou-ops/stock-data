@@ -10,7 +10,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var tbody = $('ins-t').tBodies[0], tab = 0, shown = 30, rows = [], seen = {}, first = true, asof = null, open = null;
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
-  var sl = function (t) { return C.su.replace('%s', encodeURIComponent(C.lc ? t.toLowerCase() : t)); };
+  var sl = function (t) { return C.su.replace('%s', encodeURIComponent(C.lc === false ? t : t.toLowerCase())); };
   var bdi = function (s) { return C.rtl ? '<bdi dir="ltr">' + s + '</bdi>' : s; };
   var nf = function (v, d) { try { return Number(v).toLocaleString(C.loc, { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); } catch (e) { return String(v); } };
   function money(v) { var a = Math.abs(v || 0); return '$' + (a >= 1e9 ? nf(a / 1e9, 2) + 'B' : a >= 1e6 ? nf(a / 1e6, 1) + 'M' : a >= 1e3 ? nf(Math.round(a / 1e3)) + 'K' : nf(Math.round(a))); }

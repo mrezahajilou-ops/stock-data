@@ -99,7 +99,7 @@ export default {
   async scheduled(ev, env) {
     if (ev.cron !== '17 3 * * *') {
       await contestCron(env, ev.cron);
-      try { await insiderRefresh(env, 20); } catch (e) { /* next run */ }   // insider trading feed (events/insider.js)
+      if (env.SEC_UA) { try { await insiderRefresh(env, 20); } catch (e) { /* next run */ } }   // insider trading feed (events/insider.js)
       return;
     }
     const cut = Math.floor(Date.now() / 1000) - RETAIN_DAYS * 86400;

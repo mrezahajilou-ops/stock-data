@@ -154,7 +154,7 @@ def yahoo_one(t):
 
 # ------------------------------------------------------------------ insider
 def insider_one(t):
-    url = ('https://api.nasdaq.com/api/company/%s/insider-trades?limit=15&type=ALL&sortColumn=lastDate&sortOrder=DESC'
+    url = ('https://api.nasdaq.com/api/company/%s/insider-trades?limit=100&type=ALL&sortColumn=lastDate&sortOrder=DESC'
            % urllib.parse.quote(t.replace('-', '.')))
     raw = get(url, NASDAQ_HDR)
     if not raw:
@@ -189,6 +189,9 @@ def insider_one(t):
             'total': num(((d.get('transactionTable') or {}).get('totalRecords')))}
     if not rows and not any(v for v in summ.values()):
         return t, None
+    # 12 months of rows (the stock page shows the latest 8; the insider-trading panel draws all of them on the price chart)
+    cut = (dt.date.today() - dt.timedelta(days=372)).isoformat()
+    rows = [r for r in rows if not r['d'] or r['d'] >= cut][:100]
     return t, {'sum': summ, 'rows': rows}
 
 
@@ -322,7 +325,7 @@ def sec_form4(cik, max_docs=40, issuers=None):
     summ['net3'] = summ['bought3'] - summ['sold3']
     summ['net12'] = summ['bought12'] - summ['sold12']
     rows.sort(key=lambda r: r['d'] or '', reverse=True)
-    return {'sum': summ, 'rows': rows[:15], 'src': 'sec'}
+    return {'sum': summ, 'rows': rows[:100], 'src': 'sec'}
 
 
 def insider_fill(ts, got):

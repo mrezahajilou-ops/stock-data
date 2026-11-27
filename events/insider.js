@@ -97,6 +97,21 @@ async function insiderRefresh(env, maxDocs) {
 }
 
 async function insiderServe(env, ctx, h) {
+  if (!env.SEC_UA) {   // no SEC contact configured here: the GitHub job (insider_live.py, every 5 minutes) does the fetching
+    const cache = caches.default, ck = new Request('https://rz-events.internal/insider-live');
+    let r = await cache.match(ck);
+    if (!r) {
+      const g = await fetch('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/insider-live/live.json?t=' + Math.floor(Date.now() / 30000));
+      if (!g.ok) return new Response(JSON.stringify({ error: 'not ready' }), { status: 503, headers: { 'Content-Type': 'application/json', ...h } });
+      const o = await g.json();
+      delete o.seen;
+      r = new Response(JSON.stringify(o), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=30' } });
+      ctx.waitUntil(cache.put(ck, r.clone()));
+    }
+    const out = new Response(r.body, r);
+    Object.entries(h).forEach(([a, b]) => out.headers.set(a, b));
+    return out;
+  }
   let kv = await env.DB.prepare("SELECT v, ts FROM c_kv WHERE k='insider'").first();
   const now = Math.floor(Date.now() / 1000);
   if (!kv) { try { await insiderRefresh(env, 20); } catch (e) {} kv = await env.DB.prepare("SELECT v, ts FROM c_kv WHERE k='insider'").first(); }

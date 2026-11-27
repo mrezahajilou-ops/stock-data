@@ -57,6 +57,10 @@ export default {
     const url = new URL(req.url);
     const h = cors(req, env);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
+    if (req.method === 'GET' && url.pathname === '/c/insider.json') {
+      try { return await insiderServe(env, ctx, h); }
+      catch (e) { return json({ error: 'server', detail: String(e && e.message || e).slice(0, 200) }, 500, h); }
+    }
     if (url.pathname.startsWith('/c/')) {
       try { return await contest(req, env, url, h); }
       catch (e) { return json({ error: 'server', detail: String(e && e.message || e).slice(0, 200) }, 500, h); }
@@ -93,7 +97,11 @@ export default {
   },
 
   async scheduled(ev, env) {
-    if (ev.cron !== '17 3 * * *') { await contestCron(env, ev.cron); return; }
+    if (ev.cron !== '17 3 * * *') {
+      await contestCron(env, ev.cron);
+      try { await insiderRefresh(env, 20); } catch (e) { /* next run */ }   // insider trading feed (events/insider.js)
+      return;
+    }
     const cut = Math.floor(Date.now() / 1000) - RETAIN_DAYS * 86400;
     await env.DB.prepare('DELETE FROM events WHERE ts < ?1').bind(cut).run();
   },

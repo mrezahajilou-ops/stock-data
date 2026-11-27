@@ -30,10 +30,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build one file (worker.js + contest.js) and check it parses
+      - name: Build one file (worker.js + contest.js + insider.js) and check it parses
         run: |
           mkdir -p events/dist
-          cat events/worker.js events/contest.js > events/dist/worker.js
+          cat events/worker.js events/contest.js events/insider.js > events/dist/worker.js
           node --check events/dist/worker.js
           sed 's#^main = .*#main = "dist/worker.js"#' events/wrangler.toml > events/wrangler.deploy.toml
       - name: Deploy

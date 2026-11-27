@@ -53,7 +53,7 @@ def _tickers():
 
 def body():
     esc = lambda s: str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
-    cfg = dict(feed=FEED, raw=RAW, su='/pages/stocks/%s', lc=True, loc='fa-IR-u-ca-gregory-nu-latn', rtl=True, tk=','.join(_tickers()), S=S, keep=False, noco=False)
+    cfg = dict(feed=FEED, raw=RAW, su='/pages/stock#%s', lc=False, loc='fa-IR-u-ca-gregory-nu-latn', rtl=True, tk=','.join(_tickers()), S=S, keep=False, noco=False)
     tabs = ''.join('<button role="tab" data-k="%d"%s>%s</button>' % (i, ' aria-selected="true" class="on"' if i == 0 else '', esc(t)) for i, t in enumerate(S['tabs']))
     faq = ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q), esc(a)) for q, a in FAQ)
     css = open(os.path.join(ROOT, 'web_src', 'insider.css'), encoding='utf-8').read()

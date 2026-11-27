@@ -21,7 +21,7 @@
     else if (/chair/.test(x)) k = 'chair'; else if (/^president|\bpresident\b(?!.*vice)/.test(x) && !/vice/.test(x)) k = 'pres';
     else if (/general counsel|chief legal/.test(x)) k = 'law'; else if (/vice president|\bevp\b|\bsvp\b|\bvp\b/.test(x)) k = 'vp';
     else if (/director/.test(x)) k = 'dir'; else if (/10%|beneficial owner/.test(x)) k = 'own'; else if (/other/.test(x) || !x) k = 'oth'; else k = 'off';
-    if (C.keep && r && k !== 'own' && k !== 'oth') return esc(r);
+    if (C.keep && r && k !== 'own' && k !== 'oth' && !/see remarks|^officer$/i.test(r)) return esc(r);
     return '<span title="' + esc(r) + '">' + esc(R[k] || r) + '</span>';
   }
   function ago(iso) {

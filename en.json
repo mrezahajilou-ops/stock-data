@@ -1,6 +1,13 @@
 {
  "items": [
   {
+   "id": "2026-11-27-spcx-musk-pledge",
+   "t": "2026-11-27T13:30:00Z",
+   "text": "$SPCX +4% premarket after Musk said on X he will donate another SpaceX share to every kid in America every year, on top of the one-share-per-Trump-Account pledge. The stock is still about 12% lower over the past month.",
+   "src": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/27/spacex-shares-musk-donations.html"
+  },
+  {
    "id": "2026-11-27-silver-miners",
    "t": "2026-11-27T13:02:00Z",
    "text": "Silver rips: $SLV +7.1% premarket, pulling miners with it: $CDE +7%, $KGC +5.8%, $FCX +5.5%, $SCCO +5%.",
@@ -92,5 +99,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T13:22:17Z"
+ "updated": "2026-11-27T13:51:46Z"
 }

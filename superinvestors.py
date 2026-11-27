@@ -536,6 +536,21 @@ def main(MANAGERS=MANAGERS, tag='', nq=NQ, top_map=None):
     def title(s):
         return ' '.join(w if len(w) <= 3 and w.isupper() and w not in ('INC', 'COM', 'NEW', 'THE', 'CO') else w.capitalize() for w in (s or '').split())
 
+    # Corporate reorganisations that swap the CUSIP of the same listed share (holders keep their shares).
+    # Without this, every holder shows a fake "sold" of the old CUSIP and a fake "new" buy of the new one.
+    REMAP = {'30231G102': '30233Q108'}  # Exxon Mobil Corp -> ExxonMobil Holdings Corp (XOM), 2026
+    for d in data:
+        for q in d['Q']:
+            for old_cu, new_cu in REMAP.items():
+                o = q['eq'].pop(old_cu, None)
+                if not o:
+                    continue
+                x = q['eq'].get(new_cu)
+                if x:
+                    x['v'] += o['v']; x['n'] += o['n']
+                else:
+                    o['cusip'] = new_cu; q['eq'][new_cu] = o
+
     SAME = {'GOOG': 'GOOGL', 'BRK-A': 'BRK-B', 'FOX': 'FOXA', 'NWS': 'NWSA', 'FWONK': 'FWONA', 'LBRDA': 'LBRDK', 'LSXMK': 'LSXMA', 'UHAL': 'UHAL-B', 'HEI-A': 'HEI'}
     latest_all = max(d['Q'][0]['period'] for d in data)
     summary, owners, act_all = [], defaultdict(list), []

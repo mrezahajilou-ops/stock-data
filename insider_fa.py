@@ -48,7 +48,7 @@ def body():
             '<article class="ins ins-rtl"><p class="meta"><span class="ins-dot"></span><span id="ins-upd">%s</span></p><div class="ins-sum" id="ins-sum"></div>'
             '<div class="ins-tabs" role="tablist">%s</div><div class="ins-wrap"><table class="ins-t" id="ins-t"><thead><tr>%s</tr></thead><tbody><tr><td colspan="8" class="none">%s</td></tr></tbody></table></div>'
             '<p class="ins-more"><button id="ins-more" hidden>%s</button></p><h2>پرسش‌های رایج</h2>%s<p class="note">%s</p>'
-            '<script type="application/json" id="ins-cfg">%s</script></article>'
+            '<script>window.INS_CFG=%s;</script></article>'
             % (css, esc('گزارش‌های فرم ۴ کمیسیون بورس آمریکا · گزارش‌های تازه در چند دقیقه'), tabs, ''.join('<th>%s</th>' % esc(h) for h in S['th']),
                esc(S['loading']), esc(S['more']), faq, esc(DIS), json.dumps(cfg, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')))
 

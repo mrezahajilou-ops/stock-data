@@ -3,8 +3,9 @@
    Tap a trade -> that stock's one-year price chart with every insider buy/sale (insider/<T>.json + prices/<T>.json);
    tap a name -> that person's trades. Facts only, no advice. */
 (function () {
-  var cfgEl = document.getElementById('ins-cfg'); if (!cfgEl) return;
-  var C = JSON.parse(cfgEl.textContent), S = C.S, R = C.roles || S.roles;
+  var cfgEl = document.getElementById('ins-cfg');
+  var C = cfgEl ? JSON.parse(cfgEl.textContent) : window.INS_CFG; if (!C || !document.getElementById('ins-t')) return;   // Shopify loader: window.INS_CFG
+  var S = C.S, R = C.roles || S.roles;
   var TK = {}; (C.tk || '').split(',').forEach(function (t) { if (t) TK[t] = 1; });
   var $ = function (id) { return document.getElementById(id); };
   var tbody = $('ins-t').tBodies[0], tab = 0, shown = 30, rows = [], seen = {}, first = true, asof = null, open = null;

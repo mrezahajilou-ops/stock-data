@@ -1,0 +1,66 @@
+{
+ "t": "INTC",
+ "updated": "2026-11-27",
+ "eps_year": "2027",
+ "title": "Intel Stock Forecast & Price Prediction 2027: Bull, Base, Bear",
+ "desc": "Intel (INTC) stock forecast for 2027: bull, base and bear scenarios built on 2027 EPS and P/E, the data-center boom vs. the PC slump, foundry losses, analyst targets and what top investors did.",
+ "h2": "Intel in 2027: three scenarios",
+ "intro": "<p>Intel is now two businesses pulling in opposite directions. In the third quarter of 2026 (ended September 26) <b>Data Center and AI</b> revenue rose 78% to $7.3 billion, the fastest growth in 15 years, and management says demand for its Xeon server chips is still well above what it can supply. At the same time <b>PC chips</b> (Client Computing, $8.1 billion) fell 5%, and management now expects industry PC unit sales to drop about 12% in 2026 and about 10% in 2027 because memory shortages are pushing up PC prices and companies are holding back IT budgets.</p><p>The stock reflects that tug-of-war. It closed at a record $140.94 on June 22, 2026, then lost 28.6% in one day on October 30 after a weak fourth-quarter outlook (revenue $15.0–16.0 billion, adjusted gross margin 38%, adjusted EPS $0.25), and kept falling into November on a shareholder lawsuit over PC-demand disclosures and reports that Nvidia was selling part of its Intel stake.</p>",
+ "drivers": "<h3>The four numbers that decide the price</h3><ul><li><b>Server CPU growth.</b> Management expects industry server CPU units to grow more than 30% in both 2026 and 2027. Every quarter that Intel can ship more Xeons is mostly a supply question, not a demand question.</li><li><b>The PC decline.</b> PC chips were Intel’s largest business ($32.2 billion of revenue in fiscal 2025). A 10–12% unit drop two years in a row is the biggest drag on earnings.</li><li><b>Foundry losses.</b> Intel Foundry still loses money (about $2.1 billion operating loss in Q2 2026); Intel has pointed to 2027 for break-even. External customers for the 14A process are the swing factor.</li><li><b>Cash and dilution.</b> Gross capex is about $20 billion in 2026 and set to rise strongly in 2027, and management does not expect positive free cash flow in 2027. Intel also sold $23 billion of new shares in Q3; the share count is now about 5.3 billion, up from about 5.0 billion at the end of 2025, so every future earnings dollar is spread across more shares.</li></ul><p>One accounting note: the $11.0 billion GAAP loss in Q2 2026 was mainly a $12.5 billion non-cash mark-to-market charge on shares held in escrow under Intel’s CHIPS Act agreement with the U.S. Commerce Department. It did not cost cash, but it will keep moving GAAP results whenever the stock moves, which is why the scenarios below use adjusted EPS, the figure analysts forecast.</p>",
+ "scenarios": [
+  {
+   "k": "bull",
+   "name": "Bull case: the server boom outruns the PC slump",
+   "eps": 2.6,
+   "pe": 35,
+   "html": "<ul><li>Server CPU units grow 30%+ in 2027 as guided and new capacity lets Intel ship them.</li><li>Adjusted gross margin climbs back to the mid-40s (it was 44.1% in Q3 2026) once the Fab 28 disruption fades.</li><li>Foundry reaches break-even in 2027 and announces large external 14A customers, so the market pays a growth multiple.</li></ul>"
+  },
+  {
+   "k": "base",
+   "name": "Base case: Wall Street’s numbers come true",
+   "eps": 1.79,
+   "pe": 30,
+   "html": "<ul><li>2027 adjusted EPS lands on the analyst consensus of about $1.79 (2026: about $1.49).</li><li>Data-center growth roughly offsets the PC decline; foundry losses narrow but do not disappear.</li><li>The multiple stays near today’s level: at $54 the market pays about 30 times 2027 consensus earnings, above the semiconductor-sector average of about 25.</li></ul>"
+  },
+  {
+   "k": "bear",
+   "name": "Bear case: PCs fall harder and foundry slips",
+   "eps": 1.0,
+   "pe": 25,
+   "html": "<ul><li>PC units fall more than the 10% Intel expects in 2027 and pricing weakens.</li><li>Gross margin stays near the 38% guided for Q4 2026; foundry break-even moves past 2027.</li><li>Negative free cash flow and heavier capex force more borrowing or another share sale, and the multiple drops to the sector average.</li></ul>"
+  }
+ ],
+ "grid_eps": [
+  1.0,
+  1.4,
+  1.79,
+  2.2,
+  2.6
+ ],
+ "grid_pe": [
+  20,
+  25,
+  30,
+  35,
+  40
+ ],
+ "outro": "<h3>What the professionals did</h3><p>Analysts were slow to react: the average 12-month target is still far above the price, but in the 30 days to late November, 25 earnings estimates were cut and only 7 raised. Among the superinvestors we track, nine added to Intel in the July–September quarter, led by George Soros’s fund (Intel was about 6% of its reported portfolio) and Stephen Mandel, who opened a new position worth about 4.7% of his. Those filings show holdings on September 30, before the October crash. <a href=\"/superinvestors/\">See every superinvestor portfolio</a>.</p><h3>Dates to watch</h3><ul><li><b>Q4 2026 results</b> (expected late January 2027): first 2027 guidance, capex plan and an update on PC demand.</li><li><b>Foundry customer news</b> for 14A, Intel’s next process after 18A.</li><li><b>Memory prices</b>: the shortage that is lifting PC prices is the main reason given for the weaker PC market.</li></ul><p class=\"note\">Scenarios show what the price would be if each set of assumptions came true; they are not predictions and not investment advice. Company figures: Intel Q2 and Q3 2026 earnings releases and call; consensus: analyst estimates as of our last update.</p>",
+ "faq": [
+  [
+   "What is the Intel stock price prediction for 2027?",
+   "It depends on two numbers: what Intel earns in 2027 and the multiple investors pay. Analysts expect adjusted EPS of about $1.79 for 2027. At 30 times earnings (roughly today’s multiple) that is about $54; a bull case of $2.60 EPS at 35 times gives about $91, and a bear case of $1.00 at 25 times about $25. These are scenarios, not predictions."
+  ],
+  [
+   "Why did Intel stock drop so much in late 2026?",
+   "Intel fell 28.6% on October 30, 2026 after guiding to a weak fourth quarter: revenue of $15.0–16.0 billion, a 38% adjusted gross margin and $0.25 of adjusted EPS. Management also said it expects PC unit sales to fall about 12% in 2026 and about 10% in 2027, plans much higher capex in 2027 and does not expect positive free cash flow next year. In November a shareholder lawsuit and reports of Nvidia selling part of its stake added pressure."
+  ],
+  [
+   "Why did Intel report an $11 billion loss in 2026?",
+   "The $11.0 billion GAAP net loss in the second quarter of 2026 came mainly from a $12.5 billion non-cash mark-to-market charge on shares held in escrow under Intel’s CHIPS Act agreement with the U.S. Commerce Department. On an adjusted basis Intel earned $0.42 per share that quarter."
+  ],
+  [
+   "Is Intel’s data-center business growing?",
+   "Yes. Data Center and AI revenue was $7.3 billion in Q3 2026, up 78% from a year earlier, and management said server CPU demand is still above what Intel can supply."
+  ]
+ ]
+}

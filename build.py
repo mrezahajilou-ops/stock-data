@@ -1504,6 +1504,8 @@ def fill_from_yahoo(rec, e):
             rec["ttm"] = yt          # newer quarter than the SEC feed has
         elif t.get("end") and abs(days(t["end"], end)) <= 10:
             for k in ("revenue", "net_income", "cfo", "capex", "fcf", "dividends", "shares_diluted", "eps", "gross_profit", "op_income", "rnd", "ebitda"):
+                if k == "dividends" and last.get("dividends") == 0:
+                    continue   # Yahoo's dividends-paid line also counts payouts to minority partners (Intel: Mobileye/fab JVs) - not a dividend to shareholders
                 if t.get(k) is None and yt.get(k) is not None and (k != "revenue" or not rev0 or 0.3 < yt[k] / rev0 < 5.0):
                     t[k] = yt[k]
                     t.setdefault("filled", []).append(k)

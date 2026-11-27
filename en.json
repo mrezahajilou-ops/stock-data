@@ -1,6 +1,13 @@
 {
  "items": [
   {
+   "id": "2026-11-27-nvda-blackwell-shanghai",
+   "t": "2026-11-27T19:00:00Z",
+   "text": "Export-restricted $NVDA Blackwell hardware, including a GB300 NVL72 rack, turned up at a Shanghai data center linked to Alice Huang, per Bloomberg's review of Chinese loan filings. Bloomberg traced one rack's serial number to Taiwan's Gigabyte.",
+   "src": "The Decoder (Bloomberg report)",
+   "url": "https://the-decoder.com/banned-nvidia-blackwell-chips-turn-up-in-a-shanghai-data-center-linked-to-alice-huang-bloomberg-reports/"
+  },
+  {
    "id": "2026-11-27-adobe-thanksgiving",
    "t": "2026-11-27T18:30:00Z",
    "text": "US shoppers spent about $7.1B online on Thanksgiving, +10.4% and above Adobe's $6.9B forecast. Adobe expects a record $12.9B for Black Friday and $15.1B on Cyber Monday. $ADBE $AMZN $SHOP",
@@ -225,5 +232,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T18:51:49Z"
+ "updated": "2026-11-27T19:21:35Z"
 }

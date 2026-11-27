@@ -1,6 +1,41 @@
 {
  "items": [
   {
+   "id": "2026-11-27-silver-miners",
+   "t": "2026-11-27T13:02:00Z",
+   "text": "Silver rips: $SLV +7.1% premarket, pulling miners with it: $CDE +7%, $KGC +5.8%, $FCX +5.5%, $SCCO +5%.",
+   "src": "Benzinga",
+   "url": "https://www.benzinga.com/markets/commodities/26/11/63668707/china-national-team-silver-copper-rally-10-metal-stocks-to-watch"
+  },
+  {
+   "id": "2026-11-27-tsm-share75",
+   "t": "2026-11-27T13:01:00Z",
+   "text": "$TSM +3.3% premarket to about $353 as new Counterpoint data puts its share of the global foundry market at 75%, driven by AI chip demand.",
+   "src": "Benzinga",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/11/63668622/what-is-going-on-with-taiwan-semiconductor-stock-on-friday"
+  },
+  {
+   "id": "2026-11-27-china-national-team",
+   "t": "2026-11-27T13:00:00Z",
+   "text": "China's chipmakers post their biggest one-day gains ever as Beijing calls in its state-backed \"national team\" buyers. In US premarket: China STAR 50 chip ETF $KSTR +12.6%, $BILI +7.3%, $NIO +4.8%.",
+   "src": "Benzinga",
+   "url": "https://www.benzinga.com/markets/commodities/26/11/63668707/china-national-team-silver-copper-rally-10-metal-stocks-to-watch"
+  },
+  {
+   "id": "2026-11-27-sndk-11",
+   "t": "2026-11-27T12:40:00Z",
+   "text": "$SNDK +11% premarket, one of the strongest names as memory stocks lead the AI rebound after Thanksgiving.",
+   "src": "Share Talk",
+   "url": "https://share-talk.com/nasdaq-futures-surge-2-7-as-nvidia-micron-and-sandisk-lead-global-ai-stock-recovery"
+  },
+  {
+   "id": "2026-11-27-brazil-adrs",
+   "t": "2026-11-27T12:21:00Z",
+   "text": "Brazil ADRs jump after Thursday's Ibovespa rally: $BBD +18%, $VALE +8.8% premarket.",
+   "src": "Swingfolio",
+   "url": "https://swingfolio.com/daily/us/2026-11-27/morning"
+  },
+  {
    "id": "2026-11-27-qfin-beat",
    "t": "2026-11-27T12:12:00Z",
    "text": "$QFIN +4% after a Q3 beat: adjusted EPS $0.51 per ADS vs $0.46 expected, even as revenue fell 37% from a year ago.",
@@ -57,5 +92,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T12:43:24Z"
+ "updated": "2026-11-27T13:22:17Z"
 }

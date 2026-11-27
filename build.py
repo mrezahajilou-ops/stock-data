@@ -1828,10 +1828,19 @@ def roll_ttm_quarters(rec):
     if not t.get("end") or not t.get("revenue") or len(q) < 5:
         return 0
     i = next((k for k, x in enumerate(q) if abs(days(t["end"], x[0])) <= 10), None)
-    if i is None or i == len(q) - 1:
+    if i is None:
+        # no quarter row ends on the TTM date (fiscal-year change: Ferguson moved from July to December years in 2025,
+        # so its Oct-Dec 2025 quarter is in no quarterly row and the TTM stayed on Dec 2025 while three newer quarters
+        # sat in the table - 27 Nov 2026). Start from the first row one quarter after the TTM end instead.
+        i = next((k - 1 for k, x in enumerate(q) if 60 <= days(t["end"], x[0]) <= 120), None)
+        if i is None:
+            return 0
+    if i == len(q) - 1:
         return 0
     n, base = 0, dict(t)
     for x in q[i + 1:]:
+        if not 60 <= days(base["end"], x[0]) <= 120:   # quarters must follow each other
+            break
         ya = next((r for r in q if 350 <= days(r[0], x[0]) <= 380), None)
         if not ya or not ya[1] or not x[1] or not base.get("revenue"):
             break

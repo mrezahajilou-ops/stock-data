@@ -95,7 +95,7 @@
 #hs .toc a:hover{color:var(--ac)}
 #hs .ac{scroll-margin-top:70px}
 @media (max-width:640px){
-  #hs table{font-size:13px}#hs td,#hs th{padding:7px 5px}
+  #hs table{font-size:13px}#hs td,#hs th{padding:7px 5px}#hs th{white-space:normal;vertical-align:bottom;line-height:1.3}#hs td small{font-size:10.5px}
   #hs .hm{display:none}
   #hs .kp,#hs .kp.n3,#hs .kp.n4,#hs .kp.n5{grid-template-columns:1fr 1fr}#hs .kp>div:last-child:nth-child(odd){grid-column:1/-1}#hs .kp>div{padding:11px 11px}#hs .kp .v{font-size:22px}
   #hs h2{font-size:20px}

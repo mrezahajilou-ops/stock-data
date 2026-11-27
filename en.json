@@ -1,6 +1,20 @@
 {
  "items": [
   {
+   "id": "2026-11-27-gold-rebound",
+   "t": "2026-11-27T16:05:00Z",
+   "text": "Gold up about 2.8% to $3,636 an ounce, bouncing off its weakest level in over a year as the AI sell-off calms. $GLD $GDX",
+   "src": "Mettis Global",
+   "url": "https://mettisglobal.news/Gold-rebounds-to-3636-as-selling-pressure-eases-65283"
+  },
+  {
+   "id": "2026-11-27-btc-drop-59k",
+   "t": "2026-11-27T15:34:00Z",
+   "text": "Bitcoin drops below $59,000 after the US open, giving back a morning move above $62,000. Crypto stocks like $COIN and $MSTR trade with it.",
+   "src": "Bitcoin Sistemi",
+   "url": "https://en.bitcoinsistemi.com/bitcoin-experiences-sudden-drop-falls-below-59-000/"
+  },
+  {
    "id": "2026-11-27-nvda-flips-red",
    "t": "2026-11-27T15:31:00Z",
    "text": "$NVDA flips red (-1.4%) after a 4% premarket gain, lagging the AI rebound after a report that it halted some exports to Southeast Asia. $ANT +8.4%, $TSLA +4.7%, $PLTR +3.7% at the same time.",
@@ -20,6 +34,13 @@
    "text": "$COIN +4% after Wedbush starts covering the fintech sector.",
    "src": "CNBC",
    "url": "https://www.cnbc.com/2026/11/27/stocks-moving-the-most-today-live-updates.html"
+  },
+  {
+   "id": "2026-11-27-nvda-sea-detail",
+   "t": "2026-11-27T15:00:00Z",
+   "text": "Why $NVDA lags: per the FT, it told partners like $DELL and $SMCI to freeze AI server shipments to Malaysia, Singapore, Thailand and Indonesia, a route Chinese firms used to rent restricted compute.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/article/chip-stocks-lead-a-black-friday-rally-but-nvidia-misses-out-alphacheck-145727185.html"
   },
   {
    "id": "2026-11-27-ant-meta-amzn",
@@ -141,5 +162,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T15:52:34Z"
+ "updated": "2026-11-27T16:22:06Z"
 }

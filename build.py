@@ -1545,6 +1545,9 @@ def fill_from_yahoo(rec, e):
         d0 = max([x for x in (dc, dd, de) if x] or [None])
         if d0 and d0 > last["fy_end"]:
             rec["bs"] = {"end": d0, "cash": cash, "debt": debt, "equity": eq, "src": "yahoo"}
+            da_, assets = _yv(ts, "quarterlyTotalAssets", FX_LATEST)
+            if da_ == d0 and assets:
+                rec["bs"]["assets"] = assets
 
 
 # confirmed stock splits not yet in the filings, from the company's own announcement: ticker -> ratio

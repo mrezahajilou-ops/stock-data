@@ -1,0 +1,52 @@
+{
+ "t": "ATMU",
+ "what": "Atmus Filtration makes filters and filtration systems for engines and industrial equipment under the Fleetguard brand: fuel, lube, air and coolant filters for trucks, buses, construction and agricultural machinery, plus industrial filtration. It was spun off from Cummins in 2023.",
+ "customers": "Truck fleets and owners replacing filters, heavy-duty engine and equipment makers including Cummins, PACCAR and others that fit Fleetguard filters on new engines, and distributors worldwide.",
+ "money": [
+  [
+   "Aftermarket",
+   "Most",
+   "Replacement filters sold through distributors, dealers and fleets; recurring and higher margin."
+  ],
+  [
+   "First fit",
+   "Smaller",
+   "Filters fitted on new engines and equipment by manufacturers, which seeds future aftermarket sales."
+  ],
+  [
+   "Industrial filtration",
+   "Small, growing",
+   "Filtration for industrial processes, a market the company is targeting for growth."
+  ]
+ ],
+ "moat": "Filters are a razor-blade business: once Fleetguard is fitted on a new engine, the owner keeps buying replacements every few months for the life of the vehicle, and many fleets stay with the original brand for warranty and performance reasons. Decades as Cummins’ filtration arm gave Atmus a huge installed base and distribution network that competitors cannot quickly copy.",
+ "rivals": [
+  "Donaldson|DCI",
+  "Parker-Hannifin|PH",
+  "Mann+Hummel (private)|",
+  "Cummins|CMI"
+ ],
+ "risks": [
+  "Truck production is cyclical, and first-fit volumes fall when engine makers cut output.",
+  "Electric trucks need far fewer filters than diesel engines, a long-term threat to the core business.",
+  "Debt of $1.0B against equity of $504M, taken on at the spin-off.",
+  "Cummins remains its largest customer and a key route to market.",
+  "Free cash flow dropped to $57M in 2024 during the separation from Cummins before recovering."
+ ],
+ "opportunities": [
+  "Return on invested capital of about 23.5% shows a business that earns well on what it invests.",
+  "Most revenue comes from replacement filters, which keep selling even when new truck sales fall.",
+  "Revenue rose from $1.44B in 2021 to $1.96B over the last twelve months, with operating margin up from 14.8% to about 17%.",
+  "Industrial filtration offers a growth market beyond trucks and is less exposed to electrification.",
+  "Analysts expect earnings per share to rise about 11.5% next year."
+ ],
+ "watch": "Aftermarket volume and pricing. It is the recurring core of the business, and its growth decides whether the electrification risk is decades away or approaching.",
+ "updated": "2026-11",
+ "view": [
+  "Atmus is a classic aftermarket business that spent decades hidden inside Cummins. Fleetguard filters go onto new engines, and then the owner buys replacements every few months for the next fifteen years, which means most of Atmus’s revenue arrives regardless of whether this year is a good one for truck sales. That shows in the returns: return on invested capital of about 23.5%, operating margin up from 14.8% to around 17% since 2021, and revenue that has grown steadily to about $1.96 billion over the last twelve months.",
+  "The separation from Cummins took time and cash. Free cash flow fell to $57 million in 2024 as Atmus built its own systems and carried $1.0 billion of debt from the spin-off, but it has since recovered to about $209 million. The company is now using the freedom to push into industrial filtration, a market that does not depend on diesel engines. That matters because the long-term risk is obvious: an electric truck needs a fraction of the filters a diesel one does.",
+  "At about 20 times earnings and 17 times forward estimates, the market prices Atmus as a quality industrial with a long-dated technology risk, which is fair. The one thing it turns on is the aftermarket: as long as the installed base of diesel engines keeps growing or holds, replacement filters compound steadily and the electrification threat stays decades away; if heavy trucks electrify faster than expected, the multiple will compress well before the revenue does. Against the average target of $62, the shares offer moderate upside for a business of this quality."
+ ],
+ "bull": "The aftermarket keeps compounding, industrial filtration adds a second growth engine, and strong returns on capital fund buybacks and dividends.",
+ "bear": "Truck production falls, Cummins shifts volume, and faster electrification of heavy trucks shortens the life of the core filter business."
+}

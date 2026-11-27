@@ -1,0 +1,52 @@
+{
+ "t": "PVH",
+ "what": "PVH owns two of the best-known apparel brands in the world, Calvin Klein and Tommy Hilfiger. It designs, licenses and sells clothing, underwear, denim and accessories through department stores, its own shops and websites, and licensing partners, with most profit earned outside the United States.",
+ "customers": "Wholesale partners such as department stores and online retailers, consumers through about a thousand company-run stores and websites, and licensees who pay royalties to use the brands.",
+ "money": [
+  [
+   "Tommy Hilfiger",
+   "Larger brand",
+   "Preppy apparel and accessories, strongest in Europe; wholesale, retail and licensing."
+  ],
+  [
+   "Calvin Klein",
+   "Large",
+   "Underwear, denim and apparel, with large licensing income from fragrance and other categories."
+  ],
+  [
+   "Licensing and other",
+   "Small",
+   "Royalties from partners making fragrances, eyewear, watches and other licensed products."
+  ]
+ ],
+ "moat": "Global brand recognition built over decades is the moat: Calvin Klein and Tommy Hilfiger are known in almost every market, which lets PVH earn royalties from partners and charge brand premiums. The asset-light licensing model and a European wholesale network that has outlasted many American rivals add resilience.",
+ "rivals": [
+  "Ralph Lauren|RL",
+  "Tapestry|TPR",
+  "Levi Strauss|LEVI",
+  "Hanesbrands|HBI"
+ ],
+ "risks": [
+  "The last twelve months show a net loss of $169M, driven by write-downs, after net margin had already fallen to 0.3% in fiscal 2026.",
+  "Revenue has not grown: $9.16B in fiscal 2022 and $8.95B in fiscal 2026.",
+  "A large share of sales is in Europe and China, exposing PVH to weak consumer demand and currency moves.",
+  "Department-store wholesale, still a big channel, keeps shrinking in the United States.",
+  "The average analyst target of $92.82 sits below the current $96.93 share price."
+ ],
+ "opportunities": [
+  "The shares trade at about 7.7 times forward earnings, 0.5 times sales and 6.3 times free cash flow.",
+  "Free cash flow of $715M against a $4.5B market value is a yield of about 16%.",
+  "Buybacks have cut the share count from 71.9M in fiscal 2022 to 48.5M, a reduction of about a third.",
+  "Analysts expect earnings per share of about $12 this year and $12.50 next, far above the trailing loss.",
+  "Brand-led restructuring and a cleaner wholesale book could lift margins back toward the double digits of fiscal 2022."
+ ],
+ "watch": "Tommy Hilfiger Europe and Calvin Klein’s North American wholesale trends. Those two lines decide whether the forward earnings estimates are believable.",
+ "updated": "2026-11",
+ "view": [
+  "The trailing numbers make PVH look broken: a net loss of $169 million over the last twelve months and a 0.3% net margin in fiscal 2026. Most of that is write-downs of goodwill and brand values, non-cash charges that tell you what the company paid in the past rather than what it earns today. The better measure is cash, and here PVH is generating about $715 million of free cash flow a year against a market value of $4.5 billion. That is a yield of roughly 16%, and management has been sending almost all of it back by buying shares.",
+  "That buyback is the real story. The share count has fallen by about a third in four years, from 71.9 million to 48.5 million, which is why earnings per share can rise even when revenue, stuck around $9 billion since fiscal 2022, does not. The brands themselves are stable rather than growing: Tommy Hilfiger is strong in Europe, Calvin Klein’s underwear and licensing business is a steady earner, and both face a shrinking department-store channel in the United States.",
+  "At about 7.7 times forward earnings, the market prices PVH as a melting ice cube, and I think that is too harsh for a company with brands this well known and cash flow this strong. But the analysts’ average target is already below the share price, which tells you the easy rerating has happened. The one thing it turns on is whether the forward earnings of about $12 a share actually arrive; if they do, the buyback keeps compounding value, and if European demand weakens further, the cheap multiple turns out to be accurate."
+ ],
+ "bull": "Forward earnings arrive, free cash flow stays above $700 million, and the shrinking share count keeps lifting earnings per share even with flat sales.",
+ "bear": "European and Chinese demand weakens, wholesale shrinks faster, and further write-downs show the brands are worth less than the market assumes."
+}

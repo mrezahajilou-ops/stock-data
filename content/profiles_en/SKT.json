@@ -1,0 +1,51 @@
+{
+ "t": "SKT",
+ "what": "Tanger owns and runs open-air outlet centres in the United States and Canada, where brands sell their own merchandise at a discount. It earns rent from tenants, much of it fixed and some tied to tenants’ sales, and has lately added lifestyle and grocery-anchored centres to the portfolio.",
+ "customers": "Apparel, footwear and accessories brands such as Nike, Under Armour, Coach and Polo Ralph Lauren, which lease stores to clear inventory and reach price-conscious shoppers.",
+ "money": [
+  [
+   "Outlet centres",
+   "Most",
+   "Base rent and recoveries from the core outlet portfolio, owned outright or in joint ventures."
+  ],
+  [
+   "Lifestyle and grocery centres",
+   "Smaller, growing",
+   "Open-air centres bought since 2023 that diversify away from pure outlet tenants."
+  ],
+  [
+   "Percentage rent and other",
+   "Small",
+   "Rent linked to tenants’ sales above a threshold, plus parking, marketing and management fees."
+  ]
+ ],
+ "moat": "Outlet centres are hard to replicate: they need large sites near motorway exits at a distance from full-price malls that brands will accept, and almost none have been built in the United States for years. Brands value the channel because it moves excess stock without discounting in their own full-price stores, which gives the landlord pricing power when occupancy is high.",
+ "rivals": [
+  "Simon Property Group|SPG",
+  "Macerich|MAC",
+  "Kimco Realty|KIM",
+  "Regency Centers|REG"
+ ],
+ "risks": [
+  "Debt of $1.75B against $12.3M of cash, and every refinancing now happens at higher rates than the loans being replaced.",
+  "The tenant base is concentrated in apparel brands, whose health depends on discretionary spending and inventory cycles.",
+  "Brands keep shifting volume to their own websites and off-price chains, which compete for the same excess inventory.",
+  "The lifestyle acquisitions take Tanger into a more crowded category where it has less of an edge.",
+  "Analysts expect earnings per share to grow only about 10% next year, which limits room for the multiple to expand."
+ ],
+ "opportunities": [
+  "Revenue grew from $408M in 2021 to $615M over the last twelve months, helped by occupancy gains and acquisitions.",
+  "Free cash flow of $304M against a $4.5B market value is a yield near 7%, a better guide to value than the GAAP P/E for a REIT.",
+  "A tight supply of outlet space lets Tanger raise rents on renewals when brands want to stay.",
+  "The dividend yields about 3.2%, covered by cash flow rather than borrowing."
+ ],
+ "watch": "Renewal rent spreads and occupancy. They show whether brands still need outlet space enough to pay more for it, and they drive everything else in the model.",
+ "updated": "2026-11",
+ "view": [
+  "Ignore the 35 times earnings figure first. A REIT’s net income is depressed by depreciation on buildings that, in a well-run outlet portfolio, are not losing value at anything like the accounting rate, so the price-to-earnings ratio overstates how expensive Tanger is. The better yardstick is cash: about $304 million of free cash flow over the last twelve months against a $4.5 billion market value, a yield near 7%, which is in line with or slightly better than the large shopping-centre REITs.",
+  "The business case is scarcity. Nobody has built many new outlet centres in the United States for years, and the ones that exist sit on sites that took decades to assemble. Brands use them as a pressure valve for excess inventory, which makes the channel stickier than its reputation, and Tanger has used that to push occupancy and rents higher since 2021. Revenue has risen about 50% in that time. The more recent move into lifestyle and grocery-anchored centres adds growth but takes the company into a crowded field where its edge is thinner.",
+  "What the market prices in is a steady, slow-growing landlord, and I think that is fair rather than generous. Analysts expect earnings per share to rise about 10% next year and the shares sit close to the $41 average target. The one thing it turns on is the brands: as long as apparel companies need somewhere to clear inventory without damaging full-price sales, Tanger’s rents keep rising; if the off-price chains and online clearance absorb more of that role, the scarcity argument weakens. With $1.75 billion of debt to roll over at higher rates, this is a hold for income rather than a re-rating story."
+ ],
+ "bull": "Outlet scarcity keeps rent spreads positive, the lifestyle centres add growth, and a near-7% cash yield supports the shares and the dividend.",
+ "bear": "Apparel brands pull back, off-price and online clearance take share, and refinancing $1.75 billion of debt at higher rates squeezes cash flow per share."
+}

@@ -1,0 +1,52 @@
+{
+ "t": "ITRI",
+ "what": "Itron makes the technology utilities use to measure and manage energy and water: smart electricity, gas and water meters, the wireless networks that connect them, and software that turns meter data into grid management, outage detection and billing services.",
+ "customers": "Electric, gas and water utilities and cities in North America, Europe and elsewhere, usually under multi-year deployment contracts followed by long software and service agreements.",
+ "money": [
+  [
+   "Networked solutions",
+   "Largest",
+   "Smart meters plus the communication networks and software that connect them."
+  ],
+  [
+   "Device solutions",
+   "Large",
+   "Standalone meters and measurement devices, a lower-margin, more mature business."
+  ],
+  [
+   "Outcomes",
+   "Smaller, growing",
+   "Software and services that analyse grid data for utilities, much of it recurring."
+  ]
+ ],
+ "moat": "Utility networks run for fifteen to twenty years, and once a utility has deployed Itron’s mesh network and meters across its territory, every later device, upgrade and software service has to work with it. That installed base, plus the long procurement and regulatory approval process for utility technology, makes replacement rare.",
+ "rivals": [
+  "Landis+Gyr (Swiss-listed)|",
+  "Xylem|XYL",
+  "Badger Meter|BMI",
+  "Honeywell|HON"
+ ],
+ "risks": [
+  "Utility projects are lumpy, and delays in regulatory approvals can push revenue between quarters and years.",
+  "Debt of $1.65B, mostly convertible notes, against $840M of cash.",
+  "Revenue dipped from $2.44B in 2024 to $2.37B in 2025 as a large deployment cycle matured.",
+  "Analysts expect earnings per share to grow only about 2.6% next year.",
+  "Component shortages hurt deliveries and margins in 2021 and 2022 and could return."
+ ],
+ "opportunities": [
+  "The shares trade at about 16.3 times earnings and 12.0 times free cash flow.",
+  "Gross margin has risen from 28.9% in 2021 to 37.7% in 2025 as the mix shifts toward software and networks.",
+  "Grid modernisation, data-centre load growth and wildfire risk push utilities to invest in exactly what Itron sells.",
+  "Free cash flow of $368M over the last twelve months has grown sharply since 2022.",
+  "Nine analysts average a $129 target, about 28% above the current price."
+ ],
+ "watch": "Gross margin and the share of recurring revenue. Their rise shows Itron turning from a meter maker into a grid software company.",
+ "updated": "2026-11",
+ "view": [
+  "Itron has spent the past five years becoming a different company. In 2021 and 2022 it lost money as chip shortages hit meter deliveries, and the market treated it as a low-margin hardware maker. Since then gross margin has climbed from 28.9% to 37.7%, operating margin from negative to above 13%, and net income to about $280 million over the last twelve months. The improvement comes from mix: more of the revenue is now networks, software and the Outcomes services that run on top of the meters.",
+  "The demand backdrop is strong. Utilities face rising load from data centres and electrification, wildfire risk that requires better grid monitoring, and regulators that reward investment in modern networks. Itron’s installed base of networked meters is the platform for all of that. The near-term numbers are less exciting: revenue slipped slightly in 2025 as a big deployment cycle matured, and analysts expect earnings per share to grow under 3% next year.",
+  "At about 16.3 times earnings and 12 times free cash flow, the market prices Itron as a mature industrial, not as the grid software company it is becoming. I think that leaves room for upside, and the analysts’ $129 target agrees. The one thing it turns on is the shift in mix: as long as margins and recurring revenue keep rising, flat revenue matters less than it appears, and the multiple should move toward software-like levels; if utilities delay projects, the lumpiness of the hardware business will dominate the story again."
+ ],
+ "bull": "Mix keeps shifting toward networks and software, margins rise further, and grid investment from data centres and electrification drives a new deployment cycle.",
+ "bear": "Utility projects slip, hardware revenue falls, and the market keeps valuing Itron as a meter maker rather than a software company."
+}

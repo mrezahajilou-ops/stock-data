@@ -1,0 +1,52 @@
+{
+ "t": "ICUI",
+ "what": "ICU Medical makes products used to deliver fluids and drugs into patients’ veins: IV pumps and the software that runs them, IV solutions, and the consumables that connect them, such as needle-free connectors and catheters. It also makes vital-care products bought from Smiths Medical in 2022.",
+ "customers": "Hospitals, health systems, outpatient clinics and alternate-care sites, mostly in the United States, buying through group purchasing organisations and long-term contracts.",
+ "money": [
+  [
+   "Consumables",
+   "Largest",
+   "Needle-free connectors, IV sets and catheters used with every infusion."
+  ],
+  [
+   "Infusion systems",
+   "Large",
+   "IV pumps, including large-volume and syringe pumps, and the safety software that runs them."
+  ],
+  [
+   "Vital care and solutions",
+   "Large",
+   "Respiratory, temperature and anaesthesia products from Smiths Medical, plus IV fluids."
+  ]
+ ],
+ "moat": "Once a hospital chooses an IV pump, it buys the matching sets and consumables for years, because nurses are trained on one system and the drug libraries are built into its software. That razor-and-blade structure, plus the regulatory work needed to qualify any new infusion device, protects the installed base.",
+ "rivals": [
+  "Baxter International|BAX",
+  "Becton Dickinson|BDX",
+  "B. Braun (private)|",
+  "Fresenius Kabi (private)|"
+ ],
+ "risks": [
+  "The $2.4 trailing earnings per share and 74 times P/E reflect integration and restructuring charges; GAAP profits have been thin since 2022.",
+  "Debt of $1.2B against $302M of cash remains from the Smiths Medical acquisition.",
+  "IV pump recalls and FDA warning letters have hit the industry, and any quality issue can stop shipments.",
+  "Revenue has been flat at about $2.2-2.4B since the 2022 deal, with no clear organic growth.",
+  "Hospital budgets and group purchasing contracts keep pricing pressure high."
+ ],
+ "opportunities": [
+  "Analysts expect earnings per share of about $8.90 this year and $9.70 next, putting the shares near 20 times forward earnings.",
+  "Free cash flow of $209M over the last twelve months has recovered from negative in 2022.",
+  "Gross margin has risen from 30.6% in 2022 to 36.8% in 2025 as integration savings come through.",
+  "The installed base of pumps generates recurring consumable sales for years.",
+  "Eight analysts average a $194 target, about 9% above the current price."
+ ],
+ "watch": "Gross margin and free cash flow. They show whether the Smiths Medical integration is finally producing the savings the deal promised.",
+ "updated": "2026-11",
+ "view": [
+  "Throw away the 74 times trailing P/E before anything else. ICU Medical’s GAAP earnings have been buried under integration, restructuring and amortisation costs since it bought Smiths Medical in 2022, and the company posted losses in three of the last four years. The analysts’ figure of about $8.90 a share this year, mostly adjusted for those charges, puts the stock near 20 times forward earnings, and free cash flow of $209 million against a $4.5 billion market value is a more honest yardstick than either.",
+  "The business underneath is sound. IV therapy is a razor-and-blade model: hospitals choose a pump platform, train their nurses on it, load their drug libraries into its software and then buy the matching sets and connectors for the life of the pumps. ICU Medical’s connectors are among the most used in American hospitals. The problem is that the Smiths deal doubled revenue without adding growth: sales have sat around $2.2 to $2.4 billion since, while gross margin has slowly recovered from 30.6% to 36.8%.",
+  "The market prices ICU as a turnaround that has taken too long, and that is close to right. At about 20 times forward earnings and a modest premium to the analysts’ $194 target, there is not much reward for waiting unless margins keep climbing. The one thing it turns on is the integration finally paying off: if gross margin moves toward 40% and free cash flow pays down the $1.2 billion of debt, the stock is cheap; if another pump quality issue or pricing pressure stalls it, the current price already asks too much."
+ ],
+ "bull": "Integration savings lift gross margin toward 40%, free cash flow pays down debt, and the installed pump base returns the company to steady growth.",
+ "bear": "A quality issue or recall hits pump shipments, pricing pressure from purchasing groups caps margins, and GAAP earnings stay thin."
+}

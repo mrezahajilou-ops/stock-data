@@ -1,0 +1,52 @@
+{
+ "t": "AQN",
+ "what": "Algonquin Power & Utilities owns regulated electric, gas and water utilities in the United States and Canada through its Liberty brand. After selling its non-hydro renewable energy business in 2025, it is now essentially a pure regulated utility, plus a small hydro portfolio.",
+ "customers": "About a million customer connections, households and businesses in states such as Missouri, California, New Hampshire and Arizona and in Canada, served under rates set by state and provincial regulators.",
+ "money": [
+  [
+   "Electric utilities",
+   "Largest",
+   "Regulated power distribution and generation, notably Empire District Electric in the central US."
+  ],
+  [
+   "Gas utilities",
+   "Large",
+   "Regulated natural gas distribution in several states and Canada."
+  ],
+  [
+   "Water and other",
+   "Smaller",
+   "Regulated water and wastewater utilities, plus remaining hydro assets."
+  ]
+ ],
+ "moat": "Regulated utilities are local monopolies: each Liberty utility is the only provider of its service in its territory, and regulators allow it to earn a set return on the money it invests in its network. The moat is legal rather than competitive, and its value depends on how fairly regulators treat the company.",
+ "rivals": [
+  "Fortis|FTS",
+  "Emera|EMA",
+  "Ameren|AEE",
+  "Evergy|EVRG"
+ ],
+ "risks": [
+  "Debt of $6.5B against $44M of cash, a heavy load for a company with a $4.4B market value.",
+  "Free cash flow has been negative every year since 2021 because capital spending exceeds operating cash flow.",
+  "The dividend was cut twice, in 2023 and with the renewables sale, and income investors have long memories.",
+  "The share count rose from 627M in 2021 to 770M, diluting existing holders.",
+  "Earned returns depend on winning rate cases, and some regulators have granted less than requested."
+ ],
+ "opportunities": [
+  "Selling the renewables business removed the riskiest and most capital-hungry part of the company.",
+  "Analysts expect earnings per share to grow about 12% next year as rate increases come through.",
+  "The shares trade at about 13.8 times forward earnings, below most North American utilities.",
+  "The dividend yields about 4.5% after the cuts, now on a more sustainable payout.",
+  "Utility rate base growth from grid investment and data-centre-driven demand can compound for years."
+ ],
+ "watch": "Allowed versus earned returns. The gap between what regulators permit and what Liberty actually earns is the clearest measure of whether the turnaround is working.",
+ "updated": "2026-11",
+ "view": [
+  "Algonquin is a utility that tried to be a growth company and paid for it. For years it combined regulated utilities with a fast-growing renewable energy developer, financed both with debt and new shares, and promised a rising dividend. When interest rates jumped in 2022, the model broke: the stock collapsed, the dividend was cut twice, and in 2025 management sold the renewables business to become what it now is, a plain regulated utility under the Liberty name.",
+  "The clean-up is real but the scars show in the numbers. Debt is $6.5 billion against a $4.4 billion market value, free cash flow has been negative every year since 2021 because capital spending runs ahead of cash generation, and the share count has risen by more than a fifth. The 25 times trailing P/E is distorted by charges; analysts’ forward estimates put the stock near 13.8 times earnings, a discount to North American peers that reflects the balance sheet and the history.",
+  "The market prices Algonquin as a utility still on probation, and that is fair. The question now is purely regulatory: can Liberty earn close to its allowed returns in Missouri, California and its other territories, and grow its rate base without issuing more shares? The one thing it turns on is the next round of rate cases. If they go well, the discount to peers should close and the 4.5% dividend becomes safe; if they disappoint, the leverage leaves very little room, and the analysts’ $6.33 target already reflects only modest upside."
+ ],
+ "bull": "Rate cases deliver allowed returns, the balance sheet improves without new shares, and the valuation gap to peer utilities closes.",
+ "bear": "Regulators grant less than requested, capital spending keeps free cash flow negative, and the company has to issue equity again."
+}

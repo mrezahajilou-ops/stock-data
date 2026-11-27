@@ -1,0 +1,52 @@
+{
+ "t": "MRCY",
+ "what": "Mercury Systems makes processing subsystems for the defence industry: rugged computers, radio-frequency and microwave modules, and secure processing boards that go inside radars, electronic-warfare systems, missiles and aircraft. It sells mainly to defence prime contractors rather than to governments directly.",
+ "customers": "US defence prime contractors such as Lockheed Martin, Raytheon, Northrop Grumman and Boeing, plus the US Department of Defense and allied governments.",
+ "money": [
+  [
+   "Processing and computing subsystems",
+   "Largest",
+   "Rugged, secure computers and boards for radar, electronic warfare and command systems."
+  ],
+  [
+   "Radio-frequency and microwave",
+   "Large",
+   "Modules that send, receive and process signals in radars and electronic-warfare equipment."
+  ],
+  [
+   "Other components",
+   "Smaller",
+   "Specialised memory, connectors and secure storage."
+  ]
+ ],
+ "moat": "Mercury’s subsystems are designed into long-lived defence programmes, and once a radar or missile is qualified with its hardware, switching suppliers means requalifying the system with the government. Security clearances, trusted manufacturing facilities and export controls make the business hard for new entrants to reach.",
+ "rivals": [
+  "Curtiss-Wright|CW",
+  "Kratos Defense|KTOS",
+  "L3Harris Technologies|LHX",
+  "Teledyne Technologies|TDY"
+ ],
+ "risks": [
+  "The company has lost money in four of the last five fiscal years, and the trailing P/E is meaningless.",
+  "Fixed-price development contracts caused large cost overruns and write-downs in fiscal 2023 and 2024.",
+  "Revenue of $1.0B is no higher than in fiscal 2022.",
+  "US defence budgets and continuing resolutions can delay orders for months.",
+  "At 37.7 times forward earnings, the shares price in a recovery that has not yet shown up in profits."
+ ],
+ "opportunities": [
+  "Analysts expect earnings per share to rise about 24% next year as the troubled contracts roll off.",
+  "Gross margin has recovered from 23.5% in fiscal 2024 to 28.6%, and free cash flow has turned positive.",
+  "Higher defence spending in the United States and Europe, especially on electronic warfare and missiles, plays to Mercury’s strengths.",
+  "Debt of $383M against equity of $1.55B is manageable.",
+  "Twelve analysts average a $106 target, about 45% above the current price."
+ ],
+ "watch": "Gross margin and the backlog of fixed-price development work. Margins rising toward the 40% of fiscal 2022 would show the problem contracts are behind it.",
+ "updated": "2026-11",
+ "view": [
+  "Mercury Systems sits in exactly the part of defence that budgets are flowing toward, electronic warfare, radar and missile processing, and yet it has lost money in four of its last five fiscal years. The reason was self-inflicted: the company took on fixed-price development contracts it could not deliver on budget, and the overruns and write-downs that followed took gross margin from 40% in fiscal 2022 to 23.5% in fiscal 2024. New management has since spent two years working through those programmes and cutting costs.",
+  "The recovery is visible but early. Gross margin is back to 28.6%, free cash flow has turned positive, and revenue of about $1.0 billion is finally growing again, though it is no higher than four years ago. The balance sheet, with $383 million of debt against $1.55 billion of equity, gives the company time. What it does not yet have is earnings: the trailing figure is a small loss, and the 37.7 times forward multiple is a bet on profits the company has not yet reported.",
+  "The market is pricing a successful turnaround, and the analysts more so, with a $106 average target. I would treat that with caution. The defence backdrop is excellent and the franchise is real, but the one thing it turns on is execution on the remaining fixed-price contracts: if gross margin keeps climbing toward the mid-30s, today’s price is fair and the targets are reachable; if another programme surprises on cost, the stock has little valuation support underneath it."
+ ],
+ "bull": "Problem contracts roll off, margins return toward their old levels, and rising electronic-warfare and missile budgets lift orders and profits together.",
+ "bear": "Another fixed-price programme overruns, margins stall below 30%, and the stock’s rich forward multiple has no earnings to support it."
+}

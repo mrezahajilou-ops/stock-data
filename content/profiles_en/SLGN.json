@@ -1,0 +1,52 @@
+{
+ "t": "SLGN",
+ "what": "Silgan makes rigid packaging for consumer goods: metal food cans, dispensing systems such as pumps, sprayers and closures for personal care and household products, and custom plastic containers. It is the largest maker of metal food containers in North America.",
+ "customers": "Food companies such as Campbell’s, Del Monte and pet-food producers, plus personal care, beauty, household-cleaning and beverage brands worldwide.",
+ "money": [
+  [
+   "Dispensing and specialty closures",
+   "Large",
+   "Pumps, sprayers, trigger dispensers and closures; the highest-margin and fastest-growing business."
+  ],
+  [
+   "Metal containers",
+   "Largest",
+   "Steel and aluminium food and pet-food cans, mostly in North America and Europe under long-term contracts."
+  ],
+  [
+   "Custom containers",
+   "Smaller",
+   "Plastic bottles and jars for food, household and personal care products."
+  ]
+ ],
+ "moat": "Food cans are made in plants next to or inside customers’ canneries under multi-year contracts that pass metal costs through, so customers rarely switch and Silgan rarely loses money on a price swing. In dispensing, its pumps and sprayers are designed into a product’s packaging and qualified with the brand, which makes them costly to replace once a line is running.",
+ "rivals": [
+  "Crown Holdings|CCK",
+  "AptarGroup|ATR",
+  "Berry Global|BERY",
+  "Ball|BALL"
+ ],
+ "risks": [
+  "Debt of $4.56B against $325M of cash, a heavy load built up through acquisitions such as the Weener dispensing purchase.",
+  "Net margin has slipped from 6.3% in 2021 to 4.4% in 2025 as interest costs and restructuring weigh.",
+  "Food can volumes depend on harvest yields and on how much canned food retailers stock, both of which swing year to year.",
+  "Return on invested capital of about 6% is below what the company likely pays for capital.",
+  "Customer concentration in North American food makes Silgan sensitive to any large canner losing share."
+ ],
+ "opportunities": [
+  "The shares trade at about 11.7 times forward earnings, 0.67 times sales and 9.7 times EV/EBITDA, below the packaging group average.",
+  "Dispensing products ride long-term growth in beauty, personal care and household brands and carry higher margins than cans.",
+  "Free cash flow of $347M against a $4.5B market value, about a 7.7% yield, funds debt reduction, dividends and buybacks.",
+  "The share count has fallen from 111.2M in 2021 to 106.8M, and the dividend has risen every year.",
+  "Eleven analysts average a $51.45 target, about 21% above the current price."
+ ],
+ "watch": "The share of operating profit coming from dispensing. The more of the mix that comes from pumps and closures rather than food cans, the higher the multiple the business deserves.",
+ "updated": "2026-11",
+ "view": [
+  "Silgan is two businesses wearing one ticker. One is the food can, a steady, contract-protected, low-growth product made in plants that often sit next to the customer’s cannery. The other is dispensing: the pumps, sprayers and closures on shampoo, sunscreen and cleaning products, which grows faster, earns more and is valued much more highly when it sits inside companies like AptarGroup. Silgan has been buying its way into the second business for a decade, and that is the whole equity story.",
+  "The cost of that strategy is on the balance sheet. Debt of $4.56 billion against $325 million of cash means interest eats a meaningful slice of operating profit, which is why net margin has drifted from 6.3% in 2021 to 4.4% in 2025 and why return on invested capital sits near 6%, below a reasonable cost of capital. Revenue was flat for three years before recovering to $6.7 billion over the last twelve months. None of that is alarming for a business with contracted volumes, but it explains why the market refuses to pay up.",
+  "At about 11.7 times forward earnings and a free cash flow yield near 7.7%, the shares price Silgan as a leveraged can maker. I think that undervalues the dispensing mix, but only if management stops buying and starts paying down debt, because the equity only re-rates when leverage falls and the faster-growing business becomes a bigger share of profit. The one thing it turns on is deleveraging: every dollar of free cash flow that goes to debt rather than acquisitions moves value from lenders to shareholders. The $51 average target looks reachable on that path."
+ ],
+ "bull": "Dispensing grows into a larger share of profit, free cash flow cuts debt, and the multiple drifts toward packaging peers that trade on mix rather than on cans.",
+ "bear": "Weak harvests and destocking hit can volumes, another large acquisition lifts debt again, and the stock stays priced as a low-return can maker."
+}

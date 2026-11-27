@@ -1,0 +1,52 @@
+{
+ "t": "CAMT",
+ "what": "Camtek, based in Israel, makes inspection and metrology machines that check semiconductor wafers for defects and measure features as chips are made. Its strongest niche is advanced packaging, including the high-bandwidth memory and chip-stacking steps used in AI accelerators.",
+ "customers": "Semiconductor manufacturers and packaging houses, including memory makers producing high-bandwidth memory, foundries and outsourced assembly and test companies, mostly in Asia.",
+ "money": [
+  [
+   "Advanced packaging inspection",
+   "Most",
+   "Systems for high-bandwidth memory, chiplets and wafer-level packaging, Camtek’s growth engine."
+  ],
+  [
+   "Front-end and compound semiconductors",
+   "Smaller",
+   "Inspection for silicon carbide, gallium nitride and other specialty wafers."
+  ],
+  [
+   "Service and spare parts",
+   "Small",
+   "Recurring support for the installed base of machines."
+  ]
+ ],
+ "moat": "Camtek’s machines are qualified into customers’ production lines for specific packaging steps, and once a fab has tuned its process around a tool, replacing it means requalifying the line. Its focus on advanced packaging, a niche the larger inspection companies came to later, gives it a leading position exactly where AI chip production is growing fastest.",
+ "rivals": [
+  "KLA|KLAC",
+  "Onto Innovation|ONTO",
+  "Nova|NVMI",
+  "Applied Materials|AMAT"
+ ],
+ "risks": [
+  "Results are tied to semiconductor capital spending, which is notoriously cyclical.",
+  "A large share of revenue comes from a few customers in high-bandwidth memory and advanced packaging.",
+  "Net income dropped to $51M in 2025 from $119M on non-operating charges even as operating margin held near 26%.",
+  "Operations in Israel carry geopolitical risk, and export controls limit sales to some Chinese customers.",
+  "At about 37 times trailing earnings, the shares already price in strong growth."
+ ],
+ "opportunities": [
+  "Revenue nearly doubled from $270M in 2021 to $544M over the last twelve months.",
+  "Analysts expect earnings per share to rise about 42% next year, which puts the shares near 19 times forward earnings.",
+  "Operating margins of about 25% and gross margins near 50% show real pricing power.",
+  "$607M of cash against $489M of convertible debt gives the company a net cash position.",
+  "Eleven analysts average a $151 target, well above the current price."
+ ],
+ "watch": "High-bandwidth memory capacity additions at the big memory makers. They drive Camtek’s orders more than anything else in the semiconductor cycle.",
+ "updated": "2026-11",
+ "view": [
+  "Camtek is one of the cleaner ways to own the plumbing of the AI chip boom. Its inspection machines check wafers at the advanced packaging steps where memory dies are stacked into high-bandwidth memory and chiplets are joined into accelerators, and it had a head start in that niche before the larger inspection companies took it seriously. The results show it: revenue has roughly doubled since 2021 to $544 million, gross margin sits near 50% and operating margin around 25%, numbers that only come with a product customers struggle to replace.",
+  "Do not read too much into the 2025 drop in net income to $51 million. Operating margin held at about 26% that year; the fall came below the operating line, from non-operating items tied to its financing. The trailing P/E of about 37 is therefore less useful than the forward view, where analysts expect earnings per share to rise about 42% next year, putting the stock near 19 times forward earnings. The balance sheet holds $607 million of cash against $489 million of convertible notes.",
+  "The market prices Camtek as a high-quality, high-beta semiconductor equipment name, and the AI sell-off has already taken some air out of it. The one thing it turns on is high-bandwidth memory spending: if memory makers keep adding stacking capacity through 2027, the forward estimates are conservative and the $151 average target is reachable; if AI capital spending pauses, Camtek’s concentrated customer list makes it one of the first names to feel it. For investors comfortable with that cyclicality, the current price is a reasonable entry."
+ ],
+ "bull": "High-bandwidth memory and chiplet packaging capacity keep growing, Camtek holds its niche lead, and forward earnings growth of about 40% comes through.",
+ "bear": "AI chip spending pauses, memory makers cut capital budgets, and a concentrated customer list turns a growth story into a cyclical downturn."
+}

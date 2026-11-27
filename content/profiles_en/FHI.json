@@ -1,0 +1,52 @@
+{
+ "t": "FHI",
+ "what": "Federated Hermes is an asset manager best known for money market funds, which make up most of its assets, alongside equity, fixed-income and alternative strategies. The Hermes side, bought in London, adds responsible-investing, private-markets and engagement services.",
+ "customers": "Banks, broker-dealers and corporate treasurers that park cash in its money funds, plus pension funds, insurers, wealth managers and individual investors in its equity and bond funds.",
+ "money": [
+  [
+   "Equity funds",
+   "Large share of fees",
+   "Active equity strategies including the MDT quantitative funds and Hermes global equities; higher fees per dollar."
+  ],
+  [
+   "Money market funds",
+   "Largest by assets",
+   "Liquidity funds for institutions and brokerage sweep accounts; low fees but enormous scale."
+  ],
+  [
+   "Fixed income and alternatives",
+   "Smaller",
+   "Bond funds, private equity, infrastructure and real estate, plus stewardship services."
+  ]
+ ],
+ "moat": "Scale and relationships in cash management are the moat: Federated has run money funds for decades, sits on the sweep menus of broker-dealers and in the treasury systems of companies, and benefits from a regulatory structure that favours large, established providers. Money that arrives there is sticky because moving corporate cash is an operational project, not a click.",
+ "rivals": [
+  "BlackRock|BLK",
+  "Invesco|IVZ",
+  "Franklin Resources|BEN",
+  "T. Rowe Price|TROW"
+ ],
+ "risks": [
+  "Money fund fees shrink when interest rates fall, and fee waivers return if rates approach zero.",
+  "Active equity funds keep losing assets to passive index funds industry-wide.",
+  "Revenue depends on market levels, so a deep bear market cuts fees directly.",
+  "Regulatory changes to money market funds could reduce their appeal or raise costs.",
+  "Growth is modest: analysts expect earnings per share to rise about 6.5% next year."
+ ],
+ "opportunities": [
+  "The shares trade at about 10.9 times earnings and 8.0 times EV/EBITDA, cheap for a business earning a return on capital above 20%.",
+  "Higher-for-longer interest rates keep record sums in money funds and support fee income.",
+  "Buybacks cut the share count from 93.8M in 2021 to 75.1M in 2025, about a fifth.",
+  "The dividend yields about 2.5%, on top of the buyback.",
+  "Net income rose from $270M in 2021 to $401M over the last twelve months."
+ ],
+ "watch": "Money market assets and the fees earned on them. As long as rates stay high and cash stays in funds, Federated’s earnings power is safe.",
+ "updated": "2026-11",
+ "view": [
+  "Federated Hermes is the kind of company the market forgets because it is boring: an asset manager whose biggest business is money market funds, the place where banks, brokers and corporate treasurers keep cash. That business was a liability when rates sat at zero and Federated had to waive fees to keep yields positive. In a world of 4% interest rates it is the opposite, an enormous pool of sticky assets earning full fees, and it is why net income rose from $270 million in 2021 to $401 million over the last twelve months.",
+  "The rest of the firm is a mixed picture. Active equity, the highest-fee business, faces the same drain to index funds as every other active manager, and the Hermes acquisition has added stewardship and private markets without changing the overall growth rate much. What management has done well is return capital: the share count has fallen from 93.8 million to 75.1 million since 2021, and the dividend yields about 2.5%. Return on invested capital above 20% says the business needs little capital to run.",
+  "At about 10.9 times earnings, the market prices Federated as an active manager in slow decline, which ignores how much of its profit now comes from cash management. I think that is too pessimistic for a business with these returns, though analysts’ $61 target sits close to the current price. The one thing it turns on is the path of interest rates: with the Fed now raising rather than cutting, money fund fees look secure for longer than the market assumed a year ago, and the buyback keeps compounding per-share value in the meantime."
+ ],
+ "bull": "Rates stay high, money fund assets keep growing, and steady buybacks lift earnings per share while the stock re-rates from a deep value multiple.",
+ "bear": "Rates fall sharply, money fund fees shrink, and active equity outflows accelerate in a weak market."
+}

@@ -1,0 +1,52 @@
+{
+ "t": "TEO",
+ "what": "Telecom Argentina is the country’s largest telecommunications group, selling mobile (Personal), fixed broadband, cable TV (Flow) and fixed-line services, plus Personal in Paraguay. In 2025 it bought Telefónica’s Argentine business, Movistar, which roughly doubled its mobile footprint.",
+ "customers": "Argentine households and businesses buying mobile, broadband and pay-TV, plus corporate and government clients for data and connectivity.",
+ "money": [
+  [
+   "Mobile services",
+   "Largest",
+   "Personal and the acquired Movistar subscribers, prepaid and postpaid, in Argentina and Paraguay."
+  ],
+  [
+   "Broadband and cable TV",
+   "Large",
+   "Fixed internet and Flow pay-TV over cable and fibre networks."
+  ],
+  [
+   "Fixed line and data",
+   "Smaller",
+   "Business connectivity, data centres and residual fixed telephony."
+  ]
+ ],
+ "moat": "After absorbing Movistar, Telecom Argentina owns the largest mobile and fixed network in a country where building one takes years and enormous capital, and where foreign currency for equipment has often been scarce. Its scale in spectrum, towers and fibre gives it the lowest cost per customer and leaves few competitors with the means to challenge it.",
+ "rivals": [
+  "América Movil|AMX",
+  "Telefonica|TEF",
+  "Millicom|TIGO",
+  "Cablevisión Holding (private)|"
+ ],
+ "risks": [
+  "Results are reported under hyperinflation accounting, so year-to-year figures in dollars swing with the peso rather than the business.",
+  "A sharp peso devaluation would raise the cost of the $3.8B of debt, much of it in dollars.",
+  "Regulators have frozen or capped telecom prices in the past, and policy can reverse after elections.",
+  "Analysts expect earnings per share to fall about 44% next year as one-off gains drop out.",
+  "Competition authorities may impose conditions on the combined Movistar business."
+ ],
+ "opportunities": [
+  "The shares trade at about 6.8 times trailing earnings, 0.8 times sales and 5.5 times free cash flow.",
+  "Free cash flow of $813M against a $4.4B market value is a yield above 18%.",
+  "Merger savings from combining two national networks could lift margins for several years.",
+  "Argentina’s economic reforms, if they hold, would let telecom prices catch up with inflation.",
+  "Six analysts average a $16.87 target, about 64% above the current price."
+ ],
+ "watch": "The peso and real tariff increases. When prices can rise faster than inflation and the currency holds, Telecom Argentina’s dollar earnings grow quickly; when either fails, nothing else matters.",
+ "updated": "2026-11",
+ "view": [
+  "Telecom Argentina is a macro trade wearing a telecom company’s clothes. The business is a near-duopoly network operator that became the clear national leader when it bought Telefónica’s Argentine unit, Movistar, in 2025, and over the last twelve months it generated about $813 million of free cash flow against a $4.4 billion market value. Very few telecom companies anywhere trade at under six times free cash flow, and the reason this one does is the country it operates in.",
+  "The reported numbers need care. Argentina uses hyperinflation accounting, so the dollar figures for revenue and profit swing with the peso as much as with the business: net income went from a loss of $879 million in 2022 to a profit of $831 million in 2024 and a loss again in 2025. The forecast fall of about 44% in earnings per share next year reflects one-off gains dropping out rather than a weaker business. The real operating variables are tariffs, which the government has at times frozen, and the cost of the $3.8 billion of debt.",
+  "The market prices Telecom Argentina for Argentine risk, and it is right to; a P/E of 6.8 is what that risk looks like. But if the current reform programme keeps inflation falling and lets prices rise in real terms, the combination of merger savings and a stabilising peso could lift dollar earnings sharply, and the analysts’ $17 target assumes roughly that. The one thing it turns on is the peso: this is a position to size small, as a call option on Argentina working, not as a core telecom holding."
+ ],
+ "bull": "Reforms hold, tariffs rise in real terms, merger savings come through, and a stable peso turns a very high cash yield into a re-rating.",
+ "bear": "The peso falls sharply, dollar debt becomes expensive, and the government freezes prices again as it has in the past."
+}

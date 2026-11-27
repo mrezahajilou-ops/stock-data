@@ -1,6 +1,13 @@
 {
  "items": [
   {
+   "id": "2026-11-27-optical-storage",
+   "t": "2026-11-27T14:05:00Z",
+   "text": "Optical and storage names lead S&P 500 premarket gainers after a brutal month: $LITE +8% to $514.50 (still down 48% in a month), $WDC +6.2%, with $COHR and $STX also near the top.",
+   "src": "Chartmill",
+   "url": "https://www.chartmill.com/news/STLD/Chartmill-59246-SP-500-Premarket-Gainers-on-Nov-27-Led-by-Technology-and-Semiconductor-Stocks"
+  },
+  {
    "id": "2026-11-27-spcx-musk-pledge",
    "t": "2026-11-27T13:30:00Z",
    "text": "$SPCX +4% premarket after Musk said on X he will donate another SpaceX share to every kid in America every year, on top of the one-share-per-Trump-Account pledge. The stock is still about 12% lower over the past month.",
@@ -99,5 +106,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T13:51:46Z"
+ "updated": "2026-11-27T14:22:16Z"
 }

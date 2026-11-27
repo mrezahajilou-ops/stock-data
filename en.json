@@ -1,6 +1,13 @@
 {
  "items": [
   {
+   "id": "2026-11-27-brazil-fin-min",
+   "t": "2026-11-27T16:30:00Z",
+   "text": "Why Brazil is ripping: assets jumped after Brazil named a new finance minister, per Bloomberg. $BBD +18.5%, $PBR +10%, $ABEV +8% in US trading.",
+   "src": "Stock Titan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-27-2026"
+  },
+  {
    "id": "2026-11-27-gold-rebound",
    "t": "2026-11-27T16:05:00Z",
    "text": "Gold up about 2.8% to $3,636 an ounce, bouncing off its weakest level in over a year as the AI sell-off calms. $GLD $GDX",
@@ -39,6 +46,13 @@
    "id": "2026-11-27-nvda-sea-detail",
    "t": "2026-11-27T15:00:00Z",
    "text": "Why $NVDA lags: per the FT, it told partners like $DELL and $SMCI to freeze AI server shipments to Malaysia, Singapore, Thailand and Indonesia, a route Chinese firms used to rent restricted compute.",
+   "src": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/markets/article/chip-stocks-lead-a-black-friday-rally-but-nvidia-misses-out-alphacheck-145727185.html"
+  },
+  {
+   "id": "2026-11-27-cohr-12",
+   "t": "2026-11-27T15:00:00Z",
+   "text": "$COHR +12%, one of the day's biggest chip-sector gainers as optical and memory names bounce; $MU +6%, $AMD +2.4%.",
    "src": "Yahoo Finance",
    "url": "https://finance.yahoo.com/markets/article/chip-stocks-lead-a-black-friday-rally-but-nvidia-misses-out-alphacheck-145727185.html"
   },
@@ -162,5 +176,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T16:22:06Z"
+ "updated": "2026-11-27T16:51:59Z"
 }

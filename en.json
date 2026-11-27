@@ -1,11 +1,32 @@
 {
  "items": [
   {
+   "id": "2026-11-27-adobe-thanksgiving",
+   "t": "2026-11-27T18:30:00Z",
+   "text": "US shoppers spent about $7.1B online on Thanksgiving, +10.4% and above Adobe's $6.9B forecast. Adobe expects a record $12.9B for Black Friday and $15.1B on Cyber Monday. $ADBE $AMZN $SHOP",
+   "src": "MLQ.ai (Adobe data via Reuters)",
+   "url": "https://mlq.ai/news/black-friday-2026-adobe-tracks-825-billion-online-so-far-up-91/"
+  },
+  {
+   "id": "2026-11-27-session-movers",
+   "t": "2026-11-27T18:10:00Z",
+   "text": "Black Friday session winners and losers: $SNDK closes +16% and $MU +7.6% as memory leads; $XP +18% on Brazil's new finance minister. Losers: $ALVO -12.4% (court blocks biosimilar launch), $VRTX -5.2% (FDA delay).",
+   "src": "Stock Titan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-27-2026"
+  },
+  {
    "id": "2026-11-27-close",
    "t": "2026-11-27T18:05:00Z",
    "text": "Closing bell, Black Friday half-day: Nasdaq +2.3%, S&P 500 +1.6%, Dow +1.2% as AI and chip stocks rebound. All three indexes finish the holiday week higher, led by the Dow.",
    "src": "Yahoo Finance",
    "url": "https://finance.yahoo.com/markets/live/stock-market-today-firday-november-27-dow-sp-500-nasdaq-black-friday-holiday-091152065.html"
+  },
+  {
+   "id": "2026-11-27-amzn-blackfriday",
+   "t": "2026-11-27T17:40:00Z",
+   "text": "$AMZN up about 3.8% on strong Black Friday demand; $WMT edges higher as the first holiday-shopping data comes in.",
+   "src": "The Motley Fool",
+   "url": "https://www.fool.com/coverage/stock-market-today/2026/11/27/stock-market-midday-nov-27-tech-stocks-recover-and-amazon-posts-black-friday-gains/"
   },
   {
    "id": "2026-11-27-late-rally",
@@ -204,5 +225,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T18:22:22Z"
+ "updated": "2026-11-27T18:51:49Z"
 }

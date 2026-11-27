@@ -1,11 +1,25 @@
 {
  "items": [
   {
+   "id": "2026-11-27-nvda-flips-red",
+   "t": "2026-11-27T15:31:00Z",
+   "text": "$NVDA flips red (-1.4%) after a 4% premarket gain, lagging the AI rebound after a report that it halted some exports to Southeast Asia. $ANT +8.4%, $TSLA +4.7%, $PLTR +3.7% at the same time.",
+   "src": "Investing.com",
+   "url": "https://investing.com/news/stock-market-news/anthropic-tesla-among-market-cap-stock-movers-on-friday-93CH-5053652"
+  },
+  {
    "id": "2026-11-27-rally-pares",
    "t": "2026-11-27T15:20:00Z",
    "text": "The opening pop fades: by 10:20 a.m. ET the S&P 500 is +0.7%, Dow +0.6%, Nasdaq +0.8%, roughly half the gains from the bell, in thin holiday trading.",
    "src": "Yahoo Finance",
    "url": "https://finance.yahoo.com/markets/live/stock-market-today-firday-november-27-dow-sp-500-nasdaq-black-friday-holiday-091152065.html"
+  },
+  {
+   "id": "2026-11-27-coin-wedbush",
+   "t": "2026-11-27T15:10:00Z",
+   "text": "$COIN +4% after Wedbush starts covering the fintech sector.",
+   "src": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/27/stocks-moving-the-most-today-live-updates.html"
   },
   {
    "id": "2026-11-27-ant-meta-amzn",
@@ -127,5 +141,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T15:21:53Z"
+ "updated": "2026-11-27T15:52:34Z"
 }

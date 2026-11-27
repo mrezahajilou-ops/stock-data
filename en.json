@@ -15,6 +15,13 @@
    "url": "https://mlq.ai/news/black-friday-2026-adobe-tracks-825-billion-online-so-far-up-91/"
   },
   {
+   "id": "2026-11-27-ant-close",
+   "t": "2026-11-27T18:15:00Z",
+   "text": "$ANT closes at $91.88, back above its $83 IPO price after briefly trading below it earlier this week.",
+   "src": "Stock Titan",
+   "url": "https://stocktitan.net/articles/stock-market-today-live-november-27-2026"
+  },
+  {
    "id": "2026-11-27-session-movers",
    "t": "2026-11-27T18:10:00Z",
    "text": "Black Friday session winners and losers: $SNDK closes +16% and $MU +7.6% as memory leads; $XP +18% on Brazil's new finance minister. Losers: $ALVO -12.4% (court blocks biosimilar launch), $VRTX -5.2% (FDA delay).",
@@ -34,6 +41,13 @@
    "text": "$AMZN up about 3.8% on strong Black Friday demand; $WMT edges higher as the first holiday-shopping data comes in.",
    "src": "The Motley Fool",
    "url": "https://www.fool.com/coverage/stock-market-today/2026/11/27/stock-market-midday-nov-27-tech-stocks-recover-and-amazon-posts-black-friday-gains/"
+  },
+  {
+   "id": "2026-11-27-us-opec-venezuela-iraq",
+   "t": "2026-11-27T17:30:00Z",
+   "text": "The US administration urged Venezuela and Iraq earlier this year to consider leaving OPEC and blocked Venezuela's membership fee payment, seeking more output and investment from firms like $CVX and $XOM, sources say.",
+   "src": "Newsquawk",
+   "url": "https://stocknow.ai/en/breaking-news/zair6e79avcgxsnmq8lgqqzb/newsquawk-european-market-wrap-27th-november-2026"
   },
   {
    "id": "2026-11-27-late-rally",
@@ -141,6 +155,13 @@
    "url": "https://www.cnbc.com/2026/11/27/spacex-shares-musk-donations.html"
   },
   {
+   "id": "2026-11-27-panw-lawsuit",
+   "t": "2026-11-27T13:30:00Z",
+   "text": "$PANW down nearly 3% after a Bloomberg report that a former executive is suing, alleging he was fired after raising concerns about accounting fraud.",
+   "src": "CNBC",
+   "url": "https://cnbc.com/investingclub/2026/11/27/top-10-things-to-watch-in-the-stock-market-on-black-friday.html"
+  },
+  {
    "id": "2026-11-27-silver-miners",
    "t": "2026-11-27T13:02:00Z",
    "text": "Silver rips: $SLV +7.1% premarket, pulling miners with it: $CDE +7%, $KGC +5.8%, $FCX +5.5%, $SCCO +5%.",
@@ -232,5 +253,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T19:21:35Z"
+ "updated": "2026-11-27T21:22:28Z"
 }

@@ -1,0 +1,22 @@
+name: Check insider-trading pages (manual)
+# For every site: the insider page answers, its first ticker link points at the interactive analysis tool, and that tool page answers.
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: |
+          for u in https://stockanaliz.com/insider-trading/ https://bolsacondor.com/operaciones-de-directivos/ https://borsakartal.com/iceriden-islemler/ \
+                   https://aktienadler.com/insider-trades/ https://bolsagaviao.com/negociacoes-de-insiders/ https://boursefaucon.com/transactions-d-inities/ \
+                   https://borsafalco.com/operazioni-insider/ https://kabutakajp.com/insider-trading/ https://jusikmae.com/insider-trading/ \
+                   https://sahamelang.com/transaksi-orang-dalam/ https://cophieudaibang.com/giao-dich-noi-bo/ https://saqrmarkets.com/insider-trading/; do
+            host=$(echo "$u" | cut -d/ -f1-3)
+            curl -sL -m 30 -A 'Mozilla/5.0' "$u?c=$(date +%s)" -o p.html -w '%{http_code}' > code.txt
+            link=$(grep -o 'class="tk" href="[^"]*"' p.html | head -1 | sed 's/.*href="//;s/"$//')
+            su=$(grep -o '"su":"[^"]*"' p.html | head -1)
+            path=${link%%#*}
+            t=$(curl -sL -m 30 -A 'Mozilla/5.0' -o /dev/null -w '%{http_code}' "$host$path")
+            echo "CHECK $u page=$(cat code.txt) link=$link $su tool=$t"
+          done
+          curl -sL -m 30 "https://raw.githubusercontent.com/${{ github.repository }}/main/web/insider-trading.html" | grep -o '"su":"[^"]*"' | head -1 | sed 's/^/CHECK farsi /'

@@ -32,6 +32,19 @@ DIS = 'منبع: گزارش‌های فرم ۴ در سامانه‌ی کمیسی
 
 
 def _tickers():
+    """Tickers that have a Farsi stock page (/pages/stocks/<t>): the same rule as build_pages.py (an annual report and
+    a market value). The screener list was wider, so about one ticker in five linked to a page that does not exist (404)."""
+    import glob
+    out = []
+    for f in glob.glob(os.path.join(ROOT, 'data', 'stocks', '*.json')):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if d.get('annual') and (d.get('market') or {}).get('mcap'):
+            out.append(d.get('ticker') or os.path.basename(f)[:-5])
+    if out:
+        return sorted(out)
     try:
         return sorted(r[0] for r in json.load(open(os.path.join(ROOT, 'data', 'screener.json')))['rows'])
     except Exception:
@@ -70,12 +83,17 @@ LOCK = dict(h='🔒 معاملات مدیران مخصوص مشترک‌های �
 
 def js():
     lock = ("\n/* sahamanaliz: the live insider table is for subscribers; visitors see it blurred behind the offer (FAQ stays readable) */\n"
-            "(function(){if(window.RZS_ACCESS)return;var L=%s;var st=document.createElement('style');st.textContent=%s;document.head.appendChild(st);\n"
+            "(function(){if(window.RZS_ACCESS===true)return;var L=%s;var st=document.createElement('style');st.textContent=%s;document.head.appendChild(st);\n"
             "var a=document.querySelector('#rzin .ins-sum'),w=document.querySelector('#rzin .ins-wrap'),mo=document.querySelector('#rzin .ins-more');if(!a||!w)return;\n"
             "var box=document.createElement('div');box.className='ilk';var b=document.createElement('div');b.className='ilk-b';a.parentNode.insertBefore(box,a);box.appendChild(b);\n"
             "[a,document.querySelector('#rzin .ins-tabs'),w,mo].forEach(function(n){if(n)b.appendChild(n)});\n"
             "var Y=window.RZS_SUB_Y||'/products/stock-data-pro-yearly',M=window.RZS_SUB_URL||'/products/stock-data-pro';\n"
             "var c=document.createElement('div');c.className='ilk-c';c.innerHTML='<div class=\"ilk-box\"><h3>'+L.h+'</h3><p>'+L.p+'</p><div class=\"bt\"><a class=\"b1\" href=\"'+Y+'\">'+L.y+'</a><a class=\"b2\" href=\"'+M+'\">'+L.m+'</a></div>'+"
-            "(window.RZS_LOGGED?'':'<small><a href=\"/account/login?return_url=%%2Fpages%%2Finsider-trading\">'+L.l+'</a></small>')+'</div>';box.appendChild(c);})();\n"
+            "(window.RZS_LOGGED?'':'<small><a href=\"/account/login?return_url=%%2Fpages%%2Finsider-trading\">'+L.l+'</a></small>')+'</div>';box.appendChild(c);\n"
+            "function un(){b.className='';if(c.parentNode)c.parentNode.removeChild(c);box.className=''}\n"
+            "try{if(sessionStorage.getItem('rz_acc')==='1'){un();return}}catch(e){}\n"
+            "if(window.RZS_ACCESS==null)fetch('/pages/stock',{credentials:'same-origin'}).then(function(r){return r.text()}).then(function(h){"
+            "if(/RZS_ACCESS\\s*=\\s*true/.test(h)){window.RZS_ACCESS=true;try{sessionStorage.setItem('rz_acc','1')}catch(e){}un()}"
+            "var m=h.match(/RZS_LOGGED\\s*=\\s*(true|false)/);if(m&&m[1]==='true'){var sm=c.querySelector('small');if(sm)sm.parentNode.removeChild(sm)}}).catch(function(){});})();\n"
             ) % (json.dumps(LOCK, ensure_ascii=False), json.dumps(LOCK_CSS))
     return open(os.path.join(ROOT, 'web_src', 'insider.js'), encoding='utf-8').read() + lock

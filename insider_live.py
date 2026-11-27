@@ -121,6 +121,8 @@ def main():
         except Exception:
             pass
     seen = set(st.get('seen') or [])
+    if bf:   # a backfill re-reads everything in its window; rows already kept are de-duplicated below
+        seen = set()
     todo, infeed = [], set()
     for start in (0, 100, 200):
         raw = get(FEED % start, SEC_HDR, timeout=30, tries=3)
@@ -166,7 +168,12 @@ def main():
         m = re.search(r'<ownershipDocument>.*?</ownershipDocument>', txt, re.S)
         if m:
             add.extend(parse(m.group(0), acc, f))
-    rows = add + (st.get('rows') or [])
+    rows, have = [], set()
+    for r in add + (st.get('rows') or []):
+        k = (r.get('a'), r.get('c'))
+        if k not in have:
+            have.add(k)
+            rows.append(r)
     rows.sort(key=lambda r: r.get('f') or '', reverse=True)
     now = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     old = list(st.get('seen') or [])

@@ -65,9 +65,9 @@
     first = false;
     if (open) { var tr = tbody.querySelector('tr[data-i="' + rows.indexOf(open.r) + '"]'); if (tr) show(tr, open.r, open.k, true); else open = null; }
   }
-  function summary() {
+  function summary(W) {
     var wk = Date.now() - 7 * 864e5, b = 0, s = 0, bv = 0, sv = 0;
-    rows.forEach(function (r) { if (Date.parse(r.f) < wk) return; if (r.c === 'P') { b++; bv += r.v; } else { s++; sv += r.v; } });
+    if (W) { b = W.b; s = W.s; bv = W.bv; sv = W.sv; } else rows.forEach(function (r) { if (Date.parse(r.f) < wk) return; if (r.c === 'P') { b++; bv += r.v; } else { s++; sv += r.v; } });
     var pct = bv + sv ? bv / (bv + sv) * 100 : 0;
     $('ins-sum').innerHTML = '<div class="k"><span>' + esc(S.wk) + '</span></div>' +
       '<div class="k b"><b>' + bdi(nf(b)) + '</b> ' + esc(S.nb) + '<em>' + bdi(money(bv)) + '</em></div>' +
@@ -79,7 +79,8 @@
   function load() {
     fetch(C.feed + '?t=' + Math.floor(Date.now() / 30000)).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (!j || !j.rows) return;
-      rows = j.rows; asof = j.as_of || j.checked; summary(); render(); upd();
+      rows = j.rows.slice().sort(function (a, b) { return (b.f || '') < (a.f || '') ? -1 : (b.f || '') > (a.f || '') ? 1 : 0; });
+      asof = j.as_of || j.checked; summary(j.wk); render(); upd();
     }).catch(function () {});
   }
 

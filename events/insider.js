@@ -103,8 +103,7 @@ async function insiderServe(env, ctx, h) {
     if (!r) {
       const g = await fetch('https://raw.githubusercontent.com/mrezahajilou-ops/stock-data/insider-live/live.json?t=' + Math.floor(Date.now() / 30000));
       if (!g.ok) return new Response(JSON.stringify({ error: 'not ready' }), { status: 503, headers: { 'Content-Type': 'application/json', ...h } });
-      const o = await g.json();
-      delete o.seen;
+      const o = insSlim(await g.json());
       r = new Response(JSON.stringify(o), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=30' } });
       ctx.waitUntil(cache.put(ck, r.clone()));
     }
@@ -124,4 +123,14 @@ async function insiderServe(env, ctx, h) {
   delete o.seen;
   o.checked = new Date(kv.ts * 1000).toISOString().slice(0, 19) + 'Z';
   return new Response(JSON.stringify(o), { headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'public, max-age=20', ...h } });
+}
+
+// what the pages need: the latest 300 trades, the 60 largest buys and sales of the last 7 days, and 7-day totals
+function insSlim(o) {
+  const rows = o.rows || [], wk = Date.now() - 7 * 864e5, recent = rows.slice(0, 300), have = new Set(recent.map(r => r.a + r.c));
+  const w = rows.filter(r => Date.parse(r.f) >= wk), sum = { b: 0, bv: 0, s: 0, sv: 0 };
+  for (const r of w) { if (r.c === 'P') { sum.b++; sum.bv += r.v || 0; } else { sum.s++; sum.sv += r.v || 0; } }
+  const big = (c) => w.filter(r => r.c === c).sort((a, b) => b.v - a.v).slice(0, 60);
+  const top = big('P').concat(big('S')).filter(r => !have.has(r.a + r.c));
+  return { as_of: o.as_of, src: o.src, rows: recent.concat(top), wk: sum, n7: w.length };
 }

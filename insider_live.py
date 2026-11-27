@@ -12,7 +12,7 @@ from xml.etree import ElementTree as ET
 from extras import get, SEC_HDR
 
 FEED = ('https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=4&company=&dateb=&owner=include&start=%d&count=100&output=atom')
-KEEP, SEEN, PER_RUN = 1500, 3000, 150
+KEEP, SEEN, PER_RUN = 6000, 12000, 150
 
 
 def x(el, path):

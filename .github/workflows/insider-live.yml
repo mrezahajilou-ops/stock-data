@@ -5,6 +5,8 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+    inputs:
+      backfill: {description: 'one-off: also load the last N business days from the daily index', required: false, default: ''}
 
 permissions:
   contents: write
@@ -16,7 +18,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,7 +32,7 @@ jobs:
       - name: Fetch
         run: |
           curl -sfL "https://raw.githubusercontent.com/${{ github.repository }}/insider-live/live.json?t=$(date +%s)" -o prev.json || rm -f prev.json
-          python insider_live.py prev.json
+          python insider_live.py prev.json ${{ inputs.backfill && format('--backfill={0}', inputs.backfill) || '' }}
       - name: Publish (single commit, no history growth)
         run: |
           cd live

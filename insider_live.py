@@ -41,7 +41,8 @@ def parse(xml, acc, filed):
         root = ET.fromstring(xml)
     except Exception:
         return []
-    t = re.sub(r'[^A-Z0-9.\-]', '', x(root, 'issuer/issuerTradingSymbol').upper()).replace('.', '-')
+    t = re.split(r'[,;/\s]+', x(root, 'issuer/issuerTradingSymbol').upper().strip())[0]   # "CRDA, CRDB" -> CRDA
+    t = re.sub(r'[^A-Z0-9.\-]', '', t).replace('.', '-')
     if not t or t in ('NONE', 'NA', 'N-A') or len(t) > 8:
         return []
     owners = root.findall('reportingOwner')
@@ -84,8 +85,35 @@ def parse(xml, acc, filed):
     return out
 
 
+def backfill_todo(days, seen):
+    """Form 4 filings of the last `days` business days from EDGAR's daily form index (filed time unknown: 21:00 UTC)."""
+    todo, d = [], dt.date.today()
+    n = 0
+    while n < days:
+        d -= dt.timedelta(days=1)
+        if d.weekday() > 4:
+            continue
+        n += 1
+        q = (d.month - 1) // 3 + 1
+        raw = get('https://www.sec.gov/Archives/edgar/daily-index/%d/QTR%d/form.%s.idx' % (d.year, q, d.strftime('%Y%m%d')), SEC_HDR, timeout=60, tries=2)
+        time.sleep(0.15)
+        if not raw:
+            continue
+        for line in raw.decode('latin-1').splitlines():
+            if not (line.startswith('4 ') or line.startswith('4/A ')):
+                continue
+            m = re.search(r'edgar/data/(\d+)/(\d{10}-\d{2}-\d{6})\.txt', line)
+            if not m or m.group(2) in seen:
+                continue
+            acc = m.group(2)
+            todo.append((m.group(1), acc.replace('-', ''), acc, d.isoformat() + 'T21:00:00Z'))
+    return todo
+
+
 def main():
-    prev = sys.argv[1] if len(sys.argv) > 1 else ''
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    bf = next((int(a.split('=')[1]) for a in sys.argv[1:] if a.startswith('--backfill=')), 0)
+    prev = args[0] if args else ''
     st = {'rows': [], 'seen': []}
     if prev and os.path.exists(prev):
         try:
@@ -122,10 +150,14 @@ def main():
         time.sleep(0.15)
         if not new_here:   # older pages are already known
             break
+    global PER_RUN
+    if bf:
+        todo += backfill_todo(bf, seen | infeed)
+        PER_RUN = 20000
     add, done = [], 0
     for cik, d18, acc, f in todo[:PER_RUN]:
         raw = get('https://www.sec.gov/Archives/edgar/data/%s/%s/%s.txt' % (cik, d18, acc), SEC_HDR, timeout=30, tries=2)
-        time.sleep(0.12)   # SEC fair access: under 10 requests a second
+        time.sleep(0.11)   # SEC fair access: under 10 requests a second
         if not raw:
             continue
         seen.add(acc)

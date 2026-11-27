@@ -91,3 +91,4 @@
 
 @media(max-width:420px){#ID .prevc{font-size:12px;padding:4px 9px}}
 @media(max-width:360px){#ID .prevc{font-size:11px;padding:3px 7px}}
+#ID .livepill{display:inline-block;margin-inline-start:6px;padding:1px 8px;border-radius:999px;background:#E06B66;color:#fff;font-size:11px;font-weight:800;vertical-align:2px;animation:rzlp 2s infinite}@keyframes rzlp{50%{opacity:.6}}

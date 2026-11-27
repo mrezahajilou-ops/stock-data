@@ -5,11 +5,12 @@ Run after editing:  python gen_web.py
 Also keeps the tool navigation bar identical on every tool page (stock, screener, dcf too).
 """
 import os, re
+import mpulse_fa
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.join(ROOT, 'web')
 
-TABS = [('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
+TABS = [('mpulse', '/pages/market-pulse', 'نبض بازار ⚡'), ('stock', '/pages/stock', 'تحلیل سهم'), ('screener', '/pages/screener', 'غربالگر سهام'),
         ('dcf', '/pages/dcf', 'ماشین‌حساب DCF'), ('etf', '/pages/etf', 'صندوق‌های ETF'), ('compare', '/pages/compare', 'مقایسه'),
         ('watchlist', '/pages/watchlist', 'واچ‌لیست'), ('calendar', '/pages/earnings', 'تقویم گزارش‌ها'), ('pulse', '/pages/pulse', 'نبض جامعه'), ('superinvestors', '/pages/superinvestors', 'سوپر سرمایه‌گذارها'), ('top30', '/pages/top-30', '۳۰ سهم برتر'),
         ('myportfolio', '/pages/my-portfolio', 'دفترچه سهام من'), ('calc', '/pages/return-calculator', 'ماشین‌حساب بازده'), ('portfolio', '/pages/portfolio', 'پورتفوی رضا'), ('book', '/pages/book', 'کتاب')]
@@ -400,6 +401,7 @@ def cport_page():
 
 
 HOME_TOOLS = [   # (icon, url, title, description, tier)  tier: '' = free, 'pro' = Stock Pro only, other text = what is free
+    ('⚡', '/pages/market-pulse', 'نبض بازار <span class="livepill">زنده</span>', 'بازار همین حالا: نقشه‌ی حرارتی زنده، بیشترین حرکت‌ها، گزارش‌های مالی پیش رو و تاریخ‌های فدرال رزرو، تورم و اشتغال.', ''),
     ('🔍', '/pages/stock', 'تحلیل سهم', 'امتیاز، ارزش ذاتی، رشد، سودآوری و سلامت مالی هر سهم آمریکایی، به فارسی.', '۱۰ سهم رایگان در هفته'),
     ('🎯', '/pages/top-30', '۳۰ سهم برتر', 'بیشترین فاصله تا میانگین قیمت هدف تحلیلگرهای وال‌استریت؛ هر روز به‌روز.', 'اسم سهم‌ها قفل'),
     ('🧮', '/pages/screener', 'غربالگر سهام', 'بین هزاران سهم، با فیلترهای ارزش‌گذاری، رشد و کیفیت بگرد.', '۱۰ ردیف رایگان'),
@@ -480,6 +482,7 @@ def main():
         'compare.html': page('compare', 'rzk', 'مقایسه‌ی سهم‌ها کنار هم', 'دو تا چهار سهم آمریکایی رو در امتیاز، ارزش‌گذاری، رشد، سودآوری، سلامت مالی و سود نقدی کنار هم ببین.', COMPARE_BODY, COMPARE_JS),
         'watchlist.html': page('watchlist', 'rzw', 'واچ‌لیست و هشدار قیمت', 'سهم‌هایی که دنبال می‌کنی، با قیمت لحظه‌ای، امتیاز، فاصله تا ارزش ذاتی و تاریخ گزارش بعدی؛ و هشدار وقتی به قیمت هدفت رسید.', WATCH_BODY, WATCH_JS),
         'pulse.html': page('pulse', 'rzq', 'نبض جامعه', 'این هفته ایرانی‌ها بیشتر از همه کدوم سهم‌ها رو زیر نظر داشتن؟ پربازدیدترین‌ها، جستجوها، ورود و خروج از واچ‌لیست‌ها و نظر بازدیدکننده‌ها؛ از رفتار واقعی کاربران همین سایت.', PULSE_BODY, PULSE_JS),
+        'market-pulse.html': page('mpulse', 'rzmp', '⚡ نبض بازار: بورس آمریکا به‌صورت زنده', 'جهت بازار، نقشه‌ی حرارتی ۵۰۰ شرکت بزرگ، بیشترین رشد و افت، گزارش‌های مالی پیش رو و تقویم اقتصادی؛ در ساعات معامله‌ی بورس آمریکا خودکار به‌روز می‌شود.', mpulse_fa.MP_BODY.replace('#ID', '#rzmp'), mpulse_fa.js()),
         'calendar.html': page('calendar', 'rze', 'تقویم گزارش‌های مالی', 'کدوم شرکت‌ها این هفته و هفته‌های بعد گزارش فصلی میدن، پیش‌بینی تحلیلگرها، و نتیجه‌ی گزارش‌های چند روز اخیر.', CAL_BODY, CAL_JS),
     }
     for f, html in pages.items():

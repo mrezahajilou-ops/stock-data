@@ -171,6 +171,18 @@
 @media(max-width:360px){#rzg .acctbar{gap:4px}#rzg .acctbar .qk,#rzg .acctbar .acct{font-size:11px;padding:3px 7px}}
 #rzg .acct{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:#15120a!important;background:var(--gold);border-radius:999px;padding:5px 14px;text-decoration:none!important}
 #rzg .acct.in{background:transparent;color:var(--gold)!important;border:1px solid var(--gold)}
+
+/* mobile-ux-2026-11: touch targets of at least ~40px, readable minimum text, no iOS zoom on input focus */
+@media (max-width:640px){
+html body .acctbar a{min-height:38px;display:inline-flex;align-items:center}
+html body .hero .pop a,html body .chips a{min-height:38px;display:inline-flex;align-items:center}
+html body .hero .pop a{padding:6px 14px}
+html body a.more{min-height:40px;display:flex;align-items:center}
+html body details>summary{padding:10px 0;min-height:44px;box-sizing:border-box}
+html body .copyright__content a{display:inline-block;padding:8px 2px}
+html body span.tk,html body small.tk{font-size:max(12px,.82em)!important}
+html body input:not([type=hidden]):not([type=checkbox]):not([type=radio]),html body select,html body textarea{font-size:max(16px,1em)!important}
+}
 /* طلا و نقره — gold & silver page. Data: branch "gold" (gold.py). Mobile first (~83% of visitors on phones). */
 #rzg .stamp{font-size:12.5px;color:var(--mut);margin:-6px 0 14px}
 #rzg .px2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}

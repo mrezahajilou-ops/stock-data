@@ -1,0 +1,144 @@
+{
+ "_about": "US economic calendar for /market-pulse/ and /economic-calendar/. Dates from the official calendars only: Federal Reserve FOMC calendar (federalreserve.gov/monetarypolicy/fomccalendars.htm, 2027 schedule announced 12 Nov 2026) and the BLS release schedule (bls.gov/schedule). Times are US Eastern. Add 'result' after a release (one plain sentence, official numbers only).",
+ "events": [
+  {
+   "d": "2026-12-04",
+   "t": "08:30",
+   "k": "jobs",
+   "p": "November 2026",
+   "ym": "2026-11"
+  },
+  {
+   "d": "2026-12-09",
+   "t": "14:00",
+   "k": "fomc",
+   "p": "December 8–9 meeting",
+   "extra": "Statement and new economic projections at 2:00 p.m.; press conference at 2:30 p.m.",
+   "ref": "2026-12-09"
+  },
+  {
+   "d": "2026-12-10",
+   "t": "08:30",
+   "k": "cpi",
+   "p": "November 2026",
+   "ym": "2026-11"
+  },
+  {
+   "d": "2026-12-15",
+   "t": "08:30",
+   "k": "ppi",
+   "p": "November 2026",
+   "ym": "2026-11"
+  },
+  {
+   "d": "2026-12-30",
+   "t": "14:00",
+   "k": "minutes",
+   "p": "December 8–9 meeting",
+   "ref": "2026-12-09"
+  },
+  {
+   "d": "2027-01-08",
+   "t": "08:30",
+   "k": "jobs",
+   "p": "December 2026",
+   "ym": "2026-12"
+  },
+  {
+   "d": "2027-01-13",
+   "t": "08:30",
+   "k": "cpi",
+   "p": "December 2026",
+   "ym": "2026-12"
+  },
+  {
+   "d": "2027-01-14",
+   "t": "08:30",
+   "k": "ppi",
+   "p": "December 2026",
+   "ym": "2026-12"
+  },
+  {
+   "d": "2027-01-27",
+   "t": "14:00",
+   "k": "fomc",
+   "p": "January 26–27 meeting",
+   "ref": "2027-01-27"
+  },
+  {
+   "d": "2027-02-05",
+   "t": "08:30",
+   "k": "jobs",
+   "p": "January 2027",
+   "ym": "2027-01"
+  },
+  {
+   "d": "2027-02-11",
+   "t": "08:30",
+   "k": "cpi",
+   "p": "January 2027",
+   "ym": "2027-01"
+  },
+  {
+   "d": "2027-03-10",
+   "t": "08:30",
+   "k": "cpi",
+   "p": "February 2027",
+   "ym": "2027-02"
+  },
+  {
+   "d": "2027-03-17",
+   "t": "14:00",
+   "k": "fomc",
+   "p": "March 16–17 meeting",
+   "extra": "With new economic projections and a press conference.",
+   "ref": "2027-03-17"
+  },
+  {
+   "d": "2027-04-28",
+   "t": "14:00",
+   "k": "fomc",
+   "p": "April 27–28 meeting",
+   "ref": "2027-04-28"
+  },
+  {
+   "d": "2027-06-09",
+   "t": "14:00",
+   "k": "fomc",
+   "p": "June 8–9 meeting",
+   "ref": "2027-06-09"
+  }
+ ],
+ "kinds": {
+  "fomc": {
+   "name": "Fed interest rate decision (FOMC)",
+   "short": "Fed decision",
+   "src": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "what": "The Federal Open Market Committee sets the federal funds rate, the base for borrowing costs across the economy. A cut usually helps stocks and bonds; a surprise hike, or a hint of fewer cuts, tends to hit growth stocks hardest."
+  },
+  "cpi": {
+   "name": "Consumer Price Index (CPI) inflation report",
+   "short": "CPI inflation",
+   "src": "https://www.bls.gov/schedule/news_release/cpi.htm",
+   "what": "Measures how fast consumer prices rise. Hotter-than-expected inflation makes rate cuts less likely and often pushes stocks down; cooler inflation does the opposite."
+  },
+  "jobs": {
+   "name": "Jobs report (Employment Situation)",
+   "short": "Jobs report",
+   "src": "https://www.bls.gov/schedule/news_release/empSit.htm",
+   "what": "Non-farm payrolls, the unemployment rate and wage growth for the previous month. A very strong report can lift rate expectations; a weak one raises recession worries."
+  },
+  "ppi": {
+   "name": "Producer Price Index (PPI)",
+   "short": "PPI",
+   "src": "https://www.bls.gov/schedule/news_release/ppi.htm",
+   "what": "Prices businesses receive for their goods and services, an early signal for consumer inflation and company margins."
+  },
+  "minutes": {
+   "name": "Fed meeting minutes",
+   "short": "Fed minutes",
+   "src": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+   "what": "The detailed record of the last Fed meeting, released three weeks later. Markets read it for how many officials favour further cuts or hikes."
+  }
+ }
+}

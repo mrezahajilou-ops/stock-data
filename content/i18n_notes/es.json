@@ -1096,9 +1096,9 @@
    ]
   },
   "SNDK": {
-   "d": "2026-11-20",
-   "headline": "Sandisk cae un 16% en su primer día tras el desdoblamiento de acciones",
-   "summary": "Sandisk bajó un 16,1% en la primera sesión tras su desdoblamiento de 8 por 1, mientras la venta de valores de IA golpeaba con más fuerza a los fabricantes de memoria."
+   "d": "2026-11-27",
+   "headline": "Sandisk se dispara un 16% con el rebote de las acciones de memoria tras Acción de Gracias",
+   "summary": "Las acciones de memoria y almacenamiento rebotaron en la sesión corta del viernes tras una fuerte caída en noviembre; Micron subió un 7,6% y una demostración de Kioxia, que usó memoria flash como memoria adicional para servidores de IA de Nvidia, sumó impulso."
   },
   "ZS": {
    "d": "2026-11-23",
@@ -1169,6 +1169,16 @@
    "d": "2026-11-25",
    "headline": "Li Auto sube un 11% al reducir su pérdida y prever volver a beneficios",
    "summary": "El margen por vehículo subió del 9,4% al 15,3%, el flujo libre fue positivo y prevé entregar 110.000–115.000 vehículos en el cuarto trimestre."
+  },
+  "BBD": {
+   "d": "2026-11-27",
+   "headline": "Los ADR de Bradesco suben un 15% por la versión de que su presidente sería ministro de Hacienda",
+   "summary": "El Ibovespa saltó un 6,1% el 26 de noviembre, con Wall Street cerrado por Acción de Gracias, ante la especulación de que Luiz Trabuco, presidente del consejo de Bradesco, sería ministro de Hacienda de Brasil. Los ADR recogieron el viernes las subidas de dos días."
+  },
+  "ITUB": {
+   "d": "2026-11-27",
+   "headline": "Los ADR de Itaú Unibanco suben un 11% con el repunte de dos días de la bolsa brasileña",
+   "summary": "Los bancos brasileños lideraron las subidas del 25 y 26 de noviembre ante la versión de que Luiz Trabuco asumiría el Ministerio de Hacienda y apostaría por más disciplina fiscal; los ADR de Itaú absorbieron ambos días en la primera sesión tras Acción de Gracias."
   }
  }
 }

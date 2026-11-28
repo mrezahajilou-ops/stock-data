@@ -1,0 +1,21 @@
+{
+ "t": "ITUB",
+ "d": "2026-11-27",
+ "pct": 11.34,
+ "close": 7.66,
+ "prev": 6.88,
+ "kind": "news",
+ "headline": "Itaú Unibanco ADRs rise 11% with Brazil's two-day rally on finance-minister speculation",
+ "summary": "Itaú Unibanco's US-listed shares rose 11.3% to $7.66 on Friday, the first US session after Thanksgiving, as they caught up with a 6.1% jump in Brazil's Ibovespa on 26 November driven by speculation that Bradesco chairman Luiz Trabuco would become finance minister.",
+ "why": [
+  "Brazilian bank shares led the rally in São Paulo on 25 and 26 November as investors bet that Trabuco, seen as close to the financial market, would push for tighter public spending. Because the New York market was closed on Thursday, the American depositary shares absorbed two days of Brazilian gains in one session.",
+  "Brazil's government had just signed a fiscal adjustment law aiming for a primary surplus of 0.5% of GDP from 2027, a target many investors had called too weak, and a second package focused on mandatory spending was reportedly being prepared. A more credible fiscal path would help bring down Brazil's high interest rates, which matters most to lenders; the appointment was still speculation when the shares rose."
+ ],
+ "context": [],
+ "src": [
+  {
+   "title": "Trading Economics: Brazil stocks soar on finance minister speculation (Nov 26, 2026)",
+   "url": "https://tradingeconomics.com/brazil/stock-market/news/600439"
+  }
+ ]
+}

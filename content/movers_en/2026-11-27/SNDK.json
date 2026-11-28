@@ -1,0 +1,25 @@
+{
+ "t": "SNDK",
+ "d": "2026-11-27",
+ "pct": 15.96,
+ "close": 85.36,
+ "prev": 73.61,
+ "kind": "news",
+ "headline": "Sandisk jumps 16% as beaten-down memory stocks rebound after the Thanksgiving break",
+ "summary": "Sandisk rose 16.0% to $85.36 in Friday's shortened session, leading a rebound in memory and storage stocks after a steep November sell-off. Micron gained about 7.6%, and a Kioxia demonstration of flash storage extending GPU memory for Nvidia systems added to the move.",
+ "why": [
+  "The memory group had been hit hard through November as worries about AI data-center spending spread across chip stocks; Sandisk had lost roughly half its value over the previous month and about three quarters from its June peak. On the first session after Thanksgiving, buyers returned across the group, with Micron, Western Digital and Seagate also higher.",
+  "Kioxia, Sandisk's manufacturing partner in NAND flash, showed a large flash-storage setup working as extra memory for an Nvidia AI rack, which pointed to another use for flash in AI servers. The demo came with no orders or pricing, and on the same day TrendForce said conventional DRAM contract price increases could narrow through 2027, so the rebound came alongside an open question about how long memory prices stay high."
+ ],
+ "context": [],
+ "src": [
+  {
+   "title": "Motley Fool: Sandisk surges 16% as memory stocks rebound (Nov 27, 2026)",
+   "url": "https://www.fool.com/coverage/stock-market-today/2026/11/27/stock-market-today-nov-27-sandisk-surges-16-as-memory-stocks-rebound-from-ai-driven-selloff/"
+  },
+  {
+   "title": "24/7 Wall St.: memory stocks rally despite TrendForce DRAM warning",
+   "url": "https://247wallst.com/investing/2026/11/27/sandisk-jumps-10-as-investors-return-to-beaten-down-memory-stocks-micron-and-sk-hynix-rise-6-despite-trendforce-dram-warning/"
+  }
+ ]
+}

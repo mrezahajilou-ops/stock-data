@@ -1096,9 +1096,9 @@
    ]
   },
   "SNDK": {
-   "d": "2026-11-20",
-   "headline": "Sandisk, hisse bölünmesinin ardından ilk işlem gününde %16 düştü",
-   "summary": "Sandisk, 8’e 1 hisse bölünmesinin ardından ilk seansta %16,1 geriledi; yapay zekâ satışları en sert bellek üreticilerini vurdu."
+   "d": "2026-11-27",
+   "headline": "Sandisk, Şükran Günü sonrası toparlanan bellek hisseleriyle %16 yükseldi",
+   "summary": "Kasım ayındaki sert satışın ardından bellek ve depolama hisseleri cuma günkü kısa seansta toparlandı; Micron yaklaşık %7,6 yükseldi, Kioxia'nın flaş belleği Nvidia yapay zekâ sunucuları için ek bellek olarak kullanan gösterimi de yükselişe destek verdi."
   },
   "ZS": {
    "d": "2026-11-23",
@@ -1169,6 +1169,16 @@
    "d": "2026-11-25",
    "headline": "Li Auto zararını sert biçimde daraltıp kâra dönüş beklentisiyle yüzde 11 yükseldi",
    "summary": "Araç marjı yüzde 9,4’ten 15,3’e çıktı, serbest nakit akışı pozitife döndü ve dördüncü çeyrekte 110–115 bin teslimat bekleniyor."
+  },
+  "BBD": {
+   "d": "2026-11-27",
+   "headline": "Bradesco ADR'leri, yönetim kurulu başkanının maliye bakanı olacağı söylentisiyle %15 yükseldi",
+   "summary": "ABD piyasaları Şükran Günü için kapalıyken Brezilya'nın Ibovespa endeksi 26 Kasım'da, Bradesco yönetim kurulu başkanı Luiz Trabuco'nun maliye bakanı olacağı beklentisiyle %6,1 sıçradı. ABD'de işlem gören hisseler iki günlük yükselişi cuma günü tek seferde yansıttı."
+  },
+  "ITUB": {
+   "d": "2026-11-27",
+   "headline": "Itaú Unibanco ADR'leri, Brezilya borsasının iki günlük rallisiyle %11 yükseldi",
+   "summary": "Brezilya bankaları, Luiz Trabuco'nun maliye bakanı olup daha sıkı bir maliye politikası izleyeceği beklentisiyle 25 ve 26 Kasım'da yükselişe öncülük etti; Itaú'nun ABD'deki hisseleri bu iki günü Şükran Günü sonrası ilk seansta yakaladı."
   }
  }
 }

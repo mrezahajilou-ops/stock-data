@@ -1,0 +1,48 @@
+{
+ "t": "FELE",
+ "what": "Franklin Electric makes pumps, motors and controls for moving water and fuel, used in wells, irrigation, homes, industry and petrol stations, and runs a distribution business that sells to contractors.",
+ "customers": "Well and water-system contractors, farmers, builders, utilities and fuel retailers.",
+ "money": [
+  [
+   "Water systems",
+   "largest",
+   "Pumps, motors and controls for groundwater, wastewater and water treatment"
+  ],
+  [
+   "Distribution",
+   "large",
+   "Selling water equipment to installers in the US"
+  ],
+  [
+   "Fueling systems",
+   "smaller, high margin",
+   "Pumps and equipment for petrol stations"
+  ]
+ ],
+ "moat": "Strong brands among well contractors, a long product history and its own distribution network.",
+ "rivals": [
+  "Pentair|PNR",
+  "Xylem|XYL",
+  "Watts Water|WTS",
+  "Mueller Water Products|MWA"
+ ],
+ "risks": [
+  "Demand depends on weather, housing and farm activity",
+  "Weak margins in distribution",
+  "Raw-material costs such as copper and steel"
+ ],
+ "opportunities": [
+  "Revenue grew from $1.66 billion in 2021 to $2.26 billion over the last twelve months",
+  "Return on invested capital of about 13–15%",
+  "Buybacks of about $166 million in 2025"
+ ],
+ "watch": "Groundwater pump volumes and margins in the distribution business.",
+ "updated": "2026-11",
+ "view": [
+  "Franklin Electric is a steady industrial business. Revenue grew from $1.66 billion in 2021 to $2.26 billion over the last twelve months, and net income has stayed between $147 million and $200 million. Return on invested capital has been around 13% to 15%.",
+  "The company has stepped up buybacks, spending about $166 million in 2025, and the share count has fallen slightly. At about 22 times earnings, the price is in line with other water-equipment companies, which usually trade at a premium because water infrastructure is a long-term need.",
+  "The main variable is the end market: housing starts, farm incomes and weather all affect pump demand. Analysts expect EPS to grow about 13% next year; that depends on margins recovering in the distribution segment."
+ ],
+ "bull": "Water infrastructure demand and better distribution margins drive double-digit earnings growth.",
+ "bear": "Weak housing and farm demand keep volumes flat and margins under pressure."
+}

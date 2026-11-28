@@ -1,0 +1,48 @@
+{
+ "t": "PIPR",
+ "what": "Piper Sandler is a US investment bank focused on mid-sized companies, advising on mergers and acquisitions, raising equity and debt capital, underwriting municipal bonds and trading for institutional investors.",
+ "customers": "Mid-sized companies, private equity firms, municipalities and institutional investors.",
+ "money": [
+  [
+   "Advisory services",
+   "largest",
+   "Fees from advising on mergers, acquisitions and restructurings"
+  ],
+  [
+   "Capital markets",
+   "cyclical",
+   "Underwriting stock and debt offerings, including for healthcare and financial companies"
+  ],
+  [
+   "Public finance and brokerage",
+   "steadier",
+   "Municipal bond underwriting plus equity and fixed income trading for institutions"
+  ]
+ ],
+ "moat": "A strong brand in middle-market M&A and in sectors such as healthcare, financial services and public finance, built on senior bankers and relationships.",
+ "rivals": [
+  "Evercore|EVR",
+  "Houlihan Lokey|HLI",
+  "Lazard|LAZ",
+  "Stifel Financial|SF"
+ ],
+ "risks": [
+  "Advisory fees fall quickly when deal activity slows",
+  "Pay is the main cost and senior bankers can leave",
+  "Capital markets revenue depends on open IPO and bond markets"
+ ],
+ "opportunities": [
+  "Revenue recovered from $1.35 billion in 2023 to $2.08 billion over the last twelve months as deals returned",
+  "No reported debt and free cash flow of about $790 million over the last twelve months",
+  "Shareholders get a regular dividend plus special dividends and buybacks"
+ ],
+ "watch": "Announced M&A volumes in the middle market and the pace of new stock offerings.",
+ "updated": "2026-11",
+ "view": [
+  "Piper Sandler is a good example of how cyclical an investment bank is. Revenue fell from $2.03 billion in 2021 to $1.35 billion in 2023 when deal-making dried up, then climbed back to $2.08 billion over the last twelve months. Net income followed: $85 million in 2023 versus $302 million now.",
+  "At around 15 times trailing earnings and 13 times next year’s estimate, the shares are not expensive for a business with no reported debt and strong cash generation. The company returns much of that cash: dividends and buybacks together were about $240 million in 2025.",
+  "The risk is the cycle itself. When interest rates rise or markets wobble, companies postpone deals and advisory fees can drop by a third in a year, as 2022 showed. Anyone owning this stock is essentially taking a view on middle-market deal activity over the next few years."
+ ],
+ "bull": "M&A and equity issuance keep recovering, margins expand on a fixed cost base and earnings grow about 18% next year as analysts expect.",
+ "bear": "A slowdown in deal-making cuts advisory fees and margins fall back toward 2023 levels."
+}

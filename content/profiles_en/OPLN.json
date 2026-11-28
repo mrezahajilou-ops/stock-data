@@ -1,0 +1,48 @@
+{
+ "t": "OPLN",
+ "what": "OPENLANE, formerly KAR Auction Services, runs digital marketplaces where car dealers and commercial sellers such as leasing companies buy and sell used vehicles wholesale, and lends to dealers through its AFC finance arm.",
+ "customers": "Used-car dealers, vehicle manufacturers’ finance arms, leasing companies and fleet owners.",
+ "money": [
+  [
+   "Marketplace",
+   "largest",
+   "Digital wholesale auctions for dealer-to-dealer and off-lease vehicles"
+  ],
+  [
+   "Finance (AFC)",
+   "high margin",
+   "Floorplan loans that let dealers buy inventory"
+  ],
+  [
+   "Services",
+   "smaller",
+   "Inspection, transport and title services"
+  ]
+ ],
+ "moat": "A large digital network of buyers and sellers plus a finance arm that ties dealers to the platform.",
+ "rivals": [
+  "ACV Auctions|ACVA",
+  "Copart|CPRT",
+  "CarMax|KMX",
+  "Carvana|CVNA"
+ ],
+ "risks": [
+  "Used-car prices and the supply of off-lease vehicles",
+  "Competition from ACV and other online platforms",
+  "Credit losses in floorplan lending if dealers struggle"
+ ],
+ "opportunities": [
+  "Net income rose from a loss in 2023 to $197 million over the last twelve months",
+  "Free cash flow of about $380 million over the last twelve months",
+  "The share count has fallen from 123 million in 2021 to 107 million in 2025"
+ ],
+ "watch": "Dealer-to-dealer volume growth and the recovery in off-lease supply.",
+ "updated": "2026-11",
+ "view": [
+  "OPENLANE has completed a big change: it sold its physical auction business and is now a digital marketplace plus a lending arm. The results show it. After a loss in 2023, net income was $110 million in 2024, $178 million in 2025 and $197 million over the last twelve months.",
+  "Cash generation is solid, with about $380 million of free cash flow over the last twelve months, and the company has used cash to reduce its share count. At about 23 times earnings the stock is not cheap, but EV to EBITDA of about 14 is in line with marketplace businesses.",
+  "The key variable is supply. Fewer cars were leased during the pandemic years, which means fewer off-lease cars coming back now. As that supply recovers, OPENLANE’s commercial marketplace should benefit. Competition from ACV in dealer-to-dealer sales is the other thing to watch."
+ ],
+ "bull": "Off-lease supply recovers, dealer volumes grow and AFC keeps credit losses low.",
+ "bear": "Used-car volumes stay weak and competition limits pricing."
+}

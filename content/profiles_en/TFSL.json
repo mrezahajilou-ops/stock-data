@@ -1,0 +1,48 @@
+{
+ "t": "TFSL",
+ "what": "TFS Financial is the holding company of Third Federal Savings and Loan, a Cleveland, Ohio savings bank that makes residential mortgages and home equity loans funded mainly by customer deposits.",
+ "customers": "Homeowners and savers, mainly in Ohio and Florida, plus borrowers nationwide for some products.",
+ "money": [
+  [
+   "Residential mortgages",
+   "largest",
+   "First mortgages on homes, mostly in Ohio and Florida"
+  ],
+  [
+   "Home equity loans and lines",
+   "growing",
+   "Borrowing against home value"
+  ],
+  [
+   "Deposits and savings",
+   "funding",
+   "Savings accounts and certificates of deposit"
+  ]
+ ],
+ "moat": "Very conservative lending and a low-cost, simple model; a majority of shares is held by a mutual holding company.",
+ "rivals": [
+  "Flagstar Financial|FLG",
+  "Capitol Federal|CFFN",
+  "Northwest Bancshares|NWBI",
+  "WSFS Financial|WSFS"
+ ],
+ "risks": [
+  "Thin margin between what it earns on old low-rate mortgages and what it pays depositors",
+  "A P/E of about 45 is very high for a slow-growing bank",
+  "Minority shareholders have limited influence because the mutual holding company controls the majority"
+ ],
+ "opportunities": [
+  "Net income rose from $75 million in 2023 to $101 million in fiscal 2026",
+  "A dividend yield of about 8%, which public shareholders receive while the mutual holding company has historically waived its share",
+  "Very low credit losses on its mortgage book"
+ ],
+ "watch": "Net interest margin as older mortgages roll off and deposit costs change.",
+ "updated": "2026-11",
+ "view": [
+  "TFS Financial is an unusual bank stock. It is extremely conservative, grows slowly, and its profits are small relative to its market value: net income was $101 million in fiscal 2026 against a market value of about $4.4 billion, which is why the P/E is around 45.",
+  "The main attraction for public shareholders is the dividend, a yield of about 8% at today’s price. That is possible because the mutual holding company that owns the majority of the shares has historically waived its dividends, so the payout goes only to the public float.",
+  "The business itself is sound but squeezed. Many of its mortgages were made when rates were low, while savers now demand higher deposit rates, which compresses the spread. Earnings have improved slowly, from $75 million in 2023 to $101 million, but at this price the stock is mostly a dividend and stability story, not a growth story."
+ ],
+ "bull": "Margins widen as older mortgages are replaced at higher rates, earnings keep rising and the dividend stays secure.",
+ "bear": "Margins stay thin, the high valuation compresses, and any change in the dividend waiver would hurt the payout to public holders."
+}

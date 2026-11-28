@@ -1,0 +1,49 @@
+{
+ "t": "MRX",
+ "what": "Marex is a London-based financial services firm that clears and executes trades in commodity and financial futures and options for producers, consumers, funds and banks, and makes markets in energy, metals and agricultural products.",
+ "customers": "Commodity producers and users, hedge funds, banks, brokers and wealth managers that need access to futures exchanges and hedging products.",
+ "money": [
+  [
+   "Clearing",
+   "core business",
+   "Holding client margin and clearing trades on the major futures exchanges; earns commissions and interest on client balances"
+  ],
+  [
+   "Agency and execution",
+   "large",
+   "Executing trades for institutional clients in energy, metals, equities and fixed income"
+  ],
+  [
+   "Market making and hedging solutions",
+   "smaller, higher margin",
+   "Quoting prices in physical and derivative commodities and structuring hedging products"
+  ]
+ ],
+ "moat": "Memberships on dozens of exchanges, a capital base that clients trust with their margin, and specialist commodity know-how that is hard for a new entrant to rebuild.",
+ "rivals": [
+  "StoneX|SNEX",
+  "Interactive Brokers|IBKR",
+  "CME Group|CME",
+  "Goldman Sachs|GS"
+ ],
+ "risks": [
+  "Earnings lean on interest earned on client balances, which falls when rates fall",
+  "Trading volumes swing with commodity volatility",
+  "A large balance sheet relative to equity: $13.2 billion of debt against $2.0 billion of equity at the end of September 2026",
+  "Acquisitions are a big part of growth and bring integration risk"
+ ],
+ "opportunities": [
+  "Net income rose from $92 million in 2022 to $294 million in 2025 and $469 million over the last twelve months",
+  "At a P/E of about 10 and a forward P/E of about 9, the shares are priced below most exchange and broker peers",
+  "Analyst estimates point to EPS growing about 15% next year"
+ ],
+ "watch": "Client balances, the interest it earns on them and whether profit growth holds up when commodity markets calm down.",
+ "updated": "2026-11",
+ "view": [
+  "Marex is the kind of business most investors never see: it sits between the farmer, the miner, the airline and the exchange, and gets paid every time they hedge. Since 2022 net income has more than tripled, from $92 million to $294 million in 2025, and the last twelve months show $469 million, or $6.05 per share.",
+  "The market prices it at roughly 10 times earnings and about 6 times EV to EBITDA, a discount that reflects two things. First, part of the profit is interest on client cash, which shrinks when rates fall. Second, the balance sheet is large: $13.2 billion of debt against about $2.0 billion of equity, which is normal for a clearing house but leaves less room for error.",
+  "What I would watch is quality of growth. Revenue in our data jumped from $2.0 billion in 2025 to $4.8 billion over the last twelve months, which partly reflects gross trading revenue and acquisitions rather than like-for-like growth. The test is whether earnings per share keep compounding in a calmer, lower-rate market."
+ ],
+ "bull": "Volatile commodity markets, more clients and acquisitions keep profit growing in double digits and the P/E closes the gap with peers.",
+ "bear": "Lower rates and quieter markets squeeze interest income and trading volumes, and the leverage magnifies any loss."
+}

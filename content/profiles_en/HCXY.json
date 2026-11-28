@@ -1,0 +1,49 @@
+{
+ "t": "HCXY",
+ "what": "Hercules Capital is a business development company that lends to venture-backed technology and life sciences companies, earning interest and often taking small equity warrants alongside its loans.",
+ "customers": "Start-ups and growth companies backed by venture capital that want debt financing instead of selling more shares.",
+ "money": [
+  [
+   "Venture loans",
+   "almost all income",
+   "Senior secured loans to technology and life sciences companies"
+  ],
+  [
+   "Warrants and equity",
+   "small, volatile",
+   "Equity stakes received with loans, which pay off when borrowers are sold or go public"
+  ],
+  [
+   "Fees",
+   "small",
+   "Origination and other fees"
+  ]
+ ],
+ "moat": "Two decades of experience and relationships in venture lending, with a scale few competitors can match.",
+ "rivals": [
+  "Trinity Capital|TRIN",
+  "Horizon Technology Finance|HRZN",
+  "Ares Capital|ARCC",
+  "Blue Owl Capital|OBDC"
+ ],
+ "risks": [
+  "Venture-backed borrowers can fail if funding dries up",
+  "Lower interest rates reduce income on floating-rate loans",
+  "BDCs pay out most income, so growth relies on issuing new shares and debt",
+  "Debt of about $2.6 billion against equity of about $2.3 billion"
+ ],
+ "opportunities": [
+  "Net income of about $357 million over the last twelve months",
+  "Dividend yield of about 7.7% at the current price",
+  "Income grew from $253 million in 2021 to $540 million over the last twelve months"
+ ],
+ "watch": "Credit quality of the loan book and whether net investment income keeps covering the dividend.",
+ "updated": "2026-11",
+ "view": [
+  "Hercules lends money to companies that banks usually avoid: start-ups that burn cash but are backed by venture capital. In exchange it charges high rates and takes warrants. Total investment income has doubled since 2021, from $253 million to $540 million over the last twelve months, and the dividend yield is about 7.7%.",
+  "Note how the numbers work for a BDC. Free cash flow is negative because making new loans counts as an outflow, and the share count has risen from 116 million in 2021 to 189 million in 2025 because BDCs fund growth by issuing shares. What matters is income per share and the value of the loan book per share, not headline growth.",
+  "The main risk is a funding drought for start-ups. When venture capital pulls back, weaker borrowers run out of cash, and losses rise. Lower interest rates are a second headwind because most loans are floating-rate. The stock tends to be judged on one question: is the dividend covered?"
+ ],
+ "bull": "Venture funding recovers, defaults stay low and warrant gains add to income while the dividend is fully covered.",
+ "bear": "A venture downturn raises defaults and lower rates cut income, forcing a dividend reduction."
+}

@@ -1,0 +1,48 @@
+{
+ "t": "MIR",
+ "what": "Mirion Technologies makes instruments and software that detect and measure radiation, used in nuclear power plants, hospitals, defence, laboratories and research.",
+ "customers": "Nuclear plant operators, hospitals and cancer centres, militaries and government agencies, and research labs.",
+ "money": [
+  [
+   "Nuclear and safety",
+   "largest",
+   "Radiation detection and monitoring for power plants, defence and labs"
+  ],
+  [
+   "Medical",
+   "significant",
+   "Dosimetry, radiation therapy quality assurance and nuclear medicine"
+  ],
+  [
+   "Services and software",
+   "recurring",
+   "Badge monitoring, servicing and software"
+  ]
+ ],
+ "moat": "Strong positions in niche, safety-critical markets where reliability and approvals matter more than price.",
+ "rivals": [
+  "Thermo Fisher Scientific|TMO",
+  "AMETEK|AME",
+  "Fortive|FTV",
+  "Teledyne|TDY"
+ ],
+ "risks": [
+  "Debt and a history of losses after its 2021 SPAC listing",
+  "A P/E of about 148 on trailing earnings",
+  "The share count rose from 181 million in 2022 to 261 million in 2025"
+ ],
+ "opportunities": [
+  "Revenue grew from $718 million in 2022 to $1.08 billion over the last twelve months",
+  "Turned profitable: net income went from a $277 million loss in 2022 to $29 million",
+  "Growing demand from nuclear power, including new reactors"
+ ],
+ "watch": "Orders from nuclear power and progress in margins.",
+ "updated": "2026-11",
+ "view": [
+  "Mirion sits on a theme that has become popular: the return of nuclear power. Revenue has grown from $718 million in 2022 to $1.08 billion over the last twelve months, gross margin has risen to about 47%, and the company has moved from heavy losses to a small profit.",
+  "The valuation reflects that enthusiasm. On trailing earnings the P/E is about 148, and even on next year’s estimates it is about 27. The share count has also grown from 181 million to 261 million, diluting existing holders.",
+  "What would justify the price is margin expansion: if operating margin keeps rising from its low base, earnings can grow much faster than revenue. Analysts expect EPS to rise about 22% next year. If nuclear projects are delayed, that growth could take longer."
+ ],
+ "bull": "Nuclear power demand drives orders, margins expand and earnings grow quickly.",
+ "bear": "Nuclear projects are delayed and the high valuation shrinks."
+}

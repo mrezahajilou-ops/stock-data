@@ -1,0 +1,48 @@
+{
+ "t": "EXPO",
+ "what": "Exponent is an engineering and scientific consulting firm that investigates why products, structures and systems fail, and helps companies, insurers and lawyers with failure analysis, safety testing and regulatory work.",
+ "customers": "Law firms, insurers, manufacturers, utilities and government agencies.",
+ "money": [
+  [
+   "Engineering and other scientific",
+   "largest",
+   "Failure analysis, product safety, construction and energy work"
+  ],
+  [
+   "Environmental and health",
+   "smaller",
+   "Chemical, health and environmental risk assessments"
+  ],
+  [
+   "Litigation support",
+   "throughout",
+   "Expert testimony and analysis in lawsuits"
+  ]
+ ],
+ "moat": "A reputation for credible expert analysis and a deep bench of PhD scientists and engineers that is hard to replicate.",
+ "rivals": [
+  "FTI Consulting|FCN",
+  "CRA International|CRAI",
+  "Tetra Tech|TTEK",
+  "Jacobs Solutions|J"
+ ],
+ "risks": [
+  "Growth depends on hiring and keeping highly qualified staff",
+  "Litigation work can be lumpy",
+  "A P/E around 40 leaves little room for disappointment"
+ ],
+ "opportunities": [
+  "Net margin has stayed around 18–22% for five years",
+  "No reported debt",
+  "Steady dividends and buybacks"
+ ],
+ "watch": "Billable hours, staff utilisation and growth in consumer electronics and energy work.",
+ "updated": "2026-11",
+ "view": [
+  "Exponent is one of the highest-quality small companies in professional services. Net margin has held between 18% and 22% every year since 2021, return on invested capital has been above 17%, and the company carries no reported debt.",
+  "Growth, however, is steady rather than fast: revenue rose from $466 million in 2021 to $659 million over the last twelve months, and net income from $101 million to $115 million. That combination of quality and slow growth explains why the market pays about 40 times trailing and 32 times forward earnings.",
+  "The main question for a buyer is valuation, not business risk. Exponent’s work is needed in good times and bad, because products still fail and lawsuits still happen. But at this price even small disappointments in hours or hiring can move the stock."
+ ],
+ "bull": "Demand for failure analysis in electronics, energy and health grows, utilisation stays high and earnings grow in double digits.",
+ "bear": "Growth stays in single digits and the premium valuation shrinks."
+}

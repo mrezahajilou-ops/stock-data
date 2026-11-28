@@ -1,0 +1,48 @@
+{
+ "t": "FULT",
+ "what": "Fulton Financial is a regional bank based in Lancaster, Pennsylvania, serving consumers and businesses in Pennsylvania, New Jersey, Maryland, Delaware and Virginia with loans, deposits and wealth management.",
+ "customers": "Households and small and mid-sized businesses in the Mid-Atlantic.",
+ "money": [
+  [
+   "Commercial lending",
+   "largest",
+   "Commercial real estate and business loans"
+  ],
+  [
+   "Consumer and mortgage",
+   "significant",
+   "Home mortgages, home equity and consumer loans"
+  ],
+  [
+   "Wealth management and fees",
+   "smaller",
+   "Investment advice, trust and banking fees"
+  ]
+ ],
+ "moat": "Long-standing local relationships and a deposit base built over more than a century.",
+ "rivals": [
+  "M&T Bank|MTB",
+  "Citizens Financial|CFG",
+  "WSFS Financial|WSFS",
+  "F.N.B.|FNB"
+ ],
+ "risks": [
+  "Commercial real estate loan quality",
+  "Competition for deposits",
+  "Lower interest rates can reduce lending margins"
+ ],
+ "opportunities": [
+  "Net income rose to $403 million over the last twelve months from $289 million in 2024",
+  "P/E of about 11 and a dividend yield of about 3.3%",
+  "Branches and deposits added through the 2024 Republic First deal"
+ ],
+ "watch": "Net interest margin, deposit costs and credit quality in commercial real estate.",
+ "updated": "2026-11",
+ "view": [
+  "Fulton is a classic Mid-Atlantic regional bank, and its numbers have improved. Net income rose from about $289 million in 2024 to $403 million over the last twelve months, helped by the deposits and branches it took over from Republic First in 2024.",
+  "The valuation is modest: about 11 times trailing earnings and 10 times next year’s estimate, with a dividend yield of about 3.3%. That pricing reflects how investors view regional banks generally after 2023, rather than anything specific to Fulton.",
+  "The risks are the usual ones for a bank of this size: commercial real estate loans, competition for deposits and the direction of interest rates. Analysts expect only about 5% EPS growth next year, so the case rests on steady earnings and dividends rather than rapid growth."
+ ],
+ "bull": "Credit stays clean, margins hold and the stock trades closer to book value as sentiment on regional banks improves.",
+ "bear": "Commercial real estate losses rise or lower rates squeeze margins."
+}

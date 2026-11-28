@@ -1,0 +1,49 @@
+{
+ "t": "MRP",
+ "what": "Millrose Properties is a real estate investment trust spun off from Lennar in 2025 that buys land and develops homesites, then sells them to homebuilders such as Lennar under option contracts.",
+ "customers": "Homebuilders, above all Lennar, which buy finished homesites from Millrose.",
+ "money": [
+  [
+   "Option fees",
+   "almost all revenue",
+   "Builders pay Millrose a fee for the right to buy homesites later"
+  ],
+  [
+   "Land and development funding",
+   "core activity",
+   "Buying land and paying for roads and utilities"
+  ],
+  [
+   "Other builders",
+   "growing",
+   "Deals with homebuilders other than Lennar"
+  ]
+ ],
+ "moat": "A unique role as Lennar’s land bank, with long-term contracts that provide predictable fee income.",
+ "rivals": [
+  "Lennar|LEN",
+  "NVR|NVR",
+  "Starwood Property Trust|STWD",
+  "Rithm Capital|RITM"
+ ],
+ "risks": [
+  "Heavy dependence on Lennar",
+  "A slowdown in housing could reduce demand for homesites",
+  "Debt of about $3.1 billion",
+  "A short track record as an independent company"
+ ],
+ "opportunities": [
+  "Net income of about $501 million over the last twelve months",
+  "A P/E of about 9",
+  "A high dividend paid out of contracted fees"
+ ],
+ "watch": "How many homesites Lennar and other builders take down and the pace of new deals with other builders.",
+ "updated": "2026-11",
+ "view": [
+  "Millrose is a new kind of company: it holds land that Lennar used to own, and Lennar pays it fees for the right to buy homesites when it needs them. That turns land, normally a risky asset for a builder, into a steady stream of fees for Millrose. Over the last twelve months net income was about $501 million.",
+  "At about 9 times earnings the market is cautious, for good reason. Almost everything depends on Lennar, and housing is cyclical. If Lennar slows its building, it takes fewer homesites, and Millrose’s growth slows too. Our cash flow figures for Millrose include land transactions and should not be read as recurring free cash flow.",
+  "The company is trying to sign other builders to reduce its reliance on Lennar. Progress there, together with the dividend, will decide how investors value the stock over time."
+ ],
+ "bull": "New builder partners and steady Lennar take-downs grow fees and the market rewards the predictable dividend.",
+ "bear": "A housing slowdown reduces homesite demand and reliance on one customer becomes a problem."
+}

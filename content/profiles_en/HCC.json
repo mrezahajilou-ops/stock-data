@@ -1,0 +1,48 @@
+{
+ "t": "HCC",
+ "what": "Warrior Met Coal mines metallurgical coal in Alabama and sells it to steelmakers in Europe, South America and Asia, where it is used to make steel in blast furnaces.",
+ "customers": "Steel producers around the world, mainly outside the US.",
+ "money": [
+  [
+   "Mining",
+   "almost all revenue",
+   "Premium low-volatility met coal from underground mines in Alabama"
+  ],
+  [
+   "Blue Creek",
+   "new",
+   "A large new mine that adds production as it ramps up"
+  ],
+  [
+   "Natural gas and other",
+   "small",
+   "Gas recovered from its mines"
+  ]
+ ],
+ "moat": "High-quality coal that steelmakers value, a short route to export ports, and a new low-cost mine that increases scale.",
+ "rivals": [
+  "Alpha Metallurgical|AMR",
+  "Peabody Energy|BTU",
+  "Ramaco Resources|METC",
+  "Core Natural Resources|CNR"
+ ],
+ "risks": [
+  "Coal prices are set by global steel demand, especially in Asia",
+  "Underground mining has safety and operating risks",
+  "Long-term pressure as steelmakers move toward electric-arc furnaces"
+ ],
+ "opportunities": [
+  "Revenue rose to $1.86 billion over the last twelve months from $1.31 billion in 2025 as the new mine adds tonnes",
+  "Cash of about $447 million against debt of about $155 million",
+  "Analysts expect EPS to grow about 38% next year"
+ ],
+ "watch": "Blue Creek production volumes and the seaborne price of premium met coal.",
+ "updated": "2026-11",
+ "view": [
+  "Warrior is a pure commodity bet with a growth twist. Its earnings follow coal prices: net income was $641 million in 2022 when prices spiked, then fell to $57 million in 2025. Over the last twelve months it recovered to $232 million as the new Blue Creek mine started adding volume.",
+  "The balance sheet is strong for a miner, with about $447 million of cash against $155 million of debt, which matters because the company spent heavily on Blue Creek and free cash flow was negative in 2024 and 2025. Over the last twelve months it turned positive again at $132 million.",
+  "At about 19.5 times trailing and 12 times next year’s estimated earnings, the market is already pricing in a recovery. The swing factor is the coal price, which depends on steel output in Asia and Europe. Volumes are in management’s hands; prices are not."
+ ],
+ "bull": "Blue Creek ramps up on time, met coal prices recover and earnings jump as analysts expect.",
+ "bear": "Weak global steel demand keeps coal prices low and higher volumes do not offset lower prices."
+}

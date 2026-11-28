@@ -525,11 +525,20 @@ def revenue_max(per_tag):
 
 def ttm_tags(facts, tags):
     """TTM from the first tag that has four consecutive recent quarters (companies switch tags over time)."""
-    best = (None, None)
-    for tag in tags:
+    best, bi = (None, None), None
+    for i, tag in enumerate(tags):
         v, e = ttm(quarterly(facts, [tag]))
         if v is not None and (best[1] is None or e > best[1]):
-            best = (v, e)
+            best, bi = (v, e), i
+    # a fallback tag won only because a preferred tag has a gap in its quarters (FCX: NetIncomeLoss missed one quarter,
+    # so ProfitLoss - which includes noncontrolling interests - became the TTM net income): if a preferred tag reaches
+    # the same period end through the year-to-date method, use it instead
+    if bi:
+        for tag in tags[:bi]:
+            if tag.startswith("us-gaap:"):
+                yv, ye = ttm_ytd(facts, tag)
+                if yv is not None and ye == best[1]:
+                    return yv, ye
     return best
 
 

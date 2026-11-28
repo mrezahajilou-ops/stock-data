@@ -844,7 +844,12 @@ async function cRefreshQuotes(env) {
   for (const r of await cq(env, 'SELECT t, p FROM c_quotes')) old[r.t] = r.p;
   const held = new Set((await cq(env, 'SELECT t FROM c_hold')).map(r => r.t));
   for (const [t, q] of Object.entries(L)) {
-    if (held.has(t)) { delete L[t]; continue; }
+    if (held.has(t)) {
+      // the jump was a single bad tick if the live price is back near the frozen price: release the hold
+      const back = old[t] > 0 && q[0] / old[t] < 1.25 && q[0] / old[t] > 0.8 && cSaneQuote(q[0], q[2]);
+      if (!back) { delete L[t]; continue; }
+      await env.DB.prepare('DELETE FROM c_hold WHERE t=?1').bind(t).run();
+    }
     const r = old[t] > 0 ? q[0] / old[t] : 1;
     // the stored price itself was a bad tick (far from this quote's own previous close, while the new price is in line
     // with it): replace it instead of freezing the ticker on the bad price

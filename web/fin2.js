@@ -626,7 +626,8 @@
       : F('%s pays a dividend yielding %s.', nm, pct(r.div_yield, 2)))
       : r.buyback_yield > 0.0005 ? F('%s pays no dividend but returns cash through buybacks (buyback yield %s).', nm, pct(r.buyback_yield, 2))
       : (r.div_yield === 0 || nn(r.div_yield)) && m.price ? F('%s does not pay a dividend.', nm) : '';
-    var anLead = (an.n && an.tgt && m.price && recName(an.rec) !== D) ? F('%s analysts rate %s a %s; the average price target of %s is %s %s the current price.', an.n, nm, recName(an.rec), dol(an.tgt), pct(Math.abs(an.tgt / m.price - 1), 1), aw(an.tgt / m.price - 1)) : '';
+    var anLead = (LANG === 'ar' && an.tgt && m.price) ? F('The average 12-month analyst price target for %s is %s, %s %s the current price of %s.', nm, dol(an.tgt), pct(Math.abs(an.tgt / m.price - 1), 1), aw(an.tgt / m.price - 1), dol(m.price))  // Saqr: target only, no buy/sell wording
+      : (an.n && an.tgt && m.price && recName(an.rec) !== D) ? F('%s analysts rate %s a %s; the average price target of %s is %s %s the current price.', an.n, nm, recName(an.rec), dol(an.tgt), pct(Math.abs(an.tgt / m.price - 1), 1), aw(an.tgt / m.price - 1)) : '';
     var scLead = !nn(sc.total) ? F('%s scores %s out of 5 on value, future growth, past performance, financial health and capital return.', nm, sc.total.toFixed(1)) : '';
     var c1 = grp('Total valuation', [['Market cap', usd(m.mcap)], ['Enterprise value', usd(r.ev)], ['Shares outstanding', sh ? (sh / 1e9).toFixed(2) + 'B' : D],
         ['Stock price', dol(m.price), '', fdate(m.as_of)]], F('%s is worth about %s.', nm, usd(m.mcap))) +

@@ -1,0 +1,20 @@
+CPIAUCNS=2026-10-01|CUUR0000SAH1=2026-10-01|CUUR0000SEHA=2026-10-01|DGS10=2026-11-27|DRSFRMACBS=2026-04-01|FORSALE=2026-10-01|HOUST=2026-10-01|HOUST1F=2026-10-01|HPI=2026-09-01|HPI_SA=2026-09-01|HSN1F=2026-10-01|MORTGAGE15US=2026-11-25|MORTGAGE30US=2026-11-25|MSACSR=2026-10-01|PERMIT=2026-10-01|RHORUSQ156N=2026-07-01|RHVRUSQ156N=2026-07-01|RRVRUSQ156N=2026-07-01|UNRATE=2026-10-01|acs=2025|inc=2025|rdc=2026-10|zillow=2026-10|zori=2026-10
+ae:price=2026-11
+at:idx=2026-06|New mortgage=2026-09|ECB deposit =2026-11
+au:price=2026-06|Discounted v=2026-10|3-year fixed=2026-10|RBA cash rat=2026-10
+br:idx=2026-06|price=2026-10|rent=2026-10|Central bank=2026-10
+ca:idx=2026-10|rent=2025-10|5-year conve=2026-11|Bank of Cana=2026-11
+ch:idx=2026-06|Central bank=2026-10
+de:idx=2026-06|New mortgage=2026-09|ECB deposit =2026-11
+es:idx=2026-06|New mortgage=2026-09|ECB deposit =2026-11
+fr:idx=2026-06|New mortgage=2026-09|ECB deposit =2026-11
+gb:idx=2026-09|price=2026-09|2-year fixed=2026-10|5-year fixed=2026-10|Bank Rate=2026-10
+id:idx=2026-06|Central bank=2026-10
+ie:idx=2026-09|price=2026-09|New mortgage=2026-09|ECB deposit =2026-11
+it:idx=2026-06|New mortgage=2026-09|ECB deposit =2026-11
+jp:idx=2025-12|Central bank=2026-10
+kr:idx=2026-06|Central bank=2026-10
+pt:idx=2026-06|price=2026-10|New mortgage=2026-09|ECB deposit =2026-11
+sa:idx=2026-09|Central bank=2026-09
+tr:idx=2026-06|Central bank=2026-10
+us:idx=2026-09|price=2026-10|rent=2026-10|30-year fixe=2026-11|15-year fixe=2026-11|Federal Rese=2026-10

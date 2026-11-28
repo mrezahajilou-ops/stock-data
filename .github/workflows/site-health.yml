@@ -17,4 +17,9 @@ jobs:
             done
             echo "HEALTH $u $r"
           done
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
+          for u in https://stockanaliz.com/ https://stockanaliz.com/stocks/aapl/ https://nationsmap.com/ https://bolsacondor.com/ https://sahamelang.com/ https://saqrmarkets.com/ https://aktienadler.com/; do
+            n=$(curl -s -m 30 -A "$UA" -H 'Accept: text/html' "$u" | grep -c 'cloudflareinsights')
+            echo "HEALTH beacon $u $n"
+          done
           curl -s -m 30 https://rz-events.mreza-hajilou.workers.dev/c/insider.json | python3 -c "import json,sys;d=json.load(sys.stdin);print('HEALTH feed as_of',d.get('as_of'),'rows',len(d.get('rows',[])),'wk',d.get('wk'))"

@@ -613,7 +613,7 @@ def build(sd, lang, cc, countries, chrome_html, urlf, flip=None, root='https://e
         L['seo_h'].format(**C), ''.join('<p>%s</p>' % p for p in paras), L['faq'], ''.join('<details><summary>%s</summary><p>%s</p></details>' % qa for qa in faq))
     u = urlf(cc)
     ld = [{'@context': 'https://schema.org', '@type': 'Dataset', 'name': title, 'url': root + u, 'dateModified': D['as_of'], 'isAccessibleForFree': True,
-           'spatialCoverage': C['name'], 'description': desc, 'creator': {'@type': 'Organization', 'name': brand or root}},
+           'license': 'https://creativecommons.org/licenses/by/4.0/', 'spatialCoverage': C['name'], 'description': desc, 'creator': {'@type': 'Organization', 'name': brand or root}},
           {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
               {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', a)}} for q, a in faq]}]
     return {'url': u, 'title': title, 'desc': desc, 'html': page, 'seo': seo, 'ld': ld, 'date': D['as_of']}

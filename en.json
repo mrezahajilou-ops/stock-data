@@ -1,6 +1,34 @@
 {
  "items": [
   {
+   "id": "2026-11-28-banks-ai-loans",
+   "t": "2026-11-28T08:00:00Z",
+   "text": "$C and $JPM are marketing portfolios of AI loans, some via synthetic risk transfers that pass losses to investors while the loans stay on bank books, per Semafor.",
+   "src": "Semafor (via Market News)",
+   "url": "https://hervecuviliez.substack.com/p/market-news-saturday-28-november"
+  },
+  {
+   "id": "2026-11-28-iraq-opec-caps",
+   "t": "2026-11-28T01:00:00Z",
+   "text": "Iraq's oil minister says the country is negotiating production caps with OPEC ahead of Sunday's OPEC+ ministerial meeting. $XOM $CVX $USO",
+   "src": "Longbridge",
+   "url": "https://longbridge.com/en/news/307065983"
+  },
+  {
+   "id": "2026-11-28-openai-sues-apple",
+   "t": "2026-11-28T00:30:00Z",
+   "text": "OpenAI files a new lawsuit against $AAPL, accusing it of stealing trade secrets.",
+   "src": "Longbridge",
+   "url": "https://longbridge.com/en/news/307065983"
+  },
+  {
+   "id": "2026-11-28-adobe-bf-13b",
+   "t": "2026-11-27T23:30:00Z",
+   "text": "Black Friday online sales hit $9.7B by 6:30 p.m. ET, +12.8% YoY, per Adobe. The full-day total is expected at $13.0B–$13.4B, above Adobe's $12.9B forecast. $AMZN $WMT $SHOP $ADBE",
+   "src": "Reuters",
+   "url": "https://www.investing.com/news/stock-market-news/us-black-friday-online-sales-to-cross-13-billion-adobe-says-5054031"
+  },
+  {
    "id": "2026-11-27-nvda-blackwell-shanghai",
    "t": "2026-11-27T19:00:00Z",
    "text": "Export-restricted $NVDA Blackwell hardware, including a GB300 NVL72 rack, turned up at a Shanghai data center linked to Alice Huang, per Bloomberg's review of Chinese loan filings. Bloomberg traced one rack's serial number to Taiwan's Gigabyte.",
@@ -267,5 +295,5 @@
    "url": "https://www.tipranks.com/news/stock-market-today-nov-27-markets-reopen-for-shortened-black-friday-trading"
   }
  ],
- "updated": "2026-11-27T22:22:09Z"
+ "updated": "2026-11-28T09:01:04Z"
 }

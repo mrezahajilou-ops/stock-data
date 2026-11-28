@@ -611,27 +611,45 @@
     var fair = (r.fair_mcap && m.mcap) ? r.fair_mcap / m.mcap - 1 : null;
     var peNote = (r.pe && r.sector_pe) ? F('sector %s', r.sector_pe.toFixed(1)) + ' · ' + (r.pe < r.sector_pe ? '<em class="up">' + T('Better') + '</em>' : '<em class="dn">' + T('Weaker') + '</em>') : '';
     var rt = an.rt || [], st = k.stats || {}, pr = k.price || {}, dt_ = k.dates || {}, MED = st.tgt_median;
+
+    // one plain sentence on top of every card: what the numbers in it say about this company (readable text for search engines)
+    var SP = LANG === 'ja' ? '' : ' ';
+    var aw = function (v) { return T(v >= 0 ? 'above' : 'below'); };
+    var valLead = (r.pe > 0 && r.fwd_pe > 0) ? F('%s trades at %s times the last twelve months of earnings and %s times next year’s estimate.', nm, x2(r.pe), x2(r.fwd_pe))
+      : r.pe > 0 ? F('%s trades at %s times the last twelve months of earnings.', nm, x2(r.pe))
+      : r.ps > 0 ? F('%s has no positive earnings; it trades at %s times sales.', nm, x2(r.ps)) : '';
+    if (!nn(fair) && fair > -0.95 && fair < 5) valLead += (valLead ? SP : '') + F('Our DCF model puts fair value %s %s the current price.', pct(Math.abs(fair), 0), aw(fair));
+    var grLead = !nn(s.rev_cagr_1y) ? (!nn(s.rev_cagr_5y) ? F('Revenue changed by %s over the last year and by %s a year over five years.', sp(s.rev_cagr_1y), sp(s.rev_cagr_5y))
+      : F('Revenue changed by %s over the last year.', sp(s.rev_cagr_1y))) : '';
+    if (!nn(L.net_margin)) grLead += (grLead ? SP : '') + F('The net margin is %s.', pct(L.net_margin, 1));
+    var dvLead = r.div_yield > 0 ? (r.shareholder_yield > r.div_yield + 0.0005 ? F('%s pays a dividend yielding %s; including buybacks, the shareholder yield is %s.', nm, pct(r.div_yield, 2), pct(r.shareholder_yield, 2))
+      : F('%s pays a dividend yielding %s.', nm, pct(r.div_yield, 2)))
+      : r.buyback_yield > 0.0005 ? F('%s pays no dividend but returns cash through buybacks (buyback yield %s).', nm, pct(r.buyback_yield, 2))
+      : (r.div_yield === 0 || nn(r.div_yield)) && m.price ? F('%s does not pay a dividend.', nm) : '';
+    var anLead = (an.n && an.tgt && m.price && recName(an.rec) !== D) ? F('%s analysts rate %s a %s; the average price target of %s is %s %s the current price.', an.n, nm, recName(an.rec), dol(an.tgt), pct(Math.abs(an.tgt / m.price - 1), 1), aw(an.tgt / m.price - 1)) : '';
+    var scLead = !nn(sc.total) ? F('%s scores %s out of 5 on value, future growth, past performance, financial health and capital return.', nm, sc.total.toFixed(1)) : '';
     var c1 = grp('Total valuation', [['Market cap', usd(m.mcap)], ['Enterprise value', usd(r.ev)], ['Shares outstanding', sh ? (sh / 1e9).toFixed(2) + 'B' : D],
         ['Stock price', dol(m.price), '', fdate(m.as_of)]], F('%s is worth about %s.', nm, usd(m.mcap))) +
       grp('Valuation ratios', [['P/E (TTM)', x2(r.pe), '', peNote], ['Forward P/E', x2(r.fwd_pe)], ['P/S · forward P/S', x2(r.ps) + ' · ' + x2(r.fwd_ps)],
         ['P/FCF · forward P/FCF', x2(r.pfcf) + ' · ' + x2(r.fwd_pfcf)], ['P/B', x2(r.pb)], ['EV/EBITDA', x2(r.ev_ebitda)], ['PEG', x2(r.peg, 2)],
-        ['FCF yield · earnings yield', pct(r.fcf_yield, 1) + ' · ' + pct(r.earnings_yield, 1)], ['Fair value (DCF) vs price', sp(fair), good(fair)]]);
+        ['FCF yield · earnings yield', pct(r.fcf_yield, 1) + ' · ' + pct(r.earnings_yield, 1)], ['Fair value (DCF) vs price', sp(fair), good(fair)]], valLead);
     var c2 = grp('Growth & profitability', [['Revenue growth (1 yr)', sp(s.rev_cagr_1y), good(s.rev_cagr_1y)], ['Revenue growth (3 · 5 yr / yr)', sp(s.rev_cagr_3y) + ' · ' + sp(s.rev_cagr_5y)],
         ['EPS growth (5 yr / yr)', sp(s.eps_cagr_5y)], ['Gross · operating margin', pct(L.gross_margin, 1) + ' · ' + pct(L.op_margin, 1)],
         ['Net · FCF margin', pct(L.net_margin, 1) + ' · ' + pct(L.fcf_margin, 1)], ['ROIC · ROE', pct(L.roic, 1) + ' · ' + pct(L.roe, 1)],
         ['Net margin trend (3 yr)', nn(s.nm_trend) ? D : F('%s pts', (s.nm_trend >= 0 ? '+' : '') + (s.nm_trend * 100).toFixed(1)), good(s.nm_trend)],
-        ['Profitable years', nn(s.profit_years) ? D : F('%s of %s', s.profit_years, Math.min(10, s.years || 10))]]) +
+        ['Profitable years', nn(s.profit_years) ? D : F('%s of %s', s.profit_years, Math.min(10, s.years || 10))]], grLead) +
       grp('Balance sheet & health', [['Cash & investments', usd(dcf.cash)], ['Total debt', usd(dcf.debt)], ['Net cash (debt)', usd(nc), good(nc)],
         ['Debt / equity', x2(L.debt_to_equity, 2)], ['Current ratio', x2(L.current_ratio, 2)], ['Interest coverage', x2(L.interest_cov, 1)],
-        ['Goodwill / assets', L.assets ? pct((L.goodwill || 0) / L.assets, 1) : D]], nc > 0 ? F('More cash than debt: net cash of %s.', usd(nc)) : '');
+        ['Goodwill / assets', L.assets ? pct((L.goodwill || 0) / L.assets, 1) : D]], nc > 0 ? F('More cash than debt: net cash of %s.', usd(nc)) : (nc < 0 ? F('Debt exceeds cash: net debt of %s.', usd(-nc)) : ''));
     var c3 = grp('Dividends & shareholder return', [['Dividend yield', pct(r.div_yield, 2)], ['Payout ratio', (L.dividends && L.net_income > 0) ? pct(L.dividends / L.net_income, 1) : D],
-        ['Buyback yield', pct(r.buyback_yield, 2)], ['Shareholder yield', pct(r.shareholder_yield, 2)], ['Years paying dividends', s.div_years ? String(s.div_years) : D]]) +
+        ['Buyback yield', pct(r.buyback_yield, 2)], ['Shareholder yield', pct(r.shareholder_yield, 2)], ['Years paying dividends', s.div_years ? String(s.div_years) : D]], dvLead) +
       grp('Analysts', [['Consensus', recName(an.rec), (an.rec === 'buy' || an.rec === 'strong_buy') ? 'up' : '', an.n ? F('%s analysts', an.n) : ''],
         ['Price target', an.tgt ? dol(an.tgt) : D, '', (an.tgt && an.tlo && m.price) ? sp(an.tgt / m.price - 1) + ' · ' + F('range %s – %s', dol(an.tlo, 0), dol(an.thi, 0)) : ''],
         ['Median target', MED ? dol(MED) : D], ['Ratings: strong buy / buy / hold / sell', rt.length ? rt.slice(0, 4).join(' / ') : D],
-        ['Revenue estimate (this FY · next)', usd(an.r0) + ' · ' + usd(an.r1)], ['EPS estimate (this FY · next)', eps(an.e0) + ' · ' + eps(an.e1)]]) +
-      grp('Score', [['Overall', nn(sc.total) ? D : sc.total.toFixed(1) + ' / 5'], ['Value · future · past', [sc.value, sc.future, sc.past].map(function (x) { return nn(x) ? D : x; }).join(' · ')],
-        ['Health · capital return', [sc.health, sc.capital].map(function (x) { return nn(x) ? D : x; }).join(' · ')]]);
+        ['Revenue estimate (this FY · next)', usd(an.r0) + ' · ' + usd(an.r1)], ['EPS estimate (this FY · next)', eps(an.e0) + ' · ' + eps(an.e1)]], anLead);
+    // score and key dates sit under the valuation cards: the left column used to end half way down the page
+    c1 += grp('Score', [['Overall', nn(sc.total) ? D : sc.total.toFixed(1) + ' / 5'], ['Value · future · past', [sc.value, sc.future, sc.past].map(function (x) { return nn(x) ? D : x; }).join(' · ')],
+        ['Health · capital return', [sc.health, sc.capital].map(function (x) { return nn(x) ? D : x; }).join(' · ')]], scLead);
     if (Object.keys(st).length) {
       c2 += grp('Ownership & short interest', [['Insider ownership', pct(st.insiders, 2)],
         ['Institutional ownership', pct(st.institutions, 1), '', st.inst_count ? F('%s institutions', st.inst_count.toLocaleString(LOC)) : ''],
@@ -640,12 +658,12 @@
       var rsiN = (pr.rsi || 50) < 30 ? T('oversold') : (pr.rsi || 50) > 70 ? T('overbought') : '';
       c3 = grp('Stock price', [['52-week change', sp(st.chg52), good(st.chg52)], ['52-week range', (st.lo52 && st.hi52) ? dol(st.lo52) + ' – ' + dol(st.hi52) : D],
         ['50-day · 200-day average', (pr.ma50 && pr.ma200) ? dol(pr.ma50) + ' · ' + dol(pr.ma200) : D], ['RSI (14 days)', x2(pr.rsi, 1), '', rsiN],
-        ['Beta (5 yr)', x2(st.beta, 2), '', (st.beta || 0) > 1.2 ? T('moves more than the market') : ''], ['Average volume (3 months)', shr(st.avgvol)]]) + c3;
+        ['Beta (5 yr)', x2(st.beta, 2), '', (st.beta || 0) > 1.2 ? T('moves more than the market') : ''], ['Average volume (3 months)', shr(st.avgvol)]], (nn(st.chg52) ? '' : F('The share price has changed by %s over the past 52 weeks.', sp(st.chg52))) + (st.beta > 0 && Math.abs(st.beta - 1) > 0.1 ? SP + F(st.beta > 1 ? 'With a beta of %s, it has moved more than the market.' : 'With a beta of %s, it has moved less than the market.', x2(st.beta, 2)) : '')) + c3;
       var today = new Date(), ne = (dt_.earnings || []).map(ep).filter(Boolean), nx = ne.filter(function (x) { return x >= today; });
       var xd = ep(dt_.exdiv), pd = ep(dt_.divpay), fe = dd(L.fy_end);
-      c3 += grp('Key dates', [[nx.length ? 'Next earnings' : 'Last earnings', ne.length ? sdate((nx[0] || ne[0])) + (nx.length && dt_.earnings_est ? ' ' + T('(est.)') : '') : D],
+      c1 += grp('Key dates', [[nx.length ? 'Next earnings' : 'Last earnings', ne.length ? sdate((nx[0] || ne[0])) + (nx.length && dt_.earnings_est ? ' ' + T('(est.)') : '') : D],
         [xd && xd >= today ? 'Ex-dividend date' : 'Last ex-dividend date', sdate(xd)], [pd && pd >= today ? 'Dividend payment' : 'Last dividend paid', sdate(pd)],
-        ['Fiscal year ends', fe ? fmtL.format(fe) : D]]);
+        ['Fiscal year ends', fe ? fmtL.format(fe) : D]], ne.length ? F(nx.length ? '%s next reports earnings on %s.' : '%s last reported earnings on %s.', nm, sdate(nx[0] || ne[0]) + (nx.length && dt_.earnings_est ? ' ' + T('(est.)') : '')) : '');
     }
     return '<div class="ks-grid"><div>' + c1 + '</div><div>' + c2 + '</div><div>' + c3 + '</div></div>';
   }

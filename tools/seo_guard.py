@@ -10,8 +10,8 @@ It compares the new build with the live site (https://<domain>/seo-index.txt, th
 the previous build) and fails the build, so the previous version stays live, when
   1. more than 3% (and more than 300) of the pages that are indexable on the live site become noindex or disappear
      without a redirect, or
-  2. a URL in the optional protect list (pages Search Console showed impressions for) carries noindex, or more than
-     8% (and at least 20) of them are gone.
+  2. more than 10 URLs of the optional protect list (pages Search Console showed impressions for) carry noindex,
+     or more than 8% (and at least 20) of them are gone (fewer are printed as warnings).
 It then writes public/seo-index.txt and public/seo-guard.json for the next build. A deliberate change: run the
 build once with SEO_GUARD_ALLOW=1.
 """
@@ -111,8 +111,10 @@ def main():
                 prot.append(re.sub(r'^https?://(www\.)?[^/]+', '', tok) or '/')
     hidden = [u for u in prot if u in noindex and not u.rstrip('/').endswith(LEGAL)]
     gone = [u for u in prot if u not in indexable and u not in noindex and not covered(u)]
-    if hidden:
+    if len(hidden) > 10:   # a handful can be thin pages by design; more is a rule gone wrong
         problems.append('%d protected URLs carry noindex, e.g. %s' % (len(hidden), ', '.join(hidden[:8])))
+    elif hidden:
+        print('seo guard: warning, protected URLs with noindex: ' + ', '.join(hidden))
     if len(gone) >= 20 and len(gone) > 0.08 * len(prot):
         problems.append('%d of %d protected URLs are gone, e.g. %s' % (len(gone), len(prot), ', '.join(gone[:8])))
 

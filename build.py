@@ -1951,7 +1951,11 @@ def score(rec, mk, sector_pe):
     if pfcf and _A and _L and _L / _A > 0.85 and ni and ni > 0 and fcf > 3 * ni \
             and ((mk or {}).get("sector") in ("Finance", "Real Estate") or (last.get("cash") or 0) > 0.75 * _A):
         pfcf = None  # balance-sheet businesses (banks, insurers, Wise): operating cash flow swings with customer money
+    if pfcf and pfcf < 2 and ni and ni > 0 and fcf > 5 * ni:
+        pfcf = None  # land/loan sales booked as operating cash (Millrose: P/FCF 1.0 on $4.6bn "FCF" vs $0.5bn profit)
     ps = mcap / rev if (mcap and rev and rev > 0) else None
+    if ps and ps > 1000:
+        ps = None  # revenue near zero after a business sale/wind-down (GPGI: P/S 186,383) — shown as a dash
     b = rec.get("bs") or {}
     equity_now = b.get("equity") if b.get("equity") is not None else last.get("equity")
     pb = mcap / equity_now if (mcap and equity_now and equity_now > 0) else None

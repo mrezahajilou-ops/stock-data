@@ -1,0 +1,20 @@
+name: Site health (manual)
+# Home page of every site: HTTP status, time to first byte, total time, size.
+on: workflow_dispatch
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: |
+          for u in https://stockanaliz.com/ https://sahamanaliz.com/ https://saqrmarkets.com/ https://bolsacondor.com/ https://borsakartal.com/ \
+                   https://aktienadler.com/ https://bolsagaviao.com/ https://boursefaucon.com/ https://borsafalco.com/ https://kabutakajp.com/ \
+                   https://jusikmae.com/ https://sahamelang.com/ https://cophieudaibang.com/ https://nationsmap.com/ https://sitesazweb.com/ \
+                   https://schaufensterwerk.com/ https://stockanaliz.com/stock/ https://stockanaliz.com/market-pulse/ https://stockanaliz.com/insider-trading/ \
+                   https://stockanaliz.com/stocks/aapl/ https://sahamanaliz.com/pages/stock https://rz-events.mreza-hajilou.workers.dev/c/insider.json; do
+            for i in 1 2; do
+              r=$(curl -s -o /dev/null -m 30 -A 'Mozilla/5.0' -w '%{http_code} ttfb=%{time_starttransfer}s total=%{time_total}s size=%{size_download}' "$u")
+            done
+            echo "HEALTH $u $r"
+          done
+          curl -s -m 30 https://rz-events.mreza-hajilou.workers.dev/c/insider.json | python3 -c "import json,sys;d=json.load(sys.stdin);print('HEALTH feed as_of',d.get('as_of'),'rows',len(d.get('rows',[])),'wk',d.get('wk'))"
